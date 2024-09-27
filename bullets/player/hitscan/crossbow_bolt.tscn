@@ -1,0 +1,210 @@
+[gd_scene load_steps=24 format=3 uid="uid://u6obomqkbr77"]
+
+[ext_resource type="Script" path="res://bullets/lightning_scan.gd" id="1_3mdio"]
+[ext_resource type="ArrayMesh" uid="uid://cfjlieto7r0xy" path="res://bullets/hitscan_bullet.obj" id="2_co20h"]
+[ext_resource type="PackedScene" uid="uid://r5omla7tiysx" path="res://scenes/effects/explosions/nail_explosion.tscn" id="2_o64b4"]
+[ext_resource type="Shader" path="res://shaders/spatial/lightning.gdshader" id="4_ttioc"]
+[ext_resource type="Shader" path="res://shaders/spatial/crossbow_bolt.gdshader" id="5_c1ccc"]
+
+[sub_resource type="Shader" id="Shader_s6w3a"]
+code = "// NOTE: Shader automatically converted from Godot Engine 4.2.1.stable.mono's StandardMaterial3D.
+
+shader_type spatial;
+render_mode blend_add,depth_draw_opaque,cull_disabled,diffuse_burley,specular_schlick_ggx,unshaded;
+uniform vec4 albedo : source_color;
+uniform sampler2D texture_albedo : source_color,filter_linear_mipmap,repeat_enable;
+uniform float point_size : hint_range(0,128);
+uniform float roughness : hint_range(0,1);
+uniform sampler2D texture_metallic : hint_default_white,filter_linear_mipmap,repeat_enable;
+uniform vec4 metallic_texture_channel;
+uniform sampler2D texture_roughness : hint_roughness_r,filter_linear_mipmap,repeat_enable;
+uniform float specular;
+uniform float metallic;
+uniform vec3 uv1_scale;
+uniform vec3 uv1_offset;
+uniform vec3 uv2_scale;
+uniform vec3 uv2_offset;
+
+#include \"res://shaders/includes/psx_inc.gdshaderinc\"
+
+void vertex() {
+	UV=UV*uv1_scale.xy+uv1_offset.xy;
+	POSITION = map_affine(snap_vertex(PROJECTION_MATRIX * MODELVIEW_MATRIX * vec4(VERTEX, 1.0)));
+}
+
+void fragment() {
+	vec2 base_uv = UV;
+	vec4 albedo_tex = texture(texture_albedo,base_uv);
+	ALBEDO = albedo.rgb * albedo_tex.rgb;
+	float metallic_tex = dot(texture(texture_metallic,base_uv),metallic_texture_channel);
+	METALLIC = metallic_tex * metallic;
+	vec4 roughness_texture_channel = vec4(1.0,0.0,0.0,0.0);
+	float roughness_tex = dot(texture(texture_roughness,base_uv),roughness_texture_channel);
+	ROUGHNESS = roughness_tex * roughness;
+	SPECULAR = specular;
+	ALPHA *= albedo.a * albedo_tex.a;
+}
+"
+
+[sub_resource type="Gradient" id="Gradient_lh4cc"]
+colors = PackedColorArray(0, 0, 0, 0, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_16e03"]
+gradient = SubResource("Gradient_lh4cc")
+width = 16
+height = 16
+fill_from = Vector2(0, 0.875)
+fill_to = Vector2(0, 0.5)
+metadata/_snap_enabled = true
+metadata/_snap_count = 8
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_2knfb"]
+render_priority = 0
+shader = SubResource("Shader_s6w3a")
+shader_parameter/albedo = Color(0, 5, 5, 1)
+shader_parameter/point_size = 1.0
+shader_parameter/roughness = 1.0
+shader_parameter/metallic_texture_channel = null
+shader_parameter/specular = 0.5
+shader_parameter/metallic = 0.0
+shader_parameter/uv1_scale = Vector3(1, 1, 1)
+shader_parameter/uv1_offset = Vector3(0, 0, 0)
+shader_parameter/uv2_scale = Vector3(1, 1, 1)
+shader_parameter/uv2_offset = Vector3(0, 0, 0)
+shader_parameter/texture_albedo = SubResource("GradientTexture2D_16e03")
+
+[sub_resource type="Skin" id="Skin_axrfg"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_5b6os"]
+noise_type = 3
+frequency = 0.25
+fractal_octaves = 1
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_gyies"]
+width = 16
+height = 16
+seamless = true
+noise = SubResource("FastNoiseLite_5b6os")
+
+[sub_resource type="Gradient" id="Gradient_hvl4x"]
+offsets = PackedFloat32Array(0.375, 0.4375, 0.5625, 0.625)
+colors = PackedColorArray(0, 3, 3, 0, 0, 3, 3, 1, 0, 3, 3, 0.8, 0, 3, 3, 0)
+metadata/_snap_enabled = true
+metadata/_snap_count = 16
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_r6gdn"]
+gradient = SubResource("Gradient_hvl4x")
+width = 16
+height = 16
+use_hdr = true
+fill_from = Vector2(0.5, 0)
+fill_to = Vector2(0.5, 1)
+metadata/_snap_enabled = true
+metadata/_snap_count = 8
+
+[sub_resource type="Gradient" id="Gradient_noo6w"]
+offsets = PackedFloat32Array(0.5, 0.75)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1)
+metadata/_snap_enabled = true
+metadata/_snap_count = 16
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_qox87"]
+gradient = SubResource("Gradient_noo6w")
+width = 16
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_4e4mr"]
+resource_local_to_scene = true
+render_priority = 0
+shader = ExtResource("4_ttioc")
+shader_parameter/intensity = 0.75
+shader_parameter/scroll_speed = 2.0
+shader_parameter/tex = SubResource("GradientTexture2D_r6gdn")
+shader_parameter/tex_2 = SubResource("GradientTexture1D_qox87")
+shader_parameter/noise = SubResource("NoiseTexture2D_gyies")
+
+[sub_resource type="QuadMesh" id="QuadMesh_rgpba"]
+orientation = 0
+
+[sub_resource type="GDScript" id="GDScript_tennt"]
+script/source = "extends MeshInstance3D
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	#material_override.uv_scale.x = global_basis.get_scale().z
+	set_instance_shader_parameter(
+			\"uv_scale\",
+			Vector2(get_parent().scale.z, 1.0)
+	)
+	pass
+"
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_f8cgg"]
+frequency = 1.0
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_mdolw"]
+width = 64
+height = 64
+noise = SubResource("FastNoiseLite_f8cgg")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ljq51"]
+render_priority = 0
+shader = ExtResource("5_c1ccc")
+shader_parameter/scale = 1.0
+shader_parameter/dance_rate = 1.0
+shader_parameter/col = Color(1, 1, 1, 1)
+shader_parameter/dance_tex = SubResource("NoiseTexture2D_mdolw")
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_jh1jo"]
+resource_local_to_scene = true
+top_radius = 0.05
+bottom_radius = 0.05
+height = 1.0
+radial_segments = 4
+rings = 1
+cap_top = false
+cap_bottom = false
+
+[node name="Hitscan" type="Node3D"]
+script = ExtResource("1_3mdio")
+damage = 30.0
+damage_type = 4
+explosion = ExtResource("2_o64b4")
+piercer = true
+fade_speed = 25.0
+linger = 1.0
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+layers = 2
+material_override = SubResource("ShaderMaterial_2knfb")
+cast_shadow = 0
+mesh = ExtResource("2_co20h")
+skin = SubResource("Skin_axrfg")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="MeshInstance3D"]
+process_mode = 4
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 1, 0, 0, -0.5)
+visible = false
+material_override = SubResource("ShaderMaterial_4e4mr")
+mesh = SubResource("QuadMesh_rgpba")
+skeleton = NodePath("../..")
+script = SubResource("GDScript_tennt")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="MeshInstance3D"]
+process_mode = 4
+transform = Transform3D(-1.31134e-07, -3, 0, 3, -1.31134e-07, 0, 0, 0, 1, 0, 0, -0.5)
+visible = false
+material_override = SubResource("ShaderMaterial_4e4mr")
+mesh = SubResource("QuadMesh_rgpba")
+skeleton = NodePath("../..")
+script = SubResource("GDScript_tennt")
+
+[node name="Lightning" type="MeshInstance3D" parent="MeshInstance3D"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, -0.5)
+material_override = SubResource("ShaderMaterial_ljq51")
+mesh = SubResource("CylinderMesh_jh1jo")

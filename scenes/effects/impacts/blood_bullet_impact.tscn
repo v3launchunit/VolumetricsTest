@@ -1,0 +1,56 @@
+[gd_scene load_steps=8 format=3 uid="uid://bth7t7bnwn01s"]
+
+[ext_resource type="Script" path="res://scripts/effects/particle_lifetime.gd" id="1_yi5yf"]
+
+[sub_resource type="Gradient" id="Gradient_yybpk"]
+offsets = PackedFloat32Array(0.8, 0.9)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_avd8r"]
+gradient = SubResource("Gradient_yybpk")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_hobux"]
+particle_flag_align_y = true
+direction = Vector3(0, 1, 0)
+initial_velocity_min = 2.5
+initial_velocity_max = 5.0
+color_ramp = SubResource("GradientTexture1D_avd8r")
+collision_mode = 1
+collision_friction = 0.25
+collision_bounce = 0.5
+sub_emitter_mode = 1
+sub_emitter_frequency = 4.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lrmib"]
+albedo_color = Color(1, 0, 0, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_xi6f7"]
+material = SubResource("StandardMaterial3D_lrmib")
+size = Vector3(0.063, 0.063, 0.063)
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_hkm2s"]
+emission_shape = 1
+emission_sphere_radius = 0.35
+direction = Vector3(0, 1, 0)
+gravity = Vector3(0, -0.98, 0)
+
+[node name="BloodBulletImpact" type="GPUParticles3D"]
+layers = 2
+amount = 3
+sub_emitter = NodePath("BloodSys")
+lifetime = 5.0
+one_shot = true
+explosiveness = 1.0
+collision_base_size = 0.06
+process_material = SubResource("ParticleProcessMaterial_hobux")
+draw_pass_1 = SubResource("BoxMesh_xi6f7")
+script = ExtResource("1_yi5yf")
+
+[node name="BloodSys" type="GPUParticles3D" parent="."]
+layers = 2
+emitting = false
+amount = 1024
+lifetime = 3.0
+fixed_fps = 60
+process_material = SubResource("ParticleProcessMaterial_hkm2s")
+draw_pass_1 = SubResource("BoxMesh_xi6f7")

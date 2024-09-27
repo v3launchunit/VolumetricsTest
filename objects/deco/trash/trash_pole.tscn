@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://cdenkq2i77csu"]
+
+[ext_resource type="Material" uid="uid://by4h3hrepyr2o" path="res://bullets/bullet_metal.tres" id="1_8olh7"]
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_wx8jg"]
+top_radius = 0.125
+bottom_radius = 0.125
+height = 5.0
+radial_segments = 4
+
+[node name="TrashPole" type="MeshInstance3D"]
+material_override = ExtResource("1_8olh7")
+visibility_range_end = 75.0
+visibility_range_end_margin = 10.0
+mesh = SubResource("CylinderMesh_wx8jg")

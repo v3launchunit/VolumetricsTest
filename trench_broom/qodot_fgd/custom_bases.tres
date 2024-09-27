@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="QodotFGDFile" load_steps=3 format=3 uid="uid://ecjhv2efqqn2"]
+
+[ext_resource type="Resource" uid="uid://bec0kis72kbyx" path="res://entities/enemies/enemy_base_class.tres" id="1_6fmc6"]
+[ext_resource type="Script" path="res://addons/qodot/src/resources/game-definitions/fgd/qodot_fgd_file.gd" id="1_06wlx"]
+
+[resource]
+script = ExtResource("1_06wlx")
+export_file = false
+target_folder = ""
+fgd_name = "Qodot"
+base_fgd_files = Array[Resource]([])
+entity_definitions = Array[Resource]([ExtResource("1_6fmc6")])

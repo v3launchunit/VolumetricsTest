@@ -1,0 +1,42 @@
+[gd_scene load_steps=8 format=3 uid="uid://cgot11wwdrtbh"]
+
+[ext_resource type="Script" path="res://scripts/effects/particle_lifetime.gd" id="1_6txdi"]
+[ext_resource type="Material" uid="uid://t1hv3tspvh88" path="res://textures/furnishings/planks.tres" id="1_joejd"]
+
+[sub_resource type="Gradient" id="Gradient_l122e"]
+offsets = PackedFloat32Array(0.5, 1)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_y8hbf"]
+gradient = SubResource("Gradient_l122e")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_h3mrf"]
+particle_flag_align_y = true
+direction = Vector3(0, 1, 0)
+spread = 180.0
+initial_velocity_min = 3.0
+initial_velocity_max = 10.0
+color_ramp = SubResource("GradientTexture1D_y8hbf")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1y342"]
+transparency = 3
+alpha_hash_scale = 1.0
+alpha_antialiasing_mode = 0
+shading_mode = 0
+vertex_color_use_as_albedo = true
+albedo_color = Color(1, 1, 0, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_vhxfw"]
+material = SubResource("StandardMaterial3D_1y342")
+size = Vector3(0.063, 0.063, 0.063)
+
+[node name="BulletImpact" type="GPUParticles3D"]
+layers = 2
+material_override = ExtResource("1_joejd")
+emitting = false
+amount = 3
+one_shot = true
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_h3mrf")
+draw_pass_1 = SubResource("BoxMesh_vhxfw")
+script = ExtResource("1_6txdi")

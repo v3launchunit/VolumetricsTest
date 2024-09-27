@@ -1,0 +1,13 @@
+[gd_resource type="StandardMaterial3D" load_steps=3 format=3 uid="uid://dvqqodfpq40yq"]
+
+[ext_resource type="Texture2D" uid="uid://mydlvci0n61d" path="res://textures/_pbr/vent_fan/vent_fan_4x4_albedo.png" id="1_iolpm"]
+[ext_resource type="Texture2D" uid="uid://cql7wxrjibwyp" path="res://textures/_pbr/vent_fan/vent_fan_4x4_metallic.png" id="2_cr5ql"]
+
+[resource]
+albedo_texture = ExtResource("1_iolpm")
+metallic = 1.0
+metallic_texture = ExtResource("2_cr5ql")
+roughness = 0.5
+roughness_texture = ExtResource("2_cr5ql")
+roughness_texture_channel = 1
+texture_filter = 0

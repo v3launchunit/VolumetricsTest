@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="QodotFGDPointClass" load_steps=4 format=3 uid="uid://c0jkjipdbnb3o"]
+
+[ext_resource type="Resource" uid="uid://bec0kis72kbyx" path="res://entities/enemies/enemy_base_class.tres" id="1_8lin7"]
+[ext_resource type="Script" path="res://addons/qodot/src/resources/game-definitions/fgd/qodot_fgd_point_class.gd" id="2_gl8tm"]
+[ext_resource type="PackedScene" uid="uid://13po7ktlg4ba" path="res://entities/enemies/military/soldier/soldier.tscn" id="2_pr7kq"]
+
+[resource]
+script = ExtResource("2_gl8tm")
+scene_file = ExtResource("2_pr7kq")
+apply_rotation_on_map_build = true
+classname = "enemy_soldier"
+description = ""
+qodot_internal = false
+base_classes = Array[Resource]([ExtResource("1_8lin7")])
+class_properties = {}
+class_property_descriptions = {}
+meta_properties = {
+"color": Color(0.8, 0.8, 0.8, 1),
+"size": AABB(-8, -8, -16, 8, 8, 16)
+}
+node_class = ""
+transient_node = false

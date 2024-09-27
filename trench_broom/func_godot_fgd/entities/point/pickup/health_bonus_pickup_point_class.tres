@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="FuncGodotFGDPointClass" load_steps=3 format=3 uid="uid://c3fiq7cbst5ni"]
+
+[ext_resource type="PackedScene" uid="uid://bnsepaqu7j4p4" path="res://pickups/health/health_bonus_pickup.tscn" id="1_lldiu"]
+[ext_resource type="Script" path="res://addons/func_godot/src/fgd/func_godot_fgd_point_class.gd" id="2_trmi8"]
+
+[resource]
+script = ExtResource("2_trmi8")
+scene_file = ExtResource("1_lldiu")
+apply_rotation_on_map_build = true
+classname = "health_bonus_pickup"
+description = ""
+func_godot_internal = false
+base_classes = Array[Resource]([])
+class_properties = {}
+class_property_descriptions = {}
+meta_properties = {
+"color": Color(0.8, 0.8, 0.8, 1),
+"size": AABB(-8, -8, -8, 8, 8, 8)
+}
+node_class = ""
+name_property = ""

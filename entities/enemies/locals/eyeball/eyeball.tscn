@@ -1,0 +1,802 @@
+[gd_scene load_steps=68 format=4 uid="uid://dmgxmmtshe4dh"]
+
+[ext_resource type="Script" path="res://entities/enemies/enemy_flying.gd" id="1_pxyj5"]
+[ext_resource type="PackedScene" uid="uid://bosuaqplx64vr" path="res://bullets/enemy/enemy_bullet_blood.tscn" id="2_2wk7d"]
+[ext_resource type="PackedScene" uid="uid://cr0slxppts0pq" path="res://entities/enemies/locals/eyeball/eyeball.glb" id="2_3mulw"]
+[ext_resource type="Script" path="res://entities/status.gd" id="3_67ny2"]
+[ext_resource type="AnimationLibrary" uid="uid://ccdixrnqbenik" path="res://entities/enemies/locals/eyeball/eyeball_anims.res" id="3_h6fvy"]
+[ext_resource type="PackedScene" uid="uid://bnsepaqu7j4p4" path="res://pickups/health/health_bonus_pickup.tscn" id="4_cn2w1"]
+[ext_resource type="PackedScene" uid="uid://cqctw8dd0ar4n" path="res://scenes/effects/damage/damage_sys.tscn" id="5_gpi87"]
+[ext_resource type="PackedScene" uid="uid://b8i1fe0bwht3k" path="res://pickups/armor/armor_bonus_pickup.tscn" id="5_kvfir"]
+[ext_resource type="PackedScene" uid="uid://c5pbs8t6p7ogl" path="res://scenes/effects/gibs/gibs.tscn" id="7_wi7ca"]
+
+[sub_resource type="AudioStreamGenerator" id="AudioStreamGenerator_xh0sx"]
+
+[sub_resource type="AudioStreamGenerator" id="AudioStreamGenerator_ypnq1"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_ynliv"]
+
+[sub_resource type="Shader" id="Shader_k5gkm"]
+code = "// NOTE: Shader automatically converted from Godot Engine 4.2.1.stable.mono's StandardMaterial3D.
+
+shader_type spatial;
+render_mode blend_mix,depth_draw_opaque,cull_back,diffuse_burley,specular_schlick_ggx;
+uniform vec4 albedo : source_color;
+uniform sampler2D texture_albedo : source_color,filter_nearest,repeat_enable;
+uniform float point_size : hint_range(0,128);
+uniform float roughness : hint_range(0,1);
+uniform sampler2D texture_metallic : hint_default_white,filter_nearest,repeat_enable;
+uniform vec4 metallic_texture_channel;
+uniform sampler2D texture_roughness : hint_roughness_r,filter_nearest,repeat_enable;
+uniform float specular;
+uniform float metallic;
+uniform sampler2D texture_emission : source_color, hint_default_black,filter_nearest,repeat_enable;
+uniform vec4 emission : source_color;
+uniform float emission_energy;
+uniform sampler2D texture_detail_albedo : source_color,filter_nearest,repeat_enable;
+uniform sampler2D texture_detail_normal : hint_normal,filter_nearest,repeat_enable;
+uniform sampler2D texture_detail_mask : hint_default_white,filter_nearest,repeat_enable;
+uniform vec3 uv1_scale;
+uniform vec3 uv1_offset;
+uniform vec3 uv2_scale;
+uniform vec3 uv2_offset;
+
+#include \"res://shaders/includes/psx_inc.gdshaderinc\"
+
+void vertex() {
+	UV=UV*uv1_scale.xy+uv1_offset.xy;
+	POSITION = map_affine(snap_vertex(PROJECTION_MATRIX * MODELVIEW_MATRIX * vec4(VERTEX, 1.0)));
+}
+
+void fragment() {
+	vec2 base_uv = UV;
+	vec4 albedo_tex = texture(texture_albedo,base_uv);
+	ALBEDO = albedo.rgb * albedo_tex.rgb;
+	float metallic_tex = dot(texture(texture_metallic,base_uv),metallic_texture_channel);
+	METALLIC = metallic_tex * metallic;
+	vec4 roughness_texture_channel = vec4(1.0,0.0,0.0,0.0);
+	float roughness_tex = dot(texture(texture_roughness,base_uv),roughness_texture_channel);
+	ROUGHNESS = roughness_tex * roughness;
+	SPECULAR = specular;
+	vec3 emission_tex = texture(texture_emission,base_uv).rgb;
+	EMISSION = (emission.rgb+emission_tex)*emission_energy;
+	vec4 detail_tex = texture(texture_detail_albedo,base_uv);
+	vec4 detail_norm_tex = texture(texture_detail_normal,base_uv);
+	vec4 detail_mask_tex = texture(texture_detail_mask,base_uv);
+	vec3 detail = mix(ALBEDO.rgb,detail_tex.rgb,detail_tex.a);
+	vec3 detail_norm = mix(NORMAL_MAP,detail_norm_tex.rgb,detail_tex.a);
+	NORMAL_MAP = mix(NORMAL_MAP,detail_norm,detail_mask_tex.r);
+	ALBEDO.rgb = mix(ALBEDO.rgb,detail,detail_mask_tex.r);
+}
+"
+
+[sub_resource type="Gradient" id="Gradient_mg5hr"]
+resource_local_to_scene = true
+interpolation_mode = 1
+offsets = PackedFloat32Array(0, 0.411348, 0.496454, 0.6, 0.829787, 0.950355)
+colors = PackedColorArray(1, 0, 0, 1, 1, 0.25098, 0.25098, 1, 1, 0.501961, 0.501961, 1, 0.75, 0.5625, 0.5625, 1, 1, 0.5, 0, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_owdsg"]
+resource_local_to_scene = true
+gradient = SubResource("Gradient_mg5hr")
+fill_to = Vector2(0, 1)
+
+[sub_resource type="Gradient" id="Gradient_ut1tc"]
+interpolation_mode = 1
+offsets = PackedFloat32Array(0, 0.2, 0.3, 0.6, 0.7)
+colors = PackedColorArray(0.8, 0.2096, 0.144, 1, 1, 0, 0, 1, 0.901961, 0.282353, 0.156863, 1, 1, 0, 0, 1, 0.737255, 0.164706, 0.14902, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_brlw2"]
+frequency = 0.02
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_sdsj8"]
+width = 64
+height = 32
+seamless = true
+seamless_blend_skirt = 0.25
+color_ramp = SubResource("Gradient_ut1tc")
+noise = SubResource("FastNoiseLite_brlw2")
+
+[sub_resource type="Gradient" id="Gradient_7h6te"]
+interpolation_mode = 1
+offsets = PackedFloat32Array(0, 0.411348, 0.496454, 0.6, 0.829787, 0.950355)
+colors = PackedColorArray(1, 1, 1, 1, 0.5, 0.5, 0.5, 1, 0.25, 0.25, 0.25, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_kymkb"]
+gradient = SubResource("Gradient_7h6te")
+fill_to = Vector2(0, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_4y3ql"]
+frequency = 0.02
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_gbnyt"]
+width = 64
+height = 32
+seamless = true
+seamless_blend_skirt = 0.25
+as_normal_map = true
+bump_strength = 32.0
+noise = SubResource("FastNoiseLite_4y3ql")
+
+[sub_resource type="Gradient" id="Gradient_0dcip"]
+resource_local_to_scene = true
+interpolation_mode = 1
+offsets = PackedFloat32Array(0, 0.829787, 0.950355)
+colors = PackedColorArray(0, 0, 0, 0, 1, 0.5, 0, 1, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_t2ac1"]
+resource_local_to_scene = true
+gradient = SubResource("Gradient_0dcip")
+fill_to = Vector2(0, 1)
+
+[sub_resource type="Gradient" id="Gradient_ing5n"]
+resource_local_to_scene = true
+interpolation_mode = 1
+offsets = PackedFloat32Array(0, 0.411348, 0.496454, 0.6, 0.829787, 0.950355)
+colors = PackedColorArray(0.75, 0.75, 0.75, 1, 0.5, 0.5, 0.5, 1, 0.25, 0.25, 0.25, 1, 0.25, 0.25, 0.25, 1, 0, 0, 0, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_femrh"]
+resource_local_to_scene = true
+gradient = SubResource("Gradient_ing5n")
+fill_to = Vector2(0, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_duplw"]
+resource_local_to_scene = true
+render_priority = 0
+shader = SubResource("Shader_k5gkm")
+shader_parameter/albedo = Color(1, 1, 1, 1)
+shader_parameter/point_size = 1.0
+shader_parameter/roughness = 1.0
+shader_parameter/metallic_texture_channel = null
+shader_parameter/specular = 0.5
+shader_parameter/metallic = 0.0
+shader_parameter/emission = Color(0, 0, 0, 1)
+shader_parameter/emission_energy = 4.0
+shader_parameter/uv1_scale = Vector3(1, 1, 1)
+shader_parameter/uv1_offset = Vector3(0, 0, 0)
+shader_parameter/uv2_scale = Vector3(1, 1, 1)
+shader_parameter/uv2_offset = Vector3(0, 0, 0)
+shader_parameter/texture_albedo = SubResource("GradientTexture2D_owdsg")
+shader_parameter/texture_roughness = SubResource("GradientTexture2D_femrh")
+shader_parameter/texture_emission = SubResource("GradientTexture2D_t2ac1")
+shader_parameter/texture_detail_albedo = SubResource("NoiseTexture2D_sdsj8")
+shader_parameter/texture_detail_normal = SubResource("NoiseTexture2D_gbnyt")
+shader_parameter/texture_detail_mask = SubResource("GradientTexture2D_kymkb")
+
+[sub_resource type="Shader" id="Shader_d6b1o"]
+code = "// NOTE: Shader automatically converted from Godot Engine 4.2.1.stable.mono's StandardMaterial3D.
+
+shader_type spatial;
+render_mode blend_mix,depth_draw_opaque,cull_back,diffuse_burley,specular_schlick_ggx;
+uniform vec4 albedo : source_color;
+uniform sampler2D texture_albedo : source_color,filter_nearest,repeat_enable;
+uniform float alpha_hash_scale;
+uniform float point_size : hint_range(0,128);
+uniform float roughness : hint_range(0,1);
+uniform sampler2D texture_metallic : hint_default_white,filter_nearest,repeat_enable;
+uniform vec4 metallic_texture_channel;
+uniform sampler2D texture_roughness : hint_roughness_r,filter_nearest,repeat_enable;
+uniform float specular;
+uniform float metallic;
+uniform sampler2D texture_normal : hint_roughness_normal,filter_nearest,repeat_enable;
+uniform float normal_scale : hint_range(-16,16);
+uniform vec3 uv1_scale;
+uniform vec3 uv1_offset;
+uniform vec3 uv2_scale;
+uniform vec3 uv2_offset;
+
+#include \"res://shaders/includes/psx_inc.gdshaderinc\"
+
+void vertex() {
+	UV=UV*uv1_scale.xy+uv1_offset.xy;
+	POSITION = map_affine(snap_vertex(PROJECTION_MATRIX * MODELVIEW_MATRIX * vec4(VERTEX, 1.0)));
+}
+
+void fragment() {
+	vec2 base_uv = UV;
+	vec4 albedo_tex = texture(texture_albedo,base_uv);
+	ALBEDO = albedo.rgb * albedo_tex.rgb;
+	float metallic_tex = dot(texture(texture_metallic,base_uv),metallic_texture_channel);
+	METALLIC = metallic_tex * metallic;
+	vec4 roughness_texture_channel = vec4(1.0,0.0,0.0,0.0);
+	float roughness_tex = dot(texture(texture_roughness,base_uv),roughness_texture_channel);
+	ROUGHNESS = roughness_tex * roughness;
+	SPECULAR = specular;
+	NORMAL_MAP = texture(texture_normal,base_uv).rgb;
+	NORMAL_MAP_DEPTH = normal_scale;
+	ALPHA *= albedo.a * albedo_tex.a;
+	ALPHA_HASH_SCALE = alpha_hash_scale;
+}
+"
+
+[sub_resource type="Gradient" id="Gradient_qmbrh"]
+interpolation_mode = 1
+offsets = PackedFloat32Array(0, 0.2, 0.3, 0.6, 0.7)
+colors = PackedColorArray(0.8, 0.2096, 0.144, 1, 1, 0, 0, 1, 0.901961, 0.282353, 0.156863, 1, 1, 0, 0, 1, 0.737255, 0.164706, 0.14902, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_pb6hm"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_1adec"]
+width = 16
+height = 128
+seamless = true
+seamless_blend_skirt = 0.25
+color_ramp = SubResource("Gradient_qmbrh")
+noise = SubResource("FastNoiseLite_pb6hm")
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_s81cl"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_8wq4g"]
+width = 16
+height = 128
+seamless = true
+seamless_blend_skirt = 0.25
+as_normal_map = true
+noise = SubResource("FastNoiseLite_s81cl")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_sli5c"]
+render_priority = 0
+shader = SubResource("Shader_d6b1o")
+shader_parameter/albedo = Color(1, 1, 1, 1)
+shader_parameter/alpha_hash_scale = 1.0
+shader_parameter/point_size = 1.0
+shader_parameter/roughness = 0.5
+shader_parameter/metallic_texture_channel = null
+shader_parameter/specular = 0.5
+shader_parameter/metallic = 0.0
+shader_parameter/normal_scale = 2.0
+shader_parameter/uv1_scale = Vector3(1, 1, 1)
+shader_parameter/uv1_offset = Vector3(0, 0, 0)
+shader_parameter/uv2_scale = Vector3(1, 1, 1)
+shader_parameter/uv2_offset = Vector3(0, 0, 0)
+shader_parameter/texture_albedo = SubResource("NoiseTexture2D_1adec")
+shader_parameter/texture_normal = SubResource("NoiseTexture2D_8wq4g")
+
+[sub_resource type="Shader" id="Shader_71btv"]
+code = "// NOTE: Shader automatically converted from Godot Engine 4.2.1.stable.mono's StandardMaterial3D.
+
+shader_type spatial;
+render_mode blend_add,depth_draw_opaque,cull_disabled,diffuse_burley,specular_schlick_ggx,unshaded;
+uniform vec4 albedo : source_color;
+uniform sampler2D texture_albedo : source_color,filter_nearest,repeat_enable;
+uniform float point_size : hint_range(0,128);
+uniform float roughness : hint_range(0,1);
+uniform sampler2D texture_metallic : hint_default_white,filter_nearest,repeat_enable;
+uniform vec4 metallic_texture_channel;
+uniform sampler2D texture_roughness : hint_roughness_r,filter_nearest,repeat_enable;
+uniform float specular;
+uniform float metallic;
+uniform vec3 uv1_scale;
+uniform vec3 uv1_offset;
+uniform vec3 uv2_scale;
+uniform vec3 uv2_offset;
+
+#include \"res://shaders/includes/psx_inc.gdshaderinc\"
+
+void vertex() {
+	UV=UV*uv1_scale.xy+uv1_offset.xy;
+	POSITION = map_affine(snap_vertex(PROJECTION_MATRIX * MODELVIEW_MATRIX * vec4(VERTEX, 1.0)));
+}
+
+void fragment() {
+	vec2 base_uv = UV;
+	vec4 albedo_tex = texture(texture_albedo,base_uv);
+	albedo_tex *= COLOR;
+	ALBEDO = albedo.rgb * albedo_tex.rgb;
+	float metallic_tex = dot(texture(texture_metallic,base_uv),metallic_texture_channel);
+	METALLIC = metallic_tex * metallic;
+	vec4 roughness_texture_channel = vec4(1.0,0.0,0.0,0.0);
+	float roughness_tex = dot(texture(texture_roughness,base_uv),roughness_texture_channel);
+	ROUGHNESS = roughness_tex * roughness;
+	SPECULAR = specular;
+	ALPHA *= albedo.a * albedo_tex.a;
+}
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_6qh7d"]
+resource_local_to_scene = true
+render_priority = 0
+shader = SubResource("Shader_71btv")
+shader_parameter/albedo = Color(4, 4, 4, 1)
+shader_parameter/point_size = 1.0
+shader_parameter/roughness = 1.0
+shader_parameter/metallic_texture_channel = null
+shader_parameter/specular = 0.5
+shader_parameter/metallic = 0.0
+shader_parameter/uv1_scale = Vector3(1, 1, 1)
+shader_parameter/uv1_offset = Vector3(0, 0, 0)
+shader_parameter/uv2_scale = Vector3(1, 1, 1)
+shader_parameter/uv2_offset = Vector3(0, 0, 0)
+shader_parameter/texture_albedo = SubResource("GradientTexture2D_t2ac1")
+
+[sub_resource type="Gradient" id="Gradient_3xk18"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_qd0ac"]
+gradient = SubResource("Gradient_3xk18")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ntdls"]
+gravity = Vector3(0, 0, 0)
+color_ramp = SubResource("GradientTexture1D_qd0ac")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_061ha"]
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_cq76q"]
+_surfaces = [{
+"aabb": AABB(-0.5, -0.5, -0.5, 1, 0.933013, 1),
+"format": 34359742465,
+"index_count": 240,
+"index_data": PackedByteArray("GgAEACkAKAACACcAKAADAAIAJgAAACUAJgABAAAAKQADACgAKQAEAAMAJwABACYAJwACAAEAJQAAABQAAQAFAAAAAQAGAAUABAAIAAMABAAJAAgAAgAGAAEAAgAHAAYAAAAFABQAGgAJAAQAAwAHAAIAAwAIAAcACQANAAgACQAOAA0ABwALAAYABwAMAAsABQAKABQAGgAOAAkACAAMAAcACAANAAwABgAKAAUABgALAAoADgASAA0ADgATABIADAAQAAsADAARABAACgAPABQAGgATAA4ADQARAAwADQASABEACwAPAAoACwAQAA8AEwAYABIAEwAZABgAEQAWABAAEQAXABYADwAVABQAGgAZABMAEgAXABEAEgAYABcAEAAVAA8AEAAWABUAGQAeABgAGQAfAB4AFwAcABYAFwAdABwAFQAbABQAGgAfABkAGAAdABcAGAAeAB0AFgAbABUAFgAcABsAHQAhABwAHQAiACEAGwAgABQAGgAkAB8AHgAiAB0AHgAjACIAHAAgABsAHAAhACAAHwAjAB4AHwAkACMAIAAlABQAGgApACQAIwAnACIAIwAoACcAIQAlACAAIQAmACUAJAAoACMAJAApACgAIgAmACEAIgAnACYA"),
+"lods": [0.420622, PackedByteArray("GgAEACkAKQAEAAUAIwApAAUAHgAFACUAJAApACMABAAJAAUACQAOAAUAHwAjAB4AHwAkACMABQAAACUABQAPAAoAJQAAABQAAAAFABQABQAKABQACgAPABQAHgAlACAAIwAFAB4AIAAlABQAHgAgABQADwAVABQADwAeABUAEwAeAA8ABQATAA8ADgATAAUAEwAZABgAEwAYAB4AGQAeABgAGQAfAB4AGgAJAAQAGgAOAAkAGgATAA4AGgAZABMAGgAfABkAFQAeABQAGgAkAB8AGgApACQA")],
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 42,
+"vertex_data": PackedByteArray("7wQ1vtmz3b7wBDW+cMScvgIAgL5vxJy+8wS1vvMEtbPzBLW+cMScvvz/fz5xxJy+9wQ1vtWz3T72BDW++/9/vtmz3b40liIz1rPdvgIAgL4wvbsy////vmghorNuzG0n1rPdvvz/fz4svbuyAgCAvtWz3T40liKz7gQ1vtez3b71BDU+cMScvgAAgL5xxJw+8gS1vkASwbLyBLU+cMScvgAAgD5vxJw+9gQ1vtez3T7vBDU+vWiMM9Wz3b4AAIA+aCEiM/z/f77Xs90+bcxtpy29OzP+//8+aiEiswAAgD7Vs90+vWiMs9mz3T77/38+aSGiMwAAAL8uvTsz9gQ1PtWz3b71BDU+cMScPvz/f75xxJw+8gS1PvIEtTPyBLU+cMScPgIAgD5vxJw+7gQ1Ptmz3T7vBDU+OXB2s1yPwj7WNSWzAQCAPtWz3b40liIz1rPdPvz/f74svbsy/v//PmghojNtzG2n1rPdPgIAgD4wvbuy+v9/Ptmz3T40liKz9gQ1Ptez3b7vBDW+cMScPgAAgL5vxJy+8gS1PkASwTLyBLW+cMScPgAAgD5xxJy+7gQ1Ptez3T71BDW+vWiMM9mz3b77/3++aiEiMwAAgL7Vs92+bcxtJy29O7P+//++aCEis/z/fz7Xs92+vWiMs9Wz3T4AAIC+")
+}]
+blend_shape_mode = 0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_jdo1f"]
+resource_name = "eyeball_Sphere"
+_surfaces = [{
+"aabb": AABB(-0.5, -0.5, -0.5, 1, 0.933013, 1),
+"attribute_data": PackedByteArray("AAAgP6yqKj4AACA/rKoqPgAAID+sqio+AAAgP6yqKj4AACA/qKqqPgAAID+oqqo+AAAgP6iqqj4AACA/qKqqPgAAID8AAAA/AAAgPwAAAD8AACA/AAAAPwAAID8AAAA/AAAgP6uqKj8AACA/q6oqPwAAID+rqio/AAAgP6uqKj8AACA/VVVVPwAAID9VVVU/AAAgP1VVVT8AACA/VVVVPwAAAD+sqio+AAAAP6yqKj4AAAA/rKoqPgAAAD+sqio+AAAAP6iqqj4AAAA/qKqqPgAAAD+oqqo+AAAAP6iqqj4AAAA/AAAAPwAAAD8AAAA/AAAAPwAAAD8AAAA/AAAAPwAAAD+rqio/AAAAP6uqKj8AAAA/q6oqPwAAAD+rqio/AAAAP1VVVT8AAAA/VVVVPwAAAD9VVVU/AAAAP1VVVT8AAMA+qKoqPgAAwD6oqio+AADAPqiqKj4AAMA+qKoqPgAAwD6oqqo+AADAPqiqqj4AAMA+qKqqPgAAwD6oqqo+AADAPgAAAD8AAMA+AAAAPwAAwD4AAAA/AADAPgAAAD8AAMA+q6oqPwAAwD6rqio/AADAPquqKj8AAMA+q6oqPwAAwD5VVVU/AADAPlVVVT8AAMA+VVVVPwAAwD5VVVU/AACAPqiqKj4AAIA+qKoqPgAAgD6oqio+AACAPqiqKj4AAIA+qKqqPgAAgD6oqqo+AACAPqiqqj4AAIA+qKqqPgAAgD4AAAA/AACAPgAAAD8AAIA+AAAAPwAAgD4AAAA/AACAPquqKj8AAIA+q6oqPwAAgD6rqio/AACAPquqKj8AAIA+VVVVPwAAgD5VVVU/AACAPlVVVT8AAIA+VVVVPwAAED8AAAAAAADgPgAAAAAAADA/AAAAAAAAoD4AAAAAAABQPwAAAAAAAEA+AAAAAAAAcD8AAAAABACAPQAAAAAAAAA+qKoqPgAAAD6oqio+AAAAPqiqKj4AAAA+qKoqPgAAAD6oqqo+AAAAPqiqqj4AAAA+qKqqPgAAAD6oqqo+AAAAPgAAAD8AAAA+AAAAPwAAAD4AAAA/AAAAPgAAAD8AAAA+q6oqPwAAAD6rqio/AAAAPquqKj8AAAA+q6oqPwAAAD5VVVU/AAAAPlVVVT8AAAA+VVVVPwAAAD5VVVU/BACAPQAAgD8AAHA/AACAPwAAQD4AAIA/AABQPwAAgD8AAKA+AACAPwAAMD8AAIA/AADgPgAAgD8AABA/AACAPwAAgD+oqio+AAAAAKiqKj4AAIA/qKoqPgAAAACoqio+AACAP6iqqj4AAAAAqKqqPgAAgD+oqqo+AAAAAKiqqj4AAIA/AAAAPwAAAAAAAAA/AACAPwAAAD8AAAAAAAAAPwAAgD+rqio/AAAAAKuqKj8AAIA/q6oqPwAAAACrqio/AAAAAFVVVT8AAIA/VVVVPwAAgD9VVVU/AAAAAFVVVT8AAGA/qKoqPgAAYD+oqio+AABgP6iqKj4AAGA/qKoqPgAAYD+oqqo+AABgP6iqqj4AAGA/qKqqPgAAYD+oqqo+AABgPwAAAD8AAGA/AAAAPwAAYD8AAAA/AABgPwAAAD8AAGA/q6oqPwAAYD+rqio/AABgP6uqKj8AAGA/q6oqPwAAYD9VVVU/AABgP1VVVT8AAGA/VVVVPwAAYD9VVVU/AABAP6iqKj4AAEA/qKoqPgAAQD+oqio+AABAP6iqKj4AAEA/qKqqPgAAQD+oqqo+AABAP6iqqj4AAEA/qKqqPgAAQD8AAAA/AABAPwAAAD8AAEA/AAAAPwAAQD8AAAA/AABAP6uqKj8AAEA/q6oqPwAAQD+rqio/AABAP6uqKj8AAEA/VVVVPwAAQD9VVVU/AABAP1VVVT8AAEA/VVVVPwAAID+sqio+AAAgP1VVVT8AACA/VVVVPwAAAD+sqio+AAAAP6yqKj4AAAA/rKoqPgAAAD+sqio+AAAAP6yqKj4AAAA/VVVVPwAAAD9VVVU/AADAPqiqKj4AAMA+VVVVPwAAwD5VVVU/AADAPlVVVT8AAIA+qKoqPgAAgD6oqio+AACAPlVVVT8AAIA+VVVVPwAAgD5VVVU/AABwPwAAAAAEAIA9AAAAAAAAAD6oqio+AAAAPqiqKj4AAAA+VVVVPwAAgD+rqio/AACAP6uqKj8AAIA/q6oqPwAAAACrqio/AAAAAKuqKj8AAGA/qKoqPgAAYD+oqio+AABgP6uqKj8AAGA/q6oqPwAAYD+rqio/AABgP1VVVT8AAEA/qKoqPgAAQD+oqio+AABAP1VVVT8AAEA/VVVVPw=="),
+"format": 34359742487,
+"index_count": 240,
+"index_data": PackedByteArray("cQASAK4AqAALAKUAqAAOAAsAoQABAJwAoQAHAAEArAAPAKkArAARAA8ApAAGAKAApAAKAAYAnQADAFIABQAUAAAABQAaABQAEAAiAA0AEAAkACIACAAYAAQACAAcABgAAgAWAFAAcwAnABMADAAeAAkADAAgAB4AJQA1ACMAJQA4ADUAHQAsABkAHQAwACwAFwAqAFEAcgA7ACYAIQAxAB8AIQA0ADEAGwAoABUAGwAtACgAOQBJADcAOQBMAEkAMgBAAC4AMgBEAEAAKwA9AFMAcABOADoANgBFADMANgBIAEUALwA8ACkALwBBADwATwBkAEoATwBqAGQARgBdAEMARgBgAF0APgBYAFUAbgBpAE0ASwBhAEcASwBlAGEAQgBaAD8AQgBcAFoAawCBAGYAawCHAIEAYgB7AF8AYgB9AHsAWQB1AFcAbACEAGgAZwB/AGMAZwCDAH8AXgB3AFsAXgB5AHcAfACPAHoAfACSAI8AdACJAFYAbQCYAIUAggCTAH4AggCXAJMAeACLAHYAeACOAIsAhgCWAIAAhgCbAJYAiACeAFQAbwCtAJkAlQCnAJEAlQCrAKcAjACfAIoAjACiAJ8AmgCqAJQAmgCvAKoAkACjAI0AkACmAKMA"),
+"lods": [0.420622, PackedByteArray("cQCxAK4A1QCyALMA0QDVALMAygCzANQA0gDVAM8AsgC4ALQAuAC7ALQAhgDPAIAAhgCbAM8AFAAAAJwAFAA8ACgA0wCwAFIAsAC1AFAAtQC6AFEAugC+AFMAyQDTAM4A0AC3AMkAzQDTAFQAyADNAMMAvgDFAFUAvwDLAMUAwQDLAL8AtgDAAL4AvADAALYAwQDHAGQATABkAIEAawCBAGQAawCHAIEAcwAnABMAcgA7ALkAcABOAL0AbgBoAMIAbACEAGgAxgDMAMQAbQCYAIUAbwDWAJgA")],
+"material": SubResource("StandardMaterial3D_061ha"),
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 215,
+"vertex_data": PackedByteArray("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")
+}]
+blend_shape_mode = 0
+shadow_mesh = SubResource("ArrayMesh_cq76q")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qte18"]
+transparency = 1
+shading_mode = 0
+albedo_color = Color(1, 1, 1, 0.25098)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_ryrdp"]
+material = SubResource("StandardMaterial3D_qte18")
+bottom_radius = 0.0
+radial_segments = 8
+
+[sub_resource type="Animation" id="Animation_71ksj"]
+length = 0.001
+tracks/0/type = "rotation_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../Eyeball/Eyeball/TendrilBottom/Skeleton3D:Bone")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 0.707107, 0, -0.707107, 0)
+tracks/1/type = "rotation_3d"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../Eyeball/Eyeball/TendrilBottom/Skeleton3D:Bone.001")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = PackedFloat32Array(0, 1, 0, 0, 0, 1)
+tracks/2/type = "rotation_3d"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../Eyeball/Eyeball/TendrilBottom/Skeleton3D:Bone.002")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = PackedFloat32Array(0, 1, 0, 0, 0, 1)
+tracks/3/type = "rotation_3d"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("../Eyeball/Eyeball/TendrilBottom/Skeleton3D:Bone.003")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = PackedFloat32Array(0, 1, 0, 0, 0, 1)
+tracks/4/type = "rotation_3d"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("../Eyeball/Eyeball/TendrilBottom/Skeleton3D:Bone.004")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = PackedFloat32Array(0, 1, 0, 0, 0, 1)
+tracks/5/type = "rotation_3d"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("../Eyeball/Eyeball/TendrilBottom/Skeleton3D:Bone.005")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = PackedFloat32Array(0, 1, 0, 0, 0, 1)
+tracks/6/type = "rotation_3d"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("../Eyeball/Eyeball/TendrilBottom/Skeleton3D:Tip")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = PackedFloat32Array(0, 1, 0, 0, 0, 1)
+tracks/7/type = "rotation_3d"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("../Eyeball/Eyeball/TendrilLeft/Skeleton3D:Bone.001")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = PackedFloat32Array(0, 1, 0, 0, 0, 1)
+tracks/8/type = "rotation_3d"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("../Eyeball/Eyeball/TendrilLeft/Skeleton3D:Bone.002")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = PackedFloat32Array(0, 1, 0, 0, 0, 1)
+tracks/9/type = "rotation_3d"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("../Eyeball/Eyeball/TendrilLeft/Skeleton3D:Bone.003")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = PackedFloat32Array(0, 1, 0, 0, 0, 1)
+tracks/10/type = "rotation_3d"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("../Eyeball/Eyeball/TendrilLeft/Skeleton3D:Bone.004")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = PackedFloat32Array(0, 1, 0, 0, 0, 1)
+tracks/11/type = "rotation_3d"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("../Eyeball/Eyeball/TendrilLeft/Skeleton3D:Bone.005")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = PackedFloat32Array(0, 1, 0, 0, 0, 1)
+tracks/12/type = "rotation_3d"
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/path = NodePath("../Eyeball/Eyeball/TendrilLeft/Skeleton3D:Tip")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/keys = PackedFloat32Array(0, 1, 0, 0, 0, 1)
+tracks/13/type = "rotation_3d"
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/path = NodePath("../Eyeball/Eyeball/TendrilRight/Skeleton3D:Bone.001")
+tracks/13/interp = 1
+tracks/13/loop_wrap = true
+tracks/13/keys = PackedFloat32Array(0, 1, 0, 0, 0, 1)
+tracks/14/type = "rotation_3d"
+tracks/14/imported = false
+tracks/14/enabled = true
+tracks/14/path = NodePath("../Eyeball/Eyeball/TendrilRight/Skeleton3D:Bone.002")
+tracks/14/interp = 1
+tracks/14/loop_wrap = true
+tracks/14/keys = PackedFloat32Array(0, 1, 0, 0, 0, 1)
+tracks/15/type = "rotation_3d"
+tracks/15/imported = false
+tracks/15/enabled = true
+tracks/15/path = NodePath("../Eyeball/Eyeball/TendrilRight/Skeleton3D:Bone.003")
+tracks/15/interp = 1
+tracks/15/loop_wrap = true
+tracks/15/keys = PackedFloat32Array(0, 1, 0, 0, 0, 1)
+tracks/16/type = "rotation_3d"
+tracks/16/imported = false
+tracks/16/enabled = true
+tracks/16/path = NodePath("../Eyeball/Eyeball/TendrilRight/Skeleton3D:Bone.004")
+tracks/16/interp = 1
+tracks/16/loop_wrap = true
+tracks/16/keys = PackedFloat32Array(0, 1, 0, 0, 0, 1)
+tracks/17/type = "rotation_3d"
+tracks/17/imported = false
+tracks/17/enabled = true
+tracks/17/path = NodePath("../Eyeball/Eyeball/TendrilRight/Skeleton3D:Bone.005")
+tracks/17/interp = 1
+tracks/17/loop_wrap = true
+tracks/17/keys = PackedFloat32Array(0, 1, 0, 0, 0, 1)
+tracks/18/type = "rotation_3d"
+tracks/18/imported = false
+tracks/18/enabled = true
+tracks/18/path = NodePath("../Eyeball/Eyeball/TendrilRight/Skeleton3D:Tip")
+tracks/18/interp = 1
+tracks/18/loop_wrap = true
+tracks/18/keys = PackedFloat32Array(0, 1, 0, 0, 0, 1)
+tracks/19/type = "rotation_3d"
+tracks/19/imported = false
+tracks/19/enabled = true
+tracks/19/path = NodePath("../Eyeball/Eyeball/TendrilTop/Skeleton3D:Bone.001")
+tracks/19/interp = 1
+tracks/19/loop_wrap = true
+tracks/19/keys = PackedFloat32Array(0, 1, 0, 0, 0, 1)
+tracks/20/type = "rotation_3d"
+tracks/20/imported = false
+tracks/20/enabled = true
+tracks/20/path = NodePath("../Eyeball/Eyeball/TendrilTop/Skeleton3D:Bone.002")
+tracks/20/interp = 1
+tracks/20/loop_wrap = true
+tracks/20/keys = PackedFloat32Array(0, 1, 0, 0, 0, 1)
+tracks/21/type = "rotation_3d"
+tracks/21/imported = false
+tracks/21/enabled = true
+tracks/21/path = NodePath("../Eyeball/Eyeball/TendrilTop/Skeleton3D:Bone.003")
+tracks/21/interp = 1
+tracks/21/loop_wrap = true
+tracks/21/keys = PackedFloat32Array(0, 1, 0, 0, 0, 1)
+tracks/22/type = "rotation_3d"
+tracks/22/imported = false
+tracks/22/enabled = true
+tracks/22/path = NodePath("../Eyeball/Eyeball/TendrilTop/Skeleton3D:Bone.004")
+tracks/22/interp = 1
+tracks/22/loop_wrap = true
+tracks/22/keys = PackedFloat32Array(0, 1, 0, 0, 0, 1)
+tracks/23/type = "rotation_3d"
+tracks/23/imported = false
+tracks/23/enabled = true
+tracks/23/path = NodePath("../Eyeball/Eyeball/TendrilTop/Skeleton3D:Bone.005")
+tracks/23/interp = 1
+tracks/23/loop_wrap = true
+tracks/23/keys = PackedFloat32Array(0, 1, 0, 0, 0, 1)
+tracks/24/type = "rotation_3d"
+tracks/24/imported = false
+tracks/24/enabled = true
+tracks/24/path = NodePath("../Eyeball/Eyeball/TendrilTop/Skeleton3D:Tip")
+tracks/24/interp = 1
+tracks/24/loop_wrap = true
+tracks/24/keys = PackedFloat32Array(0, 1, 0, 0, 0, 1)
+tracks/25/type = "rotation_3d"
+tracks/25/imported = false
+tracks/25/enabled = true
+tracks/25/path = NodePath("../Eyeball/Eyeball/TendrilCenter/Skeleton3D:Bone.001")
+tracks/25/interp = 1
+tracks/25/loop_wrap = true
+tracks/25/keys = PackedFloat32Array(0, 1, 0, 0, 0, 1)
+tracks/26/type = "rotation_3d"
+tracks/26/imported = false
+tracks/26/enabled = true
+tracks/26/path = NodePath("../Eyeball/Eyeball/TendrilCenter/Skeleton3D:Bone.002")
+tracks/26/interp = 1
+tracks/26/loop_wrap = true
+tracks/26/keys = PackedFloat32Array(0, 1, 0, 0, 0, 1)
+tracks/27/type = "rotation_3d"
+tracks/27/imported = false
+tracks/27/enabled = true
+tracks/27/path = NodePath("../Eyeball/Eyeball/TendrilCenter/Skeleton3D:Bone.003")
+tracks/27/interp = 1
+tracks/27/loop_wrap = true
+tracks/27/keys = PackedFloat32Array(0, 1, 0, 0, 0, 1)
+tracks/28/type = "rotation_3d"
+tracks/28/imported = false
+tracks/28/enabled = true
+tracks/28/path = NodePath("../Eyeball/Eyeball/TendrilCenter/Skeleton3D:Bone.004")
+tracks/28/interp = 1
+tracks/28/loop_wrap = true
+tracks/28/keys = PackedFloat32Array(0, 1, 0, 0, 0, 1)
+tracks/29/type = "rotation_3d"
+tracks/29/imported = false
+tracks/29/enabled = true
+tracks/29/path = NodePath("../Eyeball/Eyeball/TendrilCenter/Skeleton3D:Bone.005")
+tracks/29/interp = 1
+tracks/29/loop_wrap = true
+tracks/29/keys = PackedFloat32Array(0, 1, 0, 0, 0, 1)
+tracks/30/type = "rotation_3d"
+tracks/30/imported = false
+tracks/30/enabled = true
+tracks/30/path = NodePath("../Eyeball/Eyeball/TendrilCenter/Skeleton3D:Tip")
+tracks/30/interp = 1
+tracks/30/loop_wrap = true
+tracks/30/keys = PackedFloat32Array(0, 1, 0, 0, 0, 1)
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_2ufq5"]
+_data = {
+"RESET": SubResource("Animation_71ksj")
+}
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_uyjsu"]
+animation = &"eyeball_anims/eyeball_attack"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_jtyhk"]
+animation = &"eyeball_anims/eyeball_death"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_sau7m"]
+animation = &"eyeball_anims/eyeball_flinch"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_714h7"]
+animation = &"eyeball_anims/eyeball_idle"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_st6ku"]
+animation = &"eyeball_anims/eyeball_pursue"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_7jc3m"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_0biby"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_jio8u"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_i7gn0"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_rvyd3"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_s2eki"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_dqgq0"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ft6qx"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_cpj40"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_d6krp"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_qos47"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_mjwdy"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_6julu"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_itelu"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_63caw"]
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_de3dd"]
+states/End/position = Vector2(832, 96.2085)
+states/Start/position = Vector2(164, 95.4659)
+states/attacking/node = SubResource("AnimationNodeAnimation_uyjsu")
+states/attacking/position = Vector2(317.185, 227.333)
+states/dead/node = SubResource("AnimationNodeAnimation_jtyhk")
+states/dead/position = Vector2(436, 20.6667)
+states/flinching/node = SubResource("AnimationNodeAnimation_sau7m")
+states/flinching/position = Vector2(571.802, 227.185)
+states/idle/node = SubResource("AnimationNodeAnimation_714h7")
+states/idle/position = Vector2(316.889, 95.9259)
+states/moving/node = SubResource("AnimationNodeAnimation_st6ku")
+states/moving/position = Vector2(572, 96.4197)
+transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_7jc3m"), "idle", "attacking", SubResource("AnimationNodeStateMachineTransition_0biby"), "attacking", "dead", SubResource("AnimationNodeStateMachineTransition_jio8u"), "attacking", "idle", SubResource("AnimationNodeStateMachineTransition_i7gn0"), "idle", "moving", SubResource("AnimationNodeStateMachineTransition_rvyd3"), "moving", "idle", SubResource("AnimationNodeStateMachineTransition_s2eki"), "moving", "dead", SubResource("AnimationNodeStateMachineTransition_dqgq0"), "idle", "dead", SubResource("AnimationNodeStateMachineTransition_ft6qx"), "flinching", "dead", SubResource("AnimationNodeStateMachineTransition_cpj40"), "moving", "flinching", SubResource("AnimationNodeStateMachineTransition_d6krp"), "flinching", "moving", SubResource("AnimationNodeStateMachineTransition_qos47"), "attacking", "flinching", SubResource("AnimationNodeStateMachineTransition_mjwdy"), "moving", "attacking", SubResource("AnimationNodeStateMachineTransition_6julu"), "attacking", "moving", SubResource("AnimationNodeStateMachineTransition_itelu"), "idle", "flinching", SubResource("AnimationNodeStateMachineTransition_63caw")]
+graph_offset = Vector2(-51, 6)
+
+[node name="Eyeball" type="CharacterBody3D"]
+collision_layer = 4
+collision_mask = 151
+script = ExtResource("1_pxyj5")
+species = &"eyeballs"
+speed = 5.0
+turning_speed = 3.0
+acceleration = 10.0
+knockback_multiplier = 3.0
+deaf = true
+sight_line_sweep_angle = 0.785398
+sight_line_sweep_speed = 30.0
+detection_stream = SubResource("AudioStreamGenerator_xh0sx")
+attack_recovery_time = 0.5
+bullet = ExtResource("2_2wk7d")
+flinch_chance = 0.0
+flinch_time = 0.0
+death_stream = SubResource("AudioStreamGenerator_ypnq1")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_ynliv")
+
+[node name="Eyeball" parent="." instance=ExtResource("2_3mulw")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
+
+[node name="Eyeball" parent="Eyeball" index="0"]
+layers = 2
+material_override = SubResource("ShaderMaterial_duplw")
+
+[node name="Skeleton3D" parent="Eyeball/Eyeball/TendrilBottom" index="0"]
+bones/0/rotation = Quaternion(0.707107, 0, -0.707107, 0)
+
+[node name="TendrilMesh_003" parent="Eyeball/Eyeball/TendrilBottom/Skeleton3D" index="0"]
+layers = 2
+material_override = SubResource("ShaderMaterial_sli5c")
+
+[node name="Skeleton3D" parent="Eyeball/Eyeball/TendrilCenter" index="0"]
+bones/0/rotation = Quaternion(0.707107, 0, -0.707107, 0)
+
+[node name="TendrilMesh" parent="Eyeball/Eyeball/TendrilCenter/Skeleton3D" index="0"]
+layers = 2
+material_override = SubResource("ShaderMaterial_sli5c")
+
+[node name="TendrilMesh_002" parent="Eyeball/Eyeball/TendrilLeft/Skeleton3D" index="0"]
+layers = 2
+material_override = SubResource("ShaderMaterial_sli5c")
+
+[node name="Skeleton3D" parent="Eyeball/Eyeball/TendrilRight" index="0"]
+bones/0/rotation = Quaternion(0.707107, 0, -0.707107, 0)
+
+[node name="TendrilMesh_001" parent="Eyeball/Eyeball/TendrilRight/Skeleton3D" index="0"]
+layers = 2
+material_override = SubResource("ShaderMaterial_sli5c")
+
+[node name="TendrilMesh_004" parent="Eyeball/Eyeball/TendrilTop/Skeleton3D" index="0"]
+layers = 2
+material_override = SubResource("ShaderMaterial_sli5c")
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="Eyeball/Eyeball" index="5"]
+layers = 2
+material_override = SubResource("ShaderMaterial_6qh7d")
+amount = 16
+lifetime = 0.25
+fixed_fps = 0
+process_material = SubResource("ParticleProcessMaterial_ntdls")
+draw_pass_1 = SubResource("ArrayMesh_jdo1f")
+
+[node name="SpotLight3D" type="SpotLight3D" parent="Eyeball/Eyeball" index="6"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 1.75188e-09, 0.429961, 0)
+visible = false
+light_color = Color(1, 0.501961, 0, 1)
+light_energy = 4.0
+shadow_enabled = true
+distance_fade_enabled = true
+spot_range = 10.0
+spot_angle = 80.0
+spot_angle_attenuation = 5.13242e-05
+
+[node name="Spawner" type="Marker3D" parent="Eyeball"]
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
+target_desired_distance = 3.0
+path_height_offset = -1.5
+max_speed = 100.0
+use_3d_avoidance = true
+
+[node name="SightLine" type="RayCast3D" parent="."]
+target_position = Vector3(0, 0, -16)
+collision_mask = 3
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="SightLine"]
+transform = Transform3D(1, 0, 0, 0, 1.31134e-07, 1, 0, -1, 1.31134e-07, 0, 0, -1)
+visible = false
+mesh = SubResource("CylinderMesh_ryrdp")
+
+[node name="FloorLine" type="RayCast3D" parent="."]
+target_position = Vector3(0, -1.5, 0)
+collision_mask = 3
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+root_node = NodePath("../AnimationTree")
+libraries = {
+"": SubResource("AnimationLibrary_2ufq5"),
+"eyeball_anims": ExtResource("3_h6fvy")
+}
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+root_node = NodePath(".")
+tree_root = SubResource("AnimationNodeStateMachine_de3dd")
+anim_player = NodePath("../AnimationPlayer")
+parameters/current_length = 1.0
+parameters/current_position = 0.540841
+parameters/current_delta = 0.014463
+parameters/End/current_length = null
+parameters/End/current_position = null
+parameters/End/current_delta = null
+parameters/Start/current_length = 0.0
+parameters/Start/current_position = 0.0
+parameters/Start/current_delta = 0.0
+parameters/attacking/current_length = null
+parameters/attacking/current_position = null
+parameters/attacking/current_delta = null
+parameters/dead/current_length = null
+parameters/dead/current_position = null
+parameters/dead/current_delta = null
+parameters/flinching/current_length = null
+parameters/flinching/current_position = null
+parameters/flinching/current_delta = null
+parameters/idle/current_length = 1.0
+parameters/idle/current_position = 0.540841
+parameters/idle/current_delta = 0.014463
+parameters/moving/current_length = null
+parameters/moving/current_position = null
+parameters/moving/current_delta = null
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+bus = &"Enemies"
+doppler_tracking = 2
+
+[node name="Status" type="Node" parent="."]
+script = ExtResource("3_67ny2")
+max_health = 50.0
+gib_threshold = 0.0
+damage_sys = ExtResource("5_gpi87")
+gibs = ExtResource("7_wi7ca")
+loot = Array[PackedScene]([ExtResource("4_cn2w1"), ExtResource("5_kvfir")])
+is_enemy = true
+score = 1
+
+[editable path="Eyeball"]

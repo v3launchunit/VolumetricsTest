@@ -1,0 +1,128 @@
+[gd_scene load_steps=18 format=3 uid="uid://rchnjnxfhuga"]
+
+[ext_resource type="Script" path="res://bullets/bullet.gd" id="1_daqx3"]
+[ext_resource type="PackedScene" uid="uid://dco7xp2cwuyge" path="res://scenes/effects/explosions/explosion.tscn" id="2_i7b7a"]
+[ext_resource type="Shader" path="res://shaders/spatial/psx_ul_mix.gdshader" id="3_ven1m"]
+[ext_resource type="Script" path="res://bullets/bullet_trail.gd" id="4_pfq3o"]
+[ext_resource type="Material" uid="uid://b78l63b32udy2" path="res://effects/halos/halo_mat.tres" id="5_h4omx"]
+[ext_resource type="Script" path="res://scripts/effects/halo.gd" id="6_lbxxy"]
+[ext_resource type="Script" path="res://scripts/effects/lifetime.gd" id="7_nam5y"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_s6itv"]
+radius = 0.063
+height = 0.25
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_g6ux6"]
+render_priority = 0
+shader = ExtResource("3_ven1m")
+shader_parameter/albedo = Color(1, 0.501961, 0, 1)
+shader_parameter/uv1_scale = Vector3(1, 1, 1)
+shader_parameter/uv1_offset = Vector3(0, 0, 0)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_860gl"]
+transparency = 1
+shading_mode = 0
+vertex_color_use_as_albedo = true
+albedo_color = Color(1, 0.501961, 0, 1)
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_ajr70"]
+material = SubResource("StandardMaterial3D_860gl")
+radius = 0.063
+height = 0.25
+radial_segments = 4
+rings = 1
+
+[sub_resource type="Gradient" id="Gradient_0qvjn"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_4kjap"]
+gradient = SubResource("Gradient_0qvjn")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_0vas0"]
+direction = Vector3(0, 0, 1)
+spread = 0.0
+gravity = Vector3(0, 0, 0)
+color = Color(1, 1, 1, 0.501961)
+color_ramp = SubResource("GradientTexture1D_4kjap")
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_11nj7"]
+load_path = "res://.godot/imported/halo.png-88068247d44276e09ca924d46b3606d1.s3tc.ctex"
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0qxru"]
+transparency = 1
+blend_mode = 1
+shading_mode = 0
+vertex_color_use_as_albedo = true
+albedo_color = Color(1, 0.501961, 0, 1)
+albedo_texture = SubResource("CompressedTexture2D_11nj7")
+billboard_mode = 1
+fixed_size = true
+proximity_fade_distance = 3.0
+distance_fade_mode = 1
+
+[sub_resource type="QuadMesh" id="QuadMesh_j7ack"]
+material = SubResource("StandardMaterial3D_0qxru")
+size = Vector2(0.15, 0.15)
+
+[node name="Bullet" type="RigidBody3D"]
+collision_layer = 4
+collision_mask = 71
+input_ray_pickable = false
+continuous_cd = true
+contact_monitor = true
+max_contacts_reported = 5
+script = ExtResource("1_daqx3")
+speed = 35.0
+damage = 100.0
+damage_type = 1
+explosion = ExtResource("2_i7b7a")
+piercer = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0)
+shape = SubResource("CapsuleShape3D_s6itv")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0)
+visible = false
+layers = 2
+material_override = SubResource("ShaderMaterial_g6ux6")
+cast_shadow = 0
+mesh = SubResource("CapsuleMesh_ajr70")
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0)
+layers = 2
+material_override = SubResource("ShaderMaterial_g6ux6")
+cast_shadow = 0
+amount = 16
+lifetime = 0.25
+fixed_fps = 0
+process_material = SubResource("ParticleProcessMaterial_0vas0")
+draw_pass_1 = SubResource("CapsuleMesh_ajr70")
+script = ExtResource("4_pfq3o")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+layers = 2
+light_color = Color(1, 0.501961, 0, 1)
+shadow_enabled = true
+distance_fade_enabled = true
+omni_shadow_mode = 0
+
+[node name="LensFlare" type="MeshInstance3D" parent="OmniLight3D"]
+layers = 2
+material_override = ExtResource("5_h4omx")
+cast_shadow = 0
+mesh = SubResource("QuadMesh_j7ack")
+script = ExtResource("6_lbxxy")
+color = Color(1, 0.501961, 0, 1)
+
+[node name="Lifetime" type="Timer" parent="."]
+wait_time = 30.0
+one_shot = true
+autostart = true
+script = ExtResource("7_nam5y")
+decay_explosion = ExtResource("2_i7b7a")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_entered" from="." to="GPUParticles3D" method="_on_bullet_body_entered"]

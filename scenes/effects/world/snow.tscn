@@ -1,0 +1,23 @@
+[gd_scene load_steps=3 format=3 uid="uid://1y37aof6o2lq"]
+
+[ext_resource type="Material" uid="uid://m45q7xvf7e3" path="res://effects/snow.tres" id="1_p2fn5"]
+
+[sub_resource type="QuadMesh" id="QuadMesh_b1hfc"]
+size = Vector2(4, 32)
+
+[node name="Snow" type="Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, -4)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, 0, 15.5, 0)
+material_override = ExtResource("1_p2fn5")
+cast_shadow = 0
+mesh = SubResource("QuadMesh_b1hfc")
+skeleton = NodePath("../..")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
+transform = Transform3D(-0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, -0.707107, 0, 15.5, 0)
+material_override = ExtResource("1_p2fn5")
+cast_shadow = 0
+mesh = SubResource("QuadMesh_b1hfc")
+skeleton = NodePath("../..")

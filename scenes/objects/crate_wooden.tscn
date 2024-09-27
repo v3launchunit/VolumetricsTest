@@ -1,0 +1,168 @@
+[gd_scene load_steps=23 format=3 uid="uid://bxdu412yk2ut8"]
+
+[ext_resource type="Texture2D" uid="uid://nvwephov841h" path="res://objects/crate/crate_heights.png" id="1_63qee"]
+[ext_resource type="Texture2D" uid="uid://bs7borhko72ul" path="res://objects/crate/crate_normals.png" id="2_8fvc1"]
+[ext_resource type="Script" path="res://entities/status.gd" id="2_ov4oo"]
+[ext_resource type="PackedScene" uid="uid://cgot11wwdrtbh" path="res://scenes/effects/damage/wood_damage_sys.tscn" id="4_2ugle"]
+[ext_resource type="PackedScene" uid="uid://bynbdpv50o6q2" path="res://scenes/effects/gibs/wood_shards.tscn" id="5_r4u8i"]
+[ext_resource type="PackedScene" uid="uid://d2oe770gjlkup" path="res://pickups/ammo/akm_mag_pickup.tscn" id="6_5g75f"]
+[ext_resource type="PackedScene" uid="uid://dl7fuv4wdxtjx" path="res://pickups/ammo/shotgun_shell/shell_pickup.tscn" id="6_aj2jd"]
+[ext_resource type="PackedScene" uid="uid://coopugxxes4xq" path="res://pickups/ammo/grenade_pickup.tscn" id="6_g1hjl"]
+[ext_resource type="PackedScene" uid="uid://l50jb3i7j7q7" path="res://pickups/ammo/small_cell_pickup.tscn" id="9_uqahn"]
+[ext_resource type="PackedScene" uid="uid://b8i1fe0bwht3k" path="res://pickups/armor/armor_bonus_pickup.tscn" id="10_6jjff"]
+[ext_resource type="PackedScene" uid="uid://bqors63m1ug05" path="res://pickups/ammo/nail_pickup.tscn" id="11_edp6l"]
+[ext_resource type="PackedScene" uid="uid://bnsepaqu7j4p4" path="res://pickups/health/health_bonus_pickup.tscn" id="12_ngkpt"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_17vxe"]
+
+[sub_resource type="Shader" id="Shader_5k6ed"]
+code = "// NOTE: Shader automatically converted from Godot Engine 4.2.1.stable.mono's StandardMaterial3D.
+
+shader_type spatial;
+render_mode blend_mix,depth_draw_opaque,cull_back,diffuse_burley,specular_schlick_ggx;
+uniform vec4 albedo : source_color;
+uniform sampler2D texture_albedo : source_color,filter_nearest,repeat_enable;
+uniform float point_size : hint_range(0,128);
+uniform float roughness : hint_range(0,1);
+uniform sampler2D texture_metallic : hint_default_white,filter_nearest,repeat_enable;
+uniform vec4 metallic_texture_channel;
+uniform sampler2D texture_roughness : hint_roughness_r,filter_nearest,repeat_enable;
+uniform float specular;
+uniform float metallic;
+uniform sampler2D texture_normal : hint_roughness_normal,filter_nearest,repeat_enable;
+uniform float normal_scale : hint_range(-16,16);
+uniform sampler2D texture_detail_albedo : source_color,filter_nearest,repeat_enable;
+uniform sampler2D texture_detail_normal : hint_normal,filter_nearest,repeat_enable;
+uniform sampler2D texture_detail_mask : hint_default_white,filter_nearest,repeat_enable;
+uniform sampler2D texture_heightmap : hint_default_black,filter_linear,repeat_enable;
+uniform float heightmap_scale;
+uniform int heightmap_min_layers;
+uniform int heightmap_max_layers;
+uniform vec2 heightmap_flip;
+uniform vec3 uv1_scale;
+uniform vec3 uv1_offset;
+uniform vec3 uv2_scale;
+uniform vec3 uv2_offset;
+
+#include \"res://shaders/includes/psx_inc.gdshaderinc\"
+
+void vertex() {
+	POSITION = map_affine(snap_vertex(PROJECTION_MATRIX * MODELVIEW_MATRIX * vec4(VERTEX, 1.0)));
+}
+
+void fragment() {
+	vec2 base_uv = UV;
+	//{
+		//vec3 view_dir = normalize(normalize(-VERTEX + EYE_OFFSET) * mat3(TANGENT * heightmap_flip.x, -BINORMAL * heightmap_flip.y, NORMAL));
+		//float depth = 1.0 - texture(texture_heightmap, base_uv).r;
+		//vec2 ofs = base_uv - view_dir.xy * depth * heightmap_scale * 0.01;
+		//base_uv=ofs;
+	//}
+	vec4 albedo_tex = texture(texture_albedo,base_uv);
+	ALBEDO = albedo.rgb * albedo_tex.rgb;
+	float metallic_tex = dot(texture(texture_metallic,base_uv),metallic_texture_channel);
+	METALLIC = metallic_tex * metallic;
+	vec4 roughness_texture_channel = vec4(1.0,0.0,0.0,0.0);
+	float roughness_tex = dot(texture(texture_roughness,base_uv),roughness_texture_channel);
+	ROUGHNESS = roughness_tex * roughness;
+	SPECULAR = specular;
+	NORMAL_MAP = texture(texture_normal,base_uv).rgb;
+	vec4 detail_tex = texture(texture_detail_albedo,base_uv);
+	vec4 detail_norm_tex = texture(texture_detail_normal,base_uv);
+	vec4 detail_mask_tex = texture(texture_detail_mask,base_uv);
+	NORMAL_MAP_DEPTH = normal_scale;
+	vec3 detail = mix(ALBEDO.rgb,detail_tex.rgb,detail_tex.a);
+	vec3 detail_norm = mix(NORMAL_MAP,detail_norm_tex.rgb,detail_tex.a);
+	NORMAL_MAP = mix(NORMAL_MAP,detail_norm,detail_mask_tex.r);
+	ALBEDO.rgb = mix(ALBEDO.rgb,detail,detail_mask_tex.r);
+}
+"
+
+[sub_resource type="Gradient" id="Gradient_6ane3"]
+interpolation_mode = 1
+offsets = PackedFloat32Array(0, 0.2, 0.5, 0.7)
+colors = PackedColorArray(0.27864, 0.171009, 0.0479525, 1, 0.341176, 0.207843, 0.0784314, 1, 0.44578, 0.298009, 0.150174, 1, 0.417342, 0.31476, 0.146004, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_lictq"]
+frequency = 0.1
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_da70s"]
+width = 3
+height = 64
+seamless = true
+seamless_blend_skirt = 0.25
+color_ramp = SubResource("Gradient_6ane3")
+noise = SubResource("FastNoiseLite_lictq")
+
+[sub_resource type="Gradient" id="Gradient_3jaum"]
+offsets = PackedFloat32Array(0.5)
+colors = PackedColorArray(0.341176, 0.207843, 0.0784314, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_urdv3"]
+gradient = SubResource("Gradient_3jaum")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_iwjf1"]
+render_priority = 0
+shader = SubResource("Shader_5k6ed")
+shader_parameter/albedo = Color(1, 1, 1, 1)
+shader_parameter/point_size = 1.0
+shader_parameter/roughness = 0.75
+shader_parameter/metallic_texture_channel = null
+shader_parameter/specular = 0.5
+shader_parameter/metallic = 0.0
+shader_parameter/normal_scale = 1.0
+shader_parameter/heightmap_scale = 3.25
+shader_parameter/heightmap_min_layers = 8
+shader_parameter/heightmap_max_layers = 32
+shader_parameter/heightmap_flip = Vector2(1, 1)
+shader_parameter/uv1_scale = Vector3(1, 1, 1)
+shader_parameter/uv1_offset = Vector3(0, 0, 0)
+shader_parameter/uv2_scale = Vector3(1, 1, 1)
+shader_parameter/uv2_offset = Vector3(0, 0, 0)
+shader_parameter/texture_albedo = SubResource("NoiseTexture2D_da70s")
+shader_parameter/texture_normal = ExtResource("2_8fvc1")
+shader_parameter/texture_detail_albedo = SubResource("GradientTexture2D_urdv3")
+shader_parameter/texture_detail_normal = ExtResource("2_8fvc1")
+shader_parameter/texture_detail_mask = ExtResource("1_63qee")
+shader_parameter/texture_heightmap = ExtResource("1_63qee")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4s5fk"]
+albedo_texture = SubResource("NoiseTexture2D_da70s")
+roughness = 0.75
+normal_enabled = true
+normal_texture = ExtResource("2_8fvc1")
+heightmap_enabled = true
+heightmap_scale = 3.25
+heightmap_texture = ExtResource("1_63qee")
+detail_enabled = true
+detail_mask = ExtResource("1_63qee")
+detail_albedo = SubResource("GradientTexture2D_urdv3")
+detail_normal = ExtResource("2_8fvc1")
+texture_filter = 0
+
+[sub_resource type="BoxMesh" id="BoxMesh_w78nq"]
+material = SubResource("StandardMaterial3D_4s5fk")
+
+[node name="Crate" type="RigidBody3D"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_17vxe")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+layers = 2
+material_override = SubResource("ShaderMaterial_iwjf1")
+mesh = SubResource("BoxMesh_w78nq")
+
+[node name="NavigationObstacle3D" type="NavigationObstacle3D" parent="."]
+process_mode = 4
+visible = false
+radius = 1.0
+
+[node name="Status" type="Node" parent="."]
+script = ExtResource("2_ov4oo")
+max_health = 25.0
+gib_threshold = 0.0
+damage_multipliers = Array[float]([1.0, 1.0, 1.0, 0.0, 1.0])
+damage_sys = ExtResource("4_2ugle")
+gibs = ExtResource("5_r4u8i")
+loot = Array[PackedScene]([ExtResource("6_aj2jd"), ExtResource("6_5g75f"), ExtResource("6_g1hjl"), ExtResource("9_uqahn"), ExtResource("10_6jjff"), ExtResource("11_edp6l"), ExtResource("12_ngkpt")])

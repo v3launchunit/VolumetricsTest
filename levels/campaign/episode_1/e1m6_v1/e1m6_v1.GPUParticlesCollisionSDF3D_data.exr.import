@@ -1,0 +1,26 @@
+[remap]
+
+importer="3d_texture"
+type="CompressedTexture3D"
+uid="uid://dqeqbhvhjipxd"
+path="res://.godot/imported/e1m6_v1.GPUParticlesCollisionSDF3D_data.exr-03ee7f393bc552c05744af0fe7a1fb3f.ctex3d"
+metadata={
+"vram_texture": false
+}
+
+[deps]
+
+source_file="res://levels/campaign/episode_1/e1m6_v1/e1m6_v1.GPUParticlesCollisionSDF3D_data.exr"
+dest_files=["res://.godot/imported/e1m6_v1.GPUParticlesCollisionSDF3D_data.exr-03ee7f393bc552c05744af0fe7a1fb3f.ctex3d"]
+
+[params]
+
+compress/mode=3
+compress/high_quality=false
+compress/lossy_quality=0.7
+compress/hdr_compression=1
+compress/channel_pack=1
+mipmaps/generate=false
+mipmaps/limit=-1
+slices/horizontal=1
+slices/vertical=256

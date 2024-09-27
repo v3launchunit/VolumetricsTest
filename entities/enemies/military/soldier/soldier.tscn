@@ -1,0 +1,876 @@
+[gd_scene load_steps=70 format=3 uid="uid://13po7ktlg4ba"]
+
+[ext_resource type="Script" path="res://entities/enemies/enemy_attack_pattern.gd" id="1_hocf7"]
+[ext_resource type="Script" path="res://entities/enemies/attack_pattern.gd" id="2_2bhwk"]
+[ext_resource type="PackedScene" uid="uid://b7nab3x7ubi16" path="res://models/entities/soldier.glb" id="2_b42bk"]
+[ext_resource type="Script" path="res://entities/status.gd" id="3_1l8qx"]
+[ext_resource type="PackedScene" uid="uid://blrtnnu61g5s" path="res://bullets/enemy/enemy_bullet_gen.tscn" id="3_7t4uc"]
+[ext_resource type="Texture2D" uid="uid://broweqdhl5i4r" path="res://weapons/akm/akm_detail_mask.png" id="3_bka8i"]
+[ext_resource type="Texture2D" uid="uid://bav8pkl55om5n" path="res://weapons/akm/akm_metallic.png" id="4_6hx3w"]
+[ext_resource type="PackedScene" uid="uid://cqctw8dd0ar4n" path="res://scenes/effects/damage/damage_sys.tscn" id="4_koxsf"]
+[ext_resource type="PackedScene" uid="uid://c5pbs8t6p7ogl" path="res://scenes/effects/gibs/gibs.tscn" id="5_7axx7"]
+[ext_resource type="Texture2D" uid="uid://dre07gr8t1lp2" path="res://weapons/akm/akm_roughness.png" id="5_tu0ki"]
+[ext_resource type="Texture2D" uid="uid://diqkkt6sonc7x" path="res://entities/enemies/military/soldier/soldier_albedo.png" id="6_6wgkq"]
+[ext_resource type="Shader" path="res://shaders/spatial/psx_pb_aclip.gdshader" id="6_qg131"]
+[ext_resource type="PackedScene" uid="uid://bnsepaqu7j4p4" path="res://pickups/health/health_bonus_pickup.tscn" id="6_tnlic"]
+[ext_resource type="PackedScene" uid="uid://b8i1fe0bwht3k" path="res://pickups/armor/armor_bonus_pickup.tscn" id="7_evwei"]
+[ext_resource type="Texture2D" uid="uid://b02m6126ojxcn" path="res://entities/enemies/military/soldier/soldier_metallic.png" id="7_t6fdy"]
+[ext_resource type="Shader" path="res://shaders/spatial/psx_ul_add.gdshader" id="8_balu6"]
+[ext_resource type="Texture2D" uid="uid://di1wgqvbp36g" path="res://entities/enemies/military/soldier/soldier_roughness.png" id="8_bp4pw"]
+[ext_resource type="PackedScene" uid="uid://dl7fuv4wdxtjx" path="res://pickups/ammo/shotgun_shell/shell_pickup.tscn" id="8_d1roa"]
+[ext_resource type="PackedScene" uid="uid://qy044barx365" path="res://entities/stair_stepper.tscn" id="9_d0012"]
+[ext_resource type="ArrayMesh" uid="uid://bblg4t73miejx" path="res://weapons/muzzle_flash_alt.obj" id="9_iha4f"]
+[ext_resource type="PackedScene" uid="uid://d2oe770gjlkup" path="res://pickups/ammo/akm_mag_pickup.tscn" id="16_r8nhy"]
+[ext_resource type="AnimationLibrary" uid="uid://bg2m151dc282j" path="res://entities/enemies/military/soldier/soldier_anims.res" id="18_syann"]
+
+[sub_resource type="Resource" id="Resource_jtu4g"]
+script = ExtResource("2_2bhwk")
+weight = 1.0
+bullet = ExtResource("3_7t4uc")
+volley = 1
+spread = 2.5
+spawners = Array[NodePath]([])
+delay = 0.0
+recovery_time = 0.15
+animation = &"attacking"
+burst = 5
+burst_delay = 0.1
+cancelable = false
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_s8h1f"]
+
+[sub_resource type="Shader" id="Shader_5emoy"]
+code = "// NOTE: Shader automatically converted from Godot Engine 4.2.1.stable.mono's StandardMaterial3D.
+
+shader_type spatial;
+render_mode blend_mix,depth_draw_opaque,cull_back,diffuse_burley,specular_schlick_ggx;
+uniform vec4 albedo : source_color;
+uniform sampler2D texture_albedo : source_color,filter_linear_mipmap,repeat_enable;
+uniform float point_size : hint_range(0,128);
+uniform float roughness : hint_range(0,1);
+uniform sampler2D texture_metallic : hint_default_white,filter_linear_mipmap,repeat_enable;
+uniform vec4 metallic_texture_channel;
+uniform sampler2D texture_roughness : hint_roughness_r,filter_linear_mipmap,repeat_enable;
+uniform float specular;
+uniform float metallic;
+uniform vec3 uv1_scale;
+uniform vec3 uv1_offset;
+uniform vec3 uv2_scale;
+uniform vec3 uv2_offset;
+
+#include \"res://shaders/includes/psx_inc.gdshaderinc\"
+
+void vertex() {
+	UV=UV*uv1_scale.xy+uv1_offset.xy;
+	POSITION = map_affine(snap_vertex(PROJECTION_MATRIX * MODELVIEW_MATRIX * vec4(VERTEX, 1.0)));
+}
+
+void fragment() {
+	vec2 base_uv = UV;
+	vec4 albedo_tex = texture(texture_albedo,base_uv);
+	ALBEDO = albedo.rgb * albedo_tex.rgb;
+	float metallic_tex = dot(texture(texture_metallic,base_uv),metallic_texture_channel);
+	METALLIC = metallic_tex * metallic;
+	vec4 roughness_texture_channel = vec4(1.0,0.0,0.0,0.0);
+	float roughness_tex = dot(texture(texture_roughness,base_uv),roughness_texture_channel);
+	ROUGHNESS = roughness_tex * roughness;
+	SPECULAR = specular;
+}
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_jcsmp"]
+render_priority = 0
+shader = SubResource("Shader_5emoy")
+shader_parameter/albedo = Color(0.25098, 0.25098, 0.25098, 1)
+shader_parameter/point_size = 1.0
+shader_parameter/roughness = 0.25
+shader_parameter/metallic_texture_channel = Vector4(1, 0, 0, 0)
+shader_parameter/specular = 0.5
+shader_parameter/metallic = 1.0
+shader_parameter/uv1_scale = Vector3(1, 1, 1)
+shader_parameter/uv1_offset = Vector3(0, 0, 0)
+shader_parameter/uv2_scale = Vector3(1, 1, 1)
+shader_parameter/uv2_offset = Vector3(0, 0, 0)
+
+[sub_resource type="Shader" id="Shader_hocoe"]
+code = "// NOTE: Shader automatically converted from Godot Engine 4.1.1.stable.mono's StandardMaterial3D.
+
+shader_type spatial;
+render_mode blend_mix,depth_draw_opaque,cull_back,diffuse_burley,specular_schlick_ggx;
+uniform vec4 albedo : source_color;
+uniform sampler2D texture_albedo : source_color,filter_nearest,repeat_enable;
+uniform float point_size : hint_range(0,128);
+uniform float roughness : hint_range(0,1);
+uniform sampler2D texture_metallic : hint_default_white,filter_nearest,repeat_enable;
+uniform vec4 metallic_texture_channel;
+uniform sampler2D texture_roughness : hint_roughness_r,filter_nearest,repeat_enable;
+uniform float specular;
+uniform float metallic;
+uniform float clearcoat : hint_range(0,1);
+uniform float clearcoat_roughness : hint_range(0,1);
+uniform sampler2D texture_clearcoat : hint_default_white,filter_nearest,repeat_enable;
+uniform sampler2D texture_detail_albedo : source_color,filter_nearest,repeat_enable;
+uniform sampler2D texture_detail_normal : hint_normal,filter_nearest,repeat_enable;
+uniform sampler2D texture_detail_mask : hint_default_white,filter_nearest,repeat_enable;
+uniform vec3 uv1_scale;
+uniform vec3 uv1_offset;
+uniform vec3 uv2_scale;
+uniform vec3 uv2_offset;
+
+global uniform float viewmodel_fov;
+
+#include \"res://shaders/includes/psx_inc.gdshaderinc\"
+
+void vertex() {
+	UV=UV*uv1_scale.xy+uv1_offset.xy;
+	POSITION = map_affine(snap_vertex(PROJECTION_MATRIX * MODELVIEW_MATRIX * vec4(VERTEX, 1.0)));
+}
+
+void fragment() {
+	vec2 base_uv = UV;
+	vec4 albedo_tex = texture(texture_albedo,base_uv);
+	ALBEDO = albedo.rgb * albedo_tex.rgb;
+	float metallic_tex = dot(texture(texture_metallic,base_uv),metallic_texture_channel);
+	METALLIC = metallic_tex * metallic;
+	vec4 roughness_texture_channel = vec4(1.0,0.0,0.0,0.0);
+	float roughness_tex = dot(texture(texture_roughness,base_uv),roughness_texture_channel);
+	ROUGHNESS = roughness_tex * roughness;
+	SPECULAR = specular;
+	vec2 clearcoat_tex = texture(texture_clearcoat,base_uv).xy;
+	CLEARCOAT = clearcoat*clearcoat_tex.x;	CLEARCOAT_ROUGHNESS = clearcoat_roughness*clearcoat_tex.y;
+	vec4 detail_tex = texture(texture_detail_albedo,base_uv);
+	vec4 detail_norm_tex = texture(texture_detail_normal,base_uv);
+	vec4 detail_mask_tex = texture(texture_detail_mask,base_uv);
+	vec3 detail = mix(ALBEDO.rgb,detail_tex.rgb,detail_tex.a);
+	vec3 detail_norm = mix(NORMAL_MAP,detail_norm_tex.rgb,detail_tex.a);
+	NORMAL_MAP = mix(NORMAL_MAP,detail_norm,detail_mask_tex.r);
+	ALBEDO.rgb = mix(ALBEDO.rgb,detail,detail_mask_tex.r);
+}
+"
+
+[sub_resource type="Gradient" id="Gradient_v5jf5"]
+interpolation_mode = 1
+offsets = PackedFloat32Array(0, 0.2, 0.5, 0.7)
+colors = PackedColorArray(0.278431, 0.172549, 0.0470588, 1, 0.341176, 0.207843, 0.0784314, 1, 0.447059, 0.298039, 0.14902, 1, 0.415686, 0.313726, 0.145098, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_q3vr3"]
+frequency = 0.1
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_dyb1y"]
+width = 196
+height = 48
+generate_mipmaps = false
+seamless_blend_skirt = 1.0
+color_ramp = SubResource("Gradient_v5jf5")
+noise = SubResource("FastNoiseLite_q3vr3")
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_dbe1r"]
+width = 196
+height = 48
+generate_mipmaps = false
+seamless_blend_skirt = 1.0
+as_normal_map = true
+bump_strength = 1.0
+noise = SubResource("FastNoiseLite_q3vr3")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_04ank"]
+render_priority = 0
+shader = SubResource("Shader_hocoe")
+shader_parameter/albedo = Color(0.3, 0.3, 0.3, 1)
+shader_parameter/point_size = 1.0
+shader_parameter/roughness = 1.0
+shader_parameter/metallic_texture_channel = Vector4(1, 0, 0, 0)
+shader_parameter/specular = 0.5
+shader_parameter/metallic = 1.0
+shader_parameter/clearcoat = 1.0
+shader_parameter/clearcoat_roughness = 0.25
+shader_parameter/uv1_scale = Vector3(1, 1, 1)
+shader_parameter/uv1_offset = Vector3(0, 0, 0)
+shader_parameter/uv2_scale = Vector3(1, 1, 1)
+shader_parameter/uv2_offset = Vector3(0, 0, 0)
+shader_parameter/texture_metallic = ExtResource("4_6hx3w")
+shader_parameter/texture_roughness = ExtResource("5_tu0ki")
+shader_parameter/texture_clearcoat = ExtResource("3_bka8i")
+shader_parameter/texture_detail_albedo = SubResource("NoiseTexture2D_dyb1y")
+shader_parameter/texture_detail_normal = SubResource("NoiseTexture2D_dbe1r")
+shader_parameter/texture_detail_mask = ExtResource("3_bka8i")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ahmhx"]
+render_priority = 0
+shader = ExtResource("8_balu6")
+shader_parameter/albedo = Color(1, 1, 0, 1)
+shader_parameter/uv1_scale = null
+shader_parameter/uv1_offset = null
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_qimvr"]
+render_priority = 0
+shader = SubResource("Shader_5emoy")
+shader_parameter/albedo = Color(0.25098, 0.25098, 0.25098, 1)
+shader_parameter/point_size = 1.0
+shader_parameter/roughness = 0.25
+shader_parameter/metallic_texture_channel = Vector4(1, 0, 0, 0)
+shader_parameter/specular = 0.5
+shader_parameter/metallic = 1.0
+shader_parameter/uv1_scale = Vector3(1, 1, 1)
+shader_parameter/uv1_offset = Vector3(0, 0, 0)
+shader_parameter/uv2_scale = Vector3(1, 1, 1)
+shader_parameter/uv2_offset = Vector3(0, 0, 0)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_pvcfe"]
+frequency = 0.1
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_pyjhq"]
+width = 256
+height = 256
+as_normal_map = true
+bump_strength = 1.0
+noise = SubResource("FastNoiseLite_pvcfe")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_1os0v"]
+render_priority = 0
+shader = ExtResource("6_qg131")
+shader_parameter/albedo_col = Color(0.498039, 0.360784, 0.14902, 1)
+shader_parameter/alpha_clip_threshold = 0.5
+shader_parameter/normal_scale = 1.0
+shader_parameter/roughness = 0.75
+shader_parameter/metallic = 0.0
+shader_parameter/specular = 0.5
+shader_parameter/metallic_channel = Vector4(1, 0, 0, 0)
+shader_parameter/uv1_scale = Vector3(0.5, 0.5, 0.5)
+shader_parameter/uv1_offset = Vector3(0, 0, 0)
+shader_parameter/uv2_scale = Vector3(1, 1, 1)
+shader_parameter/uv2_offset = Vector3(0, 0, 0)
+shader_parameter/is_terrain_mat = false
+shader_parameter/normal_tex = SubResource("NoiseTexture2D_pyjhq")
+
+[sub_resource type="Shader" id="Shader_wrefi"]
+code = "shader_type spatial;
+
+render_mode blend_mix,depth_draw_opaque,cull_back,diffuse_burley,specular_schlick_ggx;
+uniform vec4 albedo_col : source_color = vec4(1.0);
+uniform sampler2D albedo_tex : source_color,filter_nearest,repeat_enable;
+uniform float alpha_clip_threshold : hint_range(0.0, 1.0, 0.1) = 0.5;
+uniform sampler2D normal_tex : hint_roughness_normal,filter_nearest,repeat_enable;
+uniform float normal_scale : hint_range(-16,16) = 1.0;
+uniform float roughness : hint_range(0,1) = 0.75;
+uniform sampler2D roughness_tex : hint_roughness_r,filter_nearest,repeat_enable;
+uniform float metallic = 0.0;
+uniform float specular = 0.5;
+uniform sampler2D metallic_tex : hint_default_white,filter_nearest,repeat_enable;
+uniform vec4 metallic_channel = vec4(1.0, 0.0, 0.0, 0.0);
+uniform vec3 uv1_scale = vec3(1.0);
+uniform vec3 uv1_offset = vec3(0.0);
+uniform vec3 uv2_scale = vec3(1.0);
+uniform vec3 uv2_offset = vec3(0.0);
+uniform bool is_terrain_mat = false;
+
+#include \"res://shaders/includes/psx_inc.gdshaderinc\"
+
+void vertex() {
+	UV *= uv1_scale.xy + uv1_offset.xy;
+	if (is_terrain_mat) {
+		UV *= 0.0625;
+		POSITION = PROJECTION_MATRIX * MODELVIEW_MATRIX * vec4(VERTEX, 1.0);
+	} else {
+		POSITION = map_affine(snap_vertex(PROJECTION_MATRIX * MODELVIEW_MATRIX * vec4(VERTEX, 1.0)));
+	}
+}
+
+void fragment() {
+	vec4 albedo = COLOR * texture(albedo_tex, UV) * albedo_col;
+	vec4 met = texture(metallic_tex, UV);
+	if (albedo.a < alpha_clip_threshold) {
+		discard;
+	}
+	ALBEDO = albedo.rgb;
+	NORMAL_MAP = mix(texture(normal_tex, UV + albedo.gg).rgb, vec3(0.5, 0.5, 1.0), met.r) * normal_scale;
+	METALLIC = metallic * dot(met, metallic_channel);
+	ROUGHNESS = roughness * texture(roughness_tex, UV).r;
+	SPECULAR = specular;
+}
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_2r8ip"]
+render_priority = 0
+shader = SubResource("Shader_wrefi")
+shader_parameter/albedo_col = Color(1, 1, 1, 1)
+shader_parameter/alpha_clip_threshold = 0.5
+shader_parameter/normal_scale = 1.0
+shader_parameter/roughness = 1.0
+shader_parameter/metallic = 1.0
+shader_parameter/specular = 0.5
+shader_parameter/metallic_channel = Vector4(1, 0, 0, 0)
+shader_parameter/uv1_scale = Vector3(1, 1, 1)
+shader_parameter/uv1_offset = Vector3(0, 0, 0)
+shader_parameter/uv2_scale = Vector3(1, 1, 1)
+shader_parameter/uv2_offset = Vector3(0, 0, 0)
+shader_parameter/is_terrain_mat = false
+shader_parameter/albedo_tex = ExtResource("6_6wgkq")
+shader_parameter/normal_tex = SubResource("NoiseTexture2D_pyjhq")
+shader_parameter/roughness_tex = ExtResource("8_bp4pw")
+shader_parameter/metallic_tex = ExtResource("7_t6fdy")
+
+[sub_resource type="Gradient" id="Gradient_njwjt"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_28pn6"]
+gradient = SubResource("Gradient_njwjt")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_4s25h"]
+gravity = Vector3(0, 0, 0)
+color_ramp = SubResource("GradientTexture1D_28pn6")
+
+[sub_resource type="Shader" id="Shader_fq5cc"]
+code = "// NOTE: Shader automatically converted from Godot Engine 4.2.1.stable.mono's StandardMaterial3D.
+
+shader_type spatial;
+render_mode blend_mix,depth_draw_opaque,cull_back,diffuse_burley,specular_schlick_ggx,unshaded;
+uniform vec4 albedo : source_color;
+uniform sampler2D texture_albedo : source_color,filter_linear_mipmap,repeat_enable;
+uniform float point_size : hint_range(0,128);
+uniform float roughness : hint_range(0,1);
+uniform sampler2D texture_metallic : hint_default_white,filter_linear_mipmap,repeat_enable;
+uniform vec4 metallic_texture_channel;
+uniform sampler2D texture_roughness : hint_roughness_r,filter_linear_mipmap,repeat_enable;
+uniform float specular;
+uniform float metallic;
+uniform vec3 uv1_scale;
+uniform vec3 uv1_offset;
+uniform vec3 uv2_scale;
+uniform vec3 uv2_offset;
+
+#include \"res://shaders/includes/psx_inc.gdshaderinc\"
+
+void vertex() {
+	UV=UV*uv1_scale.xy+uv1_offset.xy;
+	POSITION = map_affine(snap_vertex(PROJECTION_MATRIX * MODELVIEW_MATRIX * vec4(VERTEX, 1.0)));
+}
+
+void fragment() {
+	vec2 base_uv = UV;
+	vec4 albedo_tex = texture(texture_albedo,base_uv);
+	albedo_tex *= COLOR;
+	ALBEDO = albedo.rgb * albedo_tex.rgb;
+	float metallic_tex = dot(texture(texture_metallic,base_uv),metallic_texture_channel);
+	METALLIC = metallic_tex * metallic;
+	vec4 roughness_texture_channel = vec4(1.0,0.0,0.0,0.0);
+	float roughness_tex = dot(texture(texture_roughness,base_uv),roughness_texture_channel);
+	ROUGHNESS = roughness_tex * roughness;
+	SPECULAR = specular;
+	ALPHA *= albedo.a * albedo_tex.a;
+}
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_uadv6"]
+render_priority = 0
+shader = SubResource("Shader_fq5cc")
+shader_parameter/albedo = Color(1, 0, 0, 1)
+shader_parameter/point_size = 1.0
+shader_parameter/roughness = 1.0
+shader_parameter/metallic_texture_channel = null
+shader_parameter/specular = 0.5
+shader_parameter/metallic = 0.0
+shader_parameter/uv1_scale = Vector3(1, 1, 1)
+shader_parameter/uv1_offset = Vector3(0, 0, 0)
+shader_parameter/uv2_scale = Vector3(1, 1, 1)
+shader_parameter/uv2_offset = Vector3(0, 0, 0)
+
+[sub_resource type="SphereMesh" id="SphereMesh_upu54"]
+material = SubResource("ShaderMaterial_uadv6")
+radius = 0.06
+height = 0.05
+radial_segments = 4
+rings = 3
+
+[sub_resource type="Animation" id="Animation_qcc01"]
+length = 0.001
+tracks/0/type = "rotation_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("soldier/Armature/Skeleton3D:Spine")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 0, -0.707107, 0, 0.707107)
+tracks/1/type = "rotation_3d"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("soldier/Armature/Skeleton3D:Spine.001")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = PackedFloat32Array(0, 1, 0, 0, 0, 1)
+tracks/2/type = "rotation_3d"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("soldier/Armature/Skeleton3D:Neck")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = PackedFloat32Array(0, 1, 0, 0, 0, 1)
+tracks/3/type = "rotation_3d"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("soldier/Armature/Skeleton3D:Head")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = PackedFloat32Array(0, 1, 0, 0, 0, 1)
+tracks/4/type = "rotation_3d"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("soldier/Armature/Skeleton3D:Cylinder")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = PackedFloat32Array(0, 1, 0.708211, 0.238591, -0.4045, 0.527154)
+tracks/5/type = "rotation_3d"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("soldier/Armature/Skeleton3D:Cylinder.001")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = PackedFloat32Array(0, 1, 0, 0, 0, 1)
+tracks/6/type = "rotation_3d"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("soldier/Armature/Skeleton3D:Cylinder.003")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = PackedFloat32Array(0, 1, -0.403167, -0.528174, 0.708812, -0.236802)
+tracks/7/type = "rotation_3d"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("soldier/Armature/Skeleton3D:Cylinder.002")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = PackedFloat32Array(0, 1, 0, 0, 0, 1)
+tracks/8/type = "rotation_3d"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("soldier/Armature/Skeleton3D:Right")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = PackedFloat32Array(0, 1, 0.857969, -2.50254e-07, -1.11133e-07, 0.513702)
+tracks/9/type = "rotation_3d"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("soldier/Armature/Skeleton3D:Right.001")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = PackedFloat32Array(0, 1, 0.4321, -5.6259e-08, -2.93426e-07, 0.901826)
+tracks/10/type = "rotation_3d"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("soldier/Armature/Skeleton3D:Right.002")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = PackedFloat32Array(0, 1, 0.00533787, -2.35573e-08, -4.08353e-09, 0.999986)
+tracks/11/type = "rotation_3d"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("soldier/Armature/Skeleton3D:Right.003")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = PackedFloat32Array(0, 1, 0.0872251, 3.65174e-08, -6.55857e-08, 0.996189)
+tracks/12/type = "rotation_3d"
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/path = NodePath("soldier/Armature/Skeleton3D:AK-47")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/keys = PackedFloat32Array(0, 1, -1.54543e-08, -0.707107, -1.54543e-08, 0.707107)
+tracks/13/type = "rotation_3d"
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/path = NodePath("soldier/Armature/Skeleton3D:Magazine")
+tracks/13/interp = 1
+tracks/13/loop_wrap = true
+tracks/13/keys = PackedFloat32Array(0, 1, 0, 0, 0, 1)
+tracks/14/type = "rotation_3d"
+tracks/14/imported = false
+tracks/14/enabled = true
+tracks/14/path = NodePath("soldier/Armature/Skeleton3D:Left")
+tracks/14/interp = 1
+tracks/14/loop_wrap = true
+tracks/14/keys = PackedFloat32Array(0, 1, -0.857969, -2.57908e-07, 1.23917e-07, 0.513701)
+tracks/15/type = "rotation_3d"
+tracks/15/imported = false
+tracks/15/enabled = true
+tracks/15/path = NodePath("soldier/Armature/Skeleton3D:Left.001")
+tracks/15/interp = 1
+tracks/15/loop_wrap = true
+tracks/15/keys = PackedFloat32Array(0, 1, -0.4321, 6.53152e-08, 2.48053e-07, 0.901826)
+tracks/16/type = "rotation_3d"
+tracks/16/imported = false
+tracks/16/enabled = true
+tracks/16/path = NodePath("soldier/Armature/Skeleton3D:Left.002")
+tracks/16/interp = 1
+tracks/16/loop_wrap = true
+tracks/16/keys = PackedFloat32Array(0, 1, -0.00533782, -1.65725e-08, 2.76612e-09, 0.999986)
+tracks/17/type = "rotation_3d"
+tracks/17/imported = false
+tracks/17/enabled = true
+tracks/17/path = NodePath("soldier/Armature/Skeleton3D:Left.003")
+tracks/17/interp = 1
+tracks/17/loop_wrap = true
+tracks/17/keys = PackedFloat32Array(0, 1, -0.0872251, -8.98916e-08, 5.45175e-08, 0.996189)
+tracks/18/type = "rotation_3d"
+tracks/18/imported = false
+tracks/18/enabled = true
+tracks/18/path = NodePath("soldier/Armature/Skeleton3D:Cube")
+tracks/18/interp = 1
+tracks/18/loop_wrap = true
+tracks/18/keys = PackedFloat32Array(0, 1, 0.707107, 0, 0, 0.707107)
+tracks/19/type = "rotation_3d"
+tracks/19/imported = false
+tracks/19/enabled = true
+tracks/19/path = NodePath("soldier/Armature/Skeleton3D:LeftLeg")
+tracks/19/interp = 1
+tracks/19/loop_wrap = true
+tracks/19/keys = PackedFloat32Array(0, 1, 0.706586, 0.0271363, 0.706586, -0.0271363)
+tracks/20/type = "rotation_3d"
+tracks/20/imported = false
+tracks/20/enabled = true
+tracks/20/path = NodePath("soldier/Armature/Skeleton3D:LeftLeg.001")
+tracks/20/interp = 1
+tracks/20/loop_wrap = true
+tracks/20/keys = PackedFloat32Array(0, 1, -0.0383765, 1.76396e-08, 2.72799e-09, 0.999263)
+tracks/21/type = "rotation_3d"
+tracks/21/imported = false
+tracks/21/enabled = true
+tracks/21/path = NodePath("soldier/Armature/Skeleton3D:LeftLeg.002")
+tracks/21/interp = 1
+tracks/21/loop_wrap = true
+tracks/21/keys = PackedFloat32Array(0, 1, 0.0824805, 1.47129e-08, 1.21768e-09, 0.996593)
+tracks/22/type = "rotation_3d"
+tracks/22/imported = false
+tracks/22/enabled = true
+tracks/22/path = NodePath("soldier/Armature/Skeleton3D:RightLeg")
+tracks/22/interp = 1
+tracks/22/loop_wrap = true
+tracks/22/keys = PackedFloat32Array(0, 1, 0.706586, -0.0271363, 0.706586, 0.0271363)
+tracks/23/type = "rotation_3d"
+tracks/23/imported = false
+tracks/23/enabled = true
+tracks/23/path = NodePath("soldier/Armature/Skeleton3D:RightLeg.001")
+tracks/23/interp = 1
+tracks/23/loop_wrap = true
+tracks/23/keys = PackedFloat32Array(0, 1, 0.0383765, 1.93266e-07, 3.40483e-09, 0.999263)
+tracks/24/type = "rotation_3d"
+tracks/24/imported = false
+tracks/24/enabled = true
+tracks/24/path = NodePath("soldier/Armature/Skeleton3D:RightLeg.002")
+tracks/24/interp = 1
+tracks/24/loop_wrap = true
+tracks/24/keys = PackedFloat32Array(0, 1, -0.0824806, -6.65001e-08, -1.41612e-08, 0.996593)
+tracks/25/type = "value"
+tracks/25/imported = false
+tracks/25/enabled = true
+tracks/25/path = NodePath("soldier/Armature/Skeleton3D/AK-47/AK-47/Spawner/MuzzleFlash:visible")
+tracks/25/interp = 1
+tracks/25/loop_wrap = true
+tracks/25/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/26/type = "value"
+tracks/26/imported = false
+tracks/26/enabled = true
+tracks/26/path = NodePath("soldier/Armature/Skeleton3D/AK-47/AK-47/Spawner/MuzzleFlash:scale")
+tracks/26/interp = 1
+tracks/26/loop_wrap = true
+tracks/26/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(2, 2, 2)]
+}
+tracks/27/type = "value"
+tracks/27/imported = false
+tracks/27/enabled = true
+tracks/27/path = NodePath("soldier/Armature/Skeleton3D/AK-47/AK-47/Spawner/MuzzleFlash/OmniLight3D:light_energy")
+tracks/27/interp = 1
+tracks/27/loop_wrap = true
+tracks/27/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.0]
+}
+tracks/28/type = "position_3d"
+tracks/28/imported = false
+tracks/28/enabled = true
+tracks/28/path = NodePath("soldier/Armature")
+tracks/28/interp = 1
+tracks/28/loop_wrap = true
+tracks/28/keys = PackedFloat32Array(0, 1, 0, 0, 0)
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_kwsl3"]
+_data = {
+"RESET": SubResource("Animation_qcc01")
+}
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_wyfek"]
+animation = &"soldier_anims/soldier_ambush"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_0c1my"]
+animation = &"soldier_anims/soldier_firing"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_rngir"]
+animation = &"soldier_anims/soldier_death"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_6o7q8"]
+animation = &"soldier_anims/soldier_flinching"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_gi5fr"]
+animation = &"soldier_anims/soldier_idle"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_8tofo"]
+animation = &"soldier_anims/soldier_moving"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_tf25s"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_jiq67"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_nur4t"]
+xfade_time = 0.25
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ec1kv"]
+xfade_time = 0.25
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_xdi8n"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_5cw2f"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_3o64v"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_6rdxi"]
+xfade_time = 0.25
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_77nrm"]
+xfade_time = 0.25
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_cwmjn"]
+xfade_time = 0.25
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_hqpkc"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_5i3th"]
+xfade_time = 0.25
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_6f6mg"]
+xfade_time = 0.25
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_kbmg5"]
+switch_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_7tyyv"]
+xfade_time = 0.25
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_lecy0"]
+states/End/position = Vector2(346.091, 186.519)
+states/ambush/node = SubResource("AnimationNodeAnimation_wyfek")
+states/ambush/position = Vector2(347.333, 100)
+states/attacking/node = SubResource("AnimationNodeAnimation_0c1my")
+states/attacking/position = Vector2(519.604, 186.694)
+states/dead/node = SubResource("AnimationNodeAnimation_rngir")
+states/dead/position = Vector2(693.111, 38.3334)
+states/flinching/node = SubResource("AnimationNodeAnimation_6o7q8")
+states/flinching/position = Vector2(867.189, 187.617)
+states/idle/node = SubResource("AnimationNodeAnimation_gi5fr")
+states/idle/position = Vector2(519.6, 100)
+states/moving/node = SubResource("AnimationNodeAnimation_8tofo")
+states/moving/position = Vector2(867, 100.395)
+transitions = ["Start", "ambush", SubResource("AnimationNodeStateMachineTransition_tf25s"), "ambush", "idle", SubResource("AnimationNodeStateMachineTransition_jiq67"), "idle", "moving", SubResource("AnimationNodeStateMachineTransition_nur4t"), "moving", "attacking", SubResource("AnimationNodeStateMachineTransition_ec1kv"), "idle", "flinching", SubResource("AnimationNodeStateMachineTransition_xdi8n"), "moving", "flinching", SubResource("AnimationNodeStateMachineTransition_5cw2f"), "attacking", "flinching", SubResource("AnimationNodeStateMachineTransition_3o64v"), "moving", "dead", SubResource("AnimationNodeStateMachineTransition_6rdxi"), "attacking", "dead", SubResource("AnimationNodeStateMachineTransition_77nrm"), "idle", "dead", SubResource("AnimationNodeStateMachineTransition_cwmjn"), "flinching", "moving", SubResource("AnimationNodeStateMachineTransition_hqpkc"), "attacking", "moving", SubResource("AnimationNodeStateMachineTransition_5i3th"), "flinching", "dead", SubResource("AnimationNodeStateMachineTransition_6f6mg"), "attacking", "idle", SubResource("AnimationNodeStateMachineTransition_kbmg5"), "moving", "idle", SubResource("AnimationNodeStateMachineTransition_7tyyv")]
+graph_offset = Vector2(-216, -43)
+
+[node name="Soldier" type="CharacterBody3D"]
+collision_layer = 4
+collision_mask = 407
+script = ExtResource("1_hocf7")
+patterns = Array[ExtResource("2_2bhwk")]([SubResource("Resource_jtu4g")])
+species = &"soldiers"
+wake_up_time = 0.0
+player_target_offset = Vector3(0, 0, 4)
+attack_interval = 1.0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_s8h1f")
+
+[node name="soldier" parent="." instance=ExtResource("2_b42bk")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, 0.6, 0)
+
+[node name="Skeleton3D" parent="soldier/Armature" index="0"]
+bones/0/rotation = Quaternion(0, -0.707107, 0, 0.707107)
+bones/4/rotation = Quaternion(0.708211, 0.238591, -0.4045, 0.527154)
+bones/6/rotation = Quaternion(-0.403167, -0.528174, 0.708812, -0.236802)
+bones/8/position = Vector3(1.49e-08, 0.4, 1.56583e-17)
+bones/8/rotation = Quaternion(0.857969, -2.50254e-07, -1.11133e-07, 0.513702)
+bones/8/scale = Vector3(1, 1, 1)
+bones/9/rotation = Quaternion(0.4321, -5.6259e-08, -2.93426e-07, 0.901826)
+bones/10/position = Vector3(-2.14541e-08, 0.325576, 1.19877e-08)
+bones/10/rotation = Quaternion(0.00533787, -2.35573e-08, -4.08353e-09, 0.999986)
+bones/11/rotation = Quaternion(0.0872251, 3.65174e-08, -6.55857e-08, 0.996189)
+bones/12/rotation = Quaternion(-1.54543e-08, -0.707107, -1.54543e-08, 0.707107)
+bones/14/rotation = Quaternion(-0.857969, -2.57908e-07, 1.23917e-07, 0.513701)
+bones/15/rotation = Quaternion(-0.4321, 6.53152e-08, 2.48053e-07, 0.901826)
+bones/16/rotation = Quaternion(-0.00533782, -1.65725e-08, 2.76612e-09, 0.999986)
+bones/17/rotation = Quaternion(-0.0872251, -8.98916e-08, 5.45175e-08, 0.996189)
+bones/18/rotation = Quaternion(0.707107, 0, 0, 0.707107)
+bones/19/position = Vector3(0.12, -0.54, 5.24537e-09)
+bones/19/rotation = Quaternion(0.706586, 0.0271363, 0.706586, -0.0271363)
+bones/19/scale = Vector3(1, 1, 1)
+bones/20/rotation = Quaternion(-0.0383765, 1.76396e-08, 2.72799e-09, 0.999263)
+bones/21/rotation = Quaternion(0.0824805, 1.47129e-08, 1.21768e-09, 0.996593)
+bones/22/position = Vector3(-0.12, -0.54, -5.24537e-09)
+bones/22/rotation = Quaternion(0.706586, -0.0271363, 0.706586, 0.0271363)
+bones/22/scale = Vector3(1, 1, 1)
+bones/23/rotation = Quaternion(0.0383765, 1.93266e-07, 3.40483e-09, 0.999263)
+bones/23/scale = Vector3(1, 1, 1)
+bones/24/rotation = Quaternion(-0.0824806, -6.65001e-08, -1.41612e-08, 0.996593)
+
+[node name="Cylinder" parent="soldier/Armature/Skeleton3D" index="0"]
+transform = Transform3D(0.973501, -0.127162, 0.190069, 0.122825, -0.410343, -0.903622, 0.192899, 0.903022, -0.383851, 0.0047655, 0.266971, 0.530261)
+
+[node name="Cylinder" parent="soldier/Armature/Skeleton3D/Cylinder" index="0"]
+material_override = SubResource("ShaderMaterial_jcsmp")
+
+[node name="Cylinder_001" parent="soldier/Armature/Skeleton3D" index="1"]
+transform = Transform3D(1.46025, -0.127162, 0.285104, 0.184238, -0.410343, -1.35543, 0.289349, 0.903022, -0.575776, -0.00477163, 0.236196, 0.597988)
+
+[node name="Cylinder_001" parent="soldier/Armature/Skeleton3D/Cylinder_001" index="0"]
+material_override = SubResource("ShaderMaterial_jcsmp")
+
+[node name="Cylinder_003" parent="soldier/Armature/Skeleton3D" index="2"]
+transform = Transform3D(0.498427, 0.866715, -0.0193867, 0.245313, -0.162451, -0.955736, -0.8315, 0.471609, -0.293586, 0.111941, 0.293637, 0.484074)
+
+[node name="Cylinder_003" parent="soldier/Armature/Skeleton3D/Cylinder_003" index="0"]
+material_override = SubResource("ShaderMaterial_jcsmp")
+
+[node name="Cylinder_002" parent="soldier/Armature/Skeleton3D" index="3"]
+transform = Transform3D(0.74764, 0.866715, -0.02908, 0.367969, -0.162451, -1.4336, -1.24725, 0.471609, -0.440379, 0.176945, 0.281454, 0.519445)
+
+[node name="Cylinder_002" parent="soldier/Armature/Skeleton3D/Cylinder_002" index="0"]
+material_override = SubResource("ShaderMaterial_jcsmp")
+
+[node name="AK-47" parent="soldier/Armature/Skeleton3D" index="4"]
+transform = Transform3D(0.591697, 0.0549077, -0.457581, -0.459373, 0.0104372, -0.592762, -0.0370286, 0.747914, 0.041865, -0.302982, -0.310865, 0.656637)
+
+[node name="AK-47" parent="soldier/Armature/Skeleton3D/AK-47" index="0"]
+material_override = SubResource("ShaderMaterial_04ank")
+
+[node name="Spawner" type="Marker3D" parent="soldier/Armature/Skeleton3D/AK-47/AK-47" index="0"]
+transform = Transform3D(1, -5.08624e-07, -7.47042e-07, 7.47042e-07, -4.37114e-08, 1, -5.08623e-07, -1, -4.3711e-08, -1.78814e-07, 1.16667, -0.233333)
+
+[node name="MuzzleFlash" type="MeshInstance3D" parent="soldier/Armature/Skeleton3D/AK-47/AK-47/Spawner"]
+transform = Transform3D(2, 3.01991e-07, -2.68618e-06, 3.01992e-07, -2, 1.74846e-07, -2.68618e-06, -1.74846e-07, -2, 0, 0, 0)
+visible = false
+material_override = SubResource("ShaderMaterial_ahmhx")
+mesh = ExtResource("9_iha4f")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="soldier/Armature/Skeleton3D/AK-47/AK-47/Spawner/MuzzleFlash"]
+light_color = Color(1, 1, 0, 1)
+omni_range = 10.0
+
+[node name="Magazine" parent="soldier/Armature/Skeleton3D" index="5"]
+transform = Transform3D(0.591697, 0.0549077, -0.457581, -0.459373, 0.0104372, -0.592762, -0.0370286, 0.747914, 0.041865, -0.302982, -0.310865, 0.656637)
+
+[node name="Magazine" parent="soldier/Armature/Skeleton3D/Magazine" index="0"]
+material_override = SubResource("ShaderMaterial_qimvr")
+
+[node name="Cube" parent="soldier/Armature/Skeleton3D" index="6"]
+transform = Transform3D(5.75743e-08, -1, -1.54245e-08, -0.499961, 0, -0.866048, 0.866048, 5.96046e-08, -0.499961, -1.57298e-08, 0.0343269, -0.116645)
+
+[node name="Cube" parent="soldier/Armature/Skeleton3D/Cube" index="0"]
+material_override = SubResource("ShaderMaterial_1os0v")
+
+[node name="Body" parent="soldier/Armature/Skeleton3D" index="7"]
+material_override = SubResource("ShaderMaterial_2r8ip")
+
+[node name="BoneAttachment3D" type="BoneAttachment3D" parent="soldier/Armature/Skeleton3D" index="8"]
+transform = Transform3D(0.385807, -0.222772, -0.895279, 0.0453953, 0.973818, -0.222752, 0.921462, 0.0452981, 0.385819, 7.40376e-09, 0.213437, 0.333155)
+bone_name = "Head"
+bone_idx = 3
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="soldier/Armature/Skeleton3D/BoneAttachment3D"]
+transform = Transform3D(0.939693, 1.91064e-07, 0.34202, -0.241845, 0.707107, 0.664463, -0.241845, -0.707107, 0.664463, 0.14, 0.225, 0.05)
+layers = 2
+amount = 16
+lifetime = 0.25
+fixed_fps = 60
+process_material = SubResource("ParticleProcessMaterial_4s25h")
+draw_pass_1 = SubResource("SphereMesh_upu54")
+
+[node name="GPUParticles3D2" type="GPUParticles3D" parent="soldier/Armature/Skeleton3D/BoneAttachment3D"]
+transform = Transform3D(0.939693, -1.91064e-07, -0.34202, -0.241845, 0.707107, -0.664463, 0.241845, 0.707107, 0.664463, 0.14, 0.225, -0.05)
+layers = 2
+amount = 16
+lifetime = 0.25
+fixed_fps = 60
+process_material = SubResource("ParticleProcessMaterial_4s25h")
+draw_pass_1 = SubResource("SphereMesh_upu54")
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
+path_desired_distance = 1.5
+target_desired_distance = 3.0
+height = 2.0
+max_speed = 100.0
+
+[node name="SightLine" type="RayCast3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+target_position = Vector3(0, 0, -16)
+collision_mask = 3
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+bus = &"Enemies"
+doppler_tracking = 2
+
+[node name="Status" type="Node" parent="."]
+script = ExtResource("3_1l8qx")
+damage_sys = ExtResource("4_koxsf")
+gibs = ExtResource("5_7axx7")
+loot = Array[PackedScene]([ExtResource("6_tnlic"), ExtResource("7_evwei"), ExtResource("8_d1roa"), ExtResource("16_r8nhy")])
+is_enemy = true
+score = 1
+
+[node name="StairStepper" parent="." instance=ExtResource("9_d0012")]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_kwsl3"),
+"soldier_anims": ExtResource("18_syann")
+}
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+tree_root = SubResource("AnimationNodeStateMachine_lecy0")
+anim_player = NodePath("../AnimationPlayer")
+parameters/current_length = 1.5
+parameters/current_position = 0.221712
+parameters/current_delta = 0.016562
+parameters/End/current_length = null
+parameters/End/current_position = null
+parameters/End/current_delta = null
+parameters/Start/current_length = 0.0
+parameters/Start/current_position = 0.0
+parameters/Start/current_delta = 0.0
+parameters/ambush/current_length = 1.0
+parameters/ambush/current_position = 1.0
+parameters/ambush/current_delta = 0.0276983
+parameters/attacking/current_length = 0.55
+parameters/attacking/current_position = 0.55
+parameters/attacking/current_delta = 0.0166667
+parameters/dead/current_length = 1.0
+parameters/dead/current_position = 1.0
+parameters/dead/current_delta = 0.0
+parameters/flinching/current_length = 1.0
+parameters/flinching/current_position = 1.0
+parameters/flinching/current_delta = 0.0
+parameters/idle/current_length = 1.5
+parameters/idle/current_position = 0.221712
+parameters/idle/current_delta = 0.016562
+parameters/moving/current_length = 1.0
+parameters/moving/current_position = 0.565755
+parameters/moving/current_delta = 0.0166667
+
+[editable path="soldier"]

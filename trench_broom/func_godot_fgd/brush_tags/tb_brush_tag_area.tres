@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="TrenchBroomTag" load_steps=2 format=3 uid="uid://grr7rbdfdi7p"]
+
+[ext_resource type="Script" path="res://addons/func_godot/src/trenchbroom/trenchbroom_tag.gd" id="1_xcb6p"]
+
+[resource]
+script = ExtResource("1_xcb6p")
+tag_name = "Area"
+tag_attributes = Array[String](["transparent"])
+tag_match_type = 1
+tag_pattern = "area*"
+texture_name = "special/trigger"

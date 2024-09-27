@@ -1,0 +1,37 @@
+[gd_scene load_steps=14 format=3 uid="uid://obwsnaybs6vi"]
+
+[ext_resource type="PackedScene" uid="uid://bgj5uch3h4q3n" path="res://objects/deco/trash/trash_crate_metal.tscn" id="1_shg8j"]
+[ext_resource type="Script" path="res://entities/status.gd" id="3_8eiwp"]
+[ext_resource type="PackedScene" uid="uid://boxs6v8ktotma" path="res://pickups/ammo/shell_box/shell_box_pickup.tscn" id="6_j7tdp"]
+[ext_resource type="PackedScene" uid="uid://cu70msbgu2ysm" path="res://scenes/effects/damage/metal_damage_sys.tscn" id="7_2yq6e"]
+[ext_resource type="PackedScene" uid="uid://d2oe770gjlkup" path="res://pickups/ammo/akm_mag_pickup.tscn" id="7_7ahh6"]
+[ext_resource type="PackedScene" uid="uid://bfctj0w1fkgwy" path="res://scenes/effects/gibs/metal_shards.tscn" id="8_h0fav"]
+[ext_resource type="PackedScene" uid="uid://coopugxxes4xq" path="res://pickups/ammo/grenade_pickup.tscn" id="8_vt0ck"]
+[ext_resource type="PackedScene" uid="uid://wdnyjfhryl0i" path="res://pickups/ammo/big_iron_bullet_pickup.tscn" id="9_r1r3h"]
+[ext_resource type="PackedScene" uid="uid://cxe1gjgdpac7q" path="res://pickups/health/health_pack/health_pack_pickup.tscn" id="10_udsg6"]
+[ext_resource type="PackedScene" uid="uid://b3n8ejiapfh8" path="res://pickups/ammo/large_cell_pickup.tscn" id="11_gc2ou"]
+[ext_resource type="PackedScene" uid="uid://b8i1fe0bwht3k" path="res://pickups/armor/armor_bonus_pickup.tscn" id="12_l5dvr"]
+[ext_resource type="PackedScene" uid="uid://joq438puropu" path="res://pickups/ammo/nail_box_pickup.tscn" id="13_cc7wi"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_17vxe"]
+
+[node name="Crate" type="RigidBody3D"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_17vxe")
+
+[node name="MetalCrate" parent="." instance=ExtResource("1_shg8j")]
+
+[node name="NavigationObstacle3D" type="NavigationObstacle3D" parent="."]
+process_mode = 4
+visible = false
+radius = 1.0
+
+[node name="Status" type="Node" parent="."]
+script = ExtResource("3_8eiwp")
+max_health = 2500.0
+gib_threshold = 0.0
+damage_multipliers = Array[float]([1.0, 1.0, 0.5, 0.0, 1.0])
+damage_sys = ExtResource("7_2yq6e")
+gibs = ExtResource("8_h0fav")
+loot = Array[PackedScene]([ExtResource("6_j7tdp"), ExtResource("7_7ahh6"), ExtResource("8_vt0ck"), ExtResource("9_r1r3h"), ExtResource("10_udsg6"), ExtResource("11_gc2ou"), ExtResource("12_l5dvr"), ExtResource("13_cc7wi")])

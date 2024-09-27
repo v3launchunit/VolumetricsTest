@@ -1,0 +1,203 @@
+[gd_scene load_steps=24 format=3 uid="uid://cdmlijgutbrlm"]
+
+[ext_resource type="Texture2D" uid="uid://c3ho4pll2ocil" path="res://effects/halos/fancier_halo.png" id="1_5o7al"]
+[ext_resource type="Material" uid="uid://l8xk4t71f8ph" path="res://materials/objects/lamp_green.tres" id="1_v6spw"]
+[ext_resource type="Shader" path="res://shaders/spatial/psx_ul_mix.gdshader" id="1_xo04v"]
+[ext_resource type="Texture2D" uid="uid://hk0k2coukjwc" path="res://effects/halos/halo_tex.tres" id="2_6dbeb"]
+[ext_resource type="Script" path="res://scripts/effects/halo.gd" id="3_fqfbq"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_jf3ec"]
+render_priority = 0
+shader = ExtResource("1_xo04v")
+shader_parameter/albedo = Color(0.563, 3, 0.199, 1)
+shader_parameter/uv1_scale = null
+shader_parameter/uv1_offset = null
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wrb5n"]
+shading_mode = 0
+albedo_color = Color(3, 2.01, 1.05, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_cciy3"]
+material = SubResource("StandardMaterial3D_wrb5n")
+radius = 0.25
+height = 0.25
+radial_segments = 8
+rings = 4
+is_hemisphere = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6njtk"]
+resource_local_to_scene = true
+render_priority = 100
+transparency = 1
+blend_mode = 1
+depth_draw_mode = 2
+no_depth_test = true
+shading_mode = 0
+disable_ambient_light = true
+disable_fog = true
+vertex_color_use_as_albedo = true
+albedo_texture = ExtResource("1_5o7al")
+texture_filter = 1
+disable_receive_shadows = true
+billboard_mode = 1
+fixed_size = true
+proximity_fade_distance = 3.0
+distance_fade_mode = 1
+distance_fade_min_distance = 2.5
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_qqsra"]
+load_path = "res://.godot/imported/halo.png-88068247d44276e09ca924d46b3606d1.s3tc.ctex"
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_w2kd2"]
+transparency = 1
+blend_mode = 1
+shading_mode = 0
+vertex_color_use_as_albedo = true
+albedo_color = Color(1, 0.501961, 0, 1)
+albedo_texture = SubResource("CompressedTexture2D_qqsra")
+billboard_mode = 1
+fixed_size = true
+proximity_fade_distance = 3.0
+distance_fade_mode = 1
+
+[sub_resource type="QuadMesh" id="QuadMesh_wntbp"]
+material = SubResource("StandardMaterial3D_w2kd2")
+size = Vector2(2, 0.25)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_q1qd4"]
+transparency = 1
+blend_mode = 1
+shading_mode = 0
+vertex_color_use_as_albedo = true
+albedo_color = Color(1, 0.752941, 0.501961, 1)
+albedo_texture = ExtResource("2_6dbeb")
+billboard_mode = 1
+fixed_size = true
+proximity_fade_distance = 3.0
+distance_fade_mode = 1
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_y8qxt"]
+albedo_color = Color(0, 0, 0, 1)
+
+[sub_resource type="Animation" id="Animation_el7do"]
+resource_name = "off"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("OmniLight3D:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:material_override")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [SubResource("StandardMaterial3D_y8qxt")]
+}
+
+[sub_resource type="Animation" id="Animation_fv30p"]
+resource_name = "on"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("OmniLight3D:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:material_override")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [null]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_rjy61"]
+_data = {
+"off": SubResource("Animation_el7do"),
+"on": SubResource("Animation_fv30p")
+}
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_7rmc8"]
+animation = &"off"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_n5q0r"]
+animation = &"on"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_4ngb6"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_00byd"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_262vw"]
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_tsrdu"]
+states/off/node = SubResource("AnimationNodeAnimation_7rmc8")
+states/off/position = Vector2(697.333, 98.8889)
+states/on/node = SubResource("AnimationNodeAnimation_n5q0r")
+states/on/position = Vector2(402.667, 99.3333)
+transitions = ["Start", "on", SubResource("AnimationNodeStateMachineTransition_4ngb6"), "on", "off", SubResource("AnimationNodeStateMachineTransition_00byd"), "off", "on", SubResource("AnimationNodeStateMachineTransition_262vw")]
+
+[node name="Lamp" type="MeshInstance3D"]
+transform = Transform3D(1, 0, 0, 0, -1, 8.74228e-08, 0, -8.74228e-08, -1, 0, 0, 0)
+material_override = SubResource("ShaderMaterial_jf3ec")
+visibility_range_end = 25.0
+visibility_range_end_margin = 5.0
+mesh = SubResource("SphereMesh_cciy3")
+surface_material_override/0 = ExtResource("1_v6spw")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -1, -8.74228e-08, 0, 8.74228e-08, -1, 0, 0.25, 0)
+light_color = Color(0.184314, 1, 0.0666667, 1)
+light_energy = 3.0
+light_bake_mode = 1
+shadow_enabled = true
+distance_fade_enabled = true
+omni_range = 15.0
+
+[node name="LensFlare" type="MeshInstance3D" parent="OmniLight3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.125, 0)
+layers = 2
+material_override = SubResource("StandardMaterial3D_6njtk")
+cast_shadow = 0
+visibility_range_end = 100.0
+visibility_range_end_margin = 10.0
+visibility_range_fade_mode = 1
+mesh = SubResource("QuadMesh_wntbp")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_q1qd4")
+script = ExtResource("3_fqfbq")
+color = Color(0.184314, 1, 0.0666667, 1)
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_rjy61")
+}
+tree_root = SubResource("AnimationNodeStateMachine_tsrdu")
+anim_player = NodePath("../AnimationPlayer")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_rjy61")
+}

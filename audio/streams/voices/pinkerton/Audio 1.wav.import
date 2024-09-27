@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://bkmbx0rwl5dus"
+path="res://.godot/imported/Audio 1.wav-04434ffc97585bf5667c3bb79c3f2efc.sample"
+
+[deps]
+
+source_file="res://audio/streams/voices/pinkerton/Audio 1.wav"
+dest_files=["res://.godot/imported/Audio 1.wav-04434ffc97585bf5667c3bb79c3f2efc.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

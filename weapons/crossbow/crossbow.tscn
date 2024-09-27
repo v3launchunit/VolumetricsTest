@@ -1,0 +1,279 @@
+[gd_scene load_steps=27 format=4 uid="uid://dah6eunyfmnqh"]
+
+[ext_resource type="PackedScene" uid="uid://bfpoyydd4y6gc" path="res://weapons/crossbow/crossbow.glb" id="1_cxeg4"]
+[ext_resource type="AnimationLibrary" uid="uid://doq8kttqg86x7" path="res://weapons/crossbow/crossbow_anims.res" id="2_exmv2"]
+[ext_resource type="Script" path="res://weapons/crossbow/weapon_crossbow.gd" id="2_vadfq"]
+[ext_resource type="Script" path="res://weapons/alert_area.gd" id="3_2m668"]
+[ext_resource type="PackedScene" uid="uid://u6obomqkbr77" path="res://bullets/player/hitscan/crossbow_bolt.tscn" id="3_71ym8"]
+[ext_resource type="Material" uid="uid://bqaqpwu7ya4e1" path="res://weapons/crossbow/crossbow_mat_1.tres" id="4_vr385"]
+[ext_resource type="Material" uid="uid://cuyk7qd8rw2ab" path="res://weapons/crossbow/crossbow_mat_2.tres" id="5_452mq"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_die74"]
+transparency = 1
+shading_mode = 0
+vertex_color_use_as_albedo = true
+albedo_color = Color(0, 1.5, 1.5, 1)
+
+[sub_resource type="Gradient" id="Gradient_gw7lj"]
+offsets = PackedFloat32Array(0, 0.1, 1)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0.25098, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_e5rv8"]
+gradient = SubResource("Gradient_gw7lj")
+use_hdr = true
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_yrew0"]
+gravity = Vector3(0, 0, 0)
+color_ramp = SubResource("GradientTexture1D_e5rv8")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_elhhj"]
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_2iu2i"]
+_surfaces = [{
+"aabb": AABB(-0.0216506, -0.4, -0.025, 0.0433013, 0.4, 0.05),
+"format": 34359742465,
+"index_count": 60,
+"index_data": PackedByteArray("AAADAAEAAAACAAMAAgAFAAMAAgAEAAUABAAHAAUABAAGAAcABgAJAAcABgAIAAkACAALAAkACAAKAAsACgABAAsACgAAAAEAAAAEAAIABAAIAAYACAAAAAoABAAAAAgAAwALAAEACwAHAAkABwADAAUACwADAAcA"),
+"lods": [0.0158481, PackedByteArray("AAADAAEAAAACAAMAAgAHAAMAAgAGAAcABgALAAcABgAKAAsACgABAAsACgAAAAEAAgAKAAYAAgAAAAoAAwALAAEACwADAAcA")],
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 12,
+"vertex_data": PackedByteArray("8jAWMs3MzL7NzMy88jAWMgAAAADNzMy8sVyxPM3MzL7NzEy8sVyxPAAAAADNzEy8sVyxPM3MzL7NzEw8sVyxPAAAAADNzEw88jAWMs3MzL7NzMw88jAWMgAAAADNzMw8p1yxvM3MzL7NzEw8p1yxvAAAAADNzEw8p1yxvM3MzL7NzEy8p1yxvAAAAADNzEy8")
+}]
+blend_shape_mode = 0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_8aypm"]
+resource_name = "crossbow_Cylinder_002"
+_surfaces = [{
+"aabb": AABB(-0.0216506, -0.4, -0.025, 0.0433013, 0.4, 0.05),
+"attribute_data": PackedByteArray("AADAswAAgD8AAMCzAACAPwAAgD8AAIA/AADAswAAAAAAAMCzAAAAAAAAgD8AAAAAVVVVPwAAgD9VVVU/AACAP1VVVT8AAIA/VVVVPwAAAABVVVU/AAAAAFVVVT8AAAAAqqoqPwAAgD+qqio/AACAP6qqKj8AAIA/qqoqPwAAAACqqio/AAAAAKqqKj8AAAAA/v//PgAAgD/+//8+AACAP/7//z4AAIA//v//PgAAAAD+//8+AAAAAP7//z4AAAAAqKqqPgAAgD+oqqo+AACAP6iqqj4AAIA/qKqqPgAAAACoqqo+AAAAAKiqqj4AAAAApaoqPgAAgD+lqio+AACAP6WqKj4AAIA/paoqPgAAAAClqio+AAAAAKWqKj4AAAAA"),
+"format": 34359742487,
+"index_count": 60,
+"index_data": PackedByteArray("AgAKAAUAAgAHAAoACAARAAsACAAOABEADQAXABAADQAUABcAEgAcABUAEgAZABwAGAAhABsAGAAeACEAHwADACIAHwAAAAMAAQAMAAYADAAaABMAGgABACAADAABABoACQAjAAQAIwAWAB0AFgAJAA8AIwAJABYA"),
+"lods": [0.0158481, PackedByteArray("AgAKAAUAAgAHAAoABwAXAAoABwAUABcAEgAhABUAEgAeACEAHgADACEAHgAAAAMABgAgABMABgABACAACQAjAAQAIwAJABYA")],
+"material": SubResource("StandardMaterial3D_elhhj"),
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 36,
+"vertex_data": PackedByteArray("8jAWMs3MzL7NzMy88jAWMs3MzL7NzMy88jAWMs3MzL7NzMy88jAWMgAAAADNzMy88jAWMgAAAADNzMy88jAWMgAAAADNzMy8sVyxPM3MzL7NzEy8sVyxPM3MzL7NzEy8sVyxPM3MzL7NzEy8sVyxPAAAAADNzEy8sVyxPAAAAADNzEy8sVyxPAAAAADNzEy8sVyxPM3MzL7NzEw8sVyxPM3MzL7NzEw8sVyxPM3MzL7NzEw8sVyxPAAAAADNzEw8sVyxPAAAAADNzEw8sVyxPAAAAADNzEw88jAWMs3MzL7NzMw88jAWMs3MzL7NzMw88jAWMs3MzL7NzMw88jAWMgAAAADNzMw88jAWMgAAAADNzMw88jAWMgAAAADNzMw8p1yxvM3MzL7NzEw8p1yxvM3MzL7NzEw8p1yxvM3MzL7NzEw8p1yxvAAAAADNzEw8p1yxvAAAAADNzEw8p1yxvAAAAADNzEw8p1yxvM3MzL7NzEy8p1yxvM3MzL7NzEy8p1yxvM3MzL7NzEy8p1yxvAAAAADNzEy8p1yxvAAAAADNzEy8p1yxvAAAAADNzEy8AAAl0dku/7//fwAA////v///JdEAAGzXAAAl0dku/7//f///////v///JdEAAGzX/38AAP///7///yXRAABs1////3///////3///////7///yXRAABs1////3///////38AAP///7/Zrv9///9s1////3///////3///////7/Zrv9///9s1////3//////JVH/fyXR/7//fwAA////v9mu/3///2zXJVH/fyXR/7//f///////v9mu/3///2zXAAD/f/9//78lUf9/JdH/v/9/AAD///+/AAD/f/9//78lUf9/JdH/v/9///////+/AAD/f/9//78AACXR2S7/v/9/AAD///+/AAD/f/9//78AACXR2S7/v/9///////+/")
+}]
+blend_shape_mode = 0
+shadow_mesh = SubResource("ArrayMesh_2iu2i")
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_avxgk"]
+resource_name = "crossbow_Cylinder_002"
+_surfaces = [{
+"aabb": AABB(-0.0216506, -0.4, -0.025, 0.0433013, 0.4, 0.05),
+"attribute_data": PackedByteArray("AADAswAAgD8AAMCzAACAPwAAgD8AAIA/AADAswAAAAAAAMCzAAAAAAAAgD8AAAAAVVVVPwAAgD9VVVU/AACAP1VVVT8AAIA/VVVVPwAAAABVVVU/AAAAAFVVVT8AAAAAqqoqPwAAgD+qqio/AACAP6qqKj8AAIA/qqoqPwAAAACqqio/AAAAAKqqKj8AAAAA/v//PgAAgD/+//8+AACAP/7//z4AAIA//v//PgAAAAD+//8+AAAAAP7//z4AAAAAqKqqPgAAgD+oqqo+AACAP6iqqj4AAIA/qKqqPgAAAACoqqo+AAAAAKiqqj4AAAAApaoqPgAAgD+lqio+AACAP6WqKj4AAIA/paoqPgAAAAClqio+AAAAAKWqKj4AAAAA"),
+"format": 34359742487,
+"index_count": 60,
+"index_data": PackedByteArray("AgAKAAUAAgAHAAoACAARAAsACAAOABEADQAXABAADQAUABcAEgAcABUAEgAZABwAGAAhABsAGAAeACEAHwADACIAHwAAAAMAAQAMAAYADAAaABMAGgABACAADAABABoACQAjAAQAIwAWAB0AFgAJAA8AIwAJABYA"),
+"lods": [0.0158481, PackedByteArray("AgAKAAUAAgAHAAoABwAXAAoABwAUABcAEgAhABUAEgAeACEAHgADACEAHgAAAAMABgAgABMABgABACAACQAjAAQAIwAJABYA")],
+"material": SubResource("StandardMaterial3D_elhhj"),
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 36,
+"vertex_data": PackedByteArray("8jAWMs3MzL7NzMy88jAWMs3MzL7NzMy88jAWMs3MzL7NzMy88jAWMgAAAADNzMy88jAWMgAAAADNzMy88jAWMgAAAADNzMy8sVyxPM3MzL7NzEy8sVyxPM3MzL7NzEy8sVyxPM3MzL7NzEy8sVyxPAAAAADNzEy8sVyxPAAAAADNzEy8sVyxPAAAAADNzEy8sVyxPM3MzL7NzEw8sVyxPM3MzL7NzEw8sVyxPM3MzL7NzEw8sVyxPAAAAADNzEw8sVyxPAAAAADNzEw8sVyxPAAAAADNzEw88jAWMs3MzL7NzMw88jAWMs3MzL7NzMw88jAWMs3MzL7NzMw88jAWMgAAAADNzMw88jAWMgAAAADNzMw88jAWMgAAAADNzMw8p1yxvM3MzL7NzEw8p1yxvM3MzL7NzEw8p1yxvM3MzL7NzEw8p1yxvAAAAADNzEw8p1yxvAAAAADNzEw8p1yxvAAAAADNzEw8p1yxvM3MzL7NzEy8p1yxvM3MzL7NzEy8p1yxvM3MzL7NzEy8p1yxvAAAAADNzEy8p1yxvAAAAADNzEy8p1yxvAAAAADNzEy8AAAl0dku/7//fwAA////v///JdEAAGzXAAAl0dku/7//f///////v///JdEAAGzX/38AAP///7///yXRAABs1////3///////3///////7///yXRAABs1////3///////38AAP///7/Zrv9///9s1////3///////3///////7/Zrv9///9s1////3//////JVH/fyXR/7//fwAA////v9mu/3///2zXJVH/fyXR/7//f///////v9mu/3///2zXAAD/f/9//78lUf9/JdH/v/9/AAD///+/AAD/f/9//78lUf9/JdH/v/9///////+/AAD/f/9//78AACXR2S7/v/9/AAD///+/AAD/f/9//78AACXR2S7/v/9///////+/")
+}]
+blend_shape_mode = 0
+shadow_mesh = SubResource("ArrayMesh_2iu2i")
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_3q5q1"]
+animation = &"crossbow_anims/crossbow_charging"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_nhy4f"]
+animation = &"crossbow_anims/crossbow_deploy"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_x1u8f"]
+animation = &"crossbow_anims/crossbow_firing"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_xok30"]
+animation = &"crossbow_anims/crossbow_idle"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_3ouq8"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_f826a"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_7cw0m"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_d86tq"]
+states/charging/node = SubResource("AnimationNodeAnimation_3q5q1")
+states/charging/position = Vector2(348, 184.667)
+states/deploy/node = SubResource("AnimationNodeAnimation_nhy4f")
+states/deploy/position = Vector2(345.333, 100.222)
+states/firing/node = SubResource("AnimationNodeAnimation_x1u8f")
+states/firing/position = Vector2(492.444, 185.556)
+states/idle/node = SubResource("AnimationNodeAnimation_xok30")
+states/idle/position = Vector2(492, 99.1852)
+transitions = ["Start", "deploy", SubResource("AnimationNodeStateMachineTransition_3ouq8"), "deploy", "idle", SubResource("AnimationNodeStateMachineTransition_f826a"), "firing", "idle", SubResource("AnimationNodeStateMachineTransition_7cw0m")]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_55wpv"]
+radius = 16.0
+
+[sub_resource type="Animation" id="Animation_q1nis"]
+resource_name = "RESET"
+tracks/0/type = "position_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Crossbow")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 0, 0, 0)
+tracks/1/type = "rotation_3d"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Crossbow/LeftString")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = PackedFloat32Array(0, 1, 0, 0, -0.707, 0.707)
+tracks/2/type = "scale_3d"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Crossbow/LeftString")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = PackedFloat32Array(0, 1, 1, 1, 1)
+tracks/3/type = "rotation_3d"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Crossbow/RightString")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = PackedFloat32Array(0, 1, 0, 0, 0.707, 0.707)
+tracks/4/type = "scale_3d"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Crossbow/RightString")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = PackedFloat32Array(0, 1, 1, 1, 1)
+tracks/5/type = "rotation_3d"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Crossbow")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = PackedFloat32Array()
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Crossbow/AlertRadius:monitoring")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_2b3ff"]
+_data = {
+"RESET": SubResource("Animation_q1nis")
+}
+
+[node name="Crossbow" type="Node3D"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, -0.35, 0)
+
+[node name="Crossbow" parent="." instance=ExtResource("1_cxeg4")]
+script = ExtResource("2_vadfq")
+bullet = ExtResource("3_71ym8")
+shot_cooldown = 1.7
+ammo_type = "cells"
+anti_clip_distance = 0.75
+category = 3
+index = 2
+
+[node name="Crossbow" parent="Crossbow" index="0"]
+layers = 4
+material_override = ExtResource("4_vr385")
+cast_shadow = 0
+
+[node name="LeftString" parent="Crossbow" index="1"]
+transform = Transform3D(-4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, 0.425, 0, 0.5)
+layers = 4
+material_override = ExtResource("5_452mq")
+cast_shadow = 0
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="Crossbow/LeftString" index="0"]
+visible = false
+layers = 4
+material_override = SubResource("StandardMaterial3D_die74")
+cast_shadow = 0
+amount = 16
+lifetime = 0.25
+fixed_fps = 60
+process_material = SubResource("ParticleProcessMaterial_yrew0")
+draw_pass_1 = SubResource("ArrayMesh_8aypm")
+
+[node name="RightString" parent="Crossbow" index="2"]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, -0.425, 0, 0.5)
+layers = 8196
+material_override = ExtResource("5_452mq")
+cast_shadow = 0
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="Crossbow/RightString" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00143878, 0, 0)
+visible = false
+layers = 4
+material_override = SubResource("StandardMaterial3D_die74")
+cast_shadow = 0
+amount = 16
+lifetime = 0.25
+fixed_fps = 60
+process_material = SubResource("ParticleProcessMaterial_yrew0")
+draw_pass_1 = SubResource("ArrayMesh_avxgk")
+
+[node name="Spawner" type="Marker3D" parent="Crossbow"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.95)
+
+[node name="AnimationTree" type="AnimationTree" parent="Crossbow"]
+root_node = NodePath("../..")
+tree_root = SubResource("AnimationNodeStateMachine_d86tq")
+anim_player = NodePath("../../AnimationPlayer")
+parameters/current_length = 2.0
+parameters/current_position = 0.160294
+parameters/current_delta = 0.0219113
+parameters/End/current_length = null
+parameters/End/current_position = null
+parameters/End/current_delta = null
+parameters/Start/current_length = 0.0
+parameters/Start/current_position = 0.0
+parameters/Start/current_delta = 0.0
+parameters/charging/current_length = null
+parameters/charging/current_position = null
+parameters/charging/current_delta = null
+parameters/deploy/current_length = 0.7
+parameters/deploy/current_position = 0.7
+parameters/deploy/current_delta = 0.0255277
+parameters/firing/current_length = null
+parameters/firing/current_position = null
+parameters/firing/current_delta = null
+parameters/idle/current_length = 2.0
+parameters/idle/current_position = 0.160294
+parameters/idle/current_delta = 0.0219113
+
+[node name="AlertRadius" type="Area3D" parent="Crossbow"]
+collision_layer = 2
+collision_mask = 4
+monitoring = false
+script = ExtResource("3_2m668")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Crossbow/AlertRadius"]
+shape = SubResource("SphereShape3D_55wpv")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_2b3ff"),
+"crossbow_anims": ExtResource("2_exmv2")
+}
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+bus = &"Weapons"
+
+[editable path="Crossbow"]

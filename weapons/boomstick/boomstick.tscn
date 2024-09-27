@@ -1,0 +1,539 @@
+[gd_scene load_steps=44 format=3 uid="uid://crvf6qiekfqex"]
+
+[ext_resource type="ArrayMesh" uid="uid://cjx7th4qqdgak" path="res://weapons/boomstick/boomstick.obj" id="1_7e58d"]
+[ext_resource type="Script" path="res://weapons/weapon_alt_fire.gd" id="2_nf3wy"]
+[ext_resource type="ArrayMesh" uid="uid://crk83yrjbvbg6" path="res://weapons/muzzle_flash.obj" id="3_ac8cs"]
+[ext_resource type="Texture2D" uid="uid://b84lximnqxpsk" path="res://weapons/boomstick/boomstick_metallic.png" id="3_d1ne8"]
+[ext_resource type="Texture2D" uid="uid://bbbk8k7whvl1m" path="res://weapons/boomstick/boomstick_detail_mask.png" id="3_gtom8"]
+[ext_resource type="AnimationLibrary" uid="uid://d0670lbytf8uc" path="res://weapons/boomstick/boomstick_anims.res" id="4_a2xtk"]
+[ext_resource type="Texture2D" uid="uid://bswjthncpsxna" path="res://weapons/boomstick/boomstick_roughness.png" id="4_vilpv"]
+[ext_resource type="Texture2D" uid="uid://ct1gr7br07rn4" path="res://weapons/boomstick/boomstick_stock_detail_mask.png" id="5_e71qv"]
+[ext_resource type="Texture2D" uid="uid://whh5ds0hp7ug" path="res://weapons/boomstick/boomstick_stock_metallic.png" id="6_sagf4"]
+[ext_resource type="Texture2D" uid="uid://iboxykf07oin" path="res://weapons/boomstick/boomstick_stock_roughness.png" id="7_q40ik"]
+[ext_resource type="PackedScene" uid="uid://byrs4y4a0drln" path="res://bullets/player/hitscan/boomstick_bullet.tscn" id="9_h281q"]
+[ext_resource type="PackedScene" uid="uid://8e2mh2q14v3k" path="res://bullets/player/projectile/harpoon.tscn" id="9_jcufi"]
+[ext_resource type="Script" path="res://weapons/alert_area.gd" id="10_khxxt"]
+[ext_resource type="Material" uid="uid://dq3a5fxspauox" path="res://weapons/muzzle_flash_yellow.tres" id="10_lwo5p"]
+[ext_resource type="Texture2D" uid="uid://dbnasmfycrfat" path="res://pickups/ammo/shotgun_shell/shotgun_shell.png" id="12_546ee"]
+[ext_resource type="Texture2D" uid="uid://cxhsqnpu78e2q" path="res://pickups/ammo/shotgun_shell/shotgun_shell_metallic.png" id="13_6782y"]
+[ext_resource type="Texture2D" uid="uid://dao3wvs485yhb" path="res://pickups/ammo/shotgun_shell/shotgun_shell_roughness.png" id="14_d028w"]
+
+[sub_resource type="Shader" id="Shader_u07m6"]
+code = "// NOTE: Shader automatically converted from Godot Engine 4.1.1.stable.mono's StandardMaterial3D.
+
+shader_type spatial;
+render_mode blend_mix,depth_draw_opaque,cull_back,diffuse_burley,specular_schlick_ggx;
+uniform vec4 albedo : source_color;
+uniform sampler2D texture_albedo : source_color,filter_nearest,repeat_enable;
+uniform float point_size : hint_range(0,128);
+uniform float roughness : hint_range(0,1);
+uniform sampler2D texture_metallic : hint_default_white,filter_nearest,repeat_enable;
+uniform vec4 metallic_texture_channel;
+uniform sampler2D texture_roughness : hint_roughness_r,filter_nearest,repeat_enable;
+uniform float specular;
+uniform float metallic;
+uniform float clearcoat : hint_range(0,1);
+uniform float clearcoat_roughness : hint_range(0,1);
+uniform sampler2D texture_clearcoat : hint_default_white,filter_nearest,repeat_enable;
+uniform sampler2D texture_detail_albedo : source_color,filter_nearest,repeat_enable;
+uniform sampler2D texture_detail_normal : hint_normal,filter_nearest,repeat_enable;
+uniform sampler2D texture_detail_mask : hint_default_white,filter_nearest,repeat_enable;
+uniform vec3 uv1_scale;
+uniform vec3 uv1_offset;
+uniform vec3 uv2_scale;
+uniform vec3 uv2_offset;
+
+global uniform float viewmodel_fov;
+
+#include \"res://shaders/includes/psx_inc.gdshaderinc\"
+
+void vertex() {
+	UV=UV*uv1_scale.xy+uv1_offset.xy;
+
+	float onetanfov = 1.0f / tan(0.5f * (viewmodel_fov * PI / 180.0f));
+	float aspect = VIEWPORT_SIZE.x / VIEWPORT_SIZE.y;
+	// modify projection matrix
+	PROJECTION_MATRIX[1][1] = -onetanfov;
+	PROJECTION_MATRIX[0][0] = onetanfov / aspect;
+
+	// draws the viewmodel over everything (disable if you want dof near on viewmodel)
+	//POSITION = PROJECTION_MATRIX * MODELVIEW_MATRIX * vec4(VERTEX.xyz, 1.0);
+	POSITION = map_affine(snap_vertex(PROJECTION_MATRIX * MODELVIEW_MATRIX * vec4(VERTEX, 1.0)));
+	POSITION.z = mix(POSITION.z, 0.9, 0.5);
+}
+
+void fragment() {
+	vec2 base_uv = UV;
+	vec4 albedo_tex = texture(texture_albedo,base_uv);
+	ALBEDO = albedo.rgb * albedo_tex.rgb;
+	float metallic_tex = dot(texture(texture_metallic,base_uv),metallic_texture_channel);
+	METALLIC = metallic_tex * metallic;
+	vec4 roughness_texture_channel = vec4(1.0,0.0,0.0,0.0);
+	float roughness_tex = dot(texture(texture_roughness,base_uv),roughness_texture_channel);
+	ROUGHNESS = roughness_tex * roughness;
+	SPECULAR = specular;
+	vec2 clearcoat_tex = texture(texture_clearcoat,base_uv).xy;
+	CLEARCOAT = clearcoat*clearcoat_tex.x;	CLEARCOAT_ROUGHNESS = clearcoat_roughness*clearcoat_tex.y;
+	vec4 detail_tex = texture(texture_detail_albedo,base_uv);
+	vec4 detail_norm_tex = texture(texture_detail_normal,base_uv);
+	vec4 detail_mask_tex = texture(texture_detail_mask,base_uv);
+	vec3 detail = mix(ALBEDO.rgb,detail_tex.rgb,detail_tex.a);
+	vec3 detail_norm = mix(NORMAL_MAP,detail_norm_tex.rgb,detail_tex.a);
+	NORMAL_MAP = mix(NORMAL_MAP,detail_norm,detail_mask_tex.r);
+	ALBEDO.rgb = mix(ALBEDO.rgb,detail,detail_mask_tex.r);
+}
+"
+
+[sub_resource type="Gradient" id="Gradient_v5jf5"]
+interpolation_mode = 1
+offsets = PackedFloat32Array(0, 0.2, 0.5, 0.7)
+colors = PackedColorArray(0.278431, 0.172549, 0.0470588, 1, 0.341176, 0.207843, 0.0784314, 1, 0.447059, 0.298039, 0.14902, 1, 0.415686, 0.313726, 0.145098, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_q3vr3"]
+frequency = 0.1
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_fagd6"]
+width = 48
+height = 192
+generate_mipmaps = false
+seamless_blend_skirt = 1.0
+color_ramp = SubResource("Gradient_v5jf5")
+noise = SubResource("FastNoiseLite_q3vr3")
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_7duje"]
+width = 48
+height = 192
+generate_mipmaps = false
+seamless_blend_skirt = 1.0
+as_normal_map = true
+bump_strength = 1.0
+noise = SubResource("FastNoiseLite_q3vr3")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ru7kf"]
+render_priority = 0
+shader = SubResource("Shader_u07m6")
+shader_parameter/albedo = Color(0.501961, 0.501961, 0.501961, 1)
+shader_parameter/point_size = 1.0
+shader_parameter/roughness = 1.0
+shader_parameter/metallic_texture_channel = Vector4(1, 0, 0, 0)
+shader_parameter/specular = 0.5
+shader_parameter/metallic = 1.0
+shader_parameter/clearcoat = 1.0
+shader_parameter/clearcoat_roughness = 0.25
+shader_parameter/uv1_scale = Vector3(1, 1, 1)
+shader_parameter/uv1_offset = Vector3(0, 0, 0)
+shader_parameter/uv2_scale = Vector3(1, 1, 1)
+shader_parameter/uv2_offset = Vector3(0, 0, 0)
+shader_parameter/texture_metallic = ExtResource("3_d1ne8")
+shader_parameter/texture_roughness = ExtResource("4_vilpv")
+shader_parameter/texture_clearcoat = ExtResource("3_gtom8")
+shader_parameter/texture_detail_albedo = SubResource("NoiseTexture2D_fagd6")
+shader_parameter/texture_detail_normal = SubResource("NoiseTexture2D_7duje")
+shader_parameter/texture_detail_mask = ExtResource("3_gtom8")
+
+[sub_resource type="Shader" id="Shader_h63q6"]
+code = "// NOTE: Shader automatically converted from Godot Engine 4.1.1.stable.mono's StandardMaterial3D.
+
+shader_type spatial;
+render_mode blend_mix,depth_draw_opaque,cull_back,diffuse_burley,specular_schlick_ggx;
+uniform vec4 albedo : source_color;
+uniform sampler2D texture_albedo : source_color,filter_nearest,repeat_enable;
+uniform float point_size : hint_range(0,128);
+uniform float roughness : hint_range(0,1);
+uniform sampler2D texture_metallic : hint_default_white,filter_nearest,repeat_enable;
+uniform vec4 metallic_texture_channel;
+uniform sampler2D texture_roughness : hint_roughness_r,filter_nearest,repeat_enable;
+uniform float specular;
+uniform float metallic;
+uniform float clearcoat : hint_range(0,1);
+uniform float clearcoat_roughness : hint_range(0,1);
+uniform sampler2D texture_clearcoat : hint_default_white,filter_nearest,repeat_enable;
+uniform sampler2D texture_detail_albedo : source_color,filter_nearest,repeat_enable;
+uniform sampler2D texture_detail_normal : hint_normal,filter_nearest,repeat_enable;
+uniform sampler2D texture_detail_mask : hint_default_white,filter_nearest,repeat_enable;
+uniform vec3 uv1_scale;
+uniform vec3 uv1_offset;
+uniform vec3 uv2_scale;
+uniform vec3 uv2_offset;
+
+global uniform float viewmodel_fov;
+
+
+#include \"res://shaders/includes/psx_inc.gdshaderinc\"
+
+void vertex() {
+	UV=UV*uv1_scale.xy+uv1_offset.xy;
+
+	float onetanfov = 1.0f / tan(0.5f * (viewmodel_fov * PI / 180.0f));
+	float aspect = VIEWPORT_SIZE.x / VIEWPORT_SIZE.y;
+	// modify projection matrix
+	PROJECTION_MATRIX[1][1] = -onetanfov;
+	PROJECTION_MATRIX[0][0] = onetanfov / aspect;
+
+	// draws the viewmodel over everything (disable if you want dof near on viewmodel)
+	//POSITION = PROJECTION_MATRIX * MODELVIEW_MATRIX * vec4(VERTEX.xyz, 1.0);
+	POSITION = map_affine(snap_vertex(PROJECTION_MATRIX * MODELVIEW_MATRIX * vec4(VERTEX, 1.0)));
+	POSITION.z = mix(POSITION.z, 0.9, 0.5);
+}
+
+void fragment() {
+	vec2 base_uv = UV;
+	vec4 albedo_tex = texture(texture_albedo,base_uv);
+	ALBEDO = albedo.rgb * albedo_tex.rgb;
+	float metallic_tex = dot(texture(texture_metallic,base_uv),metallic_texture_channel);
+	METALLIC = metallic_tex * metallic;
+	vec4 roughness_texture_channel = vec4(1.0,0.0,0.0,0.0);
+	float roughness_tex = dot(texture(texture_roughness,base_uv),roughness_texture_channel);
+	ROUGHNESS = roughness_tex * roughness;
+	SPECULAR = specular;
+	vec2 clearcoat_tex = texture(texture_clearcoat,base_uv).xy;
+	CLEARCOAT = clearcoat*clearcoat_tex.x;	CLEARCOAT_ROUGHNESS = clearcoat_roughness*clearcoat_tex.y;
+	vec4 detail_tex = texture(texture_detail_albedo,base_uv);
+	vec4 detail_norm_tex = texture(texture_detail_normal,base_uv);
+	vec4 detail_mask_tex = texture(texture_detail_mask,base_uv);
+	vec3 detail = mix(ALBEDO.rgb,detail_tex.rgb,detail_tex.a);
+	vec3 detail_norm = mix(NORMAL_MAP,detail_norm_tex.rgb,detail_tex.a);
+	NORMAL_MAP = mix(NORMAL_MAP,detail_norm,detail_mask_tex.r);
+	ALBEDO.rgb = mix(ALBEDO.rgb,detail,detail_mask_tex.r);
+}
+"
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_vqneo"]
+width = 64
+height = 64
+generate_mipmaps = false
+seamless_blend_skirt = 1.0
+color_ramp = SubResource("Gradient_v5jf5")
+noise = SubResource("FastNoiseLite_q3vr3")
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_rp7ad"]
+width = 64
+height = 64
+generate_mipmaps = false
+seamless_blend_skirt = 1.0
+as_normal_map = true
+bump_strength = 1.0
+noise = SubResource("FastNoiseLite_q3vr3")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ewf5o"]
+render_priority = 0
+shader = SubResource("Shader_h63q6")
+shader_parameter/albedo = Color(0.501961, 0.501961, 0.501961, 1)
+shader_parameter/point_size = 1.0
+shader_parameter/roughness = 1.0
+shader_parameter/metallic_texture_channel = Vector4(1, 0, 0, 0)
+shader_parameter/specular = 0.5
+shader_parameter/metallic = 1.0
+shader_parameter/clearcoat = 1.0
+shader_parameter/clearcoat_roughness = 0.25
+shader_parameter/uv1_scale = Vector3(1, 1, 1)
+shader_parameter/uv1_offset = Vector3(0, 0, 0)
+shader_parameter/uv2_scale = Vector3(1, 1, 1)
+shader_parameter/uv2_offset = Vector3(0, 0, 0)
+shader_parameter/texture_metallic = ExtResource("6_sagf4")
+shader_parameter/texture_roughness = ExtResource("7_q40ik")
+shader_parameter/texture_clearcoat = ExtResource("5_e71qv")
+shader_parameter/texture_detail_albedo = SubResource("NoiseTexture2D_vqneo")
+shader_parameter/texture_detail_normal = SubResource("NoiseTexture2D_rp7ad")
+shader_parameter/texture_detail_mask = ExtResource("5_e71qv")
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_l85rr"]
+animation = &"boomstick_anims/boomstick_fire"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_2yivl"]
+animation = &"boomstick_anims/boomstick_deploy"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_t3q3t"]
+animation = &"boomstick_anims/boomstick_fire"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_cc42y"]
+animation = &"boomstick_anims/boomstick_idle"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_l75k0"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_e6tb1"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_xfgup"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_40edl"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_b1n13"]
+states/alt_firing/node = SubResource("AnimationNodeAnimation_l85rr")
+states/alt_firing/position = Vector2(477, 205)
+states/deploy/node = SubResource("AnimationNodeAnimation_2yivl")
+states/deploy/position = Vector2(199.444, 205)
+states/firing/node = SubResource("AnimationNodeAnimation_t3q3t")
+states/firing/position = Vector2(342.481, 204.111)
+states/idle/node = SubResource("AnimationNodeAnimation_cc42y")
+states/idle/position = Vector2(343, 100.111)
+transitions = ["deploy", "idle", SubResource("AnimationNodeStateMachineTransition_l75k0"), "firing", "idle", SubResource("AnimationNodeStateMachineTransition_e6tb1"), "alt_firing", "idle", SubResource("AnimationNodeStateMachineTransition_xfgup"), "Start", "deploy", SubResource("AnimationNodeStateMachineTransition_40edl")]
+graph_offset = Vector2(-104, 71)
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_iuds5"]
+radius = 16.0
+
+[sub_resource type="Animation" id="Animation_khffd"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Boomstick/AlertRadius:monitoring")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_udr0n"]
+_data = {
+"RESET": SubResource("Animation_khffd")
+}
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_44bvg"]
+emission_shape = 3
+emission_box_extents = Vector3(0.025, 0, 0)
+direction = Vector3(0, 0, -1)
+spread = 30.0
+flatness = 1.0
+initial_velocity_min = 4.0
+initial_velocity_max = 4.0
+scale_min = 0.5
+scale_max = 0.5
+
+[sub_resource type="Shader" id="Shader_27opq"]
+code = "// NOTE: Shader automatically converted from Godot Engine 4.1.1.stable.mono's StandardMaterial3D.
+
+shader_type spatial;
+render_mode blend_mix,depth_draw_opaque,cull_back,diffuse_burley,specular_schlick_ggx;
+uniform vec4 albedo : source_color;
+uniform sampler2D texture_albedo : source_color,filter_nearest,repeat_enable;
+uniform float point_size : hint_range(0,128);
+uniform float roughness : hint_range(0,1);
+uniform sampler2D texture_metallic : hint_default_white,filter_nearest,repeat_enable;
+uniform vec4 metallic_texture_channel;
+uniform sampler2D texture_roughness : hint_roughness_r,filter_nearest,repeat_enable;
+uniform float specular;
+uniform float metallic;
+uniform vec3 uv1_scale;
+uniform vec3 uv1_offset;
+uniform vec3 uv2_scale;
+uniform vec3 uv2_offset;
+
+global uniform float viewmodel_fov;
+
+#include \"res://shaders/includes/psx_inc.gdshaderinc\"
+
+void vertex() {
+	UV=UV*uv1_scale.xy+uv1_offset.xy;
+
+	float onetanfov = 1.0f / tan(0.5f * (viewmodel_fov * PI / 180.0f));
+	float aspect = VIEWPORT_SIZE.x / VIEWPORT_SIZE.y;
+	// modify projection matrix
+	PROJECTION_MATRIX[1][1] = -onetanfov;
+	PROJECTION_MATRIX[0][0] = onetanfov / aspect;
+
+	// draws the viewmodel over everything (disable if you want dof near on viewmodel)
+	//POSITION = PROJECTION_MATRIX * MODELVIEW_MATRIX * vec4(VERTEX.xyz, 1.0);
+	POSITION = map_affine(snap_vertex(PROJECTION_MATRIX * MODELVIEW_MATRIX * vec4(VERTEX, 1.0)));
+	POSITION.z = mix(POSITION.z, 0, 0.99);
+}
+
+void fragment() {
+	vec2 base_uv = UV;
+	vec4 albedo_tex = texture(texture_albedo,base_uv);
+	ALBEDO = albedo.rgb * albedo_tex.rgb;
+	float metallic_tex = dot(texture(texture_metallic,base_uv),metallic_texture_channel);
+	METALLIC = metallic_tex * metallic;
+	vec4 roughness_texture_channel = vec4(1.0,0.0,0.0,0.0);
+	float roughness_tex = dot(texture(texture_roughness,base_uv),roughness_texture_channel);
+	ROUGHNESS = roughness_tex * roughness;
+	SPECULAR = specular;
+}
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_p5qju"]
+render_priority = 0
+shader = SubResource("Shader_27opq")
+shader_parameter/albedo = Color(1, 1, 1, 1)
+shader_parameter/point_size = 1.0
+shader_parameter/roughness = 1.0
+shader_parameter/metallic_texture_channel = Vector4(1, 0, 0, 0)
+shader_parameter/specular = 0.5
+shader_parameter/metallic = 1.0
+shader_parameter/uv1_scale = Vector3(1, 1, 1)
+shader_parameter/uv1_offset = Vector3(0, 0, 0)
+shader_parameter/uv2_scale = Vector3(1, 1, 1)
+shader_parameter/uv2_offset = Vector3(0, 0, 0)
+shader_parameter/texture_albedo = ExtResource("12_546ee")
+shader_parameter/texture_metallic = ExtResource("13_6782y")
+shader_parameter/texture_roughness = ExtResource("14_d028w")
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_h4yg7"]
+material = SubResource("ShaderMaterial_p5qju")
+top_radius = 0.05
+bottom_radius = 0.05
+height = 0.175
+radial_segments = 6
+
+[node name="Boomstick" type="Node3D"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, -0.35, 0)
+
+[node name="Boomstick" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.00999499, 0)
+layers = 4
+cast_shadow = 0
+mesh = ExtResource("1_7e58d")
+surface_material_override/0 = SubResource("ShaderMaterial_ru7kf")
+surface_material_override/1 = SubResource("ShaderMaterial_ewf5o")
+script = ExtResource("2_nf3wy")
+alt_bullet = ExtResource("9_jcufi")
+alt_shot_cooldown = 2.0
+alt_ammo_type = "sawblades"
+bullet = ExtResource("9_h281q")
+shot_cooldown = 2.0
+volley = 36
+spread = 30.0
+recoil = 7.5
+ammo_type = "shells"
+ammo_cost = 2
+anti_clip_distance = 1.25
+category = 1
+index = 1
+
+[node name="Spawner" type="Marker3D" parent="Boomstick"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.5)
+
+[node name="MuzzleFlashL" type="MeshInstance3D" parent="Boomstick/Spawner"]
+transform = Transform3D(-1, 0, -1.50996e-07, 0, 1, 0, 1.50996e-07, 0, -1, 0.05, 0, 0)
+visible = false
+layers = 4
+material_override = ExtResource("10_lwo5p")
+cast_shadow = 0
+mesh = ExtResource("3_ac8cs")
+skeleton = NodePath("../../..")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="Boomstick/Spawner/MuzzleFlashL"]
+layers = 4
+light_color = Color(1, 1, 0, 1)
+light_energy = 0.0
+shadow_enabled = true
+omni_range = 10.0
+omni_shadow_mode = 0
+
+[node name="MuzzleFlashR" type="MeshInstance3D" parent="Boomstick/Spawner"]
+transform = Transform3D(-1, 0, -1.50996e-07, 0, 1, 0, 1.50996e-07, 0, -1, -0.05, 0, 0)
+visible = false
+layers = 4
+material_override = ExtResource("10_lwo5p")
+cast_shadow = 0
+mesh = ExtResource("3_ac8cs")
+skeleton = NodePath("../../..")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="Boomstick/Spawner/MuzzleFlashR"]
+layers = 4
+light_color = Color(1, 1, 0, 1)
+light_energy = 0.0
+shadow_enabled = true
+omni_range = 10.0
+omni_shadow_mode = 0
+
+[node name="AltSpawner" type="Marker3D" parent="Boomstick"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.5)
+
+[node name="MuzzleFlashL" type="MeshInstance3D" parent="Boomstick/AltSpawner"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0.05, 0, 0)
+visible = false
+layers = 4
+material_override = ExtResource("10_lwo5p")
+mesh = ExtResource("3_ac8cs")
+skeleton = NodePath("../../..")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="Boomstick/AltSpawner/MuzzleFlashL"]
+layers = 4
+light_color = Color(1, 1, 0, 1)
+light_energy = 0.0
+shadow_enabled = true
+omni_range = 10.0
+omni_shadow_mode = 0
+
+[node name="MuzzleFlashR" type="MeshInstance3D" parent="Boomstick/AltSpawner"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -0.05, 0, 0)
+visible = false
+layers = 4
+material_override = ExtResource("10_lwo5p")
+mesh = ExtResource("3_ac8cs")
+skeleton = NodePath("../../..")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="Boomstick/AltSpawner/MuzzleFlashR"]
+layers = 4
+light_color = Color(1, 1, 0, 1)
+light_energy = 0.0
+shadow_enabled = true
+omni_range = 10.0
+omni_shadow_mode = 0
+
+[node name="AnimationTree" type="AnimationTree" parent="Boomstick"]
+root_node = NodePath("../..")
+tree_root = SubResource("AnimationNodeStateMachine_b1n13")
+anim_player = NodePath("../../AnimationPlayer")
+parameters/current_length = 2.0
+parameters/current_position = 1.01297
+parameters/current_delta = 0.1
+parameters/End/current_length = null
+parameters/End/current_position = null
+parameters/End/current_delta = null
+parameters/Start/current_length = 0.0
+parameters/Start/current_position = 0.0
+parameters/Start/current_delta = 0.0
+parameters/alt_firing/current_length = null
+parameters/alt_firing/current_position = null
+parameters/alt_firing/current_delta = null
+parameters/deploy/current_length = 0.5
+parameters/deploy/current_position = 0.5
+parameters/deploy/current_delta = 0.0313373
+parameters/firing/current_length = null
+parameters/firing/current_position = null
+parameters/firing/current_delta = null
+parameters/idle/current_length = 2.0
+parameters/idle/current_position = 1.01297
+parameters/idle/current_delta = 0.1
+
+[node name="AlertRadius" type="Area3D" parent="Boomstick"]
+collision_layer = 2
+collision_mask = 4
+monitoring = false
+script = ExtResource("10_khxxt")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Boomstick/AlertRadius"]
+shape = SubResource("SphereShape3D_iuds5")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_udr0n"),
+"boomstick_anims": ExtResource("4_a2xtk")
+}
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+bus = &"Weapons"
+
+[node name="ShellEject" type="GPUParticles3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, -0.15, 0.5)
+layers = 4
+emitting = false
+amount = 2
+lifetime = 3.0
+explosiveness = 1.0
+randomness = 1.0
+fixed_fps = 60
+process_material = SubResource("ParticleProcessMaterial_44bvg")
+draw_pass_1 = SubResource("CylinderMesh_h4yg7")

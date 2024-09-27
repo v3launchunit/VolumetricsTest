@@ -1,0 +1,22 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://b2iah5c5km8s4"
+path="res://.godot/imported/hunting_rifle.obj-2b2eb3911617860fff17f2546e8255e3.mesh"
+
+[deps]
+
+files=["res://.godot/imported/hunting_rifle.obj-2b2eb3911617860fff17f2546e8255e3.mesh"]
+
+source_file="res://weapons/hunting_rifle/hunting_rifle.obj"
+dest_files=["res://.godot/imported/hunting_rifle.obj-2b2eb3911617860fff17f2546e8255e3.mesh", "res://.godot/imported/hunting_rifle.obj-2b2eb3911617860fff17f2546e8255e3.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
+force_disable_mesh_compression=false

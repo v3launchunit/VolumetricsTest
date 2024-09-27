@@ -1,0 +1,14 @@
+[remap]
+
+importer="func_godot.map"
+type="Resource"
+uid="uid://1vod2v70540c"
+path="res://.godot/imported/arena_02.map-a0bf6f644204f0b212bc069ed6f3ce4b.tres"
+
+[deps]
+
+source_file="res://maps/arena_02.map"
+dest_files=["res://.godot/imported/arena_02.map-a0bf6f644204f0b212bc069ed6f3ce4b.tres"]
+
+[params]
+

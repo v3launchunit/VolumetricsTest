@@ -1,0 +1,257 @@
+[gd_scene load_steps=26 format=3 uid="uid://7e6nf0ho2ltr"]
+
+[ext_resource type="Script" path="res://scripts/objects/teleporter.gd" id="1_1hc1g"]
+[ext_resource type="Shader" path="res://shaders/spatial/psx_ul_mix.gdshader" id="2_7084i"]
+[ext_resource type="AudioStream" uid="uid://dsucttfyc1d1t" path="res://audio/streams/effects/teleport.wav" id="2_tq5s8"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_360gk"]
+
+[sub_resource type="Shader" id="Shader_xtn20"]
+code = "// NOTE: Shader automatically converted from Godot Engine 4.2.1.stable.mono's StandardMaterial3D.
+
+shader_type spatial;
+render_mode blend_mix,depth_draw_opaque,cull_disabled,diffuse_burley,specular_schlick_ggx,unshaded;
+uniform vec4 albedo : source_color;
+uniform sampler2D texture_albedo : source_color,filter_nearest,repeat_enable;
+uniform float point_size : hint_range(0,128);
+uniform float roughness : hint_range(0,1);
+uniform sampler2D texture_metallic : hint_default_white,filter_nearest,repeat_enable;
+uniform vec4 metallic_texture_channel;
+uniform sampler2D texture_roughness : hint_roughness_r,filter_nearest,repeat_enable;
+uniform float specular;
+uniform float metallic;
+uniform vec3 uv1_scale;
+uniform vec3 uv1_offset;
+uniform vec3 uv2_scale;
+uniform vec3 uv2_offset;
+
+#include \"res://shaders/includes/psx_inc.gdshaderinc\"
+
+void vertex() {
+	UV=UV*uv1_scale.xy+uv1_offset.xy;
+	POSITION = map_affine(snap_vertex(PROJECTION_MATRIX * MODELVIEW_MATRIX * vec4(VERTEX, 1.0)));
+}
+
+void fragment() {
+	vec2 base_uv = UV;
+	vec4 albedo_tex = texture(texture_albedo,base_uv);
+	albedo_tex *= COLOR;
+	ALBEDO = albedo.rgb * albedo_tex.rgb;
+	float metallic_tex = dot(texture(texture_metallic,base_uv),metallic_texture_channel);
+	METALLIC = metallic_tex * metallic;
+	vec4 roughness_texture_channel = vec4(1.0,0.0,0.0,0.0);
+	float roughness_tex = dot(texture(texture_roughness,base_uv),roughness_texture_channel);
+	ROUGHNESS = roughness_tex * roughness;
+	SPECULAR = specular;
+	ALPHA *= albedo.a * albedo_tex.a;
+}
+"
+
+[sub_resource type="Gradient" id="Gradient_7ek1m"]
+offsets = PackedFloat32Array(0.75, 0.9375, 1)
+colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 0)
+metadata/_snap_enabled = true
+metadata/_snap_count = 16
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_m76p8"]
+gradient = SubResource("Gradient_7ek1m")
+width = 32
+height = 32
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(1, 0.5)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_xg1pp"]
+render_priority = 0
+shader = SubResource("Shader_xtn20")
+shader_parameter/albedo = Color(1, 1, 1, 1)
+shader_parameter/point_size = 1.0
+shader_parameter/roughness = 1.0
+shader_parameter/metallic_texture_channel = null
+shader_parameter/specular = 0.5
+shader_parameter/metallic = 0.0
+shader_parameter/uv1_scale = Vector3(1, 1, 1)
+shader_parameter/uv1_offset = Vector3(0, 0, 0)
+shader_parameter/uv2_scale = Vector3(1, 1, 1)
+shader_parameter/uv2_offset = Vector3(0, 0, 0)
+shader_parameter/texture_albedo = SubResource("GradientTexture2D_m76p8")
+
+[sub_resource type="Gradient" id="Gradient_an5ye"]
+offsets = PackedFloat32Array(0, 0.5, 1)
+colors = PackedColorArray(0, 0, 0, 0, 1, 1, 1, 1, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_xniqa"]
+gradient = SubResource("Gradient_an5ye")
+use_hdr = true
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_qdwga"]
+emission_shape = 3
+emission_box_extents = Vector3(0, 1, 0)
+direction = Vector3(0, 1, 0)
+spread = 0.0
+initial_velocity_min = -1.0
+initial_velocity_max = 1.0
+gravity = Vector3(0, 0, 0)
+linear_accel_min = -1.0
+linear_accel_max = 1.0
+color = Color(0, 2, 1, 1)
+color_ramp = SubResource("GradientTexture1D_xniqa")
+
+[sub_resource type="QuadMesh" id="QuadMesh_i3ie0"]
+orientation = 1
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_hp170"]
+render_priority = 0
+shader = ExtResource("2_7084i")
+shader_parameter/albedo = Color(1, 1, 1, 1)
+shader_parameter/uv1_scale = Vector3(1, 1, 1)
+shader_parameter/uv1_offset = Vector3(0, 0, 0)
+
+[sub_resource type="Gradient" id="Gradient_ql7el"]
+offsets = PackedFloat32Array(0, 0.25, 0.8125, 1)
+colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0)
+metadata/_snap_enabled = true
+metadata/_snap_count = 16
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_54ue3"]
+gradient = SubResource("Gradient_ql7el")
+
+[sub_resource type="Curve" id="Curve_ggrvl"]
+min_value = -2.0
+max_value = 2.0
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_a1kwn"]
+min_value = -2.0
+max_value = 2.0
+_data = [Vector2(0, -2), 0.0, 0.0, 0, 0, Vector2(1, -2), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_8k0uo"]
+min_value = -2.0
+max_value = 2.0
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveXYZTexture" id="CurveXYZTexture_h003p"]
+curve_x = SubResource("Curve_ggrvl")
+curve_y = SubResource("Curve_a1kwn")
+curve_z = SubResource("Curve_8k0uo")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_oxe06"]
+emission_shape = 3
+emission_box_extents = Vector3(0.5, 1.5, 0.5)
+orbit_velocity_min = -0.25
+orbit_velocity_max = 0.25
+orbit_velocity_curve = SubResource("CurveXYZTexture_h003p")
+gravity = Vector3(0, 0, 0)
+color = Color(0, 3, 1.5, 1)
+color_ramp = SubResource("GradientTexture1D_54ue3")
+
+[sub_resource type="BoxMesh" id="BoxMesh_f0mow"]
+size = Vector3(0.063, 0.063, 0.063)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_img6b"]
+render_priority = 0
+shader = ExtResource("2_7084i")
+shader_parameter/albedo = Color(1, 1, 1, 1)
+shader_parameter/uv1_scale = Vector3(1, 1, 1)
+shader_parameter/uv1_offset = Vector3(0, 0, 0)
+
+[sub_resource type="Gradient" id="Gradient_8a1aj"]
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_3nejb"]
+gradient = SubResource("Gradient_8a1aj")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_p114c"]
+direction = Vector3(0, 1, 0)
+initial_velocity_min = 2.5
+initial_velocity_max = 7.5
+color = Color(0, 3, 1.5, 1)
+color_ramp = SubResource("GradientTexture1D_3nejb")
+
+[node name="Teleporter" type="Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+collision_mask = 62
+script = ExtResource("1_1hc1g")
+
+[node name="NavigationLink3D" type="NavigationLink3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+end_position = Vector3(0, 0, -1)
+enter_cost = 1.0
+travel_cost = 0.0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("CylinderShape3D_360gk")
+
+[node name="TeleporterSys" type="GPUParticles3D" parent="."]
+material_override = SubResource("ShaderMaterial_xg1pp")
+cast_shadow = 0
+visibility_range_end = 90.0
+visibility_range_end_margin = 10.0
+visibility_range_fade_mode = 1
+process_material = SubResource("ParticleProcessMaterial_qdwga")
+draw_pass_1 = SubResource("QuadMesh_i3ie0")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="TeleporterSys"]
+light_color = Color(0, 1, 0.501961, 1)
+light_energy = 3.0
+light_bake_mode = 1
+shadow_enabled = true
+distance_fade_enabled = true
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="TeleporterSys"]
+material_override = SubResource("ShaderMaterial_hp170")
+amount = 32
+lifetime = 4.0
+process_material = SubResource("ParticleProcessMaterial_oxe06")
+draw_pass_1 = SubResource("BoxMesh_f0mow")
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("2_tq5s8")
+volume_db = 10.0
+bus = &"World"
+doppler_tracking = 2
+
+[node name="TeleportSys" type="GPUParticles3D" parent="."]
+material_override = SubResource("ShaderMaterial_img6b")
+emitting = false
+amount = 32
+one_shot = true
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_p114c")
+draw_pass_1 = SubResource("BoxMesh_f0mow")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="TeleportSys"]
+visible = false
+light_color = Color(0, 1, 0.501961, 1)
+light_energy = 3.0
+shadow_enabled = true
+distance_fade_enabled = true
+
+[node name="Destination" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1)
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="Destination"]
+stream = ExtResource("2_tq5s8")
+volume_db = 10.0
+bus = &"World"
+doppler_tracking = 2
+
+[node name="TeleportSys" type="GPUParticles3D" parent="Destination"]
+material_override = SubResource("ShaderMaterial_hp170")
+emitting = false
+amount = 32
+one_shot = true
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_p114c")
+draw_pass_1 = SubResource("BoxMesh_f0mow")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="Destination/TeleportSys"]
+visible = false
+light_color = Color(0, 1, 0.501961, 1)
+light_energy = 3.0
+shadow_enabled = true
+distance_fade_enabled = true

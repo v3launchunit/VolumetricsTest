@@ -1,0 +1,14 @@
+[remap]
+
+importer="func_godot.map"
+type="Resource"
+uid="uid://d63pbh765afn"
+path="res://.godot/imported/e1m7-crash-1.map-7c1e3ccc8056d88eedee2968e5d996af.tres"
+
+[deps]
+
+source_file="res://maps/e1m7-crash-1.map"
+dest_files=["res://.godot/imported/e1m7-crash-1.map-7c1e3ccc8056d88eedee2968e5d996af.tres"]
+
+[params]
+

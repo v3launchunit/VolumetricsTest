@@ -1,0 +1,27 @@
+[gd_resource type="Resource" script_class="FuncGodotFGDModelPointClass" load_steps=4 format=3 uid="uid://cvxkyiwtkkmrb"]
+
+[ext_resource type="Resource" uid="uid://bec0kis72kbyx" path="res://entities/enemies/enemy_base_class.tres" id="1_kqchs"]
+[ext_resource type="Script" path="res://addons/func_godot/src/fgd/func_godot_fgd_model_point_class.gd" id="1_xodms"]
+[ext_resource type="PackedScene" uid="uid://cbo6wxdi4eryp" path="res://entities/enemies/military/pinkerton/pinkerton.tscn" id="2_sqj75"]
+
+[resource]
+script = ExtResource("1_xodms")
+target_map_editor = 1
+models_sub_folder = ""
+scale_expression = "1"
+generate_size_property = false
+generate_gd_ignore_file = false
+scene_file = ExtResource("2_sqj75")
+apply_rotation_on_map_build = true
+classname = "enemy_pinkerton"
+description = ""
+func_godot_internal = false
+base_classes = Array[Resource]([ExtResource("1_kqchs")])
+class_properties = {}
+class_property_descriptions = {}
+meta_properties = {
+"color": Color(0.8, 0.8, 0.8, 1),
+"size": AABB(-8, -8, -16, 8, 8, 16)
+}
+node_class = ""
+name_property = ""

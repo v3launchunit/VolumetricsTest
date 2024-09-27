@@ -1,0 +1,22 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://bq2ld7p1te64i"
+path="res://.godot/imported/muzzle_flash_plasma.obj-8a2c8a8beb9516960d753c4d6a62f774.mesh"
+
+[deps]
+
+files=["res://.godot/imported/muzzle_flash_plasma.obj-8a2c8a8beb9516960d753c4d6a62f774.mesh"]
+
+source_file="res://weapons/plasma_cannon/muzzle_flash_plasma.obj"
+dest_files=["res://.godot/imported/muzzle_flash_plasma.obj-8a2c8a8beb9516960d753c4d6a62f774.mesh", "res://.godot/imported/muzzle_flash_plasma.obj-8a2c8a8beb9516960d753c4d6a62f774.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
+force_disable_mesh_compression=false

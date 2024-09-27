@@ -1,0 +1,193 @@
+[gd_scene load_steps=26 format=3 uid="uid://bs3eibrb48t0m"]
+
+[ext_resource type="PackedScene" uid="uid://babited41kti5" path="res://weapons/rpg/rpg.glb" id="1_70x0w"]
+[ext_resource type="Script" path="res://weapons/rpg/weapon_rpg.gd" id="2_535cm"]
+[ext_resource type="Script" path="res://weapons/alert_area.gd" id="2_v1et6"]
+[ext_resource type="AnimationLibrary" uid="uid://c1poci1it3ds0" path="res://weapons/rpg/rpg_anims.res" id="3_ktpeh"]
+[ext_resource type="Material" uid="uid://digscwwl48m5g" path="res://weapons/rpg/rpg_mat_2.tres" id="4_0tpv3"]
+[ext_resource type="Material" uid="uid://bf74i5chaorag" path="res://weapons/rpg/rpg_mat_1.tres" id="5_mmwam"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_h4pr3"]
+animation = &"rpg_anims/rpg_fire_alt"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_7kqd3"]
+animation = &"rpg_anims/rpg_deploy"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_yyvp4"]
+animation = &"rpg_anims/rpg_empty"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_476w3"]
+animation = &"rpg_anims/rpg_fire"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_bhtf6"]
+animation = &"rpg_anims/rpg_idle"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_d5ted"]
+animation = &"rpg_anims/rpg_reload"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_nifaj"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_n4v7x"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ji7l7"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_05fwc"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="Curve" id="Curve_aljen"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_qodpl"]
+xfade_time = 0.1
+xfade_curve = SubResource("Curve_aljen")
+
+[sub_resource type="Curve" id="Curve_q6x7f"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.3, 0), 3.01591, 3.01591, 0, 0, Vector2(0.6, 1), 2.02682, 2.02682, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_awm67"]
+xfade_time = 1.0
+xfade_curve = SubResource("Curve_q6x7f")
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_n0hkd"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_n72uv"]
+states/alt_firing/node = SubResource("AnimationNodeAnimation_h4pr3")
+states/alt_firing/position = Vector2(480.531, 22.6667)
+states/deploy/node = SubResource("AnimationNodeAnimation_7kqd3")
+states/deploy/position = Vector2(329.333, 99.3333)
+states/empty/node = SubResource("AnimationNodeAnimation_yyvp4")
+states/empty/position = Vector2(629.333, 178.889)
+states/firing/node = SubResource("AnimationNodeAnimation_476w3")
+states/firing/position = Vector2(629.481, 100.222)
+states/idle/node = SubResource("AnimationNodeAnimation_bhtf6")
+states/idle/position = Vector2(481.333, 98.8889)
+states/reloading/node = SubResource("AnimationNodeAnimation_d5ted")
+states/reloading/position = Vector2(480.889, 178.889)
+transitions = ["Start", "deploy", SubResource("AnimationNodeStateMachineTransition_nifaj"), "deploy", "idle", SubResource("AnimationNodeStateMachineTransition_n4v7x"), "reloading", "idle", SubResource("AnimationNodeStateMachineTransition_ji7l7"), "firing", "empty", SubResource("AnimationNodeStateMachineTransition_05fwc"), "empty", "reloading", SubResource("AnimationNodeStateMachineTransition_qodpl"), "idle", "empty", SubResource("AnimationNodeStateMachineTransition_awm67"), "alt_firing", "idle", SubResource("AnimationNodeStateMachineTransition_n0hkd")]
+graph_offset = Vector2(101, -32)
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_uogw3"]
+radius = 16.0
+
+[sub_resource type="Animation" id="Animation_subme"]
+length = 0.001
+tracks/0/type = "position_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("rpg")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 0, 0, 0)
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("rpg/tube/rocket:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_g633s"]
+_data = {
+"RESET": SubResource("Animation_subme")
+}
+
+[node name="RPG" type="Node3D"]
+transform = Transform3D(-1, 0, -1.50996e-07, 0, 1, 0, 1.50996e-07, 0, -1, -0.75, -0.175, 0)
+
+[node name="rpg" parent="." instance=ExtResource("1_70x0w")]
+script = ExtResource("2_535cm")
+alt_volley = 5
+alt_spread = 10.0
+alt_ammo_type = "grenades"
+alt_ammo_cost = 5
+ammo_type = "rockets"
+category = 4
+
+[node name="tube" parent="rpg" index="0"]
+layers = 4
+material_override = ExtResource("5_mmwam")
+cast_shadow = 0
+
+[node name="pod" parent="rpg/tube" index="0"]
+layers = 4
+material_override = ExtResource("5_mmwam")
+cast_shadow = 0
+
+[node name="AltSpawner" type="Marker3D" parent="rpg/tube/pod" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.75)
+
+[node name="rocket" parent="rpg/tube" index="1"]
+layers = 4
+material_override = ExtResource("4_0tpv3")
+cast_shadow = 0
+
+[node name="Spawner" type="Marker3D" parent="rpg/tube/rocket" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2)
+
+[node name="AnimationTree" type="AnimationTree" parent="rpg"]
+root_node = NodePath("../..")
+tree_root = SubResource("AnimationNodeStateMachine_n72uv")
+anim_player = NodePath("../../AnimationPlayer")
+parameters/current_length = 1.5
+parameters/current_position = 0.124284
+parameters/current_delta = 0.0257052
+parameters/End/current_length = null
+parameters/End/current_position = null
+parameters/End/current_delta = null
+parameters/Start/current_length = 0.0
+parameters/Start/current_position = 0.0
+parameters/Start/current_delta = 0.0
+parameters/alt_firing/current_length = null
+parameters/alt_firing/current_position = null
+parameters/alt_firing/current_delta = null
+parameters/deploy/current_length = 1.0
+parameters/deploy/current_position = 1.0
+parameters/deploy/current_delta = 0.0234203
+parameters/empty/current_length = null
+parameters/empty/current_position = null
+parameters/empty/current_delta = null
+parameters/firing/current_length = null
+parameters/firing/current_position = null
+parameters/firing/current_delta = null
+parameters/idle/current_length = 1.5
+parameters/idle/current_position = 0.124284
+parameters/idle/current_delta = 0.0257052
+parameters/reloading/current_length = null
+parameters/reloading/current_position = null
+parameters/reloading/current_delta = null
+
+[node name="AlertRadius" type="Area3D" parent="rpg"]
+collision_layer = 2
+collision_mask = 4
+monitoring = false
+script = ExtResource("2_v1et6")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="rpg/AlertRadius"]
+shape = SubResource("SphereShape3D_uogw3")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+max_polyphony = 8
+bus = &"Weapons"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_g633s"),
+"rpg_anims": ExtResource("3_ktpeh")
+}
+
+[editable path="rpg"]

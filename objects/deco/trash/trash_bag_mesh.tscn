@@ -1,0 +1,38 @@
+[gd_scene load_steps=7 format=3 uid="uid://dbvvle5ea3nns"]
+
+[ext_resource type="ArrayMesh" uid="uid://jpl2iads51cn" path="res://objects/deco/trash/trash_bag.obj" id="1_q80k4"]
+
+[sub_resource type="Gradient" id="Gradient_sasyv"]
+interpolation_mode = 1
+offsets = PackedFloat32Array(0, 0.25, 0.5, 0.625)
+colors = PackedColorArray(0, 0, 0, 1, 0.1, 0.1, 0.1, 1, 0.15, 0.15, 0.15, 1, 0.2, 0.2, 0.2, 1)
+metadata/_snap_enabled = true
+metadata/_snap_count = 8
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_icbi1"]
+frequency = 0.05
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_q47di"]
+width = 128
+height = 128
+color_ramp = SubResource("Gradient_sasyv")
+noise = SubResource("FastNoiseLite_icbi1")
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_b7jcf"]
+width = 128
+height = 128
+as_normal_map = true
+bump_strength = 4.0
+noise = SubResource("FastNoiseLite_icbi1")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qfo1d"]
+albedo_texture = SubResource("NoiseTexture2D_q47di")
+normal_enabled = true
+normal_texture = SubResource("NoiseTexture2D_b7jcf")
+texture_filter = 0
+
+[node name="TrashBag" type="MeshInstance3D"]
+material_override = SubResource("StandardMaterial3D_qfo1d")
+visibility_range_end = 75.0
+visibility_range_end_margin = 10.0
+mesh = ExtResource("1_q80k4")

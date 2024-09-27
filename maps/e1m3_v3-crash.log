@@ -1,0 +1,70 @@
+Renderer info: Intel(R) Graphics version 4.6.0 - Build 31.0.101.5382 from Intel
+Depth buffer bits: 24
+Multisampling enabled
+Adding file system path "C:/Users/lengl/OneDrive/Desktop/Loose-Progams/TrenchBroom\\defaults\\assets"
+Adding file system path "C:/Users/lengl/OneDrive/Documents/Godot/VolumetricsTest\\."
+Loading document from C:\Users\lengl\OneDrive\Documents\Godot\VolumetricsTest\maps\e1m3_v3.map
+Loaded entity definition file VolumetricsTest.fgd
+Loaded texture collection '"textures"'
+Loaded texture collection '"textures\\debug"'
+Loaded texture collection '"textures\\furnishings"'
+Loaded texture collection '"textures\\liquids"'
+Loaded texture collection '"textures\\machines"'
+Loaded texture collection '"textures\\machines\\vent_panel"'
+Loaded texture collection '"textures\\metallic"'
+Loaded texture collection '"textures\\natural"'
+Loaded texture collection '"textures\\pathways"'
+Loaded texture collection '"textures\\special"'
+Loaded texture collection '"textures\\structural"'
+Loaded texture collection '"textures\\terrain"'
+Loaded texture collection '"textures\\terrain\\cc0\\bricks"'
+Loaded texture collection '"textures\\terrain\\cc0\\concrete"'
+Loaded texture collection '"textures\\terrain\\cc0\\rock_generic"'
+Loaded texture collection '"textures\\terrain\\custom_hand"'
+Loaded texture collection '"textures\\terrain\\custom_hand\\bricks"'
+Loaded texture collection '"textures\\terrain\\custom_hand\\bricks3d_a"'
+Loaded texture collection '"textures\\terrain\\custom_hand\\bricks_brown"'
+Loaded texture collection '"textures\\terrain\\custom_hand\\bricks_stone"'
+Loaded texture collection '"textures\\terrain\\custom_hand\\checker_board"'
+Loaded texture collection '"textures\\terrain\\custom_hand\\cliff_rocks"'
+Loaded texture collection '"textures\\terrain\\custom_hand\\cobble_stone"'
+Loaded texture collection '"textures\\terrain\\custom_hand\\concrete"'
+Loaded texture collection '"textures\\terrain\\custom_hand\\dirt"'
+Loaded texture collection '"textures\\terrain\\custom_hand\\glass"'
+Loaded texture collection '"textures\\terrain\\custom_hand\\key_metal"'
+Loaded texture collection '"textures\\terrain\\custom_hand\\log"'
+Loaded texture collection '"textures\\terrain\\custom_hand\\log_end"'
+Loaded texture collection '"textures\\terrain\\custom_hand\\metal_grate"'
+Loaded texture collection '"textures\\terrain\\custom_hand\\planks"'
+Loaded texture collection '"textures\\terrain\\custom_hand\\street"'
+Loaded texture collection '"textures\\terrain\\trench_broom"'
+Loaded texture collection '"textures\\_pbr\\bricks_clay"'
+Loaded texture collection '"textures\\_pbr\\bricks_stone"'
+Loaded texture collection '"textures\\_pbr\\metal_panel"'
+Loaded texture collection '"textures\\_pbr\\random_machines"'
+Loaded texture collection '"textures\\_pbr\\shared"'
+Loaded texture collection '"textures\\_pbr\\shutter_door"'
+Loaded texture collection '"textures\\_pbr\\vent_fan"'
+Loaded texture collection '"textures\\_pbr\\vent_panel"'
+Loaded "C:\\Users\\lengl\\OneDrive\\Documents\\Godot\\VolumetricsTest\\maps\\e1m3_v3.map" in 318ms
+Saved "C:\\Users\\lengl\\OneDrive\\Documents\\Godot\\VolumetricsTest\\maps\\e1m3_v3.map" in 27ms
+Saved "C:\\Users\\lengl\\OneDrive\\Documents\\Godot\\VolumetricsTest\\maps\\e1m3_v3.map" in 22ms
+Saved "C:\\Users\\lengl\\OneDrive\\Documents\\Godot\\VolumetricsTest\\maps\\e1m3_v3.map" in 11ms
+Saved "C:\\Users\\lengl\\OneDrive\\Documents\\Godot\\VolumetricsTest\\maps\\e1m3_v3.map" in 30ms
+Created autosave backup at "C:\\Users\\lengl\\OneDrive\\Documents\\Godot\\VolumetricsTest\\maps\\autosave\\e1m3_v3.10.map"
+Saved "C:\\Users\\lengl\\OneDrive\\Documents\\Godot\\VolumetricsTest\\maps\\e1m3_v3.map" in 14ms
+Saved "C:\\Users\\lengl\\OneDrive\\Documents\\Godot\\VolumetricsTest\\maps\\e1m3_v3.map" in 10ms
+Saved "C:\\Users\\lengl\\OneDrive\\Documents\\Godot\\VolumetricsTest\\maps\\e1m3_v3.map" in 15ms
+Saved "C:\\Users\\lengl\\OneDrive\\Documents\\Godot\\VolumetricsTest\\maps\\e1m3_v3.map" in 14ms
+Saved "C:\\Users\\lengl\\OneDrive\\Documents\\Godot\\VolumetricsTest\\maps\\e1m3_v3.map" in 16ms
+Saved "C:\\Users\\lengl\\OneDrive\\Documents\\Godot\\VolumetricsTest\\maps\\e1m3_v3.map" in 19ms
+Created autosave backup at "C:\\Users\\lengl\\OneDrive\\Documents\\Godot\\VolumetricsTest\\maps\\autosave\\e1m3_v3.11.map"
+Saved "C:\\Users\\lengl\\OneDrive\\Documents\\Godot\\VolumetricsTest\\maps\\e1m3_v3.map" in 12ms
+Created autosave backup at "C:\\Users\\lengl\\OneDrive\\Documents\\Godot\\VolumetricsTest\\maps\\autosave\\e1m3_v3.4.map"
+Saved "C:\\Users\\lengl\\OneDrive\\Documents\\Godot\\VolumetricsTest\\maps\\e1m3_v3.map" in 12ms
+Saved "C:\\Users\\lengl\\OneDrive\\Documents\\Godot\\VolumetricsTest\\maps\\e1m3_v3.map" in 17ms
+Created autosave backup at "C:\\Users\\lengl\\OneDrive\\Documents\\Godot\\VolumetricsTest\\maps\\autosave\\e1m3_v3.5.map"
+Saved "C:\\Users\\lengl\\OneDrive\\Documents\\Godot\\VolumetricsTest\\maps\\e1m3_v3.map" in 16ms
+Saved "C:\\Users\\lengl\\OneDrive\\Documents\\Godot\\VolumetricsTest\\maps\\e1m3_v3.map" in 12ms
+Saved "C:\\Users\\lengl\\OneDrive\\Documents\\Godot\\VolumetricsTest\\maps\\e1m3_v3.map" in 15ms
+Reloading entity definitions

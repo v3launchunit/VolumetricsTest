@@ -1,0 +1,314 @@
+[gd_scene load_steps=23 format=3 uid="uid://cprbuapjccc8b"]
+
+[ext_resource type="PackedScene" uid="uid://b4rf5i4ramo71" path="res://weapons/nailgun/nailgun.glb" id="1_e18ie"]
+[ext_resource type="Script" path="res://weapons/weapon_double_barrel.gd" id="2_3wn8a"]
+[ext_resource type="AnimationLibrary" uid="uid://clbhlm2virvf0" path="res://weapons/nailgun/nailgun_anims.res" id="3_8tsnk"]
+[ext_resource type="ArrayMesh" uid="uid://crk83yrjbvbg6" path="res://weapons/muzzle_flash.obj" id="3_kb333"]
+[ext_resource type="PackedScene" uid="uid://dhplxq8nkqau3" path="res://bullets/player/projectile/nail.tscn" id="3_v6ia4"]
+[ext_resource type="Material" uid="uid://nv0jkcw45ofc" path="res://weapons/weapon_metal.tres" id="4_r4di6"]
+[ext_resource type="Material" uid="uid://dq3a5fxspauox" path="res://weapons/muzzle_flash_yellow.tres" id="4_tc63f"]
+[ext_resource type="Script" path="res://weapons/alert_area.gd" id="4_xgkgl"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_pa5f1"]
+animation = &"nailgun_anims/nailgun_fire_right"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_74tso"]
+animation = &"nailgun_anims/nailgun_deploy"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_q8vi5"]
+animation = &"nailgun_anims/nailgun_fire_left"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_05c6l"]
+animation = &"nailgun_anims/nailgun_idle"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_nqngg"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_743v3"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_2r1s8"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_j2gog"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_605m1"]
+xfade_time = 0.1
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_8ytkg"]
+xfade_time = 0.1
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_84u0q"]
+states/alt_firing/node = SubResource("AnimationNodeAnimation_pa5f1")
+states/alt_firing/position = Vector2(557.333, 144.667)
+states/deploy/node = SubResource("AnimationNodeAnimation_74tso")
+states/deploy/position = Vector2(312, 99.7778)
+states/firing/node = SubResource("AnimationNodeAnimation_q8vi5")
+states/firing/position = Vector2(556.889, 59.3333)
+states/idle/node = SubResource("AnimationNodeAnimation_05c6l")
+states/idle/position = Vector2(436, 98.8889)
+transitions = ["Start", "deploy", SubResource("AnimationNodeStateMachineTransition_nqngg"), "deploy", "idle", SubResource("AnimationNodeStateMachineTransition_743v3"), "firing", "idle", SubResource("AnimationNodeStateMachineTransition_2r1s8"), "alt_firing", "idle", SubResource("AnimationNodeStateMachineTransition_j2gog"), "firing", "alt_firing", SubResource("AnimationNodeStateMachineTransition_605m1"), "alt_firing", "firing", SubResource("AnimationNodeStateMachineTransition_8ytkg")]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_4k1jv"]
+radius = 16.0
+
+[sub_resource type="Animation" id="Animation_2afvw"]
+resource_name = "RESET"
+tracks/0/type = "rotation_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Nailgun")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 0, 1, 0, -4.37114e-08)
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Nailgun/BarrelL:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.05, 0, 0.25)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Nailgun/BarrelL/MuzzleFlash:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Nailgun/BarrelL/MuzzleFlash:scale")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(50, 50, 5)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Nailgun/BarrelL/MuzzleFlash/OmniLight3D:light_energy")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Nailgun/BarrelR:position")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-0.05, 0, 0.25)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Nailgun/BarrelR/MuzzleFlash:visible")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Nailgun/BarrelR/MuzzleFlash:scale")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(50, 50, 5)]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("Nailgun/BarrelR/MuzzleFlash/OmniLight3D:light_energy")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("Nailgun/AlertRadius:monitoring")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_df57y"]
+_data = {
+"RESET": SubResource("Animation_2afvw")
+}
+
+[node name="Nailgun" type="Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.25, 0)
+
+[node name="Nailgun" parent="." instance=ExtResource("1_e18ie")]
+transform = Transform3D(-1, 0, -1.50996e-07, 0, 1, 0, 1.50996e-07, 0, -1, 0, 0.005, 0)
+script = ExtResource("2_3wn8a")
+bullet = ExtResource("3_v6ia4")
+shot_cooldown = 0.15
+ammo_type = "nails"
+anti_clip_distance = 0.25
+category = 2
+index = 1
+
+[node name="Body" parent="Nailgun" index="0"]
+layers = 4
+material_override = ExtResource("4_r4di6")
+cast_shadow = 0
+
+[node name="BarrelL" parent="Nailgun" index="1"]
+transform = Transform3D(-0.025, -1.09278e-08, -1.09278e-09, 1.09278e-09, 0, -0.025, 1.09278e-09, -0.25, 0, 0.05, 0, 0.25)
+layers = 4
+sorting_use_aabb_center = false
+material_override = ExtResource("4_r4di6")
+cast_shadow = 0
+extra_cull_margin = 5.0
+custom_aabb = AABB(-2, -2, -2, 4, 4, 4)
+ignore_occlusion_culling = true
+
+[node name="MuzzleFlash" type="MeshInstance3D" parent="Nailgun/BarrelL" index="0"]
+transform = Transform3D(50, -1.94707e-05, -8.51091e-14, 0, -2.18557e-06, 5, -1.94707e-05, -50, -2.18557e-07, -1.19209e-07, -1.4, 0)
+visible = false
+layers = 4
+material_override = ExtResource("4_tc63f")
+cast_shadow = 0
+mesh = ExtResource("3_kb333")
+skeleton = NodePath("../../Spawner")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="Nailgun/BarrelL/MuzzleFlash"]
+layers = 4
+light_color = Color(1, 1, 0, 1)
+light_energy = 0.0
+shadow_enabled = true
+omni_range = 10.0
+omni_shadow_mode = 0
+
+[node name="Magazine" parent="Nailgun" index="2"]
+layers = 4
+material_override = ExtResource("4_r4di6")
+cast_shadow = 0
+
+[node name="SpikeLauncher" parent="Nailgun" index="3"]
+visible = false
+layers = 4
+cast_shadow = 0
+
+[node name="BarrelR" parent="Nailgun" index="4"]
+transform = Transform3D(-0.025, -1.09278e-08, -1.09278e-09, 1.09278e-09, 0, -0.025, 1.09278e-09, -0.25, 0, -0.05, 0, 0.25)
+layers = 4
+sorting_use_aabb_center = false
+material_override = ExtResource("4_r4di6")
+cast_shadow = 0
+extra_cull_margin = 5.0
+custom_aabb = AABB(-1, -1, -1, 2, 2, 2)
+ignore_occlusion_culling = true
+
+[node name="MuzzleFlash" type="MeshInstance3D" parent="Nailgun/BarrelR" index="0"]
+transform = Transform3D(50, -1.94707e-05, -8.51091e-14, 0, -2.18557e-06, 5, -1.94707e-05, -50, -2.18557e-07, -2.38419e-07, -1.4, 0)
+visible = false
+layers = 4
+material_override = ExtResource("4_tc63f")
+cast_shadow = 0
+mesh = ExtResource("3_kb333")
+skeleton = NodePath("../../AltSpawner")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="Nailgun/BarrelR/MuzzleFlash"]
+layers = 4
+light_color = Color(1, 1, 0, 1)
+light_energy = 0.0
+shadow_enabled = true
+omni_range = 10.0
+omni_shadow_mode = 0
+
+[node name="Spawner" type="Marker3D" parent="Nailgun"]
+transform = Transform3D(1, 4.33126e-07, 4.37112e-08, -4.33126e-07, 1, -4.37114e-07, -4.37114e-08, 4.37114e-07, 1, 0.05, 0, 0.55)
+
+[node name="AltSpawner" type="Marker3D" parent="Nailgun"]
+transform = Transform3D(1, 4.33126e-07, 4.37112e-08, -4.33126e-07, 1, -4.37114e-07, -4.37114e-08, 4.37114e-07, 1, -0.05, 0, 0.55)
+
+[node name="AnimationTree" type="AnimationTree" parent="Nailgun"]
+root_node = NodePath("../..")
+tree_root = SubResource("AnimationNodeStateMachine_84u0q")
+anim_player = NodePath("../../AnimationPlayer")
+parameters/current_length = 2.0
+parameters/current_position = 1.28094
+parameters/current_delta = 0.0166667
+parameters/End/current_length = null
+parameters/End/current_position = null
+parameters/End/current_delta = null
+parameters/Start/current_length = 0.0
+parameters/Start/current_position = 0.0
+parameters/Start/current_delta = 0.0
+parameters/alt_firing/current_length = null
+parameters/alt_firing/current_position = null
+parameters/alt_firing/current_delta = null
+parameters/deploy/current_length = 0.5
+parameters/deploy/current_position = 0.5
+parameters/deploy/current_delta = 0.018395
+parameters/firing/current_length = null
+parameters/firing/current_position = null
+parameters/firing/current_delta = null
+parameters/idle/current_length = 2.0
+parameters/idle/current_position = 1.28094
+parameters/idle/current_delta = 0.0166667
+
+[node name="AlertRadius" type="Area3D" parent="Nailgun"]
+collision_layer = 2
+collision_mask = 4
+monitoring = false
+script = ExtResource("4_xgkgl")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Nailgun/AlertRadius"]
+shape = SubResource("SphereShape3D_4k1jv")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_df57y"),
+"nailgun_anims": ExtResource("3_8tsnk")
+}
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+bus = &"Weapons"
+
+[editable path="Nailgun"]

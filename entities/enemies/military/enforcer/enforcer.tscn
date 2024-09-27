@@ -1,0 +1,749 @@
+[gd_scene load_steps=92 format=3 uid="uid://comxjm2yao5ny"]
+
+[ext_resource type="Script" path="res://entities/enemies/enemy_base.gd" id="1_0swba"]
+[ext_resource type="PackedScene" uid="uid://bya1mdjxmkciv" path="res://entities/enemies/military/enforcer/enforcer.glb" id="2_8p41i"]
+[ext_resource type="AudioStream" uid="uid://blqiw1bbhirit" path="res://audio/streams/voices/enforcer/do_not_resist_1.wav" id="2_e14nc"]
+[ext_resource type="AnimationLibrary" uid="uid://du588vnfkcvlu" path="res://entities/enemies/military/enforcer/enforcer_anims.res" id="3_0s1i5"]
+[ext_resource type="AudioStream" uid="uid://dpkk8wjnp5dei" path="res://audio/streams/voices/enforcer/do_not_resist_2.wav" id="3_eyhef"]
+[ext_resource type="Texture2D" uid="uid://de8bnuh6pe6kq" path="res://entities/enemies/military/enforcer/enforcer_albedo.png" id="3_vihtt"]
+[ext_resource type="Texture2D" uid="uid://i6afltuq426d" path="res://entities/enemies/military/enforcer/enforcer_metallic.png" id="4_2gp33"]
+[ext_resource type="Script" path="res://entities/status.gd" id="4_hw6rr"]
+[ext_resource type="Texture2D" uid="uid://d2yq2sb1s1xm3" path="res://entities/enemies/military/enforcer/enforcer_detail_mask.png" id="4_mxea2"]
+[ext_resource type="AudioStream" uid="uid://ds6mgyyyfycw8" path="res://audio/streams/voices/enforcer/remain_silent_1.wav" id="4_q2lmv"]
+[ext_resource type="AudioStream" uid="uid://bcl761pu7ohnj" path="res://audio/streams/voices/enforcer/remain_silent_2.wav" id="5_0ocsi"]
+[ext_resource type="PackedScene" uid="uid://bnsepaqu7j4p4" path="res://pickups/health/health_bonus_pickup.tscn" id="6_dqg5k"]
+[ext_resource type="AudioStream" uid="uid://bl5hvmbv5el34" path="res://audio/streams/voices/enforcer/stand_down_1.wav" id="6_p6t56"]
+[ext_resource type="Texture2D" uid="uid://2nvkxo6gaund" path="res://entities/enemies/military/enforcer/enforcer_roughness.png" id="6_qyvl0"]
+[ext_resource type="PackedScene" uid="uid://b8i1fe0bwht3k" path="res://pickups/armor/armor_bonus_pickup.tscn" id="7_1bxab"]
+[ext_resource type="AudioStream" uid="uid://djkx7352670v2" path="res://audio/streams/voices/enforcer/stand_down_2.wav" id="7_k7egm"]
+[ext_resource type="AudioStream" uid="uid://pl6gbvw5ypaw" path="res://audio/streams/voices/enforcer/stand_down_3.wav" id="8_33fy4"]
+[ext_resource type="AudioStream" uid="uid://4xy833svj2qf" path="res://audio/streams/voices/enforcer/stand_down_4.wav" id="9_ai084"]
+[ext_resource type="AudioStream" uid="uid://dc1es3ux857yw" path="res://audio/streams/voices/wilhelm_scream.ogg" id="10_br1vs"]
+[ext_resource type="PackedScene" uid="uid://dj8yo2whvp2w7" path="res://bullets/enemy/enemy_melee_scan.tscn" id="10_cq4tc"]
+[ext_resource type="AudioStream" uid="uid://beosyr2e7a4bs" path="res://audio/streams/voices/enforcer/death_scream_1.wav" id="10_vf3my"]
+[ext_resource type="AudioStream" uid="uid://76nx7s4kqcca" path="res://audio/streams/voices/enforcer/death_scream_2.wav" id="11_f51gk"]
+[ext_resource type="AudioStream" uid="uid://civr3ltkkqeel" path="res://audio/streams/voices/enforcer/death_scream_3.wav" id="12_d6fki"]
+[ext_resource type="AudioStream" uid="uid://cm33ym4rujck3" path="res://audio/streams/voices/enforcer/death_scream_4.wav" id="13_s1gwr"]
+[ext_resource type="AudioStream" uid="uid://7ympfaieee7" path="res://audio/streams/voices/enforcer/death_scream_5.wav" id="14_thv1c"]
+[ext_resource type="AudioStream" uid="uid://cvevxouekwt8g" path="res://audio/streams/voices/enforcer/death_scream_6.wav" id="15_527hb"]
+[ext_resource type="AudioStream" uid="uid://dyakvi3ijwgp" path="res://audio/streams/voices/enforcer/death_scream_7.wav" id="16_muiwl"]
+[ext_resource type="AudioStream" uid="uid://du156r0ypwpe6" path="res://audio/streams/voices/enforcer/death_scream_8.wav" id="17_0gudb"]
+[ext_resource type="PackedScene" uid="uid://cqctw8dd0ar4n" path="res://scenes/effects/damage/damage_sys.tscn" id="21_onmc0"]
+[ext_resource type="PackedScene" uid="uid://c5pbs8t6p7ogl" path="res://scenes/effects/gibs/gibs.tscn" id="22_7751q"]
+[ext_resource type="Script" path="res://scripts/effects/bullet_plink.gd" id="24_656rh"]
+[ext_resource type="PackedScene" uid="uid://cu70msbgu2ysm" path="res://scenes/effects/damage/metal_damage_sys.tscn" id="27_gha6b"]
+[ext_resource type="PackedScene" uid="uid://qy044barx365" path="res://entities/stair_stepper.tscn" id="33_mrcoq"]
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_ojmy2"]
+random_pitch = 1.15
+streams_count = 8
+stream_0/stream = ExtResource("2_e14nc")
+stream_1/stream = ExtResource("3_eyhef")
+stream_2/stream = ExtResource("4_q2lmv")
+stream_3/stream = ExtResource("5_0ocsi")
+stream_4/stream = ExtResource("6_p6t56")
+stream_5/stream = ExtResource("7_k7egm")
+stream_6/stream = ExtResource("8_33fy4")
+stream_7/stream = ExtResource("9_ai084")
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_a32jt"]
+random_pitch = 1.15
+streams_count = 8
+stream_0/stream = ExtResource("10_vf3my")
+stream_1/stream = ExtResource("11_f51gk")
+stream_2/stream = ExtResource("12_d6fki")
+stream_3/stream = ExtResource("13_s1gwr")
+stream_4/stream = ExtResource("14_thv1c")
+stream_5/stream = ExtResource("15_527hb")
+stream_6/stream = ExtResource("16_muiwl")
+stream_7/stream = ExtResource("17_0gudb")
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_muaye"]
+playback_mode = 1
+streams_count = 2
+stream_0/stream = SubResource("AudioStreamRandomizer_a32jt")
+stream_0/weight = 100.0
+stream_1/stream = ExtResource("10_br1vs")
+stream_1/weight = 0.001
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_xkffw"]
+
+[sub_resource type="Gradient" id="Gradient_wu5ge"]
+interpolation_mode = 1
+offsets = PackedFloat32Array(0, 0.4, 0.728)
+colors = PackedColorArray(0.235294, 0.235294, 0.235294, 1, 0.25, 0.25, 0.25, 1, 0.266667, 0.266667, 0.266667, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_uyme1"]
+noise_type = 2
+frequency = 0.5
+fractal_type = 0
+cellular_jitter = 0.25
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_fdp5y"]
+width = 128
+height = 128
+color_ramp = SubResource("Gradient_wu5ge")
+noise = SubResource("FastNoiseLite_uyme1")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1216o"]
+metallic = 1.0
+roughness_texture = SubResource("NoiseTexture2D_fdp5y")
+texture_filter = 0
+
+[sub_resource type="Shader" id="Shader_0gaa5"]
+code = "// NOTE: Shader automatically converted from Godot Engine 4.2.1.stable.mono's StandardMaterial3D.
+
+shader_type spatial;
+render_mode blend_mix,depth_draw_opaque,cull_back,diffuse_burley,specular_schlick_ggx;
+uniform vec4 albedo : source_color;
+uniform sampler2D texture_albedo : source_color,filter_nearest,repeat_enable;
+uniform float point_size : hint_range(0,128);
+uniform float roughness : hint_range(0,1);
+uniform sampler2D texture_metallic : hint_default_white,filter_nearest,repeat_enable;
+uniform vec4 metallic_texture_channel;
+uniform sampler2D texture_roughness : hint_roughness_r,filter_nearest,repeat_enable;
+uniform float specular;
+uniform float metallic;
+uniform vec3 uv1_scale;
+uniform vec3 uv1_offset;
+uniform vec3 uv2_scale;
+uniform vec3 uv2_offset;
+
+#include \"res://shaders/includes/psx_inc.gdshaderinc\"
+
+void vertex() {
+	UV=UV*uv1_scale.xy+uv1_offset.xy;
+	POSITION = map_affine(snap_vertex(PROJECTION_MATRIX * MODELVIEW_MATRIX * vec4(VERTEX, 1.0)));
+}
+
+void fragment() {
+	vec2 base_uv = UV;
+	vec4 albedo_tex = texture(texture_albedo,base_uv);
+	ALBEDO = albedo.rgb * albedo_tex.rgb;
+	float metallic_tex = dot(texture(texture_metallic,base_uv),metallic_texture_channel);
+	METALLIC = metallic_tex * metallic;
+	vec4 roughness_texture_channel = vec4(1.0,0.0,0.0,0.0);
+	float roughness_tex = dot(texture(texture_roughness,base_uv),roughness_texture_channel);
+	ROUGHNESS = roughness_tex * roughness;
+	SPECULAR = specular;
+}
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_k4l46"]
+render_priority = 0
+shader = SubResource("Shader_0gaa5")
+shader_parameter/albedo = Color(1, 1, 1, 1)
+shader_parameter/point_size = 1.0
+shader_parameter/roughness = 1.0
+shader_parameter/metallic_texture_channel = Vector4(1, 0, 0, 0)
+shader_parameter/specular = 0.5
+shader_parameter/metallic = 1.0
+shader_parameter/uv1_scale = Vector3(1, 1, 1)
+shader_parameter/uv1_offset = Vector3(0, 0, 0)
+shader_parameter/uv2_scale = Vector3(1, 1, 1)
+shader_parameter/uv2_offset = Vector3(0, 0, 0)
+shader_parameter/texture_roughness = SubResource("NoiseTexture2D_fdp5y")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_c0dl1"]
+size = Vector3(1.875, 0.125, 1.05)
+
+[sub_resource type="Shader" id="Shader_vqbu6"]
+code = "// NOTE: Shader automatically converted from Godot Engine 4.2.1.stable.mono's StandardMaterial3D.
+
+shader_type spatial;
+render_mode blend_mix,depth_draw_opaque,cull_back,diffuse_burley,specular_schlick_ggx;
+uniform vec4 albedo : source_color;
+uniform sampler2D texture_albedo : source_color,filter_nearest,repeat_enable;
+uniform float point_size : hint_range(0,128);
+uniform float roughness : hint_range(0,1);
+uniform sampler2D texture_metallic : hint_default_white,filter_nearest,repeat_enable;
+uniform vec4 metallic_texture_channel;
+uniform sampler2D texture_roughness : hint_roughness_r,filter_nearest,repeat_enable;
+uniform float specular;
+uniform float metallic;
+uniform sampler2D texture_detail_albedo : source_color,filter_nearest,repeat_enable;
+uniform sampler2D texture_detail_normal : hint_normal,filter_nearest,repeat_enable;
+uniform sampler2D texture_detail_mask : hint_default_white,filter_nearest,repeat_enable;
+uniform vec3 uv1_scale;
+uniform vec3 uv1_offset;
+uniform vec3 uv2_scale;
+uniform vec3 uv2_offset;
+
+#include \"res://shaders/includes/psx_inc.gdshaderinc\"
+
+void vertex() {
+	UV=UV*uv1_scale.xy+uv1_offset.xy;
+	POSITION = map_affine(snap_vertex(PROJECTION_MATRIX * MODELVIEW_MATRIX * vec4(VERTEX, 1.0)));
+}
+
+void fragment() {
+	vec2 base_uv = UV;
+	vec4 albedo_tex = texture(texture_albedo,base_uv);
+	ALBEDO = albedo.rgb * albedo_tex.rgb;
+	float metallic_tex = dot(texture(texture_metallic,base_uv),metallic_texture_channel);
+	METALLIC = metallic_tex * metallic;
+	vec4 roughness_texture_channel = vec4(1.0,0.0,0.0,0.0);
+	float roughness_tex = dot(texture(texture_roughness,base_uv),roughness_texture_channel);
+	ROUGHNESS = roughness_tex * roughness;
+	SPECULAR = specular;
+	vec4 detail_tex = texture(texture_detail_albedo,base_uv);
+	vec4 detail_norm_tex = texture(texture_detail_normal,base_uv);
+	vec4 detail_mask_tex = texture(texture_detail_mask,base_uv);
+	vec3 detail = mix(ALBEDO.rgb,ALBEDO.rgb*detail_tex.rgb,detail_tex.a);
+	vec3 detail_norm = mix(NORMAL_MAP,detail_norm_tex.rgb,detail_tex.a);
+	NORMAL_MAP = mix(NORMAL_MAP,detail_norm,detail_mask_tex.r);
+	ALBEDO.rgb = mix(ALBEDO.rgb,detail,detail_mask_tex.r);
+}
+"
+
+[sub_resource type="Gradient" id="Gradient_3csrf"]
+interpolation_mode = 1
+offsets = PackedFloat32Array(0, 0.4, 0.7)
+colors = PackedColorArray(0.6, 0.6, 0.6, 1, 0.75, 0.75, 0.75, 1, 1, 1, 1, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_7w8jn"]
+frequency = 0.05
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_walv8"]
+width = 128
+height = 128
+color_ramp = SubResource("Gradient_3csrf")
+noise = SubResource("FastNoiseLite_7w8jn")
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_2rymq"]
+width = 128
+height = 128
+as_normal_map = true
+bump_strength = 2.0
+noise = SubResource("FastNoiseLite_7w8jn")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_cg8cl"]
+render_priority = 0
+shader = SubResource("Shader_vqbu6")
+shader_parameter/albedo = Color(1, 1, 1, 1)
+shader_parameter/point_size = 1.0
+shader_parameter/roughness = 1.0
+shader_parameter/metallic_texture_channel = Vector4(1, 0, 0, 0)
+shader_parameter/specular = 0.5
+shader_parameter/metallic = 1.0
+shader_parameter/uv1_scale = Vector3(1, 1, 1)
+shader_parameter/uv1_offset = Vector3(0, 0, 0)
+shader_parameter/uv2_scale = Vector3(1, 1, 1)
+shader_parameter/uv2_offset = Vector3(0, 0, 0)
+shader_parameter/texture_albedo = ExtResource("3_vihtt")
+shader_parameter/texture_metallic = ExtResource("4_2gp33")
+shader_parameter/texture_roughness = ExtResource("6_qyvl0")
+shader_parameter/texture_detail_albedo = SubResource("NoiseTexture2D_walv8")
+shader_parameter/texture_detail_normal = SubResource("NoiseTexture2D_2rymq")
+shader_parameter/texture_detail_mask = ExtResource("4_mxea2")
+
+[sub_resource type="Animation" id="Animation_oshfn"]
+length = 0.001
+tracks/0/type = "rotation_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("enforcer/Armature/Skeleton3D:Spine")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 0.141, -0.693, -0.141, 0.693)
+tracks/1/type = "rotation_3d"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("enforcer/Armature/Skeleton3D:Spine.001")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = PackedFloat32Array(0, 1, 0, 0, -0.195, 0.981)
+tracks/2/type = "rotation_3d"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("enforcer/Armature/Skeleton3D:Neck")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = PackedFloat32Array(0, 1, 0, 0, 0.301, 0.954)
+tracks/3/type = "rotation_3d"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("enforcer/Armature/Skeleton3D:Head")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = PackedFloat32Array(0, 1, 0, 0, 0, 1)
+tracks/4/type = "rotation_3d"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("enforcer/Armature/Skeleton3D:Cylinder.001")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = PackedFloat32Array(0, 1, 0.626376, 0.253458, -0.405237, 0.615788)
+tracks/5/type = "rotation_3d"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("enforcer/Armature/Skeleton3D:Cylinder.002")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = PackedFloat32Array(0, 1, 0.405237, 0.615788, -0.626376, 0.253458)
+tracks/6/type = "rotation_3d"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("enforcer/Armature/Skeleton3D:Right")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = PackedFloat32Array(0, 1, 0.707, -0.274, 0.361, 0.543)
+tracks/7/type = "rotation_3d"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("enforcer/Armature/Skeleton3D:Right.001")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = PackedFloat32Array(0, 1, 0.16, 0.377, -0.066, 0.91)
+tracks/8/type = "rotation_3d"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("enforcer/Armature/Skeleton3D:Right.002")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = PackedFloat32Array(0, 1, 0.244, 0.471, -0.612, 0.586)
+tracks/9/type = "rotation_3d"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("enforcer/Armature/Skeleton3D:Right.003")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = PackedFloat32Array(0, 1, 0.0872251, 3.65174e-08, -6.55857e-08, 0.996189)
+tracks/10/type = "rotation_3d"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("enforcer/Armature/Skeleton3D:Cylinder")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = PackedFloat32Array(0, 1, 0.5, 0.5, -0.5, 0.5)
+tracks/11/type = "rotation_3d"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("enforcer/Armature/Skeleton3D:Left")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = PackedFloat32Array(0, 1, -0.821, -0.341, 0.177, 0.423)
+tracks/12/type = "rotation_3d"
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/path = NodePath("enforcer/Armature/Skeleton3D:Left.001")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/keys = PackedFloat32Array(0, 1, -0.374, -0.217, -0.451, 0.781)
+tracks/13/type = "rotation_3d"
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/path = NodePath("enforcer/Armature/Skeleton3D:Left.002")
+tracks/13/interp = 1
+tracks/13/loop_wrap = true
+tracks/13/keys = PackedFloat32Array(0, 1, -0.42, 0.135, -0.135, 0.887)
+tracks/14/type = "rotation_3d"
+tracks/14/imported = false
+tracks/14/enabled = true
+tracks/14/path = NodePath("enforcer/Armature/Skeleton3D:Left.003")
+tracks/14/interp = 1
+tracks/14/loop_wrap = true
+tracks/14/keys = PackedFloat32Array(0, 1, -0.396, 0.054, -0.109, 0.91)
+tracks/15/type = "rotation_3d"
+tracks/15/imported = false
+tracks/15/enabled = true
+tracks/15/path = NodePath("enforcer/Armature/Skeleton3D:Cube")
+tracks/15/interp = 1
+tracks/15/loop_wrap = true
+tracks/15/keys = PackedFloat32Array(0, 1, 0.707107, 2.21485e-22, -2.24604e-22, 0.707107)
+tracks/16/type = "rotation_3d"
+tracks/16/imported = false
+tracks/16/enabled = true
+tracks/16/path = NodePath("enforcer/Armature/Skeleton3D:LeftLeg")
+tracks/16/interp = 1
+tracks/16/loop_wrap = true
+tracks/16/keys = PackedFloat32Array(0, 1, 0.93, 0.259, 0.259, 0.031)
+tracks/17/type = "rotation_3d"
+tracks/17/imported = false
+tracks/17/enabled = true
+tracks/17/path = NodePath("enforcer/Armature/Skeleton3D:LeftLeg.001")
+tracks/17/interp = 1
+tracks/17/loop_wrap = true
+tracks/17/keys = PackedFloat32Array(0, 1, -0.036, 0.014, 0.382, 0.923)
+tracks/18/type = "rotation_3d"
+tracks/18/imported = false
+tracks/18/enabled = true
+tracks/18/path = NodePath("enforcer/Armature/Skeleton3D:LeftLeg.002")
+tracks/18/interp = 1
+tracks/18/loop_wrap = true
+tracks/18/keys = PackedFloat32Array(0, 1, 0.083, 0.011, -0.13, 0.988)
+tracks/19/type = "rotation_3d"
+tracks/19/imported = false
+tracks/19/enabled = true
+tracks/19/path = NodePath("enforcer/Armature/Skeleton3D:RightLeg")
+tracks/19/interp = 1
+tracks/19/loop_wrap = true
+tracks/19/keys = PackedFloat32Array(0, 1, 0.683, 0.183, 0.683, 0.183)
+tracks/20/type = "rotation_3d"
+tracks/20/imported = false
+tracks/20/enabled = true
+tracks/20/path = NodePath("enforcer/Armature/Skeleton3D:RightLeg.001")
+tracks/20/interp = 1
+tracks/20/loop_wrap = true
+tracks/20/keys = PackedFloat32Array(0, 1, 0.038, -0.001, 0, 0.999)
+tracks/21/type = "rotation_3d"
+tracks/21/imported = false
+tracks/21/enabled = true
+tracks/21/path = NodePath("enforcer/Armature/Skeleton3D:RightLeg.002")
+tracks/21/interp = 1
+tracks/21/loop_wrap = true
+tracks/21/keys = PackedFloat32Array(0, 1, -0.076, 0.032, 0.381, 0.921)
+tracks/22/type = "position_3d"
+tracks/22/imported = false
+tracks/22/enabled = true
+tracks/22/path = NodePath("enforcer")
+tracks/22/interp = 1
+tracks/22/loop_wrap = true
+tracks/22/keys = PackedFloat32Array(0, 1, 0, 0.5, 0)
+tracks/23/type = "rotation_3d"
+tracks/23/imported = false
+tracks/23/enabled = true
+tracks/23/path = NodePath("enforcer")
+tracks/23/interp = 1
+tracks/23/loop_wrap = true
+tracks/23/keys = PackedFloat32Array(0, 1, 0, 1, 0, -4.37114e-08)
+tracks/24/type = "value"
+tracks/24/imported = false
+tracks/24/enabled = true
+tracks/24/path = NodePath(".:collision_layer")
+tracks/24/interp = 1
+tracks/24/loop_wrap = true
+tracks/24/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [4]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_mhfwu"]
+_data = {
+"RESET": SubResource("Animation_oshfn")
+}
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_0xsnc"]
+animation = &"enforcer_anims/enforcer_ambush"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_i0y8i"]
+animation = &"enforcer_anims/enforcer_attack"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_six61"]
+animation = &"enforcer_anims/enforcer_death"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_w02u6"]
+animation = &"enforcer_anims/enforcer_flinch"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ujl46"]
+animation = &"enforcer_anims/enforcer_idle"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_uok0t"]
+animation = &"enforcer_anims/enforcer_move"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_b7tlb"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_0kna1"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="Curve" id="Curve_sohu8"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_hcxg6"]
+xfade_time = 0.1
+xfade_curve = SubResource("Curve_sohu8")
+
+[sub_resource type="Curve" id="Curve_6c30d"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_yq0h0"]
+xfade_time = 0.1
+xfade_curve = SubResource("Curve_6c30d")
+
+[sub_resource type="Curve" id="Curve_sqvrs"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_gdf0y"]
+xfade_time = 0.5
+xfade_curve = SubResource("Curve_sqvrs")
+
+[sub_resource type="Curve" id="Curve_m4he1"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_2gy1f"]
+xfade_time = 0.1
+xfade_curve = SubResource("Curve_m4he1")
+
+[sub_resource type="Curve" id="Curve_ddw3t"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_tdxuc"]
+xfade_time = 0.25
+xfade_curve = SubResource("Curve_ddw3t")
+
+[sub_resource type="Curve" id="Curve_cir8d"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_4ib0a"]
+xfade_time = 0.5
+xfade_curve = SubResource("Curve_cir8d")
+
+[sub_resource type="Curve" id="Curve_xui5n"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_b0vy3"]
+xfade_time = 0.1
+xfade_curve = SubResource("Curve_xui5n")
+
+[sub_resource type="Curve" id="Curve_xkqfj"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_25818"]
+xfade_time = 0.5
+xfade_curve = SubResource("Curve_xkqfj")
+
+[sub_resource type="Curve" id="Curve_kpdak"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_hmg60"]
+xfade_time = 0.25
+xfade_curve = SubResource("Curve_kpdak")
+
+[sub_resource type="Curve" id="Curve_bo1cm"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_mqsdl"]
+xfade_time = 0.1
+xfade_curve = SubResource("Curve_bo1cm")
+
+[sub_resource type="Curve" id="Curve_hc67d"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_fu4cl"]
+xfade_time = 0.1
+xfade_curve = SubResource("Curve_hc67d")
+
+[sub_resource type="Curve" id="Curve_6o3y6"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_rek7d"]
+xfade_time = 0.25
+xfade_curve = SubResource("Curve_6o3y6")
+priority = 0
+
+[sub_resource type="Curve" id="Curve_ot6ll"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_jpm3o"]
+xfade_time = 0.1
+xfade_curve = SubResource("Curve_ot6ll")
+
+[sub_resource type="Curve" id="Curve_3eij1"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ejbse"]
+xfade_time = 0.1
+xfade_curve = SubResource("Curve_3eij1")
+
+[sub_resource type="Curve" id="Curve_21h5k"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_1hj8x"]
+xfade_time = 0.1
+xfade_curve = SubResource("Curve_21h5k")
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_tocqs"]
+states/Start/position = Vector2(145.333, 98.9129)
+states/ambush/node = SubResource("AnimationNodeAnimation_0xsnc")
+states/ambush/position = Vector2(306.333, 100.333)
+states/attacking/node = SubResource("AnimationNodeAnimation_i0y8i")
+states/attacking/position = Vector2(569, 236.333)
+states/dead/node = SubResource("AnimationNodeAnimation_six61")
+states/dead/position = Vector2(454.366, -25.6255)
+states/flinching/node = SubResource("AnimationNodeAnimation_w02u6")
+states/flinching/position = Vector2(695.848, -25.5267)
+states/idle/node = SubResource("AnimationNodeAnimation_ujl46")
+states/idle/position = Vector2(451.667, 100.333)
+states/moving/node = SubResource("AnimationNodeAnimation_uok0t")
+states/moving/position = Vector2(694.333, 101.074)
+transitions = ["Start", "ambush", SubResource("AnimationNodeStateMachineTransition_b7tlb"), "ambush", "idle", SubResource("AnimationNodeStateMachineTransition_0kna1"), "idle", "attacking", SubResource("AnimationNodeStateMachineTransition_hcxg6"), "idle", "flinching", SubResource("AnimationNodeStateMachineTransition_yq0h0"), "idle", "moving", SubResource("AnimationNodeStateMachineTransition_gdf0y"), "moving", "flinching", SubResource("AnimationNodeStateMachineTransition_2gy1f"), "moving", "attacking", SubResource("AnimationNodeStateMachineTransition_tdxuc"), "moving", "idle", SubResource("AnimationNodeStateMachineTransition_4ib0a"), "attacking", "idle", SubResource("AnimationNodeStateMachineTransition_b0vy3"), "attacking", "moving", SubResource("AnimationNodeStateMachineTransition_25818"), "flinching", "moving", SubResource("AnimationNodeStateMachineTransition_hmg60"), "flinching", "dead", SubResource("AnimationNodeStateMachineTransition_mqsdl"), "attacking", "flinching", SubResource("AnimationNodeStateMachineTransition_fu4cl"), "flinching", "idle", SubResource("AnimationNodeStateMachineTransition_rek7d"), "moving", "dead", SubResource("AnimationNodeStateMachineTransition_jpm3o"), "attacking", "dead", SubResource("AnimationNodeStateMachineTransition_ejbse"), "idle", "dead", SubResource("AnimationNodeStateMachineTransition_1hj8x")]
+graph_offset = Vector2(-39, -23)
+
+[node name="Enforcer" type="CharacterBody3D"]
+process_physics_priority = 1
+collision_layer = 4
+collision_mask = 151
+script = ExtResource("1_0swba")
+species = &"enforcers"
+speed = 4.0
+turning_speed = 3.0
+knockback_multiplier = 0.1
+wake_up_time = 1.0
+detection_stream = SubResource("AudioStreamRandomizer_ojmy2")
+attack_range = 2.0
+attack_delay = 0.65
+bullet = ExtResource("10_cq4tc")
+flinch_chance = 1.0
+flinch_time = 0.5
+death_stream = SubResource("AudioStreamRandomizer_muaye")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_xkffw")
+
+[node name="Status" type="Node" parent="."]
+script = ExtResource("4_hw6rr")
+max_health = 250.0
+gib_threshold = 100.0
+damage_sys = ExtResource("21_onmc0")
+gibs = ExtResource("22_7751q")
+loot = Array[PackedScene]([ExtResource("6_dqg5k"), ExtResource("7_1bxab")])
+is_enemy = true
+score = 1
+
+[node name="enforcer" parent="." instance=ExtResource("2_8p41i")]
+transform = Transform3D(-1, 0, -1.50996e-07, 0, 1, 0, 1.50996e-07, 0, -1, 0, 0.5, 0)
+
+[node name="Skeleton3D" parent="enforcer/Armature" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.0259033)
+bones/0/rotation = Quaternion(0.140982, -0.69291, -0.140982, 0.69291)
+bones/1/rotation = Quaternion(0, 0, -0.194962, 0.980811)
+bones/2/rotation = Quaternion(0, 0, 0.300892, 0.953658)
+bones/4/rotation = Quaternion(0.626376, 0.253458, -0.405237, 0.615788)
+bones/5/rotation = Quaternion(-0.405237, -0.615788, 0.626376, -0.253458)
+bones/6/rotation = Quaternion(0.706966, -0.273987, 0.360983, 0.542974)
+bones/7/rotation = Quaternion(0.159985, 0.376965, -0.0659939, 0.909916)
+bones/8/rotation = Quaternion(0.244083, 0.471161, -0.612209, 0.5862)
+bones/9/rotation = Quaternion(0.0872251, 3.65174e-08, -6.55857e-08, 0.996189)
+bones/11/rotation = Quaternion(-0.820762, -0.340901, 0.176949, 0.422877)
+bones/12/rotation = Quaternion(-0.373939, -0.216965, -0.450926, 0.780872)
+bones/13/rotation = Quaternion(-0.42008, 0.135026, -0.135026, 0.887169)
+bones/14/rotation = Quaternion(-0.396057, 0.0540078, -0.109016, 0.910131)
+bones/15/rotation = Quaternion(0.707107, 2.21485e-22, -2.24604e-22, 0.707107)
+bones/16/rotation = Quaternion(0.929989, 0.258997, 0.258997, 0.0309996)
+bones/17/rotation = Quaternion(-0.0360118, 0.0140046, 0.382125, 0.923302)
+bones/18/rotation = Quaternion(0.0829978, 0.0109997, -0.129996, 0.987973)
+bones/19/rotation = Quaternion(0.683015, 0.183004, 0.683015, 0.183004)
+bones/20/rotation = Quaternion(0.0380105, -0.00100028, 1.64121e-12, 0.999277)
+bones/21/rotation = Quaternion(-0.0759923, 0.0319968, 0.380962, 0.920907)
+
+[node name="Cylinder_001" parent="enforcer/Armature/Skeleton3D" index="0"]
+transform = Transform3D(1.22972, -0.566009, -0.130236, -0.41591, -0.25971, -1.38754, 0.751535, 0.782422, -0.55478, -0.102904, 0.168129, 0.644428)
+
+[node name="Cylinder_001" parent="enforcer/Armature/Skeleton3D/Cylinder_001" index="0"]
+layers = 2
+material_override = SubResource("StandardMaterial3D_1216o")
+
+[node name="Cylinder_002" parent="enforcer/Armature/Skeleton3D" index="1"]
+transform = Transform3D(1.22972, 0.566009, 0.130236, 0.41591, -0.25971, -1.38754, -0.751535, 0.782422, -0.55478, 0.102904, 0.168129, 0.644428)
+
+[node name="Cylinder_002" parent="enforcer/Armature/Skeleton3D/Cylinder_002" index="0"]
+layers = 2
+material_override = SubResource("StandardMaterial3D_1216o")
+
+[node name="Cylinder" parent="enforcer/Armature/Skeleton3D" index="2"]
+transform = Transform3D(-0.437005, 0.694696, 0.571335, 0.52169, 0.713205, -0.468165, -0.732711, 0.0934697, -0.674091, -0.462369, 0.617165, 0.241721)
+
+[node name="Cylinder" parent="enforcer/Armature/Skeleton3D/Cylinder" index="0"]
+layers = 2
+material_override = SubResource("ShaderMaterial_k4l46")
+
+[node name="Cube" parent="enforcer/Armature/Skeleton3D" index="3"]
+transform = Transform3D(0.000848708, -0.158625, 0.987338, 0.999986, -0.00504008, -0.00166931, 0.00524101, 0.987326, 0.158619, -0.0230889, -0.370522, 0.956786)
+
+[node name="Cube" parent="enforcer/Armature/Skeleton3D/Cube" index="0"]
+layers = 2
+material_override = SubResource("ShaderMaterial_k4l46")
+
+[node name="Shield" type="AnimatableBody3D" parent="enforcer/Armature/Skeleton3D/Cube" index="1"]
+collision_layer = 64
+collision_mask = 0
+collision_priority = 10.0
+sync_to_physics = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="enforcer/Armature/Skeleton3D/Cube/Shield"]
+transform = Transform3D(1, -1.13687e-13, 0, 1.13687e-13, 1, 2.84217e-14, -1.35525e-20, -2.84217e-14, 1, 0, 0, 0)
+shape = SubResource("BoxShape3D_c0dl1")
+
+[node name="Node" type="Node" parent="enforcer/Armature/Skeleton3D/Cube/Shield"]
+script = ExtResource("24_656rh")
+damage_sys = ExtResource("27_gha6b")
+
+[node name="Body" parent="enforcer/Armature/Skeleton3D" index="4"]
+layers = 2
+material_override = SubResource("ShaderMaterial_cg8cl")
+
+[node name="Spawner" type="Marker3D" parent="."]
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
+path_desired_distance = 1.5
+height = 2.0
+max_speed = 100.0
+
+[node name="SightLine" type="RayCast3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+target_position = Vector3(0, 0, -16)
+collision_mask = 3
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_mhfwu"),
+"enforcer_anims": ExtResource("3_0s1i5")
+}
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+tree_root = SubResource("AnimationNodeStateMachine_tocqs")
+anim_player = NodePath("../AnimationPlayer")
+parameters/current_length = 2.0
+parameters/current_position = 0.0397184
+parameters/current_delta = 0.00833333
+parameters/End/current_length = null
+parameters/End/current_position = null
+parameters/End/current_delta = null
+parameters/Start/current_length = 0.0
+parameters/Start/current_position = 0.0
+parameters/Start/current_delta = 0.0
+parameters/ambush/current_length = 1.0
+parameters/ambush/current_position = 1.0
+parameters/ambush/current_delta = 0.0210489
+parameters/attacking/current_length = null
+parameters/attacking/current_position = null
+parameters/attacking/current_delta = null
+parameters/dead/current_length = null
+parameters/dead/current_position = null
+parameters/dead/current_delta = null
+parameters/flinching/current_length = null
+parameters/flinching/current_position = null
+parameters/flinching/current_delta = null
+parameters/idle/current_length = 2.0
+parameters/idle/current_position = 0.0397184
+parameters/idle/current_delta = 0.00833333
+parameters/moving/current_length = null
+parameters/moving/current_position = null
+parameters/moving/current_delta = null
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+bus = &"Enemies"
+doppler_tracking = 2
+
+[node name="StairStepper" parent="." instance=ExtResource("33_mrcoq")]
+
+[editable path="enforcer"]

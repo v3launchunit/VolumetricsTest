@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="TrenchBroomTag" load_steps=2 format=3 uid="uid://cnclfsy7jl131"]
+
+[ext_resource type="Script" path="res://addons/func_godot/src/trenchbroom/trenchbroom_tag.gd" id="1_mnliw"]
+
+[resource]
+script = ExtResource("1_mnliw")
+tag_name = "Illusionary"
+tag_attributes = Array[String](["transparent"])
+tag_match_type = 1
+tag_pattern = "*illusionary"
+texture_name = ""

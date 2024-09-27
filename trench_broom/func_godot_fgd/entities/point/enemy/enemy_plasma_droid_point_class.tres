@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="FuncGodotFGDPointClass" load_steps=4 format=3 uid="uid://dci6qgy1nbcwm"]
+
+[ext_resource type="Resource" uid="uid://63fs8fd3x07r" path="res://trench_broom/func_godot_fgd/entities/base/enemy_base_class.tres" id="1_g0p8y"]
+[ext_resource type="PackedScene" uid="uid://pr3j5d4ifvrt" path="res://entities/enemies/machines/plasma_droid/plasma_droid.tscn" id="2_32the"]
+[ext_resource type="Script" path="res://addons/func_godot/src/fgd/func_godot_fgd_point_class.gd" id="3_enfpw"]
+
+[resource]
+script = ExtResource("3_enfpw")
+scene_file = ExtResource("2_32the")
+apply_rotation_on_map_build = true
+classname = "enemy_plasma_droid"
+description = ""
+func_godot_internal = false
+base_classes = Array[Resource]([ExtResource("1_g0p8y")])
+class_properties = {}
+class_property_descriptions = {}
+meta_properties = {
+"color": Color(0.8, 0.8, 0.8, 1),
+"size": AABB(-8, -8, -24, 8, 8, 24)
+}
+node_class = ""
+name_property = ""

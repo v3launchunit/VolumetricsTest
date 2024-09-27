@@ -1,0 +1,162 @@
+[gd_scene load_steps=19 format=3 uid="uid://6y6betnqls6v"]
+
+[ext_resource type="Script" path="res://scripts/objects/button.gd" id="1_ontwd"]
+[ext_resource type="Texture2D" uid="uid://d3wuvxtbtrcmt" path="res://objects/interactable/switch/switch_emissions.png" id="2_3rqj4"]
+[ext_resource type="Texture2D" uid="uid://ctkgcwgvds31w" path="res://objects/interactable/switch/switch_albedo.png" id="2_f3gil"]
+[ext_resource type="Texture2D" uid="uid://bl05v3whjtq0x" path="res://objects/interactable/switch/switch_normals_off.png" id="3_hf8vt"]
+[ext_resource type="Texture2D" uid="uid://dc36hghow3p3f" path="res://objects/interactable/switch/switch_normals_on.png" id="4_ghrk3"]
+[ext_resource type="AudioStream" uid="uid://bmlxxe8maevqb" path="res://audio/streams/click.wav" id="5_i6kn2"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_f8nba"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4ipnm"]
+resource_local_to_scene = true
+albedo_texture = ExtResource("2_f3gil")
+emission_enabled = true
+emission = Color(1, 0, 0, 1)
+emission_energy_multiplier = 5.0
+emission_operator = 1
+emission_texture = ExtResource("2_3rqj4")
+normal_enabled = true
+normal_texture = ExtResource("3_hf8vt")
+texture_filter = 0
+
+[sub_resource type="BoxMesh" id="BoxMesh_xjvea"]
+size = Vector3(0.25, 0.5, 0.25)
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_lb3m5"]
+animation = &"off"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_gpvii"]
+animation = &"on"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_kstkh"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_4jk3f"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_10giv"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_72fw2"]
+states/off/node = SubResource("AnimationNodeAnimation_lb3m5")
+states/off/position = Vector2(396, 100.667)
+states/on/node = SubResource("AnimationNodeAnimation_gpvii")
+states/on/position = Vector2(666.667, 101.556)
+transitions = ["off", "on", SubResource("AnimationNodeStateMachineTransition_kstkh"), "on", "off", SubResource("AnimationNodeStateMachineTransition_4jk3f"), "Start", "off", SubResource("AnimationNodeStateMachineTransition_10giv")]
+
+[sub_resource type="Animation" id="Animation_xuaj8"]
+resource_name = "off"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MeshInstance3D:material_override:normal_texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("3_hf8vt")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("MeshInstance3D:material_override:emission")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 0, 0, 1)]
+}
+tracks/2/type = "audio"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("AudioStreamPlayer3D")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("5_i6kn2")
+}],
+"times": PackedFloat32Array(0)
+}
+tracks/2/use_blend = true
+
+[sub_resource type="Animation" id="Animation_c2x2o"]
+resource_name = "on"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MeshInstance3D:material_override:normal_texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("4_ghrk3")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("MeshInstance3D:material_override:emission")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 1, 0, 1)]
+}
+tracks/2/type = "audio"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("AudioStreamPlayer3D")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("5_i6kn2")
+}],
+"times": PackedFloat32Array(0)
+}
+tracks/2/use_blend = true
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_yomfv"]
+_data = {
+"off": SubResource("Animation_xuaj8"),
+"on": SubResource("Animation_c2x2o")
+}
+
+[node name="Switch" type="Area3D" node_paths=PackedStringArray("targets")]
+collision_layer = 8
+collision_mask = 3
+script = ExtResource("1_ontwd")
+targets = [NodePath("AnimationTree")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_f8nba")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+material_override = SubResource("StandardMaterial3D_4ipnm")
+mesh = SubResource("BoxMesh_xjvea")
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+tree_root = SubResource("AnimationNodeStateMachine_72fw2")
+anim_player = NodePath("../AnimationPlayer")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_yomfv")
+}
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+bus = &"World"

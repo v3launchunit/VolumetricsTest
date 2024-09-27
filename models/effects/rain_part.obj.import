@@ -1,0 +1,22 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://iaqvj4t5cg1p"
+path="res://.godot/imported/rain_part.obj-147fe5bc5afb1329d6505fe8f2ac2358.mesh"
+
+[deps]
+
+files=["res://.godot/imported/rain_part.obj-147fe5bc5afb1329d6505fe8f2ac2358.mesh"]
+
+source_file="res://models/effects/rain_part.obj"
+dest_files=["res://.godot/imported/rain_part.obj-147fe5bc5afb1329d6505fe8f2ac2358.mesh", "res://.godot/imported/rain_part.obj-147fe5bc5afb1329d6505fe8f2ac2358.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
+force_disable_mesh_compression=false

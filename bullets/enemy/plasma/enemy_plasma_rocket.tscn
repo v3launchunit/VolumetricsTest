@@ -1,0 +1,132 @@
+[gd_scene load_steps=18 format=3 uid="uid://fd8mwvba35jo"]
+
+[ext_resource type="Script" path="res://bullets/bullet.gd" id="1_bykpv"]
+[ext_resource type="Script" path="res://bullets/bullet_trail.gd" id="2_3tmpf"]
+[ext_resource type="PackedScene" uid="uid://ctgdbydttjqwq" path="res://scenes/effects/explosions/plasma_explosion.tscn" id="2_xkuk1"]
+[ext_resource type="Material" uid="uid://c6fs0qxg5vbch" path="res://bullets/plasma_bullet_mat.tres" id="3_cfvt2"]
+[ext_resource type="Material" uid="uid://b78l63b32udy2" path="res://effects/halos/halo_mat.tres" id="3_j7cvy"]
+[ext_resource type="Script" path="res://scripts/effects/halo.gd" id="4_10o8e"]
+[ext_resource type="AudioStream" uid="uid://bsv250k61o40r" path="res://audio/streams/ambient/plasma_shot_ambient.wav" id="5_pik6u"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_h48e4"]
+size = Vector3(0.15, 0.15, 1)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_3dr6j"]
+top_radius = 0.075
+bottom_radius = 0.075
+height = 1.0
+radial_segments = 6
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lktph"]
+shading_mode = 0
+vertex_color_use_as_albedo = true
+albedo_color = Color(1, 0, 2, 1)
+
+[sub_resource type="Gradient" id="Gradient_0qvjn"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_4kjap"]
+gradient = SubResource("Gradient_0qvjn")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_rhsu2"]
+direction = Vector3(0, 0, 1)
+spread = 0.0
+gravity = Vector3(0, 0, 0)
+color = Color(1, 1, 1, 0.501961)
+color_ramp = SubResource("GradientTexture1D_4kjap")
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_11nj7"]
+load_path = "res://.godot/imported/halo.png-88068247d44276e09ca924d46b3606d1.s3tc.ctex"
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0qxru"]
+transparency = 1
+blend_mode = 1
+shading_mode = 0
+vertex_color_use_as_albedo = true
+albedo_color = Color(1, 0.501961, 0, 1)
+albedo_texture = SubResource("CompressedTexture2D_11nj7")
+billboard_mode = 1
+fixed_size = true
+proximity_fade_distance = 3.0
+distance_fade_mode = 1
+
+[sub_resource type="QuadMesh" id="QuadMesh_7khmj"]
+material = SubResource("StandardMaterial3D_0qxru")
+size = Vector2(0.25, 0.25)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qiosb"]
+transparency = 1
+blend_mode = 1
+shading_mode = 0
+vertex_color_use_as_albedo = true
+albedo_color = Color(1, 0, 2, 1)
+albedo_texture = SubResource("CompressedTexture2D_11nj7")
+billboard_mode = 1
+fixed_size = true
+proximity_fade_distance = 3.0
+distance_fade_mode = 1
+
+[node name="Bullet" type="RigidBody3D"]
+collision_layer = 16
+collision_mask = 71
+input_ray_pickable = false
+gravity_scale = 0.0
+lock_rotation = true
+continuous_cd = true
+contact_monitor = true
+max_contacts_reported = 5
+script = ExtResource("1_bykpv")
+speed = 50.0
+damage = 30.0
+explosion = ExtResource("2_xkuk1")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.5)
+shape = SubResource("BoxShape3D_h48e4")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(-1, 1.50996e-07, 6.60024e-15, 0, -4.37114e-08, 1, 1.50996e-07, 1, 4.37114e-08, 0, 0, 0.5)
+layers = 2
+material_override = ExtResource("3_cfvt2")
+cast_shadow = 0
+mesh = SubResource("CylinderMesh_3dr6j")
+surface_material_override/0 = SubResource("StandardMaterial3D_lktph")
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0.5)
+layers = 2
+material_override = ExtResource("3_cfvt2")
+cast_shadow = 0
+amount = 16
+lifetime = 0.25
+fixed_fps = 60
+process_material = SubResource("ParticleProcessMaterial_rhsu2")
+draw_pass_1 = SubResource("CylinderMesh_3dr6j")
+script = ExtResource("2_3tmpf")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+transform = Transform3D(-1, 1.50996e-07, 6.60025e-15, 0, -4.37114e-08, 1, 1.50996e-07, 1, 4.37114e-08, -1.50996e-07, 4.37114e-08, 0)
+layers = 2
+light_color = Color(0.501961, 0, 1, 1)
+distance_fade_enabled = true
+
+[node name="LensFlare" type="MeshInstance3D" parent="OmniLight3D"]
+layers = 2
+material_override = ExtResource("3_j7cvy")
+cast_shadow = 0
+visibility_range_end = 100.0
+visibility_range_end_margin = 25.0
+visibility_range_fade_mode = 1
+mesh = SubResource("QuadMesh_7khmj")
+surface_material_override/0 = SubResource("StandardMaterial3D_qiosb")
+script = ExtResource("4_10o8e")
+color = Color(1, 0, 2, 1)
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("5_pik6u")
+autoplay = true
+bus = &"Combat"
+doppler_tracking = 2
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_entered" from="." to="GPUParticles3D" method="_on_bullet_body_entered"]

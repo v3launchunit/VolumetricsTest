@@ -1,0 +1,419 @@
+// Game: Generic
+// Format: Standard
+// entity 0
+{
+"classname" "worldspawn"
+"_tb_textures" "textures;textures/structural;textures/natural;textures/furnishings;textures/pathways"
+"_tb_def" "external:games/VolumetricsTest/Qodot.fgd"
+// brush 0
+{
+( -64 64 16 ) ( -64 -64 0 ) ( -64 -80 -16 ) structural/bricks 0 0 0 1 1
+( -64 -64 0 ) ( 64 -64 0 ) ( 64 -80 -16 ) structural/bricks 0 0 0 1 1
+( -64 64 16 ) ( 64 64 16 ) ( 64 -64 0 ) structural/bricks 0 0 0 1 1
+( 64 -80 -32 ) ( 64 64 -32 ) ( -64 64 -32 ) structural/bricks 0 0 0 1 1
+( 64 64 -16 ) ( 64 64 16 ) ( -64 64 16 ) structural/bricks 0 0 0 1 1
+( 64 -64 0 ) ( 64 64 16 ) ( 64 64 -16 ) structural/bricks 0 0 0 1 1
+}
+// brush 1
+{
+( 64 64 16 ) ( 64 -64 0 ) ( 64 -80 -16 ) structural/bricks 0 0 0 1 1
+( 144 -64 -32 ) ( 144 64 -32 ) ( 64 64 -32 ) structural/bricks 0 0 0 1 1
+( 64 64 -16 ) ( 144 64 -16 ) ( 128 64 0 ) structural/bricks 0 0 0 1 1
+( 64 -64 0 ) ( 144 -64 -16 ) ( 64 -80 -16 ) structural/bricks 0 -26.46154 0 1 1
+( 64 64 16 ) ( 144 -64 -16 ) ( 64 -64 0 ) structural/bricks 0 0 0 1 1
+( 128 64 0 ) ( 144 -64 -16 ) ( 64 64 16 ) structural/bricks 0 0 0 1 1
+( 128 64 0 ) ( 144 64 -16 ) ( 144 -64 -16 ) structural/bricks 0 0 0 1 1
+}
+// brush 2
+{
+( -144 64 -16 ) ( -128 64 0 ) ( -144 -64 -16 ) structural/bricks 0.6666641 -0.33333397 0 1 1
+( -128 64 0 ) ( -64 64 16 ) ( -144 -64 -16 ) structural/bricks 0 0 0 1 1
+( -144 -64 -16 ) ( -64 64 16 ) ( -64 -64 0 ) structural/bricks 0 0 0 1 1
+( -144 -64 -16 ) ( -64 -64 0 ) ( -64 -80 -16 ) structural/bricks 0 -26.46154 0 1 1
+( -64 -80 -32 ) ( -64 64 -32 ) ( -144 64 -32 ) structural/bricks 0 0 0 1 1
+( -64 64 -16 ) ( -64 64 16 ) ( -128 64 0 ) structural/bricks 0 0 0 1 1
+( -64 -64 0 ) ( -64 64 16 ) ( -64 64 -16 ) structural/bricks 0 0 0 1 1
+}
+// brush 3
+{
+( 32 -32 0 ) ( 32 -31 0 ) ( 32 -32 1 ) structural/metal 0 0 0 1 1
+( 32 -32 0 ) ( 32 -32 1 ) ( 33 -32 0 ) structural/metal 0 0 0 1 1
+( 32 -32 0 ) ( 33 -32 0 ) ( 32 -31 0 ) structural/metal 0 0 0 1 1
+( 48 -16 64 ) ( 48 -15 64 ) ( 49 -16 64 ) structural/metal 0 0 0 1 1
+( 48 -16 16 ) ( 49 -16 16 ) ( 48 -16 17 ) structural/metal 0 0 0 1 1
+( 48 -16 16 ) ( 48 -16 17 ) ( 48 -15 16 ) structural/metal 0 0 0 1 1
+}
+// brush 4
+{
+( -64 64 112 ) ( -64 48 112 ) ( -64 48 0 ) furnishings/planks 0 0 0 1 1
+( -60 56 112 ) ( -64 56 96 ) ( -64 184 96 ) furnishings/planks 0 0 0 1 1
+( -56 56 112 ) ( -64 56 100 ) ( -64 184 100 ) furnishings/planks 0 0 0 1 1
+( -52 56 112 ) ( -64 56 104 ) ( -64 184 104 ) furnishings/planks 0 0 0 1 1
+( -48 56 112 ) ( -64 56 108 ) ( -64 184 108 ) furnishings/planks 0 0 0 1 1
+( -64 48 112 ) ( 64 48 112 ) ( 64 48 0 ) furnishings/planks 0 0 0 1 1
+( -64 64 112 ) ( 64 64 112 ) ( 64 48 112 ) furnishings/planks 0 0 0 1 1
+( 64 48 0 ) ( 64 64 16 ) ( -64 64 16 ) furnishings/planks 0 0 0 1 1
+( 64 64 16 ) ( 64 64 112 ) ( -64 64 112 ) furnishings/planks 0 0 0 1 1
+( 48 56 112 ) ( 64 184 108 ) ( 64 56 108 ) furnishings/planks 0 0 0 1 1
+( 52 56 112 ) ( 64 184 104 ) ( 64 56 104 ) furnishings/planks 0 0 0 1 1
+( 56 56 112 ) ( 64 184 100 ) ( 64 56 100 ) furnishings/planks 0 0 0 1 1
+( 60 56 112 ) ( 64 184 96 ) ( 64 56 96 ) furnishings/planks 0 0 0 1 1
+( 64 48 112 ) ( 64 64 112 ) ( 64 64 16 ) furnishings/planks 0 0 0 1 1
+}
+// brush 5
+{
+( -48 -32 0 ) ( -48 -31 0 ) ( -48 -32 1 ) natural/log 0 0 0 1 1
+( -48 -28 16 ) ( -44 -32 144 ) ( -44 -32 16 ) natural/log 0 0 0 1 1
+( -44 -16 16 ) ( -48 -20 144 ) ( -48 -20 16 ) natural/log 0 0 0 1 1
+( -48 -32 0 ) ( -48 -32 1 ) ( -47 -32 0 ) natural/log 0 0 0 1 1
+( -48 -32 0 ) ( -47 -32 0 ) ( -48 -31 0 ) natural/log 0 0 0 1 1
+( -32 -16 64 ) ( -32 -15 64 ) ( -31 -16 64 ) natural/log_end 0 0 0 1 1
+( -32 -16 16 ) ( -31 -16 16 ) ( -32 -16 17 ) natural/log 0 0 0 1 1
+( -32 -28 16 ) ( -36 -32 16 ) ( -36 -32 144 ) natural/log 0 0 0 1 1
+( -36 -16 16 ) ( -32 -20 16 ) ( -32 -20 144 ) natural/log 0 0 0 1 1
+( -32 -16 16 ) ( -32 -16 17 ) ( -32 -15 16 ) natural/log 0 0 0 1 1
+}
+// brush 6
+{
+( -112 304 64 ) ( -112 240 64 ) ( -112 112 0 ) natural/rock 0 0 0 1 1
+( 0 112 0 ) ( -112 112 0 ) ( -112 240 64 ) natural/rock 0 0 0 1 1
+( 0 112 0 ) ( 0 304 0 ) ( -112 304 0 ) natural/rock 0 0 0 1 1
+( -112 304 64 ) ( 0 304 64 ) ( 0 240 64 ) natural/rock 0 0 0 1 1
+( 0 304 0 ) ( 0 304 64 ) ( -112 304 64 ) natural/rock 0 0 0 1 1
+( 0 240 64 ) ( 0 304 64 ) ( 0 304 0 ) natural/rock 0 0 0 1 1
+}
+// brush 7
+{
+( -80 368 64 ) ( -80 304 64 ) ( -80 304 16 ) pathways/big_cobble_stone 0 0 0 1 1
+( -80 304 64 ) ( -32 304 64 ) ( -32 304 16 ) pathways/big_cobble_stone 0 0 0 1 1
+( -80 368 64 ) ( -32 368 64 ) ( -32 304 64 ) pathways/big_cobble_stone 0 0 0 1 1
+( -32 304 16 ) ( -32 368 48 ) ( -80 368 48 ) pathways/big_cobble_stone 0 0 0 1 1
+( -32 368 48 ) ( -32 368 64 ) ( -80 368 64 ) pathways/big_cobble_stone 0 0 0 1 1
+( -32 304 64 ) ( -32 368 64 ) ( -32 368 48 ) pathways/big_cobble_stone 0 0 0 1 1
+}
+// brush 8
+{
+( -80 560 64 ) ( -80 496 64 ) ( -80 496 48 ) pathways/big_cobble_stone 0 0 0 1 1
+( -80 496 64 ) ( -32 496 64 ) ( -32 496 48 ) pathways/big_cobble_stone 0 0 0 1 1
+( -32 496 48 ) ( -32 560 16 ) ( -80 560 16 ) pathways/big_cobble_stone 0 0 0 1 1
+( -80 560 64 ) ( -32 560 64 ) ( -32 496 64 ) pathways/big_cobble_stone 0 0 0 1 1
+( -32 560 16 ) ( -32 560 64 ) ( -80 560 64 ) pathways/big_cobble_stone 0 0 0 1 1
+( -32 496 64 ) ( -32 560 64 ) ( -32 560 16 ) pathways/big_cobble_stone 0 0 0 1 1
+}
+// brush 9
+{
+( -80 432 48 ) ( -80 433 48 ) ( -80 432 49 ) pathways/big_cobble_stone 0 0 0 1 1
+( -80 368 48 ) ( -80 368 49 ) ( -79 368 48 ) pathways/big_cobble_stone 0 0 0 1 1
+( -80 432 48 ) ( -79 432 48 ) ( -80 433 48 ) pathways/big_cobble_stone 0 0 0 1 1
+( -32 496 64 ) ( -32 497 64 ) ( -31 496 64 ) pathways/big_cobble_stone 0 0 0 1 1
+( -32 496 64 ) ( -31 496 64 ) ( -32 496 65 ) pathways/big_cobble_stone 0 0 0 1 1
+( -32 496 64 ) ( -32 496 65 ) ( -32 497 64 ) pathways/big_cobble_stone 0 0 0 1 1
+}
+// brush 10
+{
+( -80 560 -16 ) ( -80 561 -16 ) ( -80 560 -15 ) furnishings/planks 0 0 0 1 1
+( -80 560 -16 ) ( -80 560 -15 ) ( -79 560 -16 ) furnishings/planks 0 0 0 1 1
+( -80 560 -16 ) ( -79 560 -16 ) ( -80 561 -16 ) furnishings/planks 0 0 0 1 1
+( -32 608 64 ) ( -32 609 64 ) ( -31 608 64 ) furnishings/planks 0 0 0 1 1
+( -32 608 64 ) ( -31 608 64 ) ( -32 608 65 ) furnishings/planks 0 0 0 1 1
+( -32 608 64 ) ( -32 608 65 ) ( -32 609 64 ) furnishings/planks 0 0 0 1 1
+}
+// brush 11
+{
+( -128 192 0 ) ( -160 192 -32 ) ( -160 320 -32 ) terrain/trench_broom/dirt 0 0 0 1 1
+( -128 64 -16 ) ( -128 64 -15 ) ( -127 64 -16 ) terrain/trench_broom/dirt 16 0 0 1 1
+( -128 64 -32 ) ( -127 64 -32 ) ( -128 65 -32 ) terrain/trench_broom/dirt 0 0 0 1 1
+( 128 320 0 ) ( 128 321 0 ) ( 129 320 0 ) terrain/trench_broom/dirt 16 16 0 1 1
+( 128 320 0 ) ( 129 320 0 ) ( 128 320 1 ) terrain/trench_broom/dirt 16 0 0 1 1
+( 128 192 0 ) ( 96 192 32 ) ( 96 320 32 ) terrain/trench_broom/dirt 16 16 0 1 1
+}
+// brush 12
+{
+( 16 272 0 ) ( 16 273 0 ) ( 16 272 1 ) terrain/trench_broom/glass 0 0 0 1 1
+( 16 276 0 ) ( 16 276 1 ) ( 17 276 0 ) terrain/trench_broom/glass 0 0 0 1 1
+( 16 272 0 ) ( 17 272 0 ) ( 16 273 0 ) terrain/trench_broom/glass 0 0 0 1 1
+( 112 288 48 ) ( 112 289 48 ) ( 113 288 48 ) terrain/trench_broom/glass 0 0 0 1 1
+( 112 284 48 ) ( 113 284 48 ) ( 112 284 49 ) terrain/trench_broom/glass 0 0 0 1 1
+( 112 288 48 ) ( 112 288 49 ) ( 112 289 48 ) terrain/trench_broom/glass 0 0 0 1 1
+}
+// brush 13
+{
+( 0 272 48 ) ( 0 273 48 ) ( 0 272 49 ) structural/bricks 0 0 0 1 1
+( 16 272 48 ) ( 16 272 49 ) ( 17 272 48 ) structural/bricks -16 0 0 1 1
+( 16 272 48 ) ( 17 272 48 ) ( 16 273 48 ) structural/bricks -16 0 0 1 1
+( 128 288 64 ) ( 128 289 64 ) ( 129 288 64 ) structural/bricks -16 0 0 1 1
+( 128 288 64 ) ( 129 288 64 ) ( 128 288 65 ) structural/bricks -16 0 0 1 1
+( 128 288 64 ) ( 128 288 65 ) ( 128 289 64 ) structural/bricks 0 0 0 1 1
+}
+// brush 14
+{
+( 112 272 0 ) ( 112 273 0 ) ( 112 272 1 ) structural/bricks 0 0 0 1 1
+( 112 272 0 ) ( 112 272 1 ) ( 113 272 0 ) structural/bricks -16 0 0 1 1
+( 112 272 0 ) ( 113 272 0 ) ( 112 273 0 ) structural/bricks -16 0 0 1 1
+( 128 288 48 ) ( 128 289 48 ) ( 129 288 48 ) structural/bricks -16 0 0 1 1
+( 128 288 48 ) ( 129 288 48 ) ( 128 288 49 ) structural/bricks -16 0 0 1 1
+( 128 288 48 ) ( 128 288 49 ) ( 128 289 48 ) structural/bricks 0 0 0 1 1
+}
+// brush 15
+{
+( 96 280 48 ) ( 112 280 44 ) ( 112 408 44 ) structural/bricks -16 0 0 1 1
+( 96 272 32 ) ( 96 272 33 ) ( 97 272 32 ) structural/bricks -16 0 0 1 1
+( 112 288 48 ) ( 112 289 48 ) ( 113 288 48 ) structural/bricks -16 0 0 1 1
+( 112 288 48 ) ( 113 288 48 ) ( 112 288 49 ) structural/bricks -16 0 0 1 1
+( 112 288 48 ) ( 112 288 49 ) ( 112 289 48 ) structural/bricks 0 0 0 1 1
+}
+// brush 16
+{
+( 100 280 48 ) ( 112 280 40 ) ( 112 408 40 ) structural/bricks -16 0 0 1 1
+( 96 272 32 ) ( 96 272 33 ) ( 97 272 32 ) structural/bricks -16 0 0 1 1
+( 112 288 48 ) ( 112 289 48 ) ( 113 288 48 ) structural/bricks -16 0 0 1 1
+( 112 288 48 ) ( 113 288 48 ) ( 112 288 49 ) structural/bricks -16 0 0 1 1
+( 112 288 48 ) ( 112 288 49 ) ( 112 289 48 ) structural/bricks 0 0 0 1 1
+}
+// brush 17
+{
+( 104 280 48 ) ( 112 280 36 ) ( 112 408 36 ) structural/bricks 0 0 0 1 1
+( 96 272 32 ) ( 96 272 33 ) ( 97 272 32 ) structural/bricks -16 0 0 1 1
+( 112 288 48 ) ( 112 289 48 ) ( 113 288 48 ) structural/bricks -16 0 0 1 1
+( 112 288 48 ) ( 113 288 48 ) ( 112 288 49 ) structural/bricks -16 0 0 1 1
+( 112 288 48 ) ( 112 288 49 ) ( 112 289 48 ) structural/bricks 0 0 0 1 1
+}
+// brush 18
+{
+( 108 280 48 ) ( 112 280 32 ) ( 112 408 32 ) structural/bricks 0 0 0 1 1
+( 96 272 32 ) ( 96 272 33 ) ( 97 272 32 ) structural/bricks -16 0 0 1 1
+( 112 288 48 ) ( 112 289 48 ) ( 113 288 48 ) structural/bricks -16 0 0 1 1
+( 112 288 48 ) ( 113 288 48 ) ( 112 288 49 ) structural/bricks -16 0 0 1 1
+( 112 288 48 ) ( 112 288 49 ) ( 112 289 48 ) structural/bricks 0 0 0 1 1
+}
+// brush 19
+{
+( 16 288 48 ) ( 16 272 48 ) ( 16 272 32 ) structural/bricks 0 0 0 1 1
+( 16 272 48 ) ( 20 272 48 ) ( 16 272 32 ) structural/bricks 27.999994 0 0 1 1
+( 16 288 48 ) ( 20 288 48 ) ( 20 272 48 ) structural/bricks -20 0 0 1 1
+( 16 288 32 ) ( 20 288 48 ) ( 16 288 48 ) structural/bricks 27.999994 0 0 1 1
+( 20 272 48 ) ( 20 288 48 ) ( 16 288 32 ) structural/bricks 0 0 0 1 1
+}
+// brush 20
+{
+( 16 288 48 ) ( 16 272 48 ) ( 16 272 36 ) structural/bricks 0 0 0 1 1
+( 16 272 48 ) ( 24 272 48 ) ( 16 272 36 ) structural/bricks 24.000002 0 0 1 1
+( 16 288 48 ) ( 24 288 48 ) ( 24 272 48 ) structural/bricks 24 0 0 1 1
+( 16 288 36 ) ( 24 288 48 ) ( 16 288 48 ) structural/bricks 24.000002 0 0 1 1
+( 24 272 48 ) ( 24 288 48 ) ( 16 288 36 ) structural/bricks 0 0 0 1 1
+}
+// brush 21
+{
+( 16 288 48 ) ( 16 272 48 ) ( 16 272 40 ) structural/bricks -4 -8 0 1 1
+( 16 272 48 ) ( 28 272 48 ) ( 16 272 40 ) structural/bricks 20 0 0 1 1
+( 16 288 48 ) ( 28 288 48 ) ( 28 272 48 ) structural/bricks 20 0 0 1 1
+( 16 288 40 ) ( 28 288 48 ) ( 16 288 48 ) structural/bricks 20 0 0 1 1
+( 28 272 48 ) ( 28 288 48 ) ( 16 288 40 ) structural/bricks 12 8 0 1 1
+}
+// brush 22
+{
+( 16 288 48 ) ( 16 272 48 ) ( 16 272 44 ) structural/bricks -8 -8 0 1 1
+( 16 272 48 ) ( 32 272 48 ) ( 16 272 44 ) structural/bricks 15.999994 0 0 1 1
+( 16 288 48 ) ( 32 288 48 ) ( 32 272 48 ) structural/bricks 16 0 0 1 1
+( 16 288 44 ) ( 32 288 48 ) ( 16 288 48 ) structural/bricks 15.999994 0 0 1 1
+( 32 272 48 ) ( 32 288 48 ) ( 16 288 44 ) structural/bricks 8 8 0 1 1
+}
+// brush 23
+{
+( 0 272 0 ) ( 0 273 0 ) ( 0 272 1 ) structural/bricks 0 0 0 1 1
+( 0 272 0 ) ( 0 272 1 ) ( 1 272 0 ) structural/bricks 0 0 0 1 1
+( 0 272 0 ) ( 1 272 0 ) ( 0 273 0 ) structural/bricks 0 0 0 1 1
+( 16 288 48 ) ( 16 289 48 ) ( 17 288 48 ) structural/bricks 0 0 0 1 1
+( 16 288 64 ) ( 17 288 64 ) ( 16 288 65 ) structural/bricks 0 0 0 1 1
+( 16 288 64 ) ( 16 288 65 ) ( 16 289 64 ) structural/bricks 0 0 0 1 1
+}
+// brush 24
+{
+( -32 272 64 ) ( -32 273 64 ) ( -32 272 65 ) structural/bricks 0 0 0 1 1
+( -32 272 64 ) ( -32 272 65 ) ( -31 272 64 ) structural/bricks 0 0 0 1 1
+( -32 272 64 ) ( -31 272 64 ) ( -32 273 64 ) structural/bricks 0 0 0 1 1
+( 128 288 112 ) ( 128 289 112 ) ( 129 288 112 ) structural/bricks 0 0 0 1 1
+( 128 288 112 ) ( 129 288 112 ) ( 128 288 113 ) structural/bricks 0 0 0 1 1
+( 128 288 112 ) ( 128 288 113 ) ( 128 289 112 ) structural/bricks 0 0 0 1 1
+}
+// brush 25
+{
+( -112 272 64 ) ( -112 273 64 ) ( -112 272 65 ) structural/bricks 0 0 0 1 1
+( -112 272 64 ) ( -112 272 65 ) ( -111 272 64 ) structural/bricks 0 0 0 1 1
+( -112 272 64 ) ( -111 272 64 ) ( -112 273 64 ) structural/bricks 0 0 0 1 1
+( -80 288 112 ) ( -80 289 112 ) ( -79 288 112 ) structural/bricks 0 0 0 1 1
+( -80 288 112 ) ( -79 288 112 ) ( -80 288 113 ) structural/bricks 0 0 0 1 1
+( -80 288 112 ) ( -80 288 113 ) ( -80 289 112 ) structural/bricks 0 0 0 1 1
+}
+// brush 26
+{
+( -112 272 112 ) ( -112 273 112 ) ( -112 272 113 ) structural/bricks 0 0 0 1 1
+( -112 272 112 ) ( -112 272 113 ) ( -111 272 112 ) structural/bricks 0 0 0 1 1
+( -112 272 112 ) ( -111 272 112 ) ( -112 273 112 ) structural/bricks 0 0 0 1 1
+( 128 288 128 ) ( 128 289 128 ) ( 129 288 128 ) structural/bricks 0 0 0 1 1
+( 128 288 144 ) ( 129 288 144 ) ( 128 288 145 ) structural/bricks 0 0 0 1 1
+( 128 288 144 ) ( 128 288 145 ) ( 128 289 144 ) structural/bricks 0 0 0 1 1
+}
+// brush 27
+{
+( -160 320 -32 ) ( -160 321 -32 ) ( -160 320 -31 ) structural/metal 0 0 0 1 1
+( -160 320 -32 ) ( -160 320 -31 ) ( -159 320 -32 ) structural/metal 0 0 0 1 1
+( -160 320 -32 ) ( -159 320 -32 ) ( -160 321 -32 ) structural/metal 0 0 0 1 1
+( 144 608 -16 ) ( 144 609 -16 ) ( 145 608 -16 ) structural/metal 0 0 0 1 1
+( 144 672 -16 ) ( 145 672 -16 ) ( 144 672 -15 ) structural/metal 0 0 0 1 1
+( 160 608 -16 ) ( 160 608 -15 ) ( 160 609 -16 ) structural/metal 0 0 0 1 1
+}
+// brush 28
+{
+( -128 320 -16 ) ( -128 321 -16 ) ( -128 320 -15 ) structural/bricks 0 0 0 1 1
+( -128 320 -16 ) ( -128 320 -15 ) ( -127 320 -16 ) structural/bricks 0 0 0 1 1
+( -128 320 -16 ) ( -127 320 -16 ) ( -128 321 -16 ) structural/bricks 0 0 0 1 1
+( -112 608 128 ) ( -112 609 128 ) ( -111 608 128 ) structural/bricks 0 0 0 1 1
+( -112 624 144 ) ( -111 624 144 ) ( -112 624 145 ) structural/bricks 0 0 0 1 1
+( -112 608 144 ) ( -112 608 145 ) ( -112 609 144 ) structural/bricks 0 0 0 1 1
+}
+// brush 29
+{
+( -128 256 0 ) ( -128 257 0 ) ( -128 256 1 ) structural/bricks 0 0 0 1 1
+( -128 272 0 ) ( -128 272 1 ) ( -127 272 0 ) structural/bricks 0 0 0 1 1
+( -128 256 0 ) ( -127 256 0 ) ( -128 257 0 ) structural/bricks 0 0 0 1 1
+( -112 320 128 ) ( -112 321 128 ) ( -111 320 128 ) structural/bricks 0 0 0 1 1
+( -112 320 144 ) ( -111 320 144 ) ( -112 320 145 ) structural/bricks 0 0 0 1 1
+( -112 320 144 ) ( -112 320 145 ) ( -112 321 144 ) structural/bricks 0 0 0 1 1
+}
+// brush 30
+{
+( 112 288 0 ) ( 112 289 0 ) ( 112 288 1 ) structural/bricks 0 0 0 1 1
+( 112 288 0 ) ( 112 288 1 ) ( 113 288 0 ) structural/bricks 0 0 0 1 1
+( 112 288 0 ) ( 113 288 0 ) ( 112 289 0 ) structural/bricks 0 0 0 1 1
+( 128 320 128 ) ( 128 321 128 ) ( 129 320 128 ) structural/bricks 0 0 0 1 1
+( 128 320 128 ) ( 129 320 128 ) ( 128 320 129 ) structural/bricks 0 0 0 1 1
+( 128 320 128 ) ( 128 320 129 ) ( 128 321 128 ) structural/bricks 0 0 0 1 1
+}
+// brush 31
+{
+( 112 320 -16 ) ( 112 321 -16 ) ( 112 320 -15 ) structural/bricks 0 0 0 1 1
+( 112 320 -16 ) ( 112 320 -15 ) ( 113 320 -16 ) structural/bricks 0 0 0 1 1
+( 112 320 -16 ) ( 113 320 -16 ) ( 112 321 -16 ) structural/bricks 0 0 0 1 1
+( 128 608 128 ) ( 128 609 128 ) ( 129 608 128 ) structural/bricks 0 0 0 1 1
+( 128 624 128 ) ( 129 624 128 ) ( 128 624 129 ) structural/bricks 0 0 0 1 1
+( 128 608 128 ) ( 128 608 129 ) ( 128 609 128 ) structural/bricks 0 0 0 1 1
+}
+// brush 32
+{
+( 0 608 144 ) ( 0 256 144 ) ( 0 256 128 ) natural/log 0 0 0 1 1
+( 144 256 112 ) ( 144 608 112 ) ( 0 608 128 ) natural/log 0 0 0 1 1
+( 0 256 144 ) ( 144 256 128 ) ( 144 256 112 ) natural/log 0 0 0 1 1
+( 144 656 112 ) ( 144 656 128 ) ( 0 656 144 ) natural/log 0 0 0 1 1
+( 0 608 144 ) ( 144 608 128 ) ( 144 256 128 ) natural/log 0 0 0 1 1
+( 144 256 128 ) ( 144 608 128 ) ( 144 608 112 ) natural/log 0 0 0 1 1
+}
+// brush 33
+{
+( -144 608 128 ) ( -144 256 128 ) ( -144 256 112 ) natural/log 0 0 0 1 1
+( -144 608 128 ) ( 0 608 144 ) ( 0 256 144 ) natural/log 0 0 0 1 1
+( -144 256 128 ) ( 0 256 144 ) ( 0 256 128 ) natural/log 0 0 0 1 1
+( 0 656 128 ) ( 0 656 144 ) ( -144 656 128 ) natural/log 0 0 0 1 1
+( 0 256 128 ) ( 0 608 128 ) ( -144 608 112 ) natural/log 0 0 0 1 1
+( 0 256 144 ) ( 0 608 144 ) ( 0 608 128 ) natural/log 0 0 0 1 1
+}
+// brush 34
+{
+( -32 608 64 ) ( -32 560 64 ) ( -32 560 -16 ) furnishings/planks 0 0 0 1 1
+( -32 560 64 ) ( 48 560 24 ) ( 48 560 -16 ) furnishings/planks 0 0 0 1 1
+( 48 560 -16 ) ( 48 608 -16 ) ( -32 608 -16 ) furnishings/planks 0 0 0 1 1
+( 48 608 -16 ) ( 48 608 24 ) ( -32 608 64 ) furnishings/planks 0 0 0 1 1
+( -32 608 64 ) ( 48 608 24 ) ( 48 560 24 ) furnishings/planks 0 0 0 1 1
+( 48 560 24 ) ( 48 608 24 ) ( 48 608 -16 ) furnishings/planks 0 0 0 1 1
+}
+// brush 35
+{
+( 48 560 -16 ) ( 48 561 -16 ) ( 48 560 -15 ) furnishings/planks 0 0 0 1 1
+( 48 560 -16 ) ( 48 560 -15 ) ( 49 560 -16 ) furnishings/planks 0 0 0 1 1
+( 48 560 -16 ) ( 49 560 -16 ) ( 48 561 -16 ) furnishings/planks 0 0 0 1 1
+( 96 608 24 ) ( 96 609 24 ) ( 97 608 24 ) furnishings/planks 0 0 0 1 1
+( 96 608 24 ) ( 97 608 24 ) ( 96 608 25 ) furnishings/planks 0 0 0 1 1
+( 96 608 24 ) ( 96 608 25 ) ( 96 609 24 ) furnishings/planks 0 0 0 1 1
+}
+// brush 36
+{
+( 48 560 -16 ) ( 48 560 24 ) ( 48 480 -16 ) furnishings/planks 0 0 0 1 1
+( 48 560 24 ) ( 96 560 24 ) ( 96 480 -16 ) furnishings/planks 0 0 0 1 1
+( 96 480 -16 ) ( 96 560 -16 ) ( 48 560 -16 ) furnishings/planks 0 0 0 1 1
+( 96 560 -16 ) ( 96 560 24 ) ( 48 560 24 ) furnishings/planks 0 0 0 1 1
+( 96 480 -16 ) ( 96 560 24 ) ( 96 560 -16 ) furnishings/planks 0 0 0 1 1
+}
+// brush 37
+{
+( -128 624 -16 ) ( -128 625 -16 ) ( -128 624 -15 ) structural/bricks 0 0 0 1 1
+( -128 624 -16 ) ( -128 624 -15 ) ( -127 624 -16 ) structural/bricks 0 0 0 1 1
+( -128 624 -16 ) ( -127 624 -16 ) ( -128 625 -16 ) structural/bricks 0 0 0 1 1
+( 128 640 128 ) ( 128 641 128 ) ( 129 640 128 ) structural/bricks 0 0 0 1 1
+( 128 640 128 ) ( 129 640 128 ) ( 128 640 129 ) structural/bricks 0 0 0 1 1
+( 128 640 128 ) ( 128 640 129 ) ( 128 641 128 ) structural/bricks 0 0 0 1 1
+}
+// brush 38
+{
+( 192 128 -16 ) ( 192 129 -16 ) ( 192 128 -15 ) terrain/trench_broom/lava 0 0 0 1 1
+( 192 128 -16 ) ( 192 128 -15 ) ( 193 128 -16 ) terrain/trench_broom/lava 0 0 0 1 1
+( 192 128 -64 ) ( 193 128 -64 ) ( 192 129 -64 ) terrain/trench_broom/lava 0 0 0 1 1
+( 256 192 0 ) ( 256 193 0 ) ( 257 192 0 ) terrain/trench_broom/lava 0 0 0 1 1
+( 256 192 0 ) ( 257 192 0 ) ( 256 192 1 ) terrain/trench_broom/lava 0 0 0 1 1
+( 256 192 0 ) ( 256 192 1 ) ( 256 193 0 ) terrain/trench_broom/lava 0 0 0 1 1
+}
+// brush 39
+{
+( 256 0 0 ) ( 192 64 0 ) ( 192 64 128 ) terrain/trench_broom/lava_flowing 0 0 0 1 1
+( 192 0 -64 ) ( 193 0 -64 ) ( 192 1 -64 ) terrain/trench_broom/lava_flowing 0 0 0 1 1
+( 256 64 0 ) ( 256 65 0 ) ( 257 64 0 ) terrain/trench_broom/lava_flowing 64 64 180 1 1
+( 256 64 0 ) ( 257 64 0 ) ( 256 64 1 ) terrain/trench_broom/lava_flowing 0 0 0 1 1
+( 240 48 0 ) ( 224 32 0 ) ( 224 32 128 ) terrain/trench_broom/lava_flowing 0 0 0 1 1
+}
+// brush 40
+{
+( 192 0 -16 ) ( 192 1 -16 ) ( 192 0 -15 ) terrain/trench_broom/lava_flowing 0 0 0 1 1
+( 192 0 -64 ) ( 193 0 -64 ) ( 192 1 -64 ) terrain/trench_broom/lava_flowing 0 0 0 1 1
+( 256 64 0 ) ( 256 65 0 ) ( 257 64 0 ) terrain/trench_broom/lava_flowing 64 -64 -90 1 1
+( 240 48 0 ) ( 224 32 0 ) ( 224 32 128 ) terrain/trench_broom/lava_flowing 0 0 0 1 1
+( 256 0 0 ) ( 192 64 128 ) ( 192 64 0 ) terrain/trench_broom/lava_flowing 0 0 0 1 1
+}
+// brush 41
+{
+( 256 0 0 ) ( 192 64 0 ) ( 192 64 128 ) terrain/trench_broom/lava_flowing 0 0 0 1 1
+( 240 48 0 ) ( 224 32 128 ) ( 224 32 0 ) terrain/trench_broom/lava_flowing 0 0 0 1 1
+( 192 0 -64 ) ( 193 0 -64 ) ( 192 1 -64 ) terrain/trench_broom/lava_flowing 0 0 0 1 1
+( 256 64 0 ) ( 256 65 0 ) ( 257 64 0 ) terrain/trench_broom/lava_flowing 0 0 90 1 1
+( 256 64 0 ) ( 256 64 1 ) ( 256 65 0 ) terrain/trench_broom/lava_flowing 0 0 0 1 1
+}
+// brush 42
+{
+( 240 48 0 ) ( 224 32 128 ) ( 224 32 0 ) terrain/trench_broom/lava_flowing 0 0 0 1 1
+( 192 0 -16 ) ( 192 0 -15 ) ( 193 0 -16 ) terrain/trench_broom/lava_flowing 0 0 0 1 1
+( 192 0 -64 ) ( 193 0 -64 ) ( 192 1 -64 ) terrain/trench_broom/lava_flowing 0 0 0 1 1
+( 256 64 0 ) ( 256 65 0 ) ( 257 64 0 ) terrain/trench_broom/lava_flowing 0 0 0 1 1
+( 256 0 0 ) ( 192 64 128 ) ( 192 64 0 ) terrain/trench_broom/lava_flowing 0 0 0 1 1
+}
+}
+// entity 1
+{
+"classname" "lamp"
+"origin" "0 456 128"
+}
+// entity 2
+{
+"classname" "lamp"
+"origin" "0 -24 48"
+}
+// entity 3
+{
+"classname" "destructible"
+// brush 0
+{
+( -32 8 0 ) ( -32 9 0 ) ( -32 8 1 ) terrain/trench_broom/glass 8 0 0 1 1
+( -32 8 0 ) ( -32 8 1 ) ( -31 8 0 ) terrain/trench_broom/glass 0 0 0 1 1
+( -32 8 32 ) ( -31 8 32 ) ( -32 9 32 ) terrain/trench_broom/glass 0 -8 0 1 1
+( 32 24 64 ) ( 32 25 64 ) ( 33 24 64 ) terrain/trench_broom/glass 0 -8 0 1 1
+( 32 24 64 ) ( 33 24 64 ) ( 32 24 65 ) terrain/trench_broom/glass 0 0 0 1 1
+( 32 24 64 ) ( 32 24 65 ) ( 32 25 64 ) terrain/trench_broom/glass 8 0 0 1 1
+}
+}

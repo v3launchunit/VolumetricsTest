@@ -1,0 +1,28 @@
+[gd_scene load_steps=7 format=3 uid="uid://cehwd234g5us7"]
+
+[ext_resource type="Script" path="res://bullets/hitscan.gd" id="1_whain"]
+[ext_resource type="ArrayMesh" uid="uid://cfjlieto7r0xy" path="res://bullets/hitscan_bullet.obj" id="2_10a6h"]
+[ext_resource type="PackedScene" uid="uid://fn1fivb2ndvo" path="res://scenes/effects/impacts/bullet_impact_yellow.tscn" id="2_vlrsp"]
+[ext_resource type="Material" uid="uid://c42ota7m3l3e4" path="res://bullets/hitscan_mat.tres" id="3_w88kk"]
+
+[sub_resource type="Skin" id="Skin_axrfg"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bhuvi"]
+shading_mode = 0
+vertex_color_use_as_albedo = true
+albedo_color = Color(1, 1, 0, 1)
+
+[node name="Hitscan" type="Node3D"]
+script = ExtResource("1_whain")
+damage = 240.0
+explosion = ExtResource("2_vlrsp")
+piercer = true
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 1, 0, 0, 0)
+layers = 2
+material_override = ExtResource("3_w88kk")
+cast_shadow = 0
+mesh = ExtResource("2_10a6h")
+skin = SubResource("Skin_axrfg")
+surface_material_override/0 = SubResource("StandardMaterial3D_bhuvi")

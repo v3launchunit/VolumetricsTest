@@ -1,0 +1,26 @@
+[remap]
+
+importer="2d_array_texture"
+type="CompressedTexture2DArray"
+uid="uid://crqku4d3us0cj"
+path="res://.godot/imported/e1m6_v1.exr-4888d5102276c4dc871269c867404819.ctexarray"
+metadata={
+"vram_texture": false
+}
+
+[deps]
+
+source_file="res://levels/campaign/episode_1/e1m6_v1/e1m6_v1.exr"
+dest_files=["res://.godot/imported/e1m6_v1.exr-4888d5102276c4dc871269c867404819.ctexarray"]
+
+[params]
+
+compress/mode=3
+compress/high_quality=false
+compress/lossy_quality=0.7
+compress/hdr_compression=1
+compress/channel_pack=1
+mipmaps/generate=false
+mipmaps/limit=-1
+slices/horizontal=1
+slices/vertical=4

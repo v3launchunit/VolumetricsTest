@@ -1,0 +1,205 @@
+// Game: VolumetricsTest
+// Format: Standard
+// entity 0
+{
+"classname" "worldspawn"
+"_tb_textures" "textures/special;textures/terrain/trench_broom"
+// brush 0
+{
+( -64 -224 64 ) ( -64 -223 64 ) ( -64 -224 65 ) special/clip 0 0 0 1 1
+( 64 -352 32 ) ( 63 -352 32 ) ( 64 -352 33 ) special/clip 0 0 0 1 1
+( 64 -352 -16 ) ( 64 -351 -16 ) ( 63 -352 -16 ) special/clip 0 0 0 1 1
+( -64 -224 16 ) ( -65 -224 16 ) ( -64 -223 16 ) special/clip 0 0 0 1 1
+( -64 -224 64 ) ( -64 -224 65 ) ( -65 -224 64 ) special/clip 0 0 0 1 1
+( 64 -352 32 ) ( 64 -352 33 ) ( 64 -351 32 ) special/clip 0 0 0 1 1
+}
+// brush 1
+{
+( -64 -32 64 ) ( -64 -31 64 ) ( -64 -32 65 ) special/skip 0 0 0 1 1
+( 64 -160 32 ) ( 63 -160 32 ) ( 64 -160 33 ) special/skip 0 0 0 1 1
+( 64 -160 -16 ) ( 64 -159 -16 ) ( 63 -160 -16 ) special/skip 0 0 0 1 1
+( -64 -32 16 ) ( -65 -32 16 ) ( -64 -31 16 ) special/skip 0 0 0 1 1
+( -64 -32 64 ) ( -64 -32 65 ) ( -65 -32 64 ) special/skip 0 0 0 1 1
+( 64 -160 32 ) ( 64 -160 33 ) ( 64 -159 32 ) special/skip 0 0 0 1 1
+}
+// brush 2
+{
+( -64 160 64 ) ( -64 161 64 ) ( -64 160 65 ) terrain/trench_broom/big_cobble_stone 0 0 0 1 1
+( 64 32 32 ) ( 63 32 32 ) ( 64 32 33 ) terrain/trench_broom/big_cobble_stone 0 0 0 1 1
+( 64 32 -16 ) ( 64 33 -16 ) ( 63 32 -16 ) terrain/trench_broom/big_cobble_stone 0 0 0 1 1
+( -64 160 16 ) ( -65 160 16 ) ( -64 161 16 ) terrain/trench_broom/big_cobble_stone 0 0 0 1 1
+( -64 160 64 ) ( -64 160 65 ) ( -65 160 64 ) terrain/trench_broom/big_cobble_stone 0 0 0 1 1
+( 64 32 32 ) ( 64 32 33 ) ( 64 33 32 ) terrain/trench_broom/big_cobble_stone 0 0 0 1 1
+}
+// brush 3
+{
+( -64 352 64 ) ( -64 353 64 ) ( -64 352 65 ) terrain/trench_broom/bricks 0 0 0 1 1
+( 64 224 32 ) ( 63 224 32 ) ( 64 224 33 ) terrain/trench_broom/bricks 0 0 0 1 1
+( 64 224 -16 ) ( 64 225 -16 ) ( 63 224 -16 ) terrain/trench_broom/bricks 0 0 0 1 1
+( -64 352 16 ) ( -65 352 16 ) ( -64 353 16 ) terrain/trench_broom/bricks 0 0 0 1 1
+( -64 352 64 ) ( -64 352 65 ) ( -65 352 64 ) terrain/trench_broom/bricks 0 0 0 1 1
+( 64 224 32 ) ( 64 224 33 ) ( 64 225 32 ) terrain/trench_broom/bricks 0 0 0 1 1
+}
+// brush 4
+{
+( 128 -224 64 ) ( 128 -223 64 ) ( 128 -224 65 ) terrain/trench_broom/bricks_brown 0 0 0 1 1
+( 256 -352 32 ) ( 255 -352 32 ) ( 256 -352 33 ) terrain/trench_broom/bricks_brown 0 0 0 1 1
+( 256 -352 -16 ) ( 256 -351 -16 ) ( 255 -352 -16 ) terrain/trench_broom/bricks_brown 0 0 0 1 1
+( 128 -224 16 ) ( 127 -224 16 ) ( 128 -223 16 ) terrain/trench_broom/bricks_brown 0 0 0 1 1
+( 128 -224 64 ) ( 128 -224 65 ) ( 127 -224 64 ) terrain/trench_broom/bricks_brown 0 0 0 1 1
+( 256 -352 32 ) ( 256 -352 33 ) ( 256 -351 32 ) terrain/trench_broom/bricks_brown 0 0 0 1 1
+}
+// brush 5
+{
+( 128 -32 64 ) ( 128 -31 64 ) ( 128 -32 65 ) terrain/trench_broom/bricks_stone 0 0 0 1 1
+( 256 -160 32 ) ( 255 -160 32 ) ( 256 -160 33 ) terrain/trench_broom/bricks_stone 0 0 0 1 1
+( 256 -160 -16 ) ( 256 -159 -16 ) ( 255 -160 -16 ) terrain/trench_broom/bricks_stone 0 0 0 1 1
+( 128 -32 16 ) ( 127 -32 16 ) ( 128 -31 16 ) terrain/trench_broom/bricks_stone 0 0 0 1 1
+( 128 -32 64 ) ( 128 -32 65 ) ( 127 -32 64 ) terrain/trench_broom/bricks_stone 0 0 0 1 1
+( 256 -160 32 ) ( 256 -160 33 ) ( 256 -159 32 ) terrain/trench_broom/bricks_stone 0 0 0 1 1
+}
+// brush 6
+{
+( 128 160 64 ) ( 128 161 64 ) ( 128 160 65 ) terrain/trench_broom/checker_board 0 0 0 1 1
+( 256 32 32 ) ( 255 32 32 ) ( 256 32 33 ) terrain/trench_broom/checker_board 0 0 0 1 1
+( 256 32 -16 ) ( 256 33 -16 ) ( 255 32 -16 ) terrain/trench_broom/checker_board 0 0 0 1 1
+( 128 160 16 ) ( 127 160 16 ) ( 128 161 16 ) terrain/trench_broom/checker_board 0 0 0 1 1
+( 128 160 64 ) ( 128 160 65 ) ( 127 160 64 ) terrain/trench_broom/checker_board 0 0 0 1 1
+( 256 32 32 ) ( 256 32 33 ) ( 256 33 32 ) terrain/trench_broom/checker_board 0 0 0 1 1
+}
+// brush 7
+{
+( 128 352 64 ) ( 128 353 64 ) ( 128 352 65 ) terrain/trench_broom/concrete 0 0 0 1 1
+( 256 224 32 ) ( 255 224 32 ) ( 256 224 33 ) terrain/trench_broom/concrete 0 0 0 1 1
+( 256 224 -16 ) ( 256 225 -16 ) ( 255 224 -16 ) terrain/trench_broom/concrete 0 0 0 1 1
+( 128 352 16 ) ( 127 352 16 ) ( 128 353 16 ) terrain/trench_broom/concrete 0 0 0 1 1
+( 128 352 64 ) ( 128 352 65 ) ( 127 352 64 ) terrain/trench_broom/concrete 0 0 0 1 1
+( 256 224 32 ) ( 256 224 33 ) ( 256 225 32 ) terrain/trench_broom/concrete 0 0 0 1 1
+}
+// brush 8
+{
+( 320 352 64 ) ( 320 353 64 ) ( 320 352 65 ) terrain/trench_broom/key_metal_blue 0 0 0 1 1
+( 448 224 32 ) ( 447 224 32 ) ( 448 224 33 ) terrain/trench_broom/key_metal_blue 0 0 0 1 1
+( 448 224 -16 ) ( 448 225 -16 ) ( 447 224 -16 ) terrain/trench_broom/key_metal_blue 0 0 0 1 1
+( 320 352 16 ) ( 319 352 16 ) ( 320 353 16 ) terrain/trench_broom/key_metal_blue 0 0 0 1 1
+( 320 352 64 ) ( 320 352 65 ) ( 319 352 64 ) terrain/trench_broom/key_metal_blue 0 0 0 1 1
+( 448 224 32 ) ( 448 224 33 ) ( 448 225 32 ) terrain/trench_broom/key_metal_blue 0 0 0 1 1
+}
+// brush 9
+{
+( 320 -224 64 ) ( 320 -223 64 ) ( 320 -224 65 ) terrain/trench_broom/dirt 0 0 0 1 1
+( 448 -352 32 ) ( 447 -352 32 ) ( 448 -352 33 ) terrain/trench_broom/dirt 0 0 0 1 1
+( 448 -352 -16 ) ( 448 -351 -16 ) ( 447 -352 -16 ) terrain/trench_broom/dirt 0 0 0 1 1
+( 320 -224 16 ) ( 319 -224 16 ) ( 320 -223 16 ) terrain/trench_broom/dirt 0 0 0 1 1
+( 320 -224 64 ) ( 320 -224 65 ) ( 319 -224 64 ) terrain/trench_broom/dirt 0 0 0 1 1
+( 448 -352 32 ) ( 448 -352 33 ) ( 448 -351 32 ) terrain/trench_broom/dirt 0 0 0 1 1
+}
+// brush 10
+{
+( 320 -32 64 ) ( 320 -31 64 ) ( 320 -32 65 ) terrain/trench_broom/drywall 0 0 0 1 1
+( 448 -160 32 ) ( 447 -160 32 ) ( 448 -160 33 ) terrain/trench_broom/drywall 0 0 0 1 1
+( 448 -160 -16 ) ( 448 -159 -16 ) ( 447 -160 -16 ) terrain/trench_broom/drywall 0 0 0 1 1
+( 320 -32 16 ) ( 319 -32 16 ) ( 320 -31 16 ) terrain/trench_broom/drywall 0 0 0 1 1
+( 320 -32 64 ) ( 320 -32 65 ) ( 319 -32 64 ) terrain/trench_broom/drywall 0 0 0 1 1
+( 448 -160 32 ) ( 448 -160 33 ) ( 448 -159 32 ) terrain/trench_broom/drywall 0 0 0 1 1
+}
+// brush 11
+{
+( 320 160 64 ) ( 320 161 64 ) ( 320 160 65 ) terrain/trench_broom/glass 0 0 0 1 1
+( 448 32 32 ) ( 447 32 32 ) ( 448 32 33 ) terrain/trench_broom/glass 0 0 0 1 1
+( 448 32 -16 ) ( 448 33 -16 ) ( 447 32 -16 ) terrain/trench_broom/glass 0 0 0 1 1
+( 320 160 16 ) ( 319 160 16 ) ( 320 161 16 ) terrain/trench_broom/glass 0 0 0 1 1
+( 320 160 64 ) ( 320 160 65 ) ( 319 160 64 ) terrain/trench_broom/glass 0 0 0 1 1
+( 448 32 32 ) ( 448 32 33 ) ( 448 33 32 ) terrain/trench_broom/glass 0 0 0 1 1
+}
+// brush 12
+{
+( 512 352 64 ) ( 512 353 64 ) ( 512 352 65 ) terrain/trench_broom/lava_flowing 0 0 0 1 1
+( 640 224 32 ) ( 639 224 32 ) ( 640 224 33 ) terrain/trench_broom/lava_flowing 0 0 0 1 1
+( 640 224 -16 ) ( 640 225 -16 ) ( 639 224 -16 ) terrain/trench_broom/lava_flowing 0 0 0 1 1
+( 512 352 16 ) ( 511 352 16 ) ( 512 353 16 ) terrain/trench_broom/lava_flowing 0 0 0 1 1
+( 512 352 64 ) ( 512 352 65 ) ( 511 352 64 ) terrain/trench_broom/lava_flowing 0 0 0 1 1
+( 640 224 32 ) ( 640 224 33 ) ( 640 225 32 ) terrain/trench_broom/lava_flowing 0 0 0 1 1
+}
+// brush 13
+{
+( 512 -224 64 ) ( 512 -223 64 ) ( 512 -224 65 ) terrain/trench_broom/key_metal_green 0 0 0 1 1
+( 640 -352 32 ) ( 639 -352 32 ) ( 640 -352 33 ) terrain/trench_broom/key_metal_green 0 0 0 1 1
+( 640 -352 -16 ) ( 640 -351 -16 ) ( 639 -352 -16 ) terrain/trench_broom/key_metal_green 0 0 0 1 1
+( 512 -224 16 ) ( 511 -224 16 ) ( 512 -223 16 ) terrain/trench_broom/key_metal_green 0 0 0 1 1
+( 512 -224 64 ) ( 512 -224 65 ) ( 511 -224 64 ) terrain/trench_broom/key_metal_green 0 0 0 1 1
+( 640 -352 32 ) ( 640 -352 33 ) ( 640 -351 32 ) terrain/trench_broom/key_metal_green 0 0 0 1 1
+}
+// brush 14
+{
+( 512 -32 64 ) ( 512 -31 64 ) ( 512 -32 65 ) terrain/trench_broom/key_metal_red 0 0 0 1 1
+( 640 -160 32 ) ( 639 -160 32 ) ( 640 -160 33 ) terrain/trench_broom/key_metal_red 0 0 0 1 1
+( 640 -160 -16 ) ( 640 -159 -16 ) ( 639 -160 -16 ) terrain/trench_broom/key_metal_red 0 0 0 1 1
+( 512 -32 16 ) ( 511 -32 16 ) ( 512 -31 16 ) terrain/trench_broom/key_metal_red 0 0 0 1 1
+( 512 -32 64 ) ( 512 -32 65 ) ( 511 -32 64 ) terrain/trench_broom/key_metal_red 0 0 0 1 1
+( 640 -160 32 ) ( 640 -160 33 ) ( 640 -159 32 ) terrain/trench_broom/key_metal_red 0 0 0 1 1
+}
+// brush 15
+{
+( 512 160 64 ) ( 512 161 64 ) ( 512 160 65 ) terrain/trench_broom/lava 0 0 0 1 1
+( 640 32 32 ) ( 639 32 32 ) ( 640 32 33 ) terrain/trench_broom/lava 0 0 0 1 1
+( 640 32 -16 ) ( 640 33 -16 ) ( 639 32 -16 ) terrain/trench_broom/lava 0 0 0 1 1
+( 512 160 16 ) ( 511 160 16 ) ( 512 161 16 ) terrain/trench_broom/lava 0 0 0 1 1
+( 512 160 64 ) ( 512 160 65 ) ( 511 160 64 ) terrain/trench_broom/lava 0 0 0 1 1
+( 640 32 32 ) ( 640 32 33 ) ( 640 33 32 ) terrain/trench_broom/lava 0 0 0 1 1
+}
+// brush 16
+{
+( 704 -224 64 ) ( 704 -223 64 ) ( 704 -224 65 ) terrain/trench_broom/log 0 0 0 1 1
+( 832 -352 32 ) ( 831 -352 32 ) ( 832 -352 33 ) terrain/trench_broom/log 0 0 0 1 1
+( 832 -352 -16 ) ( 832 -351 -16 ) ( 831 -352 -16 ) terrain/trench_broom/log 0 0 0 1 1
+( 704 -224 16 ) ( 703 -224 16 ) ( 704 -223 16 ) terrain/trench_broom/log 0 0 0 1 1
+( 704 -224 64 ) ( 704 -224 65 ) ( 703 -224 64 ) terrain/trench_broom/log 0 0 0 1 1
+( 832 -352 32 ) ( 832 -352 33 ) ( 832 -351 32 ) terrain/trench_broom/log 0 0 0 1 1
+}
+// brush 17
+{
+( 704 -32 64 ) ( 704 -31 64 ) ( 704 -32 65 ) terrain/trench_broom/log_end 0 0 0 1 1
+( 832 -160 32 ) ( 831 -160 32 ) ( 832 -160 33 ) terrain/trench_broom/log_end 0 0 0 1 1
+( 832 -160 -16 ) ( 832 -159 -16 ) ( 831 -160 -16 ) terrain/trench_broom/log_end 0 0 0 1 1
+( 704 -32 16 ) ( 703 -32 16 ) ( 704 -31 16 ) terrain/trench_broom/log_end 0 0 0 1 1
+( 704 -32 64 ) ( 704 -32 65 ) ( 703 -32 64 ) terrain/trench_broom/log_end 0 0 0 1 1
+( 832 -160 32 ) ( 832 -160 33 ) ( 832 -159 32 ) terrain/trench_broom/log_end 0 0 0 1 1
+}
+// brush 18
+{
+( 704 160 64 ) ( 704 161 64 ) ( 704 160 65 ) terrain/trench_broom/metal 0 0 0 1 1
+( 832 32 32 ) ( 831 32 32 ) ( 832 32 33 ) terrain/trench_broom/metal 0 0 0 1 1
+( 832 32 -16 ) ( 832 33 -16 ) ( 831 32 -16 ) terrain/trench_broom/metal 0 0 0 1 1
+( 704 160 16 ) ( 703 160 16 ) ( 704 161 16 ) terrain/trench_broom/metal 0 0 0 1 1
+( 704 160 64 ) ( 704 160 65 ) ( 703 160 64 ) terrain/trench_broom/metal 0 0 0 1 1
+( 832 32 32 ) ( 832 32 33 ) ( 832 33 32 ) terrain/trench_broom/metal 0 0 0 1 1
+}
+// brush 19
+{
+( 704 352 64 ) ( 704 353 64 ) ( 704 352 65 ) terrain/trench_broom/planks 0 0 0 1 1
+( 832 224 32 ) ( 831 224 32 ) ( 832 224 33 ) terrain/trench_broom/planks 0 0 0 1 1
+( 832 224 -16 ) ( 832 225 -16 ) ( 831 224 -16 ) terrain/trench_broom/planks 0 0 0 1 1
+( 704 352 16 ) ( 703 352 16 ) ( 704 353 16 ) terrain/trench_broom/planks 0 0 0 1 1
+( 704 352 64 ) ( 704 352 65 ) ( 703 352 64 ) terrain/trench_broom/planks 0 0 0 1 1
+( 832 224 32 ) ( 832 224 33 ) ( 832 225 32 ) terrain/trench_broom/planks 0 0 0 1 1
+}
+// brush 20
+{
+( 896 -224 64 ) ( 896 -223 64 ) ( 896 -224 65 ) terrain/trench_broom/rock 0 0 0 1 1
+( 1024 -352 32 ) ( 1023 -352 32 ) ( 1024 -352 33 ) terrain/trench_broom/rock 0 0 0 1 1
+( 1024 -352 -16 ) ( 1024 -351 -16 ) ( 1023 -352 -16 ) terrain/trench_broom/rock 0 0 0 1 1
+( 896 -224 16 ) ( 895 -224 16 ) ( 896 -223 16 ) terrain/trench_broom/rock 0 0 0 1 1
+( 896 -224 64 ) ( 896 -224 65 ) ( 895 -224 64 ) terrain/trench_broom/rock 0 0 0 1 1
+( 1024 -352 32 ) ( 1024 -352 33 ) ( 1024 -351 32 ) terrain/trench_broom/rock 0 0 0 1 1
+}
+// brush 21
+{
+( 896 -32 64 ) ( 896 -31 64 ) ( 896 -32 65 ) terrain/trench_broom/shutter_door 0 0 0 1 1
+( 1024 -160 32 ) ( 1023 -160 32 ) ( 1024 -160 33 ) terrain/trench_broom/shutter_door 0 0 0 1 1
+( 1024 -160 -16 ) ( 1024 -159 -16 ) ( 1023 -160 -16 ) terrain/trench_broom/shutter_door 0 0 0 1 1
+( 896 -32 16 ) ( 895 -32 16 ) ( 896 -31 16 ) terrain/trench_broom/shutter_door 0 0 0 1 1
+( 896 -32 64 ) ( 896 -32 65 ) ( 895 -32 64 ) terrain/trench_broom/shutter_door 0 0 0 1 1
+( 1024 -160 32 ) ( 1024 -160 33 ) ( 1024 -159 32 ) terrain/trench_broom/shutter_door 0 0 0 1 1
+}
+}

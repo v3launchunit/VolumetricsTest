@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://tlrvdvva8pj7"]
+
+[ext_resource type="PackedScene" uid="uid://c356m28y5sg6h" path="res://bullets/player/projectile/rockets/mini_rocket.tscn" id="1_agav0"]
+[ext_resource type="Script" path="res://scripts/self_destructor.gd" id="1_xx2aq"]
+
+[node name="Node3D" type="Node3D"]
+script = ExtResource("1_xx2aq")
+
+[node name="MiniRocket" parent="." instance=ExtResource("1_agav0")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -0.15, 0.15, -0.75)
+
+[node name="MiniRocket2" parent="." instance=ExtResource("1_agav0")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0.15, 0.15, -0.75)
+
+[node name="MiniRocket3" parent="." instance=ExtResource("1_agav0")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -0.15, -0.15, -0.75)
+
+[node name="MiniRocket4" parent="." instance=ExtResource("1_agav0")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0.15, -0.15, -0.75)

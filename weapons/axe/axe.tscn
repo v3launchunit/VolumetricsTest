@@ -1,0 +1,114 @@
+[gd_scene load_steps=18 format=3 uid="uid://bjpo451a0eupa"]
+
+[ext_resource type="Material" uid="uid://deiwjwa2emqli" path="res://weapons/axe/axe_mat.tres" id="1_qblvp"]
+[ext_resource type="ArrayMesh" uid="uid://cdgo2jvrkn5bc" path="res://weapons/axe/axe.obj" id="1_sq7xt"]
+[ext_resource type="AnimationLibrary" uid="uid://b7bfeeqv2plqj" path="res://weapons/axe/axe_anims.res" id="3_t18wh"]
+[ext_resource type="Script" path="res://weapons/weapon_double_barrel.gd" id="5_fkvwm"]
+[ext_resource type="PackedScene" uid="uid://chdnpriqcxbgj" path="res://bullets/player/hitscan/axe_scan.tscn" id="6_jc7bq"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_aiqnh"]
+animation = &"axe_anims/axe_alt_swing"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_062bb"]
+animation = &"axe_anims/axe_alt_idle"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ikk8f"]
+animation = &"axe_anims/axe_deploy"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_a63jw"]
+animation = &"axe_anims/axe_swing"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_r3rf8"]
+animation = &"axe_anims/axe_idle"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_mfm4b"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_3p3cv"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_60alo"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_n2tkb"]
+xfade_time = 0.1
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_scqc2"]
+xfade_time = 0.1
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_dgwwc"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_o311l"]
+states/alt_firing/node = SubResource("AnimationNodeAnimation_aiqnh")
+states/alt_firing/position = Vector2(471.555, 200)
+states/alt_idle/node = SubResource("AnimationNodeAnimation_062bb")
+states/alt_idle/position = Vector2(624.592, 100)
+states/deploy/node = SubResource("AnimationNodeAnimation_ikk8f")
+states/deploy/position = Vector2(356.333, 100.444)
+states/firing/node = SubResource("AnimationNodeAnimation_a63jw")
+states/firing/position = Vector2(624.333, 199.111)
+states/idle/node = SubResource("AnimationNodeAnimation_r3rf8")
+states/idle/position = Vector2(472.333, 100)
+transitions = ["Start", "deploy", SubResource("AnimationNodeStateMachineTransition_mfm4b"), "deploy", "idle", SubResource("AnimationNodeStateMachineTransition_3p3cv"), "alt_firing", "idle", SubResource("AnimationNodeStateMachineTransition_60alo"), "firing", "alt_firing", SubResource("AnimationNodeStateMachineTransition_n2tkb"), "alt_firing", "firing", SubResource("AnimationNodeStateMachineTransition_scqc2"), "firing", "alt_idle", SubResource("AnimationNodeStateMachineTransition_dgwwc")]
+graph_offset = Vector2(-136, 58)
+
+[node name="Axe" type="Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.25, -0.35)
+
+[node name="Axe" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.499978, -0.866038, 0, 0.866038, 0.499978, 0, 0, 0, 1, -0.15, 0.00904285, 0)
+layers = 4
+material_override = ExtResource("1_qblvp")
+cast_shadow = 0
+mesh = ExtResource("1_sq7xt")
+script = ExtResource("5_fkvwm")
+bullet = ExtResource("6_jc7bq")
+shot_cooldown = 0.4
+cam_recoil = -0.261799
+
+[node name="Spawner" type="Marker3D" parent="Axe"]
+
+[node name="AltSpawner" type="Marker3D" parent="Axe"]
+
+[node name="AnimationTree" type="AnimationTree" parent="Axe"]
+root_node = NodePath(".")
+tree_root = SubResource("AnimationNodeStateMachine_o311l")
+anim_player = NodePath("../../AnimationPlayer")
+parameters/current_length = 2.0
+parameters/current_position = 0.808776
+parameters/current_delta = 0.142568
+parameters/End/current_length = null
+parameters/End/current_position = null
+parameters/End/current_delta = null
+parameters/Start/current_length = 0.0
+parameters/Start/current_position = 0.0
+parameters/Start/current_delta = 0.0
+parameters/alt_firing/current_length = null
+parameters/alt_firing/current_position = null
+parameters/alt_firing/current_delta = null
+parameters/alt_idle/current_length = null
+parameters/alt_idle/current_position = null
+parameters/alt_idle/current_delta = null
+parameters/deploy/current_length = 0.5
+parameters/deploy/current_position = 0.5
+parameters/deploy/current_delta = 0.228172
+parameters/firing/current_length = null
+parameters/firing/current_position = null
+parameters/firing/current_delta = null
+parameters/idle/current_length = 2.0
+parameters/idle/current_position = 0.808776
+parameters/idle/current_delta = 0.142568
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+root_node = NodePath("../Axe/AnimationTree")
+libraries = {
+"axe_anims": ExtResource("3_t18wh")
+}
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+volume_db = -3.0
+bus = &"Weapons"

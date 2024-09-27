@@ -1,0 +1,48 @@
+[gd_resource type="StandardMaterial3D" load_steps=9 format=3 uid="uid://bocds2tb574aw"]
+
+[ext_resource type="Texture2D" uid="uid://da6tgjsheppor" path="res://textures/terrain/custom_hand/bricks_stone/bricks_stone_albedo.png" id="1_wsm7x"]
+[ext_resource type="Texture2D" uid="uid://bsp7irjur0p8a" path="res://textures/terrain/custom_hand/bricks_stone/bricks_stone_detail_mask.png" id="2_s5vea"]
+[ext_resource type="Texture2D" uid="uid://bf2a18h73y0ib" path="res://textures/terrain/custom_hand/bricks_stone/bricks_stone_heights.png" id="3_db80p"]
+[ext_resource type="Texture2D" uid="uid://ck7e7yfc1sdmv" path="res://textures/terrain/custom_hand/bricks_stone/bricks_stone_normals.png" id="4_gv56b"]
+
+[sub_resource type="Gradient" id="Gradient_scykw"]
+interpolation_mode = 1
+offsets = PackedFloat32Array(0, 0.3, 0.7, 1)
+colors = PackedColorArray(0, 0, 0, 1, 0.4, 0.4, 0.4, 1, 0.5, 0.5, 0.5, 1, 0.8, 0.8, 0.8, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_bjvq6"]
+frequency = 0.05
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_jf67e"]
+width = 128
+height = 128
+seamless = true
+seamless_blend_skirt = 0.25
+normalize = false
+color_ramp = SubResource("Gradient_scykw")
+noise = SubResource("FastNoiseLite_bjvq6")
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_essyv"]
+width = 128
+height = 128
+seamless = true
+seamless_blend_skirt = 0.25
+as_normal_map = true
+bump_strength = 32.0
+normalize = false
+noise = SubResource("FastNoiseLite_bjvq6")
+
+[resource]
+albedo_texture = ExtResource("1_wsm7x")
+roughness = 0.75
+normal_enabled = true
+normal_texture = ExtResource("4_gv56b")
+heightmap_scale = 1.25
+heightmap_texture = ExtResource("3_db80p")
+detail_enabled = true
+detail_mask = ExtResource("2_s5vea")
+detail_albedo = SubResource("NoiseTexture2D_jf67e")
+detail_normal = SubResource("NoiseTexture2D_essyv")
+uv1_scale = Vector3(0.0078125, 0.0078125, 0.0078125)
+uv1_world_triplanar = true
+texture_filter = 2

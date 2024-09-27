@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="FuncGodotFGDPointClass" load_steps=3 format=3 uid="uid://clmjt5nvybn4u"]
+
+[ext_resource type="PackedScene" uid="uid://dwm4ecje5avh5" path="res://objects/deco/shipping_containers/shipping_container_20ft_white.tscn" id="1_k0lfm"]
+[ext_resource type="Script" path="res://addons/func_godot/src/fgd/func_godot_fgd_point_class.gd" id="2_5jbla"]
+
+[resource]
+script = ExtResource("2_5jbla")
+scene_file = ExtResource("1_k0lfm")
+apply_rotation_on_map_build = true
+classname = "deco_shipping_container_white"
+description = ""
+func_godot_internal = false
+base_classes = Array[Resource]([])
+class_properties = {}
+class_property_descriptions = {}
+meta_properties = {
+"color": Color(0.8, 0.8, 0.8, 1),
+"size": AABB(-48, -48, -20, 48, 48, 22)
+}
+node_class = ""
+name_property = ""

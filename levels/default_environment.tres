@@ -1,0 +1,20 @@
+[gd_resource type="Environment" load_steps=5 format=3 uid="uid://dl1gdmak2dt30"]
+
+[ext_resource type="Texture2D" uid="uid://cu58hb7h0r68v" path="res://effects/look_up_tables/1d/1d_lut_16_color.png" id="1_kh168"]
+[ext_resource type="Texture2D" uid="uid://dybaimi1b3b85" path="res://effects/glow/lens_dirt/lens_dirt_0.png" id="2_25ra2"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_wgkln"]
+
+[sub_resource type="Sky" id="Sky_udgag"]
+sky_material = SubResource("ProceduralSkyMaterial_wgkln")
+
+[resource]
+background_mode = 2
+sky = SubResource("Sky_udgag")
+glow_blend_mode = 0
+glow_map = ExtResource("2_25ra2")
+volumetric_fog_enabled = true
+volumetric_fog_density = 0.0
+volumetric_fog_ambient_inject = 0.25
+volumetric_fog_temporal_reprojection_enabled = false
+adjustment_color_correction = ExtResource("1_kh168")

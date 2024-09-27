@@ -1,0 +1,22 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://dwke75d2vifj3"
+path="res://.godot/imported/human_base.obj-a05630c3a09359d316dac8916a80f712.mesh"
+
+[deps]
+
+files=["res://.godot/imported/human_base.obj-a05630c3a09359d316dac8916a80f712.mesh"]
+
+source_file="res://models/entities/human_base.obj"
+dest_files=["res://.godot/imported/human_base.obj-a05630c3a09359d316dac8916a80f712.mesh", "res://.godot/imported/human_base.obj-a05630c3a09359d316dac8916a80f712.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
+force_disable_mesh_compression=false

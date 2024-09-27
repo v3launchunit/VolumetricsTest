@@ -1,0 +1,47 @@
+[gd_scene load_steps=7 format=3 uid="uid://8e2mh2q14v3k"]
+
+[ext_resource type="Script" path="res://bullets/bullet.gd" id="1_a4ujm"]
+[ext_resource type="PackedScene" uid="uid://ew75cbfb63v5" path="res://bullets/player/special/lodged_nail.tscn" id="2_ay4r3"]
+[ext_resource type="Material" uid="uid://by4h3hrepyr2o" path="res://bullets/bullet_metal.tres" id="3_dkf47"]
+[ext_resource type="ArrayMesh" uid="uid://d13ytgdp3744o" path="res://models/harpoon.obj" id="4_mt046"]
+[ext_resource type="AudioStream" uid="uid://crtqyq64m3wm1" path="res://audio/streams/ambient/bullet_ambient.wav" id="5_0mrb3"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_h48e4"]
+size = Vector3(0.05, 0.05, 1)
+
+[node name="Harpoon" type="RigidBody3D"]
+collision_layer = 2
+collision_mask = 69
+input_ray_pickable = false
+gravity_scale = 0.0
+lock_rotation = true
+continuous_cd = true
+contact_monitor = true
+max_contacts_reported = 5
+script = ExtResource("1_a4ujm")
+speed = 50.0
+explosion = ExtResource("2_ay4r3")
+sticky = true
+piercer = false
+knockback_force = null
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.5)
+shape = SubResource("BoxShape3D_h48e4")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.25, 0, 1.58933e-08, 0, 0.25, 0, -1.58933e-08, 0, 0.25, 0, 0, 0.5)
+layers = 2
+material_override = ExtResource("3_dkf47")
+cast_shadow = 0
+mesh = ExtResource("4_mt046")
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("5_0mrb3")
+pitch_scale = 1.5
+autoplay = true
+max_distance = 50.0
+bus = &"Combat"
+doppler_tracking = 2
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

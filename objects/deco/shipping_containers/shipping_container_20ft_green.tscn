@@ -1,0 +1,34 @@
+[gd_scene load_steps=6 format=3 uid="uid://dgvbndhf7hrf5"]
+
+[ext_resource type="Shader" path="res://shaders/spatial/psx_pb_aclip.gdshader" id="1_t47tl"]
+[ext_resource type="Texture2D" uid="uid://dwd7xholqdktf" path="res://textures/_pbr/shipping_container/shipping_container_normals.png" id="2_kfjof"]
+[ext_resource type="ArrayMesh" uid="uid://bhaqglfqhubh4" path="res://models/shipping_crate_20ft.obj" id="3_dimu6"]
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_kcxo1"]
+data = PackedVector3Array(-1.25, 1.3, -3, 1.25, 1.3, -3, -1.25, 1.3, 3, -1.25, 1.3, 3, 1.25, 1.3, -3, 1.25, 1.3, 3, 1.25, 1.3, 3, 1.175, 1.195, 3, -1.25, 1.3, 3, -1.25, 1.3, 3, 1.175, 1.195, 3, -1.175, 1.195, 3, -1.25, -1.3, 3, -1.25, 1.3, 3, -1.175, -1.195, 3, -1.175, -1.195, 3, -1.25, 1.3, 3, -1.175, 1.195, 3, -1.25, 1.3, 3, -1.25, -1.3, 3, -1.25, 1.3, -3, -1.25, 1.3, -3, -1.25, -1.3, 3, -1.25, -1.3, -3, 1.25, -1.3, -3, -1.25, -1.3, -3, 1.25, -1.3, 3, 1.25, -1.3, 3, -1.25, -1.3, -3, -1.25, -1.3, 3, 1.25, 1.3, -3, 1.25, -1.3, -3, 1.25, 1.3, 3, 1.25, 1.3, 3, 1.25, -1.3, -3, 1.25, -1.3, 3, 1.25, -1.3, -3, 1.25, 1.3, -3, 1.175, -1.195, -3, 1.175, -1.195, -3, 1.25, 1.3, -3, 1.175, 1.195, -3, 1.25, 1.3, -3, -1.25, 1.3, -3, 1.175, 1.195, -3, 1.175, 1.195, -3, -1.25, 1.3, -3, -1.175, 1.195, -3, -1.175, -1.195, 3, -1.175, 1.195, 3, -1.175, -1.195, -3, -1.175, -1.195, -3, -1.175, 1.195, 3, -1.175, 1.195, -3, 1.175, -1.195, 3, 1.175, -1.195, -3, 1.175, 1.195, 3, 1.175, 1.195, 3, 1.175, -1.195, -3, 1.175, 1.195, -3, -1.175, -1.195, 3, -1.175, -1.195, -3, 1.175, -1.195, 3, 1.175, -1.195, 3, -1.175, -1.195, -3, 1.175, -1.195, -3, -1.175, 1.195, 3, 1.175, 1.195, 3, -1.175, 1.195, -3, -1.175, 1.195, -3, 1.175, 1.195, 3, 1.175, 1.195, -3, 1.25, -1.3, 3, 1.175, -1.195, 3, 1.25, 1.3, 3, 1.25, 1.3, 3, 1.175, -1.195, 3, 1.175, 1.195, 3, -1.25, -1.3, 3, -1.175, -1.195, 3, 1.25, -1.3, 3, 1.25, -1.3, 3, -1.175, -1.195, 3, 1.175, -1.195, 3, -1.25, -1.3, -3, 1.25, -1.3, -3, -1.175, -1.195, -3, -1.175, -1.195, -3, 1.25, -1.3, -3, 1.175, -1.195, -3, -1.25, 1.3, -3, -1.25, -1.3, -3, -1.175, 1.195, -3, -1.175, 1.195, -3, -1.25, -1.3, -3, -1.175, -1.195, -3)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_dwofx"]
+render_priority = 0
+shader = ExtResource("1_t47tl")
+shader_parameter/albedo_col = Color(0, 0.650094, 0.173264, 1)
+shader_parameter/alpha_clip_threshold = 0.5
+shader_parameter/normal_scale = 1.0
+shader_parameter/roughness = 0.5
+shader_parameter/metallic = 1.0
+shader_parameter/specular = 0.5
+shader_parameter/metallic_channel = Vector4(1, 0, 0, 0)
+shader_parameter/uv1_scale = Vector3(1, 1, 1)
+shader_parameter/uv1_offset = Vector3(0, 0, 0)
+shader_parameter/uv2_scale = Vector3(1, 1, 1)
+shader_parameter/uv2_offset = Vector3(0, 0, 0)
+shader_parameter/is_terrain_mat = false
+shader_parameter/normal_tex = ExtResource("2_kfjof")
+
+[node name="ShippingContainer20ft" type="StaticBody3D"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("ConcavePolygonShape3D_kcxo1")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+material_override = SubResource("ShaderMaterial_dwofx")
+mesh = ExtResource("3_dimu6")

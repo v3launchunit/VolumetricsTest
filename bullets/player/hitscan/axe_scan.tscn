@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://chdnpriqcxbgj"]
+
+[ext_resource type="Script" path="res://bullets/hitscan.gd" id="1_lkxar"]
+[ext_resource type="PackedScene" uid="uid://fn1fivb2ndvo" path="res://scenes/effects/impacts/bullet_impact_yellow.tscn" id="2_hq8xu"]
+
+[node name="Hitscan" type="Node3D"]
+script = ExtResource("1_lkxar")
+max_range = 3.0
+damage = 60.0
+explosion = ExtResource("2_hq8xu")

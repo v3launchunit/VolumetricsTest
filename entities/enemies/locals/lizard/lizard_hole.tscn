@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://dfjyubcpppg0g"]
+
+[ext_resource type="Script" path="res://entities/enemies/locals/lizard/lizard_hole.gd" id="1_okl7m"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_djrqj"]
+
+[node name="LizardHole" type="Area3D"]
+collision_mask = 4
+script = ExtResource("1_okl7m")
+
+[node name="NavigationLink3D" type="NavigationLink3D" parent="."]
+bidirectional = false
+end_position = Vector3(0, -1000, 0)
+travel_cost = 0.0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_djrqj")

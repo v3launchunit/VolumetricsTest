@@ -1,0 +1,14 @@
+[remap]
+
+importer="func_godot.map"
+type="Resource"
+uid="uid://cmoycypvem1cs"
+path="res://.godot/imported/caves.map-6c2c72e3ba99c39a85b3c58ddd4ff229.tres"
+
+[deps]
+
+source_file="res://maps/caves.map"
+dest_files=["res://.godot/imported/caves.map-6c2c72e3ba99c39a85b3c58ddd4ff229.tres"]
+
+[params]
+

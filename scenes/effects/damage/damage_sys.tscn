@@ -1,0 +1,68 @@
+[gd_scene load_steps=11 format=3 uid="uid://cqctw8dd0ar4n"]
+
+[ext_resource type="Material" uid="uid://imrpm2psout6" path="res://scenes/effects/blood_mat.tres" id="1_2ot8h"]
+[ext_resource type="Script" path="res://scripts/effects/particle_lifetime.gd" id="1_yi5yf"]
+[ext_resource type="AudioStream" uid="uid://caas1v6nwmctk" path="res://audio/streams/effects/impact/hitreg.wav" id="2_3bk5q"]
+[ext_resource type="Material" uid="uid://b76l7sgenogwq" path="res://scenes/effects/blood_trail_procmat.tres" id="3_jns8m"]
+
+[sub_resource type="Gradient" id="Gradient_yybpk"]
+offsets = PackedFloat32Array(0.8, 0.9)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_avd8r"]
+gradient = SubResource("Gradient_yybpk")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_hobux"]
+particle_flag_align_y = true
+direction = Vector3(0, 1, 0)
+initial_velocity_min = 2.5
+initial_velocity_max = 5.0
+color_ramp = SubResource("GradientTexture1D_avd8r")
+collision_mode = 1
+collision_friction = 0.25
+collision_bounce = 0.5
+sub_emitter_mode = 1
+sub_emitter_frequency = 16.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lrmib"]
+albedo_color = Color(1, 0, 0, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_xi6f7"]
+material = SubResource("StandardMaterial3D_lrmib")
+size = Vector3(0.063, 0.063, 0.063)
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_j0nq4"]
+random_pitch = 1.15
+streams_count = 1
+stream_0/stream = ExtResource("2_3bk5q")
+
+[node name="DamageSys" type="GPUParticles3D"]
+layers = 2
+material_override = ExtResource("1_2ot8h")
+emitting = false
+amount = 3
+sub_emitter = NodePath("BloodSys")
+lifetime = 5.0
+one_shot = true
+explosiveness = 1.0
+collision_base_size = 0.06
+process_material = SubResource("ParticleProcessMaterial_hobux")
+draw_pass_1 = SubResource("BoxMesh_xi6f7")
+script = ExtResource("1_yi5yf")
+
+[node name="BloodSys" type="GPUParticles3D" parent="."]
+layers = 2
+material_override = ExtResource("1_2ot8h")
+emitting = false
+amount = 1024
+lifetime = 3.0
+fixed_fps = 60
+process_material = ExtResource("3_jns8m")
+draw_pass_1 = SubResource("BoxMesh_xi6f7")
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+stream = SubResource("AudioStreamRandomizer_j0nq4")
+pitch_scale = 1.3
+autoplay = true
+bus = &"Combat"
+doppler_tracking = 2

@@ -1,0 +1,25 @@
+[gd_scene load_steps=5 format=3 uid="uid://d3ii75wqf6hrp"]
+
+[ext_resource type="PackedScene" uid="uid://cm53n4on4fdr6" path="res://entities/enemies/locals/lizard/lizard.tscn" id="1_miugi"]
+[ext_resource type="Material" uid="uid://dav7s60uu67ta" path="res://textures/structural/concrete_smooth.tres" id="2_2gmnq"]
+
+[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_ooeyj"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_7hv3o"]
+size = Vector2(64, 64)
+
+[node name="Node3D" type="Node3D"]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+shape = SubResource("WorldBoundaryShape3D_ooeyj")
+
+[node name="Lizard" parent="." instance=ExtResource("1_miugi")]
+
+[node name="Camera3D" type="Camera3D" parent="Lizard"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 15, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+material_override = ExtResource("2_2gmnq")
+mesh = SubResource("PlaneMesh_7hv3o")

@@ -1,0 +1,121 @@
+[gd_scene load_steps=22 format=3 uid="uid://bt72j2kw0f6dm"]
+
+[ext_resource type="Script" path="res://scripts/objects/button.gd" id="1_g1dqr"]
+[ext_resource type="PackedScene" uid="uid://dhcc71k270vgk" path="res://models/objects/lever.glb" id="2_eoldm"]
+[ext_resource type="Texture2D" uid="uid://2gj3tv6stgsr" path="res://objects/interactable/lever/lever_albedo.png" id="3_82ns7"]
+[ext_resource type="Texture2D" uid="uid://crltgslfg1nou" path="res://objects/interactable/lever/lever_emissions.png" id="4_o2sfm"]
+[ext_resource type="Texture2D" uid="uid://c0qe7jq8ss6c4" path="res://objects/interactable/lever/lever_normals.png" id="5_eppt4"]
+[ext_resource type="AudioStream" uid="uid://bmlxxe8maevqb" path="res://audio/streams/click.wav" id="6_4k6bl"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_f8nba"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0qsyh"]
+albedo_texture = ExtResource("3_82ns7")
+roughness = 0.75
+emission_enabled = true
+emission_energy_multiplier = 5.0
+emission_texture = ExtResource("4_o2sfm")
+normal_enabled = true
+normal_texture = ExtResource("5_eppt4")
+texture_filter = 0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fs0u8"]
+albedo_color = Color(0.75, 0.75, 0.75, 1)
+metallic = 1.0
+roughness = 0.25
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_lb3m5"]
+animation = &"off"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_gpvii"]
+animation = &"on"
+
+[sub_resource type="Curve" id="Curve_50ly3"]
+_data = [Vector2(0, 0), 0.0, 1.4, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_kstkh"]
+xfade_time = 0.5
+xfade_curve = SubResource("Curve_50ly3")
+
+[sub_resource type="Curve" id="Curve_0t1rv"]
+_data = [Vector2(0, 0), 0.0, 1.4, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_4jk3f"]
+xfade_time = 0.5
+xfade_curve = SubResource("Curve_0t1rv")
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_10giv"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_72fw2"]
+states/off/node = SubResource("AnimationNodeAnimation_lb3m5")
+states/off/position = Vector2(396, 100.667)
+states/on/node = SubResource("AnimationNodeAnimation_gpvii")
+states/on/position = Vector2(666.667, 101.556)
+transitions = ["off", "on", SubResource("AnimationNodeStateMachineTransition_kstkh"), "on", "off", SubResource("AnimationNodeStateMachineTransition_4jk3f"), "Start", "off", SubResource("AnimationNodeStateMachineTransition_10giv")]
+
+[sub_resource type="Animation" id="Animation_iiyc7"]
+resource_name = "off"
+tracks/0/type = "rotation_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("lever/Switch")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 0.087, 0, 0, 0.996)
+
+[sub_resource type="Animation" id="Animation_m4faq"]
+resource_name = "on"
+tracks/0/type = "rotation_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("lever/Switch")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 0.996, 0, 0, 0.087)
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_bnujt"]
+_data = {
+"off": SubResource("Animation_iiyc7"),
+"on": SubResource("Animation_m4faq")
+}
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_ay0js"]
+random_pitch = 1.25
+streams_count = 1
+stream_0/stream = ExtResource("6_4k6bl")
+
+[node name="Lever" type="Area3D" node_paths=PackedStringArray("targets")]
+collision_layer = 8
+collision_mask = 3
+script = ExtResource("1_g1dqr")
+targets = [NodePath("AnimationTree")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_f8nba")
+
+[node name="lever" parent="." instance=ExtResource("2_eoldm")]
+
+[node name="Base" parent="lever" index="0"]
+material_override = SubResource("StandardMaterial3D_0qsyh")
+
+[node name="Switch" parent="lever" index="1"]
+transform = Transform3D(0.05, 0, 0, 0, 0.0492428, -0.0086688, 0, 0.0086688, 0.0492428, 0, 0, 0.05)
+material_override = SubResource("StandardMaterial3D_fs0u8")
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+tree_root = SubResource("AnimationNodeStateMachine_72fw2")
+anim_player = NodePath("../AnimationPlayer")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_bnujt")
+}
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+stream = SubResource("AudioStreamRandomizer_ay0js")
+bus = &"World"
+
+[editable path="lever"]

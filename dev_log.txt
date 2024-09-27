@@ -1,0 +1,45 @@
+2023/10/28:
+	Created devlog.
+	Added pickups for Boomstick and Big Iron, and correspondingly removed them
+			from the player's starting loadout.
+	Began working on a basic test enemy. It can detect the player and perform attacks.
+
+2023/10/30:
+	Created a basic model for the enemy.
+	Going to work on animating it after school, hopefully.
+	Also tweaked the glowy eyes to look eviler/angrier.
+	This current test enemy is probably going to end up as the Pinkerton.
+	After school:
+		implemented Pinkerton idle animation.
+		
+		[family guy s5e13 10:32]
+
+2023/10/31:
+	More work on animations. Laid out some things in the Bible.
+
+2023/11/04:
+	Created second enemy, the Canary.
+
+2023/11/05:
+	Animation work on Canary.
+
+2023/11/06:
+	Voice work on Pinkerton.
+
+2023/11/08:
+	Added voice lines for the Canary.
+
+2023/11/08:
+	Tweaked Canary lines. Fixed enemy behavior to stop attacking corpses.
+
+2023/11/18:
+	Created Eyeball. Began work on Nailgun.
+
+2023/11/19:
+	Completed Nailgun.
+
+2023/11/22:
+	Started work on Crossbow.
+
+2023/11/14:
+	Created a new enemy.

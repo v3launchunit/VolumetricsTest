@@ -1,0 +1,26 @@
+[remap]
+
+importer="3d_texture"
+type="CompressedTexture3D"
+uid="uid://b163qkrvdrxoj"
+path="res://.godot/imported/neutral.png-05cafda235fa4cbaec2764058103ffef.ctex3d"
+metadata={
+"vram_texture": false
+}
+
+[deps]
+
+source_file="res://effects/look_up_tables/3d/neutral.png"
+dest_files=["res://.godot/imported/neutral.png-05cafda235fa4cbaec2764058103ffef.ctex3d"]
+
+[params]
+
+compress/mode=0
+compress/high_quality=false
+compress/lossy_quality=0.7
+compress/hdr_compression=1
+compress/channel_pack=0
+mipmaps/generate=false
+mipmaps/limit=-1
+slices/horizontal=8
+slices/vertical=8

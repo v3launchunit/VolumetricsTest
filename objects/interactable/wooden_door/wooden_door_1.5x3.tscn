@@ -1,0 +1,30 @@
+[gd_scene load_steps=6 format=3 uid="uid://b5jvcu4x6ggol"]
+
+[ext_resource type="Script" path="res://objects/interactable/wooden_door/door_obj.gd" id="1_etyex"]
+[ext_resource type="ArrayMesh" uid="uid://dgkjk7srhga0r" path="res://objects/interactable/wooden_door/door_1.5x3.obj" id="1_qw62i"]
+[ext_resource type="AudioStream" uid="uid://ql1ep2md8c3u" path="res://audio/streams/effects/door_move_wood.wav" id="3_mfdje"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ibqru"]
+size = Vector3(1.5, 3, 0.2)
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_4bcsw"]
+random_pitch = 1.25
+streams_count = 1
+stream_0/stream = ExtResource("3_mfdje")
+
+[node name="Door" type="Node3D"]
+script = ExtResource("1_etyex")
+
+[node name="Body" type="AnimatableBody3D" parent="."]
+
+[node name="Shape" type="CollisionShape3D" parent="Body"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.75, 0, 0)
+shape = SubResource("BoxShape3D_ibqru")
+
+[node name="Mesh" type="MeshInstance3D" parent="Body"]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, 0, 0)
+mesh = ExtResource("1_qw62i")
+skeleton = NodePath("../..")
+
+[node name="Stream" type="AudioStreamPlayer3D" parent="."]
+stream = SubResource("AudioStreamRandomizer_4bcsw")

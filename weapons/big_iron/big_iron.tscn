@@ -1,0 +1,281 @@
+[gd_scene load_steps=25 format=3 uid="uid://bfxuay7qxu7lj"]
+
+[ext_resource type="ArrayMesh" uid="uid://vfuqffuqwocv" path="res://weapons/big_iron/big_iron.obj" id="1_ampqd"]
+[ext_resource type="Material" uid="uid://nv0jkcw45ofc" path="res://weapons/weapon_metal.tres" id="2_nkeud"]
+[ext_resource type="Script" path="res://weapons/weapon_base.gd" id="2_o12ys"]
+[ext_resource type="Material" uid="uid://hi03f7cjksp1" path="res://weapons/big_iron/big_iron_mat_1.tres" id="3_0ircs"]
+[ext_resource type="ArrayMesh" uid="uid://bblg4t73miejx" path="res://weapons/muzzle_flash_alt.obj" id="3_7l0wc"]
+[ext_resource type="Script" path="res://weapons/scope.gd" id="4_p5y4d"]
+[ext_resource type="PackedScene" uid="uid://cehwd234g5us7" path="res://bullets/player/hitscan/big_iron_bullet.tscn" id="6_lqm6f"]
+[ext_resource type="Material" uid="uid://dq3a5fxspauox" path="res://weapons/muzzle_flash_yellow.tres" id="7_vw85u"]
+[ext_resource type="Script" path="res://weapons/alert_area.gd" id="8_ibv0x"]
+[ext_resource type="AudioStream" uid="uid://cs34y7mvho53h" path="res://audio/streams/weapons/firing/boomstick_fire.wav" id="9_i8lc1"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_32yj2"]
+animation = &"big_iron_deploy"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_th2b6"]
+animation = &"big_iron_fire"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_3yhfp"]
+animation = &"big_iron_idle"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_g8bpy"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_xcnjc"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_owka3"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_75ikx"]
+states/deploy/node = SubResource("AnimationNodeAnimation_32yj2")
+states/deploy/position = Vector2(382.815, 174)
+states/firing/node = SubResource("AnimationNodeAnimation_th2b6")
+states/firing/position = Vector2(545.333, 100.222)
+states/idle/node = SubResource("AnimationNodeAnimation_3yhfp")
+states/idle/position = Vector2(383.259, 100.667)
+transitions = ["deploy", "idle", SubResource("AnimationNodeStateMachineTransition_g8bpy"), "firing", "idle", SubResource("AnimationNodeStateMachineTransition_xcnjc"), "Start", "deploy", SubResource("AnimationNodeStateMachineTransition_owka3")]
+graph_offset = Vector2(-8, 39)
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_kip30"]
+radius = 16.0
+
+[sub_resource type="Animation" id="Animation_4yi83"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AlertRadius:monitoring")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_y0xky"]
+resource_name = "big_iron_deploy"
+step = 0.05
+tracks/0/type = "position_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../BigIron")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 0.35, -0.25, 0, 0.8, 1, 0.35, 0.25, 0, 1, 1, 0, 0, 0)
+tracks/1/type = "rotation_3d"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../BigIron")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = PackedFloat32Array(0, 1, 1, 0, 0, 0, 0.15, 1, 0.707107, 0, 0, 0.707107, 0.3, 1, 0, 0, 0, 1, 0.45, 1, -0.707, 0, 0, 0.707, 0.6, 1, 1, 0, 0, 0, 0.8, 1, 0.707, 0, 0, 0.707, 0.95, 1, -0.087, 0, 0, 0.996, 1, 1, 0, 0, 0, 1)
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Spawner/MuzzleFlash:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_5orhs"]
+random_pitch = 1.25
+streams_count = 1
+stream_0/stream = ExtResource("9_i8lc1")
+
+[sub_resource type="Animation" id="Animation_7x05r"]
+resource_name = "big_iron_fire"
+length = 1.1
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../BigIron/Spawner/MuzzleFlash:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/1/type = "scale_3d"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../BigIron/Spawner/MuzzleFlash")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = PackedFloat32Array(0, 1, 0, 0, 0, 0.05, 1, 3, 3, 3, 0.2, 1, 0, 0, 0)
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../BigIron/Spawner/MuzzleFlash/OmniLight3D:light_energy")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [0.0, 1.0, 0.0]
+}
+tracks/3/type = "position_3d"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("../BigIron")
+tracks/3/interp = 2
+tracks/3/loop_wrap = true
+tracks/3/keys = PackedFloat32Array(0, 1, 0, 0, 0, 0.05, 1, 0, 0, -0.25, 0.25, 1, 0, 0, 0, 0.4, 1, 0.25, 0, 0, 0.95, 1, 0.25, 0, 0, 1.1, 1, 0, 0, 0)
+tracks/4/type = "rotation_3d"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("../BigIron")
+tracks/4/interp = 2
+tracks/4/loop_wrap = true
+tracks/4/keys = PackedFloat32Array(0, 1, 0, 0, 0, 1, 0.05, 1, -0.131, 0, 0, 0.991, 0.25, 1, 0, 0, 0, 1, 0.4, 1, 0.707, 0, 0, 0.707, 0.55, 1, 1, 0, 0, 0, 0.7, 1, -0.707, 0, 0, 0.707, 0.85, 1, 0.131, 0, 0, 0.991, 1.1, 1, 0, 0, 0, 1)
+tracks/5/type = "audio"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("../AudioStreamPlayer")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": SubResource("AudioStreamRandomizer_5orhs")
+}],
+"times": PackedFloat32Array(0)
+}
+tracks/5/use_blend = true
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("AlertRadius:monitoring")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 0.05),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="Animation" id="Animation_3l6t5"]
+resource_name = "big_iron_idle"
+length = 2.0
+loop_mode = 1
+tracks/0/type = "position_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../BigIron")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 0, 0, 0, 1, 1, 0, 0.01, 0, 2, 1, 0, 0, 0)
+tracks/1/type = "rotation_3d"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../BigIron")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = PackedFloat32Array(0, 1, 0, 0, 0, 1)
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_c7bdy"]
+_data = {
+"RESET": SubResource("Animation_4yi83"),
+"big_iron_deploy": SubResource("Animation_y0xky"),
+"big_iron_fire": SubResource("Animation_7x05r"),
+"big_iron_idle": SubResource("Animation_3l6t5")
+}
+
+[node name="BigIron" type="Node3D"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, -0.5, -0.35)
+
+[node name="BigIron" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.00648498, 0)
+layers = 4
+cast_shadow = 0
+mesh = ExtResource("1_ampqd")
+surface_material_override/0 = ExtResource("2_nkeud")
+surface_material_override/1 = ExtResource("3_0ircs")
+surface_material_override/2 = ExtResource("2_nkeud")
+surface_material_override/3 = ExtResource("2_nkeud")
+script = ExtResource("2_o12ys")
+bullet = ExtResource("6_lqm6f")
+shot_cooldown = 1.25
+ammo_type = "big_iron_bullets"
+anti_clip_distance = 1.5
+category = 3
+
+[node name="Spawner" type="Marker3D" parent="BigIron"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0774074, 1.65)
+
+[node name="MuzzleFlash" type="MeshInstance3D" parent="BigIron/Spawner"]
+transform = Transform3D(-1, 0, -1.50996e-07, 0, 1, 0, 1.50996e-07, 0, -1, 4.23193e-06, -0.000249945, 0.000486732)
+visible = false
+layers = 4
+material_override = ExtResource("7_vw85u")
+cast_shadow = 0
+mesh = ExtResource("3_7l0wc")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="BigIron/Spawner/MuzzleFlash"]
+layers = 4
+light_color = Color(1, 1, 0, 1)
+light_energy = 0.0
+shadow_enabled = true
+omni_range = 10.0
+omni_shadow_mode = 0
+
+[node name="AnimationTree" type="AnimationTree" parent="BigIron"]
+tree_root = SubResource("AnimationNodeStateMachine_75ikx")
+anim_player = NodePath("../../AnimationPlayer")
+parameters/current_length = 2.0
+parameters/current_position = 1.39965
+parameters/current_delta = 0.0751636
+parameters/End/current_length = null
+parameters/End/current_position = null
+parameters/End/current_delta = null
+parameters/Start/current_length = 0.0
+parameters/Start/current_position = 0.0
+parameters/Start/current_delta = 0.0
+parameters/deploy/current_length = 1.0
+parameters/deploy/current_position = 1.0
+parameters/deploy/current_delta = 0.0221187
+parameters/firing/current_length = null
+parameters/firing/current_position = null
+parameters/firing/current_delta = null
+parameters/idle/current_length = 2.0
+parameters/idle/current_position = 1.39965
+parameters/idle/current_delta = 0.0751636
+
+[node name="Scope" type="Node3D" parent="BigIron"]
+script = ExtResource("4_p5y4d")
+scope_strength = 5.0
+
+[node name="AlertRadius" type="Area3D" parent="BigIron"]
+collision_layer = 2
+collision_mask = 4
+monitoring = false
+script = ExtResource("8_ibv0x")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="BigIron/AlertRadius"]
+shape = SubResource("SphereShape3D_kip30")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+root_node = NodePath("../BigIron")
+libraries = {
+"": SubResource("AnimationLibrary_c7bdy")
+}
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+bus = &"Weapons"

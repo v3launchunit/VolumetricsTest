@@ -1,0 +1,14 @@
+[remap]
+
+importer="func_godot.map"
+type="Resource"
+uid="uid://crdojjimvlea3"
+path="res://.godot/imported/concrete.map-fac8bd102c859ac01763a8ece7bed67b.tres"
+
+[deps]
+
+source_file="res://maps/concrete.map"
+dest_files=["res://.godot/imported/concrete.map-fac8bd102c859ac01763a8ece7bed67b.tres"]
+
+[params]
+

@@ -1,0 +1,48 @@
+[gd_scene load_steps=7 format=3 uid="uid://dhplxq8nkqau3"]
+
+[ext_resource type="Script" path="res://bullets/bullet.gd" id="1_e5fcg"]
+[ext_resource type="PackedScene" uid="uid://ew75cbfb63v5" path="res://bullets/player/special/lodged_nail.tscn" id="2_anp6i"]
+[ext_resource type="ArrayMesh" uid="uid://dnda4sjlmlawu" path="res://bullets/nail.obj" id="2_ia8ek"]
+[ext_resource type="Material" uid="uid://by4h3hrepyr2o" path="res://bullets/bullet_metal.tres" id="3_a5dfc"]
+[ext_resource type="AudioStream" uid="uid://crtqyq64m3wm1" path="res://audio/streams/ambient/bullet_ambient.wav" id="4_i3kve"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_h48e4"]
+size = Vector3(0.05, 0.05, 1)
+
+[node name="Nail" type="RigidBody3D"]
+collision_layer = 2
+collision_mask = 69
+input_ray_pickable = false
+gravity_scale = 0.0
+lock_rotation = true
+continuous_cd = true
+contact_monitor = true
+max_contacts_reported = 5
+script = ExtResource("1_e5fcg")
+speed = 50.0
+player_damage_multiplier = null
+explosion = ExtResource("2_anp6i")
+sticky = true
+piercer = false
+knockback_force = null
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.5)
+shape = SubResource("BoxShape3D_h48e4")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(-1, 0, -5.24537e-07, 0, 1, 0, 8.74228e-08, 0, -6, 0, 0, 1)
+layers = 2
+material_override = ExtResource("3_a5dfc")
+cast_shadow = 0
+mesh = ExtResource("2_ia8ek")
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("4_i3kve")
+pitch_scale = 1.5
+autoplay = true
+max_distance = 50.0
+bus = &"Combat"
+doppler_tracking = 2
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

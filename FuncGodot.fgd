@@ -1,0 +1,255 @@
+@BaseClass color(204 204 204) size(-8 -8 -8, 8 8 8) base(fun_entity_base) = enemy_base
+[
+	detect_mode(choices) : "" : 0 = 
+	[
+		0 : "Sight: default, Sound: default"
+		6 : "Sight: default, Sound: off"
+		3 : "Sight: default, Sound: on"
+		2 : "Sight: off, Sound: default"
+		8 : "Sight: off, Sound: off"
+		5 : "Sight: off, Sound: on"
+		1 : "Sight: on, Sound: default"
+		7 : "Sight: on, Sound: off"
+		4 : "Sight: on, Sound: on"
+	]
+	tripwire_group(string) : "" : "none"
+]
+
+@BaseClass color(204 204 204) size(-8 -8 -8, 8 8 8) = fun_entity_base
+[
+	fun_expression(string) : "" : "0 <= x <= 1000"
+]
+
+@BaseClass color(204 204 204) size(-8 -8 -8, 8 8 8) = light_base
+[
+	_color(string) : "" : "255 172 89"
+	energy(float) : "" : "3"
+	range(float) : "" : "15"
+]
+
+@PointClass color(204 204 204) size(-8 -8 -24, 8 8 8) = deco_chain : "deco_chain" []
+
+@PointClass color(118 78 55) size(-8 -8 -8, 8 8 8) = deco_crate_wooden : "deco_crate_wooden" []
+
+@PointClass color(204 204 204) size(-8 -8 -24, 8 8 8) = deco_world_effect : "deco_world_effect" 
+[
+	effect(string) : "" : ""
+]
+
+@PointClass color(204 204 204) size(-8 -8 -16, 8 8 16) base(enemy_base) = enemy_canary : "enemy_canary" []
+
+@PointClass color(204 204 204) size(-8 -8 -8, 8 8 8) base(enemy_base) = enemy_eepy_lizard : "enemy_eepy_lizard" []
+
+@PointClass color(204 204 204) size(-8 -8 -8, 8 8 8) base(enemy_base) = enemy_enforcer : "enemy_enforcer" []
+
+@PointClass color(204 204 204) size(-8 -8 -8, 8 8 8) base(enemy_base) = enemy_eyeball : "enemy_eyeball" []
+
+@PointClass color(204 204 204) size(-8 -8 -8, 8 8 8) base(enemy_base) = enemy_lizard : "enemy_lizard" []
+
+@PointClass color(204 204 204) size(-8 -8 -16, 8 8 16) base(enemy_base) = enemy_pinkerton : "enemy_pinkerton" []
+
+@PointClass color(204 204 204) size(-8 -8 -8, 8 8 8) base(enemy_base) = enemy_rocketeer : "enemy_rocketeer" []
+
+@PointClass color(204 204 204) size(-8 -8 -8, 8 8 8) base(enemy_base) = enemy_soldier : "enemy_soldier" []
+
+@PointClass color(204 204 204) size(-8 -8 -8, 8 8 8) = triggerable_ambush : "triggerable_ambush" 
+[
+	ambusher(string) : "" : "pink"
+	group(string) : "" : "none"
+]
+
+@PointClass color(204 204 204) size(-8 -8 -8, 8 8 8) = interactable_lever : "interactable_lever" 
+[
+	cooldown(float) : "" : "-1"
+	group(string) : "" : "none"
+	pull_alert(string) : "" : ""
+	pull_tooltip(string) : "" : "lever.pull"
+	unpull_alert(string) : "" : ""
+	unpull_tooltip(string) : "" : "lever.unpull"
+]
+
+@PointClass color(204 204 204) size(-8 -8 -8, 8 8 8) = interactable_sequencer : "interactable_sequencer" 
+[
+	completion_alert(string) : "" : "sequence.complete"
+	countdown_alert(string) : "" : "sequence.countdown"
+	in_count(integer) : "" : 2
+	in_group(string) : "" : "none"
+	out_group(string) : "" : "none"
+]
+
+@PointClass color(204 204 204) size(-8 -8 -8, 8 8 8) base(light_base) = light_lamppost : "light_lamppost" []
+
+@PointClass color(204 204 204) size(-8 -8 -8, 8 8 8) base(light_base) = light_lamp_big : "light_lamp_big" []
+
+@PointClass color(204 204 204) size(-8 -8 -8, 8 8 8) base(light_base) = light_lamp : "light_lamp" []
+
+@PointClass color(204 204 204) size(-8 -8 -8, 8 8 8) base(light_base) = light_point : "light_point" []
+
+@PointClass color(204 204 0) size(-8 -8 -8, 8 8 8) base(light_base) = light_torch : "light_torch" 
+[
+	_color(string) : "" : "255 128 0"
+	energy(float) : "" : "1"
+	pitch_angle(float) : "" : "45"
+	range(float) : "" : "10"
+]
+
+@PointClass color(204 204 204) size(-8 -8 -8, 8 8 8) base(light_base) = light_tube : "light_tube" []
+
+@PointClass color(204 204 204) size(-8 -8 -8, 8 8 8) = ammo_akm_mag_pickup : "ammo_akm_mag_pickup" []
+
+@PointClass color(204 204 204) size(-8 -8 -8, 8 8 8) = ammo_big_cell_pickup : "ammo_big_cell_pickup" []
+
+@PointClass color(204 204 204) size(-8 -8 -8, 8 8 8) = ammo_big_iron_bullet_pickup : "ammo_big_iron_bullet_pickup" []
+
+@PointClass color(204 204 204) size(-8 -8 -8, 8 8 8) = ammo_grenade_pickup : "ammo_grenade_pickup" []
+
+@PointClass color(204 204 204) size(-8 -8 -8, 8 8 8) = ammo_nail_box_pickup : "ammo_nail_box_pickup" []
+
+@PointClass color(204 204 204) size(-8 -8 -8, 8 8 8) = ammo_nail_pickup : "ammo_nail_pickup" []
+
+@PointClass color(204 204 204) size(-8 -8 -8, 8 8 8) = ammo_shell_box_pickup : "ammo_shell_box_pickup" []
+
+@PointClass color(204 204 204) size(-8 -8 -8, 8 8 8) = ammo_shell_pickup : "ammo_shell_pickup" []
+
+@PointClass color(204 204 204) size(-8 -8 -8, 8 8 8) = ammo_small_cell_pickup : "ammo_small_cell_pickup" []
+
+@PointClass color(204 204 204) size(-8 -8 -8, 8 8 8) = armor_bonus_pickup : "armor_bonus_pickup" []
+
+@PointClass color(204 204 204) size(-8 -8 -8, 8 8 8) = health_bonus_pickup : "health_bonus_pickup" []
+
+@PointClass color(204 204 204) size(-8 -8 -8, 8 8 8) = health_pack_pickup : "health_pack_pickup" []
+
+@PointClass color(204 204 204) size(-8 -8 -8, 8 8 8) = key_blue : "key_blue" []
+
+@PointClass color(204 204 204) size(-8 -8 -8, 8 8 8) = key_green : "key_green" []
+
+@PointClass color(204 204 204) size(-8 -8 -8, 8 8 8) = key_red : "key_red" []
+
+@PointClass color(204 204 204) size(-8 -8 -8, 8 8 8) = powerup_heart : "powerup_heart" []
+
+@PointClass color(204 204 204) size(-8 -8 -8, 8 8 8) = weapon_akm : "weapon_akm" []
+
+@PointClass color(204 204 204) size(-8 -8 -8, 8 8 8) = weapon_big_iron : "weapon_big_iron" []
+
+@PointClass color(204 204 204) size(-8 -8 -8, 8 8 8) = weapon_boomstick : "weapon_boomstick" []
+
+@PointClass color(204 204 204) size(-8 -8 -8, 8 8 8) = weapon_crossbow : "weapon_crossbow" []
+
+@PointClass color(204 204 204) size(-8 -8 -8, 8 8 8) = weapon_hunting_rifle : "weapon_hunting_rifle" []
+
+@PointClass color(204 204 204) size(-8 -8 -8, 8 8 8) = weapon_nailgun : "weapon_nailgun" []
+
+@PointClass color(204 204 204) size(-8 -8 -8, 8 8 8) = weapon_plasma_cannon : "weapon_plasma_cannon" []
+
+@PointClass color(204 204 204) size(-8 -8 -8, 8 8 8) = weapon_rpg : "weapon_rpg" []
+
+@PointClass color(204 204 204) size(-8 -8 -8, 8 8 8) = area_ref_probe : "area_ref_probe" 
+[
+	box_project(integer) : "" : 1
+	interior(integer) : "" : 1
+	max_distance(float) : "" : "64"
+	origin_offset(string) : "" : "0 0 0"
+	reflect_shadows(integer) : "" : 1
+	size(string) : "" : "20 20 20"
+]
+
+@SolidClass color(204 204 204) = area_hazard : "area_hazard" 
+[
+	damage_type(choices) : "" : "GENERIC" = 
+	[
+		"ELECTRIC" : "Electric"
+		"EXPLOSION" : "Explosion"
+		"FIRE" : "Fire"
+		"GENERIC" : "Generic"
+		"TOXIC" : "Toxic"
+	]
+	dps(float) : "" : "5"
+	player_dps(float) : "" : "5"
+]
+
+@SolidClass color(204 204 204) = area_secret : "area_secret" 
+[
+	group(string) : "" : "none"
+	score_value(integer) : "" : 100
+]
+
+@SolidClass color(204 204 204) = area_trigger : "area_trigger" 
+[
+	group(string) : "" : "none"
+]
+
+@PointClass color(204 204 204) size(-8 -8 -24, 8 8 24) base(enemy_base) = enemy_plasma_droid : "enemy_plasma_droid" []
+
+@PointClass color(204 204 204) size(-16 -16 -16, 16 16 16) = deco_fake_window : "deco_fake_window" 
+[
+	window_light_color(color255) : "" : "0 0 0"
+]
+
+@PointClass color(106 106 106) size(-8 -8 -8, 8 8 8) = deco_crate_metal : "deco_crate_metal" []
+
+@PointClass color(202 202 202) size(-8 -8 -8, 8 8 8) = deco_barrel : "deco_barrel" []
+
+@PointClass color(202 202 202) size(-8 -8 -8, 8 8 8) = deco_barrel_exp : "deco_barrel_exp" []
+
+@PointClass color(202 202 202) size(-8 -8 -8, 8 8 8) = deco_barrel_rad : "deco_barrel_rad" []
+
+@PointClass color(202 202 202) size(-8 -8 -8, 8 8 8) = light_barrel : "light_barrel" []
+
+@SolidClass color(204 204 204) = func_door : "func_door" 
+[
+	closeable(integer) : "" : 0
+	group(string) : "" : "none"
+	nav_link_offset(string) : "" : "0 0 1.5"
+	open_order(string) : "" : "0 0 0"
+	open_pos(string) : "" : "0 2.5 0"
+	open_sound(string) : "" : "metal_open"
+	open_speed(float) : "" : "3"
+	required_key(choices) : "" : -1 = 
+	[
+		-2 : "Cannot be opened manually"
+		-1 : "No key required"
+		2 : "Requires blue key"
+		1 : "Requires green key"
+		0 : "Requires red key"
+	]
+	sound_pos(string) : "" : "0 0 0"
+	tooltip_closed(string) : "" : "open"
+	tooltip_open(string) : "" : "close"
+]
+
+@PointClass color(204 204 204) size(-8 -8 -8, 8 8 8) = func_lever : "func_lever" 
+[
+	cooldown(float) : "" : "-1"
+	group(string) : "" : "none"
+	pull_alert(string) : "" : ""
+	pull_tooltip(string) : "" : "lever.pull"
+	unpull_alert(string) : "" : ""
+	unpull_tooltip(string) : "" : "lever.unpull"
+]
+
+@PointClass color(204 204 204) size(-8 -8 -8, 8 8 8) = func_sequencer : "func_sequencer" 
+[
+	completion_alert(string) : "" : "sequence.complete"
+	countdown_alert(string) : "" : "sequence.countdown"
+	in_count(integer) : "" : 2
+	in_group(string) : "" : "none"
+	out_group(string) : "" : "none"
+]
+
+@PointClass color(204 204 204) size(-8 -8 -8, 8 8 8) = func_ambush : "func_ambush" 
+[
+	ambusher(string) : "" : "pink"
+	group(string) : "" : "none"
+]
+
+@SolidClass color(204 204 204) = func_alerter : "func_alerter" 
+[
+	alert(string) : "" : "chicken"
+]
+
+@SolidClass color(204 204 204) = area_prop_spawner : "area_prop_spawner" []
+
+@SolidClass color(204 204 204) = area_trash_spawner : "area_trash_spawner" 
+[
+	prop_density(float) : "" : "1"
+]

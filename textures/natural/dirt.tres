@@ -1,0 +1,47 @@
+[gd_resource type="StandardMaterial3D" load_steps=6 format=3 uid="uid://byeqdr6er6cvv"]
+
+[sub_resource type="Gradient" id="Gradient_6ane3"]
+interpolation_mode = 1
+offsets = PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.8)
+colors = PackedColorArray(0.24, 0.1448, 0.036, 1, 0.294571, 0.20486, 0.0851334, 1, 0.340527, 0.255438, 0.12651, 1, 0.361676, 0.278713, 0.145551, 1, 0.419456, 0.342305, 0.197574, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_lictq"]
+noise_type = 5
+frequency = 0.0755
+offset = Vector3(40, 35, 0)
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_f7jpv"]
+width = 256
+height = 256
+generate_mipmaps = false
+seamless = true
+seamless_blend_skirt = 0.25
+color_ramp = SubResource("Gradient_6ane3")
+noise = SubResource("FastNoiseLite_lictq")
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_wac71"]
+width = 64
+height = 64
+seamless = true
+seamless_blend_skirt = 1.0
+color_ramp = SubResource("Gradient_6ane3")
+noise = SubResource("FastNoiseLite_lictq")
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_0v0gs"]
+width = 256
+height = 256
+generate_mipmaps = false
+seamless = true
+seamless_blend_skirt = 0.25
+as_normal_map = true
+bump_strength = 16.0
+noise = SubResource("FastNoiseLite_lictq")
+
+[resource]
+albedo_texture = SubResource("NoiseTexture2D_f7jpv")
+roughness = 0.75
+normal_enabled = true
+normal_texture = SubResource("NoiseTexture2D_0v0gs")
+heightmap_texture = SubResource("NoiseTexture2D_wac71")
+uv1_world_triplanar = true
+texture_filter = 0

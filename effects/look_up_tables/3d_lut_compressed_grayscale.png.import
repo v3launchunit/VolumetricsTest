@@ -1,0 +1,26 @@
+[remap]
+
+importer="3d_texture"
+type="CompressedTexture3D"
+uid="uid://c02qiem8xt6ew"
+path="res://.godot/imported/3d_lut_compressed_grayscale.png-082faad6a1deb19ca9abbb064317e8a6.ctex3d"
+metadata={
+"vram_texture": false
+}
+
+[deps]
+
+source_file="res://effects/look_up_tables/3d_lut_compressed_grayscale.png"
+dest_files=["res://.godot/imported/3d_lut_compressed_grayscale.png-082faad6a1deb19ca9abbb064317e8a6.ctex3d"]
+
+[params]
+
+compress/mode=0
+compress/high_quality=false
+compress/lossy_quality=0.7
+compress/hdr_compression=1
+compress/channel_pack=0
+mipmaps/generate=false
+mipmaps/limit=-1
+slices/horizontal=32
+slices/vertical=1

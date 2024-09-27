@@ -1,0 +1,474 @@
+[gd_scene load_steps=48 format=3 uid="uid://dw2d5fbdkdf6f"]
+
+[ext_resource type="Script" path="res://entities/enemies/enemy_base.gd" id="1_hhhfd"]
+[ext_resource type="AudioStream" uid="uid://kvksscy35kso" path="res://audio/streams/voices/canary/detect_moan_1.wav" id="2_tjox4"]
+[ext_resource type="AudioStream" uid="uid://cxmy0py34q134" path="res://audio/streams/voices/canary/detect_moan_2.wav" id="3_3sjub"]
+[ext_resource type="AudioStream" uid="uid://cl44ukycugok" path="res://audio/streams/voices/canary/detect_moan_3.wav" id="4_dut5g"]
+[ext_resource type="AudioStream" uid="uid://ci3c0uultgsgr" path="res://audio/streams/voices/canary/detect_moan_4.wav" id="5_h3on7"]
+[ext_resource type="AudioStream" uid="uid://g7tloh7a7rc8" path="res://audio/streams/voices/canary/release_1.wav" id="6_ofy0l"]
+[ext_resource type="AudioStream" uid="uid://hvj8aonxc7fe" path="res://audio/streams/voices/canary/death_moan_1.wav" id="7_v0hh3"]
+[ext_resource type="AudioStream" uid="uid://byxqomb23gysj" path="res://audio/streams/voices/canary/death_moan_2.wav" id="8_803hd"]
+[ext_resource type="AudioStream" uid="uid://1k3tiy342e76" path="res://audio/streams/voices/canary/death_moan_3.wav" id="9_edxqe"]
+[ext_resource type="AudioStream" uid="uid://dc1es3ux857yw" path="res://audio/streams/voices/wilhelm_scream.ogg" id="10_r1wo5"]
+[ext_resource type="PackedScene" uid="uid://fmof3asd7vir" path="res://models/entities/zombie.glb" id="10_srtgb"]
+[ext_resource type="AnimationLibrary" uid="uid://bfcwcy8o6awrr" path="res://entities/enemies/locals/zombie_anims.res" id="11_bwev3"]
+[ext_resource type="Script" path="res://entities/status.gd" id="12_vljf1"]
+[ext_resource type="PackedScene" uid="uid://bnsepaqu7j4p4" path="res://scenes/pickups/health/health_bonus_pickup.tscn" id="13_unmri"]
+[ext_resource type="PackedScene" uid="uid://b8i1fe0bwht3k" path="res://scenes/pickups/armor/armor_bonus_pickup.tscn" id="14_jjv6v"]
+[ext_resource type="PackedScene" uid="uid://ca7vdrxtn7qj3" path="res://entities/stair_stepper.tscn" id="16_v2wu4"]
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_cyl10"]
+random_pitch = 1.15
+streams_count = 4
+stream_0/stream = ExtResource("2_tjox4")
+stream_0/weight = 1.0
+stream_1/stream = ExtResource("3_3sjub")
+stream_1/weight = 1.0
+stream_2/stream = ExtResource("4_dut5g")
+stream_2/weight = 1.0
+stream_3/stream = ExtResource("5_h3on7")
+stream_3/weight = 1.0
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_bs3u7"]
+random_pitch = 1.15
+streams_count = 4
+stream_0/stream = ExtResource("6_ofy0l")
+stream_0/weight = 1.0
+stream_1/stream = ExtResource("7_v0hh3")
+stream_1/weight = 1.0
+stream_2/stream = ExtResource("8_803hd")
+stream_2/weight = 1.0
+stream_3/stream = ExtResource("9_edxqe")
+stream_3/weight = 1.0
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_hl0u8"]
+playback_mode = 1
+streams_count = 2
+stream_0/stream = SubResource("AudioStreamRandomizer_bs3u7")
+stream_0/weight = 100.0
+stream_1/stream = ExtResource("10_r1wo5")
+stream_1/weight = 0.001
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_bp4ct"]
+resource_local_to_scene = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_t8rvo"]
+albedo_color = Color(1, 0.501961, 0.501961, 1)
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_q1a72"]
+material = SubResource("StandardMaterial3D_t8rvo")
+radial_segments = 8
+rings = 2
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_c7x5q"]
+transparency = 1
+shading_mode = 0
+albedo_color = Color(1, 1, 1, 0.25098)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_t04gt"]
+material = SubResource("StandardMaterial3D_c7x5q")
+bottom_radius = 0.0
+radial_segments = 8
+
+[sub_resource type="Animation" id="Animation_o8lpw"]
+length = 0.001
+tracks/0/type = "rotation_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Canary/Armature/Skeleton3D:Spine.001")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 0, 0, 0, 1)
+tracks/1/type = "rotation_3d"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Canary/Armature/Skeleton3D:Head")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = PackedFloat32Array(0, 1, 0, 0, 0, 1)
+tracks/2/type = "rotation_3d"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Canary/Armature/Skeleton3D:Cylinder.002")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = PackedFloat32Array(0, 1, 0.405237, 0.615788, -0.626376, 0.253458)
+tracks/3/type = "rotation_3d"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("zombie/Armature/Skeleton3D:Spine")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = PackedFloat32Array(0, 1, 0, -0.707107, 0, 0.707107)
+tracks/4/type = "rotation_3d"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("zombie/Armature/Skeleton3D:Spine.001")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = PackedFloat32Array(0, 1, 0, 0, 0, 1)
+tracks/5/type = "rotation_3d"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("zombie/Armature/Skeleton3D:Neck")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = PackedFloat32Array(0, 1, 0, 0, 0, 1)
+tracks/6/type = "rotation_3d"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("zombie/Armature/Skeleton3D:Head")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = PackedFloat32Array(0, 1, 0, 0, 0, 1)
+tracks/7/type = "rotation_3d"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("zombie/Armature/Skeleton3D:Right")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = PackedFloat32Array(0, 1, 0.857969, -2.50254e-07, -1.11133e-07, 0.513702)
+tracks/8/type = "rotation_3d"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("zombie/Armature/Skeleton3D:Right.001")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = PackedFloat32Array(0, 1, 0.4321, -5.6259e-08, -2.93426e-07, 0.901826)
+tracks/9/type = "rotation_3d"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("zombie/Armature/Skeleton3D:Right.002")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = PackedFloat32Array(0, 1, 0.00533787, -2.35573e-08, -4.08353e-09, 0.999986)
+tracks/10/type = "rotation_3d"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("zombie/Armature/Skeleton3D:Right.003")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = PackedFloat32Array(0, 1, 0.0872251, 3.65174e-08, -6.55857e-08, 0.996189)
+tracks/11/type = "rotation_3d"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("zombie/Armature/Skeleton3D:Cylinder.002")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = PackedFloat32Array(0, 1, 0.952809, 0.0131166, 0.30042, 0.0416006)
+tracks/12/type = "rotation_3d"
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/path = NodePath("zombie/Armature/Skeleton3D:Left")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/keys = PackedFloat32Array(0, 1, -0.857969, -2.57908e-07, 1.23917e-07, 0.513702)
+tracks/13/type = "rotation_3d"
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/path = NodePath("zombie/Armature/Skeleton3D:Left.001")
+tracks/13/interp = 1
+tracks/13/loop_wrap = true
+tracks/13/keys = PackedFloat32Array(0, 1, -0.4321, 6.53152e-08, 2.48053e-07, 0.901826)
+tracks/14/type = "rotation_3d"
+tracks/14/imported = false
+tracks/14/enabled = true
+tracks/14/path = NodePath("zombie/Armature/Skeleton3D:Left.002")
+tracks/14/interp = 1
+tracks/14/loop_wrap = true
+tracks/14/keys = PackedFloat32Array(0, 1, -0.00533782, -1.65725e-08, 2.76612e-09, 0.999986)
+tracks/15/type = "rotation_3d"
+tracks/15/imported = false
+tracks/15/enabled = true
+tracks/15/path = NodePath("zombie/Armature/Skeleton3D:Left.003")
+tracks/15/interp = 1
+tracks/15/loop_wrap = true
+tracks/15/keys = PackedFloat32Array(0, 1, -0.0872251, -8.98916e-08, 5.45175e-08, 0.996189)
+tracks/16/type = "rotation_3d"
+tracks/16/imported = false
+tracks/16/enabled = true
+tracks/16/path = NodePath("zombie/Armature/Skeleton3D:LeftLeg")
+tracks/16/interp = 1
+tracks/16/loop_wrap = true
+tracks/16/keys = PackedFloat32Array(0, 1, -0.706586, -0.0271363, -0.706586, 0.0271363)
+tracks/17/type = "rotation_3d"
+tracks/17/imported = false
+tracks/17/enabled = true
+tracks/17/path = NodePath("zombie/Armature/Skeleton3D:LeftLeg.001")
+tracks/17/interp = 1
+tracks/17/loop_wrap = true
+tracks/17/keys = PackedFloat32Array(0, 1, -0.0383765, 1.76396e-08, 2.72799e-09, 0.999263)
+tracks/18/type = "rotation_3d"
+tracks/18/imported = false
+tracks/18/enabled = true
+tracks/18/path = NodePath("zombie/Armature/Skeleton3D:LeftLeg.002")
+tracks/18/interp = 1
+tracks/18/loop_wrap = true
+tracks/18/keys = PackedFloat32Array(0, 1, 0.0824805, 1.47129e-08, 1.21768e-09, 0.996593)
+tracks/19/type = "rotation_3d"
+tracks/19/imported = false
+tracks/19/enabled = true
+tracks/19/path = NodePath("zombie/Armature/Skeleton3D:RightLeg")
+tracks/19/interp = 1
+tracks/19/loop_wrap = true
+tracks/19/keys = PackedFloat32Array(0, 1, 0.706586, -0.0271363, 0.706586, 0.0271363)
+tracks/20/type = "rotation_3d"
+tracks/20/imported = false
+tracks/20/enabled = true
+tracks/20/path = NodePath("zombie/Armature/Skeleton3D:RightLeg.001")
+tracks/20/interp = 1
+tracks/20/loop_wrap = true
+tracks/20/keys = PackedFloat32Array(0, 1, 0.0383765, 1.93266e-07, 3.40483e-09, 0.999263)
+tracks/21/type = "rotation_3d"
+tracks/21/imported = false
+tracks/21/enabled = true
+tracks/21/path = NodePath("zombie/Armature/Skeleton3D:RightLeg.002")
+tracks/21/interp = 1
+tracks/21/loop_wrap = true
+tracks/21/keys = PackedFloat32Array(0, 1, -0.0824806, -6.65001e-08, -1.41612e-08, 0.996593)
+tracks/22/type = "value"
+tracks/22/imported = false
+tracks/22/enabled = true
+tracks/22/path = NodePath("zombie:position")
+tracks/22/interp = 1
+tracks/22/loop_wrap = true
+tracks/22/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0.6, 0)]
+}
+tracks/23/type = "value"
+tracks/23/imported = false
+tracks/23/enabled = true
+tracks/23/path = NodePath("zombie:rotation")
+tracks/23/interp = 1
+tracks/23/loop_wrap = true
+tracks/23/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, -3.14159, 0)]
+}
+tracks/24/type = "value"
+tracks/24/imported = false
+tracks/24/enabled = true
+tracks/24/path = NodePath("CollisionShape3D:shape:radius")
+tracks/24/interp = 1
+tracks/24/loop_wrap = true
+tracks/24/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.5]
+}
+tracks/25/type = "value"
+tracks/25/imported = false
+tracks/25/enabled = true
+tracks/25/path = NodePath("CollisionShape3D:shape:height")
+tracks/25/interp = 1
+tracks/25/loop_wrap = true
+tracks/25/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [2.0]
+}
+tracks/26/type = "value"
+tracks/26/imported = false
+tracks/26/enabled = true
+tracks/26/path = NodePath("CollisionShape3D:position")
+tracks/26/interp = 1
+tracks/26/loop_wrap = true
+tracks/26/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_rb0vb"]
+_data = {
+"RESET": SubResource("Animation_o8lpw")
+}
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_nfb3s"]
+animation = &"zombie_anims/zombie_attack"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_whrfc"]
+animation = &"zombie_anims/zombie_death"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_8bms8"]
+animation = &"zombie_anims/zombie_flinch"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_oyciw"]
+animation = &"zombie_anims/zombie_idle"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_imbdi"]
+animation = &"zombie_anims/zombie_move"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_2prg3"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_7oomp"]
+xfade_time = 0.25
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_dbccw"]
+xfade_time = 0.25
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_4xupg"]
+xfade_time = 0.25
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_majfp"]
+xfade_time = 0.25
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_2nn25"]
+xfade_time = 0.25
+switch_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_w5vit"]
+xfade_time = 0.25
+switch_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_se8tw"]
+xfade_time = 0.1
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_bj5l4"]
+xfade_time = 0.1
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_x017w"]
+xfade_time = 0.1
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_goefx"]
+xfade_time = 0.15
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_3fks7"]
+xfade_time = 0.25
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_stoq6"]
+xfade_time = 0.15
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_wpkvg"]
+xfade_time = 0.25
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_mr23i"]
+xfade_time = 0.1
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_l00kp"]
+states/Start/position = Vector2(148, 100.889)
+states/attacking/node = SubResource("AnimationNodeAnimation_nfb3s")
+states/attacking/position = Vector2(306.889, 225)
+states/dead/node = SubResource("AnimationNodeAnimation_whrfc")
+states/dead/position = Vector2(448.093, 17.8766)
+states/flinching/node = SubResource("AnimationNodeAnimation_8bms8")
+states/flinching/position = Vector2(598.261, 224.617)
+states/idle/node = SubResource("AnimationNodeAnimation_oyciw")
+states/idle/position = Vector2(306.947, 100.008)
+states/moving/node = SubResource("AnimationNodeAnimation_imbdi")
+states/moving/position = Vector2(598.57, 100.065)
+transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_2prg3"), "idle", "moving", SubResource("AnimationNodeStateMachineTransition_7oomp"), "moving", "idle", SubResource("AnimationNodeStateMachineTransition_dbccw"), "moving", "attacking", SubResource("AnimationNodeStateMachineTransition_4xupg"), "idle", "attacking", SubResource("AnimationNodeStateMachineTransition_majfp"), "attacking", "moving", SubResource("AnimationNodeStateMachineTransition_2nn25"), "attacking", "idle", SubResource("AnimationNodeStateMachineTransition_w5vit"), "attacking", "dead", SubResource("AnimationNodeStateMachineTransition_se8tw"), "idle", "dead", SubResource("AnimationNodeStateMachineTransition_bj5l4"), "moving", "dead", SubResource("AnimationNodeStateMachineTransition_x017w"), "idle", "flinching", SubResource("AnimationNodeStateMachineTransition_goefx"), "attacking", "flinching", SubResource("AnimationNodeStateMachineTransition_3fks7"), "moving", "flinching", SubResource("AnimationNodeStateMachineTransition_stoq6"), "flinching", "moving", SubResource("AnimationNodeStateMachineTransition_wpkvg"), "flinching", "dead", SubResource("AnimationNodeStateMachineTransition_mr23i")]
+graph_offset = Vector2(-154, -17)
+
+[node name="Zombie" type="CharacterBody3D"]
+collision_layer = 4
+collision_mask = 23
+script = ExtResource("1_hhhfd")
+species = &"zombies"
+speed = 5.0
+knockback_multiplier = 0.8
+sight_line_sweep_speed = 10.0
+detection_stream = SubResource("AudioStreamRandomizer_cyl10")
+attack_range = 64.0
+attack_delay = 0.75
+attack_recovery_time = 0.5
+flinch_chance = 0.35
+flinch_time = 0.25
+death_stream = SubResource("AudioStreamRandomizer_hl0u8")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_bp4ct")
+
+[node name="PlaceholderMesh" type="MeshInstance3D" parent="."]
+visible = false
+layers = 2
+mesh = SubResource("CapsuleMesh_q1a72")
+
+[node name="zombie" parent="." instance=ExtResource("10_srtgb")]
+transform = Transform3D(-1, 0, -2.53518e-06, 0, 1, 0, 2.53518e-06, 0, -1, 0, 0.6, 0)
+
+[node name="Skeleton3D" parent="zombie/Armature" index="0"]
+bones/0/rotation = Quaternion(0, -0.707107, 0, 0.707107)
+bones/4/rotation = Quaternion(0.857969, -2.50254e-07, -1.11133e-07, 0.513702)
+bones/5/rotation = Quaternion(0.4321, -5.6259e-08, -2.93426e-07, 0.901826)
+bones/6/rotation = Quaternion(0.00533787, -2.35573e-08, -4.08353e-09, 0.999986)
+bones/7/rotation = Quaternion(0.0872251, 3.65174e-08, -6.55857e-08, 0.996189)
+bones/8/rotation = Quaternion(0.952809, 0.0131166, 0.30042, 0.0416006)
+bones/9/rotation = Quaternion(-0.857969, -2.57908e-07, 1.23917e-07, 0.513702)
+bones/10/rotation = Quaternion(-0.4321, 6.53152e-08, 2.48053e-07, 0.901826)
+bones/11/rotation = Quaternion(-0.00533782, -1.65725e-08, 2.76612e-09, 0.999986)
+bones/12/rotation = Quaternion(-0.0872251, -8.98916e-08, 5.45175e-08, 0.996189)
+bones/13/rotation = Quaternion(0.706586, 0.0271363, 0.706586, -0.0271363)
+bones/14/rotation = Quaternion(-0.0383765, 1.76396e-08, 2.72799e-09, 0.999263)
+bones/15/rotation = Quaternion(0.0824805, 1.47129e-08, 1.21768e-09, 0.996593)
+bones/16/rotation = Quaternion(0.706586, -0.0271363, 0.706586, 0.0271363)
+bones/17/rotation = Quaternion(0.0383765, 1.93266e-07, 3.40483e-09, 0.999263)
+bones/18/rotation = Quaternion(-0.0824806, -6.65001e-08, -1.41612e-08, 0.996593)
+
+[node name="Cylinder_002" parent="zombie/Armature/Skeleton3D" index="0"]
+transform = Transform3D(0.674616, -0.00772488, -0.738128, 0.190503, 0.967894, 0.163981, 0.713163, -0.25124, 0.654429, -0.348806, -0.881588, 0.213192)
+
+[node name="Spawner" type="Marker3D" parent="zombie/Armature/Skeleton3D/Cylinder_002/Cylinder_002" index="0"]
+transform = Transform3D(0.761305, 0.0456351, -0.646786, -0.0627901, 0.99802, -0.00349065, 0.645346, 0.0432692, 0.762663, 0, 0, 0)
+
+[node name="Cylinder" parent="zombie" index="1"]
+visible = false
+
+[node name="Cylinder_001" parent="zombie" index="2"]
+visible = false
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
+path_desired_distance = 1.5
+target_desired_distance = 3.0
+height = 2.0
+
+[node name="SightLine" type="RayCast3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+target_position = Vector3(0, 0, -16)
+collision_mask = 3
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="SightLine"]
+transform = Transform3D(1, 0, 0, 0, 1.31134e-07, 1, 0, -1, 1.31134e-07, 0, -0.3, -1)
+visible = false
+layers = 2
+mesh = SubResource("CylinderMesh_t04gt")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_rb0vb"),
+"zombie_anims": ExtResource("11_bwev3")
+}
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_rb0vb"),
+"zombie_anims": ExtResource("11_bwev3")
+}
+tree_root = SubResource("AnimationNodeStateMachine_l00kp")
+anim_player = NodePath("../AnimationPlayer")
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+bus = &"Enemies"
+doppler_tracking = 2
+
+[node name="Status" type="Node" parent="."]
+script = ExtResource("12_vljf1")
+max_health = 150.0
+gib_threshold = 100.0
+gibs = "res://scenes/effects/gibs.tscn"
+loot = Array[PackedScene]([ExtResource("13_unmri"), ExtResource("14_jjv6v")])
+
+[node name="StairStepper" parent="." instance=ExtResource("16_v2wu4")]
+
+[connection signal="velocity_computed" from="NavigationAgent3D" to="." method="_on_navigation_agent_3d_velocity_computed"]
+
+[editable path="zombie"]

@@ -1,0 +1,22 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://cxvh7r0207hqv"
+path="res://.godot/imported/pickaxe.obj-d817fee7e1c849426c9df50f4bac10d1.mesh"
+
+[deps]
+
+files=["res://.godot/imported/pickaxe.obj-d817fee7e1c849426c9df50f4bac10d1.mesh"]
+
+source_file="res://entities/enemies/locals/canary/pickaxe.obj"
+dest_files=["res://.godot/imported/pickaxe.obj-d817fee7e1c849426c9df50f4bac10d1.mesh", "res://.godot/imported/pickaxe.obj-d817fee7e1c849426c9df50f4bac10d1.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
+force_disable_mesh_compression=false

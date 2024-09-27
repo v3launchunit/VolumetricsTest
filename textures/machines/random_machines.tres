@@ -1,0 +1,19 @@
+[gd_resource type="StandardMaterial3D" load_steps=5 format=3 uid="uid://b577rn2x77xgw"]
+
+[ext_resource type="Texture2D" uid="uid://cl78lmp1hetuw" path="res://textures/_pbr/random_machines/random_machines_albedo.png" id="1_ftn81"]
+[ext_resource type="Texture2D" uid="uid://ce5mwodgk7tbm" path="res://textures/_pbr/random_machines/random_machines_emissions.png" id="2_28dk2"]
+[ext_resource type="Texture2D" uid="uid://dm00ubtyv0l2g" path="res://textures/_pbr/random_machines/random_machines_orm.png" id="3_s805c"]
+[ext_resource type="Texture2D" uid="uid://c7bri4h3anry8" path="res://textures/_pbr/random_machines/random_machines_normals.png" id="4_elgb8"]
+
+[resource]
+albedo_texture = ExtResource("1_ftn81")
+metallic = 1.0
+metallic_texture = ExtResource("3_s805c")
+roughness_texture = ExtResource("3_s805c")
+roughness_texture_channel = 1
+emission_enabled = true
+emission_energy_multiplier = 2.0
+emission_texture = ExtResource("2_28dk2")
+normal_enabled = true
+normal_texture = ExtResource("4_elgb8")
+texture_filter = 0

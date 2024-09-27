@@ -1,0 +1,231 @@
+[gd_scene load_steps=26 format=3 uid="uid://xpo774l18flk"]
+
+[ext_resource type="ArrayMesh" uid="uid://53jffpg6vhkj" path="res://weapons/akm/akm.obj" id="1_srb21"]
+[ext_resource type="Script" path="res://weapons/weapon_base.gd" id="2_aqwyy"]
+[ext_resource type="Material" uid="uid://b603otl4v7w70" path="res://weapons/akm/akm_mat.tres" id="2_dd7di"]
+[ext_resource type="ArrayMesh" uid="uid://bblg4t73miejx" path="res://weapons/muzzle_flash_alt.obj" id="3_s7ev5"]
+[ext_resource type="Script" path="res://weapons/scope.gd" id="4_uav1m"]
+[ext_resource type="Material" uid="uid://nv0jkcw45ofc" path="res://weapons/weapon_metal.tres" id="5_616k3"]
+[ext_resource type="AnimationLibrary" uid="uid://dvna0xeatmq0y" path="res://weapons/anims.res" id="5_q7x1e"]
+[ext_resource type="PackedScene" uid="uid://cwytbvgvgmk00" path="res://bullets/player/hitscan/akm_bullet.tscn" id="6_15eot"]
+[ext_resource type="AnimationLibrary" uid="uid://pyw3ltt10q24" path="res://weapons/akm/akm_anims.res" id="6_w4nrh"]
+[ext_resource type="Material" uid="uid://dq3a5fxspauox" path="res://weapons/muzzle_flash_yellow.tres" id="7_uc8ir"]
+[ext_resource type="Script" path="res://weapons/alert_area.gd" id="8_ehvva"]
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_2wbku"]
+direction = Vector3(-1, 0, 0)
+spread = 30.0
+flatness = 1.0
+initial_velocity_min = 3.0
+initial_velocity_max = 3.0
+scale_min = 0.5
+scale_max = 0.5
+
+[sub_resource type="Shader" id="Shader_b1bkt"]
+code = "// NOTE: Shader automatically converted from Godot Engine 4.1.1.stable.mono's StandardMaterial3D.
+
+shader_type spatial;
+render_mode blend_mix,depth_draw_opaque,cull_back,diffuse_burley,specular_schlick_ggx;
+uniform vec4 albedo : source_color;
+uniform sampler2D texture_albedo : source_color,filter_nearest,repeat_enable;
+uniform float point_size : hint_range(0,128);
+uniform float roughness : hint_range(0,1);
+uniform sampler2D texture_metallic : hint_default_white,filter_nearest,repeat_enable;
+uniform vec4 metallic_texture_channel;
+uniform sampler2D texture_roughness : hint_roughness_r,filter_nearest,repeat_enable;
+uniform float specular;
+uniform float metallic;
+uniform vec3 uv1_scale;
+uniform vec3 uv1_offset;
+uniform vec3 uv2_scale;
+uniform vec3 uv2_offset;
+
+global uniform float viewmodel_fov;
+
+
+void vertex() {
+	UV=UV*uv1_scale.xy+uv1_offset.xy;
+
+	float onetanfov = 1.0f / tan(0.5f * (viewmodel_fov * PI / 180.0f));
+	float aspect = VIEWPORT_SIZE.x / VIEWPORT_SIZE.y;
+	// modify projection matrix
+	PROJECTION_MATRIX[1][1] = -onetanfov;
+	PROJECTION_MATRIX[0][0] = onetanfov / aspect;
+
+	// draws the viewmodel over everything (disable if you want dof near on viewmodel)
+	POSITION = PROJECTION_MATRIX * MODELVIEW_MATRIX * vec4(VERTEX.xyz, 1.0);
+	POSITION.z = mix(POSITION.z, 0, 0.99);
+}
+
+
+void fragment() {
+	vec2 base_uv = UV;
+	vec4 albedo_tex = texture(texture_albedo,base_uv);
+	ALBEDO = albedo.rgb * albedo_tex.rgb;
+	float metallic_tex = dot(texture(texture_metallic,base_uv),metallic_texture_channel);
+	METALLIC = metallic_tex * metallic;
+	vec4 roughness_texture_channel = vec4(1.0,0.0,0.0,0.0);
+	float roughness_tex = dot(texture(texture_roughness,base_uv),roughness_texture_channel);
+	ROUGHNESS = roughness_tex * roughness;
+	SPECULAR = specular;
+}
+"
+
+[sub_resource type="Gradient" id="Gradient_mqw6d"]
+offsets = PackedFloat32Array(1)
+colors = PackedColorArray(1, 1, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_udjmw"]
+gradient = SubResource("Gradient_mqw6d")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_16l2y"]
+render_priority = 0
+shader = SubResource("Shader_b1bkt")
+shader_parameter/albedo = Color(0.94902, 0.901961, 0.690196, 1)
+shader_parameter/point_size = 1.0
+shader_parameter/roughness = 0.25
+shader_parameter/metallic_texture_channel = Vector4(1, 0, 0, 0)
+shader_parameter/specular = 0.5
+shader_parameter/metallic = 1.0
+shader_parameter/uv1_scale = Vector3(1, 1, 1)
+shader_parameter/uv1_offset = Vector3(0, 0, 0)
+shader_parameter/uv2_scale = Vector3(1, 1, 1)
+shader_parameter/uv2_offset = Vector3(0, 0, 0)
+shader_parameter/texture_metallic = SubResource("GradientTexture1D_udjmw")
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_vf5lo"]
+material = SubResource("ShaderMaterial_16l2y")
+top_radius = 0.05
+bottom_radius = 0.05
+height = 0.175
+radial_segments = 6
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_gw64d"]
+animation = &"akm/akm_deploy"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_l6221"]
+animation = &"akm/akm_fire"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_pquo6"]
+animation = &"akm/akm_idle"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_g4vsb"]
+xfade_time = 0.25
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_bbrhg"]
+xfade_time = 0.25
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_hgofs"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_hbp1m"]
+allow_transition_to_self = true
+states/deploy/node = SubResource("AnimationNodeAnimation_gw64d")
+states/deploy/position = Vector2(200.111, 226.136)
+states/firing/node = SubResource("AnimationNodeAnimation_l6221")
+states/firing/position = Vector2(436.61, 226.675)
+states/idle/node = SubResource("AnimationNodeAnimation_pquo6")
+states/idle/position = Vector2(437.482, 100.222)
+transitions = ["firing", "idle", SubResource("AnimationNodeStateMachineTransition_g4vsb"), "deploy", "idle", SubResource("AnimationNodeStateMachineTransition_bbrhg"), "Start", "deploy", SubResource("AnimationNodeStateMachineTransition_hgofs")]
+graph_offset = Vector2(-83, 64)
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_j17ew"]
+radius = 16.0
+
+[node name="AKM" type="Node3D"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -0.15, -0.5, -0.25)
+
+[node name="AKM" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.00551073, 0)
+layers = 4
+cast_shadow = 0
+mesh = ExtResource("1_srb21")
+surface_material_override/0 = ExtResource("2_dd7di")
+surface_material_override/1 = ExtResource("5_616k3")
+script = ExtResource("2_aqwyy")
+bullet = ExtResource("6_15eot")
+shot_cooldown = 0.08
+spread = 2.5
+ammo_type = "akm_bullets"
+anti_clip_distance = 1.0
+category = 2
+
+[node name="Spawner" type="Marker3D" parent="AKM"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.23, 1.15)
+
+[node name="MuzzleFlash" type="MeshInstance3D" parent="AKM/Spawner"]
+transform = Transform3D(-1, 0, -1.50996e-07, 0, 1, 0, 1.50996e-07, 0, -1, 3.02185e-09, 0, 0.0345659)
+visible = false
+layers = 4
+material_override = ExtResource("7_uc8ir")
+cast_shadow = 0
+mesh = ExtResource("3_s7ev5")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="AKM/Spawner/MuzzleFlash"]
+layers = 4
+light_color = Color(1, 1, 0, 1)
+light_energy = 0.0
+shadow_enabled = true
+omni_range = 10.0
+omni_shadow_mode = 0
+
+[node name="ShellEject" type="GPUParticles3D" parent="AKM"]
+transform = Transform3D(0.866025, -5.85622e-09, -0.5, -0.5, -2.18557e-08, -0.866025, -5.85621e-09, 1, -2.18557e-08, 0, 0.25, 0.25)
+visible = false
+layers = 4
+emitting = false
+amount = 5
+one_shot = true
+fixed_fps = 60
+process_material = SubResource("ParticleProcessMaterial_2wbku")
+draw_pass_1 = SubResource("CylinderMesh_vf5lo")
+
+[node name="AnimationTree" type="AnimationTree" parent="AKM"]
+root_node = NodePath("../..")
+tree_root = SubResource("AnimationNodeStateMachine_hbp1m")
+anim_player = NodePath("../../AnimationPlayer")
+parameters/current_length = 2.0
+parameters/current_position = 0.534101
+parameters/current_delta = 0.0166667
+parameters/End/current_length = null
+parameters/End/current_position = null
+parameters/End/current_delta = null
+parameters/Start/current_length = 0.0
+parameters/Start/current_position = 0.0
+parameters/Start/current_delta = 0.0
+parameters/deploy/current_length = 0.25
+parameters/deploy/current_position = 0.25
+parameters/deploy/current_delta = 0.0277778
+parameters/firing/current_length = null
+parameters/firing/current_position = null
+parameters/firing/current_delta = null
+parameters/idle/current_length = 2.0
+parameters/idle/current_position = 0.534101
+parameters/idle/current_delta = 0.0166667
+
+[node name="Scope" type="Node3D" parent="AKM"]
+script = ExtResource("4_uav1m")
+scope_strength = 2.5
+
+[node name="AlertRadius" type="Area3D" parent="AKM"]
+collision_layer = 2
+collision_mask = 4
+monitoring = false
+script = ExtResource("8_ehvva")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="AKM/AlertRadius"]
+shape = SubResource("SphereShape3D_j17ew")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": ExtResource("5_q7x1e"),
+"akm": ExtResource("6_w4nrh")
+}
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+volume_db = -5.0
+bus = &"Weapons"

@@ -1,0 +1,148 @@
+[gd_scene load_steps=15 format=3 uid="uid://cnhiimq1hl1lc"]
+
+[ext_resource type="Script" path="res://scripts/effects/area_damage.gd" id="1_h5c1g"]
+[ext_resource type="ArrayMesh" uid="uid://cx13p5fo0cmf6" path="res://models/effects/octagon_quad.obj" id="2_up7jf"]
+[ext_resource type="Script" path="res://scripts/effects/lifetime.gd" id="2_xvxap"]
+[ext_resource type="Script" path="res://scripts/auto_play.gd" id="3_430du"]
+[ext_resource type="AudioStream" uid="uid://cnkffwaw5gt4l" path="res://audio/streams/effects/impact/ground_slam_impact.wav" id="5_8eqll"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_wm1a5"]
+height = 0.5
+radius = 5.0
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_ae7ld"]
+height = 1.0
+
+[sub_resource type="Gradient" id="Gradient_f5tuf"]
+interpolation_mode = 2
+offsets = PackedFloat32Array(0.5, 1)
+colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_303r5"]
+gradient = SubResource("Gradient_f5tuf")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(1, 0.5)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_boigp"]
+resource_local_to_scene = true
+transparency = 1
+cull_mode = 2
+shading_mode = 0
+albedo_color = Color(1, 1, 1, 0.12549)
+albedo_texture = SubResource("GradientTexture2D_303r5")
+
+[sub_resource type="Animation" id="Animation_1c6dn"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../Blastwave:material_override:albedo_color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0.12549)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../Blastwave:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_jwqeg"]
+resource_name = "anim"
+length = 0.3
+step = 0.025
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../Blastwave:material_override:albedo_color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0.12549), Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../Blastwave:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(30, 30, 30)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_fpctx"]
+_data = {
+"RESET": SubResource("Animation_1c6dn"),
+"anim": SubResource("Animation_jwqeg")
+}
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_dg5wi"]
+random_pitch = 1.25
+streams_count = 1
+stream_0/stream = ExtResource("5_8eqll")
+
+[node name="SlamWave" type="Node3D"]
+
+[node name="SlamWave" type="Area3D" parent="."]
+collision_mask = 36
+script = ExtResource("1_h5c1g")
+damage = 0.0
+player_damage_override = 0.0
+knockback_force = 0.0
+knockup_force = 15.0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SlamWave"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0)
+shape = SubResource("CylinderShape3D_wm1a5")
+
+[node name="AreaDamage" type="Area3D" parent="SlamWave"]
+script = ExtResource("1_h5c1g")
+player_damage_override = 0.0
+knockback_force = 0.0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SlamWave/AreaDamage"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+shape = SubResource("CylinderShape3D_ae7ld")
+
+[node name="Lifetime" type="Timer" parent="SlamWave"]
+wait_time = 0.1
+script = ExtResource("2_xvxap")
+
+[node name="Blastwave" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0.25, 0)
+material_override = SubResource("StandardMaterial3D_boigp")
+mesh = ExtResource("2_up7jf")
+skeleton = NodePath("../AnimationPlayer")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+root_node = NodePath("../SlamWave")
+libraries = {
+"": SubResource("AnimationLibrary_fpctx")
+}
+script = ExtResource("3_430du")
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+stream = SubResource("AudioStreamRandomizer_dg5wi")
+autoplay = true
+
+[node name="Lifetime" type="Timer" parent="."]
+wait_time = 2.0
+script = ExtResource("2_xvxap")

@@ -1,0 +1,45 @@
+[gd_resource type="ShaderMaterial" load_steps=8 format=3 uid="uid://bujlpnm4nq7jp"]
+
+[ext_resource type="Shader" uid="uid://cvlpxl4yi2313" path="res://shaders/spatial/terrain/terrain_bricks.tres" id="1_exirx"]
+[ext_resource type="Texture2D" uid="uid://dobuk1wr32hlg" path="res://textures/terrain/custom_hand/bricks/bricks_albedo.png" id="1_lo8ig"]
+[ext_resource type="Texture2D" uid="uid://ca1runwpb3teo" path="res://textures/terrain/custom_hand/bricks/bricks_detail_mask.png" id="2_jfqa8"]
+[ext_resource type="Texture2D" uid="uid://d0airnxbjud3t" path="res://textures/terrain/custom_hand/bricks/bricks_normals.png" id="3_p0f4x"]
+
+[sub_resource type="Gradient" id="Gradient_vc2yx"]
+interpolation_mode = 1
+offsets = PackedFloat32Array(0, 0.4, 0.6, 1)
+colors = PackedColorArray(0, 0, 0, 1, 0.335, 0.5, 0.5, 1, 0.870588, 0.74902, 0.74902, 1, 0.9, 0.9, 0.9, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_3bki3"]
+noise_type = 5
+frequency = 0.1
+offset = Vector3(-68.95, 40.25, 0)
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_ecvys"]
+width = 128
+height = 128
+invert = true
+generate_mipmaps = false
+seamless = true
+seamless_blend_skirt = 0.5
+color_ramp = SubResource("Gradient_vc2yx")
+noise = SubResource("FastNoiseLite_3bki3")
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_exirx")
+shader_parameter/albedo = Color(1, 1, 1, 1)
+shader_parameter/point_size = 1.0
+shader_parameter/roughness = 0.75
+shader_parameter/metallic_texture_channel = null
+shader_parameter/specular = 0.5
+shader_parameter/metallic = 0.0
+shader_parameter/normal_scale = 1.0
+shader_parameter/uv1_scale = Vector3(0.0078125, 0.0078125, 0.0078125)
+shader_parameter/uv1_offset = Vector3(0, 0, 0)
+shader_parameter/uv2_scale = Vector3(1, 1, 1)
+shader_parameter/uv2_offset = Vector3(0, 0, 0)
+shader_parameter/texture_albedo = ExtResource("1_lo8ig")
+shader_parameter/texture_normal = ExtResource("3_p0f4x")
+shader_parameter/texture_detail_albedo = SubResource("NoiseTexture2D_ecvys")
+shader_parameter/texture_detail_mask = ExtResource("2_jfqa8")

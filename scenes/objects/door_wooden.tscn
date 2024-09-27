@@ -1,0 +1,246 @@
+[gd_scene load_steps=28 format=3 uid="uid://bmemasxt00ky2"]
+
+[ext_resource type="Script" path="res://scripts/objects/button.gd" id="1_e4t6u"]
+[ext_resource type="Script" path="res://entities/status.gd" id="3_lkcyn"]
+[ext_resource type="PackedScene" uid="uid://cgot11wwdrtbh" path="res://scenes/effects/damage/wood_damage_sys.tscn" id="4_xfysd"]
+[ext_resource type="PackedScene" uid="uid://bynbdpv50o6q2" path="res://scenes/effects/gibs/wood_shards.tscn" id="5_83qgn"]
+[ext_resource type="AudioStream" uid="uid://ql1ep2md8c3u" path="res://audio/streams/effects/door_move_wood.wav" id="5_qtxkj"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_iyjgf"]
+size = Vector3(2, 3, 3)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_o5djt"]
+size = Vector3(2, 3, 0.2)
+
+[sub_resource type="Shader" id="Shader_ljxvj"]
+code = "// NOTE: Shader automatically converted from Godot Engine 4.2.1.stable.mono's StandardMaterial3D.
+
+shader_type spatial;
+render_mode blend_mix,depth_draw_opaque,cull_back,diffuse_burley,specular_schlick_ggx;
+uniform vec4 albedo : source_color;
+uniform sampler2D texture_albedo : source_color,filter_nearest,repeat_enable;
+uniform float point_size : hint_range(0,128);
+uniform float roughness : hint_range(0,1);
+uniform sampler2D texture_metallic : hint_default_white,filter_nearest,repeat_enable;
+uniform vec4 metallic_texture_channel;
+uniform sampler2D texture_roughness : hint_roughness_r,filter_nearest,repeat_enable;
+uniform float specular;
+uniform float metallic;
+uniform sampler2D texture_normal : hint_roughness_normal,filter_nearest,repeat_enable;
+uniform float normal_scale : hint_range(-16,16);
+uniform vec3 uv1_scale;
+uniform vec3 uv1_offset;
+uniform vec3 uv2_scale;
+uniform vec3 uv2_offset;
+
+#include \"res://shaders/includes/psx_inc.gdshaderinc\"
+
+void vertex() {
+	UV=UV*uv1_scale.xy+uv1_offset.xy;
+	POSITION = map_affine(snap_vertex(PROJECTION_MATRIX * MODELVIEW_MATRIX * vec4(VERTEX, 1.0)));
+}
+
+void fragment() {
+	vec2 base_uv = UV;
+	vec4 albedo_tex = texture(texture_albedo,base_uv);
+	ALBEDO = albedo.rgb * albedo_tex.rgb;
+	float metallic_tex = dot(texture(texture_metallic,base_uv),metallic_texture_channel);
+	METALLIC = metallic_tex * metallic;
+	vec4 roughness_texture_channel = vec4(1.0,0.0,0.0,0.0);
+	float roughness_tex = dot(texture(texture_roughness,base_uv),roughness_texture_channel);
+	ROUGHNESS = roughness_tex * roughness;
+	SPECULAR = specular;
+	NORMAL_MAP = texture(texture_normal,base_uv).rgb;
+	NORMAL_MAP_DEPTH = normal_scale;
+}
+"
+
+[sub_resource type="Gradient" id="Gradient_v5jf5"]
+interpolation_mode = 1
+offsets = PackedFloat32Array(0, 0.2, 0.5, 0.7)
+colors = PackedColorArray(0.278431, 0.172549, 0.0470588, 1, 0.341176, 0.207843, 0.0784314, 1, 0.447059, 0.298039, 0.14902, 1, 0.415686, 0.313726, 0.145098, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_q3vr3"]
+frequency = 0.1
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_ti8ho"]
+width = 128
+height = 128
+generate_mipmaps = false
+seamless = true
+seamless_blend_skirt = 1.0
+color_ramp = SubResource("Gradient_v5jf5")
+noise = SubResource("FastNoiseLite_q3vr3")
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_ifyxs"]
+width = 128
+height = 128
+generate_mipmaps = false
+seamless = true
+seamless_blend_skirt = 1.0
+as_normal_map = true
+noise = SubResource("FastNoiseLite_q3vr3")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_71c3f"]
+render_priority = 0
+shader = SubResource("Shader_ljxvj")
+shader_parameter/albedo = Color(1, 1, 1, 1)
+shader_parameter/point_size = 1.0
+shader_parameter/roughness = 0.75
+shader_parameter/metallic_texture_channel = null
+shader_parameter/specular = 0.5
+shader_parameter/metallic = 0.0
+shader_parameter/normal_scale = 1.0
+shader_parameter/uv1_scale = Vector3(1.024, 0.128, 1.024)
+shader_parameter/uv1_offset = Vector3(0, 0, 0)
+shader_parameter/uv2_scale = Vector3(1, 1, 1)
+shader_parameter/uv2_offset = Vector3(0, 0, 0)
+shader_parameter/texture_albedo = SubResource("NoiseTexture2D_ti8ho")
+shader_parameter/texture_normal = SubResource("NoiseTexture2D_ifyxs")
+
+[sub_resource type="BoxMesh" id="BoxMesh_pbebj"]
+size = Vector3(2, 3, 0.2)
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_l56se"]
+random_pitch = 1.25
+streams_count = 1
+stream_0/stream = ExtResource("5_qtxkj")
+stream_0/weight = 1.0
+
+[sub_resource type="Animation" id="Animation_mtla8"]
+resource_name = "off"
+length = 3.0
+tracks/0/type = "rotation_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Door")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 0, 0, 0, 1)
+tracks/1/type = "audio"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AudioStreamPlayer3D")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": SubResource("AudioStreamRandomizer_l56se")
+}],
+"times": PackedFloat32Array(0)
+}
+tracks/1/use_blend = true
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_jg0q4"]
+random_pitch = 1.25
+streams_count = 1
+stream_0/stream = ExtResource("5_qtxkj")
+stream_0/weight = 1.0
+
+[sub_resource type="Animation" id="Animation_5qnxo"]
+resource_name = "on"
+length = 3.0
+tracks/0/type = "rotation_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Door")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 0, 0.707, 0, 0.707)
+tracks/1/type = "audio"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AudioStreamPlayer3D")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": SubResource("AudioStreamRandomizer_jg0q4")
+}],
+"times": PackedFloat32Array(0)
+}
+tracks/1/use_blend = true
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ybg32"]
+_data = {
+"off": SubResource("Animation_mtla8"),
+"on": SubResource("Animation_5qnxo")
+}
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_e4duc"]
+animation = &"off"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_5kq1t"]
+animation = &"on"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_kw522"]
+advance_mode = 2
+
+[sub_resource type="Curve" id="Curve_oyphu"]
+_data = [Vector2(0, 0), 0.0, 3.22657, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_v3mup"]
+xfade_time = 2.0
+xfade_curve = SubResource("Curve_oyphu")
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_soecw"]
+xfade_time = 2.0
+xfade_curve = SubResource("Curve_oyphu")
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_qxydw"]
+states/off/node = SubResource("AnimationNodeAnimation_e4duc")
+states/off/position = Vector2(398.667, 98.8889)
+states/on/node = SubResource("AnimationNodeAnimation_5kq1t")
+states/on/position = Vector2(513.333, 52.5674)
+transitions = ["Start", "off", SubResource("AnimationNodeStateMachineTransition_kw522"), "off", "on", SubResource("AnimationNodeStateMachineTransition_v3mup"), "on", "off", SubResource("AnimationNodeStateMachineTransition_soecw")]
+
+[sub_resource type="AudioStreamPolyphonic" id="AudioStreamPolyphonic_1q54c"]
+
+[node name="DoorWooden" type="Area3D" node_paths=PackedStringArray("targets")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -4.75, -0.5, 6.5)
+script = ExtResource("1_e4t6u")
+targets = [NodePath("AnimationTree")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1)
+shape = SubResource("BoxShape3D_iyjgf")
+
+[node name="Door" type="AnimatableBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Door"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, 0)
+shape = SubResource("BoxShape3D_o5djt")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Door"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, 0)
+layers = 2
+material_override = SubResource("ShaderMaterial_71c3f")
+mesh = SubResource("BoxMesh_pbebj")
+
+[node name="Status" type="Node" parent="Door"]
+script = ExtResource("3_lkcyn")
+gib_threshold = 0.0
+damage_sys = ExtResource("4_xfysd")
+gibs = ExtResource("5_83qgn")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_ybg32")
+}
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_ybg32")
+}
+tree_root = SubResource("AnimationNodeStateMachine_qxydw")
+anim_player = NodePath("../AnimationPlayer")
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+stream = SubResource("AudioStreamPolyphonic_1q54c")
+bus = &"World"

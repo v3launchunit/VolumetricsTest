@@ -1,0 +1,14 @@
+[remap]
+
+importer="func_godot.map"
+type="Resource"
+uid="uid://cuesgmia5p620"
+path="res://.godot/imported/trash_test.map-1f30d0005a15d9884c0656d646a84744.tres"
+
+[deps]
+
+source_file="res://maps/trash_test.map"
+dest_files=["res://.godot/imported/trash_test.map-1f30d0005a15d9884c0656d646a84744.tres"]
+
+[params]
+

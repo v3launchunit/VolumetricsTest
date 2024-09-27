@@ -1,0 +1,151 @@
+[gd_scene load_steps=18 format=3 uid="uid://ce7jor6ru8srq"]
+
+[ext_resource type="Script" path="res://scripts/objects/button.gd" id="1_53hhf"]
+[ext_resource type="Material" uid="uid://b33py6y5v6idy" path="res://materials/objects/door_shutter_2x3.tres" id="2_asvw4"]
+[ext_resource type="AudioStream" uid="uid://ckncf1p1v8lhi" path="res://audio/streams/effects/door_move_metal.wav" id="3_2p1oe"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_qpqf2"]
+size = Vector3(2, 3, 2)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_28p6t"]
+size = Vector3(0.5, 3, 2)
+
+[sub_resource type="BoxMesh" id="BoxMesh_ljbsi"]
+size = Vector3(0.5, 3, 2)
+
+[sub_resource type="Animation" id="Animation_rsbqx"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../AnimatableBody3D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_7do0f"]
+resource_name = "off"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../AnimatableBody3D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_emxy8"]
+random_pitch = 1.15
+streams_count = 1
+stream_0/stream = ExtResource("3_2p1oe")
+stream_0/weight = 1.0
+
+[sub_resource type="Animation" id="Animation_g6xl5"]
+resource_name = "on"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../AnimatableBody3D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 3.1, 0)]
+}
+tracks/1/type = "audio"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../AudioStreamPlayer3D")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": SubResource("AudioStreamRandomizer_emxy8")
+}],
+"times": PackedFloat32Array(0)
+}
+tracks/1/use_blend = true
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_eyg5r"]
+_data = {
+"RESET": SubResource("Animation_rsbqx"),
+"off": SubResource("Animation_7do0f"),
+"on": SubResource("Animation_g6xl5")
+}
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_qnv6m"]
+animation = &"off"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_m0vvg"]
+animation = &"on"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_i1khs"]
+advance_mode = 2
+
+[sub_resource type="Curve" id="Curve_owell"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ft357"]
+xfade_time = 1.0
+xfade_curve = SubResource("Curve_owell")
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_hwn2r"]
+resource_local_to_scene = true
+states/off/node = SubResource("AnimationNodeAnimation_qnv6m")
+states/off/position = Vector2(302.667, 99.3333)
+states/on/node = SubResource("AnimationNodeAnimation_m0vvg")
+states/on/position = Vector2(502.667, 99.3333)
+transitions = ["Start", "off", SubResource("AnimationNodeStateMachineTransition_i1khs"), "off", "on", SubResource("AnimationNodeStateMachineTransition_ft357")]
+
+[node name="Door" type="Area3D" node_paths=PackedStringArray("targets")]
+collision_mask = 2
+script = ExtResource("1_53hhf")
+targets = [NodePath("AnimationTree")]
+one_way = true
+required_key = 1
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 0, 0)
+shape = SubResource("BoxShape3D_qpqf2")
+
+[node name="AnimatableBody3D" type="AnimatableBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="AnimatableBody3D"]
+shape = SubResource("BoxShape3D_28p6t")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="AnimatableBody3D"]
+material_override = ExtResource("2_asvw4")
+mesh = SubResource("BoxMesh_ljbsi")
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+root_node = NodePath(".")
+libraries = {
+"": SubResource("AnimationLibrary_eyg5r")
+}
+tree_root = SubResource("AnimationNodeStateMachine_hwn2r")
+anim_player = NodePath("../AnimationPlayer")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+root_node = NodePath("../AnimationTree")
+libraries = {
+"": SubResource("AnimationLibrary_eyg5r")
+}
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+bus = &"World"
+doppler_tracking = 2

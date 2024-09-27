@@ -1,0 +1,357 @@
+[gd_scene load_steps=36 format=3 uid="uid://d228rs0mtayv6"]
+
+[ext_resource type="PackedScene" uid="uid://dqh2gybvemj2n" path="res://weapons/flare_gun.glb" id="1_osgs8"]
+[ext_resource type="PackedScene" uid="uid://fda5n2lb20ne" path="res://weapons/pepperbox.glb" id="2_6xdil"]
+[ext_resource type="AnimationLibrary" uid="uid://cnk3oj5koucge" path="res://weapons/flare_gun_anims.res" id="2_dl6vv"]
+[ext_resource type="Script" path="res://weapons/weapon_base.gd" id="2_g0fb6"]
+[ext_resource type="AnimationLibrary" uid="uid://btn2oi1jc70ej" path="res://weapons/pepperbox_anims.res" id="4_wqt0h"]
+
+[sub_resource type="Shader" id="Shader_r0ybk"]
+code = "// NOTE: Shader automatically converted from Godot Engine 4.2.1.stable.mono's StandardMaterial3D.
+
+shader_type spatial;
+render_mode blend_mix,depth_draw_opaque,cull_back,diffuse_burley,specular_schlick_ggx;
+uniform vec4 albedo : source_color;
+uniform sampler2D texture_albedo : source_color,filter_nearest,repeat_enable;
+uniform float point_size : hint_range(0,128);
+uniform float roughness : hint_range(0,1);
+uniform sampler2D texture_metallic : hint_default_white,filter_nearest,repeat_enable;
+uniform vec4 metallic_texture_channel;
+uniform sampler2D texture_roughness : hint_roughness_r,filter_nearest,repeat_enable;
+uniform float specular;
+uniform float metallic;
+uniform sampler2D texture_normal : hint_roughness_normal,filter_nearest,repeat_enable;
+uniform float normal_scale : hint_range(-16,16);
+uniform float clearcoat : hint_range(0,1);
+uniform float clearcoat_roughness : hint_range(0,1);
+uniform sampler2D texture_clearcoat : hint_default_white,filter_nearest,repeat_enable;
+uniform vec3 uv1_scale;
+uniform vec3 uv1_offset;
+uniform vec3 uv2_scale;
+uniform vec3 uv2_offset;
+
+global uniform float viewmodel_fov;
+
+
+void vertex() {
+	UV=UV*uv1_scale.xy+uv1_offset.xy;
+
+	float onetanfov = 1.0f / tan(0.5f * (viewmodel_fov * PI / 180.0f));
+	float aspect = VIEWPORT_SIZE.x / VIEWPORT_SIZE.y;
+	// modify projection matrix
+	PROJECTION_MATRIX[1][1] = -onetanfov;
+	PROJECTION_MATRIX[0][0] = onetanfov / aspect;
+
+	// draws the viewmodel over everything (disable if you want dof near on viewmodel)
+	POSITION = PROJECTION_MATRIX * MODELVIEW_MATRIX * vec4(VERTEX.xyz, 1.0);
+	POSITION.z = mix(POSITION.z, 0, 0.99);
+}
+
+
+
+
+
+
+void fragment() {
+	vec2 base_uv = UV;
+	vec4 albedo_tex = texture(texture_albedo,base_uv);
+	ALBEDO = albedo.rgb * albedo_tex.rgb;
+	float metallic_tex = dot(texture(texture_metallic,base_uv),metallic_texture_channel);
+	METALLIC = metallic_tex * metallic;
+	vec4 roughness_texture_channel = vec4(1.0,0.0,0.0,0.0);
+	float roughness_tex = dot(texture(texture_roughness,base_uv),roughness_texture_channel);
+	ROUGHNESS = roughness_tex * roughness;
+	SPECULAR = specular;
+	NORMAL_MAP = texture(texture_normal,base_uv).rgb;
+	NORMAL_MAP_DEPTH = normal_scale;
+	vec2 clearcoat_tex = texture(texture_clearcoat,base_uv).xy;
+	CLEARCOAT = clearcoat*clearcoat_tex.x;	CLEARCOAT_ROUGHNESS = clearcoat_roughness*clearcoat_tex.y;
+}
+"
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_g460r"]
+frequency = 0.05
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_ykf88"]
+width = 64
+height = 64
+as_normal_map = true
+bump_strength = 1.0
+noise = SubResource("FastNoiseLite_g460r")
+
+[sub_resource type="Gradient" id="Gradient_ivp3n"]
+interpolation_mode = 1
+offsets = PackedFloat32Array(0, 0.3, 0.6)
+colors = PackedColorArray(0.4, 0.4, 0.4, 1, 0.5, 0.5, 0.5, 1, 0.6, 0.6, 0.6, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_xfljh"]
+frequency = 0.05
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_fgj70"]
+width = 64
+height = 64
+color_ramp = SubResource("Gradient_ivp3n")
+noise = SubResource("FastNoiseLite_xfljh")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_uunko"]
+render_priority = 0
+shader = SubResource("Shader_r0ybk")
+shader_parameter/albedo = Color(1, 0.25098, 0, 1)
+shader_parameter/point_size = 1.0
+shader_parameter/roughness = 1.0
+shader_parameter/metallic_texture_channel = null
+shader_parameter/specular = 0.5
+shader_parameter/metallic = 0.0
+shader_parameter/normal_scale = 1.0
+shader_parameter/clearcoat = 1.0
+shader_parameter/clearcoat_roughness = 0.25
+shader_parameter/uv1_scale = Vector3(1, 1, 1)
+shader_parameter/uv1_offset = Vector3(0, 0, 0)
+shader_parameter/uv2_scale = Vector3(1, 1, 1)
+shader_parameter/uv2_offset = Vector3(0, 0, 0)
+shader_parameter/texture_roughness = SubResource("NoiseTexture2D_fgj70")
+shader_parameter/texture_normal = SubResource("NoiseTexture2D_ykf88")
+
+[sub_resource type="Animation" id="Animation_okvq7"]
+length = 0.001
+tracks/0/type = "position_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("..")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, -0.15, 0, 0)
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_lilr7"]
+_data = {
+"RESET": SubResource("Animation_okvq7")
+}
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_grof3"]
+animation = &"flare_gun_anims/flare_gun_charge"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_jiaux"]
+animation = &"flare_gun_anims/flare_gun_deploy"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_yi31j"]
+animation = &"flare_gun_anims/flare_gun_fire"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_fhcv0"]
+animation = &"flare_gun_anims/flare_gun_idle"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_db30n"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_feobd"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_5iox3"]
+xfade_time = 0.01
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_k43a8"]
+xfade_time = 0.1
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_5hkvg"]
+states/charging/node = SubResource("AnimationNodeAnimation_grof3")
+states/charging/position = Vector2(643.259, 42)
+states/deploy/node = SubResource("AnimationNodeAnimation_jiaux")
+states/deploy/position = Vector2(322.667, 99.3333)
+states/firing/node = SubResource("AnimationNodeAnimation_yi31j")
+states/firing/position = Vector2(643.111, 156.667)
+states/idle/node = SubResource("AnimationNodeAnimation_fhcv0")
+states/idle/position = Vector2(453.333, 98.8889)
+transitions = ["Start", "deploy", SubResource("AnimationNodeStateMachineTransition_db30n"), "deploy", "idle", SubResource("AnimationNodeStateMachineTransition_feobd"), "charging", "firing", SubResource("AnimationNodeStateMachineTransition_5iox3"), "firing", "idle", SubResource("AnimationNodeStateMachineTransition_k43a8")]
+
+[sub_resource type="Shader" id="Shader_pheuw"]
+code = "// NOTE: Shader automatically converted from Godot Engine 4.1.1.stable.mono's StandardMaterial3D.
+
+shader_type spatial;
+render_mode blend_mix,depth_draw_opaque,cull_back,diffuse_burley,specular_schlick_ggx;
+uniform vec4 albedo : source_color;
+uniform sampler2D texture_albedo : source_color,filter_nearest,repeat_enable;
+uniform float point_size : hint_range(0,128);
+uniform float roughness : hint_range(0,1);
+uniform sampler2D texture_metallic : hint_default_white,filter_nearest,repeat_enable;
+uniform vec4 metallic_texture_channel;
+uniform sampler2D texture_roughness : hint_roughness_r,filter_nearest,repeat_enable;
+uniform float specular;
+uniform float metallic;
+uniform vec3 uv1_scale;
+uniform vec3 uv1_offset;
+uniform vec3 uv2_scale;
+uniform vec3 uv2_offset;
+
+global uniform float viewmodel_fov;
+
+
+void vertex() {
+	UV=UV*uv1_scale.xy+uv1_offset.xy;
+	
+	float onetanfov = 1.0f / tan(0.5f * (viewmodel_fov * PI / 180.0f));
+	float aspect = VIEWPORT_SIZE.x / VIEWPORT_SIZE.y;
+	// modify projection matrix
+	PROJECTION_MATRIX[1][1] = -onetanfov;
+	PROJECTION_MATRIX[0][0] = onetanfov / aspect;
+	
+	// draws the viewmodel over everything (disable if you want dof near on viewmodel)
+	POSITION = PROJECTION_MATRIX * MODELVIEW_MATRIX * vec4(VERTEX.xyz, 1.0);
+	POSITION.z = mix(POSITION.z, 0, 0.99);
+}
+
+
+void fragment() {
+	vec2 base_uv = UV;
+	vec4 albedo_tex = texture(texture_albedo,base_uv);
+	ALBEDO = albedo.rgb * albedo_tex.rgb;
+	float metallic_tex = dot(texture(texture_metallic,base_uv),metallic_texture_channel);
+	METALLIC = metallic_tex * metallic;
+	vec4 roughness_texture_channel = vec4(1.0,0.0,0.0,0.0);
+	float roughness_tex = dot(texture(texture_roughness,base_uv),roughness_texture_channel);
+	ROUGHNESS = roughness_tex * roughness;
+	SPECULAR = specular;
+}
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_f5r3q"]
+render_priority = 0
+shader = SubResource("Shader_pheuw")
+shader_parameter/albedo = Color(0.501961, 0.501961, 0.501961, 1)
+shader_parameter/point_size = 1.0
+shader_parameter/roughness = 0.25
+shader_parameter/metallic_texture_channel = Vector4(1, 0, 0, 0)
+shader_parameter/specular = 0.5
+shader_parameter/metallic = 1.0
+shader_parameter/uv1_scale = Vector3(1, 1, 1)
+shader_parameter/uv1_offset = Vector3(0, 0, 0)
+shader_parameter/uv2_scale = Vector3(1, 1, 1)
+shader_parameter/uv2_offset = Vector3(0, 0, 0)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ibb7j"]
+render_priority = 0
+shader = SubResource("Shader_pheuw")
+shader_parameter/albedo = Color(0.501961, 0.501961, 0.501961, 1)
+shader_parameter/point_size = 1.0
+shader_parameter/roughness = 0.25
+shader_parameter/metallic_texture_channel = Vector4(1, 0, 0, 0)
+shader_parameter/specular = 0.5
+shader_parameter/metallic = 1.0
+shader_parameter/uv1_scale = Vector3(1, 1, 1)
+shader_parameter/uv1_offset = Vector3(0, 0, 0)
+shader_parameter/uv2_scale = Vector3(1, 1, 1)
+shader_parameter/uv2_offset = Vector3(0, 0, 0)
+
+[sub_resource type="Animation" id="Animation_8h8bp"]
+length = 0.001
+tracks/0/type = "position_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("..")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 0.15, 0, -0.1)
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ibj5y"]
+_data = {
+"RESET": SubResource("Animation_8h8bp")
+}
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_rrtoy"]
+animation = &"pepperbox_anims/pepperbox_deploy"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_frm3g"]
+animation = &"pepperbox_anims/pepperbox_fire"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_kak1e"]
+animation = &"pepperbox_anims/pepperbox_idle"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_7rkv2"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ipe5a"]
+xfade_time = 0.1
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_np47h"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_wt0md"]
+states/deploy/node = SubResource("AnimationNodeAnimation_rrtoy")
+states/deploy/position = Vector2(346.667, 98)
+states/firing/node = SubResource("AnimationNodeAnimation_frm3g")
+states/firing/position = Vector2(634.667, 100.667)
+states/idle/node = SubResource("AnimationNodeAnimation_kak1e")
+states/idle/position = Vector2(492, 100.222)
+transitions = ["Start", "deploy", SubResource("AnimationNodeStateMachineTransition_7rkv2"), "deploy", "idle", SubResource("AnimationNodeStateMachineTransition_ipe5a"), "firing", "idle", SubResource("AnimationNodeStateMachineTransition_np47h")]
+
+[node name="HandCannon" type="Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.25, -0.3)
+
+[node name="FlareGun" parent="." instance=ExtResource("1_osgs8")]
+transform = Transform3D(0.125, 0, 0, 0, 0.125, 0, 0, 0, 0.125, -0.15, 0, 0)
+script = ExtResource("2_g0fb6")
+category = 4
+
+[node name="Cylinder" parent="FlareGun" index="0"]
+transform = Transform3D(1, 0, 0, 0, 0, -1, 0, 1, 0, 0, 0.5, -1.95)
+material_override = SubResource("ShaderMaterial_uunko")
+cast_shadow = 0
+
+[node name="Cube" parent="FlareGun" index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.5)
+material_override = SubResource("ShaderMaterial_uunko")
+cast_shadow = 0
+
+[node name="AnimationTree" type="AnimationTree" parent="FlareGun"]
+root_node = NodePath(".")
+libraries = {
+"": SubResource("AnimationLibrary_lilr7"),
+"flare_gun_anims": ExtResource("2_dl6vv")
+}
+tree_root = SubResource("AnimationNodeStateMachine_5hkvg")
+anim_player = NodePath("../AnimationPlayer")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="FlareGun"]
+root_node = NodePath("../AnimationTree")
+libraries = {
+"": SubResource("AnimationLibrary_lilr7"),
+"flare_gun_anims": ExtResource("2_dl6vv")
+}
+
+[node name="Pepperbox" parent="." instance=ExtResource("2_6xdil")]
+transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0.15, 0, -0.1)
+
+[node name="Cylinder" parent="Pepperbox" index="0"]
+transform = Transform3D(-0.25, -8.74228e-08, 9.55343e-16, 0, -4.37114e-08, -0.25, 2.18557e-08, -1, 1.09278e-08, 0, 0, 0.25)
+material_override = SubResource("ShaderMaterial_f5r3q")
+cast_shadow = 0
+
+[node name="Body" parent="Pepperbox" index="1"]
+transform = Transform3D(-0.1, 0, -2.18557e-08, 0, 0.25, 0, 8.74228e-09, 0, -0.25, 0, -0.2, 0.65)
+material_override = SubResource("ShaderMaterial_ibb7j")
+cast_shadow = 0
+extra_cull_margin = 1.0
+custom_aabb = AABB(-1, -1, -1, 2, 2, 2)
+
+[node name="AnimationTree" type="AnimationTree" parent="Pepperbox"]
+root_node = NodePath(".")
+libraries = {
+"": SubResource("AnimationLibrary_ibj5y"),
+"pepperbox_anims": ExtResource("4_wqt0h")
+}
+tree_root = SubResource("AnimationNodeStateMachine_wt0md")
+anim_player = NodePath("../AnimationPlayer")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Pepperbox"]
+root_node = NodePath("../AnimationTree")
+libraries = {
+"": SubResource("AnimationLibrary_ibj5y"),
+"pepperbox_anims": ExtResource("4_wqt0h")
+}
+
+[editable path="FlareGun"]
+[editable path="Pepperbox"]

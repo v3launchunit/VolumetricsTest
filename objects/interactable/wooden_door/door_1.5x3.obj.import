@@ -1,0 +1,22 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://dgkjk7srhga0r"
+path="res://.godot/imported/door_1.5x3.obj-5c021fe3151ac304ab14c33c2e8ed429.mesh"
+
+[deps]
+
+files=["res://.godot/imported/door_1.5x3.obj-5c021fe3151ac304ab14c33c2e8ed429.mesh"]
+
+source_file="res://objects/interactable/wooden_door/door_1.5x3.obj"
+dest_files=["res://.godot/imported/door_1.5x3.obj-5c021fe3151ac304ab14c33c2e8ed429.mesh", "res://.godot/imported/door_1.5x3.obj-5c021fe3151ac304ab14c33c2e8ed429.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
+force_disable_mesh_compression=false

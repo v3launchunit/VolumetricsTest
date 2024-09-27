@@ -1,0 +1,169 @@
+[gd_scene load_steps=16 format=3 uid="uid://bosuaqplx64vr"]
+
+[ext_resource type="Script" path="res://bullets/bullet.gd" id="1_omamu"]
+[ext_resource type="PackedScene" uid="uid://bth7t7bnwn01s" path="res://scenes/effects/impacts/blood_bullet_impact.tscn" id="2_c13ba"]
+[ext_resource type="ArrayMesh" uid="uid://cqf6v4gaperkn" path="res://bullets/bullet.obj" id="2_hv2vv"]
+[ext_resource type="Script" path="res://bullets/bullet_trail.gd" id="3_yv8xl"]
+[ext_resource type="AudioStream" uid="uid://crtqyq64m3wm1" path="res://audio/streams/ambient/bullet_ambient.wav" id="4_efove"]
+[ext_resource type="Script" path="res://scripts/effects/lifetime.gd" id="5_anj2i"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_h48e4"]
+size = Vector3(0.05, 0.05, 0.5)
+
+[sub_resource type="Shader" id="Shader_3ns3p"]
+code = "// NOTE: Shader automatically converted from Godot Engine 4.3.beta3.mono's StandardMaterial3D.
+
+shader_type spatial;
+render_mode blend_mix, depth_draw_opaque, cull_back, diffuse_burley, specular_schlick_ggx;
+
+uniform vec4 albedo : source_color;
+uniform sampler2D texture_albedo : source_color, filter_linear_mipmap, repeat_enable;
+uniform float alpha_hash_scale : hint_range(0.0, 2.0, 0.01);
+uniform float point_size : hint_range(0.1, 128.0, 0.1);
+
+uniform float roughness : hint_range(0.0, 1.0);
+uniform sampler2D texture_metallic : hint_default_white, filter_linear_mipmap, repeat_enable;
+uniform vec4 metallic_texture_channel;
+uniform sampler2D texture_roughness : hint_roughness_r, filter_linear_mipmap, repeat_enable;
+
+uniform float specular : hint_range(0.0, 1.0, 0.01);
+uniform float metallic : hint_range(0.0, 1.0, 0.01);
+
+uniform vec3 uv1_scale;
+uniform vec3 uv1_offset;
+uniform vec3 uv2_scale;
+uniform vec3 uv2_offset;
+
+#include \"res://shaders/includes/psx_inc.gdshaderinc\"
+
+void vertex() {
+	UV = UV * uv1_scale.xy + uv1_offset.xy;
+		POSITION = map_affine(snap_vertex(PROJECTION_MATRIX * MODELVIEW_MATRIX * vec4(VERTEX, 1.0)));
+}
+
+void fragment() {
+	vec2 base_uv = UV;
+
+	vec4 albedo_tex = texture(texture_albedo, base_uv);
+
+	// Vertex Color Use as Albedo: Enabled
+	albedo_tex *= COLOR;
+
+	ALBEDO = albedo.rgb * albedo_tex.rgb;
+
+	float metallic_tex = dot(texture(texture_metallic, base_uv), metallic_texture_channel);
+	METALLIC = metallic_tex * metallic;
+	SPECULAR = specular;
+
+	vec4 roughness_texture_channel = vec4(1.0, 0.0, 0.0, 0.0);
+	float roughness_tex = dot(texture(texture_roughness, base_uv), roughness_texture_channel);
+	ROUGHNESS = roughness_tex * roughness;
+	ALPHA *= albedo.a * albedo_tex.a;
+	ALPHA_HASH_SCALE = alpha_hash_scale;
+}
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_mafcw"]
+render_priority = 0
+shader = SubResource("Shader_3ns3p")
+shader_parameter/albedo = Color(1, 0, 0, 1)
+shader_parameter/alpha_hash_scale = 1.0
+shader_parameter/point_size = 1.0
+shader_parameter/roughness = 1.0
+shader_parameter/metallic_texture_channel = null
+shader_parameter/specular = 0.5
+shader_parameter/metallic = 0.0
+shader_parameter/uv1_scale = Vector3(1, 1, 1)
+shader_parameter/uv1_offset = Vector3(0, 0, 0)
+shader_parameter/uv2_scale = Vector3(1, 1, 1)
+shader_parameter/uv2_offset = Vector3(0, 0, 0)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_w6p3p"]
+render_priority = 0
+shader = SubResource("Shader_3ns3p")
+shader_parameter/albedo = Color(1, 0, 0, 1)
+shader_parameter/alpha_hash_scale = 1.0
+shader_parameter/point_size = 1.0
+shader_parameter/roughness = 1.0
+shader_parameter/metallic_texture_channel = null
+shader_parameter/specular = 0.5
+shader_parameter/metallic = 0.0
+shader_parameter/uv1_scale = Vector3(1, 1, 1)
+shader_parameter/uv1_offset = Vector3(0, 0, 0)
+shader_parameter/uv2_scale = Vector3(1, 1, 1)
+shader_parameter/uv2_offset = Vector3(0, 0, 0)
+
+[sub_resource type="Gradient" id="Gradient_nlj7d"]
+offsets = PackedFloat32Array(0, 0.5, 1)
+colors = PackedColorArray(1, 1, 1, 1, 0.25098, 0, 0, 1, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_3fqyd"]
+gradient = SubResource("Gradient_nlj7d")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_rccta"]
+emission_shape = 3
+emission_box_extents = Vector3(0.1, 0.1, 1)
+direction = Vector3(0, 1, 0)
+gravity = Vector3(0, -0.98, 0)
+color_ramp = SubResource("GradientTexture1D_3fqyd")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lrmib"]
+albedo_color = Color(1, 0, 0, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_ciky2"]
+material = SubResource("StandardMaterial3D_lrmib")
+size = Vector3(0.063, 0.063, 0.063)
+
+[node name="Bullet" type="RigidBody3D"]
+collision_layer = 16
+collision_mask = 71
+input_ray_pickable = false
+gravity_scale = 0.0
+lock_rotation = true
+continuous_cd = true
+contact_monitor = true
+max_contacts_reported = 5
+script = ExtResource("1_omamu")
+speed = 25.0
+damage = 20.0
+explosion = ExtResource("2_c13ba")
+knockback_force = 0.0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.2)
+shape = SubResource("BoxShape3D_h48e4")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, -8.74228e-07, 0, -7.64275e-15, -2.18557e-07, 1, -1.74846e-07, -5, -4.37114e-08, 0, 0, 0.35)
+layers = 2
+material_override = SubResource("ShaderMaterial_mafcw")
+cast_shadow = 0
+mesh = ExtResource("2_hv2vv")
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="."]
+layers = 2
+material_override = SubResource("ShaderMaterial_w6p3p")
+cast_shadow = 0
+amount = 64
+fixed_fps = 60
+visibility_aabb = AABB(-4, -4, -16, 8, 8, 32)
+process_material = SubResource("ParticleProcessMaterial_rccta")
+draw_pass_1 = SubResource("BoxMesh_ciky2")
+script = ExtResource("3_yv8xl")
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("4_efove")
+pitch_scale = 1.5
+autoplay = true
+max_distance = 50.0
+bus = &"Combat"
+doppler_tracking = 2
+
+[node name="Lifetime" type="Timer" parent="."]
+wait_time = 30.0
+one_shot = true
+autostart = true
+script = ExtResource("5_anj2i")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_entered" from="." to="GPUParticles3D" method="_on_bullet_body_entered"]

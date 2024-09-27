@@ -1,0 +1,68 @@
+[gd_scene load_steps=12 format=3 uid="uid://ctbsyverip6bl"]
+
+[ext_resource type="PackedScene" uid="uid://xpo774l18flk" path="res://weapons/akm/akm.tscn" id="1_nk1qx"]
+[ext_resource type="PackedScene" uid="uid://bjpo451a0eupa" path="res://weapons/axe/axe.tscn" id="2_5g0nk"]
+[ext_resource type="PackedScene" uid="uid://bfxuay7qxu7lj" path="res://weapons/big_iron/big_iron.tscn" id="3_35ko8"]
+[ext_resource type="PackedScene" uid="uid://crvf6qiekfqex" path="res://weapons/boomstick/boomstick.tscn" id="4_0dtrm"]
+[ext_resource type="PackedScene" uid="uid://dah6eunyfmnqh" path="res://weapons/crossbow/crossbow.tscn" id="5_777jx"]
+[ext_resource type="PackedScene" uid="uid://bsjlv88juhpn5" path="res://weapons/hunting_rifle/hunting_rifle.tscn" id="6_j2600"]
+[ext_resource type="PackedScene" uid="uid://cprbuapjccc8b" path="res://weapons/nailgun/nailgun.tscn" id="7_pm6x3"]
+[ext_resource type="PackedScene" uid="uid://gabucpajtywv" path="res://weapons/plasma_cannon/plasma_cannon.tscn" id="8_ruibv"]
+[ext_resource type="PackedScene" uid="uid://bimc4ufk5hicg" path="res://weapons/pump_shotgun/pump_shotgun.tscn" id="9_4sx0k"]
+[ext_resource type="PackedScene" uid="uid://bs3eibrb48t0m" path="res://weapons/rpg/rpg.tscn" id="10_ex0py"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_iu3ba"]
+flip_faces = true
+radial_segments = 8
+rings = 1
+
+[node name="SubViewportContainer" type="SubViewportContainer"]
+offset_right = 1366.0
+offset_bottom = 768.0
+stretch = true
+stretch_shrink = 2
+
+[node name="SubViewport" type="SubViewport" parent="."]
+handle_input_locally = false
+size = Vector2i(683, 384)
+render_target_update_mode = 4
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="SubViewport"]
+layers = 2
+cast_shadow = 0
+mesh = SubResource("CapsuleMesh_iu3ba")
+skeleton = NodePath("../../..")
+
+[node name="Camera3D" type="Camera3D" parent="SubViewport"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+fov = 120.0
+near = 0.01
+
+[node name="AKM" parent="SubViewport/Camera3D" instance=ExtResource("1_nk1qx")]
+visible = false
+
+[node name="Axe" parent="SubViewport/Camera3D" instance=ExtResource("2_5g0nk")]
+visible = false
+
+[node name="BigIron" parent="SubViewport/Camera3D" instance=ExtResource("3_35ko8")]
+visible = false
+
+[node name="Boomstick" parent="SubViewport/Camera3D" instance=ExtResource("4_0dtrm")]
+visible = false
+
+[node name="Crossbow" parent="SubViewport/Camera3D" instance=ExtResource("5_777jx")]
+visible = false
+
+[node name="HuntingRifle" parent="SubViewport/Camera3D" instance=ExtResource("6_j2600")]
+visible = false
+
+[node name="Nailgun" parent="SubViewport/Camera3D" instance=ExtResource("7_pm6x3")]
+visible = false
+
+[node name="PlasmaCannon" parent="SubViewport/Camera3D" instance=ExtResource("8_ruibv")]
+visible = false
+
+[node name="Shotgun" parent="SubViewport/Camera3D" instance=ExtResource("9_4sx0k")]
+visible = false
+
+[node name="RPG" parent="SubViewport/Camera3D" instance=ExtResource("10_ex0py")]

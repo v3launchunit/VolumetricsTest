@@ -1,0 +1,132 @@
+<?xml version="1.0" standalone="no" ?>
+<!DOCTYPE project PUBLIC "-//audacityproject-1.3.0//DTD//EN" "http://audacity.sourceforge.net/xml/audacityproject-1.3.0.dtd" >
+<project xmlns="http://audacity.sourceforge.net/xml/" projname="rpg_fire_data" version="1.3.0" audacityversion="2.3.2x  May  7 2019" sel0="0.0000000000" sel1="3.0000000000" vpos="0" h="0.0000000000" zoom="100.0833333333" rate="48000.0" snapto="off" selectionformat="hh:mm:ss + milliseconds" frequencyformat="Hz" bandwidthformat="octaves">
+	<tags>
+		<tag name="COMMENTS" value="FesliyanStudios.com"/>
+		<tag name="TITLE" value="Blow Torch B"/>
+		<tag name="YEAR" value="2019"/>
+		<tag name="ALBUM" value="FesliyanStudios.com"/>
+		<tag name="ARTIST" value="David Fesliyan"/>
+		<tag name="GENRE" value="Sound Clip"/>
+	</tags>
+	<wavetrack name="boomstick_fire" channel="0" linked="1" mute="0" solo="0" height="150" minimized="1" isSelected="1" rate="48000" gain="1.0" pan="0.0" colorindex="0">
+		<waveclip offset="0.00000000" colorindex="0">
+			<sequence maxsamples="262144" sampleformat="262159" numsamples="48000">
+				<waveblock start="0">
+					<simpleblockfile filename="e0808bab.au" len="48000" min="-1.601832" max="1.393945" rms="0.354969"/>
+				</waveblock>
+			</sequence>
+			<envelope numpoints="0"/>
+		</waveclip>
+	</wavetrack>
+	<wavetrack name="boomstick_fire" channel="1" linked="0" mute="0" solo="0" height="150" minimized="1" isSelected="1" rate="48000" gain="1.0" pan="0.0" colorindex="0">
+		<waveclip offset="0.00000000" colorindex="0">
+			<sequence maxsamples="262144" sampleformat="262159" numsamples="48000">
+				<waveblock start="0">
+					<simpleblockfile filename="e08089fc.au" len="48000" min="-1.488382" max="1.546486" rms="0.338283"/>
+				</waveblock>
+			</sequence>
+			<envelope numpoints="0"/>
+		</waveclip>
+	</wavetrack>
+	<wavetrack name="fire_ball_ambient" channel="0" linked="1" mute="0" solo="0" height="150" minimized="0" isSelected="1" rate="48000" gain="1.0" pan="0.0" colorindex="0">
+		<waveclip offset="0.00000000" colorindex="0">
+			<sequence maxsamples="262144" sampleformat="262159" numsamples="144000">
+				<waveblock start="0">
+					<simpleblockfile filename="e080817a.au" len="144000" min="-0.426297" max="0.420022" rms="0.088876"/>
+				</waveblock>
+			</sequence>
+			<envelope numpoints="0"/>
+		</waveclip>
+	</wavetrack>
+	<wavetrack name="fire_ball_ambient" channel="1" linked="0" mute="0" solo="0" height="150" minimized="0" isSelected="1" rate="48000" gain="1.0" pan="0.0" colorindex="0">
+		<waveclip offset="0.00000000" colorindex="0">
+			<sequence maxsamples="262144" sampleformat="262159" numsamples="144000">
+				<waveblock start="0">
+					<simpleblockfile filename="e0808a38.au" len="144000" min="-0.431506" max="0.41692" rms="0.088878"/>
+				</waveblock>
+			</sequence>
+			<envelope numpoints="0"/>
+		</waveclip>
+	</wavetrack>
+	<wavetrack name="boomstick_fire" channel="0" linked="1" mute="0" solo="0" height="150" minimized="1" isSelected="1" rate="48000" gain="1.0" pan="0.0" colorindex="0">
+		<waveclip offset="0.11204167" colorindex="0">
+			<sequence maxsamples="262144" sampleformat="262159" numsamples="48000">
+				<waveblock start="0">
+					<simpleblockfile filename="e0808288.au" len="48000" min="-1.0" max="0.999969" rms="0.384875"/>
+				</waveblock>
+			</sequence>
+			<envelope numpoints="0"/>
+		</waveclip>
+	</wavetrack>
+	<wavetrack name="boomstick_fire" channel="1" linked="0" mute="0" solo="0" height="150" minimized="1" isSelected="1" rate="48000" gain="1.0" pan="0.0" colorindex="0">
+		<waveclip offset="0.11204167" colorindex="0">
+			<sequence maxsamples="262144" sampleformat="262159" numsamples="48000">
+				<waveblock start="0">
+					<simpleblockfile filename="e0808d1a.au" len="48000" min="-1.0" max="0.999969" rms="0.352245"/>
+				</waveblock>
+			</sequence>
+			<envelope numpoints="0"/>
+		</waveclip>
+	</wavetrack>
+	<wavetrack name="boomstick_fire" channel="0" linked="1" mute="0" solo="0" height="150" minimized="1" isSelected="1" rate="48000" gain="1.0" pan="0.0" colorindex="0">
+		<waveclip offset="0.00000000" colorindex="0">
+			<sequence maxsamples="262144" sampleformat="262159" numsamples="120000">
+				<waveblock start="0">
+					<simpleblockfile filename="e0808f5e.au" len="120000" min="-1.02047" max="1.012715" rms="0.384875"/>
+				</waveblock>
+			</sequence>
+			<envelope numpoints="0"/>
+		</waveclip>
+	</wavetrack>
+	<wavetrack name="boomstick_fire" channel="1" linked="0" mute="0" solo="0" height="150" minimized="1" isSelected="1" rate="48000" gain="1.0" pan="0.0" colorindex="0">
+		<waveclip offset="0.00000000" colorindex="0">
+			<sequence maxsamples="262144" sampleformat="262159" numsamples="120000">
+				<waveblock start="0">
+					<simpleblockfile filename="e0808cbf.au" len="120000" min="-1.019961" max="1.045472" rms="0.352244"/>
+				</waveblock>
+			</sequence>
+			<envelope numpoints="0"/>
+		</waveclip>
+	</wavetrack>
+	<wavetrack name="boomstick_fire" channel="0" linked="1" mute="0" solo="0" height="150" minimized="0" isSelected="1" rate="48000" gain="0.562341" pan="0.0" colorindex="0">
+		<waveclip offset="0.33333333" colorindex="0">
+			<sequence maxsamples="262144" sampleformat="262159" numsamples="32000">
+				<waveblock start="0">
+					<simpleblockfile filename="e0808651.au" len="32000" min="-1.861715" max="1.672686" rms="0.350144"/>
+				</waveblock>
+			</sequence>
+			<envelope numpoints="0"/>
+		</waveclip>
+	</wavetrack>
+	<wavetrack name="boomstick_fire" channel="1" linked="0" mute="0" solo="0" height="150" minimized="0" isSelected="1" rate="48000" gain="0.562341" pan="0.0" colorindex="0">
+		<waveclip offset="0.33333333" colorindex="0">
+			<sequence maxsamples="262144" sampleformat="262159" numsamples="32000">
+				<waveblock start="0">
+					<simpleblockfile filename="e0808176.au" len="32000" min="-1.675842" max="1.430598" rms="0.319818"/>
+				</waveblock>
+			</sequence>
+			<envelope numpoints="0"/>
+		</waveclip>
+	</wavetrack>
+	<wavetrack name="boomstick_fire" channel="0" linked="1" mute="0" solo="0" height="150" minimized="0" isSelected="1" rate="48000" gain="0.562341" pan="0.0" colorindex="0">
+		<waveclip offset="0.00000000" colorindex="0">
+			<sequence maxsamples="262144" sampleformat="262159" numsamples="16000">
+				<waveblock start="0">
+					<simpleblockfile filename="e08089e5.au" len="16000" min="-1.033177" max="1.022907" rms="0.384429"/>
+				</waveblock>
+			</sequence>
+			<envelope numpoints="0"/>
+		</waveclip>
+	</wavetrack>
+	<wavetrack name="boomstick_fire" channel="1" linked="0" mute="0" solo="0" height="150" minimized="0" isSelected="1" rate="48000" gain="0.562341" pan="0.0" colorindex="0">
+		<waveclip offset="0.00000000" colorindex="0">
+			<sequence maxsamples="262144" sampleformat="262159" numsamples="16000">
+				<waveblock start="0">
+					<simpleblockfile filename="e08081a1.au" len="16000" min="-1.022544" max="1.055903" rms="0.351704"/>
+				</waveblock>
+			</sequence>
+			<envelope numpoints="0"/>
+		</waveclip>
+	</wavetrack>
+</project>

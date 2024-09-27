@@ -1,0 +1,54 @@
+Renderer info: Intel(R) Graphics version 4.6.0 - Build 31.0.101.5382 from Intel
+Depth buffer bits: 24
+Multisampling enabled
+Adding file system path "C:/Users/lengl/OneDrive/Desktop/Loose-Progams/TrenchBroom\\defaults\\assets"
+Adding file system path "C:/Users/lengl/OneDrive/Documents/Godot/VolumetricsTest\\."
+Loading document from C:\Users\lengl\OneDrive\Documents\Godot\VolumetricsTest\maps\e1m7.map
+Loaded entity definition file VolumetricsTest.fgd
+Loaded texture collection '"textures"'
+Loaded texture collection '"textures\\debug"'
+Loaded texture collection '"textures\\furnishings"'
+Loaded texture collection '"textures\\liquids"'
+Loaded texture collection '"textures\\natural"'
+Loaded texture collection '"textures\\pathways"'
+Loaded texture collection '"textures\\special"'
+Loaded texture collection '"textures\\structural"'
+Loaded texture collection '"textures\\structural\\bricks_clay"'
+Loaded texture collection '"textures\\structural\\bricks_stone"'
+Loaded texture collection '"textures\\terrain"'
+Loaded texture collection '"textures\\terrain\\cc0\\bricks"'
+Loaded texture collection '"textures\\terrain\\cc0\\concrete"'
+Loaded texture collection '"textures\\terrain\\cc0\\rock_generic"'
+Loaded texture collection '"textures\\terrain\\custom_hand"'
+Loaded texture collection '"textures\\terrain\\custom_hand\\bricks"'
+Loaded texture collection '"textures\\terrain\\custom_hand\\bricks3d_a"'
+Loaded texture collection '"textures\\terrain\\custom_hand\\bricks_brown"'
+Loaded texture collection '"textures\\terrain\\custom_hand\\bricks_stone"'
+Loaded texture collection '"textures\\terrain\\custom_hand\\checker_board"'
+Loaded texture collection '"textures\\terrain\\custom_hand\\cliff_rocks"'
+Loaded texture collection '"textures\\terrain\\custom_hand\\cobble_stone"'
+Loaded texture collection '"textures\\terrain\\custom_hand\\concrete"'
+Loaded texture collection '"textures\\terrain\\custom_hand\\dirt"'
+Loaded texture collection '"textures\\terrain\\custom_hand\\glass"'
+Loaded texture collection '"textures\\terrain\\custom_hand\\key_metal"'
+Loaded texture collection '"textures\\terrain\\custom_hand\\log"'
+Loaded texture collection '"textures\\terrain\\custom_hand\\log_end"'
+Loaded texture collection '"textures\\terrain\\custom_hand\\metal_grate"'
+Loaded texture collection '"textures\\terrain\\custom_hand\\planks"'
+Loaded texture collection '"textures\\terrain\\custom_hand\\street"'
+Loaded texture collection '"textures\\terrain\\trench_broom"'
+Loaded texture collection '"textures\\_shutter_door"'
+Loaded "C:\\Users\\lengl\\OneDrive\\Documents\\Godot\\VolumetricsTest\\maps\\e1m7.map" in 295ms
+Reloading entity definitions
+Loaded entity definition file VolumetricsTest.fgd
+Reloading entity definitions
+Loaded entity definition file VolumetricsTest.fgd
+Reloading entity definitions
+Loaded entity definition file VolumetricsTest.fgd
+Reloading entity definitions
+Loaded entity definition file VolumetricsTest.fgd
+Reloading entity definitions
+Loaded entity definition file VolumetricsTest.fgd
+Reloading entity definitions
+Loaded entity definition file VolumetricsTest.fgd
+Reloading entity definitions

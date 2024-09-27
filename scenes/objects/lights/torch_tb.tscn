@@ -1,0 +1,286 @@
+[gd_scene load_steps=30 format=3 uid="uid://jwblxog7c1kl"]
+
+[ext_resource type="Shader" path="res://shaders/spatial/psx_ul_add.gdshader" id="1_7j6kq"]
+[ext_resource type="Material" uid="uid://08yqplf2icxd" path="res://effects/halos/fire_halo_mat.tres" id="2_2j8qu"]
+[ext_resource type="Script" path="res://scripts/effects/halo.gd" id="3_h235a"]
+
+[sub_resource type="Shader" id="Shader_51k51"]
+code = "// NOTE: Shader automatically converted from Godot Engine 4.2.1.stable.mono's StandardMaterial3D.
+
+shader_type spatial;
+render_mode blend_mix,depth_draw_opaque,cull_back,diffuse_burley,specular_schlick_ggx;
+uniform vec4 albedo : source_color;
+uniform sampler2D texture_albedo : source_color,filter_nearest,repeat_enable;
+uniform float point_size : hint_range(0,128);
+uniform float roughness : hint_range(0,1);
+uniform sampler2D texture_metallic : hint_default_white,filter_nearest,repeat_enable;
+uniform vec4 metallic_texture_channel;
+uniform sampler2D texture_roughness : hint_roughness_r,filter_nearest,repeat_enable;
+uniform float specular;
+uniform float metallic;
+uniform sampler2D texture_normal : hint_roughness_normal,filter_nearest,repeat_enable;
+uniform float normal_scale : hint_range(-16,16);
+uniform vec3 uv1_scale;
+uniform vec3 uv1_offset;
+uniform vec3 uv2_scale;
+uniform vec3 uv2_offset;
+
+#include \"res://shaders/includes/psx_inc.gdshaderinc\"
+
+void vertex() {
+	UV = UV * uv1_scale.xy + uv1_offset.xy;
+	POSITION = map_affine(snap_vertex(PROJECTION_MATRIX * MODELVIEW_MATRIX * vec4(VERTEX, 1.0)));
+}
+
+void fragment() {
+	vec2 base_uv = UV;
+	vec4 albedo_tex = texture(texture_albedo,base_uv);
+	ALBEDO = albedo.rgb * albedo_tex.rgb;
+	float metallic_tex = dot(texture(texture_metallic,base_uv),metallic_texture_channel);
+	METALLIC = metallic_tex * metallic;
+	vec4 roughness_texture_channel = vec4(1.0,0.0,0.0,0.0);
+	float roughness_tex = dot(texture(texture_roughness,base_uv),roughness_texture_channel);
+	ROUGHNESS = roughness_tex * roughness;
+	SPECULAR = specular;
+	NORMAL_MAP = texture(texture_normal,base_uv).rgb;
+	NORMAL_MAP_DEPTH = normal_scale;
+}
+"
+
+[sub_resource type="Gradient" id="Gradient_v5jf5"]
+interpolation_mode = 1
+offsets = PackedFloat32Array(0, 0.2, 0.5, 0.7)
+colors = PackedColorArray(0.278431, 0.172549, 0.0470588, 1, 0.341176, 0.207843, 0.0784314, 1, 0.447059, 0.298039, 0.14902, 1, 0.415686, 0.313726, 0.145098, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_q3vr3"]
+frequency = 0.1
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_ti8ho"]
+width = 128
+height = 128
+generate_mipmaps = false
+seamless = true
+seamless_blend_skirt = 1.0
+color_ramp = SubResource("Gradient_v5jf5")
+noise = SubResource("FastNoiseLite_q3vr3")
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_ifyxs"]
+width = 128
+height = 128
+generate_mipmaps = false
+seamless = true
+seamless_blend_skirt = 1.0
+as_normal_map = true
+noise = SubResource("FastNoiseLite_q3vr3")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_wigho"]
+render_priority = 0
+shader = SubResource("Shader_51k51")
+shader_parameter/albedo = Color(1, 1, 1, 1)
+shader_parameter/point_size = 1.0
+shader_parameter/roughness = 0.75
+shader_parameter/metallic_texture_channel = null
+shader_parameter/specular = 0.5
+shader_parameter/metallic = 0.0
+shader_parameter/normal_scale = 1.0
+shader_parameter/uv1_scale = Vector3(0.125, 0.125, 0.125)
+shader_parameter/uv1_offset = Vector3(0, 0, 0)
+shader_parameter/uv2_scale = Vector3(1, 1, 1)
+shader_parameter/uv2_offset = Vector3(0, 0, 0)
+shader_parameter/texture_albedo = SubResource("NoiseTexture2D_ti8ho")
+shader_parameter/texture_normal = SubResource("NoiseTexture2D_ifyxs")
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_3s1hl"]
+top_radius = 0.05
+bottom_radius = 0.035
+height = 0.75
+radial_segments = 4
+rings = 1
+cap_bottom = false
+
+[sub_resource type="GDScript" id="GDScript_ognxc"]
+script/source = "@tool
+
+extends MeshInstance3D
+
+@export var properties: Dictionary
+
+var is_configured: bool = false
+
+# Called when the node enters the scene tree for the first time.
+func _process(delta: float) -> void:
+	if is_configured or not Engine.is_editor_hint() or not properties.has(\"pitch_angle\"):
+		return
+	var r = rotation.y
+	rotation.y = 0
+	rotation.x = deg_to_rad(properties[\"pitch_angle\"])
+	rotation.y = r
+	is_configured = true
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_bdf6a"]
+render_priority = 0
+shader = ExtResource("1_7j6kq")
+shader_parameter/albedo = Color(1, 1, 0, 1)
+shader_parameter/uv1_scale = null
+shader_parameter/uv1_offset = null
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_r7228"]
+transparency = 1
+blend_mode = 1
+shading_mode = 0
+vertex_color_use_as_albedo = true
+albedo_color = Color(1, 1, 0, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_w5mdf"]
+material = SubResource("StandardMaterial3D_r7228")
+radius = 0.1
+height = 0.2
+radial_segments = 6
+rings = 2
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ardtw"]
+render_priority = 0
+shader = ExtResource("1_7j6kq")
+shader_parameter/albedo = Color(1, 1, 1, 1)
+shader_parameter/uv1_scale = Vector3(1, 1, 1)
+shader_parameter/uv1_offset = Vector3(0, 0, 0)
+
+[sub_resource type="Gradient" id="Gradient_tpcy1"]
+colors = PackedColorArray(1, 0, 0, 1, 1, 1, 0, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_xarou"]
+gradient = SubResource("Gradient_tpcy1")
+
+[sub_resource type="Gradient" id="Gradient_o1kva"]
+colors = PackedColorArray(1, 1, 0, 1, 1, 0, 0, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_0lb1k"]
+gradient = SubResource("Gradient_o1kva")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_jd63c"]
+emission_shape = 1
+emission_sphere_radius = 0.05
+direction = Vector3(0, 1, 0)
+initial_velocity_max = 0.25
+gravity = Vector3(0, 0.25, 0)
+color_ramp = SubResource("GradientTexture1D_0lb1k")
+color_initial_ramp = SubResource("GradientTexture1D_xarou")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6ruwr"]
+transparency = 1
+blend_mode = 1
+shading_mode = 0
+vertex_color_use_as_albedo = true
+
+[sub_resource type="BoxMesh" id="BoxMesh_xu4jy"]
+material = SubResource("StandardMaterial3D_6ruwr")
+size = Vector3(0.0625, 0.0625, 0.0625)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jvp88"]
+blend_mode = 1
+shading_mode = 0
+vertex_color_use_as_albedo = true
+use_point_size = true
+point_size = 2.0
+
+[sub_resource type="PointMesh" id="PointMesh_bm88g"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_66wxe"]
+load_path = "res://.godot/imported/halo.png-88068247d44276e09ca924d46b3606d1.s3tc.ctex"
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fs0w4"]
+transparency = 1
+blend_mode = 1
+shading_mode = 0
+vertex_color_use_as_albedo = true
+albedo_color = Color(1, 0.501961, 0, 1)
+albedo_texture = SubResource("CompressedTexture2D_66wxe")
+billboard_mode = 1
+fixed_size = true
+proximity_fade_distance = 3.0
+distance_fade_mode = 1
+
+[sub_resource type="QuadMesh" id="QuadMesh_qrgyy"]
+material = SubResource("StandardMaterial3D_fs0w4")
+size = Vector2(0.15, 0.15)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_0qhau"]
+load_path = "res://.godot/imported/halo.png-88068247d44276e09ca924d46b3606d1.s3tc.ctex"
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tgw00"]
+transparency = 1
+blend_mode = 1
+shading_mode = 0
+vertex_color_use_as_albedo = true
+albedo_color = Color(1, 0.501961, 0, 1)
+albedo_texture = SubResource("CompressedTexture2D_0qhau")
+billboard_mode = 1
+fixed_size = true
+proximity_fade_distance = 3.0
+distance_fade_mode = 1
+
+[node name="Torch" type="Node3D"]
+
+[node name="Torch" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.866025, -0.5, 0, 0.5, 0.866025, 0, 0, 0)
+layers = 8
+material_override = SubResource("ShaderMaterial_wigho")
+mesh = SubResource("CylinderMesh_3s1hl")
+script = SubResource("GDScript_ognxc")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Torch"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.375, 0)
+layers = 8
+material_override = SubResource("ShaderMaterial_bdf6a")
+visibility_range_end = 10.0
+visibility_range_end_margin = 5.0
+mesh = SubResource("SphereMesh_w5mdf")
+skeleton = NodePath("../GPUParticles3D")
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="Torch"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.375, 0)
+layers = 8
+material_override = SubResource("ShaderMaterial_ardtw")
+cast_shadow = 0
+visibility_range_end_margin = 10.0
+visibility_range_fade_mode = 1
+amount = 64
+randomness = 1.0
+fixed_fps = 60
+process_material = SubResource("ParticleProcessMaterial_jd63c")
+draw_pass_1 = SubResource("BoxMesh_xu4jy")
+
+[node name="GPUParticles3D2" type="GPUParticles3D" parent="Torch"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.375, 0)
+visible = false
+layers = 8
+material_override = SubResource("StandardMaterial3D_jvp88")
+cast_shadow = 0
+visibility_range_end_margin = 10.0
+visibility_range_fade_mode = 1
+amount = 1024
+randomness = 1.0
+fixed_fps = 60
+process_material = SubResource("ParticleProcessMaterial_jd63c")
+draw_pass_1 = SubResource("PointMesh_bm88g")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="Torch"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.375, 0)
+layers = 2
+light_color = Color(1, 0.501961, 0, 1)
+light_bake_mode = 1
+shadow_enabled = true
+distance_fade_enabled = true
+omni_range = 10.0
+
+[node name="LensFlare" type="MeshInstance3D" parent="Torch/OmniLight3D"]
+layers = 2
+material_override = ExtResource("2_2j8qu")
+cast_shadow = 0
+visibility_range_end = 90.0
+visibility_range_end_margin = 10.0
+visibility_range_fade_mode = 1
+mesh = SubResource("QuadMesh_qrgyy")
+surface_material_override/0 = SubResource("StandardMaterial3D_tgw00")
+script = ExtResource("3_h235a")

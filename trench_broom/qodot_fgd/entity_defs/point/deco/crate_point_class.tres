@@ -1,0 +1,23 @@
+[gd_resource type="Resource" script_class="QodotFGDPointClass" load_steps=4 format=3 uid="uid://bi3m3k5votvpc"]
+
+[ext_resource type="Script" path="res://addons/qodot/src/resources/game-definitions/fgd/qodot_fgd_point_class.gd" id="1_8b67u"]
+[ext_resource type="PackedScene" uid="uid://bxdu412yk2ut8" path="res://scenes/objects/crate_wooden.tscn" id="1_j8a6i"]
+[ext_resource type="Script" path="res://trench_broom/qodot_fgd/entity_defs/point/deco/obj_tb.gd" id="3_7meb8"]
+
+[resource]
+script = ExtResource("1_8b67u")
+scene_file = ExtResource("1_j8a6i")
+script_class = ExtResource("3_7meb8")
+apply_rotation_on_map_build = true
+classname = "deco_crate_wooden"
+description = ""
+qodot_internal = false
+base_classes = Array[Resource]([])
+class_properties = {}
+class_property_descriptions = {}
+meta_properties = {
+"color": Color(0.8, 0.8, 0.8, 1),
+"size": AABB(-8, -8, -8, 8, 8, 8)
+}
+node_class = ""
+transient_node = false

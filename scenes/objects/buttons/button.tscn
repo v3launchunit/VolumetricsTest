@@ -1,0 +1,88 @@
+[gd_scene load_steps=15 format=3 uid="uid://w752n64gaa3f"]
+
+[ext_resource type="Script" path="res://scripts/objects/button.gd" id="1_rgctt"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_f8nba"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_r8gug"]
+size = Vector3(0.5, 0.5, 0.5)
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_lb3m5"]
+animation = &"off"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_gpvii"]
+animation = &"on"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ymjxf"]
+advance_mode = 2
+
+[sub_resource type="Curve" id="Curve_won1q"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_kstkh"]
+xfade_time = 0.25
+xfade_curve = SubResource("Curve_won1q")
+
+[sub_resource type="Curve" id="Curve_s086i"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_4jk3f"]
+xfade_time = 0.25
+xfade_curve = SubResource("Curve_s086i")
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_72fw2"]
+states/off/node = SubResource("AnimationNodeAnimation_lb3m5")
+states/off/position = Vector2(396, 100.667)
+states/on/node = SubResource("AnimationNodeAnimation_gpvii")
+states/on/position = Vector2(666.667, 101.556)
+transitions = ["Start", "off", SubResource("AnimationNodeStateMachineTransition_ymjxf"), "off", "on", SubResource("AnimationNodeStateMachineTransition_kstkh"), "on", "off", SubResource("AnimationNodeStateMachineTransition_4jk3f")]
+
+[sub_resource type="Animation" id="Animation_xuaj8"]
+resource_name = "off"
+tracks/0/type = "position_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MeshInstance3D")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 0, 0, 0)
+
+[sub_resource type="Animation" id="Animation_c2x2o"]
+resource_name = "on"
+tracks/0/type = "position_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MeshInstance3D")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 0, 0, -0.2)
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_yomfv"]
+_data = {
+"off": SubResource("Animation_xuaj8"),
+"on": SubResource("Animation_c2x2o")
+}
+
+[node name="Button" type="Area3D" node_paths=PackedStringArray("targets")]
+collision_layer = 8
+collision_mask = 3
+script = ExtResource("1_rgctt")
+targets = [NodePath("AnimationTree")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_f8nba")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_r8gug")
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+tree_root = SubResource("AnimationNodeStateMachine_72fw2")
+anim_player = NodePath("../AnimationPlayer")
+active = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_yomfv")
+}

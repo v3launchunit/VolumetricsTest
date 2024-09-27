@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="FuncGodotFGDPointClass" load_steps=3 format=3 uid="uid://bqaj8fp8325ho"]
+
+[ext_resource type="PackedScene" uid="uid://obwsnaybs6vi" path="res://scenes/objects/crate_metal.tscn" id="1_vo28o"]
+[ext_resource type="Script" path="res://addons/func_godot/src/fgd/func_godot_fgd_point_class.gd" id="2_7dhwx"]
+
+[resource]
+script = ExtResource("2_7dhwx")
+scene_file = ExtResource("1_vo28o")
+apply_rotation_on_map_build = true
+classname = "deco_crate_metal"
+description = ""
+func_godot_internal = false
+base_classes = Array[Resource]([])
+class_properties = {}
+class_property_descriptions = {}
+meta_properties = {
+"color": Color(0.416747, 0.416747, 0.416747, 1),
+"size": AABB(-8, -8, -8, 8, 8, 8)
+}
+node_class = ""
+name_property = ""

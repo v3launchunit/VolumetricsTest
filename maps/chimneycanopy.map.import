@@ -1,0 +1,14 @@
+[remap]
+
+importer="func_godot.map"
+type="Resource"
+uid="uid://bularf1b8kpmr"
+path="res://.godot/imported/chimneycanopy.map-9e601910e195a03f5a6da73642852504.tres"
+
+[deps]
+
+source_file="res://maps/chimneycanopy.map"
+dest_files=["res://.godot/imported/chimneycanopy.map-9e601910e195a03f5a6da73642852504.tres"]
+
+[params]
+

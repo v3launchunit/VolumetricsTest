@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="QodotFGDBaseClass" load_steps=2 format=3 uid="uid://bec0kis72kbyx"]
+
+[ext_resource type="Script" path="res://addons/qodot/src/resources/game-definitions/fgd/qodot_fgd_base_class.gd" id="1_vl2e2"]
+
+[resource]
+script = ExtResource("1_vl2e2")
+classname = "enemy"
+description = ""
+qodot_internal = false
+base_classes = Array[Resource]([])
+class_properties = {
+"detect_mode": -1,
+"tripwire_group": "none"
+}
+class_property_descriptions = {
+"detect_mode": "controls the methods by which this enemy can detect the player.",
+"tripwire_group": "if set to a value besides 'none', will cause this enemy to wake up when the specified group is activated."
+}
+meta_properties = {}
+node_class = ""
+transient_node = false

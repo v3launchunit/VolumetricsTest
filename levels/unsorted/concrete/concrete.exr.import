@@ -1,0 +1,12 @@
+[remap]
+
+importer="2d_array_texture"
+type="CompressedTexture2DArray"
+
+[params]
+
+compress/mode=3
+compress/channel_pack=1
+mipmaps/generate=false
+slices/horizontal=1
+slices/vertical=8

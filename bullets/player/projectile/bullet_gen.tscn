@@ -1,0 +1,95 @@
+[gd_scene load_steps=13 format=3 uid="uid://b4m3n1ffkk00l"]
+
+[ext_resource type="Script" path="res://bullets/bullet.gd" id="1_j72ds"]
+[ext_resource type="Script" path="res://bullets/bullet_trail.gd" id="2_jmmva"]
+[ext_resource type="ArrayMesh" uid="uid://cqf6v4gaperkn" path="res://bullets/bullet.obj" id="2_m6y8l"]
+[ext_resource type="PackedScene" uid="uid://fn1fivb2ndvo" path="res://scenes/effects/impacts/bullet_impact_yellow.tscn" id="2_v8rhl"]
+[ext_resource type="AudioStream" uid="uid://crtqyq64m3wm1" path="res://audio/streams/ambient/bullet_ambient.wav" id="4_ldvif"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_h48e4"]
+size = Vector3(0.05, 0.05, 2)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lktph"]
+shading_mode = 0
+vertex_color_use_as_albedo = true
+albedo_color = Color(1, 1, 0, 1)
+
+[sub_resource type="Gradient" id="Gradient_0qvjn"]
+offsets = PackedFloat32Array(0, 0.9, 1)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_prqt5"]
+gradient = SubResource("Gradient_0qvjn")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_0vas0"]
+emission_shape = 3
+emission_box_extents = Vector3(0.125, 0.125, 2)
+direction = Vector3(0, 0, 1)
+spread = 0.0
+initial_velocity_min = 1.0
+initial_velocity_max = 1.0
+gravity = Vector3(0, 0, 0)
+color_ramp = SubResource("GradientTexture1D_prqt5")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2qrb3"]
+transparency = 3
+alpha_hash_scale = 1.0
+alpha_antialiasing_mode = 0
+vertex_color_use_as_albedo = true
+albedo_color = Color(1, 1, 0, 1)
+metallic = 1.0
+roughness = 0.5
+
+[sub_resource type="BoxMesh" id="BoxMesh_wwmxc"]
+material = SubResource("StandardMaterial3D_2qrb3")
+size = Vector3(0.063, 0.063, 0.063)
+
+[node name="Bullet" type="RigidBody3D"]
+collision_layer = 2
+collision_mask = 69
+input_ray_pickable = false
+gravity_scale = 0.0
+lock_rotation = true
+continuous_cd = true
+max_contacts_reported = 5
+contact_monitor = true
+script = ExtResource("1_j72ds")
+speed = 50.0
+explosion = ExtResource("2_v8rhl")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_h48e4")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(-1, 4.37114e-07, 0, 3.82137e-15, 2.18557e-07, 1, 8.74228e-08, 5, -4.37114e-08, 0, 0, 0.35)
+layers = 2
+cast_shadow = 0
+mesh = ExtResource("2_m6y8l")
+surface_material_override/0 = SubResource("StandardMaterial3D_lktph")
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1)
+visible = false
+layers = 2
+cast_shadow = 0
+amount = 25
+process_material = SubResource("ParticleProcessMaterial_0vas0")
+draw_pass_1 = SubResource("BoxMesh_wwmxc")
+script = ExtResource("2_jmmva")
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("4_ldvif")
+pitch_scale = 1.5
+autoplay = true
+max_distance = 50.0
+bus = &"Combat"
+doppler_tracking = 2
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.7)
+visible = false
+light_color = Color(1, 1, 0, 1)
+distance_fade_enabled = true
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_entered" from="." to="GPUParticles3D" method="_on_bullet_body_entered"]

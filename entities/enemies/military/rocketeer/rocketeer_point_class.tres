@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="QodotFGDPointClass" load_steps=4 format=3 uid="uid://b8ve57w085oy6"]
+
+[ext_resource type="Resource" uid="uid://bec0kis72kbyx" path="res://entities/enemies/enemy_base_class.tres" id="1_4bhhc"]
+[ext_resource type="PackedScene" uid="uid://del4p8ar8qcwc" path="res://entities/enemies/military/rocketeer/rocketeer.tscn" id="1_vdyj8"]
+[ext_resource type="Script" path="res://addons/qodot/src/resources/game-definitions/fgd/qodot_fgd_point_class.gd" id="2_jvtfw"]
+
+[resource]
+script = ExtResource("2_jvtfw")
+scene_file = ExtResource("1_vdyj8")
+apply_rotation_on_map_build = true
+classname = "enemy_rocketeer"
+description = ""
+qodot_internal = false
+base_classes = Array[Resource]([ExtResource("1_4bhhc")])
+class_properties = {}
+class_property_descriptions = {}
+meta_properties = {
+"color": Color(0.8, 0.8, 0.8, 1),
+"size": AABB(-8, -8, -24, 8, 8, 24)
+}
+node_class = ""
+transient_node = false

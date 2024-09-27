@@ -1,0 +1,194 @@
+[gd_scene load_steps=21 format=3 uid="uid://boxs6v8ktotma"]
+
+[ext_resource type="Script" path="res://scripts/pickups/ammo_pickup.gd" id="1_ve4na"]
+[ext_resource type="AudioStream" uid="uid://g7unocdbdokw" path="res://audio/streams/pickups/pickup_ammo.wav" id="2_jodgy"]
+[ext_resource type="Texture2D" uid="uid://d0bquc3skclkb" path="res://pickups/ammo/shell_box/shell_box.png" id="3_2eqfn"]
+[ext_resource type="Material" uid="uid://b78l63b32udy2" path="res://effects/halos/halo_mat.tres" id="3_7jsya"]
+[ext_resource type="Texture2D" uid="uid://hk0k2coukjwc" path="res://effects/halos/halo_tex.tres" id="3_w7jbw"]
+[ext_resource type="Texture2D" uid="uid://cn80mlgjttjp3" path="res://pickups/ammo/shell_box/shell_box_heights.png" id="4_v3hoq"]
+[ext_resource type="Script" path="res://scripts/effects/halo.gd" id="5_8unii"]
+[ext_resource type="Texture2D" uid="uid://b6k5ky260w0ck" path="res://pickups/ammo/shell_box/shell_box_metallic.png" id="5_fi4vq"]
+[ext_resource type="Texture2D" uid="uid://bbdlnl6ud6wfs" path="res://pickups/ammo/shell_box/shell_box_normals.png" id="6_xbbru"]
+[ext_resource type="Texture2D" uid="uid://bjp8fl3yckpac" path="res://pickups/ammo/shell_box/shell_box_roughness.png" id="7_s1bop"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_uc2sx"]
+height = 1.0
+radius = 0.25
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_0epo4"]
+radius = 1.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hv0iq"]
+transparency = 1
+blend_mode = 1
+shading_mode = 0
+vertex_color_use_as_albedo = true
+albedo_color = Color(1, 1, 0, 0.501961)
+albedo_texture = ExtResource("3_w7jbw")
+billboard_mode = 1
+fixed_size = true
+proximity_fade_distance = 3.0
+distance_fade_mode = 1
+
+[sub_resource type="QuadMesh" id="QuadMesh_e6p1o"]
+material = SubResource("StandardMaterial3D_hv0iq")
+size = Vector2(0.15, 0.15)
+
+[sub_resource type="Shader" id="Shader_bh6o5"]
+code = "// NOTE: Shader automatically converted from Godot Engine 4.2.1.stable.mono's StandardMaterial3D.
+
+shader_type spatial;
+render_mode blend_mix,depth_draw_opaque,cull_back,diffuse_burley,specular_schlick_ggx;
+uniform vec4 albedo : source_color;
+uniform sampler2D texture_albedo : source_color,filter_nearest,repeat_enable;
+uniform float point_size : hint_range(0,128);
+uniform float roughness : hint_range(0,1);
+uniform sampler2D texture_metallic : hint_default_white,filter_nearest,repeat_enable;
+uniform vec4 metallic_texture_channel;
+uniform sampler2D texture_roughness : hint_roughness_r,filter_nearest,repeat_enable;
+uniform float specular;
+uniform float metallic;
+uniform sampler2D texture_normal : hint_roughness_normal,filter_nearest,repeat_enable;
+uniform float normal_scale : hint_range(-16,16);
+uniform sampler2D texture_heightmap : hint_default_black,filter_linear,repeat_enable;
+uniform float heightmap_scale;
+uniform int heightmap_min_layers;
+uniform int heightmap_max_layers;
+uniform vec2 heightmap_flip;
+uniform vec3 uv1_scale;
+uniform vec3 uv1_offset;
+uniform vec3 uv2_scale;
+uniform vec3 uv2_offset;
+
+#include \"res://shaders/includes/psx_inc.gdshaderinc\"
+
+void vertex() {
+	UV=UV*uv1_scale.xy+uv1_offset.xy;
+	POSITION = map_affine(snap_vertex(PROJECTION_MATRIX * MODELVIEW_MATRIX * vec4(VERTEX, 1.0)));
+}
+
+void fragment() {
+	vec2 base_uv = UV;
+	{
+		vec3 view_dir = normalize(normalize(-VERTEX + EYE_OFFSET) * mat3(TANGENT * heightmap_flip.x, -BINORMAL * heightmap_flip.y, NORMAL));
+		float depth = 1.0 - texture(texture_heightmap, base_uv).r;
+		vec2 ofs = base_uv - view_dir.xy * depth * heightmap_scale * 0.01;
+		base_uv=ofs;
+	}
+	vec4 albedo_tex = texture(texture_albedo,base_uv);
+	ALBEDO = albedo.rgb * albedo_tex.rgb;
+	float metallic_tex = dot(texture(texture_metallic,base_uv),metallic_texture_channel);
+	METALLIC = metallic_tex * metallic;
+	vec4 roughness_texture_channel = vec4(1.0,0.0,0.0,0.0);
+	float roughness_tex = dot(texture(texture_roughness,base_uv),roughness_texture_channel);
+	ROUGHNESS = roughness_tex * roughness;
+	SPECULAR = specular;
+	NORMAL_MAP = texture(texture_normal,base_uv).rgb;
+	NORMAL_MAP_DEPTH = normal_scale;
+}
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ckobw"]
+render_priority = 0
+shader = SubResource("Shader_bh6o5")
+shader_parameter/albedo = Color(1, 1, 1, 1)
+shader_parameter/point_size = 1.0
+shader_parameter/roughness = 1.0
+shader_parameter/metallic_texture_channel = Vector4(1, 0, 0, 0)
+shader_parameter/specular = 0.5
+shader_parameter/metallic = 1.0
+shader_parameter/normal_scale = 1.0
+shader_parameter/heightmap_scale = 5.0
+shader_parameter/heightmap_min_layers = 8
+shader_parameter/heightmap_max_layers = 32
+shader_parameter/heightmap_flip = Vector2(1, 1)
+shader_parameter/uv1_scale = Vector3(1, 1, 1)
+shader_parameter/uv1_offset = Vector3(0, 0, 0)
+shader_parameter/uv2_scale = Vector3(1, 1, 1)
+shader_parameter/uv2_offset = Vector3(0, 0, 0)
+shader_parameter/texture_albedo = ExtResource("3_2eqfn")
+shader_parameter/texture_metallic = ExtResource("5_fi4vq")
+shader_parameter/texture_roughness = ExtResource("7_s1bop")
+shader_parameter/texture_normal = ExtResource("6_xbbru")
+shader_parameter/texture_heightmap = ExtResource("4_v3hoq")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_evuw2"]
+albedo_texture = ExtResource("3_2eqfn")
+metallic = 1.0
+metallic_texture = ExtResource("5_fi4vq")
+roughness_texture = ExtResource("7_s1bop")
+normal_enabled = true
+normal_texture = ExtResource("6_xbbru")
+heightmap_enabled = true
+heightmap_texture = ExtResource("4_v3hoq")
+texture_filter = 0
+
+[sub_resource type="BoxMesh" id="BoxMesh_v20v3"]
+material = SubResource("StandardMaterial3D_evuw2")
+size = Vector3(0.5, 0.25, 0.5)
+
+[sub_resource type="Animation" id="Animation_wivti"]
+resource_name = "anim"
+length = 10.0
+loop_mode = 1
+tracks/0/type = "rotation_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 0, 0, 0, 1, 2.5, 1, 0, 0.707, 0, 0.707, 5, 1, 0, 1, 0, 0, 7.5, 1, 0, -0.707, 0, 0.707, 10, 1, 0, 0, 0, 1)
+tracks/1/type = "position_3d"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = PackedFloat32Array(0, 1, 0, 0, 0, 2.5, 1, 0, 0.05, 0, 5, 1, 0, 0, 0, 7.5, 1, 0, 0.05, 0, 10, 1, 0, 0, 0)
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_4pudi"]
+_data = {
+"anim": SubResource("Animation_wivti")
+}
+
+[node name="ShellBoxPickup" type="RigidBody3D"]
+collision_layer = 8
+lock_rotation = true
+script = ExtResource("1_ve4na")
+ammo_type = "shells"
+ammo_amount = 15
+event_string = "pickup.ammo.shells"
+pickup_sound = ExtResource("2_jodgy")
+pickup_text = "+15 shotgun shells"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("CylinderShape3D_uc2sx")
+
+[node name="Area3D" type="Area3D" parent="."]
+transform = Transform3D(0.813742, 0, 0.581226, 0, 1, 0, -0.581226, 0, 0.813742, 0, 0.0172328, 0)
+collision_mask = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+shape = SubResource("SphereShape3D_0epo4")
+
+[node name="LensFlare" type="MeshInstance3D" parent="Area3D"]
+layers = 2
+material_override = ExtResource("3_7jsya")
+visibility_range_end = 100.0
+visibility_range_end_margin = 25.0
+visibility_range_fade_mode = 1
+mesh = SubResource("QuadMesh_e6p1o")
+script = ExtResource("5_8unii")
+color = Color(1, 1, 0, 1)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Area3D"]
+transform = Transform3D(0.707107, -0.707107, 0, 0.707107, 0.707107, 0, 0, 0, 1, 0, 0, 0)
+layers = 2
+material_override = SubResource("ShaderMaterial_ckobw")
+mesh = SubResource("BoxMesh_v20v3")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+root_node = NodePath("../Area3D")
+libraries = {
+"": SubResource("AnimationLibrary_4pudi")
+}

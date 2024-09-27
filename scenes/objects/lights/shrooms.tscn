@@ -1,0 +1,98 @@
+[gd_scene load_steps=9 format=3 uid="uid://dl2s16poygxvk"]
+
+[ext_resource type="Shader" path="res://shaders/spatial/psx_ul_mix.gdshader" id="1_1pxu8"]
+[ext_resource type="ArrayMesh" uid="uid://csscrw28bv1u1" path="res://models/objects/shroom.obj" id="1_icids"]
+[ext_resource type="Material" uid="uid://b78l63b32udy2" path="res://effects/halos/halo_mat.tres" id="2_3fnjj"]
+[ext_resource type="Texture2D" uid="uid://hk0k2coukjwc" path="res://effects/halos/halo_tex.tres" id="3_0l2qy"]
+[ext_resource type="Script" path="res://scripts/effects/halo.gd" id="4_6u6gm"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ecos1"]
+render_priority = 0
+shader = ExtResource("1_1pxu8")
+shader_parameter/albedo = Color(0, 1, 0.376471, 1)
+shader_parameter/uv1_scale = Vector3(1, 1, 1)
+shader_parameter/uv1_offset = Vector3(0, 0, 0)
+
+[sub_resource type="QuadMesh" id="QuadMesh_ixgd1"]
+size = Vector2(0.15, 0.15)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tyqpk"]
+transparency = 1
+blend_mode = 1
+shading_mode = 0
+vertex_color_use_as_albedo = true
+albedo_color = Color(1, 0.752941, 0.501961, 1)
+albedo_texture = ExtResource("3_0l2qy")
+billboard_mode = 1
+fixed_size = true
+proximity_fade_distance = 3.0
+distance_fade_mode = 1
+
+[node name="Shrooms" type="Node3D"]
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+light_color = Color(0, 1, 0.376471, 1)
+shadow_enabled = true
+distance_fade_enabled = true
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+layers = 8
+material_override = SubResource("ShaderMaterial_ecos1")
+cast_shadow = 0
+visibility_range_end = 25.0
+visibility_range_end_margin = 5.0
+mesh = ExtResource("1_icids")
+
+[node name="LensFlare" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.125, 0)
+layers = 2
+material_override = ExtResource("2_3fnjj")
+cast_shadow = 0
+visibility_range_end = 100.0
+visibility_range_end_margin = 10.0
+visibility_range_fade_mode = 1
+mesh = SubResource("QuadMesh_ixgd1")
+surface_material_override/0 = SubResource("StandardMaterial3D_tyqpk")
+script = ExtResource("4_6u6gm")
+color = Color(0, 1, 0.376471, 1)
+
+[node name="LensFlare2" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.2, 0.125, -0.4)
+layers = 2
+material_override = ExtResource("2_3fnjj")
+cast_shadow = 0
+visibility_range_end = 100.0
+visibility_range_end_margin = 10.0
+visibility_range_fade_mode = 1
+mesh = SubResource("QuadMesh_ixgd1")
+surface_material_override/0 = SubResource("StandardMaterial3D_tyqpk")
+script = ExtResource("4_6u6gm")
+color = Color(0, 1, 0.376471, 1)
+
+[node name="LensFlare3" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 0.125, -0.2)
+layers = 2
+material_override = ExtResource("2_3fnjj")
+cast_shadow = 0
+visibility_range_end = 100.0
+visibility_range_end_margin = 10.0
+visibility_range_fade_mode = 1
+mesh = SubResource("QuadMesh_ixgd1")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_tyqpk")
+script = ExtResource("4_6u6gm")
+color = Color(0.184314, 1, 0.0666667, 1)
+
+[node name="LensFlare4" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0.125, 0.5)
+layers = 2
+material_override = ExtResource("2_3fnjj")
+cast_shadow = 0
+visibility_range_end = 100.0
+visibility_range_end_margin = 10.0
+visibility_range_fade_mode = 1
+mesh = SubResource("QuadMesh_ixgd1")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_tyqpk")
+script = ExtResource("4_6u6gm")
+color = Color(0.184314, 1, 0.0666667, 1)

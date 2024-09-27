@@ -1,0 +1,175 @@
+[gd_scene load_steps=9 format=3 uid="uid://cyh67pqghsn3n"]
+
+[ext_resource type="Theme" uid="uid://dwof7m2ye3tjh" path="res://scenes/ui/default_theme.tres" id="1_4kk41"]
+[ext_resource type="Script" path="res://scripts/ui/game_menu.gd" id="1_fh5b1"]
+[ext_resource type="Texture2D" uid="uid://cmq3arf61ax4f" path="res://ui/menu_panel.png" id="1_yt0u8"]
+[ext_resource type="PackedScene" uid="uid://ccwu3rknnn1jt" path="res://scenes/ui/menus/settings/settings_menu.tscn" id="4_l61q4"]
+[ext_resource type="Texture2D" uid="uid://bn5awurm538ar" path="res://ui/x.png" id="4_snd5f"]
+[ext_resource type="PackedScene" uid="uid://c58frru7780pf" path="res://scenes/ui/menus/level_select_menu.tscn" id="5_cbdtm"]
+[ext_resource type="AudioStream" uid="uid://bmlxxe8maevqb" path="res://audio/streams/click.wav" id="6_ts66u"]
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_31jvl"]
+random_pitch = 1.15
+random_volume_offset_db = 0.15
+streams_count = 1
+stream_0/stream = ExtResource("6_ts66u")
+
+[node name="Menu" type="Control"]
+process_mode = 3
+visible = false
+top_level = true
+z_index = 1
+texture_filter = 1
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_fh5b1")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.501961)
+
+[node name="MenuPanel" type="NinePatchRect" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -64.0
+offset_top = -114.0
+offset_right = 64.0
+offset_bottom = 108.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_yt0u8")
+patch_margin_left = 4
+patch_margin_top = 16
+patch_margin_right = 4
+patch_margin_bottom = 8
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+process_mode = 2
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -51.0
+offset_top = -68.0
+offset_right = 51.0
+offset_bottom = 68.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Campaign" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+focus_neighbor_left = NodePath("../Quit")
+focus_neighbor_top = NodePath("../Quit")
+focus_neighbor_right = NodePath("../Save")
+focus_previous = NodePath("../Quit")
+theme = ExtResource("1_4kk41")
+keep_pressed_outside = true
+text = "CAMPAIGN"
+
+[node name="Save" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+focus_neighbor_left = NodePath("../Campaign")
+theme = ExtResource("1_4kk41")
+disabled = true
+keep_pressed_outside = true
+text = "SAVE/LOAD"
+
+[node name="Settings" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+focus_neighbor_right = NodePath("../Quit")
+focus_next = NodePath("../Quit")
+theme = ExtResource("1_4kk41")
+keep_pressed_outside = true
+text = "SETTINGS"
+
+[node name="Spacer" type="Control" parent="VBoxContainer"]
+custom_minimum_size = Vector2(0, 16)
+layout_mode = 2
+
+[node name="Quit" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+focus_neighbor_left = NodePath("../Settings")
+focus_neighbor_top = NodePath("../Settings")
+focus_neighbor_right = NodePath("../Campaign")
+focus_neighbor_bottom = NodePath("../Campaign")
+focus_next = NodePath("../Campaign")
+focus_previous = NodePath("../Settings")
+theme = ExtResource("1_4kk41")
+theme_override_colors/font_hover_pressed_color = Color(0.501961, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(1, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0.501961, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(1, 0, 0, 1)
+theme_override_colors/font_color = Color(0.74902, 0.376471, 0.376471, 1)
+keep_pressed_outside = true
+text = "QUIT"
+
+[node name="CloseMenuButton" type="Button" parent="."]
+process_mode = 2
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 70.0
+offset_top = -97.0
+offset_right = 101.0
+offset_bottom = -66.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_4kk41")
+keep_pressed_outside = true
+icon = ExtResource("4_snd5f")
+icon_alignment = 1
+
+[node name="ButtonPanel" type="NinePatchRect" parent="CloseMenuButton"]
+show_behind_parent = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -6.0
+offset_top = -17.0
+offset_right = 6.0
+offset_bottom = 10.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_yt0u8")
+patch_margin_left = 4
+patch_margin_top = 16
+patch_margin_right = 4
+patch_margin_bottom = 8
+
+[node name="LevelSelect" parent="." instance=ExtResource("5_cbdtm")]
+visible = false
+layout_mode = 1
+
+[node name="Settings" parent="." instance=ExtResource("4_l61q4")]
+visible = false
+layout_mode = 1
+
+[node name="ButtonPress" type="AudioStreamPlayer" parent="."]
+stream = SubResource("AudioStreamRandomizer_31jvl")
+
+[connection signal="menu_closed" from="." to="LevelSelect" method="_on_menu_closed"]
+[connection signal="menu_closed" from="." to="Settings" method="_on_menu_closed"]
+[connection signal="pressed" from="VBoxContainer/Campaign" to="." method="_on_campaign_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/Save" to="." method="_on_save_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/Settings" to="." method="_on_settings_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/Quit" to="." method="_on_quit_button_pressed"]
+[connection signal="pressed" from="CloseMenuButton" to="." method="_on_close_menu_button_pressed"]

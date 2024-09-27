@@ -1,0 +1,14 @@
+[remap]
+
+importer="func_godot.map"
+type="Resource"
+uid="uid://cgngsfjjlbvu6"
+path="res://.godot/imported/unsorted_c.map-d4f8fee57e6fe379608690b69a7d27c3.tres"
+
+[deps]
+
+source_file="res://maps/unsorted_c.map"
+dest_files=["res://.godot/imported/unsorted_c.map-d4f8fee57e6fe379608690b69a7d27c3.tres"]
+
+[params]
+

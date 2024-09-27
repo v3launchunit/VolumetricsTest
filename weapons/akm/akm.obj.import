@@ -1,0 +1,22 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://53jffpg6vhkj"
+path="res://.godot/imported/akm.obj-6762a97da0407a4b5f53b03182473bde.mesh"
+
+[deps]
+
+files=["res://.godot/imported/akm.obj-6762a97da0407a4b5f53b03182473bde.mesh"]
+
+source_file="res://weapons/akm/akm.obj"
+dest_files=["res://.godot/imported/akm.obj-6762a97da0407a4b5f53b03182473bde.mesh", "res://.godot/imported/akm.obj-6762a97da0407a4b5f53b03182473bde.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
+force_disable_mesh_compression=false

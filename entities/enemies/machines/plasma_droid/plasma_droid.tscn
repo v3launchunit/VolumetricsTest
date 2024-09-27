@@ -1,0 +1,623 @@
+[gd_scene load_steps=64 format=3 uid="uid://pr3j5d4ifvrt"]
+
+[ext_resource type="Script" path="res://entities/enemies/enemy_attack_pattern.gd" id="1_jd6vl"]
+[ext_resource type="PackedScene" uid="uid://b12xu872st3c" path="res://entities/enemies/machines/plasma_droid/plasma_droid.glb" id="1_whe1e"]
+[ext_resource type="Script" path="res://entities/status.gd" id="2_3ftdv"]
+[ext_resource type="AudioStream" uid="uid://duaykpmpnx0s2" path="res://audio/streams/effects/falling_pipe.wav" id="2_cqd0j"]
+[ext_resource type="AudioStream" uid="uid://ccvyploa5k7uu" path="res://audio/streams/voices/plasma_droid/plasma_droid_detect.wav" id="2_duui2"]
+[ext_resource type="ArrayMesh" uid="uid://ceibhbi3vm1n0" path="res://weapons/plasma_cannon/plasma_cannon.obj" id="2_scks3"]
+[ext_resource type="Script" path="res://entities/enemies/attack_pattern.gd" id="3_3f3op"]
+[ext_resource type="Material" uid="uid://b78l63b32udy2" path="res://effects/halos/halo_mat.tres" id="3_54erg"]
+[ext_resource type="PackedScene" uid="uid://fd8mwvba35jo" path="res://bullets/enemy/plasma/enemy_plasma_rocket.tscn" id="3_avpih"]
+[ext_resource type="PackedScene" uid="uid://cu70msbgu2ysm" path="res://scenes/effects/damage/metal_damage_sys.tscn" id="3_bt5p4"]
+[ext_resource type="PackedScene" uid="uid://ctgdbydttjqwq" path="res://scenes/effects/explosions/plasma_explosion.tscn" id="3_rukio"]
+[ext_resource type="Script" path="res://scripts/effects/halo.gd" id="4_ifk2m"]
+[ext_resource type="PackedScene" uid="uid://beg6173x6vjha" path="res://bullets/enemy/plasma/enemy_plasma_bullet.tscn" id="4_k6qs3"]
+[ext_resource type="PackedScene" uid="uid://b3n8ejiapfh8" path="res://pickups/ammo/large_cell_pickup.tscn" id="5_4ag46"]
+[ext_resource type="ArrayMesh" uid="uid://bq2ld7p1te64i" path="res://weapons/plasma_cannon/muzzle_flash_plasma.obj" id="5_8e7tr"]
+[ext_resource type="AnimationLibrary" uid="uid://cu6kaw3wmnu2i" path="res://entities/enemies/machines/plasma_droid/plasma_droid_anims.res" id="8_hkuiw"]
+[ext_resource type="Shader" path="res://shaders/spatial/psx_ul_add.gdshader" id="11_o6law"]
+[ext_resource type="Shader" path="res://shaders/spatial/psx_ul_mix.gdshader" id="12_djo4k"]
+[ext_resource type="PackedScene" uid="uid://qy044barx365" path="res://entities/stair_stepper.tscn" id="18_7c8tp"]
+
+[sub_resource type="Resource" id="Resource_ba0li"]
+script = ExtResource("3_3f3op")
+weight = 1.0
+bullet = ExtResource("3_avpih")
+volley = 1
+spread = 0.0
+spawners = Array[NodePath]([])
+delay = 1.0
+recovery_time = 1.5
+animation = &"attacking"
+burst = 1
+burst_delay = 0.1
+cancelable = true
+
+[sub_resource type="Resource" id="Resource_wk1ps"]
+script = ExtResource("3_3f3op")
+weight = 2.0
+bullet = ExtResource("4_k6qs3")
+volley = 1
+spread = 0.0
+spawners = Array[NodePath]([])
+delay = 0.5
+recovery_time = 2.0
+animation = &"bullet_attacking"
+burst = 4
+burst_delay = 0.25
+cancelable = true
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_akb4x"]
+random_pitch = 1.15
+random_volume_offset_db = 1.5
+streams_count = 1
+stream_0/stream = ExtResource("2_cqd0j")
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_xqi1h"]
+height = 3.0
+
+[sub_resource type="Shader" id="Shader_q8nw2"]
+code = "// NOTE: Shader automatically converted from Godot Engine 4.2.1.stable.mono's StandardMaterial3D.
+
+shader_type spatial;
+render_mode blend_mix,depth_draw_opaque,cull_back,diffuse_burley,specular_schlick_ggx;
+uniform vec4 albedo : source_color;
+uniform sampler2D texture_albedo : source_color,filter_linear_mipmap,repeat_enable;
+uniform float point_size : hint_range(0,128);
+uniform float roughness : hint_range(0,1);
+uniform sampler2D texture_metallic : hint_default_white,filter_linear_mipmap,repeat_enable;
+uniform vec4 metallic_texture_channel;
+uniform sampler2D texture_roughness : hint_roughness_r,filter_linear_mipmap,repeat_enable;
+uniform float specular;
+uniform float metallic;
+uniform vec3 uv1_scale;
+uniform vec3 uv1_offset;
+uniform vec3 uv2_scale;
+uniform vec3 uv2_offset;
+
+#include \"res://shaders/includes/psx_inc.gdshaderinc\"
+
+void vertex() {
+	UV=UV*uv1_scale.xy+uv1_offset.xy;
+	POSITION = map_affine(snap_vertex(PROJECTION_MATRIX * MODELVIEW_MATRIX * vec4(VERTEX, 1.0)));
+}
+
+void fragment() {
+	vec2 base_uv = UV;
+	vec4 albedo_tex = texture(texture_albedo,base_uv);
+	ALBEDO = albedo.rgb * albedo_tex.rgb;
+	float metallic_tex = dot(texture(texture_metallic,base_uv),metallic_texture_channel);
+	METALLIC = metallic_tex * metallic;
+	vec4 roughness_texture_channel = vec4(1.0,0.0,0.0,0.0);
+	float roughness_tex = dot(texture(texture_roughness,base_uv),roughness_texture_channel);
+	ROUGHNESS = roughness_tex * roughness;
+	SPECULAR = specular;
+}
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_rn6hr"]
+render_priority = 0
+shader = SubResource("Shader_q8nw2")
+shader_parameter/albedo = Color(1, 1, 1, 1)
+shader_parameter/point_size = 1.0
+shader_parameter/roughness = 0.25
+shader_parameter/metallic_texture_channel = Vector4(1, 0, 0, 0)
+shader_parameter/specular = 0.5
+shader_parameter/metallic = 1.0
+shader_parameter/uv1_scale = Vector3(1, 1, 1)
+shader_parameter/uv1_offset = Vector3(0, 0, 0)
+shader_parameter/uv2_scale = Vector3(1, 1, 1)
+shader_parameter/uv2_offset = Vector3(0, 0, 0)
+
+[sub_resource type="Shader" id="Shader_4a45e"]
+code = "// NOTE: Shader automatically converted from Godot Engine 4.2.1.stable.mono's StandardMaterial3D.
+
+shader_type spatial;
+render_mode blend_mix,depth_draw_opaque,cull_back,diffuse_burley,specular_schlick_ggx,unshaded;
+uniform vec4 albedo : source_color;
+uniform sampler2D texture_albedo : source_color,filter_linear_mipmap,repeat_enable;
+uniform float point_size : hint_range(0,128);
+uniform float roughness : hint_range(0,1);
+uniform sampler2D texture_metallic : hint_default_white,filter_linear_mipmap,repeat_enable;
+uniform vec4 metallic_texture_channel;
+uniform sampler2D texture_roughness : hint_roughness_r,filter_linear_mipmap,repeat_enable;
+uniform float specular;
+uniform float metallic;
+uniform vec3 uv1_scale;
+uniform vec3 uv1_offset;
+uniform vec3 uv2_scale;
+uniform vec3 uv2_offset;
+
+#include \"res://shaders/includes/psx_inc.gdshaderinc\"
+
+void vertex() {
+	UV=UV*uv1_scale.xy+uv1_offset.xy;
+	POSITION = map_affine(snap_vertex(PROJECTION_MATRIX * MODELVIEW_MATRIX * vec4(VERTEX, 1.0)));
+}
+
+void fragment() {
+	vec2 base_uv = UV;
+	vec4 albedo_tex = texture(texture_albedo,base_uv);
+	ALBEDO = albedo.rgb * albedo_tex.rgb;
+	float metallic_tex = dot(texture(texture_metallic,base_uv),metallic_texture_channel);
+	METALLIC = metallic_tex * metallic;
+	vec4 roughness_texture_channel = vec4(1.0,0.0,0.0,0.0);
+	float roughness_tex = dot(texture(texture_roughness,base_uv),roughness_texture_channel);
+	ROUGHNESS = roughness_tex * roughness;
+	SPECULAR = specular;
+}
+"
+
+[sub_resource type="Gradient" id="Gradient_ml1sv"]
+colors = PackedColorArray(0, 1, 1, 1, 1, 0, 2, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_kweik"]
+gradient = SubResource("Gradient_ml1sv")
+use_hdr = true
+fill_from = Vector2(0, 0.8)
+fill_to = Vector2(0, 0.2)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_4itip"]
+render_priority = 0
+shader = SubResource("Shader_4a45e")
+shader_parameter/albedo = Color(1, 1, 1, 1)
+shader_parameter/point_size = 1.0
+shader_parameter/roughness = 1.0
+shader_parameter/metallic_texture_channel = null
+shader_parameter/specular = 0.5
+shader_parameter/metallic = 0.0
+shader_parameter/uv1_scale = Vector3(1, 1, 1)
+shader_parameter/uv1_offset = Vector3(0, 0, 0)
+shader_parameter/uv2_scale = Vector3(1, 1, 1)
+shader_parameter/uv2_offset = Vector3(0, 0, 0)
+shader_parameter/texture_albedo = SubResource("GradientTexture2D_kweik")
+
+[sub_resource type="Gradient" id="Gradient_4h0ey"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_2lac1"]
+gradient = SubResource("Gradient_4h0ey")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(1, 0.5)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hv0iq"]
+transparency = 1
+blend_mode = 1
+shading_mode = 0
+vertex_color_use_as_albedo = true
+albedo_color = Color(1, 1, 0, 0.501961)
+albedo_texture = SubResource("GradientTexture2D_2lac1")
+billboard_mode = 1
+fixed_size = true
+proximity_fade_distance = 3.0
+distance_fade_mode = 1
+
+[sub_resource type="QuadMesh" id="QuadMesh_h0g83"]
+material = SubResource("StandardMaterial3D_hv0iq")
+size = Vector2(0.15, 0.15)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_te0ud"]
+render_priority = 0
+shader = ExtResource("11_o6law")
+shader_parameter/albedo = Color(1, 0, 2, 1)
+shader_parameter/uv1_scale = null
+shader_parameter/uv1_offset = null
+
+[sub_resource type="Gradient" id="Gradient_pawwp"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_v15st"]
+gradient = SubResource("Gradient_pawwp")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_8qjk4"]
+emission_shape = 1
+emission_sphere_radius = 0.1
+direction = Vector3(0, 0, 1)
+initial_velocity_min = 0.1
+initial_velocity_max = 0.5
+gravity = Vector3(0, 0.25, 0)
+color_ramp = SubResource("GradientTexture1D_v15st")
+
+[sub_resource type="Shader" id="Shader_hxicf"]
+code = "// NOTE: Shader automatically converted from Godot Engine 4.1.1.stable.mono's StandardMaterial3D.
+
+shader_type spatial;
+render_mode blend_add,depth_draw_opaque,cull_back,diffuse_burley,specular_schlick_ggx,unshaded;
+uniform vec4 albedo : source_color;
+uniform sampler2D texture_albedo : source_color,filter_linear_mipmap,repeat_enable;
+uniform float point_size : hint_range(0,128);
+uniform float roughness : hint_range(0,1);
+uniform sampler2D texture_metallic : hint_default_white,filter_linear_mipmap,repeat_enable;
+uniform vec4 metallic_texture_channel;
+uniform sampler2D texture_roughness : hint_roughness_r,filter_linear_mipmap,repeat_enable;
+uniform float specular;
+uniform float metallic;
+uniform vec3 uv1_scale;
+uniform vec3 uv1_offset;
+uniform vec3 uv2_scale;
+uniform vec3 uv2_offset;
+
+global uniform float viewmodel_fov;
+
+
+void vertex() {
+	UV=UV*uv1_scale.xy+uv1_offset.xy;
+	
+	float onetanfov = 1.0f / tan(0.5f * (viewmodel_fov * PI / 180.0f));
+	float aspect = VIEWPORT_SIZE.x / VIEWPORT_SIZE.y;
+	// modify projection matrix
+	PROJECTION_MATRIX[1][1] = -onetanfov;
+	PROJECTION_MATRIX[0][0] = onetanfov / aspect;
+	
+	// draws the viewmodel over everything (disable if you want dof near on viewmodel)
+	POSITION = PROJECTION_MATRIX * MODELVIEW_MATRIX * vec4(VERTEX.xyz, 1.0);
+	POSITION.z = mix(POSITION.z, 0, 0.99);
+}
+
+
+void fragment() {
+	vec2 base_uv = UV;
+	vec4 albedo_tex = texture(texture_albedo,base_uv);
+	albedo_tex *= COLOR;
+	ALBEDO = albedo.rgb * albedo_tex.rgb;
+	float metallic_tex = dot(texture(texture_metallic,base_uv),metallic_texture_channel);
+	METALLIC = metallic_tex * metallic;
+	vec4 roughness_texture_channel = vec4(1.0,0.0,0.0,0.0);
+	float roughness_tex = dot(texture(texture_roughness,base_uv),roughness_texture_channel);
+	ROUGHNESS = roughness_tex * roughness;
+	SPECULAR = specular;
+	ALPHA *= albedo.a * albedo_tex.a;
+}
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_re0b1"]
+render_priority = 0
+shader = SubResource("Shader_hxicf")
+shader_parameter/albedo = Color(1, 0, 2, 1)
+shader_parameter/point_size = 1.0
+shader_parameter/roughness = 1.0
+shader_parameter/metallic_texture_channel = null
+shader_parameter/specular = 0.5
+shader_parameter/metallic = 0.0
+shader_parameter/uv1_scale = Vector3(1, 1, 1)
+shader_parameter/uv1_offset = Vector3(0, 0, 0)
+shader_parameter/uv2_scale = Vector3(1, 1, 1)
+shader_parameter/uv2_offset = Vector3(0, 0, 0)
+
+[sub_resource type="BoxMesh" id="BoxMesh_n4iid"]
+material = SubResource("ShaderMaterial_re0b1")
+size = Vector3(0.063, 0.063, 0.063)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_xjbpf"]
+render_priority = 0
+shader = ExtResource("12_djo4k")
+shader_parameter/albedo = Color(0, 1, 1, 1)
+shader_parameter/uv1_scale = null
+shader_parameter/uv1_offset = null
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qbyuk"]
+shading_mode = 0
+albedo_color = Color(0, 1, 1, 1)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_8shqk"]
+material = SubResource("StandardMaterial3D_qbyuk")
+top_radius = 0.15
+bottom_radius = 0.15
+height = 0.5
+radial_segments = 8
+rings = 1
+
+[sub_resource type="Animation" id="Animation_n3fjs"]
+length = 0.001
+tracks/0/type = "rotation_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("plasma_droid/Body/Neck")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 0, 0, 0, 1)
+tracks/1/type = "rotation_3d"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("plasma_droid/Body/LeftLeg")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = PackedFloat32Array(0, 1, 0, 0, 0, 1)
+tracks/2/type = "rotation_3d"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("plasma_droid/Body/LeftLeg/LeftLeg_001")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = PackedFloat32Array(0, 1, 0, 0, 0, 1)
+tracks/3/type = "rotation_3d"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("plasma_droid/Body/RightLeg")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = PackedFloat32Array(0, 1, 0, 0, 0, 1)
+tracks/4/type = "rotation_3d"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("plasma_droid/Body/RightLeg/RightLeg_001")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = PackedFloat32Array(0, 1, 0, 0, 0, 1)
+tracks/5/type = "rotation_3d"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("plasma_droid/Body/Right")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = PackedFloat32Array(0, 1, 0, 0, 0, 1)
+tracks/6/type = "position_3d"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("plasma_droid/Body/Right/Right_001/Right_003/PlasmaCannon")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = PackedFloat32Array(0, 1, 0, -2.25, 0)
+tracks/7/type = "rotation_3d"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("plasma_droid/Body/Right/Right_001/Right_003/PlasmaCannon")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = PackedFloat32Array(0, 1, 0.707, 0, 0, 0.707)
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_4knrq"]
+_data = {
+"RESET": SubResource("Animation_n3fjs")
+}
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_fcwup"]
+animation = &"plasma_droid_anims/plasma_droid_ambush"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_hkehg"]
+animation = &"plasma_droid_anims/plasma_droid_fire"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_bpegu"]
+animation = &"plasma_droid_anims/plasma_droid_fire_bullets"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_rtijg"]
+animation = &"plasma_droid_anims/plasma_droid_idle"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_88wle"]
+animation = &"plasma_droid_anims/plasma_droid_move"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_13ygg"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_nmaeh"]
+xfade_time = 1.0
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_tx3g5"]
+xfade_time = 0.25
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_5joso"]
+xfade_time = 0.25
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_lr4pj"]
+xfade_time = 0.5
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_5jx2v"]
+xfade_time = 0.25
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_oqab8"]
+xfade_time = 0.25
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_njr1r"]
+xfade_time = 0.5
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_o53ac"]
+xfade_time = 0.25
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_imdu4"]
+xfade_time = 0.5
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ustj1"]
+xfade_time = 0.25
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_gepv6"]
+xfade_time = 0.25
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_nc82m"]
+states/Start/position = Vector2(339.111, -8.24693)
+states/ambush/node = SubResource("AnimationNodeAnimation_fcwup")
+states/ambush/position = Vector2(340, 143.341)
+states/attacking/node = SubResource("AnimationNodeAnimation_hkehg")
+states/attacking/position = Vector2(484, -8.60084)
+states/bullet_attacking/node = SubResource("AnimationNodeAnimation_bpegu")
+states/bullet_attacking/position = Vector2(699.178, -9.44035)
+states/idle/node = SubResource("AnimationNodeAnimation_rtijg")
+states/idle/position = Vector2(484, 142.532)
+states/moving/node = SubResource("AnimationNodeAnimation_88wle")
+states/moving/position = Vector2(698.667, 141.918)
+transitions = ["Start", "ambush", SubResource("AnimationNodeStateMachineTransition_13ygg"), "ambush", "idle", SubResource("AnimationNodeStateMachineTransition_nmaeh"), "idle", "moving", SubResource("AnimationNodeStateMachineTransition_tx3g5"), "moving", "attacking", SubResource("AnimationNodeStateMachineTransition_5joso"), "attacking", "idle", SubResource("AnimationNodeStateMachineTransition_lr4pj"), "idle", "attacking", SubResource("AnimationNodeStateMachineTransition_5jx2v"), "attacking", "moving", SubResource("AnimationNodeStateMachineTransition_oqab8"), "moving", "idle", SubResource("AnimationNodeStateMachineTransition_njr1r"), "idle", "bullet_attacking", SubResource("AnimationNodeStateMachineTransition_o53ac"), "bullet_attacking", "idle", SubResource("AnimationNodeStateMachineTransition_imdu4"), "bullet_attacking", "moving", SubResource("AnimationNodeStateMachineTransition_ustj1"), "moving", "bullet_attacking", SubResource("AnimationNodeStateMachineTransition_gepv6")]
+graph_offset = Vector2(50.4669, -36)
+
+[node name="PlasmaDroid" type="CharacterBody3D"]
+collision_layer = 4
+collision_mask = 151
+script = ExtResource("1_jd6vl")
+patterns = Array[ExtResource("3_3f3op")]([SubResource("Resource_ba0li"), SubResource("Resource_wk1ps")])
+species = &"plasma_droids"
+speed = 5.0
+knockback_multiplier = 0.0
+wake_up_time = 0.0
+detection_stream = ExtResource("2_duui2")
+attack_interval = 1.5
+attack_range = 64.0
+melee_range = 4.0
+attack_recovery_time = 1.5
+flinch_chance = 0.0
+death_stream = SubResource("AudioStreamRandomizer_akb4x")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_xqi1h")
+
+[node name="plasma_droid" parent="." instance=ExtResource("1_whe1e")]
+transform = Transform3D(-7.85788e-07, 0, 0.25, 0, 0.25, 0, -0.25, 0, -7.85788e-07, 0, 0.25, 0)
+
+[node name="Body" parent="plasma_droid" index="0"]
+layers = 2
+material_override = SubResource("ShaderMaterial_rn6hr")
+
+[node name="LeftLeg" parent="plasma_droid/Body" index="0"]
+layers = 2
+material_override = SubResource("ShaderMaterial_rn6hr")
+
+[node name="LeftLeg_001" parent="plasma_droid/Body/LeftLeg" index="0"]
+layers = 2
+material_override = SubResource("ShaderMaterial_rn6hr")
+
+[node name="Neck" parent="plasma_droid/Body" index="1"]
+layers = 2
+material_override = SubResource("ShaderMaterial_rn6hr")
+
+[node name="Head" parent="plasma_droid/Body/Neck" index="0"]
+layers = 2
+material_override = SubResource("ShaderMaterial_rn6hr")
+
+[node name="Right" parent="plasma_droid/Body" index="2"]
+layers = 2
+material_override = SubResource("ShaderMaterial_rn6hr")
+
+[node name="Right_001" parent="plasma_droid/Body/Right" index="0"]
+layers = 2
+material_override = SubResource("ShaderMaterial_4itip")
+
+[node name="Right_003" parent="plasma_droid/Body/Right/Right_001" index="0"]
+transform = Transform3D(0.666667, 0, 0, 0, 1, 0, 0, 0, 0.666667, 2.27374e-13, -1, 0.1325)
+layers = 2
+material_override = SubResource("ShaderMaterial_rn6hr")
+
+[node name="PlasmaCannon" type="MeshInstance3D" parent="plasma_droid/Body/Right/Right_001/Right_003" index="0"]
+transform = Transform3D(4, 0, 0, 0, -1.74846e-07, -4, 0, 4, -1.74846e-07, 0, -2.25, 0)
+layers = 2
+material_override = SubResource("ShaderMaterial_rn6hr")
+mesh = ExtResource("2_scks3")
+
+[node name="Spawner" type="Marker3D" parent="plasma_droid/Body/Right/Right_001/Right_003/PlasmaCannon"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.5)
+
+[node name="LensFlare" type="MeshInstance3D" parent="plasma_droid/Body/Right/Right_001/Right_003/PlasmaCannon/Spawner"]
+layers = 2
+material_override = ExtResource("3_54erg")
+ignore_occlusion_culling = true
+mesh = SubResource("QuadMesh_h0g83")
+skeleton = NodePath("../..")
+script = ExtResource("4_ifk2m")
+color = Color(1, 0, 2, 1)
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="plasma_droid/Body/Right/Right_001/Right_003/PlasmaCannon/Spawner"]
+layers = 4
+material_override = SubResource("ShaderMaterial_te0ud")
+amount = 64
+process_material = SubResource("ParticleProcessMaterial_8qjk4")
+draw_pass_1 = SubResource("BoxMesh_n4iid")
+
+[node name="MuzzleFlash" type="MeshInstance3D" parent="plasma_droid/Body/Right/Right_001/Right_003/PlasmaCannon/Spawner"]
+transform = Transform3D(1, -1.50996e-07, 1.50996e-07, -1.50996e-07, -1, 0, 1.50996e-07, -2.13163e-14, -1, -7.63691e-08, 0, 0.0250344)
+visible = false
+layers = 2
+material_override = SubResource("ShaderMaterial_te0ud")
+cast_shadow = 0
+mesh = ExtResource("5_8e7tr")
+skeleton = NodePath("../..")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="plasma_droid/Body/Right/Right_001/Right_003/PlasmaCannon/Spawner/MuzzleFlash"]
+light_color = Color(1, 0, 2, 1)
+light_energy = 0.0
+shadow_enabled = true
+distance_fade_enabled = true
+omni_range = 10.0
+omni_shadow_mode = 0
+
+[node name="Right_002" parent="plasma_droid/Body/Right" index="1"]
+layers = 2
+material_override = SubResource("ShaderMaterial_4itip")
+
+[node name="RightLeg" parent="plasma_droid/Body" index="3"]
+layers = 2
+material_override = SubResource("ShaderMaterial_rn6hr")
+
+[node name="RightLeg_001" parent="plasma_droid/Body/RightLeg" index="0"]
+layers = 2
+material_override = SubResource("ShaderMaterial_rn6hr")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="plasma_droid/Body" index="4"]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, -0.8, 1, 0)
+layers = 2
+material_override = SubResource("ShaderMaterial_xjbpf")
+visibility_range_end = 20.0
+mesh = SubResource("CylinderMesh_8shqk")
+skeleton = NodePath("../../../CollisionShape3D")
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
+path_desired_distance = 1.5
+target_desired_distance = 2.0
+
+[node name="SightLine" type="RayCast3D" parent="."]
+target_position = Vector3(0, 0, -16)
+collision_mask = 2
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_4knrq"),
+"plasma_droid_anims": ExtResource("8_hkuiw")
+}
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+tree_root = SubResource("AnimationNodeStateMachine_nc82m")
+anim_player = NodePath("../AnimationPlayer")
+parameters/current_length = 3.0
+parameters/current_position = 1.13333
+parameters/current_delta = 0.0162088
+parameters/End/current_length = null
+parameters/End/current_position = null
+parameters/End/current_delta = null
+parameters/Start/current_length = 0.0
+parameters/Start/current_position = 0.0
+parameters/Start/current_delta = 0.0
+parameters/ambush/current_length = 0.001
+parameters/ambush/current_position = 0.001
+parameters/ambush/current_delta = 0.0
+parameters/attacking/current_length = null
+parameters/attacking/current_position = null
+parameters/attacking/current_delta = null
+parameters/bullet_attacking/current_length = null
+parameters/bullet_attacking/current_position = null
+parameters/bullet_attacking/current_delta = null
+parameters/idle/current_length = 3.0
+parameters/idle/current_position = 1.13333
+parameters/idle/current_delta = 0.0162088
+parameters/moving/current_length = null
+parameters/moving/current_position = null
+parameters/moving/current_delta = null
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+volume_db = 3.0
+max_polyphony = 8
+bus = &"Enemies"
+doppler_tracking = 2
+
+[node name="Status" type="Node" parent="."]
+script = ExtResource("2_3ftdv")
+max_health = 500.0
+gib_threshold = 0.0
+damage_sys = ExtResource("3_bt5p4")
+gibs = ExtResource("3_rukio")
+loot = Array[PackedScene]([ExtResource("5_4ag46")])
+is_enemy = true
+score = 1
+
+[node name="StairStepper" parent="." instance=ExtResource("18_7c8tp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+
+[editable path="plasma_droid"]

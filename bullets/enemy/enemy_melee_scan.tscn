@@ -1,0 +1,29 @@
+[gd_scene load_steps=6 format=3 uid="uid://dj8yo2whvp2w7"]
+
+[ext_resource type="Script" path="res://bullets/hitscan.gd" id="1_ykoau"]
+[ext_resource type="PackedScene" uid="uid://fn1fivb2ndvo" path="res://scenes/effects/impacts/bullet_impact_yellow.tscn" id="2_g838h"]
+[ext_resource type="ArrayMesh" uid="uid://cfjlieto7r0xy" path="res://bullets/hitscan_bullet.obj" id="2_jgs5s"]
+
+[sub_resource type="Skin" id="Skin_axrfg"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ehwhb"]
+shading_mode = 0
+vertex_color_use_as_albedo = true
+
+[node name="Hitscan" type="Node3D"]
+script = ExtResource("1_ykoau")
+layer_mask = 71
+max_range = 3.0
+damage = 60.0
+explosion = ExtResource("2_g838h")
+knockback_force = 0.0
+fade_speed = 1.0
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 1, 0, 0, 0)
+visible = false
+layers = 2
+cast_shadow = 0
+mesh = ExtResource("2_jgs5s")
+skin = SubResource("Skin_axrfg")
+surface_material_override/0 = SubResource("StandardMaterial3D_ehwhb")

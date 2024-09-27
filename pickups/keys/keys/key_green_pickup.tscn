@@ -1,0 +1,194 @@
+[gd_scene load_steps=22 format=3 uid="uid://bu80vkpoj8bpq"]
+
+[ext_resource type="Script" path="res://scripts/pickups/key_pickup.gd" id="1_re7nx"]
+[ext_resource type="AudioStream" uid="uid://df7acgg7nqtsa" path="res://audio/streams/pickups/pickup_key.wav" id="2_ddjc5"]
+[ext_resource type="ArrayMesh" uid="uid://bt5wg6uc7tqsy" path="res://pickups/keys/keys/key.obj" id="2_f27go"]
+[ext_resource type="Texture2D" uid="uid://bwecd3r2ubm88" path="res://pickups/keys/keys/key_detail_mask.png" id="3_jheaf"]
+[ext_resource type="Texture2D" uid="uid://bn6desny3w35f" path="res://pickups/keys/keys/key_metallic.png" id="4_4cu2i"]
+[ext_resource type="Texture2D" uid="uid://cyf32xnmb5ck7" path="res://pickups/keys/keys/key_roughness.png" id="5_ocvoi"]
+[ext_resource type="Texture2D" uid="uid://hk0k2coukjwc" path="res://effects/halos/halo_tex.tres" id="6_8wo78"]
+[ext_resource type="Material" uid="uid://b78l63b32udy2" path="res://effects/halos/halo_mat.tres" id="7_ejb2h"]
+[ext_resource type="Script" path="res://scripts/effects/halo.gd" id="9_jw8xg"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_uc2sx"]
+height = 1.0
+radius = 0.25
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_0epo4"]
+radius = 1.0
+
+[sub_resource type="Shader" id="Shader_8dj8n"]
+code = "// NOTE: Shader automatically converted from Godot Engine 4.2.1.stable.mono's StandardMaterial3D.
+
+shader_type spatial;
+render_mode blend_mix,depth_draw_opaque,cull_back,diffuse_burley,specular_schlick_ggx;
+uniform vec4 albedo : source_color;
+uniform sampler2D texture_albedo : source_color,filter_nearest,repeat_enable;
+uniform float point_size : hint_range(0,128);
+uniform float roughness : hint_range(0,1);
+uniform sampler2D texture_metallic : hint_default_white,filter_nearest,repeat_enable;
+uniform vec4 metallic_texture_channel;
+uniform sampler2D texture_roughness : hint_roughness_r,filter_nearest,repeat_enable;
+uniform float specular;
+uniform float metallic;
+uniform sampler2D texture_detail_albedo : source_color,filter_nearest,repeat_enable;
+uniform sampler2D texture_detail_normal : hint_normal,filter_nearest,repeat_enable;
+uniform sampler2D texture_detail_mask : hint_default_white,filter_nearest,repeat_enable;
+uniform vec3 uv1_scale;
+uniform vec3 uv1_offset;
+uniform vec3 uv2_scale;
+uniform vec3 uv2_offset;
+
+#include \"res://shaders/includes/psx_inc.gdshaderinc\"
+
+void vertex() {
+	UV=UV*uv1_scale.xy+uv1_offset.xy;
+	POSITION = map_affine(snap_vertex(PROJECTION_MATRIX * MODELVIEW_MATRIX * vec4(VERTEX, 1.0)));
+}
+
+void fragment() {
+	vec2 base_uv = UV;
+	vec4 albedo_tex = texture(texture_albedo,base_uv);
+	ALBEDO = albedo.rgb * albedo_tex.rgb;
+	float metallic_tex = dot(texture(texture_metallic,base_uv),metallic_texture_channel);
+	METALLIC = metallic_tex * metallic;
+	vec4 roughness_texture_channel = vec4(1.0,0.0,0.0,0.0);
+	float roughness_tex = dot(texture(texture_roughness,base_uv),roughness_texture_channel);
+	ROUGHNESS = roughness_tex * roughness;
+	SPECULAR = specular;
+	vec4 detail_tex = texture(texture_detail_albedo,base_uv);
+	vec4 detail_norm_tex = texture(texture_detail_normal,base_uv);
+	vec4 detail_mask_tex = texture(texture_detail_mask,base_uv);
+	vec3 detail = mix(ALBEDO.rgb,detail_tex.rgb,detail_tex.a);
+	vec3 detail_norm = mix(NORMAL_MAP,detail_norm_tex.rgb,detail_tex.a);
+	NORMAL_MAP = mix(NORMAL_MAP,detail_norm,detail_mask_tex.r);
+	ALBEDO.rgb = mix(ALBEDO.rgb,detail,detail_mask_tex.r);
+}
+"
+
+[sub_resource type="Gradient" id="Gradient_an0sf"]
+interpolation_mode = 1
+offsets = PackedFloat32Array(0, 0.3, 0.5, 0.8)
+colors = PackedColorArray(0, 0.75, 0, 1, 0, 0.8, 0, 1, 0, 0.9, 0, 1, 0, 1, 0, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_thoty"]
+frequency = 0.05
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_v0cjl"]
+width = 32
+height = 32
+generate_mipmaps = false
+color_ramp = SubResource("Gradient_an0sf")
+noise = SubResource("FastNoiseLite_thoty")
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_ol7k3"]
+width = 32
+height = 32
+generate_mipmaps = false
+as_normal_map = true
+bump_strength = 2.0
+noise = SubResource("FastNoiseLite_thoty")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_oysvp"]
+render_priority = 0
+shader = SubResource("Shader_8dj8n")
+shader_parameter/albedo = Color(1, 1, 1, 1)
+shader_parameter/point_size = 1.0
+shader_parameter/roughness = 1.0
+shader_parameter/metallic_texture_channel = Vector4(1, 0, 0, 0)
+shader_parameter/specular = 0.5
+shader_parameter/metallic = 1.0
+shader_parameter/uv1_scale = Vector3(1, 1, 1)
+shader_parameter/uv1_offset = Vector3(0, 0, 0)
+shader_parameter/uv2_scale = Vector3(1, 1, 1)
+shader_parameter/uv2_offset = Vector3(0, 0, 0)
+shader_parameter/texture_metallic = ExtResource("4_4cu2i")
+shader_parameter/texture_roughness = ExtResource("5_ocvoi")
+shader_parameter/texture_detail_albedo = SubResource("NoiseTexture2D_v0cjl")
+shader_parameter/texture_detail_normal = SubResource("NoiseTexture2D_ol7k3")
+shader_parameter/texture_detail_mask = ExtResource("3_jheaf")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_yrs74"]
+transparency = 1
+blend_mode = 1
+shading_mode = 0
+vertex_color_use_as_albedo = true
+albedo_color = Color(0, 1, 0, 0.501961)
+albedo_texture = ExtResource("6_8wo78")
+billboard_mode = 1
+fixed_size = true
+proximity_fade_distance = 3.0
+distance_fade_mode = 1
+
+[sub_resource type="QuadMesh" id="QuadMesh_daege"]
+material = SubResource("StandardMaterial3D_yrs74")
+size = Vector2(0.2, 0.2)
+
+[sub_resource type="Animation" id="Animation_wivti"]
+resource_name = "anim"
+length = 10.0
+loop_mode = 1
+tracks/0/type = "rotation_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 0, 0, 0, 1, 2.5, 1, 0, 0.707, 0, 0.707, 5, 1, 0, 1, 0, 0, 7.5, 1, 0, -0.707, 0, 0.707, 10, 1, 0, 0, 0, 1)
+tracks/1/type = "position_3d"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = PackedFloat32Array(0, 1, 0, 0, 0, 2.5, 1, 0, 0.05, 0, 5, 1, 0, 0, 0, 7.5, 1, 0, 0.05, 0, 10, 1, 0, 0, 0)
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_4pudi"]
+_data = {
+"anim": SubResource("Animation_wivti")
+}
+
+[node name="GreenKeyPickup" type="RigidBody3D"]
+collision_layer = 8
+lock_rotation = true
+script = ExtResource("1_re7nx")
+key_type = 1
+event_string = "pickup.key.green"
+pickup_sound = ExtResource("2_ddjc5")
+pickup_text = "Found the Green Key"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("CylinderShape3D_uc2sx")
+
+[node name="Area3D" type="Area3D" parent="."]
+collision_mask = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+shape = SubResource("SphereShape3D_0epo4")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Area3D"]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
+layers = 2
+visibility_range_end = 50.0
+mesh = ExtResource("2_f27go")
+surface_material_override/0 = SubResource("ShaderMaterial_oysvp")
+
+[node name="LensFlare" type="MeshInstance3D" parent="Area3D"]
+layers = 2
+material_override = ExtResource("7_ejb2h")
+mesh = SubResource("QuadMesh_daege")
+script = ExtResource("9_jw8xg")
+color = Color(0, 1, 0, 1)
+
+[node name="OmniLight3D" type="OmniLight3D" parent="Area3D"]
+visible = false
+light_color = Color(0, 1, 0, 1)
+shadow_enabled = true
+shadow_bias = 0.35
+distance_fade_enabled = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+root_node = NodePath("../Area3D")
+libraries = {
+"": SubResource("AnimationLibrary_4pudi")
+}

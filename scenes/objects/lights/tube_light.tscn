@@ -1,0 +1,211 @@
+[gd_scene load_steps=20 format=3 uid="uid://teto5bopi0w8"]
+
+[ext_resource type="Material" uid="uid://c42r6gnwbsttx" path="res://effects/halos/fancy_halo.tres" id="1_tg5by"]
+[ext_resource type="Texture2D" uid="uid://hk0k2coukjwc" path="res://effects/halos/halo_tex.tres" id="2_v2qg2"]
+[ext_resource type="Script" path="res://scripts/effects/halo.gd" id="3_s1nd8"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bq0ji"]
+shading_mode = 0
+albedo_color = Color(3.75, 3.38, 3.08, 1)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_nuthf"]
+material = SubResource("StandardMaterial3D_bq0ji")
+top_radius = 0.125
+bottom_radius = 0.125
+height = 1.0
+radial_segments = 6
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_qqsra"]
+load_path = "res://.godot/imported/halo.png-88068247d44276e09ca924d46b3606d1.s3tc.ctex"
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_w2kd2"]
+transparency = 1
+blend_mode = 1
+shading_mode = 0
+vertex_color_use_as_albedo = true
+albedo_color = Color(1, 0.501961, 0, 1)
+albedo_texture = SubResource("CompressedTexture2D_qqsra")
+billboard_mode = 1
+fixed_size = true
+proximity_fade_distance = 3.0
+distance_fade_mode = 1
+
+[sub_resource type="QuadMesh" id="QuadMesh_wntbp"]
+material = SubResource("StandardMaterial3D_w2kd2")
+size = Vector2(3, 0.375)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_q1qd4"]
+transparency = 1
+blend_mode = 1
+shading_mode = 0
+vertex_color_use_as_albedo = true
+albedo_color = Color(1, 0.752941, 0.501961, 1)
+albedo_texture = ExtResource("2_v2qg2")
+billboard_mode = 1
+fixed_size = true
+proximity_fade_distance = 3.0
+distance_fade_mode = 1
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_7rmc8"]
+animation = &"off"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_n5q0r"]
+animation = &"on"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_4ngb6"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_00byd"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_262vw"]
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_tsrdu"]
+states/off/node = SubResource("AnimationNodeAnimation_7rmc8")
+states/off/position = Vector2(697.333, 98.8889)
+states/on/node = SubResource("AnimationNodeAnimation_n5q0r")
+states/on/position = Vector2(402.667, 99.3333)
+transitions = ["Start", "on", SubResource("AnimationNodeStateMachineTransition_4ngb6"), "on", "off", SubResource("AnimationNodeStateMachineTransition_00byd"), "off", "on", SubResource("AnimationNodeStateMachineTransition_262vw")]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_y8qxt"]
+albedo_color = Color(0, 0, 0, 1)
+
+[sub_resource type="Animation" id="Animation_el7do"]
+resource_name = "off"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("OmniLight3D:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:material_override")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [SubResource("StandardMaterial3D_y8qxt")]
+}
+
+[sub_resource type="Animation" id="Animation_fv30p"]
+resource_name = "on"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("OmniLight3D:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:material_override")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [null]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_rjy61"]
+_data = {
+"off": SubResource("Animation_el7do"),
+"on": SubResource("Animation_fv30p")
+}
+
+[node name="TubeLight" type="Node3D"]
+
+[node name="TubeLight" type="MeshInstance3D" parent="."]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 0, 0, 0)
+layers = 8
+cast_shadow = 0
+visibility_range_end = 25.0
+visibility_range_end_margin = 5.0
+mesh = SubResource("CylinderMesh_nuthf")
+skeleton = NodePath("OmniLight3D")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="TubeLight"]
+transform = Transform3D(1, 0, 0, 0, -1, -8.74228e-08, 0, 8.74228e-08, -1, -0.125, 0.25, 0)
+light_color = Color(1, 0.901961, 0.815686, 1)
+light_energy = 1.875
+light_bake_mode = 1
+shadow_enabled = true
+distance_fade_enabled = true
+omni_range = 18.75
+
+[node name="LensFlare" type="MeshInstance3D" parent="TubeLight/OmniLight3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.125, 0, 0)
+layers = 2
+material_override = ExtResource("1_tg5by")
+cast_shadow = 0
+visibility_range_end = 100.0
+visibility_range_end_margin = 10.0
+visibility_range_fade_mode = 1
+mesh = SubResource("QuadMesh_wntbp")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_q1qd4")
+script = ExtResource("3_s1nd8")
+color = Color(1, 0.901961, 0.815686, 1)
+
+[node name="OmniLight3D2" type="OmniLight3D" parent="TubeLight"]
+transform = Transform3D(1, 0, 0, 0, -1, -8.74228e-08, 0, 8.74228e-08, -1, -0.125, -0.25, 0)
+light_color = Color(1, 0.901961, 0.815686, 1)
+light_energy = 1.875
+light_bake_mode = 1
+shadow_enabled = true
+distance_fade_enabled = true
+omni_range = 18.75
+
+[node name="LensFlare" type="MeshInstance3D" parent="TubeLight/OmniLight3D2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.125, 0, 0)
+layers = 2
+material_override = ExtResource("1_tg5by")
+cast_shadow = 0
+visibility_range_end = 100.0
+visibility_range_end_margin = 10.0
+visibility_range_fade_mode = 1
+mesh = SubResource("QuadMesh_wntbp")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_q1qd4")
+script = ExtResource("3_s1nd8")
+color = Color(1, 0.901961, 0.815686, 1)
+
+[node name="AnimationTree" type="AnimationTree" parent="TubeLight"]
+tree_root = SubResource("AnimationNodeStateMachine_tsrdu")
+anim_player = NodePath("../AnimationPlayer")
+parameters/current_length = 1.0
+parameters/current_position = 1.0
+parameters/current_delta = 0.0
+parameters/End/current_length = null
+parameters/End/current_position = null
+parameters/End/current_delta = null
+parameters/Start/current_length = 0.0
+parameters/Start/current_position = 0.0
+parameters/Start/current_delta = 0.0
+parameters/off/current_length = null
+parameters/off/current_position = null
+parameters/off/current_delta = null
+parameters/on/current_length = 1.0
+parameters/on/current_position = 1.0
+parameters/on/current_delta = 0.0
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="TubeLight"]
+libraries = {
+"": SubResource("AnimationLibrary_rjy61")
+}

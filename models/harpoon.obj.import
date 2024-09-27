@@ -1,0 +1,22 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://d13ytgdp3744o"
+path="res://.godot/imported/harpoon.obj-c7926ea10b4a04be09a5c76e5f87abcc.mesh"
+
+[deps]
+
+files=["res://.godot/imported/harpoon.obj-c7926ea10b4a04be09a5c76e5f87abcc.mesh"]
+
+source_file="res://models/harpoon.obj"
+dest_files=["res://.godot/imported/harpoon.obj-c7926ea10b4a04be09a5c76e5f87abcc.mesh", "res://.godot/imported/harpoon.obj-c7926ea10b4a04be09a5c76e5f87abcc.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
+force_disable_mesh_compression=false

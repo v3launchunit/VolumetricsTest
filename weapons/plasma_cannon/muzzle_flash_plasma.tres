@@ -1,0 +1,17 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://brwrc6gopu51x"]
+
+[ext_resource type="Shader" path="res://shaders/spatial/weapons/muzzle_flash.gdshader" id="1_ufk7e"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_ufk7e")
+shader_parameter/albedo = Color(1, 0, 2, 1)
+shader_parameter/point_size = 1.0
+shader_parameter/roughness = 1.0
+shader_parameter/metallic_texture_channel = null
+shader_parameter/specular = 0.5
+shader_parameter/metallic = 0.0
+shader_parameter/uv1_scale = Vector3(1, 1, 1)
+shader_parameter/uv1_offset = Vector3(0, 0, 0)
+shader_parameter/uv2_scale = Vector3(1, 1, 1)
+shader_parameter/uv2_offset = Vector3(0, 0, 0)

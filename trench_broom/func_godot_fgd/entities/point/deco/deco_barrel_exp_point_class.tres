@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="FuncGodotFGDPointClass" load_steps=3 format=3 uid="uid://ccjo7sgsl72j6"]
+
+[ext_resource type="PackedScene" uid="uid://bbju3hnax1iol" path="res://objects/deco/barrel/barrel_exp.tscn" id="1_e5f5x"]
+[ext_resource type="Script" path="res://addons/func_godot/src/fgd/func_godot_fgd_point_class.gd" id="2_qpr6v"]
+
+[resource]
+script = ExtResource("2_qpr6v")
+scene_file = ExtResource("1_e5f5x")
+apply_rotation_on_map_build = true
+classname = "deco_barrel_exp"
+description = ""
+func_godot_internal = false
+base_classes = Array[Resource]([])
+class_properties = {}
+class_property_descriptions = {}
+meta_properties = {
+"color": Color(0.792157, 0.792157, 0.792157, 1),
+"size": AABB(-8, -8, -8, 8, 8, 8)
+}
+node_class = ""
+name_property = ""

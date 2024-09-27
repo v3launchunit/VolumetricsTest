@@ -1,0 +1,162 @@
+[gd_scene load_steps=4 format=3 uid="uid://1shniliqahvt"]
+
+[ext_resource type="Theme" uid="uid://dwof7m2ye3tjh" path="res://scenes/ui/default_theme.tres" id="1_amxke"]
+[ext_resource type="Script" path="res://scripts/ui/audio_sub_menu.gd" id="2_5ql04"]
+[ext_resource type="AudioStream" uid="uid://bmlxxe8maevqb" path="res://audio/streams/click.wav" id="3_dswdr"]
+
+[node name="Audio" type="VBoxContainer"]
+size_flags_horizontal = 3
+theme = ExtResource("1_amxke")
+script = ExtResource("2_5ql04")
+
+[node name="Master" type="Control" parent="."]
+custom_minimum_size = Vector2(0, 68)
+layout_mode = 2
+theme = ExtResource("1_amxke")
+
+[node name="Label" type="Label" parent="Master"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_right = -20.0
+offset_bottom = 26.0
+grow_horizontal = 2
+theme = ExtResource("1_amxke")
+text = "Master Volume"
+horizontal_alignment = 1
+uppercase = true
+
+[node name="MasterSlider" type="HSlider" parent="Master"]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -8.0
+offset_right = -20.0
+offset_bottom = 8.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_amxke")
+value = 87.0
+
+[node name="MasterLabel" type="Label" parent="Master"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -26.0
+offset_right = -20.0
+grow_horizontal = 2
+grow_vertical = 0
+theme = ExtResource("1_amxke")
+text = "86%"
+horizontal_alignment = 1
+uppercase = true
+
+[node name="MasterPreview" type="AudioStreamPlayer" parent="Master"]
+stream = ExtResource("3_dswdr")
+
+[node name="Sound" type="Control" parent="."]
+custom_minimum_size = Vector2(0, 68)
+layout_mode = 2
+theme = ExtResource("1_amxke")
+
+[node name="Label" type="Label" parent="Sound"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_right = -20.0
+offset_bottom = 26.0
+grow_horizontal = 2
+theme = ExtResource("1_amxke")
+text = "Sound Volume"
+horizontal_alignment = 1
+uppercase = true
+
+[node name="SoundSlider" type="HSlider" parent="Sound"]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -8.0
+offset_right = -20.0
+offset_bottom = 8.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_amxke")
+value = 100.0
+
+[node name="SoundLabel" type="Label" parent="Sound"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -26.0
+offset_right = -20.0
+grow_horizontal = 2
+grow_vertical = 0
+theme = ExtResource("1_amxke")
+text = "75%"
+horizontal_alignment = 1
+uppercase = true
+
+[node name="SoundPreview" type="AudioStreamPlayer" parent="Sound"]
+stream = ExtResource("3_dswdr")
+
+[node name="Music" type="Control" parent="."]
+custom_minimum_size = Vector2(0, 68)
+layout_mode = 2
+theme = ExtResource("1_amxke")
+
+[node name="Label" type="Label" parent="Music"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_right = -20.0
+offset_bottom = 26.0
+grow_horizontal = 2
+theme = ExtResource("1_amxke")
+text = "Music Volume"
+horizontal_alignment = 1
+uppercase = true
+
+[node name="MusicSlider" type="HSlider" parent="Music"]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -8.0
+offset_right = -20.0
+offset_bottom = 8.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_amxke")
+value = 100.0
+
+[node name="MusicLabel" type="Label" parent="Music"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -26.0
+offset_right = -20.0
+grow_horizontal = 2
+grow_vertical = 0
+theme = ExtResource("1_amxke")
+text = "75%"
+horizontal_alignment = 1
+uppercase = true
+
+[node name="MusicPreview" type="AudioStreamPlayer" parent="Music"]
+stream = ExtResource("3_dswdr")
+bus = &"Music"
+
+[connection signal="value_changed" from="Master/MasterSlider" to="." method="_on_master_slider_value_changed"]
+[connection signal="value_changed" from="Sound/SoundSlider" to="." method="_on_sound_slider_value_changed"]
+[connection signal="value_changed" from="Music/MusicSlider" to="." method="_on_music_slider_value_changed"]

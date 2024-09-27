@@ -1,0 +1,37 @@
+[gd_scene load_steps=8 format=3 uid="uid://bfqcephq1sfd3"]
+
+[ext_resource type="Texture2D" uid="uid://cu7f15pd68iyj" path="res://entities/neutral/mystery_man/mystery_man.png" id="1_1hpv2"]
+[ext_resource type="Script" path="res://entities/neutral/mystery_man/mystery_man.gd" id="1_rjq26"]
+[ext_resource type="Texture2D" uid="uid://bb3lo0budk2r1" path="res://entities/neutral/mystery_man/mystery_man_2.png" id="2_yogub"]
+[ext_resource type="AudioStream" uid="uid://nsaskhiln28n" path="res://audio/streams/effects/mystery_man_tele.wav" id="4_6u0gs"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_x1utl"]
+transparency = 3
+alpha_hash_scale = 1.0
+alpha_antialiasing_mode = 0
+shading_mode = 0
+albedo_texture = ExtResource("1_1hpv2")
+texture_filter = 0
+billboard_mode = 2
+
+[sub_resource type="QuadMesh" id="QuadMesh_4rqdu"]
+size = Vector2(1.5, 3)
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_nx1wk"]
+
+[node name="MysteryMan" type="Area3D"]
+script = ExtResource("1_rjq26")
+interact_sprite = ExtResource("2_yogub")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+material_override = SubResource("StandardMaterial3D_x1utl")
+mesh = SubResource("QuadMesh_4rqdu")
+skeleton = NodePath("../..")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_nx1wk")
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("4_6u0gs")
+doppler_tracking = 2

@@ -1,0 +1,750 @@
+[gd_scene load_steps=69 format=3 uid="uid://coe0vc85neefj"]
+
+[ext_resource type="Script" path="res://entities/enemies/enemy_base.gd" id="1_xpg4m"]
+[ext_resource type="PackedScene" uid="uid://d88it1ka8q05" path="res://entities/enemies/locals/canary/canary.glb" id="2_n8knu"]
+[ext_resource type="AudioStream" uid="uid://kvksscy35kso" path="res://audio/streams/voices/canary/detect_moan_1.wav" id="2_sybod"]
+[ext_resource type="AudioStream" uid="uid://cxmy0py34q134" path="res://audio/streams/voices/canary/detect_moan_2.wav" id="3_xu1ly"]
+[ext_resource type="AudioStream" uid="uid://cl44ukycugok" path="res://audio/streams/voices/canary/detect_moan_3.wav" id="4_u2vh3"]
+[ext_resource type="Script" path="res://entities/status.gd" id="5_3hbwc"]
+[ext_resource type="AnimationLibrary" uid="uid://ci7iptmlbm84k" path="res://entities/enemies/locals/canary/canary_anims.res" id="5_7exts"]
+[ext_resource type="AudioStream" uid="uid://ci3c0uultgsgr" path="res://audio/streams/voices/canary/detect_moan_4.wav" id="5_51qrl"]
+[ext_resource type="PackedScene" uid="uid://dj8yo2whvp2w7" path="res://bullets/enemy/enemy_melee_scan.tscn" id="6_a2d18"]
+[ext_resource type="AudioStream" uid="uid://g7tloh7a7rc8" path="res://audio/streams/voices/canary/release_1.wav" id="6_j8oek"]
+[ext_resource type="PackedScene" uid="uid://bnsepaqu7j4p4" path="res://pickups/health/health_bonus_pickup.tscn" id="6_yegnx"]
+[ext_resource type="AudioStream" uid="uid://hvj8aonxc7fe" path="res://audio/streams/voices/canary/death_moan_1.wav" id="7_e2r5o"]
+[ext_resource type="PackedScene" uid="uid://b8i1fe0bwht3k" path="res://pickups/armor/armor_bonus_pickup.tscn" id="7_uj2tf"]
+[ext_resource type="AudioStream" uid="uid://byxqomb23gysj" path="res://audio/streams/voices/canary/death_moan_2.wav" id="8_ypj68"]
+[ext_resource type="AudioStream" uid="uid://1k3tiy342e76" path="res://audio/streams/voices/canary/death_moan_3.wav" id="9_ornrs"]
+[ext_resource type="AudioStream" uid="uid://dc1es3ux857yw" path="res://audio/streams/voices/wilhelm_scream.ogg" id="10_j8lce"]
+[ext_resource type="Texture2D" uid="uid://cm5d7ht8vu1jv" path="res://entities/enemies/locals/canary/canary_albedo.png" id="11_yhbt5"]
+[ext_resource type="Texture2D" uid="uid://cy3r0y8ibu285" path="res://entities/enemies/locals/canary/canary_detail_mask.png" id="12_0nc5f"]
+[ext_resource type="Texture2D" uid="uid://gymwav7tohi8" path="res://entities/enemies/locals/canary/canary_metallic.png" id="12_0ovrm"]
+[ext_resource type="Texture2D" uid="uid://dhw68mcg5ahye" path="res://entities/enemies/locals/canary/canary_roughness.png" id="13_ks6xw"]
+[ext_resource type="PackedScene" uid="uid://cqctw8dd0ar4n" path="res://scenes/effects/damage/damage_sys.tscn" id="18_8bnw6"]
+[ext_resource type="PackedScene" uid="uid://c5pbs8t6p7ogl" path="res://scenes/effects/gibs/gibs.tscn" id="20_2d2y6"]
+[ext_resource type="PackedScene" uid="uid://qy044barx365" path="res://entities/stair_stepper.tscn" id="23_cbwd2"]
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_cyl10"]
+random_pitch = 1.15
+streams_count = 4
+stream_0/stream = ExtResource("2_sybod")
+stream_1/stream = ExtResource("3_xu1ly")
+stream_2/stream = ExtResource("4_u2vh3")
+stream_3/stream = ExtResource("5_51qrl")
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_bs3u7"]
+random_pitch = 1.15
+streams_count = 4
+stream_0/stream = ExtResource("6_j8oek")
+stream_1/stream = ExtResource("7_e2r5o")
+stream_2/stream = ExtResource("8_ypj68")
+stream_3/stream = ExtResource("9_ornrs")
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_o5m72"]
+playback_mode = 1
+streams_count = 2
+stream_0/stream = SubResource("AudioStreamRandomizer_bs3u7")
+stream_0/weight = 100.0
+stream_1/stream = ExtResource("10_j8lce")
+stream_1/weight = 0.001
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_bp4ct"]
+resource_local_to_scene = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_t8rvo"]
+albedo_color = Color(1, 0.501961, 0.501961, 1)
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_q1a72"]
+material = SubResource("StandardMaterial3D_t8rvo")
+radial_segments = 8
+rings = 2
+
+[sub_resource type="Shader" id="Shader_025hj"]
+code = "// NOTE: Shader automatically converted from Godot Engine 4.2.1.stable.mono's StandardMaterial3D.
+
+shader_type spatial;
+render_mode blend_mix,depth_draw_opaque,cull_back,diffuse_burley,specular_schlick_ggx;
+uniform vec4 albedo : source_color;
+uniform sampler2D texture_albedo : source_color,filter_linear_mipmap,repeat_enable;
+uniform float point_size : hint_range(0,128);
+uniform float roughness : hint_range(0,1);
+uniform sampler2D texture_metallic : hint_default_white,filter_linear_mipmap,repeat_enable;
+uniform vec4 metallic_texture_channel;
+uniform sampler2D texture_roughness : hint_roughness_r,filter_linear_mipmap,repeat_enable;
+uniform float specular;
+uniform float metallic;
+uniform vec3 uv1_scale;
+uniform vec3 uv1_offset;
+uniform vec3 uv2_scale;
+uniform vec3 uv2_offset;
+
+#include \"res://shaders/includes/psx_inc.gdshaderinc\"
+
+void vertex() {
+	UV=UV*uv1_scale.xy+uv1_offset.xy;
+	POSITION = map_affine(snap_vertex(PROJECTION_MATRIX * MODELVIEW_MATRIX * vec4(VERTEX, 1.0)));
+}
+
+void fragment() {
+	vec2 base_uv = UV;
+	vec4 albedo_tex = texture(texture_albedo,base_uv);
+	ALBEDO = albedo.rgb * albedo_tex.rgb;
+	float metallic_tex = dot(texture(texture_metallic,base_uv),metallic_texture_channel);
+	METALLIC = metallic_tex * metallic;
+	vec4 roughness_texture_channel = vec4(1.0,0.0,0.0,0.0);
+	float roughness_tex = dot(texture(texture_roughness,base_uv),roughness_texture_channel);
+	ROUGHNESS = roughness_tex * roughness;
+	SPECULAR = specular;
+}
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_06smx"]
+render_priority = 0
+shader = SubResource("Shader_025hj")
+shader_parameter/albedo = Color(0.25098, 0.25098, 0.25098, 1)
+shader_parameter/point_size = 1.0
+shader_parameter/roughness = 0.25
+shader_parameter/metallic_texture_channel = null
+shader_parameter/specular = 0.5
+shader_parameter/metallic = 1.0
+shader_parameter/uv1_scale = Vector3(1, 1, 1)
+shader_parameter/uv1_offset = Vector3(0, 0, 0)
+shader_parameter/uv2_scale = Vector3(1, 1, 1)
+shader_parameter/uv2_offset = Vector3(0, 0, 0)
+
+[sub_resource type="Shader" id="Shader_depl2"]
+code = "// NOTE: Shader automatically converted from Godot Engine 4.2.1.stable.mono's StandardMaterial3D.
+
+shader_type spatial;
+render_mode blend_mix,depth_draw_opaque,cull_back,diffuse_burley,specular_schlick_ggx;
+uniform vec4 albedo : source_color;
+uniform sampler2D texture_albedo : source_color,filter_linear_mipmap,repeat_enable;
+uniform float point_size : hint_range(0,128);
+uniform float roughness : hint_range(0,1);
+uniform sampler2D texture_metallic : hint_default_white,filter_linear_mipmap,repeat_enable;
+uniform vec4 metallic_texture_channel;
+uniform sampler2D texture_roughness : hint_roughness_r,filter_linear_mipmap,repeat_enable;
+uniform float specular;
+uniform float metallic;
+uniform vec3 uv1_scale;
+uniform vec3 uv1_offset;
+uniform vec3 uv2_scale;
+uniform vec3 uv2_offset;
+
+#include \"res://shaders/includes/psx_inc.gdshaderinc\"
+
+void vertex() {
+	UV=UV*uv1_scale.xy+uv1_offset.xy;
+	POSITION = map_affine(snap_vertex(PROJECTION_MATRIX * MODELVIEW_MATRIX * vec4(VERTEX, 1.0)));
+}
+
+void fragment() {
+	vec2 base_uv = UV;
+	vec4 albedo_tex = texture(texture_albedo,base_uv);
+	ALBEDO = albedo.rgb * albedo_tex.rgb;
+	float metallic_tex = dot(texture(texture_metallic,base_uv),metallic_texture_channel);
+	METALLIC = metallic_tex * metallic;
+	vec4 roughness_texture_channel = vec4(1.0,0.0,0.0,0.0);
+	float roughness_tex = dot(texture(texture_roughness,base_uv),roughness_texture_channel);
+	ROUGHNESS = roughness_tex * roughness;
+	SPECULAR = specular;
+}
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_lb10m"]
+render_priority = 0
+shader = SubResource("Shader_depl2")
+shader_parameter/albedo = Color(0.75, 0.75, 0.75, 1)
+shader_parameter/point_size = 1.0
+shader_parameter/roughness = 0.25
+shader_parameter/metallic_texture_channel = Vector4(1, 0, 0, 0)
+shader_parameter/specular = 0.5
+shader_parameter/metallic = 1.0
+shader_parameter/uv1_scale = Vector3(1, 1, 1)
+shader_parameter/uv1_offset = Vector3(0, 0, 0)
+shader_parameter/uv2_scale = Vector3(1, 1, 1)
+shader_parameter/uv2_offset = Vector3(0, 0, 0)
+
+[sub_resource type="Shader" id="Shader_7cdto"]
+code = "// NOTE: Shader automatically converted from Godot Engine 4.2.1.stable.mono's StandardMaterial3D.
+
+shader_type spatial;
+render_mode blend_mix,depth_draw_opaque,cull_back,diffuse_burley,specular_schlick_ggx;
+uniform vec4 albedo : source_color;
+uniform sampler2D texture_albedo : source_color,filter_nearest,repeat_enable;
+uniform float point_size : hint_range(0,128);
+uniform float roughness : hint_range(0,1);
+uniform sampler2D texture_metallic : hint_default_white,filter_nearest,repeat_enable;
+uniform vec4 metallic_texture_channel;
+uniform sampler2D texture_roughness : hint_roughness_r,filter_nearest,repeat_enable;
+uniform float specular;
+uniform float metallic;
+uniform sampler2D texture_detail_albedo : source_color,filter_nearest,repeat_enable;
+uniform sampler2D texture_detail_normal : hint_normal,filter_nearest,repeat_enable;
+uniform sampler2D texture_detail_mask : hint_default_white,filter_nearest,repeat_enable;
+uniform vec3 uv1_scale;
+uniform vec3 uv1_offset;
+uniform vec3 uv2_scale;
+uniform vec3 uv2_offset;
+
+#include \"res://shaders/includes/psx_inc.gdshaderinc\"
+
+void vertex() {
+	UV=UV*uv1_scale.xy+uv1_offset.xy;
+	POSITION = map_affine(snap_vertex(PROJECTION_MATRIX * MODELVIEW_MATRIX * vec4(VERTEX, 1.0)));
+}
+
+void fragment() {
+	vec2 base_uv = UV;
+	vec4 albedo_tex = texture(texture_albedo,base_uv);
+	ALBEDO = albedo.rgb * albedo_tex.rgb;
+	float metallic_tex = dot(texture(texture_metallic,base_uv),metallic_texture_channel);
+	METALLIC = metallic_tex * metallic;
+	vec4 roughness_texture_channel = vec4(1.0,0.0,0.0,0.0);
+	float roughness_tex = dot(texture(texture_roughness,base_uv),roughness_texture_channel);
+	ROUGHNESS = roughness_tex * roughness;
+	SPECULAR = specular;
+	vec4 detail_tex = texture(texture_detail_albedo,base_uv);
+	vec4 detail_norm_tex = texture(texture_detail_normal,base_uv);
+	vec4 detail_mask_tex = texture(texture_detail_mask,base_uv);
+	vec3 detail = mix(ALBEDO.rgb,ALBEDO.rgb*detail_tex.rgb,detail_tex.a);
+	vec3 detail_norm = mix(NORMAL_MAP,detail_norm_tex.rgb,detail_tex.a);
+	NORMAL_MAP = mix(NORMAL_MAP,detail_norm,detail_mask_tex.r);
+	ALBEDO.rgb = mix(ALBEDO.rgb,detail,detail_mask_tex.r);
+}
+"
+
+[sub_resource type="Gradient" id="Gradient_842kq"]
+interpolation_mode = 1
+offsets = PackedFloat32Array(0, 0.3, 0.7)
+colors = PackedColorArray(0.75, 0.75, 0.75, 1, 0.85, 0.85, 0.85, 1, 1, 1, 1, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_uwba6"]
+noise_type = 2
+frequency = 0.05
+domain_warp_enabled = true
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_m8rgt"]
+width = 64
+height = 128
+generate_mipmaps = false
+color_ramp = SubResource("Gradient_842kq")
+noise = SubResource("FastNoiseLite_uwba6")
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_m3hgk"]
+noise_type = 2
+frequency = 0.05
+domain_warp_enabled = true
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_0cfm0"]
+width = 64
+height = 128
+generate_mipmaps = false
+as_normal_map = true
+bump_strength = 1.0
+noise = SubResource("FastNoiseLite_m3hgk")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_643fe"]
+render_priority = 0
+shader = SubResource("Shader_7cdto")
+shader_parameter/albedo = Color(1, 1, 1, 1)
+shader_parameter/point_size = 1.0
+shader_parameter/roughness = 1.0
+shader_parameter/metallic_texture_channel = Vector4(1, 0, 0, 0)
+shader_parameter/specular = 0.5
+shader_parameter/metallic = 1.0
+shader_parameter/uv1_scale = Vector3(1, 1, 1)
+shader_parameter/uv1_offset = Vector3(0, 0, 0)
+shader_parameter/uv2_scale = Vector3(1, 1, 1)
+shader_parameter/uv2_offset = Vector3(0, 0, 0)
+shader_parameter/texture_albedo = ExtResource("11_yhbt5")
+shader_parameter/texture_metallic = ExtResource("12_0ovrm")
+shader_parameter/texture_roughness = ExtResource("13_ks6xw")
+shader_parameter/texture_detail_albedo = SubResource("NoiseTexture2D_m8rgt")
+shader_parameter/texture_detail_normal = SubResource("NoiseTexture2D_0cfm0")
+shader_parameter/texture_detail_mask = ExtResource("12_0nc5f")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_c7x5q"]
+transparency = 1
+shading_mode = 0
+albedo_color = Color(1, 1, 1, 0.25098)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_t04gt"]
+material = SubResource("StandardMaterial3D_c7x5q")
+bottom_radius = 0.0
+radial_segments = 8
+
+[sub_resource type="Animation" id="Animation_o8lpw"]
+length = 0.001
+tracks/0/type = "rotation_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Canary/Armature/Skeleton3D:Spine")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, -0.031, -0.706, 0.031, 0.707)
+tracks/1/type = "rotation_3d"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Canary/Armature/Skeleton3D:Spine.001")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = PackedFloat32Array(0, 1, 0, 0, -0.216, 0.976)
+tracks/2/type = "rotation_3d"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Canary/Armature/Skeleton3D:Neck")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = PackedFloat32Array(0, 1, 0, 0, -0.301, 0.954)
+tracks/3/type = "rotation_3d"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Canary/Armature/Skeleton3D:Head")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = PackedFloat32Array(0, 1, 0, 0, 0, 1)
+tracks/4/type = "rotation_3d"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Canary/Armature/Skeleton3D:Cylinder.001")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = PackedFloat32Array(0, 1, 0.626376, 0.253458, -0.405237, 0.615788)
+tracks/5/type = "rotation_3d"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Canary/Armature/Skeleton3D:Cylinder.002")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = PackedFloat32Array(0, 1, 0.405237, 0.615788, -0.626376, 0.253458)
+tracks/6/type = "rotation_3d"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Canary/Armature/Skeleton3D:Helmet")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = PackedFloat32Array(0, 1, 0.122788, 0.696364, -0.122788, 0.696364)
+tracks/7/type = "rotation_3d"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Canary/Armature/Skeleton3D:Cylinder")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = PackedFloat32Array(0, 1, 0.642788, 0, 0, 0.766044)
+tracks/8/type = "rotation_3d"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("Canary/Armature/Skeleton3D:Right")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = PackedFloat32Array(0, 1, 0.86, 0.199, 0.077, 0.463)
+tracks/9/type = "rotation_3d"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("Canary/Armature/Skeleton3D:Right.001")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = PackedFloat32Array(0, 1, 0.4321, -5.6259e-08, -2.93426e-07, 0.901826)
+tracks/10/type = "rotation_3d"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("Canary/Armature/Skeleton3D:Right.002")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = PackedFloat32Array(0, 1, 0.005, 0, -0.087, 0.996)
+tracks/11/type = "rotation_3d"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("Canary/Armature/Skeleton3D:Right.003")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = PackedFloat32Array(0, 1, 0.0872251, 3.65174e-08, -6.55857e-08, 0.996189)
+tracks/12/type = "rotation_3d"
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/path = NodePath("Canary/Armature/Skeleton3D:Pickaxe")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/keys = PackedFloat32Array(0, 1, 0.707107, 2.66925e-08, -0.707107, 2.66925e-08)
+tracks/13/type = "rotation_3d"
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/path = NodePath("Canary/Armature/Skeleton3D:Left")
+tracks/13/interp = 1
+tracks/13/loop_wrap = true
+tracks/13/keys = PackedFloat32Array(0, 1, -0.86, -0.196, 0.081, 0.464)
+tracks/14/type = "rotation_3d"
+tracks/14/imported = false
+tracks/14/enabled = true
+tracks/14/path = NodePath("Canary/Armature/Skeleton3D:Left.001")
+tracks/14/interp = 1
+tracks/14/loop_wrap = true
+tracks/14/keys = PackedFloat32Array(0, 1, -0.4321, 6.53152e-08, 2.48053e-07, 0.901826)
+tracks/15/type = "rotation_3d"
+tracks/15/imported = false
+tracks/15/enabled = true
+tracks/15/path = NodePath("Canary/Armature/Skeleton3D:Left.002")
+tracks/15/interp = 1
+tracks/15/loop_wrap = true
+tracks/15/keys = PackedFloat32Array(0, 1, -0.005, -0.001, -0.131, 0.991)
+tracks/16/type = "rotation_3d"
+tracks/16/imported = false
+tracks/16/enabled = true
+tracks/16/path = NodePath("Canary/Armature/Skeleton3D:Left.003")
+tracks/16/interp = 1
+tracks/16/loop_wrap = true
+tracks/16/keys = PackedFloat32Array(0, 1, -0.0872251, -8.98916e-08, 5.45175e-08, 0.996189)
+tracks/17/type = "rotation_3d"
+tracks/17/imported = false
+tracks/17/enabled = true
+tracks/17/path = NodePath("Canary/Armature/Skeleton3D:LeftLeg")
+tracks/17/interp = 1
+tracks/17/loop_wrap = true
+tracks/17/keys = PackedFloat32Array(0, 1, 0.691, 0.149, 0.701, 0.096)
+tracks/18/type = "rotation_3d"
+tracks/18/imported = false
+tracks/18/enabled = true
+tracks/18/path = NodePath("Canary/Armature/Skeleton3D:LeftLeg.001")
+tracks/18/interp = 1
+tracks/18/loop_wrap = true
+tracks/18/keys = PackedFloat32Array(0, 1, -0.037, 0.01, 0.259, 0.965)
+tracks/19/type = "rotation_3d"
+tracks/19/imported = false
+tracks/19/enabled = true
+tracks/19/path = NodePath("Canary/Armature/Skeleton3D:LeftLeg.002")
+tracks/19/interp = 1
+tracks/19/loop_wrap = true
+tracks/19/keys = PackedFloat32Array(0, 1, 0.082, 0.007, -0.087, 0.993)
+tracks/20/type = "rotation_3d"
+tracks/20/imported = false
+tracks/20/enabled = true
+tracks/20/path = NodePath("Canary/Armature/Skeleton3D:RightLeg")
+tracks/20/interp = 1
+tracks/20/loop_wrap = true
+tracks/20/keys = PackedFloat32Array(0, 1, 0.701, 0.096, 0.691, 0.149)
+tracks/21/type = "rotation_3d"
+tracks/21/imported = false
+tracks/21/enabled = true
+tracks/21/path = NodePath("Canary/Armature/Skeleton3D:RightLeg.001")
+tracks/21/interp = 1
+tracks/21/loop_wrap = true
+tracks/21/keys = PackedFloat32Array(0, 1, 0.037, -0.01, 0.259, 0.965)
+tracks/22/type = "rotation_3d"
+tracks/22/imported = false
+tracks/22/enabled = true
+tracks/22/path = NodePath("Canary/Armature/Skeleton3D:RightLeg.002")
+tracks/22/interp = 1
+tracks/22/loop_wrap = true
+tracks/22/keys = PackedFloat32Array(0, 1, -0.082, -0.007, -0.087, 0.993)
+tracks/23/type = "value"
+tracks/23/imported = false
+tracks/23/enabled = true
+tracks/23/path = NodePath("Canary:position")
+tracks/23/interp = 1
+tracks/23/loop_wrap = true
+tracks/23/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0.5, 0.15)]
+}
+tracks/24/type = "value"
+tracks/24/imported = false
+tracks/24/enabled = true
+tracks/24/path = NodePath("Canary:rotation")
+tracks/24/interp = 1
+tracks/24/loop_wrap = true
+tracks/24/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, -3.14159, 0)]
+}
+tracks/25/type = "value"
+tracks/25/imported = false
+tracks/25/enabled = true
+tracks/25/path = NodePath("CollisionShape3D:shape:height")
+tracks/25/interp = 1
+tracks/25/loop_wrap = true
+tracks/25/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [2.0]
+}
+tracks/26/type = "value"
+tracks/26/imported = false
+tracks/26/enabled = true
+tracks/26/path = NodePath("CollisionShape3D:shape:radius")
+tracks/26/interp = 1
+tracks/26/loop_wrap = true
+tracks/26/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.5]
+}
+tracks/27/type = "value"
+tracks/27/imported = false
+tracks/27/enabled = true
+tracks/27/path = NodePath("CollisionShape3D:position")
+tracks/27/interp = 1
+tracks/27/loop_wrap = true
+tracks/27/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/28/type = "value"
+tracks/28/imported = false
+tracks/28/enabled = true
+tracks/28/path = NodePath(".:collision_layer")
+tracks/28/interp = 1
+tracks/28/loop_wrap = true
+tracks/28/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [4]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_rb0vb"]
+_data = {
+"RESET": SubResource("Animation_o8lpw")
+}
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_fkyut"]
+animation = &"RESET"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_gy1b5"]
+animation = &"canary_anims/canary_ambush"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_nfb3s"]
+animation = &"canary_anims/canary_attack"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_whrfc"]
+animation = &"canary_anims/canary_death"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_8bms8"]
+animation = &"canary_anims/canary_flinch"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_oyciw"]
+animation = &"canary_anims/canary_idle"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_imbdi"]
+animation = &"canary_anims/canary_move"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_7oomp"]
+xfade_time = 0.25
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_dbccw"]
+xfade_time = 0.25
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_4xupg"]
+xfade_time = 0.25
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_majfp"]
+xfade_time = 0.25
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_2nn25"]
+xfade_time = 0.25
+switch_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_w5vit"]
+xfade_time = 0.25
+switch_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_se8tw"]
+xfade_time = 0.1
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_bj5l4"]
+xfade_time = 0.1
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_x017w"]
+xfade_time = 0.1
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_goefx"]
+xfade_time = 0.15
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_3fks7"]
+xfade_time = 0.25
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_stoq6"]
+xfade_time = 0.15
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_wpkvg"]
+xfade_time = 0.25
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_mr23i"]
+xfade_time = 0.1
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_uocbj"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_8412e"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_l00kp"]
+states/RESET/node = SubResource("AnimationNodeAnimation_fkyut")
+states/RESET/position = Vector2(132.556, 16.9466)
+states/Start/position = Vector2(-26.6667, 100.593)
+states/ambush/node = SubResource("AnimationNodeAnimation_gy1b5")
+states/ambush/position = Vector2(131.667, 100.222)
+states/attacking/node = SubResource("AnimationNodeAnimation_nfb3s")
+states/attacking/position = Vector2(306.889, 225)
+states/dead/node = SubResource("AnimationNodeAnimation_whrfc")
+states/dead/position = Vector2(448.093, 17.8766)
+states/flinching/node = SubResource("AnimationNodeAnimation_8bms8")
+states/flinching/position = Vector2(598.261, 224.617)
+states/idle/node = SubResource("AnimationNodeAnimation_oyciw")
+states/idle/position = Vector2(306.947, 100.008)
+states/moving/node = SubResource("AnimationNodeAnimation_imbdi")
+states/moving/position = Vector2(598.57, 100.065)
+transitions = ["idle", "moving", SubResource("AnimationNodeStateMachineTransition_7oomp"), "moving", "idle", SubResource("AnimationNodeStateMachineTransition_dbccw"), "moving", "attacking", SubResource("AnimationNodeStateMachineTransition_4xupg"), "idle", "attacking", SubResource("AnimationNodeStateMachineTransition_majfp"), "attacking", "moving", SubResource("AnimationNodeStateMachineTransition_2nn25"), "attacking", "idle", SubResource("AnimationNodeStateMachineTransition_w5vit"), "attacking", "dead", SubResource("AnimationNodeStateMachineTransition_se8tw"), "idle", "dead", SubResource("AnimationNodeStateMachineTransition_bj5l4"), "moving", "dead", SubResource("AnimationNodeStateMachineTransition_x017w"), "idle", "flinching", SubResource("AnimationNodeStateMachineTransition_goefx"), "attacking", "flinching", SubResource("AnimationNodeStateMachineTransition_3fks7"), "moving", "flinching", SubResource("AnimationNodeStateMachineTransition_stoq6"), "flinching", "moving", SubResource("AnimationNodeStateMachineTransition_wpkvg"), "flinching", "dead", SubResource("AnimationNodeStateMachineTransition_mr23i"), "Start", "ambush", SubResource("AnimationNodeStateMachineTransition_uocbj"), "ambush", "idle", SubResource("AnimationNodeStateMachineTransition_8412e")]
+graph_offset = Vector2(-165, -24)
+
+[node name="Canary" type="CharacterBody3D"]
+collision_layer = 4
+collision_mask = 151
+script = ExtResource("1_xpg4m")
+species = &"canaries"
+speed = 6.0
+knockback_multiplier = 0.0
+sight_line_sweep_speed = 10.0
+detection_stream = SubResource("AudioStreamRandomizer_cyl10")
+attack_interval = 0.25
+attack_range = 2.0
+attack_delay = 0.65
+bullet = ExtResource("6_a2d18")
+flinch_chance = 0.0
+flinch_time = 0.0
+death_stream = SubResource("AudioStreamRandomizer_o5m72")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_bp4ct")
+
+[node name="PlaceholderMesh" type="MeshInstance3D" parent="."]
+visible = false
+layers = 2
+mesh = SubResource("CapsuleMesh_q1a72")
+
+[node name="Canary" parent="." instance=ExtResource("2_n8knu")]
+transform = Transform3D(-1, 0, -2.53518e-06, 0, 1, 0, 2.53518e-06, 0, -1, 0, 0.5, 0.15)
+
+[node name="Skeleton3D" parent="Canary/Armature" index="0"]
+bones/0/rotation = Quaternion(-0.0309968, -0.705927, 0.0309968, 0.706927)
+bones/1/rotation = Quaternion(0, 0, -0.216083, 0.976375)
+bones/2/rotation = Quaternion(0, 0, -0.300892, 0.953658)
+bones/4/rotation = Quaternion(0.626376, 0.253458, -0.405237, 0.615788)
+bones/5/rotation = Quaternion(-0.405237, -0.615788, 0.626376, -0.253458)
+bones/6/rotation = Quaternion(0.122788, 0.696364, -0.122788, 0.696364)
+bones/7/rotation = Quaternion(0.642788, 0, 0, 0.766044)
+bones/8/rotation = Quaternion(0.860216, 0.19905, 0.0770193, 0.463116)
+bones/9/rotation = Quaternion(0.4321, -5.6259e-08, -2.93426e-07, 0.901826)
+bones/10/rotation = Quaternion(0.00500097, 0, -0.087017, 0.996194)
+bones/11/rotation = Quaternion(0.0872251, 3.65174e-08, -6.55857e-08, 0.996189)
+bones/12/rotation = Quaternion(0.707107, 2.66925e-08, -0.707107, 2.66925e-08)
+bones/13/rotation = Quaternion(-0.860055, -0.196012, 0.0810052, 0.464029)
+bones/14/rotation = Quaternion(-0.4321, 6.53152e-08, 2.48053e-07, 0.901826)
+bones/15/rotation = Quaternion(-0.00500183, -0.00100037, -0.131048, 0.991363)
+bones/16/rotation = Quaternion(-0.0872251, -8.98916e-08, 5.45175e-08, 0.996189)
+bones/17/rotation = Quaternion(0.690897, 0.148978, 0.700895, 0.0959857)
+bones/18/rotation = Quaternion(-0.0370042, 0.0100011, 0.259029, 0.965109)
+bones/19/rotation = Quaternion(0.081984, 0.00699863, -0.086983, 0.992806)
+bones/20/rotation = Quaternion(0.700895, 0.0959856, 0.690897, 0.148978)
+bones/21/rotation = Quaternion(0.0370042, -0.0100011, 0.259029, 0.965109)
+bones/22/rotation = Quaternion(-0.081984, -0.00699863, -0.086983, 0.992806)
+
+[node name="Cylinder_001" parent="Canary/Armature/Skeleton3D" index="0"]
+transform = Transform3D(1.23, -0.565537, -0.132216, -0.826521, -0.738326, -0.583379, 0.232304, 0.367482, -1.37557, -0.102397, 0.106195, 0.329553)
+
+[node name="Cylinder_001" parent="Canary/Armature/Skeleton3D/Cylinder_001" index="0"]
+layers = 2
+material_override = SubResource("ShaderMaterial_06smx")
+
+[node name="Cylinder_002" parent="Canary/Armature/Skeleton3D" index="1"]
+transform = Transform3D(1.22944, 0.566481, 0.128256, 0.826368, -0.738396, -0.583395, -0.235778, 0.365883, -1.37594, 0.10341, 0.106183, 0.329262)
+
+[node name="Cylinder_002" parent="Canary/Armature/Skeleton3D/Cylinder_002" index="0"]
+layers = 2
+material_override = SubResource("ShaderMaterial_06smx")
+
+[node name="Helmet" parent="Canary/Armature/Skeleton3D" index="2"]
+transform = Transform3D(0.999999, 0.00138421, 0.0002888, -6.19636e-05, 0.246951, -0.969028, -0.00141265, 0.969027, 0.24695, 0.000753195, 0.408057, 0.491129)
+
+[node name="Helmet" parent="Canary/Armature/Skeleton3D/Helmet" index="0"]
+layers = 2
+material_override = SubResource("ShaderMaterial_lb10m")
+
+[node name="Cylinder" parent="Canary/Armature/Skeleton3D" index="3"]
+transform = Transform3D(0.999999, 0.000524779, -0.00131303, -6.19636e-05, -0.911424, -0.411469, -0.00141265, 0.411469, -0.911423, 0.000781692, 0.166437, 0.521902)
+
+[node name="Cylinder" parent="Canary/Armature/Skeleton3D/Cylinder" index="0"]
+layers = 2
+material_override = SubResource("ShaderMaterial_lb10m")
+
+[node name="SpotLight3D" type="SpotLight3D" parent="Canary/Armature/Skeleton3D/Cylinder/Cylinder" index="0"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
+layers = 2
+light_color = Color(1, 0.501961, 0, 1)
+shadow_enabled = true
+distance_fade_enabled = true
+
+[node name="Pickaxe" parent="Canary/Armature/Skeleton3D" index="4"]
+transform = Transform3D(-0.14888, -0.0163693, -0.00817876, -0.0139394, 0.144887, -0.0362409, 0.0118549, -0.0352102, -0.145326, -0.26823, -0.624926, 0.437873)
+
+[node name="Pickaxe" parent="Canary/Armature/Skeleton3D/Pickaxe" index="0"]
+layers = 2
+material_override = SubResource("ShaderMaterial_lb10m")
+
+[node name="Body" parent="Canary/Armature/Skeleton3D" index="5"]
+layers = 2
+material_override = SubResource("ShaderMaterial_643fe")
+
+[node name="Spawner" type="Marker3D" parent="."]
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
+path_desired_distance = 1.5
+height = 2.0
+max_speed = 100.0
+
+[node name="SightLine" type="RayCast3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+target_position = Vector3(0, 0, -16)
+collision_mask = 3
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="SightLine"]
+transform = Transform3D(1, 0, 0, 0, 1.31134e-07, 1, 0, -1, 1.31134e-07, 0, -0.3, -1)
+visible = false
+mesh = SubResource("CylinderMesh_t04gt")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_rb0vb"),
+"canary_anims": ExtResource("5_7exts")
+}
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+tree_root = SubResource("AnimationNodeStateMachine_l00kp")
+anim_player = NodePath("../AnimationPlayer")
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+bus = &"Enemies"
+doppler_tracking = 2
+
+[node name="Status" type="Node" parent="."]
+script = ExtResource("5_3hbwc")
+max_health = 225.0
+gib_threshold = 100.0
+damage_sys = ExtResource("18_8bnw6")
+gibs = ExtResource("20_2d2y6")
+loot = Array[PackedScene]([ExtResource("6_yegnx"), ExtResource("7_uj2tf")])
+is_enemy = true
+score = 1
+
+[node name="StairStepper" parent="." instance=ExtResource("23_cbwd2")]
+
+[editable path="Canary"]

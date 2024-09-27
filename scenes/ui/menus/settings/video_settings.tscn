@@ -1,0 +1,458 @@
+[gd_scene load_steps=3 format=3 uid="uid://dw3bo3v1dv272"]
+
+[ext_resource type="Theme" uid="uid://dwof7m2ye3tjh" path="res://scenes/ui/default_theme.tres" id="1_8amvi"]
+[ext_resource type="Script" path="res://scripts/ui/video_sub_menu.gd" id="2_ob35w"]
+
+[node name="Video" type="VBoxContainer"]
+process_priority = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = ExtResource("1_8amvi")
+script = ExtResource("2_ob35w")
+
+[node name="Resolution" type="Control" parent="."]
+visible = false
+custom_minimum_size = Vector2(0, 57)
+layout_mode = 2
+tooltip_text = "The base resolution of the window before the pixel scale factor is applied, in pixels."
+theme = ExtResource("1_8amvi")
+
+[node name="Label" type="Label" parent="Resolution"]
+layout_mode = 0
+offset_right = 154.0
+offset_bottom = 26.0
+theme = ExtResource("1_8amvi")
+text = "Base Resolution"
+horizontal_alignment = 1
+uppercase = true
+
+[node name="ResolutionX" type="LineEdit" parent="Resolution"]
+layout_mode = 0
+offset_top = 26.0
+offset_right = 67.0625
+offset_bottom = 57.0
+theme = ExtResource("1_8amvi")
+text = "1366"
+placeholder_text = "X"
+alignment = 2
+max_length = 5
+virtual_keyboard_type = 2
+caret_blink = true
+
+[node name="By" type="Label" parent="Resolution"]
+layout_mode = 0
+offset_left = 69.0
+offset_top = 30.0
+offset_right = 85.0
+offset_bottom = 56.0
+theme = ExtResource("1_8amvi")
+text = "X"
+horizontal_alignment = 1
+
+[node name="ResolutionY" type="LineEdit" parent="Resolution"]
+layout_mode = 0
+offset_left = 87.0
+offset_top = 26.0
+offset_right = 154.063
+offset_bottom = 57.0
+theme = ExtResource("1_8amvi")
+text = "768"
+max_length = 5
+virtual_keyboard_type = 2
+caret_blink = true
+
+[node name="ResolutionApplyButton" type="Button" parent="Resolution"]
+layout_mode = 0
+offset_left = 162.0
+offset_top = 26.0
+offset_right = 214.0
+offset_bottom = 57.0
+theme = ExtResource("1_8amvi")
+text = " Apply "
+
+[node name="ScaleFactor" type="Control" parent="."]
+custom_minimum_size = Vector2(0, 68)
+layout_mode = 2
+tooltip_text = "The screen's output resolution is divided by this. Decreasing this value will affect performance."
+theme = ExtResource("1_8amvi")
+
+[node name="Label" type="Label" parent="ScaleFactor"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_right = -4.0
+offset_bottom = 26.0
+grow_horizontal = 2
+theme = ExtResource("1_8amvi")
+text = "Pixel Scale Factor"
+horizontal_alignment = 1
+uppercase = true
+
+[node name="ScaleSlider" type="HSlider" parent="ScaleFactor"]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -8.0
+offset_right = -4.0
+offset_bottom = 8.0
+grow_horizontal = 2
+grow_vertical = 2
+tooltip_text = "The screen's output resolution is divided by this. Decreasing this value will affect performance. Does not affect UI."
+theme = ExtResource("1_8amvi")
+min_value = 1.0
+max_value = 8.0
+value = 2.0
+
+[node name="ScaleLabel" type="Label" parent="ScaleFactor"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -26.0
+offset_right = -4.0
+grow_horizontal = 2
+grow_vertical = 0
+theme = ExtResource("1_8amvi")
+text = "2x"
+horizontal_alignment = 1
+uppercase = true
+
+[node name="UIScaleFactor" type="Control" parent="."]
+custom_minimum_size = Vector2(0, 68)
+layout_mode = 2
+tooltip_text = "The screen's output resolution is divided by this. Decreasing this value will affect performance."
+theme = ExtResource("1_8amvi")
+
+[node name="Label" type="Label" parent="UIScaleFactor"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_right = -4.0
+offset_bottom = 26.0
+grow_horizontal = 2
+theme = ExtResource("1_8amvi")
+text = "UI Scale Factor"
+horizontal_alignment = 1
+uppercase = true
+
+[node name="UIScaleSlider" type="HSlider" parent="UIScaleFactor"]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -8.0
+offset_right = -4.0
+offset_bottom = 8.0
+grow_horizontal = 2
+grow_vertical = 2
+tooltip_text = "Scales the User Interface. Higher values 
+may result in difficult-to-navigate menus, 
+especially on lower-resolution screens."
+theme = ExtResource("1_8amvi")
+min_value = 0.25
+max_value = 4.0
+step = 0.25
+value = 1.0
+
+[node name="UIScaleLabel" type="Label" parent="UIScaleFactor"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -26.0
+offset_right = -4.0
+grow_horizontal = 2
+grow_vertical = 0
+theme = ExtResource("1_8amvi")
+text = "1x"
+horizontal_alignment = 1
+uppercase = true
+
+[node name="CrosshairSize" type="Control" parent="."]
+custom_minimum_size = Vector2(0, 68)
+layout_mode = 2
+tooltip_text = "The scaling factor of the HUD's crosshairs."
+theme = ExtResource("1_8amvi")
+
+[node name="Label" type="Label" parent="CrosshairSize"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_right = -4.0
+offset_bottom = 26.0
+grow_horizontal = 2
+theme = ExtResource("1_8amvi")
+text = "Crosshair Size"
+horizontal_alignment = 1
+uppercase = true
+
+[node name="CrosshairSizeSlider" type="HSlider" parent="CrosshairSize"]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -8.0
+offset_right = -4.0
+offset_bottom = 8.0
+grow_horizontal = 2
+grow_vertical = 2
+tooltip_text = "Self-explanatory."
+theme = ExtResource("1_8amvi")
+min_value = 0.25
+max_value = 4.0
+step = 0.125
+value = 1.0
+
+[node name="CrosshairSizeLabel" type="Label" parent="CrosshairSize"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -26.0
+offset_right = -4.0
+grow_horizontal = 2
+grow_vertical = 0
+theme = ExtResource("1_8amvi")
+text = "1x"
+horizontal_alignment = 1
+uppercase = true
+
+[node name="FOV" type="Control" parent="."]
+custom_minimum_size = Vector2(0, 68)
+layout_mode = 2
+tooltip_text = "The vertical field of view, in degrees."
+theme = ExtResource("1_8amvi")
+
+[node name="Label" type="Label" parent="FOV"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_right = -4.0
+offset_bottom = 26.0
+grow_horizontal = 2
+theme = ExtResource("1_8amvi")
+text = "Field of View (FOV)"
+horizontal_alignment = 1
+uppercase = true
+
+[node name="FovSlider" type="HSlider" parent="FOV"]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -8.0
+offset_right = -4.0
+offset_bottom = 8.0
+grow_horizontal = 2
+grow_vertical = 2
+tooltip_text = "The vertical field of view, in degrees."
+theme = ExtResource("1_8amvi")
+min_value = 10.0
+max_value = 170.0
+step = 10.0
+value = 120.0
+
+[node name="FovLabel" type="Label" parent="FOV"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -26.0
+offset_right = -4.0
+grow_horizontal = 2
+grow_vertical = 0
+theme = ExtResource("1_8amvi")
+text = "120"
+horizontal_alignment = 1
+uppercase = true
+
+[node name="VertexSnap" type="Control" parent="."]
+custom_minimum_size = Vector2(0, 68)
+layout_mode = 2
+tooltip_text = "The intensity of the Playstation-esque vertex snapping effect."
+theme = ExtResource("1_8amvi")
+
+[node name="Label" type="Label" parent="VertexSnap"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_right = -4.0
+offset_bottom = 26.0
+grow_horizontal = 2
+theme = ExtResource("1_8amvi")
+text = "Vertex Snapping"
+horizontal_alignment = 1
+uppercase = true
+
+[node name="SnapSlider" type="HSlider" parent="VertexSnap"]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -8.0
+offset_right = -4.0
+offset_bottom = 8.0
+grow_horizontal = 2
+grow_vertical = 2
+tooltip_text = "The vertical field of view, in degrees."
+theme = ExtResource("1_8amvi")
+max_value = 6.0
+value = 2.0
+
+[node name="SnapLabel" type="Label" parent="VertexSnap"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -26.0
+offset_right = -4.0
+grow_horizontal = 2
+grow_vertical = 0
+theme = ExtResource("1_8amvi")
+text = "Tasteful"
+horizontal_alignment = 1
+uppercase = true
+
+[node name="Effects" type="HFlowContainer" parent="."]
+custom_minimum_size = Vector2(0, 33)
+layout_mode = 2
+theme = ExtResource("1_8amvi")
+alignment = 1
+
+[node name="AffineWarpCheck" type="CheckButton" parent="Effects"]
+layout_mode = 2
+tooltip_text = "Toggles the Playstation-esque affine texture warping applied to certain objects (i.e. pretty much everything except terrain)."
+theme = ExtResource("1_8amvi")
+button_pressed = true
+text = "Affine Warping"
+
+[node name="FlaresCheck" type="CheckButton" parent="Effects"]
+layout_mode = 2
+tooltip_text = "Toggles the mesh-based halos 
+present on light sources and pickups."
+theme = ExtResource("1_8amvi")
+button_pressed = true
+text = "Light Halos"
+
+[node name="BloomCheck" type="CheckButton" parent="Effects"]
+layout_mode = 2
+tooltip_text = "Toggles the procedural halos created 
+by the \"glow\" post-processing effect."
+theme = ExtResource("1_8amvi")
+button_pressed = true
+text = "Bilinear Bloom"
+
+[node name="CBloomCheck" type="CheckButton" parent="Effects"]
+layout_mode = 2
+tooltip_text = "Toggles a procedural cross-shaped 
+lens flare post-processing effect. 
+
+I worked very hard on it."
+theme = ExtResource("1_8amvi")
+button_pressed = true
+text = "Cross Bloom"
+
+[node name="VolumetricFogCheck" type="CheckButton" parent="Effects"]
+layout_mode = 2
+tooltip_text = "Toggles volumetric fog."
+theme = ExtResource("1_8amvi")
+button_pressed = true
+text = "Volumetric Fog"
+
+[node name="PaletteCheck" type="CheckButton" parent="Effects"]
+layout_mode = 2
+size_flags_vertical = 4
+tooltip_text = "Toggles volumetric fog."
+theme = ExtResource("1_8amvi")
+button_pressed = true
+text = "Retro Palette"
+
+[node name="Palette" type="HFlowContainer" parent="."]
+layout_mode = 2
+size_flags_vertical = 3
+alignment = 1
+
+[node name="PaletteSelect" type="OptionButton" parent="Palette"]
+visible = false
+layout_mode = 2
+size_flags_vertical = 4
+theme = ExtResource("1_8amvi")
+
+[node name="ColorDepth" type="Control" parent="Palette"]
+visible = false
+custom_minimum_size = Vector2(256, 68)
+layout_mode = 2
+size_flags_horizontal = 3
+tooltip_text = "The intensity of the Playstation-esque vertex snapping effect."
+theme = ExtResource("1_8amvi")
+
+[node name="Label" type="Label" parent="Palette/ColorDepth"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_right = -4.0
+offset_bottom = 26.0
+grow_horizontal = 2
+theme = ExtResource("1_8amvi")
+text = "Color Depth"
+horizontal_alignment = 1
+uppercase = true
+
+[node name="DepthSlider" type="HSlider" parent="Palette/ColorDepth"]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -8.0
+offset_right = -4.0
+offset_bottom = 8.0
+grow_horizontal = 2
+grow_vertical = 2
+tooltip_text = "The vertical field of view, in degrees."
+theme = ExtResource("1_8amvi")
+min_value = 1.0
+max_value = 255.0
+value = 2.0
+
+[node name="DepthLabel" type="Label" parent="Palette/ColorDepth"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -26.0
+offset_right = -4.0
+grow_horizontal = 2
+grow_vertical = 0
+theme = ExtResource("1_8amvi")
+text = "16"
+horizontal_alignment = 1
+uppercase = true
+
+[connection signal="pressed" from="Resolution/ResolutionApplyButton" to="." method="_on_resolution_apply_button_pressed"]
+[connection signal="drag_ended" from="ScaleFactor/ScaleSlider" to="." method="_on_scale_slider_drag_ended"]
+[connection signal="value_changed" from="ScaleFactor/ScaleSlider" to="." method="_on_scale_slider_value_changed"]
+[connection signal="drag_ended" from="UIScaleFactor/UIScaleSlider" to="." method="_on_ui_scale_slider_drag_ended"]
+[connection signal="value_changed" from="UIScaleFactor/UIScaleSlider" to="." method="_on_ui_scale_slider_value_changed"]
+[connection signal="value_changed" from="CrosshairSize/CrosshairSizeSlider" to="." method="_on_crosshair_size_slider_value_changed"]
+[connection signal="value_changed" from="FOV/FovSlider" to="." method="_on_fov_slider_value_changed"]
+[connection signal="value_changed" from="VertexSnap/SnapSlider" to="." method="_on_snap_slider_value_changed"]
+[connection signal="toggled" from="Effects/AffineWarpCheck" to="." method="_on_affine_warp_check_toggled"]
+[connection signal="toggled" from="Effects/FlaresCheck" to="." method="_on_flares_check_toggled"]
+[connection signal="toggled" from="Effects/BloomCheck" to="." method="_on_bloom_check_toggled"]
+[connection signal="toggled" from="Effects/CBloomCheck" to="." method="_on_c_bloom_check_toggled"]
+[connection signal="toggled" from="Effects/VolumetricFogCheck" to="." method="_on_volumetric_fog_check_toggled"]
+[connection signal="toggled" from="Effects/PaletteCheck" to="." method="_on_palette_check_toggled"]
+[connection signal="value_changed" from="Palette/ColorDepth/DepthSlider" to="." method="_on_depth_slider_value_changed"]

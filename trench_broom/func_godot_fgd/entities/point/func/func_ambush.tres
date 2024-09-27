@@ -1,0 +1,37 @@
+[gd_resource type="Resource" script_class="FuncGodotFGDPointClass" load_steps=3 format=3 uid="uid://bf664nqpwmxu2"]
+
+[ext_resource type="Script" path="res://addons/func_godot/src/fgd/func_godot_fgd_point_class.gd" id="1_um0dl"]
+[ext_resource type="Script" path="res://entities/enemies/ambush.gd" id="2_g8hne"]
+
+[resource]
+script = ExtResource("1_um0dl")
+script_class = ExtResource("2_g8hne")
+apply_rotation_on_map_build = true
+classname = "func_ambush"
+description = ""
+func_godot_internal = false
+base_classes = Array[Resource]([])
+class_properties = {
+"ambusher": {
+"canary": "canary",
+"enforcer": "enforcer",
+"eyeball": "eyeball",
+"lizard": "lizard",
+"pinkerton": "pinkerton",
+"plasma droid": "plasma_droid",
+"rocketeer": "rocketeer",
+"sleeping lizard": "eepy_lizard",
+"soldier": "soldier"
+},
+"group": "none"
+}
+class_property_descriptions = {
+"ambusher": ["The enemy to be spawned.", "pinkerton"],
+"group": "The group that activates this ambush."
+}
+meta_properties = {
+"color": Color(0.8, 0.8, 0.8, 1),
+"size": AABB(-8, -8, -8, 8, 8, 8)
+}
+node_class = "Marker3D"
+name_property = ""

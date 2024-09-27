@@ -1,0 +1,171 @@
+[gd_scene load_steps=22 format=3 uid="uid://bynbdpv50o6q2"]
+
+[ext_resource type="Texture2D" uid="uid://bs7borhko72ul" path="res://objects/crate/crate_normals.png" id="1_3va2u"]
+[ext_resource type="Texture2D" uid="uid://crih0rgk10al6" path="res://weapons/pump_shotgun/shotgun_detail_mask.png" id="1_cgk4d"]
+[ext_resource type="Script" path="res://scripts/effects/particle_lifetime.gd" id="2_l7om6"]
+[ext_resource type="AudioStream" uid="uid://bvod4pgw3o7os" path="res://audio/streams/effects/wood/wood_break_1.wav" id="3_ca32t"]
+[ext_resource type="AudioStream" uid="uid://hcvsifamuwje" path="res://audio/streams/effects/wood/wood_break_2.wav" id="4_ln1x5"]
+[ext_resource type="AudioStream" uid="uid://chog3ntosnfie" path="res://audio/streams/effects/wood/wood_break_3.wav" id="5_e51v5"]
+[ext_resource type="AudioStream" uid="uid://bpnsl0hr2rgtp" path="res://audio/streams/effects/wood/wood_break_4.wav" id="6_1xtja"]
+[ext_resource type="AudioStream" uid="uid://oq4d5qc7lq07" path="res://audio/streams/effects/wood/wood_break_5.wav" id="7_uhqgb"]
+[ext_resource type="AudioStream" uid="uid://1yc1yyxhiyk3" path="res://audio/streams/effects/wood/wood_break_6.wav" id="8_rvu0h"]
+
+[sub_resource type="Shader" id="Shader_kldm2"]
+code = "// NOTE: Shader automatically converted from Godot Engine 4.2.1.stable.mono's StandardMaterial3D.
+
+shader_type spatial;
+render_mode blend_mix,depth_draw_opaque,cull_back,diffuse_burley,specular_schlick_ggx;
+uniform vec4 albedo : source_color;
+uniform sampler2D texture_albedo : source_color,filter_nearest,repeat_enable;
+uniform float point_size : hint_range(0,128);
+uniform float roughness : hint_range(0,1);
+uniform sampler2D texture_metallic : hint_default_white,filter_nearest,repeat_enable;
+uniform vec4 metallic_texture_channel;
+uniform sampler2D texture_roughness : hint_roughness_r,filter_nearest,repeat_enable;
+uniform float specular;
+uniform float metallic;
+uniform sampler2D texture_normal : hint_roughness_normal,filter_nearest,repeat_enable;
+uniform float normal_scale : hint_range(-16,16);
+uniform float clearcoat : hint_range(0,1);
+uniform float clearcoat_roughness : hint_range(0,1);
+uniform sampler2D texture_clearcoat : hint_default_white,filter_nearest,repeat_enable;
+uniform vec3 uv1_scale;
+uniform vec3 uv1_offset;
+uniform vec3 uv2_scale;
+uniform vec3 uv2_offset;
+
+#include \"res://shaders/includes/psx_inc.gdshaderinc\"
+
+void vertex() {
+	POSITION = map_affine(snap_vertex(PROJECTION_MATRIX * MODELVIEW_MATRIX * vec4(VERTEX, 1.0)));
+}
+
+void fragment() {
+	vec2 base_uv = UV;
+	vec4 albedo_tex = texture(texture_albedo,base_uv);
+	ALBEDO = albedo.rgb * albedo_tex.rgb;
+	float metallic_tex = dot(texture(texture_metallic,base_uv),metallic_texture_channel);
+	METALLIC = metallic_tex * metallic;
+	vec4 roughness_texture_channel = vec4(1.0,0.0,0.0,0.0);
+	float roughness_tex = dot(texture(texture_roughness,base_uv),roughness_texture_channel);
+	ROUGHNESS = roughness_tex * roughness;
+	SPECULAR = specular;
+	NORMAL_MAP = texture(texture_normal,base_uv).rgb;
+	NORMAL_MAP_DEPTH = normal_scale;
+	vec2 clearcoat_tex = texture(texture_clearcoat,base_uv).xy;
+	CLEARCOAT = clearcoat*clearcoat_tex.x;	CLEARCOAT_ROUGHNESS = clearcoat_roughness*clearcoat_tex.y;
+}
+"
+
+[sub_resource type="Gradient" id="Gradient_v5jf5"]
+interpolation_mode = 1
+offsets = PackedFloat32Array(0, 0.2, 0.5, 0.7)
+colors = PackedColorArray(0.278431, 0.172549, 0.0470588, 1, 0.341176, 0.207843, 0.0784314, 1, 0.447059, 0.298039, 0.14902, 1, 0.415686, 0.313726, 0.145098, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_q3vr3"]
+frequency = 0.1
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_h5i32"]
+width = 48
+height = 192
+generate_mipmaps = false
+seamless_blend_skirt = 1.0
+color_ramp = SubResource("Gradient_v5jf5")
+noise = SubResource("FastNoiseLite_q3vr3")
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_1b18h"]
+width = 48
+height = 192
+generate_mipmaps = false
+seamless_blend_skirt = 1.0
+as_normal_map = true
+bump_strength = 1.0
+noise = SubResource("FastNoiseLite_q3vr3")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_17mxi"]
+render_priority = 0
+shader = SubResource("Shader_kldm2")
+shader_parameter/albedo = Color(1, 1, 1, 1)
+shader_parameter/point_size = 1.0
+shader_parameter/roughness = 0.75
+shader_parameter/metallic_texture_channel = null
+shader_parameter/specular = 0.5
+shader_parameter/metallic = 0.0
+shader_parameter/normal_scale = 1.0
+shader_parameter/clearcoat = 1.0
+shader_parameter/clearcoat_roughness = 0.25
+shader_parameter/uv1_scale = Vector3(1, 1, 1)
+shader_parameter/uv1_offset = Vector3(0, 0, 0)
+shader_parameter/uv2_scale = Vector3(1, 1, 1)
+shader_parameter/uv2_offset = Vector3(0, 0, 0)
+shader_parameter/texture_albedo = SubResource("NoiseTexture2D_h5i32")
+shader_parameter/texture_normal = SubResource("NoiseTexture2D_1b18h")
+shader_parameter/texture_clearcoat = ExtResource("1_cgk4d")
+
+[sub_resource type="Gradient" id="Gradient_qqwon"]
+offsets = PackedFloat32Array(0.9, 1)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_qlv50"]
+gradient = SubResource("Gradient_qqwon")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ss8t6"]
+particle_flag_align_y = true
+emission_shape = 3
+emission_box_extents = Vector3(0.5, 0.5, 0.5)
+angle_min = -720.0
+angle_max = 720.0
+direction = Vector3(0, 1, 0)
+initial_velocity_min = 5.0
+initial_velocity_max = 10.0
+color_ramp = SubResource("GradientTexture1D_qlv50")
+collision_mode = 1
+collision_friction = 0.5
+collision_bounce = 0.25
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1j6xd"]
+transparency = 3
+alpha_hash_scale = 1.0
+alpha_antialiasing_mode = 0
+vertex_color_use_as_albedo = true
+albedo_color = Color(0.341176, 0.207843, 0.0784314, 1)
+roughness = 0.75
+normal_texture = ExtResource("1_3va2u")
+texture_filter = 0
+
+[sub_resource type="BoxMesh" id="BoxMesh_orj6w"]
+material = SubResource("StandardMaterial3D_1j6xd")
+size = Vector3(0.125, 1, 0.25)
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_4hg1j"]
+random_pitch = 1.15
+streams_count = 6
+stream_0/stream = ExtResource("3_ca32t")
+stream_0/weight = 1.0
+stream_1/stream = ExtResource("4_ln1x5")
+stream_1/weight = 1.0
+stream_2/stream = ExtResource("5_e51v5")
+stream_2/weight = 1.0
+stream_3/stream = ExtResource("6_1xtja")
+stream_3/weight = 1.0
+stream_4/stream = ExtResource("7_uhqgb")
+stream_4/weight = 1.0
+stream_5/stream = ExtResource("8_rvu0h")
+stream_5/weight = 1.0
+
+[node name="WoodShards" type="GPUParticles3D"]
+layers = 2
+material_override = SubResource("ShaderMaterial_17mxi")
+lifetime = 15.0
+one_shot = true
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_ss8t6")
+draw_pass_1 = SubResource("BoxMesh_orj6w")
+script = ExtResource("2_l7om6")
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+stream = SubResource("AudioStreamRandomizer_4hg1j")
+volume_db = -10.0
+autoplay = true
+bus = &"Combat"
+doppler_tracking = 2

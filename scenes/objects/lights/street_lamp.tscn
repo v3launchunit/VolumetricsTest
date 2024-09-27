@@ -1,0 +1,95 @@
+[gd_scene load_steps=14 format=3 uid="uid://c0kvfvxi487l1"]
+
+[ext_resource type="ArrayMesh" uid="uid://dfdtn05qg82p4" path="res://models/lamp_post.obj" id="1_mmdw3"]
+[ext_resource type="Material" uid="uid://c42r6gnwbsttx" path="res://effects/halos/fancy_halo.tres" id="2_tp44j"]
+[ext_resource type="Texture2D" uid="uid://hk0k2coukjwc" path="res://effects/halos/halo_tex.tres" id="3_udgh2"]
+[ext_resource type="Script" path="res://scripts/effects/halo.gd" id="4_dmryr"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_44bsv"]
+albedo_color = Color(0.501961, 0.501961, 0.501961, 1)
+metallic = 1.0
+roughness = 0.25
+texture_filter = 0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_eebl7"]
+albedo_color = Color(0.501961, 0.501961, 0.501961, 1)
+metallic = 1.0
+roughness = 0.25
+texture_filter = 0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_nqub2"]
+shading_mode = 0
+albedo_color = Color(10, 8.9, 0, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_iv3hh"]
+albedo_color = Color(0.501961, 0.501961, 0.501961, 1)
+metallic = 1.0
+roughness = 0.25
+texture_filter = 0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_efmho"]
+transparency = 1
+blend_mode = 1
+depth_draw_mode = 2
+shading_mode = 0
+vertex_color_use_as_albedo = true
+albedo_texture = ExtResource("3_udgh2")
+billboard_mode = 1
+fixed_size = true
+proximity_fade_distance = 3.0
+
+[sub_resource type="QuadMesh" id="QuadMesh_y6wxx"]
+material = SubResource("StandardMaterial3D_efmho")
+size = Vector2(3, 0.375)
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_dqrgy"]
+height = 10.0
+radius = 0.25
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_kufkt"]
+height = 0.5
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_yn0m8"]
+size = Vector3(0.5, 1, 2)
+
+[node name="StreetLamp" type="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, -0.5, 7.5)
+
+[node name="LampPost" type="MeshInstance3D" parent="."]
+mesh = ExtResource("1_mmdw3")
+skeleton = NodePath("../../../../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_44bsv")
+surface_material_override/1 = SubResource("StandardMaterial3D_eebl7")
+surface_material_override/2 = SubResource("StandardMaterial3D_nqub2")
+surface_material_override/3 = SubResource("StandardMaterial3D_iv3hh")
+
+[node name="SpotLight3D" type="SpotLight3D" parent="LampPost"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 8, -2)
+light_color = Color(1, 0.886275, 0, 1)
+light_energy = 10.0
+shadow_enabled = true
+distance_fade_enabled = true
+spot_range = 15.0
+spot_angle = 25.0
+
+[node name="LensFlare" type="MeshInstance3D" parent="LampPost/SpotLight3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.125)
+material_override = ExtResource("2_tp44j")
+cast_shadow = 0
+custom_aabb = AABB(0.001, 0.001, 0.001, 0.002, 0.002, 0.002)
+ignore_occlusion_culling = true
+mesh = SubResource("QuadMesh_y6wxx")
+script = ExtResource("4_dmryr")
+color = Color(1, 0.886275, 0, 1)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, 0)
+shape = SubResource("CylinderShape3D_dqrgy")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 8.25, -2)
+shape = SubResource("CylinderShape3D_kufkt")
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 9, -1)
+shape = SubResource("BoxShape3D_yn0m8")

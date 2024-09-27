@@ -1,0 +1,18 @@
+[gd_scene load_steps=5 format=3 uid="uid://svl1jl5atn0o"]
+
+[ext_resource type="Script" path="res://bullets/player/special/lodged_harpoon.gd" id="1_61u1e"]
+[ext_resource type="Material" uid="uid://by4h3hrepyr2o" path="res://bullets/bullet_metal.tres" id="3_rwv3b"]
+[ext_resource type="ArrayMesh" uid="uid://d13ytgdp3744o" path="res://models/harpoon.obj" id="4_ma0ok"]
+[ext_resource type="PackedScene" uid="uid://fn1fivb2ndvo" path="res://scenes/effects/impacts/bullet_impact_yellow.tscn" id="5_u4dnk"]
+
+[node name="LodgedNail" type="Node3D"]
+script = ExtResource("1_61u1e")
+
+[node name="Nail" type="MeshInstance3D" parent="."]
+transform = Transform3D(-0.25, 0, 3.7749e-08, 0, 0.25, 0, -3.7749e-08, 0, -0.25, 0, 0, -0.375)
+layers = 2
+material_override = ExtResource("3_rwv3b")
+mesh = ExtResource("4_ma0ok")
+
+[node name="BulletImpact" parent="." instance=ExtResource("5_u4dnk")]
+emitting = false

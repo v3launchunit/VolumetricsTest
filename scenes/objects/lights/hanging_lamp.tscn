@@ -1,0 +1,138 @@
+[gd_scene load_steps=21 format=3 uid="uid://bybrfm1881qnv"]
+
+[ext_resource type="Material" uid="uid://bw6kjcl0x5mdg" path="res://materials/terrain/trench_broom_psx/metal.tres" id="1_e3xrp"]
+[ext_resource type="Shader" path="res://shaders/spatial/psx_ul_mix.gdshader" id="1_j7x8l"]
+[ext_resource type="Material" uid="uid://c42r6gnwbsttx" path="res://effects/halos/fancy_halo.tres" id="1_nt8l7"]
+[ext_resource type="Texture2D" uid="uid://hk0k2coukjwc" path="res://effects/halos/halo_tex.tres" id="1_wy4yp"]
+[ext_resource type="Script" path="res://scripts/effects/halo.gd" id="3_nf31k"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_4xvbf"]
+render_priority = 0
+shader = ExtResource("1_j7x8l")
+shader_parameter/albedo = Color(3, 2.01, 1.05, 1)
+shader_parameter/uv1_scale = null
+shader_parameter/uv1_offset = null
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wrb5n"]
+shading_mode = 0
+albedo_color = Color(3, 2.01, 1.05, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_l8rac"]
+material = SubResource("StandardMaterial3D_wrb5n")
+radius = 0.25
+height = 0.5
+radial_segments = 8
+rings = 3
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_tbul1"]
+load_path = "res://.godot/imported/halo.png-88068247d44276e09ca924d46b3606d1.s3tc.ctex"
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_w2kd2"]
+transparency = 1
+blend_mode = 1
+shading_mode = 0
+vertex_color_use_as_albedo = true
+albedo_color = Color(1, 0.501961, 0, 1)
+albedo_texture = SubResource("CompressedTexture2D_tbul1")
+billboard_mode = 1
+fixed_size = true
+proximity_fade_distance = 3.0
+distance_fade_mode = 1
+
+[sub_resource type="QuadMesh" id="QuadMesh_nej0e"]
+material = SubResource("StandardMaterial3D_w2kd2")
+size = Vector2(2, 0.25)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_am777"]
+transparency = 1
+blend_mode = 1
+shading_mode = 0
+vertex_color_use_as_albedo = true
+albedo_color = Color(1, 0.752941, 0.501961, 1)
+albedo_texture = ExtResource("1_wy4yp")
+billboard_mode = 1
+fixed_size = true
+proximity_fade_distance = 3.0
+distance_fade_mode = 1
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_40sxu"]
+top_radius = 0.063
+bottom_radius = 0.063
+height = 1.0
+radial_segments = 6
+
+[sub_resource type="Gradient" id="Gradient_boqxy"]
+offsets = PackedFloat32Array(0, 0.5, 1)
+colors = PackedColorArray(0, 0.501961, 0, 1, 0.5, 0.501961, 1, 1, 1, 0.501961, 0, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_p5kq1"]
+gradient = SubResource("Gradient_boqxy")
+width = 16
+
+[sub_resource type="Gradient" id="Gradient_5pufk"]
+colors = PackedColorArray(0, 0, 0, 1, 0.25, 0.25, 0.25, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_s4x0o"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_4wub4"]
+width = 128
+height = 128
+seamless = true
+seamless_blend_skirt = 0.5
+bump_strength = 2.0
+color_ramp = SubResource("Gradient_5pufk")
+noise = SubResource("FastNoiseLite_s4x0o")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_f7ksg"]
+albedo_color = Color(0.756863, 0.745098, 0.733333, 1)
+metallic = 1.0
+roughness_texture = SubResource("NoiseTexture2D_4wub4")
+normal_texture = SubResource("GradientTexture1D_p5kq1")
+heightmap_scale = 3.0
+uv1_scale = Vector3(0.0078125, 0.0078125, 0.0078125)
+uv1_world_triplanar = true
+texture_filter = 0
+billboard_mode = 2
+
+[sub_resource type="QuadMesh" id="QuadMesh_qeije"]
+size = Vector2(0.126, 1)
+
+[node name="HangingLamp" type="MeshInstance3D"]
+transform = Transform3D(1, 0, 0, 0, -1, 8.74228e-08, 0, -8.74228e-08, -1, 0, 0, 0)
+material_override = SubResource("ShaderMaterial_4xvbf")
+visibility_range_end = 25.0
+visibility_range_end_margin = 5.0
+mesh = SubResource("SphereMesh_l8rac")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+light_color = Color(1, 0.67451, 0.34902, 1)
+light_energy = 3.0
+light_bake_mode = 1
+shadow_enabled = true
+omni_range = 15.0
+
+[node name="LensFlare" type="MeshInstance3D" parent="OmniLight3D"]
+layers = 2
+material_override = ExtResource("1_nt8l7")
+cast_shadow = 0
+visibility_range_end = 100.0
+visibility_range_end_margin = 10.0
+visibility_range_fade_mode = 1
+mesh = SubResource("QuadMesh_nej0e")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_am777")
+script = ExtResource("3_nf31k")
+color = Color(1, 0.67451, 0.34902, 1)
+
+[node name="Pole" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.6, 0)
+material_override = ExtResource("1_e3xrp")
+visibility_range_end = 25.0
+visibility_range_end_margin = 5.0
+mesh = SubResource("CylinderMesh_40sxu")
+
+[node name="ShitPole" type="MeshInstance3D" parent="Pole"]
+material_override = SubResource("StandardMaterial3D_f7ksg")
+visibility_range_begin = 25.0
+visibility_range_begin_margin = 5.0
+mesh = SubResource("QuadMesh_qeije")
