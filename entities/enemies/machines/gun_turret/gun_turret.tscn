@@ -1,0 +1,513 @@
+[gd_scene load_steps=57 format=4 uid="uid://dqugqrrqpxdih"]
+
+[ext_resource type="Script" path="res://entities/enemies/machines/enemy_turret.gd" id="1_q2b2k"]
+[ext_resource type="Shader" path="res://shaders/spatial/psx_ul_mix.gdshader" id="2_lb20c"]
+[ext_resource type="Material" uid="uid://krobnjd1cbwe" path="res://entities/enemies/machines/metal_gray_psx.tres" id="2_qskly"]
+[ext_resource type="Script" path="res://entities/enemies/attack_pattern.gd" id="2_t2vl5"]
+[ext_resource type="PackedScene" uid="uid://blrtnnu61g5s" path="res://bullets/enemy/enemy_bullet_gen.tscn" id="3_bdfa1"]
+[ext_resource type="Material" uid="uid://b78l63b32udy2" path="res://effects/halos/halo_mat.tres" id="3_h4w1p"]
+[ext_resource type="Material" uid="uid://4uvuq34871pc" path="res://entities/enemies/machines/metal_white_psx.tres" id="3_lhv5t"]
+[ext_resource type="Texture2D" uid="uid://hk0k2coukjwc" path="res://effects/halos/halo_tex.tres" id="4_wmb78"]
+[ext_resource type="Script" path="res://scripts/effects/halo.gd" id="5_xtdky"]
+[ext_resource type="Shader" path="res://shaders/spatial/psx_ul_add.gdshader" id="8_j4d2d"]
+[ext_resource type="Script" path="res://entities/status.gd" id="9_bbmqx"]
+[ext_resource type="ArrayMesh" uid="uid://bblg4t73miejx" path="res://weapons/muzzle_flash_alt.obj" id="9_shv2h"]
+[ext_resource type="AudioStream" uid="uid://byrul8xkkilkx" path="res://audio/streams/weapons/firing/akm_fire.wav" id="10_ywp5d"]
+[ext_resource type="PackedScene" uid="uid://cu70msbgu2ysm" path="res://scenes/effects/damage/metal_damage_sys.tscn" id="12_ryqfr"]
+[ext_resource type="PackedScene" uid="uid://bfctj0w1fkgwy" path="res://scenes/effects/gibs/metal_shards.tscn" id="13_xgnmw"]
+
+[sub_resource type="Resource" id="Resource_xggal"]
+script = ExtResource("2_t2vl5")
+weight = 1.0
+bullet = ExtResource("3_bdfa1")
+volley = 1
+spread = 2.5
+spawners = Array[NodePath]([NodePath("Body/Muzzle/Spawner/Marker3D")])
+delay = 0.0
+recovery_time = 0.2
+animation = &"attacking"
+burst = 3
+burst_delay = 0.1
+cancelable = false
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2j3v3"]
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_cabot"]
+_surfaces = [{
+"aabb": AABB(-0.375, 4.47035e-08, -0.4, 0.75, 0.375, 0.95),
+"format": 34896613377,
+"index_count": 60,
+"index_data": PackedByteArray("AQAJAAMACQAHAAMACQAKAAcACgAFAAcACwABAAUACwAIAAEAAgAEAAYAAgAAAAQABwABAAMABwAFAAEABAAIAAsABAAAAAgABgALAAoABgAEAAsAAgAKAAkAAgAGAAoAAAAJAAgAAAACAAkACwAFAAoACAAJAAEA"),
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 12,
+"vertex_data": PackedByteArray("mRkAAJPXAAAyM///k9cAAJkZAADyGgAAzEzMzHkNAABl5gAAk9cAAMzM//+T1wAAZeYAAPIaAAAys8zMeQ0AAAAA/3///wAAAAAaaAAAAAD//xpoAAAAAP///3///wAA")
+}]
+blend_shape_mode = 0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_p5vaw"]
+resource_name = "gun_turret_Cube_001"
+_surfaces = [{
+"aabb": AABB(-0.375, 4.47035e-08, -0.4, 0.75, 0.375, 0.95),
+"attribute_data": PackedByteArray("/18AAP8f/z//X////58AAP/f/z//n////5////9f/7//H/9//1//v/+f/7//3/9//5//v/9f/z//X/8//1//P/+f/z//n/8//5//P/+f/z//X/9//1//f/9f/3//n/9//5//f/+f/3//fwAA/38AAP9/////f////3//v/9//7//f/+//3//v/9//7//f/9//3//f/9//3//f/9//3//f/9//z//f/8//3//P/9//z8="),
+"format": 34896613399,
+"index_count": 60,
+"index_data": PackedByteArray("BQAgAAwAHgAXAAoAHgAjABcAJQASABkAKAADABAAKAAaAAMACAAOABUACAABAA4AGAAEAAsAGAARAAQADQAbACkADQAAABsAFgArACcAFgAPACsABwAkAB8ABwAUACQAAgAiAB0AAgAJACIAKgATACYAHAAhAAYA"),
+"material": SubResource("StandardMaterial3D_2j3v3"),
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 44,
+"vertex_data": PackedByteArray("mRkAAJPXqc+ZGQAAk9f/v5kZAACT1xzSMjP//5PX37YyM///k9f//zIz//+T18XGMjP//5PXitOZGQAA8hoD8pkZAADyGv+/mRkAAPIaJ+7MTMzMeQ1K88xMzMx5Df//zEzMzHkNxcZl5gAAk9dmvWXmAACT1/+/ZeYAAJPXk9rMzP//k9dF2czM//+T1///zMz//5PXJPbMzP//k9dE2GXmAADyGm/sZeYAAPIa/79l5gAA8hrnxDKzzMx5DUL7MrPMzHkN//8ys8zMeQ0k9gAA/3///+WwAAD/f///uckAAP9///+K0wAA/3///xHQAAAaaAAASfYAABpoAAD18gAAGmgAAMXGAAAaaAAAitMAABpoAACG5///GmgAAAr8//8aaAAAne3//xpoAAAk9v//GmgAAETY//8aaAAAfsP///9///8eyv///3///565////f///RNj///9////k1OgbeesAAP9/U8AN7PrnhCP/fzDDJ+DtrajzjLpkUVJBAAD/fxzcstfZ3U+d/38wwyfg7a1AGT3hAAD/fzYQlz3w4hsQ/38ww3o3hhXZQuALjTsjUgAA/38sM9Qyop+40v9/MMN6N4YVXOnUKCIbfeio84y6Ib1l7k69QLlvVPo+J+DtrajzjLrU1pHbD5ul1iVB1U16N4YV2ULgC5E3ejHO5EwXkBiW3tlC4AtLF2k7")
+}]
+blend_shape_mode = 0
+shadow_mesh = SubResource("ArrayMesh_cabot")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4ocdj"]
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_eagag"]
+_surfaces = [{
+"aabb": AABB(-0.01875, -0.125, -0.01875, 0.0375, 0.25, 0.0375),
+"format": 34896613377,
+"index_count": 36,
+"index_data": PackedByteArray("AAADAAEAAAACAAMAAgAFAAMAAgAEAAUAAwAHAAEAAwAFAAcABAAHAAUABAAGAAcABgABAAcABgAAAAEAAAAEAAIAAAAGAAQA"),
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 8,
+"vertex_data": PackedByteArray("/38AAAAAAAD/f///AAAAAP//AAD/fwAA//////9/AAD/fwAA//8AAP9//////wAAAAAAAP9/AAAAAP///38AAA==")
+}]
+blend_shape_mode = 0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_2vrbi"]
+resource_name = "gun_turret_Cylinder_002"
+_surfaces = [{
+"aabb": AABB(-0.01875, -0.125, -0.01875, 0.0375, 0.25, 0.0375),
+"attribute_data": PackedByteArray("/7+Ogv///38AAP9//z+Ogv//AAAAAAAAb/3/v/+//3//v/9/cH3/v/+/AAD/vwAA/79v/f9//3//f/9//z9v/f9/AAD/fwAAjoL/v/8//3//P/9/jwL/v/8/AAD/PwAA"),
+"format": 34896613399,
+"index_count": 36,
+"index_data": PackedByteArray("AQALAAQAAQAIAAsABwAQAAoABwANABAACQAVAAMACQAPABUADgAWABEADgATABYAFAAFABcAFAACAAUAAAAMAAYAAAASAAwA"),
+"material": SubResource("StandardMaterial3D_4ocdj"),
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 24,
+"vertex_data": PackedByteArray("/38AAAAA/z//fwAAAAD/3/9/AAAAAP/f/3///wAA/7//f///AAD/3/9///8AAP/f//8AAP9//z///wAA/3//n///AAD/f//f//////9//7///////3//n///////f//f/38AAP///z//fwAA////n/9/AAD///+f/3///////7//f///////n/9///////+fAAAAAP9//z8AAAAA/3//nwAAAAD/f//fAAD///9//78AAP///3//nwAA////f//fAAD/f/9/AAD/f///////f/9/AAD/f///AAD/f/9/AAD/fwAA////f/9/AAD/fwAAAAD/f/9/AAD/f///////f/9/AAD/f///AAD/f/9/////f///////f/9/////f///")
+}]
+blend_shape_mode = 0
+shadow_mesh = SubResource("ArrayMesh_eagag")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_why7o"]
+render_priority = 0
+shader = ExtResource("2_lb20c")
+shader_parameter/albedo = Color(0, 1, 0, 1)
+shader_parameter/uv1_scale = null
+shader_parameter/uv1_offset = null
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_f847i"]
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_mpofc"]
+_surfaces = [{
+"aabb": AABB(-0.0375, 0.0962501, -0.0375, 0.075, 0.0725, 0.075),
+"format": 34896613377,
+"index_count": 24,
+"index_data": PackedByteArray("AAACAAEAAQACAAUAAAADAAIAAgADAAUAAAAEAAMAAwAEAAUAAAABAAQABAABAAUA"),
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 6,
+"vertex_data": PackedByteArray("/38AAP9/AAD/f5V7AAAAAP//lXv/fwAA/3+Ve///AAAAAJV7/38AAP9/////fwAA")
+}]
+blend_shape_mode = 0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_1lrr3"]
+resource_name = "gun_turret_Cylinder_003"
+_surfaces = [{
+"aabb": AABB(-0.0375, 0.0962501, -0.0375, 0.075, 0.0725, 0.075),
+"attribute_data": PackedByteArray("/7//v/+//7//v/+//7//v/+/joL/P46C/7+Ogv8/joJv/f+/b/3/v3B9/79wff+//79v/f8/b/3/v2/9/z9v/Y6C/7+Ogv+/jwL/v48C/7//P/+//z//v/8//7//P/+/"),
+"format": 34896613399,
+"index_count": 24,
+"index_data": PackedByteArray("AQAJAAQABQALABUAAAAMAAgACgANABQAAgAQAA4ADwASABYAAwAGABEAEwAHABcA"),
+"material": SubResource("StandardMaterial3D_f847i"),
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 24,
+"vertex_data": PackedByteArray("/38AAP9/tk7/fwAA/3+iJP9/AAD/f7ZO/38AAP9/oiT/f5V7AACiJP9/lXsAAEDc/3+VewAAoiT/f5V7AABA3P//lXv/f7ZO//+Ve/9/oiT//5V7/3+Wsf//lXv/f0Dc/3+Ve///tk7/f5V7//+Wsf9/lXv//7ZO/3+Ve///lrEAAJV7/3+2TgAAlXv/f6IkAACVe/9/lrEAAJV7/39A3P9/////f5ax/3////9/QNz/f////3+Wsf9/////f0DckhfOO3wf4U8xRJGXHjB7n3wf4U+XznFfHjB7n3HfZ7GSF847fB/hT8y5DmiXznFfkhfOO8y5DmgxRJGXDegxxjFEkZceMHufDegxxnHfZ7HMuQ5ol85xXw3oMcZx32ex")
+}]
+blend_shape_mode = 0
+shadow_mesh = SubResource("ArrayMesh_mpofc")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pg8ma"]
+transparency = 1
+blend_mode = 1
+shading_mode = 0
+vertex_color_use_as_albedo = true
+albedo_color = Color(1, 0.501961, 0, 1)
+albedo_texture = ExtResource("4_wmb78")
+billboard_mode = 1
+fixed_size = true
+proximity_fade_distance = 3.0
+distance_fade_mode = 1
+
+[sub_resource type="QuadMesh" id="QuadMesh_y6edg"]
+material = SubResource("StandardMaterial3D_pg8ma")
+size = Vector2(0.15, 0.15)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ekmv7"]
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_4vrl4"]
+_surfaces = [{
+"aabb": AABB(-0.1875, -0.125, -0.125, 0.375, 0.25, 0.25),
+"format": 34896613377,
+"index_count": 60,
+"index_data": PackedByteArray("CAADAAEACAAJAAMACQAHAAMACQAKAAcACgAFAAcACgALAAUACwABAAUACwAIAAEAAgAEAAYAAgAAAAQABwABAAMABwAFAAEABAAIAAsABAAAAAgABgALAAoABgAEAAsAAgAKAAkAAgAGAAoAAAAJAAgAAAACAAkA"),
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 12,
+"vertex_data": PackedByteArray("Q0QAAP//AABDRP////8AAENEAAAAAAAAQ0T//wAAAAC7uwAA//8AALu7/////wAAu7sAAAAAAAC7u///AAAAAAAA/3///wAAAAD/fwAAAAD///9/AAAAAP///3///wAA")
+}]
+blend_shape_mode = 0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_fvvwn"]
+resource_name = "gun_turret_Cube_002"
+_surfaces = [{
+"aabb": AABB(-0.1875, -0.125, -0.125, 0.375, 0.25, 0.25),
+"attribute_data": PackedByteArray("/18AAP8f/z//X////58AAP/f/z//n////1//v/8f/3//X/+//5//v//f/3//n/+//1//P/9f/z//X/8//5//P/+f/z//n/8//1//f/9f/3//X/9//5//f/+f/3//n/9//38AAP9/////f////3//v/9//7//f/+//3//f/9//3//f/9//3//P/9//z//f/8/"),
+"format": 34896613399,
+"index_count": 60,
+"index_data": PackedByteArray("GQALAAUAGQAcAAsAGwAVAAkAGwAeABUAHwARABcAHwAiABEAIQADAA8AIQAYAAMABwANABMABwABAA0AFgAEAAoAFgAQAAQADAAYACEADAAAABgAFAAjACAAFAAOACMABgAeABsABgASAB4AAgAdABoAAgAIAB0A"),
+"material": SubResource("StandardMaterial3D_ekmv7"),
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 36,
+"vertex_data": PackedByteArray("Q0QAAP//fNtDRAAA////v0NEAAD//6DmQ0T/////PK1DRP///////0NE/////7DHQ0QAAAAA//9DRAAAAAD/v0NEAAAAAKDmQ0T//wAA//9DRP//AAD//0NE//8AALDHu7sAAP//PK27uwAA////v7u7AAD//7DHu7v/////fNu7u////////7u7/////6Dmu7sAAAAA//+7uwAAAAD/v7u7AAAAALDHu7v//wAA//+7u///AAD//7u7//8AAKDmAAD/f///K7EAAP9///+wxwAA/3///6DmAAD/fwAA//8AAP9/AACwxwAA/38AAKDm////fwAA//////9/AACg5v///38AALDH////f///K7H///9///+g5v///3///7DH/////wAA/39lzDLn//////9//7+g4Lu+/7D/zgAA/39lzDLnctaMqf9//7+g4Lu+/////wAA/39eH0NB//////9//7+ZM8wYctaMqQAA/39eH0NB/7D/zv9//7+ZM8wY/////6Dgu75lzDLnOLTFy6Dgu75lzDLnOLTFy5kzzBheH0NB/////5kzzBheH0NB")
+}]
+blend_shape_mode = 0
+shadow_mesh = SubResource("ArrayMesh_4vrl4")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wqdp5"]
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_o3jnl"]
+_surfaces = [{
+"aabb": AABB(-0.1, -0.25, -0.1, 0.2, 0.5, 0.2),
+"format": 34896613377,
+"index_count": 36,
+"index_data": PackedByteArray("AAADAAEAAAACAAMAAgAFAAMAAgAEAAUAAwAHAAEAAwAFAAcABAAHAAUABAAGAAcABgABAAcABgAAAAEAAAAEAAIAAAAGAAQA"),
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 8,
+"vertex_data": PackedByteArray("/38AAAAAAAD/f///AAAAAP//AAD/fwAA//////9/AAD/fwAA//8AAP9////+/wAAAAAAAP9/AAAAAP///38AAA==")
+}]
+blend_shape_mode = 0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_tol4u"]
+resource_name = "gun_turret_Cylinder_001"
+_surfaces = [{
+"aabb": AABB(-0.1, -0.25, -0.1, 0.2, 0.5, 0.2),
+"attribute_data": PackedByteArray("/7+Ogv///38AAP9//z+Ogv//AAAAAAAAb/3/v/+//3//v/9/cH3/v/+/AAD/vwAA/79v/f9//3//f/9//z9v/f9/AAD/fwAAjoL/v/8//3//P/9/jwL/v/8/AAD/PwAA"),
+"format": 34896613399,
+"index_count": 36,
+"index_data": PackedByteArray("AQALAAQAAQAIAAsABwAQAAoABwANABAACQAVAAMACQAPABUADgAWABEADgATABYAFAAFABcAFAACAAUAAAAMAAYAAAASAAwA"),
+"material": SubResource("StandardMaterial3D_wqdp5"),
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 24,
+"vertex_data": PackedByteArray("/38AAAAA/z//fwAAAAD/3/9/AAAAAP/f/3///wAA/7//f///AAD/3/9///8AAP/f//8AAP9//z///wAA/3//n///AAD/f//f//////9//7///////3//n///////f//f/38AAP///z//fwAA////n/9/AAD///+f/3////7//7//f////v//n/9////+//+fAAAAAP9//z8AAAAA/3//nwAAAAD/f//fAAD///9//78AAP///3//nwAA////f//fAAD/f/9/AAD/f///////f/9/AAD/f///AAD/f/9/AAD/fwAA////f/9/AAD/fwAAAAD/f/9/AAD/f///////f/9/AAD/f///AAD/f/9/////f///////f/9/////f///")
+}]
+blend_shape_mode = 0
+shadow_mesh = SubResource("ArrayMesh_o3jnl")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_64hud"]
+render_priority = 0
+shader = ExtResource("8_j4d2d")
+shader_parameter/albedo = Color(1, 1, 0, 1)
+shader_parameter/uv1_scale = Vector3(1, 1, 1)
+shader_parameter/uv1_offset = Vector3(0, 0, 0)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_odfgk"]
+size = Vector3(1, 0.35, 1)
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_oxbkp"]
+animation = &"gun_turret_anims/gun_turret_fire"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_d0uuo"]
+animation = &"gun_turret_anims/gun_turret_idle"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_dvqgj"]
+animation = &"gun_turret_anims/gun_turret_idle"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_pv17n"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_kkcm8"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_bss4u"]
+switch_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_7j8o4"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_um8ml"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_edbpn"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_h57m3"]
+switch_mode = 2
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_4pjc2"]
+allow_transition_to_self = true
+states/attacking/node = SubResource("AnimationNodeAnimation_oxbkp")
+states/attacking/position = Vector2(597.333, 100.667)
+states/idle/node = SubResource("AnimationNodeAnimation_d0uuo")
+states/idle/position = Vector2(392, 100.667)
+states/moving/node = SubResource("AnimationNodeAnimation_dvqgj")
+states/moving/position = Vector2(596.593, 227.333)
+transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_pv17n"), "idle", "attacking", SubResource("AnimationNodeStateMachineTransition_kkcm8"), "attacking", "idle", SubResource("AnimationNodeStateMachineTransition_bss4u"), "idle", "moving", SubResource("AnimationNodeStateMachineTransition_7j8o4"), "moving", "idle", SubResource("AnimationNodeStateMachineTransition_um8ml"), "moving", "attacking", SubResource("AnimationNodeStateMachineTransition_edbpn"), "attacking", "moving", SubResource("AnimationNodeStateMachineTransition_h57m3")]
+graph_offset = Vector2(-39, 25)
+
+[sub_resource type="Animation" id="Animation_atjju"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Body/Muzzle/Spawner/MuzzleFlash:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "scale_3d"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Body/Muzzle/Spawner/MuzzleFlash")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = PackedFloat32Array(0, 1, 1, 1, 1)
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Body/Muzzle/Spawner/MuzzleFlash/OmniLight3D:light_energy")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_0xu6m"]
+_data = {
+"RESET": SubResource("Animation_atjju")
+}
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_8fmqa"]
+random_pitch = 1.25
+streams_count = 1
+stream_0/stream = ExtResource("10_ywp5d")
+
+[sub_resource type="Animation" id="Animation_1oows"]
+step = 0.025
+tracks/0/type = "scale_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Body/Muzzle/Spawner/MuzzleFlash")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 0, 0, 0, 0.025, 1, 3, 3, 3, 0.1, 1, 1.5, 1.5, 1.5, 0.125, 1, 3, 3, 3, 0.2, 1, 1.5, 1.5, 1.5, 0.225, 1, 3, 3, 3, 0.375, 1, 0, 0, 0)
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Body/Muzzle/Spawner/MuzzleFlash:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.375),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Body/Muzzle/Spawner/MuzzleFlash/OmniLight3D:light_energy")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.025, 0.1, 0.125, 0.2, 0.225, 0.375),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 1.0, 0.5, 1.0, 0.5, 1.0, 0.0]
+}
+tracks/3/type = "audio"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("AudioStreamPlayer3D")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": SubResource("AudioStreamRandomizer_8fmqa")
+}, {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": SubResource("AudioStreamRandomizer_8fmqa")
+}, {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": SubResource("AudioStreamRandomizer_8fmqa")
+}],
+"times": PackedFloat32Array(0, 0.1, 0.2)
+}
+tracks/3/use_blend = true
+
+[sub_resource type="Animation" id="Animation_t2hp7"]
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_rgut7"]
+_data = {
+"gun_turret_fire": SubResource("Animation_1oows"),
+"gun_turret_idle": SubResource("Animation_t2hp7")
+}
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_sw72s"]
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_quwrn"]
+_surfaces = [{
+"aabb": AABB(-0.2, -1, -0.2, 0.4, 1.15, 0.4),
+"format": 34896613377,
+"index_count": 90,
+"index_data": PackedByteArray("CgANAAkACgAOAA0ADwAKAAsADwAOAAoAEAALAAwAEAAPAAsACQAQAAwACQANABAAAAAGAAMAAAAIAAYACAAJAAwACAAAAAkABgAMAAsABgAIAAwAAwALAAoAAwAGAAsAAAAKAAkAAAADAAoAAQAOAAIAAQANAA4AAQACAAcADgAEAAIADgAPAAQABwACAAQABAAQAAUABAAPABAABQAHAAQABQANAAEABQAQAA0ABQABAAcA"),
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 17,
+"vertex_data": PackedByteArray("/38AAAAAAAD/f5re/x8AAP/fmt7/fwAA//8AAP9/AAD/f5re/98AAP8fmt7/fwAA/38AAP//AAD/f////38AAAAAAAD/fwAA/39Nb/8/AAD/v01v/38AAP9/TW//vwAA/z9Nb/9/AAD/f3nT/z8AAP+/edP/fwAA/3950/+/AAD/P3nT/38AAA==")
+}]
+blend_shape_mode = 0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_d3v07"]
+resource_name = "gun_turret_Cylinder"
+_surfaces = [{
+"aabb": AABB(-0.2, -1, -0.2, 0.4, 1.15, 0.4),
+"attribute_data": PackedByteArray("/7+Ogv///38AAP9//z+Ogv+/joL/P46C/7+OgnB9/79wff+/b/3/v2/9/79v/f+//7//f/+//3//P2/9/79v/f8/b/3/v2/9jwL/v48C/7+Ogv+/joL/v/+/b/3/f/9//3//f/8//7//P/+//z//v/8//7+Ogv+//z//f/8//3////8/////PwAA/z8AAP8//7//P/+//z//v/8//7//P/9//z//f/8//3//P/9//z//P/8//z//P/8//z//P/8//78Jl///Zgb/vwmXAABmBvTo/7/06P+//79mBv+/Zgb/v/To/39mBv+/9Oj/f2YGCZf/vwmX/7//P2YG/z9mBg=="),
+"format": 34896613399,
+"index_count": 90,
+"index_data": PackedByteArray("JwAxACEAJwA3ADEAOQAmACkAOQA2ACYAPgArAC4APgA7ACsAIwA/AC8AIwAzAD8AAAAWAAsAAAAdABYAHwAiAC0AHwACACIAGAAsACoAGAAeACwADAAoACQADAAXACgAAQAlACAAAQANACUABAA1AAoABAAwADUAAwAIABoANAAPAAkANAA4AA8AGQAHAA4AEQA8ABQAEQA6ADwAEgAbABAAFQAyAAYAFQA9ADIAEwAFABwA"),
+"material": SubResource("StandardMaterial3D_sw72s"),
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 64,
+"vertex_data": PackedByteArray("/38AAAAA/z//fwAAAAAU4P9/AAAAABTg/3+a3v8fQNz/f5re/x++I/9/mt7/H0Dc/3+a3v8fviP/35re/3+Wsf/fmt7/f0Dc/9+a3v9/aE7/35re/3++I///AAD/f/8///8AAP9/eqD//wAA/38U4P9/mt7/35ax/3+a3v/faE7/f5re/9+Wsf9/mt7/32hO/x+a3v9/lrH/H5re/39A3P8fmt7/f2hO/x+a3v9/viP/fwAA////P/9/AAD//3qg/38AAP//eqD/f////3+Wsf9/////f0Dc/3////9/lrH/f////39A3AAAAAD/f/8/AAAAAP9/eqAAAAAA/38U4P9/TW//PxTg/39Nb/8//9//f01v/z8U4P9/TW//P//f/79Nb/9/eqD/v01v/38U4P+/TW//f/+f/79Nb/9//9//f01v/796oP9/TW//v/+f/39Nb/+/eqD/f01v/7//n/8/TW//f3qg/z9Nb/9/FOD/P01v/3//n/8/TW//f//f/3950/8/viP/f3nT/z//3/9/edP/P74j/3950/8//9//v3nT/39oTv+/edP/f74j/7950/9//5//v3nT/3//3/9/edP/v2hO/3950/+//5//f3nT/79oTv9/edP/v/+f/z950/9/aE7/P3nT/3++I/8/edP/f/+f/z950/9//98AAP9/lItkA2ODafSXznFfjSCXTnHfZ7FnMY2gzLkOaJfOcV/xF805jSCXTgAA/3/JmIcRlItkA8y5DmjxF805DegxxjJG8JcN6DHGcd9nsTJG8JdnMY2gAAD/f8mYhxGGkTTnzLkOaJfOcV8N6DHGcd9nsQAA/3+GkTTnY4Np9JSLZAP/fwAAY4Np9P9////JmIcRlItkA/9/AAD/fwAAyZiHEf9/AACGkTTn/3///4aRNOdjg2n0/3////9///+NIJdO/38AAGcxjaD/f///8RfNOY0gl07/fwAA/38AAPEXzTn/fwAAMkbwl/9///8yRvCXZzGNoP9/////f///")
+}]
+blend_shape_mode = 0
+shadow_mesh = SubResource("ArrayMesh_quwrn")
+
+[node name="GunTurret" type="Node3D"]
+
+[node name="gun_turret" type="CharacterBody3D" parent="."]
+collision_layer = 4
+collision_mask = 391
+script = ExtResource("1_q2b2k")
+patterns = Array[ExtResource("2_t2vl5")]([SubResource("Resource_xggal")])
+species = &"turrets"
+speed = 1.0
+knockback_multiplier = 0.0
+hunts_species = Array[StringName]([&"lizards"])
+deaf = true
+infighter = false
+wake_up_time = 0.0
+sight_line_sweep_angle = 6.28319
+attack_interval = 0.0
+attack_delay = 0.0
+flinch_chance = 0.0
+edible = false
+
+[node name="Body" type="MeshInstance3D" parent="gun_turret"]
+material_override = ExtResource("3_lhv5t")
+mesh = SubResource("ArrayMesh_p5vaw")
+skeleton = NodePath("")
+
+[node name="Antenna" type="MeshInstance3D" parent="gun_turret/Body"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.225, 0.45, 0.4)
+material_override = ExtResource("3_lhv5t")
+mesh = SubResource("ArrayMesh_2vrbi")
+skeleton = NodePath("")
+
+[node name="Bulb" type="MeshInstance3D" parent="gun_turret/Body/Antenna"]
+material_override = SubResource("ShaderMaterial_why7o")
+mesh = SubResource("ArrayMesh_1lrr3")
+skeleton = NodePath("")
+
+[node name="LensFlare" type="MeshInstance3D" parent="gun_turret/Body/Antenna/Bulb"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.13, 0)
+layers = 2
+material_override = ExtResource("3_h4w1p")
+cast_shadow = 0
+visibility_range_end = 100.0
+visibility_range_end_margin = 25.0
+visibility_range_fade_mode = 1
+mesh = SubResource("QuadMesh_y6edg")
+script = ExtResource("5_xtdky")
+color = Color(0, 1, 0, 1)
+
+[node name="Muzzle" type="MeshInstance3D" parent="gun_turret/Body"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.15, -0.4)
+material_override = ExtResource("3_lhv5t")
+mesh = SubResource("ArrayMesh_fvvwn")
+skeleton = NodePath("")
+
+[node name="Spawner" type="MeshInstance3D" parent="gun_turret/Body/Muzzle"]
+transform = Transform3D(1, 0, 0, 0, 0, 1, 0, -1, 0, 0, 0, -0.15)
+material_override = ExtResource("3_lhv5t")
+mesh = SubResource("ArrayMesh_tol4u")
+skeleton = NodePath("")
+
+[node name="Marker3D" type="Marker3D" parent="gun_turret/Body/Muzzle/Spawner"]
+transform = Transform3D(1, -1.50996e-07, 6.60025e-15, 0, -4.37114e-08, -1, 1.50996e-07, 1, -4.37114e-08, -3.48452e-08, 0.25, 3.43919e-05)
+
+[node name="MuzzleFlash" type="MeshInstance3D" parent="gun_turret/Body/Muzzle/Spawner"]
+transform = Transform3D(1, -1.50996e-07, 6.60025e-15, 0, -4.37114e-08, -1, 1.50996e-07, 1, -4.37114e-08, -3.48452e-08, 0.25, 3.43993e-05)
+visible = false
+layers = 2
+material_override = SubResource("ShaderMaterial_64hud")
+cast_shadow = 0
+mesh = ExtResource("9_shv2h")
+skeleton = NodePath("../..")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="gun_turret/Body/Muzzle/Spawner/MuzzleFlash"]
+light_color = Color(3, 3, 0, 1)
+light_energy = 0.0
+shadow_enabled = true
+distance_fade_enabled = true
+omni_range = 10.0
+omni_shadow_mode = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="gun_turret"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.175, 0)
+shape = SubResource("BoxShape3D_odfgk")
+
+[node name="SightLine" type="RayCast3D" parent="gun_turret"]
+target_position = Vector3(0, 0, -32)
+
+[node name="Status" type="Node" parent="gun_turret"]
+script = ExtResource("9_bbmqx")
+max_health = 300.0
+gib_threshold = 0.0
+damage_sys = ExtResource("12_ryqfr")
+gibs = ExtResource("13_xgnmw")
+
+[node name="AnimationTree" type="AnimationTree" parent="gun_turret"]
+tree_root = SubResource("AnimationNodeStateMachine_4pjc2")
+anim_player = NodePath("../AnimationPlayer")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="gun_turret"]
+libraries = {
+"": SubResource("AnimationLibrary_0xu6m"),
+"gun_turret_anims": SubResource("AnimationLibrary_rgut7")
+}
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="gun_turret"]
+
+[node name="Base" type="MeshInstance3D" parent="."]
+material_override = ExtResource("2_qskly")
+mesh = SubResource("ArrayMesh_d3v07")
+skeleton = NodePath("")
