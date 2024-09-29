@@ -58,7 +58,8 @@ func _attack(_delta) -> void:
 			)
 		else:
 			do_attack()
-	nav_agent.set_velocity(Vector3.ZERO)
+	if nav_agent != null:
+		nav_agent.set_velocity(Vector3.ZERO)
 
 
 func do_attack() -> void:

@@ -33,6 +33,7 @@
 [ext_resource type="Texture2D" uid="uid://exkw0wktl54p" path="res://entities/enemies/military/pinkerton/pinkerton_metallic.png" id="21_tvmks"]
 [ext_resource type="Texture2D" uid="uid://blae7355fr3lo" path="res://weapons/pump_shotgun/shotgun_roughness.png" id="21_xf3tc"]
 [ext_resource type="Texture2D" uid="uid://bw7v4h5hychul" path="res://entities/enemies/military/pinkerton/pinkerton_roughness.png" id="22_758q5"]
+[ext_resource type="Shader" path="res://shaders/spatial/psx_ul_add.gdshader" id="25_0y5u3"]
 [ext_resource type="PackedScene" uid="uid://cqctw8dd0ar4n" path="res://scenes/effects/damage/damage_sys.tscn" id="31_7r0oy"]
 [ext_resource type="PackedScene" uid="uid://c5pbs8t6p7ogl" path="res://scenes/effects/gibs/gibs.tscn" id="32_l26si"]
 [ext_resource type="PackedScene" uid="uid://qy044barx365" path="res://entities/stair_stepper.tscn" id="37_sxmhw"]
@@ -298,58 +299,12 @@ shader_parameter/texture_detail_albedo = SubResource("NoiseTexture2D_fagd6")
 shader_parameter/texture_detail_normal = SubResource("NoiseTexture2D_7duje")
 shader_parameter/texture_detail_mask = ExtResource("19_qblbc")
 
-[sub_resource type="Shader" id="Shader_r0nnw"]
-code = "// NOTE: Shader automatically converted from Godot Engine 4.2.1.stable.mono's StandardMaterial3D.
-
-shader_type spatial;
-render_mode blend_mix,depth_draw_opaque,cull_back,diffuse_burley,specular_schlick_ggx,unshaded;
-uniform vec4 albedo : source_color;
-uniform sampler2D texture_albedo : source_color,filter_linear_mipmap,repeat_enable;
-uniform float point_size : hint_range(0,128);
-uniform float roughness : hint_range(0,1);
-uniform sampler2D texture_metallic : hint_default_white,filter_linear_mipmap,repeat_enable;
-uniform vec4 metallic_texture_channel;
-uniform sampler2D texture_roughness : hint_roughness_r,filter_linear_mipmap,repeat_enable;
-uniform float specular;
-uniform float metallic;
-uniform vec3 uv1_scale;
-uniform vec3 uv1_offset;
-uniform vec3 uv2_scale;
-uniform vec3 uv2_offset;
-
-#include \"res://shaders/includes/psx_inc.gdshaderinc\"
-
-void vertex() {
-	UV=UV*uv1_scale.xy+uv1_offset.xy;
-	POSITION = map_affine(snap_vertex(PROJECTION_MATRIX * MODELVIEW_MATRIX * vec4(VERTEX, 1.0)));
-}
-
-void fragment() {
-	vec2 base_uv = UV;
-	vec4 albedo_tex = texture(texture_albedo,base_uv);
-	ALBEDO = albedo.rgb * albedo_tex.rgb;
-	float metallic_tex = dot(texture(texture_metallic,base_uv),metallic_texture_channel);
-	METALLIC = metallic_tex * metallic;
-	vec4 roughness_texture_channel = vec4(1.0,0.0,0.0,0.0);
-	float roughness_tex = dot(texture(texture_roughness,base_uv),roughness_texture_channel);
-	ROUGHNESS = roughness_tex * roughness;
-	SPECULAR = specular;
-}
-"
-
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_n85vr"]
 render_priority = 0
-shader = SubResource("Shader_r0nnw")
+shader = ExtResource("25_0y5u3")
 shader_parameter/albedo = Color(1, 1, 0, 1)
-shader_parameter/point_size = 1.0
-shader_parameter/roughness = 1.0
-shader_parameter/metallic_texture_channel = null
-shader_parameter/specular = 0.5
-shader_parameter/metallic = 0.0
 shader_parameter/uv1_scale = Vector3(1, 1, 1)
 shader_parameter/uv1_offset = Vector3(0, 0, 0)
-shader_parameter/uv2_scale = Vector3(1, 1, 1)
-shader_parameter/uv2_offset = Vector3(0, 0, 0)
 
 [sub_resource type="Shader" id="Shader_4ce0w"]
 code = "// NOTE: Shader automatically converted from Godot Engine 4.2.1.stable.mono's StandardMaterial3D.
@@ -969,7 +924,7 @@ bones/20/rotation = Quaternion(0.0383765, 1.93266e-07, 3.40483e-09, 0.999263)
 bones/21/rotation = Quaternion(-0.0824806, -6.65001e-08, -1.41612e-08, 0.996593)
 
 [node name="Cylinder" parent="Pinkerton/Armature/Skeleton3D" index="0"]
-transform = Transform3D(-0.154106, -0.987629, 0.0289762, 0.983107, -0.1562, -0.095404, 0.0987498, 0.0137844, 0.995017, -0.17036, 0.354956, 0.074627)
+transform = Transform3D(-0.0657084, 0.0689994, 0.99545, 0.913075, -0.398211, 0.0878728, 0.402462, 0.914695, -0.0368358, 0.0395979, 0.308324, 0.246924)
 
 [node name="Cylinder" parent="Pinkerton/Armature/Skeleton3D/Cylinder" index="0"]
 layers = 2
@@ -1008,14 +963,14 @@ shadow_enabled = true
 distance_fade_enabled = true
 
 [node name="Cylinder_001" parent="Pinkerton/Armature/Skeleton3D" index="1"]
-transform = Transform3D(-0.231159, -0.987629, 0.0434645, 1.47466, -0.1562, -0.143106, 0.148125, 0.0137845, 1.49253, -0.219743, 0.347146, 0.0753163)
+transform = Transform3D(-0.0985623, 0.0689995, 1.49318, 1.36961, -0.398211, 0.131809, 0.603693, 0.914695, -0.055254, 0.043048, 0.288413, 0.29266)
 
 [node name="Cylinder_001" parent="Pinkerton/Armature/Skeleton3D/Cylinder_001" index="0"]
 layers = 2
 material_override = SubResource("ShaderMaterial_bkory")
 
 [node name="Shotgun" parent="Pinkerton/Armature/Skeleton3D" index="2"]
-transform = Transform3D(0.98664, 0.130272, 0.0978253, -0.160051, 0.88716, 0.432817, -0.0304026, -0.442692, 0.896158, -0.23084, 0.396013, 0.0638403)
+transform = Transform3D(0.986618, 0.111372, 0.119082, -0.155241, 0.864935, 0.477272, -0.0498436, -0.489372, 0.87065, -0.231205, 0.394556, 0.0697602)
 
 [node name="Shotgun" parent="Pinkerton/Armature/Skeleton3D/Shotgun" index="0"]
 layers = 2
@@ -1037,7 +992,7 @@ omni_range = 10.0
 transform = Transform3D(-1.95578e-08, -1, 7.45058e-09, -3.72529e-08, 2.23517e-08, 1, -1, 2.04891e-08, -3.72529e-08, 0, 0.675, -0.135)
 
 [node name="Pump" parent="Pinkerton/Armature/Skeleton3D" index="3"]
-transform = Transform3D(0.98664, 0.130272, 0.0978253, -0.160051, 0.88716, 0.432817, -0.0304026, -0.442692, 0.896158, -0.23084, 0.396013, 0.0638403)
+transform = Transform3D(0.986618, 0.111372, 0.119082, -0.155241, 0.864935, 0.477272, -0.0498436, -0.489372, 0.87065, -0.231205, 0.394556, 0.0697602)
 
 [node name="Pump" parent="Pinkerton/Armature/Skeleton3D/Pump" index="0"]
 layers = 2

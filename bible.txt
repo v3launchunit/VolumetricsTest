@@ -200,24 +200,24 @@ Enemies:
 			Eats Eyeballs
 			Ranged (grappling harpoon)
 			Melee (lunge, fangs)
-
-
+	
+	
 	Military:
 		Infight with: Locals
-
+		
 		Hound Spider:
 			Weak
 			Fast
 			Ranged (grappling harpoon)
 			Melee (lunge, fangs)
-
+		
 		Hell Hound Spider:
 			Weak
 			Fast
 			Alert nearby Hell Hound Spiders upon spotting player
 			Ranged (grappling harpoon)
 			Melee (lunge, fangs)
-
+		
 		Pinkerton:
 			Weak
 			Medium
@@ -241,7 +241,7 @@ Enemies:
 					Amplify (-25)
 					Amplify (+50)
 					Bitcrush (4 bits/sample, crush only)
-
+		
 		Enforcer:
 			Tough
 			Medium
@@ -260,18 +260,18 @@ Enemies:
 					Compressor
 					Filter Curve EQ (radio preset)
 					Bitcrush (4 bits/sample, crush then resample)
-
+		
 		Exterminator:
 			Medium
 			Medium
 			Ranged (flamethrower, gas grenades)
-
+		
 		Soldier:
 			Tough
 			Slow
 			Ranged (akm, hand grenades)
 			Robo legs(?)
-
+		
 		Rocketeer:
 			Medium
 			Medium
@@ -293,21 +293,21 @@ Enemies:
 					Compression
 					Filter Curve EQ (radio preset)
 					Vinyl (1930, lofi)
-
+		
 		Minigunner:
 			Tough
 			Slow
 			Ranged (Rapid Fire Minigun)
 				tracking accuracy and rate of fire increases the longer line of
 				sight is maintained
-
+		
 		Sniper:
 			Weak
 			Stationary
 			Ranged (Sniper Rifle)
 				sweeps w/ laser pointer until player is in line of sight
 				fires when laser pointer stays on player for ~1 second
-
+		
 		Flux Trooper:
 			Medium
 			Fast
@@ -317,12 +317,12 @@ Enemies:
 				Detecting Player:
 				Dying:
 				Vocal Effects:
-
+		
 		Whaler:
 			Tough
 			Slow
 			Ranged (harpoon cannon)
-
+		
 		Hammer:
 			Medium
 			Fast
@@ -340,29 +340,33 @@ Enemies:
 					"Damn you!"
 					"How--"
 					[pained scream]
-
-
+	
+	
 	Machines:
 		Infight with: Locals
-
+		
 		Camera:
 			Stationary
 			Aggros all connected enemies upon spotting player
 			Alerts all connected enemies upon death
-
+		
 		Survey Quad:
 			Aggros all connected enemies upon spotting player
 			Alerts all connected enemies upon death
-
-		Turret:
+		
+		Gun Turret:
 			Stationary
-			Ranged (bullets)
-
+			Ranged (rapid fire bullets)
+		
+		Rocket Turret:
+			Stationary
+			Ranged (homing rockets)
+		
 		Plasma Droid:
 			Very Tough
 			Slow
 			Ranged (plasma burst, plasma rocket)
-
+		
 		Crossbow Drone:
 			Tough
 			Medium

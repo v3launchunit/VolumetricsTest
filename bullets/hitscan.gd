@@ -94,7 +94,7 @@ func _physics_process(_delta: float) -> void:
 					and invoker != null
 					and invoker != result.collider
 			):
-				result.collider.detect_target(invoker)
+				result.collider.detect_target(invoker, EnemyBase.DetectionType.RETALIATION)
 				result.collider.apply_knockback(knockback_force * (
 						result.collider.global_position - global_position
 				).normalized())

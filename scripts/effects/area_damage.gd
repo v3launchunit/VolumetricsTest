@@ -31,7 +31,7 @@ func _on_area_body_entered(body: Node3D) -> void:
 				else damage
 		)
 		if body and invoker and body is EnemyBase and body != invoker:
-			body.detect_target(invoker)
+			body.detect_target(invoker, EnemyBase.DetectionType.RETALIATION)
 	if body.has_method("apply_knockback"):
 		body.apply_knockback(
 			knockback_force 

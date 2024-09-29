@@ -25,6 +25,17 @@ enum State {
 	DEAD,
 }
 
+enum DetectionType {
+	## For when the enemy just magically knows where you are
+	INSTINCT,
+	## For when the enemy sees you
+	SIGHT,
+	## For when the enemy hears you
+	SOUND,
+	## For when the enemy got hit by you
+	RETALIATION,
+}
+
 @export var species: StringName
 
 @export var properties: Dictionary = {}
@@ -53,12 +64,14 @@ enum State {
 @export var blind: bool = false
 ## If enabled, prevents sound-based detection.
 @export var deaf: bool = false
+## Will this enemy infight with other enemies?
+@export var infighter: bool = true
 ## The delay, in seconds, between this enemy being added to the [SceneTree] and
 ## becoming active.
 @export var wake_up_time: float = 3.0
 ## The "field of view" of this enemy - essentially, how far away from its
 ## current orientation it can spot the player while idle.
-@export_range(0, 360, 1, "radians") var sight_line_sweep_angle: float = PI / 2
+@export_range(0, 360, 1, "radians") var sight_line_sweep_angle: float = (2 * PI) / 3
 ## The speed with which this enemy scans for targets, expressed as the number
 ## of full sweeps that occur every PI seconds.
 @export_range(0, 10, 0.1, "or_greater") var sight_line_sweep_speed: float = 3
@@ -134,6 +147,8 @@ enum State {
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity: float = ProjectSettings.get_setting("physics/3d/default_gravity")
 var sees_player: bool = false
+var path_re_eval_distance_squared
+var sight_line_sweep_dot: float = cos(sight_line_sweep_angle / 2.0)
 
 @onready var nav_agent: NavigationAgent3D = find_child("NavigationAgent3D")
 @onready var nav_region := get_tree().current_scene.find_child(
@@ -146,14 +161,15 @@ var sees_player: bool = false
 		"parameters/playback")
 @onready var attack_range_squared = attack_range * attack_range
 @onready var melee_range_squared = melee_range * melee_range
-@onready var path_re_eval_distance_squared = (
-		$NavigationAgent3D.target_desired_distance
-		* $NavigationAgent3D.target_desired_distance
-)
 @onready var audio_player: AudioStreamPlayer3D = find_child("AudioStreamPlayer3D")
 
 
 func _ready() -> void:
+	path_re_eval_distance_squared = (
+			$NavigationAgent3D.target_desired_distance
+			* $NavigationAgent3D.target_desired_distance
+	)
+	
 	if "detect_mode" in properties and properties["detect_mode"] > 0:
 		match properties["detect_mode"]:
 			# 0: 00
@@ -237,7 +253,7 @@ func _physics_process(delta: float) -> void:
 						else State.PURSUING
 				)
 				if not current_targets.is_empty():
-					detect_target(current_targets[-1])
+					detect_target(current_targets[-1], DetectionType.RETALIATION)
 		State.IDLE:
 			if wanderer:
 				_wander(delta)
@@ -301,7 +317,7 @@ func change_state(to: State):
 			sight_line.rotation.x = 0
 			state_machine.travel("moving", true)
 		State.PURSUING:
-			if check_target_validity():
+			if nav_agent != null and check_target_validity():
 				nav_agent.target_position = current_targets[-1].global_position
 			state_machine.travel("moving", true)
 		State.ATTACKING:
@@ -320,7 +336,8 @@ func change_state(to: State):
 			state_machine.travel("dead", true)
 
 	walk_vel = Vector3.ZERO
-	nav_agent.set_velocity(Vector3.ZERO)
+	if nav_agent != null:
+		nav_agent.set_velocity(Vector3.ZERO)
 	current_state = to
 	state_timer = 0
 
@@ -340,18 +357,30 @@ func hear_target(target: Node3D) -> void:
 		detect_target(target)
 
 
-func detect_target(target: Node3D) -> void:
-	if not (
+func detect_target(target: Node3D, via := DetectionType.INSTINCT) -> void:
+	if (
+			# busy waking up
 			current_state == State.AMBUSHING
+			# busy flinching
 			or current_state == State.FLINCHING
+			# busy being dead
 			or current_state == State.DEAD
+			or (
+					via == DetectionType.RETALIATION 
+					and not (
+							infighter 
+							# retaliate against player regardless of infighting tendency
+							or (target is Player and hunts_player) 
+					)
+			)
 	):
-		if current_targets.is_empty(): # Only play detect sound if idle
-			audio_player.stream = detection_stream
-			audio_player.play()
-		current_targets.append(target)
-		if current_state == State.IDLE or current_state == State.SEARCHING:
-			change_state(State.PURSUING)
+		return
+	if current_targets.is_empty(): # Only play detect sound if idle
+		audio_player.stream = detection_stream
+		audio_player.play()
+	current_targets.append(target)
+	if current_state == State.IDLE or current_state == State.SEARCHING:
+		change_state(State.PURSUING)
 
 
 func _wander(delta) -> void:
@@ -405,7 +434,7 @@ func _scan(_delta) -> void:
 		return
 	
 	# can't see target from behind
-	if global_basis.z.normalized().dot((global_position - target.global_position).normalized()) < 0.5:
+	if global_basis.z.normalized().dot((global_position - target.global_position).normalized()) < sight_line_sweep_dot:
 		return
 	var space_state = get_world_3d().direct_space_state
 	var query := PhysicsRayQueryParameters3D.create(
@@ -417,7 +446,7 @@ func _scan(_delta) -> void:
 	var hit: Dictionary = space_state.intersect_ray(query)
 	#print(hit)
 	if (hit and hit["collider"] == target):
-		detect_target(target)
+		detect_target(target, DetectionType.SIGHT)
 		change_state(State.PURSUING)
 	#nav_agent.set_velocity(Vector3.ZERO)
 
@@ -548,6 +577,7 @@ func can_see_target() -> bool:
 			current_targets[-1].global_position,
 			collision_mask,
 	)
+	query.exclude = [get_rid()]
 	var hit: Dictionary = space_state.intersect_ray(query)
 	return not hit.is_empty() and hit.collider == current_targets[-1]
 
@@ -611,7 +641,8 @@ func _post_attack(_delta) -> void:
 				current_targets[-1] == null or
 				current_targets[-1].find_child("Status").health <= 0 else State.PURSUING
 		)
-	nav_agent.set_velocity(Vector3.ZERO)
+	if nav_agent != null:
+		nav_agent.set_velocity(Vector3.ZERO)
 
 
 func _flinch() -> void:
@@ -620,7 +651,8 @@ func _flinch() -> void:
 			change_state(State.FLEEING)
 		else:
 			change_state(State.PURSUING)
-	nav_agent.set_velocity(Vector3.ZERO)
+	if nav_agent != null:
+		nav_agent.set_velocity(Vector3.ZERO)
 
 
 func _flee(delta) -> void:

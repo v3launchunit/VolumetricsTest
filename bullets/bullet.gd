@@ -66,7 +66,7 @@ func _on_body_entered(body: Node) -> void:
 				else 1.0
 		))
 		if body.has_method("detect_target") and invoker != null and invoker != body:
-			body.detect_target(invoker)
+			body.detect_target(invoker, EnemyBase.DetectionType.RETALIATION)
 			body.apply_knockback(
 					knockback_force * (
 							body.global_position -
