@@ -109,7 +109,66 @@ func _physics_process(delta: float) -> void:
 			change_state(State.IDLE)
 			
 	if not can_see_target():
-		change_state(State.IDLE)
+		current_targets.pop_back()
+		if current_targets.is_empty():
+			change_state(State.IDLE)
+
+
+func change_state(to: State):
+	if current_state == State.DEAD or to == current_state:
+		return
+	match current_state:
+		State.AMBUSHING:
+			pass
+		State.IDLE:
+			sight_line.rotation.y = 0
+		State.SEARCHING:
+			sight_line.rotation.y = 0
+		State.PURSUING:
+			pass
+		State.ATTACKING:
+			pass
+		State.POST_ATTACKING:
+			pass
+		State.FLINCHING:
+			pass
+		State.FLEEING:
+			pass
+		State.DEAD:
+			pass
+	match to:
+		State.AMBUSHING:
+			pass
+		State.IDLE:
+			sight_line.rotation.x = 0
+			state_machine.travel("idle", true)
+		State.SEARCHING:
+			sight_line.rotation.x = 0
+			state_machine.travel("moving", true)
+		State.PURSUING:
+			if nav_agent != null and check_target_validity():
+				nav_agent.target_position = current_targets[-1].global_position
+			state_machine.travel("moving", true)
+		State.ATTACKING:
+			pass
+		State.POST_ATTACKING:
+			pass
+		State.FLINCHING:
+			state_machine.travel("flinching", true)
+			if check_target_validity():
+				look_at(current_targets[-1].global_position)
+		State.FLEEING:
+			_to_fleeing()
+		State.DEAD:
+			audio_player.stream = death_stream
+			audio_player.play()
+			state_machine.travel("dead", true)
+
+	walk_vel = Vector3.ZERO
+	if nav_agent != null:
+		nav_agent.set_velocity(Vector3.ZERO)
+	current_state = to
+	state_timer = 0
 
 
 func _pursue(delta) -> void:

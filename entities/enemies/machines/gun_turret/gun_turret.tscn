@@ -1,7 +1,9 @@
-[gd_scene load_steps=57 format=4 uid="uid://dqugqrrqpxdih"]
+[gd_scene load_steps=64 format=4 uid="uid://dqugqrrqpxdih"]
 
+[ext_resource type="Script" path="res://entities/enemies/machines/gun_turret/turret.gd" id="1_1bh2h"]
 [ext_resource type="Script" path="res://entities/enemies/machines/enemy_turret.gd" id="1_q2b2k"]
 [ext_resource type="Shader" path="res://shaders/spatial/psx_ul_mix.gdshader" id="2_lb20c"]
+[ext_resource type="ArrayMesh" uid="uid://fre32431n5p6" path="res://entities/enemies/machines/gun_turret/gun_turret_base_wall.obj" id="2_mk3gm"]
 [ext_resource type="Material" uid="uid://krobnjd1cbwe" path="res://entities/enemies/machines/metal_gray_psx.tres" id="2_qskly"]
 [ext_resource type="Script" path="res://entities/enemies/attack_pattern.gd" id="2_t2vl5"]
 [ext_resource type="PackedScene" uid="uid://blrtnnu61g5s" path="res://bullets/enemy/enemy_bullet_gen.tscn" id="3_bdfa1"]
@@ -13,8 +15,42 @@
 [ext_resource type="Script" path="res://entities/status.gd" id="9_bbmqx"]
 [ext_resource type="ArrayMesh" uid="uid://bblg4t73miejx" path="res://weapons/muzzle_flash_alt.obj" id="9_shv2h"]
 [ext_resource type="AudioStream" uid="uid://byrul8xkkilkx" path="res://audio/streams/weapons/firing/akm_fire.wav" id="10_ywp5d"]
+[ext_resource type="Texture2D" uid="uid://bl16elmv2mvgs" path="res://entities/enemies/machines/gun_turret/gun_turret_muzzle_albedo.png" id="11_x4apt"]
+[ext_resource type="Texture2D" uid="uid://mgr1203a0plo" path="res://entities/enemies/machines/gun_turret/gun_turret_muzzle_roughness.png" id="12_c4i2h"]
 [ext_resource type="PackedScene" uid="uid://cu70msbgu2ysm" path="res://scenes/effects/damage/metal_damage_sys.tscn" id="12_ryqfr"]
 [ext_resource type="PackedScene" uid="uid://bfctj0w1fkgwy" path="res://scenes/effects/gibs/metal_shards.tscn" id="13_xgnmw"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_sw72s"]
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_quwrn"]
+_surfaces = [{
+"aabb": AABB(-0.2, -1, -0.2, 0.4, 1.15, 0.4),
+"format": 34896613377,
+"index_count": 90,
+"index_data": PackedByteArray("CgANAAkACgAOAA0ADwAKAAsADwAOAAoAEAALAAwAEAAPAAsACQAQAAwACQANABAAAAAGAAMAAAAIAAYACAAJAAwACAAAAAkABgAMAAsABgAIAAwAAwALAAoAAwAGAAsAAAAKAAkAAAADAAoAAQAOAAIAAQANAA4AAQACAAcADgAEAAIADgAPAAQABwACAAQABAAQAAUABAAPABAABQAHAAQABQANAAEABQAQAA0ABQABAAcA"),
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 17,
+"vertex_data": PackedByteArray("/38AAAAAAAD/f5re/x8AAP/fmt7/fwAA//8AAP9/AAD/f5re/98AAP8fmt7/fwAA/38AAP//AAD/f////38AAAAAAAD/fwAA/39Nb/8/AAD/v01v/38AAP9/TW//vwAA/z9Nb/9/AAD/f3nT/z8AAP+/edP/fwAA/3950/+/AAD/P3nT/38AAA==")
+}]
+blend_shape_mode = 0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_d3v07"]
+resource_name = "gun_turret_Cylinder"
+_surfaces = [{
+"aabb": AABB(-0.2, -1, -0.2, 0.4, 1.15, 0.4),
+"attribute_data": PackedByteArray("/7+Ogv///38AAP9//z+Ogv+/joL/P46C/7+OgnB9/79wff+/b/3/v2/9/79v/f+//7//f/+//3//P2/9/79v/f8/b/3/v2/9jwL/v48C/7+Ogv+/joL/v/+/b/3/f/9//3//f/8//7//P/+//z//v/8//7+Ogv+//z//f/8//3////8/////PwAA/z8AAP8//7//P/+//z//v/8//7//P/9//z//f/8//3//P/9//z//P/8//z//P/8//z//P/8//78Jl///Zgb/vwmXAABmBvTo/7/06P+//79mBv+/Zgb/v/To/39mBv+/9Oj/f2YGCZf/vwmX/7//P2YG/z9mBg=="),
+"format": 34896613399,
+"index_count": 90,
+"index_data": PackedByteArray("JwAxACEAJwA3ADEAOQAmACkAOQA2ACYAPgArAC4APgA7ACsAIwA/AC8AIwAzAD8AAAAWAAsAAAAdABYAHwAiAC0AHwACACIAGAAsACoAGAAeACwADAAoACQADAAXACgAAQAlACAAAQANACUABAA1AAoABAAwADUAAwAIABoANAAPAAkANAA4AA8AGQAHAA4AEQA8ABQAEQA6ADwAEgAbABAAFQAyAAYAFQA9ADIAEwAFABwA"),
+"material": SubResource("StandardMaterial3D_sw72s"),
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 64,
+"vertex_data": PackedByteArray("/38AAAAA/z//fwAAAAAU4P9/AAAAABTg/3+a3v8fQNz/f5re/x++I/9/mt7/H0Dc/3+a3v8fviP/35re/3+Wsf/fmt7/f0Dc/9+a3v9/aE7/35re/3++I///AAD/f/8///8AAP9/eqD//wAA/38U4P9/mt7/35ax/3+a3v/faE7/f5re/9+Wsf9/mt7/32hO/x+a3v9/lrH/H5re/39A3P8fmt7/f2hO/x+a3v9/viP/fwAA////P/9/AAD//3qg/38AAP//eqD/f////3+Wsf9/////f0Dc/3////9/lrH/f////39A3AAAAAD/f/8/AAAAAP9/eqAAAAAA/38U4P9/TW//PxTg/39Nb/8//9//f01v/z8U4P9/TW//P//f/79Nb/9/eqD/v01v/38U4P+/TW//f/+f/79Nb/9//9//f01v/796oP9/TW//v/+f/39Nb/+/eqD/f01v/7//n/8/TW//f3qg/z9Nb/9/FOD/P01v/3//n/8/TW//f//f/3950/8/viP/f3nT/z//3/9/edP/P74j/3950/8//9//v3nT/39oTv+/edP/f74j/7950/9//5//v3nT/3//3/9/edP/v2hO/3950/+//5//f3nT/79oTv9/edP/v/+f/z950/9/aE7/P3nT/3++I/8/edP/f/+f/z950/9//98AAP9/lItkA2ODafSXznFfjSCXTnHfZ7FnMY2gzLkOaJfOcV/xF805jSCXTgAA/3/JmIcRlItkA8y5DmjxF805DegxxjJG8JcN6DHGcd9nsTJG8JdnMY2gAAD/f8mYhxGGkTTnzLkOaJfOcV8N6DHGcd9nsQAA/3+GkTTnY4Np9JSLZAP/fwAAY4Np9P9////JmIcRlItkA/9/AAD/fwAAyZiHEf9/AACGkTTn/3///4aRNOdjg2n0/3////9///+NIJdO/38AAGcxjaD/f///8RfNOY0gl07/fwAA/38AAPEXzTn/fwAAMkbwl/9///8yRvCXZzGNoP9/////f///")
+}]
+blend_shape_mode = 0
+shadow_mesh = SubResource("ArrayMesh_quwrn")
 
 [sub_resource type="Resource" id="Resource_xggal"]
 script = ExtResource("2_t2vl5")
@@ -95,6 +131,7 @@ blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_eagag")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_why7o"]
+resource_local_to_scene = true
 render_priority = 0
 shader = ExtResource("2_lb20c")
 shader_parameter/albedo = Color(0, 1, 0, 1)
@@ -181,37 +218,93 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_4vrl4")
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wqdp5"]
+[sub_resource type="Shader" id="Shader_q8nw2"]
+code = "// NOTE: Shader automatically converted from Godot Engine 4.2.1.stable.mono's StandardMaterial3D.
 
-[sub_resource type="ArrayMesh" id="ArrayMesh_o3jnl"]
+shader_type spatial;
+render_mode blend_mix,depth_draw_opaque,cull_back,diffuse_burley,specular_schlick_ggx;
+uniform vec4 albedo : source_color;
+uniform sampler2D texture_albedo : source_color,filter_nearest,repeat_enable;
+uniform float point_size : hint_range(0,128);
+uniform float roughness : hint_range(0,1);
+uniform sampler2D texture_metallic : hint_default_white,filter_nearest,repeat_enable;
+uniform vec4 metallic_texture_channel;
+uniform sampler2D texture_roughness : hint_roughness_r,filter_nearest,repeat_enable;
+uniform float specular;
+uniform float metallic;
+uniform vec3 uv1_scale;
+uniform vec3 uv1_offset;
+uniform vec3 uv2_scale;
+uniform vec3 uv2_offset;
+
+#include \"res://shaders/includes/psx_inc.gdshaderinc\"
+
+void vertex() {
+	UV=UV*uv1_scale.xy+uv1_offset.xy;
+	POSITION = map_affine(snap_vertex(PROJECTION_MATRIX * MODELVIEW_MATRIX * vec4(VERTEX, 1.0)));
+}
+
+void fragment() {
+	vec2 base_uv = UV;
+	vec4 albedo_tex = texture(texture_albedo,base_uv);
+	ALBEDO = albedo.rgb * albedo_tex.rgb;
+	float metallic_tex = dot(texture(texture_metallic,base_uv),metallic_texture_channel);
+	METALLIC = metallic_tex * metallic;
+	vec4 roughness_texture_channel = vec4(1.0,0.0,0.0,0.0);
+	float roughness_tex = dot(texture(texture_roughness,base_uv),roughness_texture_channel);
+	ROUGHNESS = roughness_tex * roughness;
+	SPECULAR = specular;
+}
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_7fnyt"]
+render_priority = 0
+shader = SubResource("Shader_q8nw2")
+shader_parameter/albedo = Color(1, 1, 1, 1)
+shader_parameter/point_size = 1.0
+shader_parameter/roughness = 1.0
+shader_parameter/metallic_texture_channel = Vector4(1, 0, 0, 0)
+shader_parameter/specular = 0.5
+shader_parameter/metallic = 1.0
+shader_parameter/uv1_scale = Vector3(1, 1, 1)
+shader_parameter/uv1_offset = Vector3(0, 0, 0)
+shader_parameter/uv2_scale = Vector3(1, 1, 1)
+shader_parameter/uv2_offset = Vector3(0, 0, 0)
+shader_parameter/texture_albedo = ExtResource("11_x4apt")
+shader_parameter/texture_metallic = ExtResource("11_x4apt")
+shader_parameter/texture_roughness = ExtResource("12_c4i2h")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ses7p"]
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_ugebf"]
 _surfaces = [{
-"aabb": AABB(-0.1, -0.25, -0.1, 0.2, 0.5, 0.2),
+"aabb": AABB(-0.1, -0.05, -0.1, 0.2, 0.3, 0.2),
 "format": 34896613377,
 "index_count": 36,
 "index_data": PackedByteArray("AAADAAEAAAACAAMAAgAFAAMAAgAEAAUAAwAHAAEAAwAFAAcABAAHAAUABAAGAAcABgABAAcABgAAAAEAAAAEAAIAAAAGAAQA"),
 "primitive": 3,
 "uv_scale": Vector4(0, 0, 0, 0),
 "vertex_count": 8,
-"vertex_data": PackedByteArray("/38AAAAAAAD/f///AAAAAP//AAD/fwAA//////9/AAD/fwAA//8AAP9////+/wAAAAAAAP9/AAAAAP///38AAA==")
+"vertex_data": PackedByteArray("/38AAAAAAAD/f///AAAAAP//AAD/fwAA//////9/AAD/fwAA//8AAP9//////wAAAAAAAP9/AAAAAP///38AAA==")
 }]
 blend_shape_mode = 0
 
-[sub_resource type="ArrayMesh" id="ArrayMesh_tol4u"]
+[sub_resource type="ArrayMesh" id="ArrayMesh_ikpg7"]
 resource_name = "gun_turret_Cylinder_001"
 _surfaces = [{
-"aabb": AABB(-0.1, -0.25, -0.1, 0.2, 0.5, 0.2),
+"aabb": AABB(-0.1, -0.05, -0.1, 0.2, 0.3, 0.2),
 "attribute_data": PackedByteArray("/7+Ogv///38AAP9//z+Ogv//AAAAAAAAb/3/v/+//3//v/9/cH3/v/+/AAD/vwAA/79v/f9//3//f/9//z9v/f9/AAD/fwAAjoL/v/8//3//P/9/jwL/v/8/AAD/PwAA"),
 "format": 34896613399,
 "index_count": 36,
 "index_data": PackedByteArray("AQALAAQAAQAIAAsABwAQAAoABwANABAACQAVAAMACQAPABUADgAWABEADgATABYAFAAFABcAFAACAAUAAAAMAAYAAAASAAwA"),
-"material": SubResource("StandardMaterial3D_wqdp5"),
+"material": SubResource("StandardMaterial3D_ses7p"),
 "primitive": 3,
 "uv_scale": Vector4(0, 0, 0, 0),
 "vertex_count": 24,
-"vertex_data": PackedByteArray("/38AAAAA/z//fwAAAAD/3/9/AAAAAP/f/3///wAA/7//f///AAD/3/9///8AAP/f//8AAP9//z///wAA/3//n///AAD/f//f//////9//7///////3//n///////f//f/38AAP///z//fwAA////n/9/AAD///+f/3////7//7//f////v//n/9////+//+fAAAAAP9//z8AAAAA/3//nwAAAAD/f//fAAD///9//78AAP///3//nwAA////f//fAAD/f/9/AAD/f///////f/9/AAD/f///AAD/f/9/AAD/fwAA////f/9/AAD/fwAAAAD/f/9/AAD/f///////f/9/AAD/f///AAD/f/9/////f///////f/9/////f///")
+"vertex_data": PackedByteArray("/38AAAAA/z//fwAAAAD/3/9/AAAAAP/f/3///wAA/7//f///AAD/3/9///8AAP/f//8AAP9//z///wAA/3//n///AAD/f//f//////9//7///////3//n///////f//f/38AAP///z//fwAA////n/9/AAD///+f/3///////7//f///////n/9///////+fAAAAAP9//z8AAAAA/3//nwAAAAD/f//fAAD///9//78AAP///3//nwAA////f//fAAD/f/9/AAD/f///////f/9/AAD/f///AAD/f/9/AAD/fwAA////f/9/AAD/fwAAAAD/f/9/AAD/f///////f/9/AAD/f///AAD/f/9/////f///////f/9/////f///")
 }]
 blend_shape_mode = 0
-shadow_mesh = SubResource("ArrayMesh_o3jnl")
+shadow_mesh = SubResource("ArrayMesh_ugebf")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_64hud"]
 render_priority = 0
@@ -230,7 +323,7 @@ animation = &"gun_turret_anims/gun_turret_fire"
 animation = &"gun_turret_anims/gun_turret_idle"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_dvqgj"]
-animation = &"gun_turret_anims/gun_turret_idle"
+animation = &"gun_turret_anims/gun_turret_track"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_pv17n"]
 advance_mode = 2
@@ -292,6 +385,42 @@ tracks/2/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [0.0]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Body/Antenna/Bulb/OmniLight3D:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Body/Antenna/Bulb/LensFlare:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Body/Antenna/Bulb:material_override:shader_parameter/albedo")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 1, 0, 1)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_0xu6m"]
@@ -362,46 +491,96 @@ tracks/3/keys = {
 tracks/3/use_blend = true
 
 [sub_resource type="Animation" id="Animation_t2hp7"]
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Body/Antenna/Bulb/OmniLight3D:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Body/Antenna/Bulb/LensFlare:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Body/Antenna/Bulb:material_override:shader_parameter/albedo")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 1, 0, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_wflid"]
+resource_name = "gun_turret_track"
+length = 0.6
+loop_mode = 1
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Body/Antenna/Bulb/OmniLight3D:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Body/Antenna/Bulb/LensFlare:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Body/Antenna/Bulb:material_override:shader_parameter/albedo")
+tracks/2/interp = 0
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 1, 0, 1), Color(0, 0, 0, 1)]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_rgut7"]
 _data = {
 "gun_turret_fire": SubResource("Animation_1oows"),
-"gun_turret_idle": SubResource("Animation_t2hp7")
+"gun_turret_idle": SubResource("Animation_t2hp7"),
+"gun_turret_track": SubResource("Animation_wflid")
 }
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_sw72s"]
-
-[sub_resource type="ArrayMesh" id="ArrayMesh_quwrn"]
-_surfaces = [{
-"aabb": AABB(-0.2, -1, -0.2, 0.4, 1.15, 0.4),
-"format": 34896613377,
-"index_count": 90,
-"index_data": PackedByteArray("CgANAAkACgAOAA0ADwAKAAsADwAOAAoAEAALAAwAEAAPAAsACQAQAAwACQANABAAAAAGAAMAAAAIAAYACAAJAAwACAAAAAkABgAMAAsABgAIAAwAAwALAAoAAwAGAAsAAAAKAAkAAAADAAoAAQAOAAIAAQANAA4AAQACAAcADgAEAAIADgAPAAQABwACAAQABAAQAAUABAAPABAABQAHAAQABQANAAEABQAQAA0ABQABAAcA"),
-"primitive": 3,
-"uv_scale": Vector4(0, 0, 0, 0),
-"vertex_count": 17,
-"vertex_data": PackedByteArray("/38AAAAAAAD/f5re/x8AAP/fmt7/fwAA//8AAP9/AAD/f5re/98AAP8fmt7/fwAA/38AAP//AAD/f////38AAAAAAAD/fwAA/39Nb/8/AAD/v01v/38AAP9/TW//vwAA/z9Nb/9/AAD/f3nT/z8AAP+/edP/fwAA/3950/+/AAD/P3nT/38AAA==")
-}]
-blend_shape_mode = 0
-
-[sub_resource type="ArrayMesh" id="ArrayMesh_d3v07"]
-resource_name = "gun_turret_Cylinder"
-_surfaces = [{
-"aabb": AABB(-0.2, -1, -0.2, 0.4, 1.15, 0.4),
-"attribute_data": PackedByteArray("/7+Ogv///38AAP9//z+Ogv+/joL/P46C/7+OgnB9/79wff+/b/3/v2/9/79v/f+//7//f/+//3//P2/9/79v/f8/b/3/v2/9jwL/v48C/7+Ogv+/joL/v/+/b/3/f/9//3//f/8//7//P/+//z//v/8//7+Ogv+//z//f/8//3////8/////PwAA/z8AAP8//7//P/+//z//v/8//7//P/9//z//f/8//3//P/9//z//P/8//z//P/8//z//P/8//78Jl///Zgb/vwmXAABmBvTo/7/06P+//79mBv+/Zgb/v/To/39mBv+/9Oj/f2YGCZf/vwmX/7//P2YG/z9mBg=="),
-"format": 34896613399,
-"index_count": 90,
-"index_data": PackedByteArray("JwAxACEAJwA3ADEAOQAmACkAOQA2ACYAPgArAC4APgA7ACsAIwA/AC8AIwAzAD8AAAAWAAsAAAAdABYAHwAiAC0AHwACACIAGAAsACoAGAAeACwADAAoACQADAAXACgAAQAlACAAAQANACUABAA1AAoABAAwADUAAwAIABoANAAPAAkANAA4AA8AGQAHAA4AEQA8ABQAEQA6ADwAEgAbABAAFQAyAAYAFQA9ADIAEwAFABwA"),
-"material": SubResource("StandardMaterial3D_sw72s"),
-"primitive": 3,
-"uv_scale": Vector4(0, 0, 0, 0),
-"vertex_count": 64,
-"vertex_data": PackedByteArray("/38AAAAA/z//fwAAAAAU4P9/AAAAABTg/3+a3v8fQNz/f5re/x++I/9/mt7/H0Dc/3+a3v8fviP/35re/3+Wsf/fmt7/f0Dc/9+a3v9/aE7/35re/3++I///AAD/f/8///8AAP9/eqD//wAA/38U4P9/mt7/35ax/3+a3v/faE7/f5re/9+Wsf9/mt7/32hO/x+a3v9/lrH/H5re/39A3P8fmt7/f2hO/x+a3v9/viP/fwAA////P/9/AAD//3qg/38AAP//eqD/f////3+Wsf9/////f0Dc/3////9/lrH/f////39A3AAAAAD/f/8/AAAAAP9/eqAAAAAA/38U4P9/TW//PxTg/39Nb/8//9//f01v/z8U4P9/TW//P//f/79Nb/9/eqD/v01v/38U4P+/TW//f/+f/79Nb/9//9//f01v/796oP9/TW//v/+f/39Nb/+/eqD/f01v/7//n/8/TW//f3qg/z9Nb/9/FOD/P01v/3//n/8/TW//f//f/3950/8/viP/f3nT/z//3/9/edP/P74j/3950/8//9//v3nT/39oTv+/edP/f74j/7950/9//5//v3nT/3//3/9/edP/v2hO/3950/+//5//f3nT/79oTv9/edP/v/+f/z950/9/aE7/P3nT/3++I/8/edP/f/+f/z950/9//98AAP9/lItkA2ODafSXznFfjSCXTnHfZ7FnMY2gzLkOaJfOcV/xF805jSCXTgAA/3/JmIcRlItkA8y5DmjxF805DegxxjJG8JcN6DHGcd9nsTJG8JdnMY2gAAD/f8mYhxGGkTTnzLkOaJfOcV8N6DHGcd9nsQAA/3+GkTTnY4Np9JSLZAP/fwAAY4Np9P9////JmIcRlItkA/9/AAD/fwAAyZiHEf9/AACGkTTn/3///4aRNOdjg2n0/3////9///+NIJdO/38AAGcxjaD/f///8RfNOY0gl07/fwAA/38AAPEXzTn/fwAAMkbwl/9///8yRvCXZzGNoP9/////f///")
-}]
-blend_shape_mode = 0
-shadow_mesh = SubResource("ArrayMesh_quwrn")
-
 [node name="GunTurret" type="Node3D"]
+script = ExtResource("1_1bh2h")
+floor_base = SubResource("ArrayMesh_d3v07")
+wall_base = ExtResource("2_mk3gm")
 
 [node name="gun_turret" type="CharacterBody3D" parent="."]
 collision_layer = 4
@@ -437,6 +616,12 @@ material_override = SubResource("ShaderMaterial_why7o")
 mesh = SubResource("ArrayMesh_1lrr3")
 skeleton = NodePath("")
 
+[node name="OmniLight3D" type="OmniLight3D" parent="gun_turret/Body/Antenna/Bulb"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.13, 0)
+light_color = Color(0, 1, 0, 1)
+shadow_enabled = true
+distance_fade_enabled = true
+
 [node name="LensFlare" type="MeshInstance3D" parent="gun_turret/Body/Antenna/Bulb"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.13, 0)
 layers = 2
@@ -457,8 +642,8 @@ skeleton = NodePath("")
 
 [node name="Spawner" type="MeshInstance3D" parent="gun_turret/Body/Muzzle"]
 transform = Transform3D(1, 0, 0, 0, 0, 1, 0, -1, 0, 0, 0, -0.15)
-material_override = ExtResource("3_lhv5t")
-mesh = SubResource("ArrayMesh_tol4u")
+material_override = SubResource("ShaderMaterial_7fnyt")
+mesh = SubResource("ArrayMesh_ikpg7")
 skeleton = NodePath("")
 
 [node name="Marker3D" type="Marker3D" parent="gun_turret/Body/Muzzle/Spawner"]

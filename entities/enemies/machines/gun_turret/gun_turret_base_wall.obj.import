@@ -1,0 +1,22 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://fre32431n5p6"
+path="res://.godot/imported/gun_turret_base_wall.obj-62b6da24607584b45f48f2da70dcb529.mesh"
+
+[deps]
+
+files=["res://.godot/imported/gun_turret_base_wall.obj-62b6da24607584b45f48f2da70dcb529.mesh"]
+
+source_file="res://entities/enemies/machines/gun_turret/gun_turret_base_wall.obj"
+dest_files=["res://.godot/imported/gun_turret_base_wall.obj-62b6da24607584b45f48f2da70dcb529.mesh", "res://.godot/imported/gun_turret_base_wall.obj-62b6da24607584b45f48f2da70dcb529.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
+force_disable_mesh_compression=false

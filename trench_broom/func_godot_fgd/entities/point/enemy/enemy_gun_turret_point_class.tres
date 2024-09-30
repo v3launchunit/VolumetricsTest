@@ -12,8 +12,15 @@ classname = "enemy_gun_turret"
 description = ""
 func_godot_internal = false
 base_classes = Array[Resource]([ExtResource("1_fjrod")])
-class_properties = {}
-class_property_descriptions = {}
+class_properties = {
+"mount_type": {
+"floor": 0,
+"wall": 1
+}
+}
+class_property_descriptions = {
+"mount_type": ["", 0]
+}
 meta_properties = {
 "color": Color(0.8, 0.8, 0.8, 1),
 "size": AABB(-8, -8, -16, 8, 8, 8)
