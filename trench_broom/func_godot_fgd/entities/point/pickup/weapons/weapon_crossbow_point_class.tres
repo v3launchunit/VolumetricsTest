@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="FuncGodotFGDPointClass" load_steps=4 format=3 uid="uid://04b1krdtyiso"]
+
+[ext_resource type="Resource" uid="uid://cd8apv15m4feu" path="res://trench_broom/func_godot_fgd/entities/base/pickup_base_class.tres" id="1_wvxah"]
+[ext_resource type="PackedScene" uid="uid://du780rqis8eqo" path="res://pickups/weapons/boomstick_pickup.tscn" id="2_103kd"]
+[ext_resource type="Script" path="res://addons/func_godot/src/fgd/func_godot_fgd_point_class.gd" id="3_ntcug"]
+
+[resource]
+script = ExtResource("3_ntcug")
+scene_file = ExtResource("2_103kd")
+apply_rotation_on_map_build = true
+classname = "weapon_crossbow"
+description = ""
+func_godot_internal = false
+base_classes = Array[Resource]([ExtResource("1_wvxah")])
+class_properties = {}
+class_property_descriptions = {}
+meta_properties = {
+"color": Color(0.8, 0.8, 0.8, 1),
+"size": AABB(-8, -8, -8, 8, 8, 8)
+}
+node_class = ""
+name_property = ""

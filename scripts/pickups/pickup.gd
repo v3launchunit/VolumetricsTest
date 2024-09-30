@@ -1,6 +1,9 @@
 class_name Pickup 
 extends RigidBody3D
 
+signal collected;
+
+@export var func_godot_properties: Dictionary
 
 @export var flash_color: Color = Color.GREEN
 @export var pickup_sound: AudioStream
@@ -13,6 +16,11 @@ extends RigidBody3D
 func _ready() -> void:
 	area.body_entered.connect(interact)
 	find_child("AnimationPlayer").play("anim")
+	if func_godot_properties["pickup_group"] != "none":
+		for member in get_tree().get_nodes_in_group(func_godot_properties["pickup_group"]):
+			if member.has_method("on_triggered"):
+				collected.connect(member.on_triggered)
+		add_to_group(func_godot_properties["pickup_group"])
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -28,6 +36,7 @@ func picked_up(body: Node) -> void:
 	if body is not Player:
 		return
 	
+	collected.emit()
 	var hud := (body as Player).hud
 	if pickup_sound != null:
 		hud.flash_with_sound(flash_color, pickup_sound)
