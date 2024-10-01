@@ -215,9 +215,9 @@ func _ready() -> void:
 		State.IDLE:
 			state_machine.start("idle", true)
 		State.SEARCHING:
-			state_machine.start("moving", true)
+			state_machine.start("standby" if turret_mode else "moving", true)
 		State.PURSUING:
-			state_machine.start("moving", true)
+			state_machine.start("standby" if turret_mode else "moving", true)
 		State.ATTACKING:
 			state_machine.start("attacking", true)
 		State.POST_ATTACKING:

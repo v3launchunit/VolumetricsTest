@@ -6308,6 +6308,22 @@
 }
 // entity 337
 {
+"classname" "func_ambush"
+"origin" "-840 -152 336"
+"angle" "30"
+"group" "roof"
+"turret_mode" "1"
+}
+// entity 338
+{
+"classname" "func_ambush"
+"origin" "-840 -256 336"
+"angle" "0"
+"group" "roof"
+"turret_mode" "1"
+}
+// entity 339
+{
 "classname" "func_group"
 "_tb_type" "_tb_layer"
 "_tb_name" "Reflection Probes"
@@ -6315,7 +6331,7 @@
 "_tb_layer_sort_index" "0"
 "_tb_layer_hidden" "1"
 }
-// entity 338
+// entity 340
 {
 "classname" "area_ref_probe_solid"
 "origin_offset" "0 -4 0"
@@ -6331,7 +6347,7 @@
 ( -192 -136 168 ) ( -192 -136 169 ) ( -192 -135 168 ) special/trigger [ 0 1 0 0 ] [ 0 0 -1 0 ] 0 1 1
 }
 }
-// entity 339
+// entity 341
 {
 "classname" "area_ref_probe_solid"
 "_tb_layer" "23"
@@ -6345,7 +6361,7 @@
 ( -678 -136 168 ) ( -678 -136 169 ) ( -678 -135 168 ) special/trigger [ 0 1 0 0 ] [ 0 0 -1 0 ] 0 1 1
 }
 }
-// entity 340
+// entity 342
 {
 "classname" "area_ref_probe_solid"
 "_tb_layer" "23"
@@ -6359,7 +6375,7 @@
 ( -568 -136 88 ) ( -568 -136 89 ) ( -568 -135 88 ) special/trigger [ 0 1 0 0 ] [ 0 0 -1 0 ] 0 1 1
 }
 }
-// entity 341
+// entity 343
 {
 "classname" "area_ref_probe_solid"
 "_tb_layer" "23"
@@ -6373,7 +6389,7 @@
 ( -568 -136 8 ) ( -568 -136 9 ) ( -568 -135 8 ) special/trigger [ 0 1 0 0 ] [ 0 0 -1 0 ] 0 1 1
 }
 }
-// entity 342
+// entity 344
 {
 "classname" "area_ref_probe_solid"
 "_tb_layer" "23"
@@ -6387,7 +6403,7 @@
 ( -664 -176 -32 ) ( -664 -176 -31 ) ( -664 -175 -32 ) special/trigger [ 0 1 0 0 ] [ 0 0 -1 0 ] 0 1 1
 }
 }
-// entity 343
+// entity 345
 {
 "classname" "area_ref_probe_solid"
 "_tb_layer" "23"
@@ -6401,7 +6417,7 @@
 ( -504 -176 -32 ) ( -504 -176 -31 ) ( -504 -175 -32 ) special/trigger [ 0 1 0 0 ] [ 0 0 -1 0 ] 0 1 1
 }
 }
-// entity 344
+// entity 346
 {
 "classname" "area_ref_probe_solid"
 "_tb_layer" "23"
@@ -6415,7 +6431,7 @@
 ( -80 -176 -72 ) ( -80 -176 -71 ) ( -80 -175 -72 ) special/trigger [ 0 1 0 0 ] [ 0 0 -1 0 ] 0 1 1
 }
 }
-// entity 345
+// entity 347
 {
 "classname" "area_ref_probe_solid"
 "interior" "0"
@@ -6430,7 +6446,7 @@
 ( -512 -504 96 ) ( -512 -504 97 ) ( -512 -503 96 ) special/trigger [ 0 1 0 0 ] [ 0 0 -1 0 ] 0 1 1
 }
 }
-// entity 346
+// entity 348
 {
 "classname" "area_secret"
 "_tb_layer" "23"
@@ -6444,7 +6460,7 @@
 ( -112 -192 -160 ) ( -112 -192 -159 ) ( -112 -191 -160 ) special/trigger [ 0 1 0 0 ] [ 0 0 -1 0 ] 0 1 1
 }
 }
-// entity 347
+// entity 349
 {
 "classname" "area_ref_probe_solid"
 "_tb_textures" "textures;textures\furnishings;textures\liquids;textures\machines;textures\machines\vent_panel;textures\metallic;textures\natural;textures\pathways;textures\structural"
