@@ -3674,35 +3674,35 @@
 }
 // brush 33
 {
-( -736 -192 248 ) ( -736 -352 160 ) ( -736 -352 144 ) special/skip [ 0 -1 0 0 ] [ 0 0 -1 0 ] 0 1 1
+( -736 -192 252 ) ( -736 -352 160 ) ( -736 -352 144 ) special/skip [ 0 -1 0 0 ] [ 0 0 -1 0 ] 0 1 1
 ( -736 -352 160 ) ( -688 -352 160 ) ( -688 -352 144 ) structural/concrete_smooth [ 1 0 0 0 ] [ 0 0 -1 0 ] 0 1 1
-( -736 -192 248 ) ( -688 -192 248 ) ( -688 -352 160 ) structural/concrete_smooth [ 1 0 0 0 ] [ 0 -1 0 0 ] 0 1 1
+( -736 -192 252 ) ( -688 -192 252 ) ( -688 -352 160 ) structural/concrete_smooth [ 1 0 0 0 ] [ 0 -1 0 0 ] 0 1 1
 ( -688 -352 144 ) ( -688 -192 224 ) ( -736 -192 224 ) structural/concrete_smooth [ -1 0 0 0 ] [ 0 -1 0 0 ] 0 1 1
-( -688 -192 224 ) ( -688 -192 248 ) ( -736 -192 248 ) structural/concrete_smooth [ -1 0 0 0 ] [ 0 0 -1 0 ] 0 1 1
-( -688 -352 160 ) ( -688 -192 248 ) ( -688 -192 224 ) special/skip [ 0 1 0 0 ] [ 0 0 -1 0 ] 0 1 1
+( -688 -192 224 ) ( -688 -192 252 ) ( -736 -192 252 ) structural/concrete_smooth [ -1 0 0 0 ] [ 0 0 -1 0 ] 0 1 1
+( -688 -352 160 ) ( -688 -192 252 ) ( -688 -192 224 ) special/skip [ 0 1 0 0 ] [ 0 0 -1 0 ] 0 1 1
 }
 // brush 34
 {
-( -688 -192 160 ) ( -688 -192 248 ) ( -688 -352 160 ) structural/concrete_smooth [ 0 -1 0 0 ] [ 0 0 -1 0 ] 0 1 1
-( -688 -192 248 ) ( -672 -192 248 ) ( -672 -352 160 ) structural/concrete_smooth [ 1 0 0 0 ] [ 0 -1 0 0 ] 0 1 1
+( -688 -192 160 ) ( -688 -192 252 ) ( -688 -352 160 ) structural/concrete_smooth [ 0 -1 0 0 ] [ 0 0 -1 0 ] 0 1 1
+( -688 -192 252 ) ( -672 -192 252 ) ( -672 -352 160 ) structural/concrete_smooth [ 1 0 0 0 ] [ 0 -1 0 0 ] 0 1 1
 ( -672 -352 160 ) ( -672 -192 160 ) ( -688 -192 160 ) structural/concrete_smooth [ -1 0 0 0 ] [ 0 -1 0 0 ] 0 1 1
-( -672 -192 160 ) ( -672 -192 248 ) ( -688 -192 248 ) structural/concrete_smooth [ -1 0 0 0 ] [ 0 0 -1 0 ] 0 1 1
-( -672 -352 160 ) ( -672 -192 248 ) ( -672 -192 160 ) structural/concrete_smooth [ 0 1 0 0 ] [ 0 0 -1 0 ] 0 1 1
+( -672 -192 160 ) ( -672 -192 252 ) ( -688 -192 252 ) structural/concrete_smooth [ -1 0 0 0 ] [ 0 0 -1 0 ] 0 1 1
+( -672 -352 160 ) ( -672 -192 252 ) ( -672 -192 160 ) structural/concrete_smooth [ 0 1 0 0 ] [ 0 0 -1 0 ] 0 1 1
 }
 // brush 35
 {
-( -752 -192 160 ) ( -752 -192 248 ) ( -752 -352 160 ) structural/concrete_smooth [ 0 -1 0 0 ] [ 0 0 -1 0 ] 0 1 1
-( -752 -192 248 ) ( -736 -192 248 ) ( -736 -352 160 ) structural/concrete_smooth [ 1 0 0 0 ] [ 0 -1 0 0 ] 0 1 1
+( -752 -192 160 ) ( -752 -192 252 ) ( -752 -352 160 ) structural/concrete_smooth [ 0 -1 0 0 ] [ 0 0 -1 0 ] 0 1 1
+( -752 -192 252 ) ( -736 -192 252 ) ( -736 -352 160 ) structural/concrete_smooth [ 1 0 0 0 ] [ 0 -1 0 0 ] 0 1 1
 ( -736 -352 160 ) ( -736 -192 160 ) ( -752 -192 160 ) structural/concrete_smooth [ -1 0 0 0 ] [ 0 -1 0 0 ] 0 1 1
-( -736 -192 160 ) ( -736 -192 248 ) ( -752 -192 248 ) special/skip [ -1 0 0 0 ] [ 0 0 -1 0 ] 0 1 1
-( -736 -352 160 ) ( -736 -192 248 ) ( -736 -192 160 ) structural/concrete_smooth [ 0 1 0 0 ] [ 0 0 -1 0 ] 0 1 1
+( -736 -192 160 ) ( -736 -192 252 ) ( -752 -192 252 ) special/skip [ -1 0 0 0 ] [ 0 0 -1 0 ] 0 1 1
+( -736 -352 160 ) ( -736 -192 252 ) ( -736 -192 160 ) structural/concrete_smooth [ 0 1 0 0 ] [ 0 0 -1 0 ] 0 1 1
 }
 // brush 36
 {
 ( -752 -192 160 ) ( -752 -191 160 ) ( -752 -192 161 ) structural/concrete_smooth [ 0 -1 0 0 ] [ 0 0 -1 0 ] 0 1 1
 ( -752 -192 160 ) ( -752 -192 161 ) ( -751 -192 160 ) special/skip [ 1 0 0 0 ] [ 0 0 -1 0 ] 0 1 1
 ( -752 -192 160 ) ( -751 -192 160 ) ( -752 -191 160 ) structural/concrete_smooth [ -1 0 0 0 ] [ 0 -1 0 0 ] 0 1 1
-( -736 -128 248 ) ( -736 -127 248 ) ( -735 -128 248 ) structural/concrete_smooth [ 1 0 0 0 ] [ 0 -1 0 0 ] 0 1 1
+( -736 -128 252 ) ( -736 -127 252 ) ( -735 -128 252 ) structural/concrete_smooth [ 1 0 0 0 ] [ 0 -1 0 0 ] 0 1 1
 ( -736 -128 176 ) ( -735 -128 176 ) ( -736 -128 177 ) structural/concrete_smooth [ -1 0 0 0 ] [ 0 0 -1 0 ] 0 1 1
 ( -736 -128 176 ) ( -736 -128 177 ) ( -736 -127 176 ) structural/concrete_smooth [ 0 1 0 0 ] [ 0 0 -1 0 ] 0 1 1
 }
@@ -3711,7 +3711,7 @@
 ( -736 -192 224 ) ( -736 -191 224 ) ( -736 -192 225 ) special/skip [ 0 -1 0 0 ] [ 0 0 -1 0 ] 0 1 1
 ( -736 -192 224 ) ( -736 -192 225 ) ( -735 -192 224 ) special/skip [ 1 0 0 0 ] [ 0 0 -1 0 ] 0 1 1
 ( -736 -192 224 ) ( -735 -192 224 ) ( -736 -191 224 ) structural/concrete_smooth [ -1 0 0 0 ] [ 0 -1 0 0 ] 0 1 1
-( -672 -128 248 ) ( -672 -127 248 ) ( -671 -128 248 ) structural/concrete_smooth [ 1 0 0 0 ] [ 0 -1 0 0 ] 0 1 1
+( -672 -128 252 ) ( -672 -127 252 ) ( -671 -128 252 ) structural/concrete_smooth [ 1 0 0 0 ] [ 0 -1 0 0 ] 0 1 1
 ( -672 -128 240 ) ( -671 -128 240 ) ( -672 -128 241 ) structural/concrete_smooth [ -1 0 0 0 ] [ 0 0 -1 0 ] 0 1 1
 ( -672 -128 240 ) ( -672 -128 241 ) ( -672 -127 240 ) structural/concrete_smooth [ 0 1 0 0 ] [ 0 0 -1 0 ] 0 1 1
 }
@@ -6212,18 +6212,21 @@
 "classname" "enemy_pinkerton"
 "origin" "-520 152 256"
 "angle" "270"
+"turret_mode" "1"
 }
 // entity 324
 {
 "classname" "enemy_pinkerton"
 "origin" "-488 152 256"
 "angle" "270"
+"turret_mode" "1"
 }
 // entity 325
 {
 "classname" "enemy_pinkerton"
 "origin" "-152 168 176"
 "angle" "225"
+"turret_mode" "1"
 }
 // entity 326
 {
@@ -6232,12 +6235,78 @@
 }
 // entity 327
 {
-"classname" "enemy_gun_turret"
-"origin" "-312 -736 120"
-"angle" "180"
-"mount_type" "1"
+"classname" "func_ambush"
+"origin" "-632 -296 176"
+"angle" "90"
+"group" "roof"
 }
 // entity 328
+{
+"classname" "func_ambush"
+"origin" "-584 -296 176"
+"angle" "90"
+"group" "roof"
+}
+// entity 329
+{
+"classname" "func_ambush"
+"origin" "88 -824 256"
+"angle" "180"
+"group" "roof"
+}
+// entity 330
+{
+"classname" "func_ambush"
+"origin" "88 -776 256"
+"angle" "180"
+"group" "roof"
+}
+// entity 331
+{
+"classname" "func_ambush"
+"origin" "88 -728 256"
+"angle" "180"
+"group" "roof"
+}
+// entity 332
+{
+"classname" "func_ambush"
+"origin" "88 -680 256"
+"angle" "180"
+"group" "roof"
+}
+// entity 333
+{
+"classname" "func_ambush"
+"origin" "-248 -824 256"
+"angle" "90"
+"group" "roof"
+"ambusher" "lizard"
+}
+// entity 334
+{
+"classname" "func_ambush"
+"origin" "-200 -824 256"
+"angle" "90"
+"group" "roof"
+"ambusher" "lizard"
+}
+// entity 335
+{
+"classname" "func_ambush"
+"origin" "-152 -824 256"
+"angle" "90"
+"group" "roof"
+"ambusher" "lizard"
+}
+// entity 336
+{
+"classname" "func_ambush"
+"origin" "88 -632 256"
+"angle" "180"
+"group" "roof"
+}
+// entity 337
 {
 "classname" "func_group"
 "_tb_type" "_tb_layer"
@@ -6246,7 +6315,7 @@
 "_tb_layer_sort_index" "0"
 "_tb_layer_hidden" "1"
 }
-// entity 329
+// entity 338
 {
 "classname" "area_ref_probe_solid"
 "origin_offset" "0 -4 0"
@@ -6262,7 +6331,7 @@
 ( -192 -136 168 ) ( -192 -136 169 ) ( -192 -135 168 ) special/trigger [ 0 1 0 0 ] [ 0 0 -1 0 ] 0 1 1
 }
 }
-// entity 330
+// entity 339
 {
 "classname" "area_ref_probe_solid"
 "_tb_layer" "23"
@@ -6276,7 +6345,7 @@
 ( -678 -136 168 ) ( -678 -136 169 ) ( -678 -135 168 ) special/trigger [ 0 1 0 0 ] [ 0 0 -1 0 ] 0 1 1
 }
 }
-// entity 331
+// entity 340
 {
 "classname" "area_ref_probe_solid"
 "_tb_layer" "23"
@@ -6290,7 +6359,7 @@
 ( -568 -136 88 ) ( -568 -136 89 ) ( -568 -135 88 ) special/trigger [ 0 1 0 0 ] [ 0 0 -1 0 ] 0 1 1
 }
 }
-// entity 332
+// entity 341
 {
 "classname" "area_ref_probe_solid"
 "_tb_layer" "23"
@@ -6304,7 +6373,7 @@
 ( -568 -136 8 ) ( -568 -136 9 ) ( -568 -135 8 ) special/trigger [ 0 1 0 0 ] [ 0 0 -1 0 ] 0 1 1
 }
 }
-// entity 333
+// entity 342
 {
 "classname" "area_ref_probe_solid"
 "_tb_layer" "23"
@@ -6318,7 +6387,7 @@
 ( -664 -176 -32 ) ( -664 -176 -31 ) ( -664 -175 -32 ) special/trigger [ 0 1 0 0 ] [ 0 0 -1 0 ] 0 1 1
 }
 }
-// entity 334
+// entity 343
 {
 "classname" "area_ref_probe_solid"
 "_tb_layer" "23"
@@ -6332,7 +6401,7 @@
 ( -504 -176 -32 ) ( -504 -176 -31 ) ( -504 -175 -32 ) special/trigger [ 0 1 0 0 ] [ 0 0 -1 0 ] 0 1 1
 }
 }
-// entity 335
+// entity 344
 {
 "classname" "area_ref_probe_solid"
 "_tb_layer" "23"
@@ -6346,7 +6415,7 @@
 ( -80 -176 -72 ) ( -80 -176 -71 ) ( -80 -175 -72 ) special/trigger [ 0 1 0 0 ] [ 0 0 -1 0 ] 0 1 1
 }
 }
-// entity 336
+// entity 345
 {
 "classname" "area_ref_probe_solid"
 "interior" "0"
@@ -6361,7 +6430,7 @@
 ( -512 -504 96 ) ( -512 -504 97 ) ( -512 -503 96 ) special/trigger [ 0 1 0 0 ] [ 0 0 -1 0 ] 0 1 1
 }
 }
-// entity 337
+// entity 346
 {
 "classname" "area_secret"
 "_tb_layer" "23"
@@ -6375,7 +6444,7 @@
 ( -112 -192 -160 ) ( -112 -192 -159 ) ( -112 -191 -160 ) special/trigger [ 0 1 0 0 ] [ 0 0 -1 0 ] 0 1 1
 }
 }
-// entity 338
+// entity 347
 {
 "classname" "area_ref_probe_solid"
 "_tb_textures" "textures;textures\furnishings;textures\liquids;textures\machines;textures\machines\vent_panel;textures\metallic;textures\natural;textures\pathways;textures\structural"

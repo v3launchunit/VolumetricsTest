@@ -237,6 +237,7 @@ process_mode = 1
 script = ExtResource("22_pxs5m")
 injury_stream = SubResource("AudioStreamRandomizer_uyctv")
 gib_threshold = 5000.0
+damage_multipliers = Array[float]([1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0])
 gibs = ExtResource("24_222pa")
 
 [node name="StairStepper" parent="." instance=ExtResource("25_rotfo")]

@@ -75,6 +75,8 @@ func spawn_ambush() -> Node3D:
 	if "properties" in a:
 		a.properties = properties.duplicate()
 		#print("applied properties to ambusher")
+	elif "func_godot_properties" in a:
+		a.func_godot_properties = properties.duplicate()
 	add_child(a)
 	#print("placed ambusher in scenetree")
 	a.position += Vector3(0, y_offset, 0)

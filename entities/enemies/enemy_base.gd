@@ -41,6 +41,7 @@ enum DetectionType {
 @export var properties: Dictionary = {}
 
 @export_group("Movement")
+@export var turret_mode: bool = false
 ## The base movement speed of this enemy.
 @export_range(1, 35, 0.1, "or_greater") var speed: float = 10.0
 ## The speed at which this enemy is able to reorient itself.
@@ -165,6 +166,8 @@ var sight_line_sweep_dot: float = cos(sight_line_sweep_angle / 2.0)
 
 
 func _ready() -> void:
+	turret_mode = properties.get("turret_mode", false)
+	
 	path_re_eval_distance_squared = (
 			$NavigationAgent3D.target_desired_distance
 			* $NavigationAgent3D.target_desired_distance
@@ -315,11 +318,11 @@ func change_state(to: State):
 			state_machine.travel("idle", true)
 		State.SEARCHING:
 			sight_line.rotation.x = 0
-			state_machine.travel("moving", true)
+			state_machine.travel("standby" if turret_mode else "moving", true)
 		State.PURSUING:
 			if nav_agent != null and check_target_validity():
 				nav_agent.target_position = current_targets[-1].global_position
-			state_machine.travel("moving", true)
+			state_machine.travel("standby" if turret_mode else "moving", true)
 		State.ATTACKING:
 			pass
 		State.POST_ATTACKING:
@@ -474,30 +477,40 @@ func _pursue(delta) -> void:
 		#change_state(State.IDLE) # Can't pursue a target that doesn't exist
 		return
 
-	current_destination = (
-			current_targets[-1].global_position 
-			+ player_target_offset 
-			* current_targets[-1].global_basis.z.normalized()
-	)
-	#current_destination = get_current_destination()
-
-	if check_path_staleness(): # Make sure my target is still where I think it is
-		nav_agent.target_position = current_destination
-
-	# Casually approach target
-	var next_pos: Vector3 = nav_agent.get_next_path_position()
-	if is_on_floor():
-		sight_line.look_at(next_pos)
-		global_rotation.y = lerp_angle(
-				global_rotation.y,
-				sight_line.global_rotation.y,
-				delta * turning_speed
-		)
-		walk_vel = walk_vel.move_toward(-speed * transform.basis.z, acceleration * delta)
-	if nav_agent.avoidance_enabled:
-		nav_agent.set_velocity(walk_vel)
+	if turret_mode:
+		if is_on_floor():
+			sight_line.look_at(current_targets[-1].global_position)
+			global_rotation.y = lerp_angle(
+					global_rotation.y,
+					sight_line.global_rotation.y,
+					delta * turning_speed
+			)
+	
 	else:
-		velocity += walk_vel
+		current_destination = (
+				current_targets[-1].global_position 
+				+ player_target_offset 
+				* current_targets[-1].global_basis.z.normalized()
+		)
+		#current_destination = get_current_destination()
+
+		if check_path_staleness(): # Make sure my target is still where I think it is
+			nav_agent.target_position = current_destination
+
+		# Casually approach target
+		var next_pos: Vector3 = nav_agent.get_next_path_position()
+		if is_on_floor():
+			sight_line.look_at(next_pos)
+			global_rotation.y = lerp_angle(
+					global_rotation.y,
+					sight_line.global_rotation.y,
+					delta * turning_speed
+			)
+			walk_vel = walk_vel.move_toward(-speed * transform.basis.z, acceleration * delta)
+		if nav_agent.avoidance_enabled:
+			nav_agent.set_velocity(walk_vel)
+		else:
+			velocity += walk_vel
 
 	# Decide if it's time to attack my target
 	if check_attack_readiness():

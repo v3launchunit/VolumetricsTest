@@ -389,7 +389,7 @@ radial_segments = 6
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, -0.35, 0)
 
 [node name="Boomstick" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.00999499, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.00194461, 0)
 layers = 4
 cast_shadow = 0
 mesh = ExtResource("1_7e58d")
@@ -403,7 +403,7 @@ bullet = ExtResource("9_h281q")
 shot_cooldown = 2.0
 volley = 36
 spread = 30.0
-recoil = 7.5
+recoil = 5.0
 ammo_type = "shells"
 ammo_cost = 2
 anti_clip_distance = 1.25
@@ -486,27 +486,6 @@ omni_shadow_mode = 0
 root_node = NodePath("../..")
 tree_root = SubResource("AnimationNodeStateMachine_b1n13")
 anim_player = NodePath("../../AnimationPlayer")
-parameters/current_length = 2.0
-parameters/current_position = 1.01297
-parameters/current_delta = 0.1
-parameters/End/current_length = null
-parameters/End/current_position = null
-parameters/End/current_delta = null
-parameters/Start/current_length = 0.0
-parameters/Start/current_position = 0.0
-parameters/Start/current_delta = 0.0
-parameters/alt_firing/current_length = null
-parameters/alt_firing/current_position = null
-parameters/alt_firing/current_delta = null
-parameters/deploy/current_length = 0.5
-parameters/deploy/current_position = 0.5
-parameters/deploy/current_delta = 0.0313373
-parameters/firing/current_length = null
-parameters/firing/current_position = null
-parameters/firing/current_delta = null
-parameters/idle/current_length = 2.0
-parameters/idle/current_position = 1.01297
-parameters/idle/current_delta = 0.1
 
 [node name="AlertRadius" type="Area3D" parent="Boomstick"]
 collision_layer = 2

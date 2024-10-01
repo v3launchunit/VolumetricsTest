@@ -12,7 +12,9 @@ classname = "enemy_pinkerton"
 description = ""
 func_godot_internal = false
 base_classes = Array[Resource]([ExtResource("1_1kw10")])
-class_properties = {}
+class_properties = {
+"turret_mode": false
+}
 class_property_descriptions = {}
 meta_properties = {
 "color": Color(0.8, 0.8, 0.8, 1),

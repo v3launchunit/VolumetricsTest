@@ -1,6 +1,9 @@
 extends EnemyAttackPattern
 
 
+#@export var allow_pitch: bool = true
+
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	if "detect_mode" in properties and properties["detect_mode"] > 0:

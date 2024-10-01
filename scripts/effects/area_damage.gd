@@ -24,11 +24,12 @@ func _process(_delta: float) -> void:
 
 
 func _on_area_body_entered(body: Node3D) -> void:
+	var d = player_damage_override if (body is Player or body.find_child("Status") is PlayerStatus) else damage
+	#print("%s hit %s, who is %s for %s" % [name, body.name, body is Player or body.find_child("Status") is PlayerStatus, d])
 	if body.has_node("Status"):
-		body.find_child("Status").damage(
-				player_damage_override
-				if body.find_child("Status") is PlayerStatus
-				else damage
+		body.find_child("Status").damage_typed(
+				d,
+				damage_type
 		)
 		if body and invoker and body is EnemyBase and body != invoker:
 			body.detect_target(invoker, EnemyBase.DetectionType.RETALIATION)
@@ -39,3 +40,4 @@ func _on_area_body_entered(body: Node3D) -> void:
 			+ knockup_force
 			* Vector3.UP
 	)
+	

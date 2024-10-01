@@ -52,8 +52,9 @@ func damage_typed(amount: float, type: DamageType, gib_mode: GibMode = GibMode.A
 		stream_player.stream = injury_stream
 		stream_player.play()
 	health -= amount * base_damage_factor * damage_multipliers[type] * (1 - armor_absorption)
+	print(amount * base_damage_factor * damage_multipliers[type] * (1 - armor_absorption))
 	armor  -= amount * base_damage_factor * damage_multipliers[type] * armor_absorption
-	if armor <= 0:
+	if armor < 0:
 		health += armor # armor will be negative
 		armor = 0
 	if health <= 0:

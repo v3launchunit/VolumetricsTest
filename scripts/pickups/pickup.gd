@@ -16,7 +16,7 @@ signal collected;
 func _ready() -> void:
 	area.body_entered.connect(interact)
 	find_child("AnimationPlayer").play("anim")
-	if func_godot_properties["pickup_group"] != "none":
+	if func_godot_properties.get("pickup_group", "none") != "none":
 		for member in get_tree().get_nodes_in_group(func_godot_properties["pickup_group"]):
 			if member.has_method("on_triggered"):
 				collected.connect(member.on_triggered)

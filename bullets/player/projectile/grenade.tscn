@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://df5n18xo8w3kj"]
+[gd_scene load_steps=18 format=3 uid="uid://rchnjnxfhuga"]
 
 [ext_resource type="Script" path="res://bullets/bullet.gd" id="1_daqx3"]
 [ext_resource type="PackedScene" uid="uid://dco7xp2cwuyge" path="res://scenes/effects/explosions/explosion.tscn" id="2_i7b7a"]
@@ -65,8 +65,8 @@ material = SubResource("StandardMaterial3D_0qxru")
 size = Vector2(0.15, 0.15)
 
 [node name="Bullet" type="RigidBody3D"]
-collision_layer = 4
-collision_mask = 71
+collision_layer = 2
+collision_mask = 69
 input_ray_pickable = false
 continuous_cd = true
 contact_monitor = true

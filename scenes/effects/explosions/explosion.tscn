@@ -439,7 +439,6 @@ radius = 6.0
 random_pitch = 1.15
 streams_count = 1
 stream_0/stream = ExtResource("4_evxji")
-stream_0/weight = 1.0
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_4pgkn"]
 playback_mode = 1
@@ -550,7 +549,7 @@ collision_mask = 39
 script = ExtResource("3_6neht")
 damage = 60.0
 damage_type = 1
-knockback_force = 7.5
+knockback_force = 5.0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
 shape = SubResource("SphereShape3D_er5bi")
@@ -561,7 +560,7 @@ script = ExtResource("3_6neht")
 damage = 60.0
 player_damage_override = 0.0
 damage_type = 1
-knockback_force = 3.75
+knockback_force = 2.5
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D2"]
 shape = SubResource("SphereShape3D_n73ay")

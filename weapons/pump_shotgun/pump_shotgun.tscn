@@ -5,7 +5,7 @@
 [ext_resource type="Script" path="res://weapons/weapon_alt_fire.gd" id="2_rkwad"]
 [ext_resource type="ArrayMesh" uid="uid://crk83yrjbvbg6" path="res://weapons/muzzle_flash.obj" id="3_8b28n"]
 [ext_resource type="AnimationLibrary" uid="uid://byhlw1uu73dbf" path="res://weapons/pump_shotgun/shotgun_anims.res" id="5_eekxh"]
-[ext_resource type="PackedScene" uid="uid://rchnjnxfhuga" path="res://bullets/enemy/enemy_grenade.tscn" id="6_kwhqf"]
+[ext_resource type="PackedScene" uid="uid://rchnjnxfhuga" path="res://bullets/player/projectile/grenade.tscn" id="6_kwhqf"]
 [ext_resource type="PackedScene" uid="uid://d4mp4mj8p46h1" path="res://bullets/player/hitscan/hitscan_bullet.tscn" id="7_pot81"]
 [ext_resource type="Material" uid="uid://dq3a5fxspauox" path="res://weapons/muzzle_flash_yellow.tres" id="8_scexd"]
 [ext_resource type="Texture2D" uid="uid://dbnasmfycrfat" path="res://pickups/ammo/shotgun_shell/shotgun_shell.png" id="8_xoaa3"]
@@ -190,7 +190,7 @@ _data = {
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -0.15, -0.25, -0.35)
 
 [node name="PumpShotgun" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0012237, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.00707068, 0)
 layers = 4
 material_override = ExtResource("1_iyx8y")
 cast_shadow = 0
@@ -261,27 +261,6 @@ draw_pass_1 = SubResource("CylinderMesh_ps8yr")
 root_node = NodePath("../..")
 tree_root = SubResource("AnimationNodeStateMachine_pb0tv")
 anim_player = NodePath("../../AnimationPlayer")
-parameters/current_length = 2.0
-parameters/current_position = 1.78149
-parameters/current_delta = 0.0265319
-parameters/End/current_length = null
-parameters/End/current_position = null
-parameters/End/current_delta = null
-parameters/Start/current_length = 0.0
-parameters/Start/current_position = 0.0
-parameters/Start/current_delta = 0.0
-parameters/alt_firing/current_length = null
-parameters/alt_firing/current_position = null
-parameters/alt_firing/current_delta = null
-parameters/deploy/current_length = 0.35
-parameters/deploy/current_position = 0.35
-parameters/deploy/current_delta = 0.02
-parameters/firing/current_length = null
-parameters/firing/current_position = null
-parameters/firing/current_delta = null
-parameters/idle/current_length = 2.0
-parameters/idle/current_position = 1.78149
-parameters/idle/current_delta = 0.0265319
 
 [node name="AlertRadius" type="Area3D" parent="PumpShotgun"]
 collision_layer = 2
