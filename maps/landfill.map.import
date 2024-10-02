@@ -1,0 +1,14 @@
+[remap]
+
+importer="func_godot.map"
+type="Resource"
+uid="uid://q85ald7c1qw8"
+path="res://.godot/imported/landfill.map-8f2cd21b444b59cf1e47c7e4ed396429.tres"
+
+[deps]
+
+source_file="res://maps/landfill.map"
+dest_files=["res://.godot/imported/landfill.map-8f2cd21b444b59cf1e47c7e4ed396429.tres"]
+
+[params]
+

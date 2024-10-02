@@ -39,6 +39,8 @@ func spawn_trash_props(editor: bool = true) -> void:
 		seed(hash(func_godot_properties["seed"]))
 	collision_layer = 0b0000_0000_0000_0000_0000_0010_0000_0000
 	
+	if get_child(0) is not MeshInstance3D:
+		await ready
 	var mesh := (get_child(0) as MeshInstance3D).mesh
 	var shape := mesh.create_convex_shape(false)
 	var points := shape.points

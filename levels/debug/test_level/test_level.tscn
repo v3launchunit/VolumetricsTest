@@ -25,12 +25,11 @@
 [ext_resource type="PackedScene" uid="uid://dxyhvyy821swt" path="res://pickups/weapons/hunting_rifle_pickup.tscn" id="35_u0dbq"]
 [ext_resource type="Script" path="res://trench_broom/qodot_fgd/entity_defs/brush/interactable/brush_door.gd" id="36_ba20l"]
 [ext_resource type="PackedScene" uid="uid://df20em4dv0q37" path="res://pickups/weapons/rpg_pickup.tscn" id="36_v5hyr"]
-[ext_resource type="Shader" uid="uid://dyecxfl8r46aq" path="res://shaders/spatial/lens_flare_halo.tres" id="37_7clfk"]
 [ext_resource type="PackedScene" uid="uid://dqugqrrqpxdih" path="res://entities/enemies/machines/gun_turret/gun_turret.tscn" id="37_w2aui"]
-[ext_resource type="Texture2D" uid="uid://hk0k2coukjwc" path="res://effects/halos/halo_tex.tres" id="38_bvttd"]
 [ext_resource type="Script" path="res://addons/func_godot/src/map/func_godot_map.gd" id="38_cabet"]
 [ext_resource type="Shader" path="res://shaders/spatial/depth_test.gdshader" id="39_34bav"]
 [ext_resource type="Resource" uid="uid://bkhxcqsquw1yg" path="res://addons/func_godot/func_godot_default_map_settings.tres" id="39_gspvf"]
+[ext_resource type="Shader" path="res://shaders/spatial/iridescent_psx.gdshader" id="39_vgoen"]
 [ext_resource type="Shader" path="res://shaders/spatial/psx_test.gdshader" id="40_8dl3b"]
 [ext_resource type="Texture2D" uid="uid://cyg2snr1w5xw5" path="res://addons/func_godot/textures/default_texture.png" id="40_rt55l"]
 [ext_resource type="PackedScene" uid="uid://7e6nf0ho2ltr" path="res://scenes/objects/teleporter.tscn" id="41_dkm3o"]
@@ -448,25 +447,6 @@ grow_amount = 0.075
 
 [sub_resource type="BoxMesh" id="BoxMesh_whbis"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_nvkfr"]
-render_priority = 0
-shader = ExtResource("37_7clfk")
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_efmho"]
-transparency = 1
-blend_mode = 1
-depth_draw_mode = 2
-shading_mode = 0
-vertex_color_use_as_albedo = true
-albedo_texture = ExtResource("38_bvttd")
-billboard_mode = 1
-fixed_size = true
-proximity_fade_distance = 3.0
-
-[sub_resource type="QuadMesh" id="QuadMesh_y6wxx"]
-material = SubResource("StandardMaterial3D_efmho")
-size = Vector2(0.25, 0.25)
-
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_4y1om"]
 render_priority = 0
 shader = ExtResource("39_34bav")
@@ -882,6 +862,23 @@ _surfaces = [{
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_naj3d"]
 points = PackedVector3Array(-0.5, 2, -2, -0.5, -2, -2, 0.5, -2, -2, 0.5, 2, -2, -0.5, 2, 2, -0.5, -2, 2, 0.5, -2, 2, 0.5, 2, 2)
 
+[sub_resource type="Gradient" id="Gradient_judde"]
+offsets = PackedFloat32Array(0, 0.25, 0.5, 0.75, 1)
+colors = PackedColorArray(1, 0, 0, 1, 1, 1, 0, 1, 0, 1, 0, 1, 0, 1, 1, 1, 0, 0, 1, 1)
+metadata/_snap_enabled = true
+metadata/_snap_count = 12
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_0a1a2"]
+gradient = SubResource("Gradient_judde")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_xufc5"]
+render_priority = 0
+shader = ExtResource("39_vgoen")
+shader_parameter/roughness = null
+shader_parameter/rainbow = SubResource("GradientTexture1D_0a1a2")
+
+[sub_resource type="BoxMesh" id="BoxMesh_h44b6"]
+
 [node name="Node3D" type="Node3D"]
 script = ExtResource("1_lifds")
 level_name = "TEST LEVEL"
@@ -1135,14 +1132,6 @@ material_override = SubResource("StandardMaterial3D_ii3s5")
 mesh = SubResource("BoxMesh_whbis")
 skeleton = NodePath("../..")
 
-[node name="LensFlareShaderTest" type="MeshInstance3D" parent="Things"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 1, 0)
-visible = false
-material_override = SubResource("ShaderMaterial_nvkfr")
-cast_shadow = 0
-mesh = SubResource("QuadMesh_y6wxx")
-skeleton = NodePath("../..")
-
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Things"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 3, 3)
 visible = false
@@ -1329,5 +1318,10 @@ transform = Transform3D(1, 0, 1.74846e-07, 0, 1, 0, -1.74846e-07, 0, 1, 9.5, 2, 
 
 [node name="entity_6_enemy_gun_turret" parent="FuncGodotMap" instance=ExtResource("37_w2aui")]
 transform = Transform3D(1, 0, 1.74846e-07, 0, 1, 0, -1.74846e-07, 0, 1, 12.5, 2, 11.5)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 4)
+material_override = SubResource("ShaderMaterial_xufc5")
+mesh = SubResource("BoxMesh_h44b6")
 
 [editable path="Things/Teleporter"]
