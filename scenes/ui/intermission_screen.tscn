@@ -1,0 +1,55 @@
+[gd_scene load_steps=6 format=3 uid="uid://redbealnw6dv"]
+
+[ext_resource type="Theme" uid="uid://dwof7m2ye3tjh" path="res://scenes/ui/default_theme.tres" id="1_8b1d4"]
+[ext_resource type="Script" path="res://scenes/ui/intermission_screen.gd" id="1_j6yne"]
+[ext_resource type="Script" path="res://levels/level.gd" id="3_a1xq5"]
+
+[sub_resource type="Gradient" id="Gradient_v0l2t"]
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_uhran"]
+gradient = SubResource("Gradient_v0l2t")
+
+[node name="Level" type="Node3D"]
+script = ExtResource("3_a1xq5")
+
+[node name="IntermissionScreen" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_j6yne")
+
+[node name="TextureRect" type="TextureRect" parent="IntermissionScreen"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture2D_uhran")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="IntermissionScreen"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -128.0
+offset_top = -64.0
+offset_right = 128.0
+offset_bottom = 64.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_8b1d4")
+alignment = 1
+
+[node name="Label" type="Label" parent="IntermissionScreen/VBoxContainer"]
+layout_mode = 2
+text = "TIME: 00:00:00.000"
+
+[node name="Label2" type="Label" parent="IntermissionScreen/VBoxContainer"]
+layout_mode = 2
+text = "KILLS: 29/36"
+
+[node name="Label3" type="Label" parent="IntermissionScreen/VBoxContainer"]
+layout_mode = 2
+text = "SECRETS: 2/4"

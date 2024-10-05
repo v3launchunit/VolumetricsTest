@@ -14,7 +14,8 @@ var _scene: PackedScene
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	level_path = Globals.get_level_path(level_name)
-	ResourceLoader.load_threaded_request(level_name, type_string(typeof(PackedScene)))
+	if level_path != "":
+		ResourceLoader.load_threaded_request(level_path, type_string(typeof(PackedScene)))
 	
 	if level_path == "" or not (
 			always_open 
