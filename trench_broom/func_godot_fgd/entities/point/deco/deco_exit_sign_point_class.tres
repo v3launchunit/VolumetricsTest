@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="FuncGodotFGDPointClass" load_steps=3 format=3 uid="uid://d2fjb0cis7gai"]
+
+[ext_resource type="Script" path="res://addons/func_godot/src/fgd/func_godot_fgd_point_class.gd" id="1_itrq5"]
+[ext_resource type="PackedScene" uid="uid://byphwnhjdeanl" path="res://objects/deco/exit_sign.tscn" id="1_orsul"]
+
+[resource]
+script = ExtResource("1_itrq5")
+scene_file = ExtResource("1_orsul")
+apply_rotation_on_map_build = true
+classname = "deco_exit_sign"
+description = ""
+func_godot_internal = false
+base_classes = Array[Resource]([])
+class_properties = {}
+class_property_descriptions = {}
+meta_properties = {
+"color": Color(0.8, 0.8, 0.8, 1),
+"size": AABB(-8, -8, -8, 8, 8, 8)
+}
+node_class = ""
+name_property = ""

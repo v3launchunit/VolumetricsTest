@@ -3,7 +3,8 @@
 shader_type spatial;
 render_mode blend_mix,cull_back,unshaded;
 uniform vec4 albedo : source_color;
-uniform sampler2D texture_albedo : source_color,filter_linear_mipmap,repeat_enable;
+//uniform bool use_vertex_color = true;
+uniform sampler2D texture_albedo : source_color,filter_nearest,repeat_enable;
 uniform vec3 uv1_scale;
 uniform vec3 uv1_offset;
 

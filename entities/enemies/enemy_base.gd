@@ -209,6 +209,11 @@ func _ready() -> void:
 				member.interacted.connect(detect_target)
 		add_to_group(properties["tripwire_group"], true)
 	
+	if properties.get("corpse", false):
+		current_state = State.DEAD
+		if status.health > 0:
+			status.health = 0
+	
 	match current_state:
 		State.AMBUSHING:
 			state_machine.start("ambush", true)

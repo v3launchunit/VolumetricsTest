@@ -30,7 +30,7 @@ bullet = ExtResource("3_7t4uc")
 volley = 1
 spread = 2.5
 spawners = Array[NodePath]([])
-delay = 0.0
+delay = 0.25
 recovery_time = 0.15
 animation = &"attacking"
 burst = 5
@@ -637,7 +637,7 @@ advance_mode = 2
 xfade_time = 0.25
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ec1kv"]
-xfade_time = 0.25
+xfade_time = 0.2
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_xdi8n"]
 
@@ -658,6 +658,7 @@ xfade_time = 0.25
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_5i3th"]
 xfade_time = 0.25
+switch_mode = 2
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_6f6mg"]
 xfade_time = 0.25
@@ -673,7 +674,7 @@ states/End/position = Vector2(346.091, 186.519)
 states/ambush/node = SubResource("AnimationNodeAnimation_wyfek")
 states/ambush/position = Vector2(347.333, 100)
 states/attacking/node = SubResource("AnimationNodeAnimation_0c1my")
-states/attacking/position = Vector2(519.604, 186.694)
+states/attacking/position = Vector2(519.599, 187.35)
 states/dead/node = SubResource("AnimationNodeAnimation_rngir")
 states/dead/position = Vector2(693.111, 38.3334)
 states/flinching/node = SubResource("AnimationNodeAnimation_6o7q8")
@@ -681,9 +682,9 @@ states/flinching/position = Vector2(867.189, 187.617)
 states/idle/node = SubResource("AnimationNodeAnimation_gi5fr")
 states/idle/position = Vector2(519.6, 100)
 states/moving/node = SubResource("AnimationNodeAnimation_8tofo")
-states/moving/position = Vector2(867, 100.395)
+states/moving/position = Vector2(867.252, 99.8683)
 transitions = ["Start", "ambush", SubResource("AnimationNodeStateMachineTransition_tf25s"), "ambush", "idle", SubResource("AnimationNodeStateMachineTransition_jiq67"), "idle", "moving", SubResource("AnimationNodeStateMachineTransition_nur4t"), "moving", "attacking", SubResource("AnimationNodeStateMachineTransition_ec1kv"), "idle", "flinching", SubResource("AnimationNodeStateMachineTransition_xdi8n"), "moving", "flinching", SubResource("AnimationNodeStateMachineTransition_5cw2f"), "attacking", "flinching", SubResource("AnimationNodeStateMachineTransition_3o64v"), "moving", "dead", SubResource("AnimationNodeStateMachineTransition_6rdxi"), "attacking", "dead", SubResource("AnimationNodeStateMachineTransition_77nrm"), "idle", "dead", SubResource("AnimationNodeStateMachineTransition_cwmjn"), "flinching", "moving", SubResource("AnimationNodeStateMachineTransition_hqpkc"), "attacking", "moving", SubResource("AnimationNodeStateMachineTransition_5i3th"), "flinching", "dead", SubResource("AnimationNodeStateMachineTransition_6f6mg"), "attacking", "idle", SubResource("AnimationNodeStateMachineTransition_kbmg5"), "moving", "idle", SubResource("AnimationNodeStateMachineTransition_7tyyv")]
-graph_offset = Vector2(-216, -43)
+graph_offset = Vector2(-235, 11)
 
 [node name="Soldier" type="CharacterBody3D"]
 collision_layer = 4
@@ -731,31 +732,31 @@ bones/23/scale = Vector3(1, 1, 1)
 bones/24/rotation = Quaternion(-0.0824806, -6.65001e-08, -1.41612e-08, 0.996593)
 
 [node name="Cylinder" parent="soldier/Armature/Skeleton3D" index="0"]
-transform = Transform3D(0.973501, -0.127162, 0.190069, 0.122825, -0.410343, -0.903622, 0.192899, 0.903022, -0.383851, 0.0047655, 0.266971, 0.530261)
+transform = Transform3D(0.824491, -0.553653, 0.116978, -0.0884927, -0.330327, -0.939709, 0.558913, 0.76443, -0.321346, -0.059856, 0.273446, 0.519047)
 
 [node name="Cylinder" parent="soldier/Armature/Skeleton3D/Cylinder" index="0"]
 material_override = SubResource("ShaderMaterial_jcsmp")
 
 [node name="Cylinder_001" parent="soldier/Armature/Skeleton3D" index="1"]
-transform = Transform3D(1.46025, -0.127162, 0.285104, 0.184238, -0.410343, -1.35543, 0.289349, 0.903022, -0.575776, -0.00477163, 0.236196, 0.597988)
+transform = Transform3D(1.23674, -0.553653, 0.175467, -0.132739, -0.330327, -1.40956, 0.83837, 0.76443, -0.482019, -0.10138, 0.248672, 0.576379)
 
 [node name="Cylinder_001" parent="soldier/Armature/Skeleton3D/Cylinder_001" index="0"]
 material_override = SubResource("ShaderMaterial_jcsmp")
 
 [node name="Cylinder_003" parent="soldier/Armature/Skeleton3D" index="2"]
-transform = Transform3D(0.498427, 0.866715, -0.0193867, 0.245313, -0.162451, -0.955736, -0.8315, 0.471609, -0.293586, 0.111941, 0.293637, 0.484074)
+transform = Transform3D(0.821683, 0.55781, -0.116978, 0.0901599, -0.329876, -0.939709, -0.562768, 0.761597, -0.321346, 0.059856, 0.273446, 0.519047)
 
 [node name="Cylinder_003" parent="soldier/Armature/Skeleton3D/Cylinder_003" index="0"]
 material_override = SubResource("ShaderMaterial_jcsmp")
 
 [node name="Cylinder_002" parent="soldier/Armature/Skeleton3D" index="3"]
-transform = Transform3D(0.74764, 0.866715, -0.02908, 0.367969, -0.162451, -1.4336, -1.24725, 0.471609, -0.440379, 0.176945, 0.281454, 0.519445)
+transform = Transform3D(1.23253, 0.55781, -0.175467, 0.13524, -0.329876, -1.40956, -0.844151, 0.761597, -0.482019, 0.101692, 0.248705, 0.576167)
 
 [node name="Cylinder_002" parent="soldier/Armature/Skeleton3D/Cylinder_002" index="0"]
 material_override = SubResource("ShaderMaterial_jcsmp")
 
 [node name="AK-47" parent="soldier/Armature/Skeleton3D" index="4"]
-transform = Transform3D(0.591697, 0.0549077, -0.457581, -0.459373, 0.0104372, -0.592762, -0.0370286, 0.747914, 0.041865, -0.302982, -0.310865, 0.656637)
+transform = Transform3D(0.591697, 0.0549077, -0.45758, -0.459373, 0.0104374, -0.592763, -0.0370284, 0.747915, 0.0418651, -0.302982, -0.310865, 0.656637)
 
 [node name="AK-47" parent="soldier/Armature/Skeleton3D/AK-47" index="0"]
 material_override = SubResource("ShaderMaterial_04ank")
@@ -774,7 +775,7 @@ light_color = Color(1, 1, 0, 1)
 omni_range = 10.0
 
 [node name="Magazine" parent="soldier/Armature/Skeleton3D" index="5"]
-transform = Transform3D(0.591697, 0.0549077, -0.457581, -0.459373, 0.0104372, -0.592762, -0.0370286, 0.747914, 0.041865, -0.302982, -0.310865, 0.656637)
+transform = Transform3D(0.591697, 0.0549077, -0.45758, -0.459373, 0.0104374, -0.592763, -0.0370284, 0.747915, 0.0418651, -0.302982, -0.310865, 0.656637)
 
 [node name="Magazine" parent="soldier/Armature/Skeleton3D/Magazine" index="0"]
 material_override = SubResource("ShaderMaterial_qimvr")
@@ -789,7 +790,7 @@ material_override = SubResource("ShaderMaterial_1os0v")
 material_override = SubResource("ShaderMaterial_2r8ip")
 
 [node name="BoneAttachment3D" type="BoneAttachment3D" parent="soldier/Armature/Skeleton3D" index="8"]
-transform = Transform3D(0.385807, -0.222772, -0.895279, 0.0453953, 0.973818, -0.222752, 0.921462, 0.0452981, 0.385819, 7.40376e-09, 0.213437, 0.333155)
+transform = Transform3D(5.75729e-08, -1.54295e-08, -1, 5.13494e-05, 1, 0, 1, -5.12898e-05, 5.96046e-08, 7.40376e-09, 0.213437, 0.333155)
 bone_name = "Head"
 bone_idx = 3
 
@@ -845,32 +846,5 @@ libraries = {
 [node name="AnimationTree" type="AnimationTree" parent="."]
 tree_root = SubResource("AnimationNodeStateMachine_lecy0")
 anim_player = NodePath("../AnimationPlayer")
-parameters/current_length = 1.5
-parameters/current_position = 0.221712
-parameters/current_delta = 0.016562
-parameters/End/current_length = null
-parameters/End/current_position = null
-parameters/End/current_delta = null
-parameters/Start/current_length = 0.0
-parameters/Start/current_position = 0.0
-parameters/Start/current_delta = 0.0
-parameters/ambush/current_length = 1.0
-parameters/ambush/current_position = 1.0
-parameters/ambush/current_delta = 0.0276983
-parameters/attacking/current_length = 0.55
-parameters/attacking/current_position = 0.55
-parameters/attacking/current_delta = 0.0166667
-parameters/dead/current_length = 1.0
-parameters/dead/current_position = 1.0
-parameters/dead/current_delta = 0.0
-parameters/flinching/current_length = 1.0
-parameters/flinching/current_position = 1.0
-parameters/flinching/current_delta = 0.0
-parameters/idle/current_length = 1.5
-parameters/idle/current_position = 0.221712
-parameters/idle/current_delta = 0.016562
-parameters/moving/current_length = 1.0
-parameters/moving/current_position = 0.565755
-parameters/moving/current_delta = 0.0166667
 
 [editable path="soldier"]

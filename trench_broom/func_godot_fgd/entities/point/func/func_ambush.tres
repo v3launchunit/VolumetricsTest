@@ -23,7 +23,8 @@ class_properties = {
 "sleeping lizard": "eepy_lizard",
 "soldier": "soldier"
 },
-"group": "none"
+"group": "none",
+"turret_mode": false
 }
 class_property_descriptions = {
 "ambusher": ["The enemy to be spawned.", "pinkerton"],

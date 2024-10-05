@@ -1,4 +1,4 @@
-[gd_scene load_steps=146 format=4 uid="uid://ddybwy4hdo2q3"]
+[gd_scene load_steps=149 format=4 uid="uid://ddybwy4hdo2q3"]
 
 [ext_resource type="Script" path="res://levels/level.gd" id="1_lifds"]
 [ext_resource type="PackedScene" uid="uid://do61x5km3wthk" path="res://entities/player/player.tscn" id="1_npqeh"]
@@ -879,6 +879,20 @@ shader_parameter/rainbow = SubResource("GradientTexture1D_0a1a2")
 
 [sub_resource type="BoxMesh" id="BoxMesh_h44b6"]
 
+[sub_resource type="Gradient" id="Gradient_cismr"]
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_2pwd8"]
+gradient = SubResource("Gradient_cismr")
+width = 6
+height = 8
+fill = 2
+fill_to = Vector2(1, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_yeiyk"]
+shading_mode = 0
+albedo_texture = SubResource("GradientTexture2D_2pwd8")
+texture_filter = 0
+
 [node name="Node3D" type="Node3D"]
 script = ExtResource("1_lifds")
 level_name = "TEST LEVEL"
@@ -943,6 +957,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, -0.25, 0)
 shape = SubResource("BoxShape3D_ys4py")
 
 [node name="StreetLamp" parent="ParticleCollider/NavMesh" instance=ExtResource("25_wbmk3")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 4, -0.5, 7.5)
 
 [node name="Things" type="Node3D" parent="."]
 
@@ -1322,6 +1337,11 @@ transform = Transform3D(1, 0, 1.74846e-07, 0, 1, 0, -1.74846e-07, 0, 1, 12.5, 2,
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 4)
 material_override = SubResource("ShaderMaterial_xufc5")
+mesh = SubResource("BoxMesh_h44b6")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 1, 4)
+material_override = SubResource("StandardMaterial3D_yeiyk")
 mesh = SubResource("BoxMesh_h44b6")
 
 [editable path="Things/Teleporter"]
