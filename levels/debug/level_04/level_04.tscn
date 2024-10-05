@@ -1,7 +1,7 @@
 [gd_scene load_steps=191 format=3 uid="uid://qvrf467m8cbk"]
 
 [ext_resource type="Script" path="res://addons/qodot/src/nodes/qodot_map.gd" id="1_022ku"]
-[ext_resource type="Resource" uid="uid://c36hv0o6g0udo" path="res://addons/qodot/game_definitions/fgd/qodot_fgd.tres" id="2_w1axf"]
+[ext_resource type="Resource" path="res://addons/qodot/game_definitions/fgd/qodot_fgd.tres" id="2_w1axf"]
 [ext_resource type="Material" uid="uid://dqemvrb4pcd2g" path="res://textures/structural/concrete.tres" id="3_pn8w5"]
 [ext_resource type="CompressedTexture3D" uid="uid://bnn05cebaylt7" path="res://levels/debug/level_04/level_04.GPUParticlesCollisionSDF3D_data.exr" id="4_phtrn"]
 [ext_resource type="Texture2D" uid="uid://b3bq3t6i16h1a" path="res://textures/terrain/custom_hand/concrete/concrete_albedo.png" id="8_oqe2p"]
@@ -20,7 +20,7 @@
 [ext_resource type="Material" uid="uid://c6o23twmkg77m" path="res://textures/key_metal_green.tres" id="15_twj34"]
 [ext_resource type="Material" uid="uid://dh6h4bfv6pod2" path="res://textures/key_metal_blue.tres" id="16_vwpau"]
 [ext_resource type="PackedScene" uid="uid://dxyhvyy821swt" path="res://pickups/weapons/hunting_rifle_pickup.tscn" id="17_r5nr2"]
-[ext_resource type="Script" path="res://trench_broom/qodot_fgd/entity_defs/brush/interactable/brush_door.gd" id="17_wh8jn"]
+[ext_resource type="Script" path="res://trench_broom/func_godot_fgd/entities/solid/brush_door.gd" id="17_wh8jn"]
 [ext_resource type="PackedScene" uid="uid://cbo6wxdi4eryp" path="res://entities/enemies/military/pinkerton/pinkerton.tscn" id="18_2pyi6"]
 [ext_resource type="PackedScene" uid="uid://bybrfm1881qnv" path="res://scenes/objects/lights/hanging_lamp.tscn" id="18_4t3np"]
 [ext_resource type="Material" uid="uid://qt3bjecsm0qb" path="res://textures/shutter_door.tres" id="18_t6qjl"]

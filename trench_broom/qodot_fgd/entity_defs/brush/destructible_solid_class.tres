@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="QodotFGDSolidClass" load_steps=3 format=3 uid="uid://dg1cf7dvcvmmd"]
 
 [ext_resource type="Script" path="res://addons/qodot/src/resources/game-definitions/fgd/qodot_fgd_solid_class.gd" id="1_7x68b"]
-[ext_resource type="Script" path="res://trench_broom/qodot_fgd/entity_defs/brush/brush_status.gd" id="2_o365u"]
+[ext_resource type="Script" path="res://trench_broom/func_godot_fgd/entities/solid/brush_status.gd" id="2_o365u"]
 
 [resource]
 script = ExtResource("1_7x68b")

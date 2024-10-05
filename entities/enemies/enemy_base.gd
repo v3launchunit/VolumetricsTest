@@ -587,7 +587,7 @@ func check_attack_readiness() -> bool:
 
 
 func can_see_target() -> bool:
-	if current_targets.is_empty() or current_targets[-1] == null:
+	if not is_inside_tree() or current_targets.is_empty() or current_targets[-1] == null:
 		return false
 	var space_state = get_world_3d().direct_space_state
 	var query := PhysicsRayQueryParameters3D.create(

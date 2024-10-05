@@ -16,11 +16,11 @@
 [ext_resource type="PackedScene" uid="uid://dmgxmmtshe4dh" path="res://entities/enemies/locals/eyeball/eyeball.tscn" id="10_6eny4"]
 [ext_resource type="Material" uid="uid://bpiuncp6wk4t2" path="res://textures/key_metal_red.tres" id="13_kqms1"]
 [ext_resource type="PackedScene" uid="uid://d62xcu27rha1" path="res://pickups/keys/keys/key_red_pickup.tscn" id="14_n8kha"]
-[ext_resource type="Script" path="res://trench_broom/qodot_fgd/entity_defs/brush/area/area_hazard.gd" id="15_1b1ph"]
+[ext_resource type="Script" path="res://trench_broom/func_godot_fgd/entities/solid/area/area_hazard.gd" id="15_1b1ph"]
 [ext_resource type="Material" uid="uid://qt3bjecsm0qb" path="res://textures/shutter_door.tres" id="15_x00tt"]
 [ext_resource type="PackedScene" uid="uid://bowd2xtj7q4vd" path="res://scenes/objects/lights/lamp_tb.tscn" id="16_rnlh5"]
 [ext_resource type="Material" uid="uid://t1hv3tspvh88" path="res://textures/furnishings/planks.tres" id="17_55n51"]
-[ext_resource type="Script" path="res://trench_broom/qodot_fgd/entity_defs/brush/interactable/brush_door.gd" id="18_wbqd5"]
+[ext_resource type="Script" path="res://trench_broom/func_godot_fgd/entities/solid/brush_door.gd" id="18_wbqd5"]
 [ext_resource type="Material" uid="uid://cxyb8wsuh6ejk" path="res://textures/natural/log.tres" id="18_wrbnd"]
 [ext_resource type="PackedScene" uid="uid://du780rqis8eqo" path="res://pickups/weapons/boomstick_pickup.tscn" id="20_rt7gr"]
 
