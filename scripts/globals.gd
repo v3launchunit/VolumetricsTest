@@ -205,7 +205,8 @@ func _setup_user() -> void:
 
 
 func update_resolution() -> void:
-	s_resolution
+	#s_resolution
+	pass
 
 
 ## Save the current configuration settings to disq.
@@ -252,7 +253,7 @@ func save_game(to: String) -> void:
 		(world as Level).loaded_from_savegame = true
 	for node: Node in get_all_children(world):
 		if node.has_method("pre_save"):
-			node.pre_save
+			node.pre_save()
 			await node.ready_to_save
 		node.owner = world
 	scene.pack(world)
@@ -294,17 +295,17 @@ func get_level_path(level_key: String) -> String:
 # 0 = hidden
 # 1 = revealed
 # 2 = cleared
-func level_revealed(name: String) -> bool:
-	return persistent.get_value("progress", "%s_status" % name, 0) > 0
+func level_revealed(level_name: String) -> bool:
+	return persistent.get_value("progress", "%s_status" % level_name, 0) > 0
 
 
-func level_cleared(name: String) -> bool:
-	return persistent.get_value("progress", "%s_status" % name, 0) > 1
+func level_cleared(level_name: String) -> bool:
+	return persistent.get_value("progress", "%s_status" % level_name, 0) > 1
 
 
-func get_lut(name: String) -> ImageTexture3D:
+func get_lut(lut_name: String) -> ImageTexture3D:
 	var img := ImageTexture3D.new()
-	var lut_path: String = names.get_value("Palettes", name, "user palette")
+	var lut_path: String = names.get_value("Palettes", lut_name, "user palette")
 	if (lut_path == "user palette"):
 		lut_path = "user://palettes/%s" % [name]
 	img.create(Image.FORMAT_RGB8, 64, 64, 64, false, [load(lut_path)])

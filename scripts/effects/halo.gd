@@ -36,15 +36,13 @@ func _process(_delta: float) -> void:
 func _physics_process(delta: float) -> void:
 	color.a = move_toward(color.a, 0.0 if was_hit else 1.0, delta * fade_out_speed)
 
-	if not is_inside_tree():
-		return
-
 	if player_cam == null: #or not visible:
 		player_cam = get_tree().get_first_node_in_group("player_cam")
 		return
 
 	if not (
-			is_visible_in_tree()
+			player_cam.is_inside_tree()
+			and is_visible_in_tree()
 			and randf() < Globals.C_FLARE_RE_EVAL_CHANCE
 			and player_cam.global_position.distance_squared_to(cam_old_pos)
 					> Globals.C_FLARE_RE_EVAL_DISTANCE_SQUARED
