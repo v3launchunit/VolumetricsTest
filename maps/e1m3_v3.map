@@ -7397,7 +7397,7 @@
 {
 ( -1056 -880 256 ) ( -1056 -879 256 ) ( -1056 -880 257 ) special/trigger [ 0 -1 0 0 ] [ 0 0 -1 0 ] 0 1 1
 ( -1088 -896 256 ) ( -1088 -896 257 ) ( -1087 -896 256 ) special/trigger [ 1 0 0 0 ] [ 0 0 -1 0 ] 0 1 1
-( -1088 -880 232 ) ( -1087 -880 232 ) ( -1088 -879 232 ) special/trigger [ -1 0 0 0 ] [ 0 -1 0 0 ] 0 1 1
+( -1088 -880 184 ) ( -1087 -880 184 ) ( -1088 -879 184 ) special/trigger [ -1 0 0 0 ] [ 0 -1 0 0 ] 0 1 1
 ( -544 -576 560 ) ( -544 -575 560 ) ( -543 -576 560 ) special/trigger [ 1 0 0 0 ] [ 0 -1 0 0 ] 0 1 1
 ( -544 -504 272 ) ( -543 -504 272 ) ( -544 -504 273 ) special/trigger [ -1 0 0 0 ] [ 0 0 -1 0 ] 0 1 1
 ( 160 -576 272 ) ( 160 -576 273 ) ( 160 -575 272 ) special/trigger [ 0 1 0 0 ] [ 0 0 -1 0 ] 0 1 1
@@ -7576,4 +7576,19 @@
 "origin_offset" "0 -4 0"
 "_tb_textures" "textures;textures\furnishings;textures\liquids;textures\machines;textures\machines\vent_panel;textures\metallic;textures\natural;textures\pathways;textures\special;textures\structural"
 "_tb_layer" "23"
+}
+// entity 400
+{
+"classname" "area_ref_probe_solid"
+"interior" "0"
+"_tb_layer" "23"
+// brush 0
+{
+( -336 -728 576 ) ( -336 -727 576 ) ( -336 -728 577 ) special/trigger [ 0 -1 0 -32 ] [ 0 0 -1 0 ] 0 1 1
+( -120 -896 576 ) ( -120 -896 577 ) ( -119 -896 576 ) special/trigger [ 1 0 0 8 ] [ 0 0 -1 0 ] 0 1 1
+( -120 -728 224 ) ( -119 -728 224 ) ( -120 -727 224 ) special/trigger [ -1 0 0 -8 ] [ 0 -1 0 0 ] 0 1 1
+( 32 -504 632 ) ( 32 -503 632 ) ( 33 -504 632 ) special/trigger [ 1 0 0 8 ] [ 0 -1 0 0 ] 0 1 1
+( 32 -464 584 ) ( 33 -464 584 ) ( 32 -464 585 ) special/trigger [ -1 0 0 -8 ] [ 0 0 -1 0 ] 0 1 1
+( 160 -504 584 ) ( 160 -504 585 ) ( 160 -503 584 ) special/trigger [ 0 1 0 32 ] [ 0 0 -1 0 ] 0 1 1
+}
 }

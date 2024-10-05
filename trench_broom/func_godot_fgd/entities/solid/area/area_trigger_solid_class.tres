@@ -1,10 +1,10 @@
 [gd_resource type="Resource" script_class="FuncGodotFGDSolidClass" load_steps=3 format=3 uid="uid://ddib2usij3ho0"]
 
-[ext_resource type="Script" path="res://addons/func_godot/src/fgd/func_godot_fgd_solid_class.gd" id="1_7jdri"]
-[ext_resource type="Script" path="res://trench_broom/qodot_fgd/entity_defs/brush/area/area_trigger.gd" id="2_gegxy"]
+[ext_resource type="Script" path="res://addons/func_godot/src/fgd/func_godot_fgd_solid_class.gd" id="1_1115f"]
+[ext_resource type="Script" path="res://trench_broom/func_godot_fgd/entities/solid/area/area_trigger.gd" id="2_mvjc1"]
 
 [resource]
-script = ExtResource("1_7jdri")
+script = ExtResource("1_1115f")
 spawn_type = 2
 origin_type = 0
 build_visuals = false
@@ -17,7 +17,7 @@ collision_layer = 1
 collision_mask = 2
 collision_priority = 1.0
 collision_shape_margin = 0.04
-script_class = ExtResource("2_gegxy")
+script_class = ExtResource("2_mvjc1")
 classname = "area_trigger"
 description = ""
 func_godot_internal = false

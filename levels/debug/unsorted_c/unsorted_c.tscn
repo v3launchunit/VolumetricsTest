@@ -2,10 +2,10 @@
 
 [ext_resource type="PackedScene" uid="uid://do61x5km3wthk" path="res://entities/player/player.tscn" id="1_cg1xy"]
 [ext_resource type="Script" path="res://addons/qodot/src/nodes/qodot_map.gd" id="2_f16ev"]
-[ext_resource type="Resource" uid="uid://c36hv0o6g0udo" path="res://addons/qodot/game_definitions/fgd/qodot_fgd.tres" id="3_5t2et"]
+[ext_resource type="Resource" path="res://addons/qodot/game_definitions/fgd/qodot_fgd.tres" id="3_5t2et"]
 [ext_resource type="Material" uid="uid://cb4c2yxg51cwb" path="res://textures/natural/rock.tres" id="5_2uy8s"]
 [ext_resource type="Material" uid="uid://dqemvrb4pcd2g" path="res://textures/structural/concrete.tres" id="6_05d4r"]
-[ext_resource type="Script" path="res://trench_broom/qodot_fgd/entity_defs/brush/area/area_hazard.gd" id="6_k40fn"]
+[ext_resource type="Script" path="res://trench_broom/func_godot_fgd/entities/solid/area/area_hazard.gd" id="6_k40fn"]
 [ext_resource type="Material" uid="uid://j3w61nhxr063" path="res://textures/structural/metal.tres" id="7_pw0s6"]
 [ext_resource type="Material" uid="uid://chme8kijd3qpu" path="res://textures/liquids/lava.tres" id="7_qvk7y"]
 [ext_resource type="PackedScene" uid="uid://jwblxog7c1kl" path="res://scenes/objects/lights/torch_tb.tscn" id="8_3lb2c"]

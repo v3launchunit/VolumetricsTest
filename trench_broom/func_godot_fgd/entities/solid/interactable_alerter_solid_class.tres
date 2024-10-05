@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="FuncGodotFGDSolidClass" load_steps=3 format=3 uid="uid://cyfy35vmi57t1"]
 
 [ext_resource type="Script" path="res://addons/func_godot/src/fgd/func_godot_fgd_solid_class.gd" id="1_irla7"]
-[ext_resource type="Script" path="res://trench_broom/qodot_fgd/entity_defs/brush/interactable/alerter.gd" id="2_mq2ae"]
+[ext_resource type="Script" path="res://trench_broom/func_godot_fgd/entities/solid/alerter.gd" id="2_mq2ae"]
 
 [resource]
 script = ExtResource("1_irla7")
