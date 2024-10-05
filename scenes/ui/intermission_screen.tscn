@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://redbealnw6dv"]
+[gd_scene load_steps=7 format=3 uid="uid://redbealnw6dv"]
 
 [ext_resource type="Theme" uid="uid://dwof7m2ye3tjh" path="res://scenes/ui/default_theme.tres" id="1_8b1d4"]
 [ext_resource type="Script" path="res://scenes/ui/intermission_screen.gd" id="1_j6yne"]
 [ext_resource type="Script" path="res://levels/level.gd" id="3_a1xq5"]
+[ext_resource type="AudioStream" uid="uid://cfhhlt7csg7u7" path="res://audio/streams/weapons/firing/shotgun_fire.wav" id="4_ugqxr"]
 
 [sub_resource type="Gradient" id="Gradient_v0l2t"]
 
@@ -11,13 +12,19 @@ gradient = SubResource("Gradient_v0l2t")
 
 [node name="Level" type="Node3D"]
 script = ExtResource("3_a1xq5")
+level_key = "e0m0"
 
 [node name="IntermissionScreen" type="Control" parent="."]
 layout_mode = 3
-anchors_preset = 0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 script = ExtResource("1_j6yne")
 
 [node name="TextureRect" type="TextureRect" parent="IntermissionScreen"]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -53,3 +60,6 @@ text = "KILLS: 29/36"
 [node name="Label3" type="Label" parent="IntermissionScreen/VBoxContainer"]
 layout_mode = 2
 text = "SECRETS: 2/4"
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer" parent="IntermissionScreen"]
+stream = ExtResource("4_ugqxr")
