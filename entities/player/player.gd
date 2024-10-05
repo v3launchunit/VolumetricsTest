@@ -149,7 +149,7 @@ func _process(_delta) -> void:
 
 	if Input.is_action_just_pressed("quick_restart"):
 		#get_tree().reload_current_scene()
-		Globals.open_level_from_key((get_tree().current_scene as Level).level_id)
+		Globals.open_level_from_key((get_tree().current_scene as Level).level_key)
 
 	if Input.is_action_just_pressed("quick_save"):
 		Globals.save_game(Globals.C_QUICKSAVE_PATH)
