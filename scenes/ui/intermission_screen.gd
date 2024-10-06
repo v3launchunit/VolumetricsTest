@@ -30,6 +30,7 @@ var tally_lock: bool = false
 @onready var time_label := find_child("Label") as Label
 @onready var kills_label := find_child("Label2") as Label
 @onready var secrets_label := find_child("Label3") as Label
+@onready var stream_player := $AudioStreamPlayer3D as AudioStreamPlayer
 
 
 # Called when the node enters the scene tree for the first time.
@@ -63,6 +64,7 @@ func _physics_process(delta: float) -> void:
 			})
 			if is_equal_approx(time_tally, _time) or Input.is_action_just_pressed("weapon_fire_main"):
 				tally_phase = TallyPhase.KILLS
+				stream_player.play()
 		TallyPhase.KILLS:
 			foes_tally = Globals.intstep(foes_tally, _foes)
 			kills_tally = Globals.intstep(kills_tally, _kills)
@@ -73,6 +75,7 @@ func _physics_process(delta: float) -> void:
 			})
 			if (foes_tally == _foes and kills_tally == _kills) or Input.is_action_just_pressed("weapon_fire_main"):
 				tally_phase = TallyPhase.SECRETS
+				stream_player.play()
 		TallyPhase.SECRETS:
 			secrets_tally = Globals.intstep(secrets_tally, _secrets)
 			found_secrets_tally = Globals.intstep(found_secrets_tally, _found_secrets)
@@ -83,6 +86,7 @@ func _physics_process(delta: float) -> void:
 			})
 			if (secrets_tally == _secrets and found_secrets_tally == _found_secrets) or Input.is_action_just_pressed("weapon_fire_main"):
 				tally_phase = TallyPhase.DONE
+				stream_player.play()
 		TallyPhase.DONE:
 			if Input.is_action_just_pressed("weapon_fire_main"):
 				Globals.open_level_from_key(_next_level)
