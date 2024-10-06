@@ -1,0 +1,62 @@
+[gd_scene load_steps=3 format=3 uid="uid://dmiwibswbh0cn"]
+
+[ext_resource type="Theme" uid="uid://dwof7m2ye3tjh" path="res://ui/default_theme.tres" id="1_cxdvy"]
+[ext_resource type="Script" path="res://ui/menus/gameplay_sub_menu.gd" id="2_lu5u0"]
+
+[node name="Gameplay" type="VBoxContainer"]
+offset_right = 162.0
+offset_bottom = 68.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = ExtResource("1_cxdvy")
+script = ExtResource("2_lu5u0")
+
+[node name="Difficulty" type="Control" parent="."]
+custom_minimum_size = Vector2(0, 68)
+layout_mode = 2
+theme = ExtResource("1_cxdvy")
+
+[node name="Label" type="Label" parent="Difficulty"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_right = -4.0
+offset_bottom = 26.0
+grow_horizontal = 2
+theme = ExtResource("1_cxdvy")
+text = "Crosshair Size"
+horizontal_alignment = 1
+uppercase = true
+
+[node name="DifficultySlider" type="HSlider" parent="Difficulty"]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -8.0
+offset_right = -4.0
+offset_bottom = 8.0
+grow_horizontal = 2
+grow_vertical = 2
+tooltip_text = "Self-explanatory."
+theme = ExtResource("1_cxdvy")
+max_value = 2.0
+value = 1.0
+
+[node name="DifficultyLabel" type="Label" parent="Difficulty"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -26.0
+offset_right = -4.0
+grow_horizontal = 2
+grow_vertical = 0
+theme = ExtResource("1_cxdvy")
+text = "1x"
+horizontal_alignment = 1
+uppercase = true
+
+[connection signal="value_changed" from="Difficulty/DifficultySlider" to="." method="_on_difficulty_slider_value_changed"]

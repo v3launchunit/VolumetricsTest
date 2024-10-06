@@ -1,0 +1,268 @@
+[gd_scene load_steps=11 format=3 uid="uid://ccwu3rknnn1jt"]
+
+[ext_resource type="Theme" uid="uid://dwof7m2ye3tjh" path="res://ui/default_theme.tres" id="1_j7o5h"]
+[ext_resource type="Script" path="res://ui/menus/settings_menu.gd" id="2_bebmm"]
+[ext_resource type="Texture2D" uid="uid://cmq3arf61ax4f" path="res://ui/menu_panel.png" id="3_0p6n8"]
+[ext_resource type="PackedScene" uid="uid://dw3bo3v1dv272" path="res://ui/menus/settings/video_settings.tscn" id="4_o7c2t"]
+[ext_resource type="PackedScene" uid="uid://1shniliqahvt" path="res://ui/menus/settings/audio_settings.tscn" id="5_jiu8m"]
+[ext_resource type="PackedScene" uid="uid://dmiwibswbh0cn" path="res://ui/menus/settings/gameplay_settings.tscn" id="6_q7uba"]
+[ext_resource type="PackedScene" uid="uid://cyp2xgq62bqii" path="res://ui/menus/settings/input_settings.tscn" id="7_c282q"]
+[ext_resource type="PackedScene" uid="uid://dqmlqgy6n1rqr" path="res://ui/menus/settings/accessibility_settings.tscn" id="8_e5s2f"]
+[ext_resource type="PackedScene" uid="uid://nmopn1tomg0w" path="res://ui/menus/settings/misc_settings.tscn" id="9_nyk5b"]
+
+[sub_resource type="ButtonGroup" id="ButtonGroup_tnolh"]
+
+[node name="Settings" type="Control"]
+process_mode = 4
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_j7o5h")
+script = ExtResource("2_bebmm")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_j7o5h")
+color = Color(0, 0, 0, 0.501961)
+
+[node name="MenuPanel" type="NinePatchRect" parent="."]
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_right = 154.0
+grow_vertical = 2
+theme = ExtResource("1_j7o5h")
+texture = ExtResource("3_0p6n8")
+patch_margin_left = 4
+patch_margin_top = 16
+patch_margin_right = 4
+patch_margin_bottom = 8
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_left = 8.0
+offset_top = 18.0
+offset_right = 130.0
+offset_bottom = -10.0
+grow_vertical = 2
+theme = ExtResource("1_j7o5h")
+
+[node name="Video" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+focus_neighbor_left = NodePath("../Back")
+focus_neighbor_top = NodePath("../Back")
+focus_neighbor_right = NodePath("../Audio")
+focus_previous = NodePath("../Back")
+theme = ExtResource("1_j7o5h")
+toggle_mode = true
+button_pressed = true
+keep_pressed_outside = true
+button_group = SubResource("ButtonGroup_tnolh")
+text = "VIDEO"
+
+[node name="Audio" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+focus_neighbor_left = NodePath("../Video")
+focus_neighbor_right = NodePath("../Gameplay")
+theme = ExtResource("1_j7o5h")
+toggle_mode = true
+keep_pressed_outside = true
+button_group = SubResource("ButtonGroup_tnolh")
+text = "AUDIO"
+
+[node name="Gameplay" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+focus_neighbor_left = NodePath("../Audio")
+focus_neighbor_right = NodePath("../Other")
+theme = ExtResource("1_j7o5h")
+toggle_mode = true
+keep_pressed_outside = true
+button_group = SubResource("ButtonGroup_tnolh")
+text = "GAMEPLAY	"
+
+[node name="Input" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+focus_neighbor_left = NodePath("../Audio")
+focus_neighbor_right = NodePath("../Other")
+theme = ExtResource("1_j7o5h")
+disabled = true
+toggle_mode = true
+keep_pressed_outside = true
+button_group = SubResource("ButtonGroup_tnolh")
+text = "INPUT"
+
+[node name="Accessibility" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+focus_neighbor_left = NodePath("../Gameplay")
+focus_neighbor_right = NodePath("../Back")
+focus_next = NodePath("../Back")
+theme = ExtResource("1_j7o5h")
+disabled = true
+toggle_mode = true
+keep_pressed_outside = true
+button_group = SubResource("ButtonGroup_tnolh")
+text = "ACCESSIBILITY"
+
+[node name="Other" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+focus_neighbor_left = NodePath("../Gameplay")
+focus_neighbor_right = NodePath("../Back")
+focus_next = NodePath("../Back")
+theme = ExtResource("1_j7o5h")
+disabled = true
+toggle_mode = true
+keep_pressed_outside = true
+button_group = SubResource("ButtonGroup_tnolh")
+text = "OTHER"
+
+[node name="Back" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 10
+focus_neighbor_left = NodePath("../Other")
+focus_neighbor_top = NodePath("../Other")
+focus_neighbor_right = NodePath("../Video")
+focus_neighbor_bottom = NodePath("../Video")
+focus_next = NodePath("../Video")
+focus_previous = NodePath("../Other")
+theme = ExtResource("1_j7o5h")
+keep_pressed_outside = true
+text = "BACK"
+
+[node name="SettingsPanel" type="NinePatchRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 170.0
+offset_top = 16.0
+offset_right = -16.0
+offset_bottom = -16.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_j7o5h")
+texture = ExtResource("3_0p6n8")
+patch_margin_left = 4
+patch_margin_top = 16
+patch_margin_right = 4
+patch_margin_bottom = 8
+
+[node name="VideoScroll" type="ScrollContainer" parent="SettingsPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 16.0
+offset_top = 24.0
+offset_right = -16.0
+offset_bottom = -16.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_j7o5h")
+follow_focus = true
+vertical_scroll_mode = 2
+
+[node name="Video" parent="SettingsPanel/VideoScroll" instance=ExtResource("4_o7c2t")]
+layout_mode = 2
+
+[node name="AudioScroll" type="ScrollContainer" parent="SettingsPanel"]
+process_mode = 4
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 16.0
+offset_top = 25.0
+offset_right = -16.0
+offset_bottom = -15.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_j7o5h")
+follow_focus = true
+vertical_scroll_mode = 2
+
+[node name="Audio" parent="SettingsPanel/AudioScroll" instance=ExtResource("5_jiu8m")]
+layout_mode = 2
+
+[node name="GameplayScroll" type="ScrollContainer" parent="SettingsPanel"]
+process_mode = 4
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 16.0
+offset_top = 25.0
+offset_right = -16.0
+offset_bottom = -15.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Gameplay" parent="SettingsPanel/GameplayScroll" instance=ExtResource("6_q7uba")]
+layout_mode = 2
+
+[node name="InputScroll" type="ScrollContainer" parent="SettingsPanel"]
+process_mode = 4
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 16.0
+offset_top = 25.0
+offset_right = -16.0
+offset_bottom = -15.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Input" parent="SettingsPanel/InputScroll" instance=ExtResource("7_c282q")]
+layout_mode = 2
+
+[node name="AccessibilityScroll" type="ScrollContainer" parent="SettingsPanel"]
+process_mode = 4
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 16.0
+offset_top = 25.0
+offset_right = -16.0
+offset_bottom = -15.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Accessibility" parent="SettingsPanel/AccessibilityScroll" instance=ExtResource("8_e5s2f")]
+layout_mode = 2
+
+[node name="OtherScroll" type="ScrollContainer" parent="SettingsPanel"]
+process_mode = 4
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 16.0
+offset_top = 25.0
+offset_right = -16.0
+offset_bottom = -15.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Other" parent="SettingsPanel/OtherScroll" instance=ExtResource("9_nyk5b")]
+layout_mode = 2
+
+[connection signal="pressed" from="VBoxContainer/Video" to="." method="_on_video_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/Audio" to="." method="_on_audio_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/Gameplay" to="." method="_on_gameplay_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/Back" to="." method="_on_back_button_pressed"]

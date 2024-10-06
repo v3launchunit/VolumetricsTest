@@ -37,7 +37,7 @@
 [ext_resource type="PackedScene" uid="uid://bjpo451a0eupa" path="res://weapons/axe/axe.tscn" id="35_uif20"]
 [ext_resource type="PackedScene" uid="uid://bimc4ufk5hicg" path="res://weapons/pump_shotgun/pump_shotgun.tscn" id="36_ytmbf"]
 [ext_resource type="AudioStream" uid="uid://crtqyq64m3wm1" path="res://audio/streams/ambient/bullet_ambient.wav" id="37_0ygxn"]
-[ext_resource type="PackedScene" uid="uid://dh4rwigqkk6va" path="res://scenes/ui/player_hud.tscn" id="37_wd13u"]
+[ext_resource type="PackedScene" uid="uid://dh4rwigqkk6va" path="res://ui/hud/player_hud.tscn" id="37_wd13u"]
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_ww5sc"]
 random_pitch = 1.15

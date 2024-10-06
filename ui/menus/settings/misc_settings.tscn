@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://nmopn1tomg0w"]
+
+[ext_resource type="Theme" uid="uid://dwof7m2ye3tjh" path="res://ui/default_theme.tres" id="1_q3blv"]
+
+[node name="Other" type="VBoxContainer"]
+process_mode = 4
+theme = ExtResource("1_q3blv")
