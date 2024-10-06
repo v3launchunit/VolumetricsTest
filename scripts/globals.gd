@@ -1,14 +1,16 @@
 extends Node
 
-## General scene-independent values and functions.
+## general scene-independent values and functions.
 ##
-## This script is meant to hold various constants, global variables, user
+## this script is meant to hold various constants, global variables, user
 ## settings, etc. It also handles saving and loading user settings to and from
-## the disc and a few other scene-independent things.
+## the disq and a few other scene-independent things.
 
-## Tells scripts to check to see if the game's settings have been changed and
+## tells scripts to check to see if the game's settings have been changed and
 ## to update any values they need to.
 signal settings_changed
+## tells scripts that they need to make sure everything is labeled correctly.
+signal language_changed
 
 
 enum Difficulty {
@@ -334,3 +336,7 @@ func get_all_children(node) -> Array:
 		else:
 			nodes.append(N)
 	return nodes
+
+
+func menu_click() -> bool:
+	return Input.is_action_just_pressed("ui_click") or Input.is_action_just_pressed("interact")

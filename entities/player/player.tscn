@@ -266,6 +266,7 @@ script = ExtResource("26_n4fi1")
 
 [node name="SubViewport" type="SubViewport" parent="Control/SubViewportContainer"]
 handle_input_locally = false
+use_occlusion_culling = true
 use_hdr_2d = true
 canvas_item_default_texture_filter = 0
 audio_listener_enable_3d = true

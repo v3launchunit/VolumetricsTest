@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://entities/player/player_gibs.gd" id="1_05c88"]
 [ext_resource type="Script" path="res://scripts/auto_play.gd" id="1_x8wn6"]
-[ext_resource type="Texture2D" uid="uid://cmq3arf61ax4f" path="res://ui/menu_panel.png" id="2_t0aun"]
+[ext_resource type="Texture2D" uid="uid://cmq3arf61ax4f" path="res://ui/menus/menu_panel.png" id="2_t0aun"]
 [ext_resource type="Script" path="res://entities/player/game_container.gd" id="3_0y2ya"]
 
 [sub_resource type="Animation" id="Animation_5qn3g"]

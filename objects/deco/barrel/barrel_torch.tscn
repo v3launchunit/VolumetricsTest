@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://cfdvyof38yskk"]
+[gd_scene load_steps=25 format=3 uid="uid://cfdvyof38yskk"]
 
 [ext_resource type="Shader" path="res://shaders/spatial/psx_pb_aclip.gdshader" id="1_k2muc"]
 [ext_resource type="Texture2D" uid="uid://bnlohim1orpfo" path="res://objects/deco/barrel/barrel_albedo.png" id="2_mmrrk"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://cu70msbgu2ysm" path="res://scenes/effects/damage/metal_damage_sys.tscn" id="5_fst5o"]
 [ext_resource type="PackedScene" uid="uid://bfctj0w1fkgwy" path="res://scenes/effects/gibs/metal_shards.tscn" id="6_vr42e"]
 [ext_resource type="Shader" path="res://shaders/spatial/psx_ul_add.gdshader" id="7_npgld"]
+[ext_resource type="AudioStream" uid="uid://1tg3qhvaqlgr" path="res://audio/streams/ambient/fire_crackle_ambient.mp3" id="7_yxa82"]
 [ext_resource type="Material" uid="uid://08yqplf2icxd" path="res://effects/halos/fire_halo_mat.tres" id="8_yax0c"]
 [ext_resource type="Script" path="res://scripts/effects/halo.gd" id="9_hmu4g"]
 
@@ -110,6 +111,14 @@ gib_threshold = 0.0
 damage_multipliers = Array[float]([1.0, 1.0, 0.5, 0.0, 1.0])
 damage_sys = ExtResource("5_fst5o")
 gibs = ExtResource("6_vr42e")
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.75, 0)
+stream = ExtResource("7_yxa82")
+unit_size = 32.0
+autoplay = true
+max_distance = 64.0
+doppler_tracking = 2
 
 [node name="TorchSys" type="GPUParticles3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.75, 0)

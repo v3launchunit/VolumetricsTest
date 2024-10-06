@@ -11,6 +11,7 @@ signal menu_closed(menu_layer: int)
 
 
 func _ready() -> void:
+	visible = false
 	await get_tree().process_frame
 	get_parent().move_child(self, -1)
 

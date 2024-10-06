@@ -1,6 +1,7 @@
-[gd_scene load_steps=30 format=3 uid="uid://jwblxog7c1kl"]
+[gd_scene load_steps=31 format=3 uid="uid://jwblxog7c1kl"]
 
 [ext_resource type="Shader" path="res://shaders/spatial/psx_ul_add.gdshader" id="1_7j6kq"]
+[ext_resource type="AudioStream" uid="uid://1tg3qhvaqlgr" path="res://audio/streams/ambient/fire_crackle_ambient.mp3" id="1_mtuin"]
 [ext_resource type="Material" uid="uid://08yqplf2icxd" path="res://effects/halos/fire_halo_mat.tres" id="2_2j8qu"]
 [ext_resource type="Script" path="res://scripts/effects/halo.gd" id="3_h235a"]
 
@@ -228,6 +229,14 @@ layers = 8
 material_override = SubResource("ShaderMaterial_wigho")
 mesh = SubResource("CylinderMesh_3s1hl")
 script = SubResource("GDScript_ognxc")
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="Torch"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.375, 0)
+stream = ExtResource("1_mtuin")
+unit_size = 32.0
+autoplay = true
+max_distance = 64.0
+doppler_tracking = 2
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Torch"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.375, 0)

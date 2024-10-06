@@ -9,7 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://bf3n3tgu6akfw" path="res://ui/hud/weapon_frames_atlas.png" id="6_xihl4"]
 [ext_resource type="PackedScene" uid="uid://dv0a4feruvg2r" path="res://ui/hud/event.tscn" id="8_8bnt1"]
 [ext_resource type="Shader" path="res://shaders/canvas/post_process/distortions.gdshader" id="9_10rx0"]
-[ext_resource type="Script" path="res://ui/statistics.gd" id="10_pfwyh"]
+[ext_resource type="Script" path="res://ui/hud/statistics.gd" id="10_pfwyh"]
 [ext_resource type="Theme" uid="uid://dwof7m2ye3tjh" path="res://ui/default_theme.tres" id="10_y0l7u"]
 
 [sub_resource type="AudioStreamMP3" id="AudioStreamMP3_s0t0b"]

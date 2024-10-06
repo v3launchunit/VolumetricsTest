@@ -2,7 +2,7 @@
 
 [ext_resource type="Theme" uid="uid://dwof7m2ye3tjh" path="res://ui/default_theme.tres" id="1_4kk41"]
 [ext_resource type="Script" path="res://ui/menus/game_menu.gd" id="1_fh5b1"]
-[ext_resource type="Texture2D" uid="uid://cmq3arf61ax4f" path="res://ui/menu_panel.png" id="1_yt0u8"]
+[ext_resource type="Texture2D" uid="uid://cmq3arf61ax4f" path="res://ui/menus/menu_panel.png" id="1_yt0u8"]
 [ext_resource type="PackedScene" uid="uid://ccwu3rknnn1jt" path="res://ui/menus/settings/settings_menu.tscn" id="4_l61q4"]
 [ext_resource type="Texture2D" uid="uid://bn5awurm538ar" path="res://ui/x.png" id="4_snd5f"]
 [ext_resource type="PackedScene" uid="uid://c58frru7780pf" path="res://ui/menus/level_select_menu.tscn" id="5_cbdtm"]
@@ -16,7 +16,6 @@ stream_0/stream = ExtResource("6_ts66u")
 
 [node name="Menu" type="Control"]
 process_mode = 3
-visible = false
 top_level = true
 z_index = 1
 texture_filter = 1
