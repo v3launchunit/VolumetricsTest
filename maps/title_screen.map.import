@@ -1,0 +1,14 @@
+[remap]
+
+importer="func_godot.map"
+type="Resource"
+uid="uid://vyy0r7jrchb8"
+path="res://.godot/imported/title_screen.map-be9a086d18803c23dea39af873d30392.tres"
+
+[deps]
+
+source_file="res://maps/title_screen.map"
+dest_files=["res://.godot/imported/title_screen.map-be9a086d18803c23dea39af873d30392.tres"]
+
+[params]
+
