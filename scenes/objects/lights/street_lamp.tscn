@@ -10,7 +10,7 @@
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_laled"]
 render_priority = 0
 shader = ExtResource("3_2msrr")
-shader_parameter/albedo = Color(10, 8.9, 0, 1)
+shader_parameter/albedo = Color(5, 4.45, 0, 1)
 shader_parameter/uv1_scale = null
 shader_parameter/uv1_offset = null
 
