@@ -2,19 +2,19 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://5qwxnaoqm7rj"
-path="res://.godot/imported/pinkerton_pinkerton_metallic-pinkerton_roughness.png-406a9d4efd75bc7e7e76f22e4c3d0067.ctex"
+uid="uid://t4cgx4bcwj0e"
+path="res://.godot/imported/light_shrooms_0.png-14b408a14e519be0c12aaf0afcaa84c3.ctex"
 metadata={
 "vram_texture": false
 }
 generator_parameters={
-"md5": "d208b929c4ab5c5f02a5b5fd40f8d87d"
+"md5": "beaa413d539f7cbc27d842c349bc9437"
 }
 
 [deps]
 
-source_file="res://trench_broom/models/pinkerton_pinkerton_metallic-pinkerton_roughness.png"
-dest_files=["res://.godot/imported/pinkerton_pinkerton_metallic-pinkerton_roughness.png-406a9d4efd75bc7e7e76f22e4c3d0067.ctex"]
+source_file="res://trench_broom/models/light_shrooms_0.png"
+dest_files=["res://.godot/imported/light_shrooms_0.png-14b408a14e519be0c12aaf0afcaa84c3.ctex"]
 
 [params]
 

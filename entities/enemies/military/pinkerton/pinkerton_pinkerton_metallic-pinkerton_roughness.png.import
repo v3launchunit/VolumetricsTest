@@ -2,22 +2,23 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b3tersyq33oxi"
-path.s3tc="res://.godot/imported/pinkerton_pinkerton_metallic-pinkerton_roughness.png-45daa045cfc9d0507f18b57bbb3a97e3.s3tc.ctex"
+uid="uid://cx7nev0bxnlg2"
+path="res://.godot/imported/pinkerton_pinkerton_metallic-pinkerton_roughness.png-45daa045cfc9d0507f18b57bbb3a97e3.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
-"vram_texture": true
+"vram_texture": false
 }
-generator_parameters={}
+generator_parameters={
+"md5": "d208b929c4ab5c5f02a5b5fd40f8d87d"
+}
 
 [deps]
 
 source_file="res://entities/enemies/military/pinkerton/pinkerton_pinkerton_metallic-pinkerton_roughness.png"
-dest_files=["res://.godot/imported/pinkerton_pinkerton_metallic-pinkerton_roughness.png-45daa045cfc9d0507f18b57bbb3a97e3.s3tc.ctex"]
+dest_files=["res://.godot/imported/pinkerton_pinkerton_metallic-pinkerton_roughness.png-45daa045cfc9d0507f18b57bbb3a97e3.ctex"]
 
 [params]
 
-compress/mode=2
+compress/mode=0
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1

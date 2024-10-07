@@ -3,18 +3,18 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://sgwxe7sgcert"
-path="res://.godot/imported/enemy_pinkerton.glb-75a2065c6ebfa78f36a2296cb402a895.scn"
+uid="uid://bqavhdh4hyuk6"
+path="res://.godot/imported/light_shrooms.glb-a10bde04100168411b99f126fe1cafbf.scn"
 
 [deps]
 
-source_file="res://trench_broom/models/enemy_pinkerton.glb"
-dest_files=["res://.godot/imported/enemy_pinkerton.glb-75a2065c6ebfa78f36a2296cb402a895.scn"]
+source_file="res://trench_broom/models/light_shrooms.glb"
+dest_files=["res://.godot/imported/light_shrooms.glb-a10bde04100168411b99f126fe1cafbf.scn"]
 
 [params]
 
-nodes/root_type="Node3D"
-nodes/root_name="Scene Root"
+nodes/root_type=""
+nodes/root_name=""
 nodes/apply_root_scale=true
 nodes/root_scale=1.0
 nodes/import_as_skeleton_bones=false
@@ -32,5 +32,5 @@ animation/remove_immutable_tracks=true
 animation/import_rest_as_RESET=false
 import_script/path=""
 _subresources={}
-gltf/naming_version=0
+gltf/naming_version=1
 gltf/embedded_image_handling=1
