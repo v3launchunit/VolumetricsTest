@@ -16,7 +16,8 @@ const TRASH_LIST : Array[String] = [
 @export var func_godot_properties: Dictionary:
 	set(to):
 		func_godot_properties = to
-		spawn_trash_props()
+		if is_inside_tree():
+			spawn_trash_props()
 
 
 # Called when the node enters the scene tree for the first time.

@@ -14,7 +14,6 @@ sky = SubResource("Sky_udgag")
 glow_blend_mode = 0
 glow_map = ExtResource("2_25ra2")
 volumetric_fog_enabled = true
-volumetric_fog_density = 0.0
 volumetric_fog_ambient_inject = 0.25
 volumetric_fog_temporal_reprojection_enabled = false
 adjustment_color_correction = ExtResource("1_kh168")

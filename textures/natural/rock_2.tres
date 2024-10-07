@@ -1,4 +1,4 @@
-[gd_resource type="StandardMaterial3D" load_steps=5 format=3 uid="uid://d3lpb087os0aa"]
+[gd_resource type="StandardMaterial3D" load_steps=14 format=3 uid="uid://d3lpb087os0aa"]
 
 [sub_resource type="Gradient" id="Gradient_m3psx"]
 offsets = PackedFloat32Array(0, 0.25, 0.625, 0.875)
@@ -15,15 +15,56 @@ seamless = true
 color_ramp = SubResource("Gradient_m3psx")
 noise = SubResource("FastNoiseLite_cnwnd")
 
+[sub_resource type="Gradient" id="Gradient_8esex"]
+colors = PackedColorArray(0.590713, 0.235523, 0.188335, 1, 0.348549, 0.250484, 0.0896366, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_xshwm"]
+noise_type = 2
+seed = 80
+frequency = 0.0545
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_6dia5"]
+seamless = true
+color_ramp = SubResource("Gradient_8esex")
+noise = SubResource("FastNoiseLite_xshwm")
+
+[sub_resource type="Gradient" id="Gradient_if1bu"]
+offsets = PackedFloat32Array(0, 0.5, 1)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1, 1, 1, 1, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_0supx"]
+fractal_type = 2
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_ay178"]
+seamless = true
+color_ramp = SubResource("Gradient_if1bu")
+noise = SubResource("FastNoiseLite_0supx")
+
+[sub_resource type="Gradient" id="Gradient_wsaus"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_0nu0l"]
+seamless = true
+as_normal_map = true
+color_ramp = SubResource("Gradient_wsaus")
+noise = SubResource("FastNoiseLite_xshwm")
+
+[sub_resource type="Gradient" id="Gradient_m6cj4"]
+
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_mg5st"]
 invert = true
 seamless = true
 as_normal_map = true
+color_ramp = SubResource("Gradient_m6cj4")
 noise = SubResource("FastNoiseLite_cnwnd")
 
 [resource]
 albedo_color = Color(0.678431, 0.607843, 0.572549, 1)
 albedo_texture = SubResource("NoiseTexture2D_jb31g")
 normal_enabled = true
+normal_scale = 4.0
 normal_texture = SubResource("NoiseTexture2D_mg5st")
+detail_enabled = true
+detail_mask = SubResource("NoiseTexture2D_ay178")
+detail_albedo = SubResource("NoiseTexture2D_6dia5")
+detail_normal = SubResource("NoiseTexture2D_0nu0l")
 texture_filter = 0
