@@ -1,6 +1,6 @@
 [gd_resource type="ShaderMaterial" load_steps=6 format=3 uid="uid://dlamql2ys57e"]
 
-[ext_resource type="Texture2D" uid="uid://y13cqhpsywi6" path="res://textures/terrain/custom_hand/key_metal/key_metal_normals.png" id="1_y8ia2"]
+[ext_resource type="Texture2D" uid="uid://y13cqhpsywi6" path="res://trench_broom/textures/terrain/custom_hand/key_metal/key_metal_normals.png" id="1_y8ia2"]
 
 [sub_resource type="Shader" id="Shader_moyw2"]
 code = "// NOTE: Shader automatically converted from Godot Engine 4.2.1.stable.mono's StandardMaterial3D.

@@ -1,0 +1,28 @@
+[gd_resource type="ShaderMaterial" load_steps=9 format=3 uid="uid://cid8qh357mtxp"]
+
+[ext_resource type="Shader" path="res://trench_broom/textures/structural/bricks.gdshader" id="1_w20a6"]
+[ext_resource type="Texture2D" uid="uid://dxc0f2c3fmr6r" path="res://trench_broom/textures/_pbr/bricks_stone/bricks_stone_detail_mask.png" id="2_pmtah"]
+[ext_resource type="Texture2D" uid="uid://cqo0bevj86war" path="res://trench_broom/textures/_pbr/bricks_stone/bricks_stone_detail_normals.tres" id="3_fxe7t"]
+[ext_resource type="Texture2D" uid="uid://uev0u0yuvly6" path="res://trench_broom/textures/_pbr/bricks_stone/bricks_stone_detail_lut.png" id="4_u04a4"]
+[ext_resource type="Texture2D" uid="uid://bnjon6ehccyhy" path="res://trench_broom/textures/_pbr/shared/bricks_flux_noise.tres" id="5_lkddc"]
+[ext_resource type="Texture2D" uid="uid://bn0gr0myn4wd6" path="res://trench_broom/textures/_pbr/bricks_stone/bricks_stone_flux_palette.tres" id="6_4lwlq"]
+[ext_resource type="Texture2D" uid="uid://beugdpcgloqjf" path="res://trench_broom/textures/_pbr/bricks_stone/bricks_stone_albedo.png" id="7_lvilg"]
+[ext_resource type="Texture2D" uid="uid://cmjwoxle44io7" path="res://trench_broom/textures/_pbr/bricks_stone/bricks_stone_normals.png" id="8_b412k"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_w20a6")
+shader_parameter/normal_scale = 1.0
+shader_parameter/roughness = 0.75
+shader_parameter/metallic = 0.0
+shader_parameter/uv_base_scale = Vector2(1, 1)
+shader_parameter/uv_tile_scale = Vector2(1, 1)
+shader_parameter/uv_detail_scale = Vector2(0.0625, 0.0625)
+shader_parameter/uv_flux_scale = Vector2(0.0625, 0.0625)
+shader_parameter/tile_albedo = ExtResource("7_lvilg")
+shader_parameter/tile_normals = ExtResource("8_b412k")
+shader_parameter/detail_mask = ExtResource("2_pmtah")
+shader_parameter/detail_normals = ExtResource("3_fxe7t")
+shader_parameter/flux_map = ExtResource("4_u04a4")
+shader_parameter/flux_noise = ExtResource("5_lkddc")
+shader_parameter/flux_palette = ExtResource("6_4lwlq")

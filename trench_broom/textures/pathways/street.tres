@@ -1,0 +1,93 @@
+[gd_resource type="ShaderMaterial" load_steps=7 format=3 uid="uid://boykh807if2ua"]
+
+[ext_resource type="Texture2D" uid="uid://xtpd7e5ubx53" path="res://trench_broom/textures/terrain/custom_hand/street/street_albedo.png" id="1_81vqy"]
+[ext_resource type="Texture2D" uid="uid://jl28mk6e0ui8" path="res://trench_broom/textures/terrain/custom_hand/street/street_detail_mask.png" id="2_1tfwm"]
+[ext_resource type="Texture2D" uid="uid://dem88r7f0n2js" path="res://trench_broom/textures/terrain/custom_hand/street/street_roughness.png" id="3_1c45w"]
+
+[sub_resource type="Shader" id="Shader_6o5rf"]
+code = "// NOTE: Shader automatically converted from Godot Engine 4.2.1.stable.mono's StandardMaterial3D.
+
+shader_type spatial;
+render_mode blend_mix,depth_draw_opaque,cull_back,diffuse_burley,specular_schlick_ggx;
+uniform vec4 albedo : source_color;
+uniform sampler2D texture_albedo : source_color,filter_nearest,repeat_enable;
+uniform float point_size : hint_range(0,128);
+uniform float roughness : hint_range(0,1);
+uniform sampler2D texture_metallic : hint_default_white,filter_nearest,repeat_enable;
+uniform vec4 metallic_texture_channel;
+uniform sampler2D texture_roughness : hint_roughness_r,filter_nearest,repeat_enable;
+uniform float specular;
+uniform float metallic;
+uniform sampler2D texture_detail_albedo : source_color,filter_nearest,repeat_enable;
+uniform sampler2D texture_detail_normal : hint_normal,filter_nearest,repeat_enable;
+uniform sampler2D texture_detail_mask : hint_default_white,filter_nearest,repeat_enable;
+uniform vec3 uv1_scale;
+uniform vec3 uv1_offset;
+uniform vec3 uv2_scale;
+uniform vec3 uv2_offset;
+
+
+void vertex() {
+	UV = UV * uv1_scale.xy + uv1_offset.xy;
+}
+
+
+void fragment() {
+	vec2 base_uv = UV;
+	vec4 albedo_tex = texture(texture_albedo,base_uv);
+	ALBEDO = albedo.rgb * albedo_tex.rgb;
+	float metallic_tex = dot(texture(texture_metallic,base_uv),metallic_texture_channel);
+	METALLIC = metallic_tex * metallic;
+	vec4 roughness_texture_channel = vec4(1.0,0.0,0.0,0.0);
+	float roughness_tex = dot(texture(texture_roughness,base_uv),roughness_texture_channel);
+	ROUGHNESS = roughness_tex * roughness;
+	SPECULAR = specular;
+	vec4 detail_tex = texture(texture_detail_albedo,base_uv);
+	vec4 detail_norm_tex = texture(texture_detail_normal,base_uv);
+	vec4 detail_mask_tex = texture(texture_detail_mask,base_uv);
+	//vec3 detail = mix(ALBEDO.rgb,detail_tex.rgb,detail_tex.a);
+	vec3 detail_norm = mix(NORMAL_MAP,detail_norm_tex.rgb,detail_tex.a);
+	if (detail_mask_tex.r < 0.5) {
+		NORMAL = VIEW;
+	} else {
+		NORMAL_MAP = detail_norm;
+	}
+	//NORMAL_MAP = mix(NORMAL_MAP,detail_norm,detail_mask_tex.r);
+	//ALBEDO.rgb = mix(ALBEDO.rgb,detail,detail_mask_tex.r);
+}
+
+//void light() {
+	//DIFFUSE_LIGHT += clamp(dot(NORMAL, LIGHT), 0.0, 1.0) * ATTENUATION * LIGHT_COLOR;
+	//SPECULAR_LIGHT += -clamp(dot(VIEW, LIGHT), 0.0, 1.0) * ATTENUATION * LIGHT_COLOR * SPECULAR_AMOUNT;
+//}"
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_dmwo8"]
+frequency = 0.025
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_25xhu"]
+width = 256
+height = 256
+generate_mipmaps = false
+seamless = true
+seamless_blend_skirt = 0.225
+as_normal_map = true
+noise = SubResource("FastNoiseLite_dmwo8")
+
+[resource]
+render_priority = 0
+shader = SubResource("Shader_6o5rf")
+shader_parameter/albedo = Color(1, 1, 1, 1)
+shader_parameter/point_size = 1.0
+shader_parameter/roughness = 1.0
+shader_parameter/metallic_texture_channel = null
+shader_parameter/specular = 0.5
+shader_parameter/metallic = 0.0
+shader_parameter/uv1_scale = Vector3(1, 1, 1)
+shader_parameter/uv1_offset = Vector3(0, 0, 0)
+shader_parameter/uv2_scale = Vector3(1, 1, 1)
+shader_parameter/uv2_offset = Vector3(0, 0, 0)
+shader_parameter/texture_albedo = ExtResource("1_81vqy")
+shader_parameter/texture_roughness = ExtResource("3_1c45w")
+shader_parameter/texture_detail_albedo = ExtResource("1_81vqy")
+shader_parameter/texture_detail_normal = SubResource("NoiseTexture2D_25xhu")
+shader_parameter/texture_detail_mask = ExtResource("2_1tfwm")

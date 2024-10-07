@@ -1,0 +1,40 @@
+[gd_resource type="StandardMaterial3D" load_steps=8 format=3 uid="uid://dqemvrb4pcd2g"]
+
+[ext_resource type="Texture2D" uid="uid://b3bq3t6i16h1a" path="res://trench_broom/textures/terrain/custom_hand/concrete/concrete_albedo.png" id="1_pipvf"]
+[ext_resource type="Texture2D" uid="uid://no8yw8052hi2" path="res://trench_broom/textures/terrain/custom_hand/concrete/concrete_detail_mask.png" id="2_8hre6"]
+[ext_resource type="Texture2D" uid="uid://b0on1djjbcq80" path="res://trench_broom/textures/terrain/custom_hand/concrete/concrete_normals.png" id="3_ctixj"]
+
+[sub_resource type="Gradient" id="Gradient_uli5b"]
+offsets = PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.8)
+colors = PackedColorArray(0.65, 0.65, 0.65, 1, 0.7, 0.7, 0.7, 1, 0.75, 0.75, 0.75, 1, 0.8, 0.8, 0.8, 1, 0.85, 0.85, 0.85, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_3c4ji"]
+noise_type = 5
+frequency = 0.05
+cellular_jitter = 0.995
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_b8r0m"]
+width = 256
+height = 256
+generate_mipmaps = false
+color_ramp = SubResource("Gradient_uli5b")
+noise = SubResource("FastNoiseLite_3c4ji")
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_jd1rg"]
+width = 256
+height = 256
+generate_mipmaps = false
+as_normal_map = true
+bump_strength = 2.0
+noise = SubResource("FastNoiseLite_3c4ji")
+
+[resource]
+albedo_texture = ExtResource("1_pipvf")
+roughness = 0.75
+normal_enabled = true
+normal_texture = ExtResource("3_ctixj")
+detail_enabled = true
+detail_mask = ExtResource("2_8hre6")
+detail_albedo = SubResource("NoiseTexture2D_b8r0m")
+detail_normal = SubResource("NoiseTexture2D_jd1rg")
+texture_filter = 0

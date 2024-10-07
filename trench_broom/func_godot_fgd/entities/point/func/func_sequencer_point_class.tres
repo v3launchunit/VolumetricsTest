@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="FuncGodotFGDPointClass" load_steps=3 format=3 uid="uid://c1ihf4ud5kcmg"]
 
 [ext_resource type="Script" path="res://addons/func_godot/src/fgd/func_godot_fgd_point_class.gd" id="1_y86be"]
-[ext_resource type="Script" path="res://trench_broom/qodot_fgd/entity_defs/point/interactable/sequencer.gd" id="2_ca4eb"]
+[ext_resource type="Script" path="res://trench_broom/func_godot_fgd/entities/point/func/sequencer.gd" id="2_ca4eb"]
 
 [resource]
 script = ExtResource("1_y86be")

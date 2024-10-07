@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://d3ii75wqf6hrp"]
 
 [ext_resource type="PackedScene" uid="uid://cm53n4on4fdr6" path="res://entities/enemies/locals/lizard/lizard.tscn" id="1_miugi"]
-[ext_resource type="Material" uid="uid://dav7s60uu67ta" path="res://textures/structural/concrete_smooth.tres" id="2_2gmnq"]
+[ext_resource type="Material" uid="uid://dav7s60uu67ta" path="res://trench_broom/textures/structural/concrete_smooth.tres" id="2_2gmnq"]
 
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_ooeyj"]
 

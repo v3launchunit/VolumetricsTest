@@ -1,6 +1,6 @@
 [gd_resource type="ShaderMaterial" load_steps=12 format=3 uid="uid://u66jm0qyquk8"]
 
-[ext_resource type="Shader" path="res://textures/liquids/fluid.gdshader" id="1_n10a2"]
+[ext_resource type="Shader" path="res://trench_broom/textures/liquids/fluid.gdshader" id="1_n10a2"]
 
 [sub_resource type="Gradient" id="Gradient_cpigb"]
 interpolation_mode = 1

@@ -1,6 +1,6 @@
 [gd_resource type="ShaderMaterial" load_steps=6 format=3 uid="uid://canefyi6qjh54"]
 
-[ext_resource type="Texture2D" uid="uid://dhaakrudfdp5c" path="res://textures/terrain/custom_hand/planks/planks_normals.png" id="1_br4f1"]
+[ext_resource type="Texture2D" uid="uid://dhaakrudfdp5c" path="res://trench_broom/textures/terrain/custom_hand/planks/planks_normals.png" id="1_br4f1"]
 
 [sub_resource type="Shader" id="Shader_hpa2b"]
 code = "// NOTE: Shader automatically converted from Godot Engine 4.2.1.stable.mono's StandardMaterial3D.

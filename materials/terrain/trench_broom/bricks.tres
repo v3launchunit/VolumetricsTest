@@ -1,8 +1,8 @@
 [gd_resource type="ShaderMaterial" load_steps=10 format=3 uid="uid://bdhdwkh72dfij"]
 
-[ext_resource type="Texture2D" uid="uid://dobuk1wr32hlg" path="res://textures/terrain/custom_hand/bricks/bricks_albedo.png" id="1_36lo4"]
-[ext_resource type="Texture2D" uid="uid://ca1runwpb3teo" path="res://textures/terrain/custom_hand/bricks/bricks_detail_mask.png" id="2_s6ecd"]
-[ext_resource type="Texture2D" uid="uid://bcoptj5oh0yex" path="res://textures/terrain/custom_hand/bricks/bricks_normals_32.png" id="4_48pfj"]
+[ext_resource type="Texture2D" uid="uid://dobuk1wr32hlg" path="res://trench_broom/textures/terrain/custom_hand/bricks/bricks_albedo.png" id="1_36lo4"]
+[ext_resource type="Texture2D" uid="uid://ca1runwpb3teo" path="res://trench_broom/textures/terrain/custom_hand/bricks/bricks_detail_mask.png" id="2_s6ecd"]
+[ext_resource type="Texture2D" uid="uid://bcoptj5oh0yex" path="res://trench_broom/textures/terrain/custom_hand/bricks/bricks_normals_32.png" id="4_48pfj"]
 
 [sub_resource type="Shader" id="Shader_hssj5"]
 code = "// NOTE: Shader automatically converted from Godot Engine 4.2.1.stable.mono's StandardMaterial3D.

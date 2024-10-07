@@ -1,7 +1,7 @@
 [gd_scene load_steps=8 format=3 uid="uid://cgot11wwdrtbh"]
 
 [ext_resource type="Script" path="res://scripts/effects/particle_lifetime.gd" id="1_6txdi"]
-[ext_resource type="Material" uid="uid://t1hv3tspvh88" path="res://textures/furnishings/planks.tres" id="1_joejd"]
+[ext_resource type="Material" uid="uid://t1hv3tspvh88" path="res://trench_broom/textures/furnishings/planks.tres" id="1_joejd"]
 
 [sub_resource type="Gradient" id="Gradient_l122e"]
 offsets = PackedFloat32Array(0.5, 1)

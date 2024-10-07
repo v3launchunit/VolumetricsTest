@@ -65,8 +65,7 @@ folder_colors={
 "res://scripts/": "gray",
 "res://shaders/": "gray",
 "res://text/": "blue",
-"res://textures/": "orange",
-"res://trench_broom/": "purple"
+"res://trench_broom/": "orange"
 }
 
 [filesystem]

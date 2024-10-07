@@ -1,9 +1,9 @@
 [gd_resource type="StandardMaterial3D" load_steps=5 format=3 uid="uid://bg7l5lsy3swpq"]
 
-[ext_resource type="Texture2D" uid="uid://ce6iq78hplyv1" path="res://textures/natural/dirt.png" id="1_1ombk"]
-[ext_resource type="Texture2D" uid="uid://cwfs3yd67cdxg" path="res://textures/terrain/custom_hand/bricks/bricks_heights.png" id="2_f6wgl"]
-[ext_resource type="Texture2D" uid="uid://p4d6mj5h7l5y" path="res://textures/terrain/custom_hand/dirt/dirt_normals.png" id="3_qe3nj"]
-[ext_resource type="Texture2D" uid="uid://cuolkus7gg5no" path="res://textures/terrain/custom_hand/dirt/dirt_roughness.png" id="4_6itkn"]
+[ext_resource type="Texture2D" uid="uid://ce6iq78hplyv1" path="res://trench_broom/textures/natural/dirt.png" id="1_1ombk"]
+[ext_resource type="Texture2D" uid="uid://cwfs3yd67cdxg" path="res://trench_broom/textures/terrain/custom_hand/bricks/bricks_heights.png" id="2_f6wgl"]
+[ext_resource type="Texture2D" uid="uid://p4d6mj5h7l5y" path="res://trench_broom/textures/terrain/custom_hand/dirt/dirt_normals.png" id="3_qe3nj"]
+[ext_resource type="Texture2D" uid="uid://cuolkus7gg5no" path="res://trench_broom/textures/terrain/custom_hand/dirt/dirt_roughness.png" id="4_6itkn"]
 
 [resource]
 albedo_texture = ExtResource("1_1ombk")

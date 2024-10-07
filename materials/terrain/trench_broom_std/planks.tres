@@ -1,6 +1,6 @@
 [gd_resource type="StandardMaterial3D" load_steps=9 format=3 uid="uid://t1hv3tspvh88"]
 
-[ext_resource type="Texture2D" uid="uid://dhaakrudfdp5c" path="res://textures/terrain/custom_hand/planks/planks_normals.png" id="1_u0uf5"]
+[ext_resource type="Texture2D" uid="uid://dhaakrudfdp5c" path="res://trench_broom/textures/terrain/custom_hand/planks/planks_normals.png" id="1_u0uf5"]
 
 [sub_resource type="Gradient" id="Gradient_ilhx3"]
 interpolation_mode = 1

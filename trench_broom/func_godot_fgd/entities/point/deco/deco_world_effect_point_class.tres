@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://bxdu412yk2ut8" path="res://scenes/objects/crate_wooden.tscn" id="1_n0q1c"]
 [ext_resource type="Script" path="res://addons/func_godot/src/fgd/func_godot_fgd_point_class.gd" id="2_2ot5q"]
-[ext_resource type="Script" path="res://trench_broom/qodot_fgd/entity_defs/point/scene_instancer_tb.gd" id="3_4xomm"]
+[ext_resource type="Script" path="res://trench_broom/func_godot_fgd/entities/point/func/scene_instancer_tb.gd" id="3_4xomm"]
 
 [resource]
 script = ExtResource("2_2ot5q")

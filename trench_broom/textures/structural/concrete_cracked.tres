@@ -1,0 +1,136 @@
+[gd_resource type="ShaderMaterial" load_steps=14 format=3 uid="uid://dmsb7i4alwx1b"]
+
+[ext_resource type="Texture2D" uid="uid://b3bq3t6i16h1a" path="res://trench_broom/textures/terrain/custom_hand/concrete/concrete_albedo.png" id="1_tce5q"]
+[ext_resource type="Texture2D" uid="uid://no8yw8052hi2" path="res://trench_broom/textures/terrain/custom_hand/concrete/concrete_detail_mask.png" id="2_p1weh"]
+[ext_resource type="Texture2D" uid="uid://b0on1djjbcq80" path="res://trench_broom/textures/terrain/custom_hand/concrete/concrete_normals.png" id="3_bbo8f"]
+
+[sub_resource type="Shader" id="Shader_u8hl0"]
+code = "// NOTE: Shader automatically converted from Godot Engine 4.2.1.stable.mono's StandardMaterial3D.
+
+shader_type spatial;
+render_mode blend_mix,depth_draw_opaque,cull_back,diffuse_burley,specular_schlick_ggx;
+uniform vec4 albedo : source_color;
+uniform sampler2D texture_albedo : source_color,filter_nearest_mipmap,repeat_enable;
+uniform float point_size : hint_range(0,128);
+uniform float roughness : hint_range(0,1);
+uniform sampler2D texture_metallic : hint_default_white,filter_nearest_mipmap,repeat_enable;
+uniform vec4 metallic_texture_channel;
+uniform sampler2D texture_roughness : hint_roughness_r,filter_nearest_mipmap,repeat_enable;
+uniform float specular;
+uniform float metallic;
+uniform sampler2D texture_normal : hint_roughness_normal,filter_nearest_mipmap,repeat_enable;
+uniform float normal_scale : hint_range(-16,16);
+uniform sampler2D texture_detail_albedo : source_color,filter_nearest_mipmap,repeat_enable;
+uniform sampler2D texture_detail_normal : hint_normal,filter_nearest_mipmap,repeat_enable;
+uniform sampler2D texture_detail_mask : hint_default_white,filter_nearest_mipmap,repeat_enable;
+uniform sampler2D texture_crack_albedo : source_color,filter_nearest_mipmap,repeat_enable;
+uniform sampler2D texture_crack_normal : source_color,filter_nearest_mipmap,repeat_enable;
+uniform vec3 uv1_scale;
+uniform vec3 uv1_offset;
+uniform vec3 uv2_scale;
+uniform vec3 uv2_offset;
+
+
+void vertex() {
+	UV = UV * uv1_scale.xy + uv1_offset.xy;
+}
+
+void fragment() {
+	vec2 base_uv = UV;
+	vec4 albedo_tex = texture(texture_albedo,base_uv);
+	ALBEDO = albedo.rgb * albedo_tex.rgb;
+	float metallic_tex = dot(texture(texture_metallic,base_uv),metallic_texture_channel);
+	METALLIC = metallic_tex * metallic;
+	vec4 roughness_texture_channel = vec4(1.0,0.0,0.0,0.0);
+	float roughness_tex = dot(texture(texture_roughness,base_uv),roughness_texture_channel);
+	ROUGHNESS = roughness_tex * roughness;
+	SPECULAR = specular;
+	NORMAL_MAP = texture(texture_normal,base_uv).rgb;
+	NORMAL_MAP_DEPTH = normal_scale;
+	vec4 detail_tex = texture(texture_detail_albedo,base_uv);
+	vec4 detail_norm_tex = texture(texture_detail_normal,base_uv);
+	vec4 detail_mask_tex = texture(texture_detail_mask,base_uv);
+	vec3 detail = mix(ALBEDO.rgb,detail_tex.rgb,detail_tex.a);
+	vec3 detail_norm = mix(NORMAL_MAP,detail_norm_tex.rgb,detail_tex.a);
+	vec4 crack = texture(texture_crack_albedo, UV);
+	vec4 crack_norm = texture(texture_crack_normal, UV);
+	NORMAL_MAP = mix(NORMAL_MAP,mix(detail_norm, crack_norm.rgb, crack.a),detail_mask_tex.r);
+	ALBEDO.rgb = mix(ALBEDO.rgb,detail * crack.rgb,detail_mask_tex.r);
+}
+"
+
+[sub_resource type="Gradient" id="Gradient_6ici4"]
+offsets = PackedFloat32Array(0.375, 0.4375, 0.5, 0.5625, 0.625)
+colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 0.501961, 0.5, 0.5, 0.5, 1, 1, 1, 1, 0.501961, 1, 1, 1, 0)
+metadata/_snap_enabled = true
+metadata/_snap_count = 16
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_ar42f"]
+fractal_type = 2
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_qjpnj"]
+width = 256
+height = 256
+invert = true
+color_ramp = SubResource("Gradient_6ici4")
+noise = SubResource("FastNoiseLite_ar42f")
+
+[sub_resource type="Gradient" id="Gradient_c0llh"]
+offsets = PackedFloat32Array(0.4375, 0.5, 0.5625)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1, 1, 1, 1, 1)
+metadata/_snap_enabled = true
+metadata/_snap_count = 16
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_s6pid"]
+width = 256
+height = 256
+invert = true
+as_normal_map = true
+color_ramp = SubResource("Gradient_c0llh")
+noise = SubResource("FastNoiseLite_ar42f")
+
+[sub_resource type="Gradient" id="Gradient_uli5b"]
+interpolation_mode = 1
+offsets = PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.8)
+colors = PackedColorArray(0.65, 0.65, 0.65, 1, 0.7, 0.7, 0.7, 1, 0.75, 0.75, 0.75, 1, 0.8, 0.8, 0.8, 1, 0.85, 0.85, 0.85, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_3c4ji"]
+noise_type = 5
+frequency = 0.05
+cellular_jitter = 0.995
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_b8r0m"]
+width = 256
+height = 256
+generate_mipmaps = false
+color_ramp = SubResource("Gradient_uli5b")
+noise = SubResource("FastNoiseLite_3c4ji")
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_isfpt"]
+width = 256
+height = 256
+generate_mipmaps = false
+as_normal_map = true
+noise = SubResource("FastNoiseLite_3c4ji")
+
+[resource]
+render_priority = 0
+shader = SubResource("Shader_u8hl0")
+shader_parameter/albedo = Color(1, 1, 1, 1)
+shader_parameter/point_size = 1.0
+shader_parameter/roughness = 0.75
+shader_parameter/metallic_texture_channel = null
+shader_parameter/specular = 0.5
+shader_parameter/metallic = 0.0
+shader_parameter/normal_scale = 1.0
+shader_parameter/uv1_scale = Vector3(1, 1, 1)
+shader_parameter/uv1_offset = Vector3(0, 0, 0)
+shader_parameter/uv2_scale = Vector3(1, 1, 1)
+shader_parameter/uv2_offset = Vector3(0, 0, 0)
+shader_parameter/texture_albedo = ExtResource("1_tce5q")
+shader_parameter/texture_normal = ExtResource("3_bbo8f")
+shader_parameter/texture_detail_albedo = SubResource("NoiseTexture2D_b8r0m")
+shader_parameter/texture_detail_normal = SubResource("NoiseTexture2D_isfpt")
+shader_parameter/texture_detail_mask = ExtResource("2_p1weh")
+shader_parameter/texture_crack_albedo = SubResource("NoiseTexture2D_qjpnj")
+shader_parameter/texture_crack_normal = SubResource("NoiseTexture2D_s6pid")

@@ -3,7 +3,7 @@
 [ext_resource type="Resource" uid="uid://cixh6j5bjc608" path="res://trench_broom/func_godot_fgd/entities/base/light_base_class.tres" id="1_jbs3a"]
 [ext_resource type="Script" path="res://addons/func_godot/src/fgd/func_godot_fgd_point_class.gd" id="1_rjwc3"]
 [ext_resource type="PackedScene" uid="uid://bvoee6rh57674" path="res://scenes/objects/lights/lamp_big_tb.tscn" id="2_odg6a"]
-[ext_resource type="Script" path="res://trench_broom/qodot_fgd/entity_defs/point/deco/lighting/lamp_tb.gd" id="4_6ht8s"]
+[ext_resource type="Script" path="res://trench_broom/func_godot_fgd/entities/point/light/lamp_tb.gd" id="4_6ht8s"]
 
 [resource]
 script = ExtResource("1_rjwc3")

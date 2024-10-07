@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://ddgqioe7il2qh"]
 
 [ext_resource type="Shader" path="res://shaders/spatial/psx_pb_aclip.gdshader" id="1_hy2ca"]
-[ext_resource type="Texture2D" uid="uid://dwd7xholqdktf" path="res://textures/_pbr/shipping_container/shipping_container_normals.png" id="2_kn31r"]
+[ext_resource type="Texture2D" uid="uid://dwd7xholqdktf" path="res://trench_broom/textures/_pbr/shipping_container/shipping_container_normals.png" id="2_kn31r"]
 [ext_resource type="ArrayMesh" uid="uid://bhaqglfqhubh4" path="res://models/shipping_crate_20ft.obj" id="3_xk1rx"]
 
 [sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_kcxo1"]

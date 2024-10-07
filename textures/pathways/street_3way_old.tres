@@ -1,8 +1,0 @@
-[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://fgbg0ks20tq"]
-
-[ext_resource type="Texture2D" uid="uid://bpbjxtcqvl0t0" path="res://textures/pathways/street_3way.png" id="1_fdreu"]
-
-[resource]
-albedo_texture = ExtResource("1_fdreu")
-metallic_specular = 0.0
-texture_filter = 2

@@ -1,9 +1,9 @@
 [gd_resource type="ShaderMaterial" load_steps=8 format=3 uid="uid://dhql5gnik2j3t"]
 
-[ext_resource type="Texture2D" uid="uid://bu7kx2k8hs1rs" path="res://textures/terrain/custom_hand/bricks_brown/bricks_brown_albedo.png" id="1_d0csb"]
+[ext_resource type="Texture2D" uid="uid://bu7kx2k8hs1rs" path="res://trench_broom/textures/terrain/custom_hand/bricks_brown/bricks_brown_albedo.png" id="1_d0csb"]
 [ext_resource type="Shader" uid="uid://b8o0o8eou7oh2" path="res://shaders/spatial/terrain/terrain_bricks_brown.tres" id="1_kvjef"]
-[ext_resource type="Texture2D" uid="uid://bhycy45by36s4" path="res://textures/terrain/custom_hand/bricks_brown/bricks_brown_heights.png" id="2_1mrhf"]
-[ext_resource type="Texture2D" uid="uid://cpeg5pac6divu" path="res://textures/terrain/custom_hand/bricks_brown/bricks_brown_normals.png" id="3_k4reh"]
+[ext_resource type="Texture2D" uid="uid://bhycy45by36s4" path="res://trench_broom/textures/terrain/custom_hand/bricks_brown/bricks_brown_heights.png" id="2_1mrhf"]
+[ext_resource type="Texture2D" uid="uid://cpeg5pac6divu" path="res://trench_broom/textures/terrain/custom_hand/bricks_brown/bricks_brown_normals.png" id="3_k4reh"]
 
 [sub_resource type="Gradient" id="Gradient_8sg56"]
 interpolation_mode = 1

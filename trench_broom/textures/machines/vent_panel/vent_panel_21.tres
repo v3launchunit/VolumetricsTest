@@ -1,0 +1,20 @@
+[gd_resource type="StandardMaterial3D" load_steps=5 format=3 uid="uid://bkv5gmitejj8d"]
+
+[ext_resource type="Texture2D" uid="uid://b0ngns1fsms3x" path="res://trench_broom/textures/_pbr/vent_panel/vent_panel_albedo.png" id="1_eo3sw"]
+[ext_resource type="Texture2D" uid="uid://bds4npdppkh5s" path="res://trench_broom/textures/_pbr/vent_panel/vent_panel_normals.png" id="2_4ny5w"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2ueam"]
+atlas = ExtResource("1_eo3sw")
+region = Rect2(32, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oyrr8"]
+atlas = ExtResource("2_4ny5w")
+region = Rect2(32, 64, 32, 32)
+
+[resource]
+albedo_texture = SubResource("AtlasTexture_2ueam")
+metallic = 1.0
+roughness = 0.5
+normal_enabled = true
+normal_texture = SubResource("AtlasTexture_oyrr8")
+texture_filter = 0

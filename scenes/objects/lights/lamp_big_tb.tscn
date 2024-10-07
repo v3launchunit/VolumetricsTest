@@ -1,6 +1,6 @@
 [gd_scene load_steps=22 format=3 uid="uid://bvoee6rh57674"]
 
-[ext_resource type="Script" path="res://trench_broom/qodot_fgd/entity_defs/point/deco/lighting/lamp_tb.gd" id="1_t6cch"]
+[ext_resource type="Script" path="res://trench_broom/func_godot_fgd/entities/point/light/lamp_tb.gd" id="1_t6cch"]
 [ext_resource type="Material" uid="uid://c42r6gnwbsttx" path="res://effects/halos/fancy_halo.tres" id="2_3ftqv"]
 [ext_resource type="Texture2D" uid="uid://hk0k2coukjwc" path="res://effects/halos/halo_tex.tres" id="3_h5mmw"]
 [ext_resource type="Script" path="res://scripts/effects/halo.gd" id="4_27x0a"]
