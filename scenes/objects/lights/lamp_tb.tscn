@@ -218,21 +218,6 @@ color = Color(1, 0.67451, 0.34902, 1)
 [node name="AnimationTree" type="AnimationTree" parent="."]
 tree_root = SubResource("AnimationNodeStateMachine_tsrdu")
 anim_player = NodePath("../AnimationPlayer")
-parameters/current_length = 1.0
-parameters/current_position = 1.0
-parameters/current_delta = 0.0
-parameters/End/current_length = null
-parameters/End/current_position = null
-parameters/End/current_delta = null
-parameters/Start/current_length = 0.0
-parameters/Start/current_position = 0.0
-parameters/Start/current_delta = 0.0
-parameters/off/current_length = null
-parameters/off/current_position = null
-parameters/off/current_delta = null
-parameters/on/current_length = 1.0
-parameters/on/current_position = 1.0
-parameters/on/current_delta = 0.0
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

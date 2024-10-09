@@ -18,6 +18,10 @@ const TRASH_LIST : Array[String] = [
 		func_godot_properties = to
 		if is_inside_tree():
 			spawn_trash_props()
+		else:
+			await tree_entered
+			spawn_trash_props()
+		collision_layer = 0b0000_0000_0000_0000_0000_0000_0000_0001
 
 
 # Called when the node enters the scene tree for the first time.
@@ -40,7 +44,6 @@ func spawn_trash_props(editor: bool = true) -> void:
 		seed(hash(func_godot_properties["seed"]))
 	collision_layer = 0b0000_0000_0000_0000_0000_0010_0000_0000
 	
-	await ready
 	var mesh := (get_child(0) as MeshInstance3D).mesh
 	var shape := mesh.create_convex_shape(false)
 	var points := shape.points

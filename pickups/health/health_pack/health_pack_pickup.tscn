@@ -191,6 +191,11 @@ layers = 2
 material_override = SubResource("ShaderMaterial_qawcs")
 mesh = SubResource("BoxMesh_sivaq")
 
+[node name="OmniLight3D" type="OmniLight3D" parent="Area3D"]
+light_color = Color(0, 1, 0, 1)
+light_bake_mode = 0
+shadow_enabled = true
+
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 root_node = NodePath("../Area3D")
 libraries = {

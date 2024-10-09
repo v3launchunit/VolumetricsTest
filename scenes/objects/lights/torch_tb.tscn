@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://jwblxog7c1kl"]
+[gd_scene load_steps=30 format=3 uid="uid://jwblxog7c1kl"]
 
 [ext_resource type="Shader" path="res://shaders/spatial/psx_ul_add.gdshader" id="1_7j6kq"]
 [ext_resource type="AudioStream" uid="uid://1tg3qhvaqlgr" path="res://audio/streams/ambient/fire_crackle_ambient.mp3" id="1_mtuin"]
@@ -98,26 +98,6 @@ height = 0.75
 radial_segments = 4
 rings = 1
 cap_bottom = false
-
-[sub_resource type="GDScript" id="GDScript_ognxc"]
-script/source = "@tool
-
-extends MeshInstance3D
-
-@export var properties: Dictionary
-
-var is_configured: bool = false
-
-# Called when the node enters the scene tree for the first time.
-func _process(delta: float) -> void:
-	if is_configured or not Engine.is_editor_hint() or not properties.has(\"pitch_angle\"):
-		return
-	var r = rotation.y
-	rotation.y = 0
-	rotation.x = deg_to_rad(properties[\"pitch_angle\"])
-	rotation.y = r
-	is_configured = true
-"
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_bdf6a"]
 render_priority = 0
@@ -224,11 +204,10 @@ distance_fade_mode = 1
 [node name="Torch" type="Node3D"]
 
 [node name="Torch" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.866025, -0.5, 0, 0.5, 0.866025, 0, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 1, -2.08616e-07, 0, 2.08616e-07, 1, 0, 0, 0)
 layers = 8
 material_override = SubResource("ShaderMaterial_wigho")
 mesh = SubResource("CylinderMesh_3s1hl")
-script = SubResource("GDScript_ognxc")
 
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="Torch"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.375, 0)
