@@ -1,13 +1,15 @@
-class_name LodgedNail extends Node3D
+class_name LodgedNail extends StaticBody3D
 
 
 @export var explosion: PackedScene
+@export var super_explosion: PackedScene
 @export var required_weapon: Vector2i = Vector2i(0, 0)
 
 @export_group("Save Data")
 @export var invoker: Node3D
 @export var explode_timer: float = 0.0
 @export var primed: bool = false
+@export var supercharged: bool = false
 
 #@onready var weapon_manager: WeaponManager = invoker.find_child("PlayerCam")
 
@@ -21,8 +23,8 @@ func _ready() -> void:
 func _physics_process(delta: float) -> void:
 	if primed:
 		explode_timer += delta
-		if explode_timer >= randf():
-			var e = explosion.instantiate()
+		if supercharged or explode_timer >= randf():
+			var e = (super_explosion if supercharged else explosion).instantiate()
 			add_child(e)
 			e.reparent(get_tree().root)
 			for child in e.get_children():

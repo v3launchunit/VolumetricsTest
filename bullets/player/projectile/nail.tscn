@@ -20,11 +20,9 @@ contact_monitor = true
 max_contacts_reported = 5
 script = ExtResource("1_e5fcg")
 speed = 50.0
-player_damage_multiplier = null
 explosion = ExtResource("2_anp6i")
 sticky = true
 piercer = false
-knockback_force = null
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.5)

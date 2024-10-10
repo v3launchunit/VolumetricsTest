@@ -1,0 +1,358 @@
+[gd_scene load_steps=24 format=3 uid="uid://bsmejtrchgpyw"]
+
+[ext_resource type="Script" path="res://scripts/auto_play.gd" id="1_p76hs"]
+[ext_resource type="Script" path="res://scripts/effects/area_damage.gd" id="2_moe8u"]
+[ext_resource type="AudioStream" uid="uid://tv57kig5mcoh" path="res://audio/streams/effects/kaboom.wav" id="3_ff3ss"]
+[ext_resource type="AudioStream" uid="uid://b4em0t5e3pb8a" path="res://audio/streams/effects/vine_boom.mp3" id="4_8liy1"]
+[ext_resource type="Script" path="res://scripts/effects/lifetime.gd" id="5_bxave"]
+
+[sub_resource type="Gradient" id="Gradient_6b6sv"]
+interpolation_mode = 2
+offsets = PackedFloat32Array(0.5, 1)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_oraxr"]
+gradient = SubResource("Gradient_6b6sv")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_f47xk"]
+direction = Vector3(0, 1, 0)
+spread = 90.0
+initial_velocity_max = 7.5
+gravity = Vector3(0, 4.9, 0)
+linear_accel_min = -30.0
+linear_accel_max = -15.0
+radial_accel_min = 5.0
+radial_accel_max = 7.0
+scale_min = 0.5
+scale_max = 2.0
+color = Color(1, 0.501961, 0, 1)
+color_ramp = SubResource("GradientTexture1D_oraxr")
+hue_variation_min = 0.17
+hue_variation_max = 0.17
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_y4mvg"]
+transparency = 3
+alpha_hash_scale = 1.0
+alpha_antialiasing_mode = 0
+shading_mode = 0
+vertex_color_use_as_albedo = true
+
+[sub_resource type="SphereMesh" id="SphereMesh_tmnfx"]
+material = SubResource("StandardMaterial3D_y4mvg")
+radius = 0.25
+height = 0.5
+radial_segments = 8
+rings = 3
+
+[sub_resource type="Gradient" id="Gradient_e3nkf"]
+colors = PackedColorArray(0, 0, 1, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_nwwyk"]
+gradient = SubResource("Gradient_e3nkf")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_eata1"]
+direction = Vector3(0, 1, 0)
+initial_velocity_min = 1.0
+initial_velocity_max = 15.0
+color = Color(0, 1, 1, 1)
+color_initial_ramp = SubResource("GradientTexture1D_nwwyk")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_isnhk"]
+shading_mode = 0
+vertex_color_use_as_albedo = true
+
+[sub_resource type="BoxMesh" id="BoxMesh_msm45"]
+material = SubResource("StandardMaterial3D_isnhk")
+size = Vector3(0.063, 0.063, 0.063)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3anle"]
+resource_local_to_scene = true
+transparency = 1
+shading_mode = 0
+albedo_color = Color(1, 1, 0, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_cpldg"]
+material = SubResource("StandardMaterial3D_3anle")
+radial_segments = 8
+rings = 8
+
+[sub_resource type="Animation" id="Animation_3e3i5"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimationPlayer/FogVolume:size")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(2, 2, 2)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimationPlayer/FogVolume:material:density")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("OmniLight3D:light_energy")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.0]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Fireball:surface_material_override/0:albedo_color")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Fireball:mesh:material:albedo_color")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 0, 1)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Area3D:monitoring")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("SparkSys:emitting")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("ExplosionSys:emitting")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_l41wm"]
+resource_name = "anim"
+length = 10.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimationPlayer/FogVolume:size")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.6, 10),
+"transitions": PackedFloat32Array(0.25, 1.75, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(5, 5, 5), Vector3(15, 15, 15)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimationPlayer/FogVolume:material:density")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.6, 1.1, 10),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 1.0, 1.0, 0.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("OmniLight3D:light_energy")
+tracks/2/interp = 1
+tracks/2/loop_wrap = false
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.6, 10),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 1.0, 0.0, 0.0]
+}
+tracks/3/type = "scale_3d"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Fireball")
+tracks/3/interp = 1
+tracks/3/loop_wrap = false
+tracks/3/keys = PackedFloat32Array(0, 1, 0, 0, 0, 0.3, 1, 5, 5, 5)
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Fireball:material_override:albedo_color")
+tracks/4/interp = 1
+tracks/4/loop_wrap = false
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(0, 0, 1, 0)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Area3D:monitoring")
+tracks/5/interp = 1
+tracks/5/loop_wrap = false
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("SparkSys:emitting")
+tracks/6/interp = 1
+tracks/6/loop_wrap = false
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("ExplosionSys:emitting")
+tracks/7/interp = 1
+tracks/7/loop_wrap = false
+tracks/7/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_3x4lq"]
+_data = {
+"RESET": SubResource("Animation_3e3i5"),
+"anim": SubResource("Animation_l41wm")
+}
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_er5bi"]
+radius = 3.0
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_2hwim"]
+random_pitch = 1.15
+streams_count = 1
+stream_0/stream = ExtResource("3_ff3ss")
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_4pgkn"]
+playback_mode = 1
+streams_count = 2
+stream_0/stream = SubResource("AudioStreamRandomizer_2hwim")
+stream_0/weight = 100.0
+stream_1/stream = ExtResource("4_8liy1")
+stream_1/weight = 0.001
+
+[node name="Explosion" type="Node3D"]
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+layers = 2
+light_color = Color(0, 1, 1, 1)
+shadow_enabled = true
+distance_fade_enabled = true
+omni_range = 10.0
+omni_shadow_mode = 0
+
+[node name="ExplosionSys" type="GPUParticles3D" parent="."]
+visible = false
+layers = 2
+amount = 32
+lifetime = 0.5
+one_shot = true
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_f47xk")
+draw_pass_1 = SubResource("SphereMesh_tmnfx")
+
+[node name="SparkSys" type="GPUParticles3D" parent="."]
+layers = 2
+amount = 32
+lifetime = 5.0
+one_shot = true
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_eata1")
+draw_pass_1 = SubResource("BoxMesh_msm45")
+
+[node name="Fireball" type="MeshInstance3D" parent="."]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 0, 0, 0)
+layers = 2
+material_override = SubResource("StandardMaterial3D_3anle")
+mesh = SubResource("SphereMesh_cpldg")
+skeleton = NodePath("../AnimationPlayer")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_3x4lq")
+}
+script = ExtResource("1_p76hs")
+
+[node name="Area3D" type="Area3D" parent="."]
+collision_mask = 39
+script = ExtResource("2_moe8u")
+damage = 60.0
+player_damage_override = 10.0
+damage_type = 1
+knockback_force = 3.0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+shape = SubResource("SphereShape3D_er5bi")
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+stream = SubResource("AudioStreamRandomizer_4pgkn")
+autoplay = true
+bus = &"Combat"
+doppler_tracking = 2
+
+[node name="Lifetime" type="Timer" parent="."]
+wait_time = 10.0
+one_shot = true
+autostart = true
+script = ExtResource("5_bxave")

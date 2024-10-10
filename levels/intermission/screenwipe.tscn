@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://bqkcjc14atpmo"]
 
-[ext_resource type="Script" path="res://ui/intermission/screenwipe.gd" id="1_j61rr"]
+[ext_resource type="Script" path="res://levels/intermission/screenwipe.gd" id="1_j61rr"]
 
 [node name="ColorRect" type="TextureRect"]
 z_index = 999

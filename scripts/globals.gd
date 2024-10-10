@@ -17,6 +17,7 @@ enum Difficulty {
 	EASY,
 	NORMAL,
 	HARD,
+	NIGHTMARE,
 }
 
 enum Lang {
@@ -117,6 +118,8 @@ var s_difficulty := Difficulty.NORMAL
 ## Nightmare mode is handled separately because it affects gameplay differently
 ## from the regular difficulty slider.
 var s_nightmare_mode_active: bool = false
+## Whether the player gets to keep their weapons and ammo between levels.
+var s_intruder_mode_active: bool = true
 ## Whether crouching is a toggle or a hold.
 var s_toggle_crouch: bool = false
 

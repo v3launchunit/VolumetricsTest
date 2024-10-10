@@ -21,11 +21,14 @@ func _process(delta: float) -> void:
 
 
 func update_properties() -> void:
-	light_color = Color8(
-			roundi(func_godot_properties.get("_color").x),
-			roundi(func_godot_properties.get("_color").y),
-			roundi(func_godot_properties.get("_color").z),
-	)
+	if func_godot_properties["_color"] is Color:
+		light_color = func_godot_properties["_color"]
+	else:
+		light_color = Color8(
+				roundi(func_godot_properties.get("_color").x),
+				roundi(func_godot_properties.get("_color").y),
+				roundi(func_godot_properties.get("_color").z),
+		)
 	light_energy = func_godot_properties["energy"]
 	light_bake_mode = BakeMode.BAKE_STATIC
 	shadow_enabled = true

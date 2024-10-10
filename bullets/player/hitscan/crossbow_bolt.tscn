@@ -172,6 +172,7 @@ cap_bottom = false
 
 [node name="Hitscan" type="Node3D"]
 script = ExtResource("1_3mdio")
+layer_mask = 581
 damage = 30.0
 damage_type = 4
 explosion = ExtResource("2_o64b4")

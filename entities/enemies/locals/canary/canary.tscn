@@ -659,28 +659,28 @@ bones/21/rotation = Quaternion(0.0370042, -0.0100011, 0.259029, 0.965109)
 bones/22/rotation = Quaternion(-0.081984, -0.00699863, -0.086983, 0.992806)
 
 [node name="Cylinder_001" parent="Canary/Armature/Skeleton3D" index="0"]
-transform = Transform3D(1.23, -0.565537, -0.132216, -0.826521, -0.738326, -0.583379, 0.232304, 0.367482, -1.37557, -0.102397, 0.106195, 0.329553)
+transform = Transform3D(1.22999, -0.565541, -0.132219, -0.827547, -0.73994, -0.577293, 0.228649, 0.364215, -1.37813, -0.1024, 0.105748, 0.32756)
 
 [node name="Cylinder_001" parent="Canary/Armature/Skeleton3D/Cylinder_001" index="0"]
 layers = 2
 material_override = SubResource("ShaderMaterial_06smx")
 
 [node name="Cylinder_002" parent="Canary/Armature/Skeleton3D" index="1"]
-transform = Transform3D(1.22944, 0.566481, 0.128256, 0.826368, -0.738396, -0.583395, -0.235778, 0.365883, -1.37594, 0.10341, 0.106183, 0.329262)
+transform = Transform3D(1.22945, 0.566476, 0.128253, 0.827394, -0.74001, -0.577309, -0.232123, 0.362616, -1.3785, 0.103407, 0.105736, 0.327269)
 
 [node name="Cylinder_002" parent="Canary/Armature/Skeleton3D/Cylinder_002" index="0"]
 layers = 2
 material_override = SubResource("ShaderMaterial_06smx")
 
 [node name="Helmet" parent="Canary/Armature/Skeleton3D" index="2"]
-transform = Transform3D(0.999999, 0.00138421, 0.0002888, -6.19636e-05, 0.246951, -0.969028, -0.00141265, 0.969027, 0.24695, 0.000753195, 0.408057, 0.491129)
+transform = Transform3D(0.999999, 0.00138548, 0.00028268, -6.19638e-05, 0.242665, -0.97011, -0.00141265, 0.970109, 0.242665, 0.00075219, 0.406892, 0.490468)
 
 [node name="Helmet" parent="Canary/Armature/Skeleton3D/Helmet" index="0"]
 layers = 2
 material_override = SubResource("ShaderMaterial_lb10m")
 
 [node name="Cylinder" parent="Canary/Armature/Skeleton3D" index="3"]
-transform = Transform3D(0.999999, 0.000524779, -0.00131303, -6.19636e-05, -0.911424, -0.411469, -0.00141265, 0.411469, -0.911423, 0.000781692, 0.166437, 0.521902)
+transform = Transform3D(0.999999, 0.000518971, -0.00131534, -6.19638e-05, -0.913234, -0.407437, -0.00141265, 0.407436, -0.913233, 0.00077917, 0.165138, 0.520173)
 
 [node name="Cylinder" parent="Canary/Armature/Skeleton3D/Cylinder" index="0"]
 layers = 2
@@ -694,7 +694,7 @@ shadow_enabled = true
 distance_fade_enabled = true
 
 [node name="Pickaxe" parent="Canary/Armature/Skeleton3D" index="4"]
-transform = Transform3D(-0.14888, -0.0163693, -0.00817876, -0.0139394, 0.144887, -0.0362409, 0.0118549, -0.0352102, -0.145326, -0.26823, -0.624926, 0.437873)
+transform = Transform3D(-0.148921, -0.0162626, -0.00762254, -0.0139733, 0.144905, -0.0361572, 0.0112837, -0.035187, -0.145377, -0.269309, -0.624499, 0.436013)
 
 [node name="Pickaxe" parent="Canary/Armature/Skeleton3D/Pickaxe" index="0"]
 layers = 2

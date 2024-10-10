@@ -108,6 +108,12 @@ func _physics_process(_delta: float) -> void:
 			if damage > 0 and piercer:
 				handled = false
 		
+		elif result.collider is LodgedNail:
+			result.collider.supercharged = true
+			result.collider.primed = true
+			exceptions.append(result.collider)
+			handled = false
+		
 		var exp: Node3D = explosion.instantiate()
 		get_tree().current_scene.add_child(exp)
 		exp.global_position = result.position

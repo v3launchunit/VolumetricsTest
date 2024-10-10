@@ -11,6 +11,8 @@ var _found_secrets: int = 0
 var _next_level: String = "e1m3"
 var screenshot: Image
 
+var player_health: float
+
 
 func run_intermission(player: Player, time: float, foes: int, kills: int, secrets: int, found_secrets: int, next_level: String) -> void:
 	#player.process_mode = PROCESS_MODE_DISABLED

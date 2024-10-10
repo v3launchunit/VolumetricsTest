@@ -47,11 +47,11 @@ func _physics_process(_delta: float) -> void:
 
 
 func _on_body_entered(body: Node) -> void:
-	var e: Node
+	var e: Node3D
 	if explosion != null:
 		e = explosion.instantiate()
 		add_child(e)
-		e.reparent(body if sticky else get_tree().root.get_child(2))
+		e.reparent(body if sticky else get_tree().current_scene)
 		if e is LodgedNail or e is LodgedHarpoon:
 			e.invoker = invoker
 		for child in e.get_children():

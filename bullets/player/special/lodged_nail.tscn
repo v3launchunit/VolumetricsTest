@@ -1,21 +1,29 @@
-[gd_scene load_steps=6 format=3 uid="uid://ew75cbfb63v5"]
+[gd_scene load_steps=8 format=3 uid="uid://ew75cbfb63v5"]
 
 [ext_resource type="ArrayMesh" uid="uid://dnda4sjlmlawu" path="res://bullets/nail.obj" id="1_ae5t7"]
 [ext_resource type="Script" path="res://bullets/lodged_nail.gd" id="1_eyuqr"]
 [ext_resource type="PackedScene" uid="uid://r5omla7tiysx" path="res://scenes/effects/explosions/nail_explosion.tscn" id="2_663ij"]
 [ext_resource type="PackedScene" uid="uid://fn1fivb2ndvo" path="res://scenes/effects/impacts/bullet_impact_yellow.tscn" id="2_un06c"]
+[ext_resource type="PackedScene" uid="uid://bsmejtrchgpyw" path="res://scenes/effects/explosions/super_nail_explosion.tscn" id="3_jhdsa"]
 [ext_resource type="Material" uid="uid://by4h3hrepyr2o" path="res://bullets/bullet_metal.tres" id="3_wek4n"]
 
-[node name="LodgedNail" type="Node3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1)
+[sub_resource type="SphereShape3D" id="SphereShape3D_wjupl"]
+
+[node name="LodgedNail" type="StaticBody3D"]
+collision_layer = 512
+collision_mask = 0
 script = ExtResource("1_eyuqr")
 explosion = ExtResource("2_663ij")
+super_explosion = ExtResource("3_jhdsa")
 
 [node name="Nail" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.125)
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 2.18557e-08, 0, 0.125)
 layers = 2
 material_override = ExtResource("3_wek4n")
 mesh = ExtResource("1_ae5t7")
 
 [node name="BulletImpact" parent="." instance=ExtResource("2_un06c")]
 emitting = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_wjupl")
