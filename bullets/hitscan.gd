@@ -17,10 +17,10 @@ extends Node3D
 # Defaults to some ridiculous coordinate b/c vector3 apparently isn't nullable
 # (this could theoretically be solved by not declaring a type but that is a far
 # worse sin in my eyes)
-var query_origin := Vector3(0.0, -1000.0, 0.0)
-var handled: bool = false
+@export_storage var query_origin := Vector3(0.0, -1000.0, 0.0)
+@export_storage var handled: bool = false
 var exceptions: Array = []
-var invoker: Node3D
+@export_storage var invoker: Node3D
 var linger_time: float = 0.0
 
 @onready var mesh: Node3D = get_node_or_null("MeshInstance3D") as Node3D

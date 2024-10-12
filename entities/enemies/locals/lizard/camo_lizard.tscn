@@ -1,117 +1,49 @@
-[gd_scene load_steps=94 format=3 uid="uid://cm53n4on4fdr6"]
+[gd_scene load_steps=85 format=3 uid="uid://c83b684bvkbu5"]
 
-[ext_resource type="Script" path="res://entities/enemies/locals/lizard/enemy_lizard.gd" id="1_bhi88"]
-[ext_resource type="PackedScene" uid="uid://pidxth8qpjjm" path="res://entities/enemies/locals/lizard/lizard.glb" id="1_y8366"]
-[ext_resource type="PackedScene" uid="uid://dj8yo2whvp2w7" path="res://bullets/enemy/enemy_melee_scan.tscn" id="2_cmvbm"]
-[ext_resource type="AudioStream" uid="uid://dccli7qg88gwt" path="res://audio/streams/voices/lizard/detect_roar.wav" id="2_saxi0"]
-[ext_resource type="AudioStream" uid="uid://o3hie6osd6lv" path="res://audio/streams/voices/lizard/detect_roar_2.wav" id="3_88yk7"]
-[ext_resource type="Script" path="res://entities/status.gd" id="3_lfy8e"]
-[ext_resource type="AnimationLibrary" uid="uid://bre8ccbuc7fbn" path="res://entities/enemies/locals/lizard/lizard_anims.res" id="3_to7gb"]
-[ext_resource type="PackedScene" uid="uid://bnsepaqu7j4p4" path="res://pickups/health/health_bonus_pickup.tscn" id="4_ltgog"]
-[ext_resource type="PackedScene" uid="uid://cqctw8dd0ar4n" path="res://scenes/effects/damage/damage_sys.tscn" id="4_mhmdq"]
-[ext_resource type="AudioStream" uid="uid://bfaxlqoxr3aed" path="res://audio/streams/voices/lizard/death_roar.wav" id="4_wjf2y"]
-[ext_resource type="AudioStream" uid="uid://dc1es3ux857yw" path="res://audio/streams/voices/wilhelm_scream.ogg" id="5_4ak67"]
-[ext_resource type="PackedScene" uid="uid://bosuaqplx64vr" path="res://bullets/enemy/enemy_bullet_blood.tscn" id="5_535y2"]
-[ext_resource type="PackedScene" uid="uid://b8i1fe0bwht3k" path="res://pickups/armor/armor_bonus_pickup.tscn" id="5_igm48"]
-[ext_resource type="Shader" path="res://shaders/spatial/psx_ul_mix.gdshader" id="9_0mr8g"]
-[ext_resource type="PackedScene" uid="uid://c5pbs8t6p7ogl" path="res://scenes/effects/gibs/gibs.tscn" id="11_p5oxo"]
-[ext_resource type="Script" path="res://entities/stair_stepper.gd" id="15_csdjx"]
+[ext_resource type="Script" path="res://entities/enemies/locals/lizard/enemy_lizard.gd" id="1_cefll"]
+[ext_resource type="PackedScene" uid="uid://dj8yo2whvp2w7" path="res://bullets/enemy/enemy_melee_scan.tscn" id="2_o2com"]
+[ext_resource type="AudioStream" uid="uid://dccli7qg88gwt" path="res://audio/streams/voices/lizard/detect_roar.wav" id="3_vs1yu"]
+[ext_resource type="AudioStream" uid="uid://o3hie6osd6lv" path="res://audio/streams/voices/lizard/detect_roar_2.wav" id="4_y45ee"]
+[ext_resource type="PackedScene" uid="uid://bosuaqplx64vr" path="res://bullets/enemy/enemy_bullet_blood.tscn" id="5_j2o7e"]
+[ext_resource type="AudioStream" uid="uid://bfaxlqoxr3aed" path="res://audio/streams/voices/lizard/death_roar.wav" id="6_kj0b6"]
+[ext_resource type="AudioStream" uid="uid://dc1es3ux857yw" path="res://audio/streams/voices/wilhelm_scream.ogg" id="7_pkv2a"]
+[ext_resource type="PackedScene" uid="uid://pidxth8qpjjm" path="res://entities/enemies/locals/lizard/lizard.glb" id="8_4kcvq"]
+[ext_resource type="Shader" path="res://shaders/spatial/psx_ul_mix.gdshader" id="9_8aumv"]
+[ext_resource type="Material" uid="uid://cgrmnklrxmjec" path="res://entities/enemies/shadow_mat.tres" id="9_o7vwu"]
+[ext_resource type="AnimationLibrary" uid="uid://bre8ccbuc7fbn" path="res://entities/enemies/locals/lizard/lizard_anims.res" id="10_kynjh"]
+[ext_resource type="Script" path="res://entities/status.gd" id="11_5mioy"]
+[ext_resource type="PackedScene" uid="uid://cqctw8dd0ar4n" path="res://scenes/effects/damage/damage_sys.tscn" id="12_v1mtp"]
+[ext_resource type="PackedScene" uid="uid://c5pbs8t6p7ogl" path="res://scenes/effects/gibs/gibs.tscn" id="13_j0r17"]
+[ext_resource type="PackedScene" uid="uid://bnsepaqu7j4p4" path="res://pickups/health/health_bonus_pickup.tscn" id="14_p7gvy"]
+[ext_resource type="PackedScene" uid="uid://b8i1fe0bwht3k" path="res://pickups/armor/armor_bonus_pickup.tscn" id="15_64bnk"]
+[ext_resource type="Script" path="res://entities/stair_stepper.gd" id="16_huone"]
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_hkga1"]
 random_pitch = 1.25
 streams_count = 2
-stream_0/stream = ExtResource("2_saxi0")
-stream_1/stream = ExtResource("3_88yk7")
+stream_0/stream = ExtResource("3_vs1yu")
+stream_1/stream = ExtResource("4_y45ee")
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_emaxw"]
 random_pitch = 1.25
 streams_count = 1
-stream_0/stream = ExtResource("4_wjf2y")
+stream_0/stream = ExtResource("6_kj0b6")
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_2cyp5"]
 playback_mode = 1
 streams_count = 2
 stream_0/stream = SubResource("AudioStreamRandomizer_emaxw")
 stream_0/weight = 100.0
-stream_1/stream = ExtResource("5_4ak67")
+stream_1/stream = ExtResource("7_pkv2a")
 stream_1/weight = 0.001
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_k12hh"]
 radius = 0.38
 height = 2.5
 
-[sub_resource type="Shader" id="Shader_lt305"]
-code = "// NOTE: Shader automatically converted from Godot Engine 4.2.1.stable.mono's StandardMaterial3D.
-
-shader_type spatial;
-render_mode blend_mix,depth_draw_opaque,cull_back,diffuse_burley,specular_schlick_ggx;
-uniform vec4 albedo : source_color;
-uniform sampler2D texture_albedo : source_color,filter_nearest,repeat_enable;
-uniform float point_size : hint_range(0,128);
-uniform float roughness : hint_range(0,1);
-uniform sampler2D texture_metallic : hint_default_white,filter_nearest,repeat_enable;
-uniform vec4 metallic_texture_channel;
-uniform sampler2D texture_roughness : hint_roughness_r,filter_nearest,repeat_enable;
-uniform float specular;
-uniform float metallic;
-uniform sampler2D texture_normal : hint_roughness_normal,filter_nearest,repeat_enable;
-uniform float normal_scale : hint_range(-16,16);
-uniform vec3 uv1_scale;
-uniform vec3 uv1_offset;
-uniform vec3 uv2_scale;
-uniform vec3 uv2_offset;
-
-#include \"res://shaders/includes/psx_inc.gdshaderinc\"
-
-void vertex() {
-	UV=UV*uv1_scale.xy+uv1_offset.xy;
-	POSITION = map_affine(snap_vertex(PROJECTION_MATRIX * MODELVIEW_MATRIX * vec4(VERTEX, 1.0)));
-}
-
-void fragment() {
-	vec2 base_uv = UV;
-	vec4 albedo_tex = texture(texture_albedo,base_uv);
-	ALBEDO = albedo.rgb * albedo_tex.rgb;
-	float metallic_tex = dot(texture(texture_metallic,base_uv),metallic_texture_channel);
-	METALLIC = metallic_tex * metallic;
-	vec4 roughness_texture_channel = vec4(1.0,0.0,0.0,0.0);
-	float roughness_tex = dot(texture(texture_roughness,base_uv),roughness_texture_channel);
-	ROUGHNESS = roughness_tex * roughness;
-	SPECULAR = specular;
-	NORMAL_MAP = texture(texture_normal,base_uv).rgb;
-	NORMAL_MAP_DEPTH = normal_scale;
-}
-"
-
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_n0fpp"]
-
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_1ywp7"]
-width = 24
-height = 24
-generate_mipmaps = false
-as_normal_map = true
-bump_strength = 3.0
-noise = SubResource("FastNoiseLite_n0fpp")
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_2qi5o"]
-render_priority = 0
-shader = SubResource("Shader_lt305")
-shader_parameter/albedo = Color(0.501961, 0.501961, 0.501961, 1)
-shader_parameter/point_size = 1.0
-shader_parameter/roughness = 0.25
-shader_parameter/metallic_texture_channel = Vector4(1, 0, 0, 0)
-shader_parameter/specular = 0.5
-shader_parameter/metallic = 1.0
-shader_parameter/normal_scale = 1.0
-shader_parameter/uv1_scale = Vector3(1, 1, 1)
-shader_parameter/uv1_offset = Vector3(0, 0, 0)
-shader_parameter/uv2_scale = Vector3(1, 1, 1)
-shader_parameter/uv2_offset = Vector3(0, 0, 0)
-shader_parameter/texture_normal = SubResource("NoiseTexture2D_1ywp7")
-
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_f60oq"]
 render_priority = 0
-shader = ExtResource("9_0mr8g")
+shader = ExtResource("9_8aumv")
 shader_parameter/albedo = Color(1, 0, 0, 1)
 shader_parameter/uv1_scale = null
 shader_parameter/uv1_offset = null
@@ -141,7 +73,7 @@ rings = 3
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_sytrj"]
 render_priority = 0
-shader = ExtResource("9_0mr8g")
+shader = ExtResource("9_8aumv")
 shader_parameter/albedo = Color(1, 0, 0, 1)
 shader_parameter/uv1_scale = null
 shader_parameter/uv1_offset = null
@@ -152,88 +84,6 @@ radius = 0.1
 height = 0.05
 radial_segments = 8
 rings = 3
-
-[sub_resource type="Shader" id="Shader_hyf2c"]
-code = "// NOTE: Shader automatically converted from Godot Engine 4.2.1.stable.mono's StandardMaterial3D.
-
-shader_type spatial;
-render_mode blend_mix,depth_draw_opaque,cull_back,diffuse_burley,specular_schlick_ggx;
-uniform vec4 albedo : source_color;
-uniform sampler2D texture_albedo : source_color,filter_nearest,repeat_enable;
-uniform float point_size : hint_range(0,128);
-uniform float roughness : hint_range(0,1);
-uniform sampler2D texture_metallic : hint_default_white,filter_nearest,repeat_enable;
-uniform vec4 metallic_texture_channel;
-uniform sampler2D texture_roughness : hint_roughness_r,filter_nearest,repeat_enable;
-uniform float specular;
-uniform float metallic;
-uniform sampler2D texture_normal : hint_roughness_normal,filter_nearest,repeat_enable;
-uniform float normal_scale : hint_range(-16,16);
-uniform vec3 uv1_scale;
-uniform vec3 uv1_offset;
-uniform vec3 uv2_scale;
-uniform vec3 uv2_offset;
-
-#include \"res://shaders/includes/psx_inc.gdshaderinc\"
-
-void vertex() {
-	UV=UV*uv1_scale.xy+uv1_offset.xy;
-	POSITION = map_affine(snap_vertex(PROJECTION_MATRIX * MODELVIEW_MATRIX * vec4(VERTEX, 1.0)));
-}
-
-void fragment() {
-	vec2 base_uv = UV;
-	vec4 albedo_tex = texture(texture_albedo,base_uv);
-	ALBEDO = albedo.rgb * albedo_tex.rgb;
-	float metallic_tex = dot(texture(texture_metallic,base_uv),metallic_texture_channel);
-	METALLIC = metallic_tex * metallic;
-	vec4 roughness_texture_channel = vec4(1.0,0.0,0.0,0.0);
-	float roughness_tex = dot(texture(texture_roughness,base_uv),roughness_texture_channel);
-	ROUGHNESS = roughness_tex * roughness;
-	SPECULAR = specular;
-	NORMAL_MAP = texture(texture_normal,base_uv).rgb;
-	NORMAL_MAP_DEPTH = normal_scale;
-}
-"
-
-[sub_resource type="Gradient" id="Gradient_4v7yc"]
-interpolation_mode = 1
-offsets = PackedFloat32Array(0, 0.3, 0.6, 0.8)
-colors = PackedColorArray(0, 0.501961, 0.188235, 1, 0, 0.627451, 0.12549, 1, 0, 0.752941, 0.25098, 1, 0.12549, 0.752941, 0.376471, 1)
-
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_lq8pl"]
-noise_type = 2
-frequency = 0.25
-
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_vk4du"]
-width = 128
-height = 128
-color_ramp = SubResource("Gradient_4v7yc")
-noise = SubResource("FastNoiseLite_lq8pl")
-
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_tdvix"]
-width = 128
-height = 128
-as_normal_map = true
-bump_strength = 4.0
-noise = SubResource("FastNoiseLite_lq8pl")
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_0acjw"]
-render_priority = 0
-shader = SubResource("Shader_hyf2c")
-shader_parameter/albedo = Color(0.752941, 0.501961, 0.752941, 1)
-shader_parameter/point_size = 1.0
-shader_parameter/roughness = 1.0
-shader_parameter/metallic_texture_channel = null
-shader_parameter/specular = 0.5
-shader_parameter/metallic = 0.0
-shader_parameter/normal_scale = 1.0
-shader_parameter/uv1_scale = Vector3(1, 1, 1)
-shader_parameter/uv1_offset = Vector3(0, 0, 0)
-shader_parameter/uv2_scale = Vector3(1, 1, 1)
-shader_parameter/uv2_offset = Vector3(0, 0, 0)
-shader_parameter/texture_albedo = SubResource("NoiseTexture2D_vk4du")
-shader_parameter/texture_normal = SubResource("NoiseTexture2D_tdvix")
 
 [sub_resource type="Animation" id="Animation_j4qs2"]
 length = 0.001
@@ -727,16 +577,16 @@ size = Vector3(1, 0.5, 3)
 [node name="Lizard" type="CharacterBody3D"]
 collision_layer = 4
 collision_mask = 151
-script = ExtResource("1_bhi88")
+script = ExtResource("1_cefll")
 melee_delay = 0.65
-melee_bullet = ExtResource("2_cmvbm")
+melee_bullet = ExtResource("2_o2com")
 species = &"lizards"
 speed = 5.0
 knockback_multiplier = 0.0
 wanderer = true
 hunts_species = Array[StringName]([&"rocketeers"])
 detection_stream = SubResource("AudioStreamRandomizer_hkga1")
-bullet = ExtResource("5_535y2")
+bullet = ExtResource("5_j2o7e")
 volley = 2
 flinch_chance = 0.35
 flinch_time = 0.25
@@ -746,7 +596,7 @@ death_stream = SubResource("AudioStreamRandomizer_2cyp5")
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, -0.15, -0.2)
 shape = SubResource("CapsuleShape3D_k12hh")
 
-[node name="lizard" parent="." instance=ExtResource("1_y8366")]
+[node name="lizard" parent="." instance=ExtResource("8_4kcvq")]
 transform = Transform3D(-0.2, 0, 3.01992e-08, 0, 0.2, 0, -3.01992e-08, 0, -0.2, 0, 0, 0)
 
 [node name="Skeleton3D" parent="lizard/Armature" index="0"]
@@ -775,7 +625,7 @@ bones/28/rotation = Quaternion(-0.500011, 0, 0, 0.866019)
 bones/29/rotation = Quaternion(-0.258969, 0, 0, 0.965886)
 
 [node name="Head" type="BoneAttachment3D" parent="lizard/Armature/Skeleton3D" index="0"]
-transform = Transform3D(0.966268, -0.257539, 0.000798856, -0.0634886, -0.241208, -0.968394, 0.249592, 0.935677, -0.249422, 4.88192e-10, -0.645546, 3.88965)
+transform = Transform3D(0.96467, 0.263406, 0.00541813, 0.0731649, -0.248082, -0.965972, -0.253098, 0.932241, -0.258589, 8.6479e-08, -0.573261, 3.88616)
 bone_name = "Head"
 bone_idx = 6
 
@@ -783,15 +633,16 @@ bone_idx = 6
 transform = Transform3D(1, -2.81099e-15, 0, 0, 7.54979e-08, 1, 3.44266e-21, -1, 7.54979e-08, 0, 0, 0)
 
 [node name="JawLeft" parent="lizard/Armature/Skeleton3D" index="1"]
-transform = Transform3D(0.000798856, 0.966268, -0.257539, -0.968394, -0.0634886, -0.241208, -0.249422, 0.249592, 0.935677, -0.12877, -0.76615, 4.35749)
+transform = Transform3D(0.00541813, 0.96467, 0.263406, -0.965972, 0.0731649, -0.248082, -0.258589, -0.253098, 0.932241, 0.131703, -0.697302, 4.35228)
 
 [node name="JawLeft" parent="lizard/Armature/Skeleton3D/JawLeft" index="0"]
 transform = Transform3D(1, -1.42108e-14, 0, -1.25528e-14, 1, -1.42109e-14, 0, 0, 1, 0, 0, 0)
 layers = 2
-material_override = SubResource("ShaderMaterial_2qi5o")
+material_override = ExtResource("9_o7vwu")
 
 [node name="GPUParticles3D" type="GPUParticles3D" parent="lizard/Armature/Skeleton3D/JawLeft/JawLeft" index="0"]
 transform = Transform3D(-5.00001, -2.98024e-07, 2.38419e-07, 1.13687e-13, -5, 2.98023e-07, -2.38419e-07, -5.68434e-14, 5, 1.78814e-07, 1, 2.125)
+visible = false
 layers = 2
 material_override = SubResource("ShaderMaterial_f60oq")
 amount = 16
@@ -803,29 +654,30 @@ draw_pass_1 = SubResource("SphereMesh_2vp0u")
 [node name="SpawnerRight" type="Marker3D" parent="lizard/Armature/Skeleton3D/JawLeft/JawLeft/GPUParticles3D"]
 
 [node name="HornLeftBottom" parent="lizard/Armature/Skeleton3D" index="2"]
-transform = Transform3D(0.257539, 0.000798917, -0.966268, 0.241208, -0.968394, 0.0634886, -0.935677, -0.249423, -0.249592, 0.786489, -1.55568, 5.42118)
+transform = Transform3D(-0.263406, 0.00541807, -0.96467, 0.248082, -0.965972, -0.0731649, -0.93224, -0.25859, 0.253098, 1.54225, -1.32817, 4.8049)
 
 [node name="HornLeftBottom" parent="lizard/Armature/Skeleton3D/HornLeftBottom" index="0"]
 layers = 2
-material_override = SubResource("ShaderMaterial_2qi5o")
+material_override = ExtResource("9_o7vwu")
 
 [node name="HornLeftTop" parent="lizard/Armature/Skeleton3D" index="3"]
-transform = Transform3D(0.000798856, -0.257539, -0.966268, -0.968394, -0.241208, 0.0634886, -0.249422, 0.935677, -0.249592, 0.78569, -0.587287, 5.6706)
+transform = Transform3D(0.00541813, 0.263406, -0.96467, -0.965972, -0.248082, -0.0731649, -0.258589, 0.932241, 0.253098, 1.53683, -0.362196, 5.06349)
 
 [node name="HornLeftTop" parent="lizard/Armature/Skeleton3D/HornLeftTop" index="0"]
 layers = 2
-material_override = SubResource("ShaderMaterial_2qi5o")
+material_override = ExtResource("9_o7vwu")
 
 [node name="JawRight" parent="lizard/Armature/Skeleton3D" index="4"]
-transform = Transform3D(-0.000798856, -0.966268, -0.257539, 0.968394, 0.0634886, -0.241208, 0.249422, -0.249592, 0.935677, -0.12877, -0.76615, 4.35749)
+transform = Transform3D(-0.00541813, -0.96467, 0.263406, 0.965972, -0.0731649, -0.248082, 0.258589, 0.253098, 0.932241, 0.131703, -0.697302, 4.35228)
 
 [node name="JawRight" parent="lizard/Armature/Skeleton3D/JawRight" index="0"]
 transform = Transform3D(1, 0, 0, 0, 1, 7.57849e-15, 0, 3.07846e-15, 1, 0, 0, 0)
 layers = 2
-material_override = SubResource("ShaderMaterial_2qi5o")
+material_override = ExtResource("9_o7vwu")
 
 [node name="GPUParticles3D" type="GPUParticles3D" parent="lizard/Armature/Skeleton3D/JawRight/JawRight" index="0"]
 transform = Transform3D(-5, 2.98023e-07, 0, -1.42109e-14, -5, 2.98023e-07, -2.38419e-07, -5.68434e-14, 5, -1.78814e-07, 1, 2.125)
+visible = false
 layers = 2
 material_override = SubResource("ShaderMaterial_sytrj")
 amount = 16
@@ -837,23 +689,23 @@ draw_pass_1 = SubResource("SphereMesh_42m1i")
 [node name="SpawnerLeft" type="Marker3D" parent="lizard/Armature/Skeleton3D/JawRight/JawRight/GPUParticles3D"]
 
 [node name="HornRightBottom" parent="lizard/Armature/Skeleton3D" index="5"]
-transform = Transform3D(0.257539, -0.000798856, 0.966268, 0.241208, 0.968394, -0.0634886, -0.935677, 0.249422, 0.249592, -1.53255, -1.40331, 4.82216)
+transform = Transform3D(-0.263406, -0.00541813, 0.96467, 0.248082, 0.965972, 0.0731649, -0.932241, 0.258589, -0.253098, -0.772957, -1.50376, 5.41234)
 
 [node name="HornRightBottom" parent="lizard/Armature/Skeleton3D/HornRightBottom" index="0"]
 layers = 2
-material_override = SubResource("ShaderMaterial_2qi5o")
+material_override = ExtResource("9_o7vwu")
 
 [node name="HornRightTop" parent="lizard/Armature/Skeleton3D" index="6"]
-transform = Transform3D(0.000798866, 0.257539, 0.966268, -0.968394, 0.241208, -0.0634886, -0.249422, -0.935677, 0.249592, -1.53335, -0.434914, 5.07158)
+transform = Transform3D(0.00541814, -0.263406, 0.96467, -0.965972, 0.248082, 0.0731649, -0.258589, -0.932241, -0.253098, -0.778375, -0.537792, 5.67093)
 
 [node name="HornRightTop" parent="lizard/Armature/Skeleton3D/HornRightTop" index="0"]
 layers = 2
-material_override = SubResource("ShaderMaterial_2qi5o")
+material_override = ExtResource("9_o7vwu")
 
 [node name="Body" parent="lizard/Armature/Skeleton3D" index="7"]
 transform = Transform3D(1, -0.000383972, 1.42109e-14, 0.000383972, 1, -5.79782e-11, 1.42109e-14, 5.79782e-11, 1, 0, 0, 0)
 layers = 2
-material_override = SubResource("ShaderMaterial_0acjw")
+material_override = ExtResource("9_o7vwu")
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
 path_desired_distance = 1.5
@@ -867,7 +719,7 @@ collision_mask = 3
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 "": SubResource("AnimationLibrary_dalwl"),
-"lizard_anims": ExtResource("3_to7gb")
+"lizard_anims": ExtResource("10_kynjh")
 }
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
@@ -882,17 +734,17 @@ doppler_tracking = 2
 [node name="Spawner" type="Marker3D" parent="."]
 
 [node name="Status" type="Node" parent="."]
-script = ExtResource("3_lfy8e")
+script = ExtResource("11_5mioy")
 max_health = 150.0
 gib_threshold = 100.0
-damage_sys = ExtResource("4_mhmdq")
-gibs = ExtResource("11_p5oxo")
-loot = Array[PackedScene]([ExtResource("4_ltgog"), ExtResource("5_igm48")])
+damage_sys = ExtResource("12_v1mtp")
+gibs = ExtResource("13_j0r17")
+loot = Array[PackedScene]([ExtResource("14_p7gvy"), ExtResource("15_64bnk")])
 is_enemy = true
 score = 1
 
 [node name="StairStepper" type="Node3D" parent="."]
-script = ExtResource("15_csdjx")
+script = ExtResource("16_huone")
 
 [node name="LowCast" type="ShapeCast3D" parent="StairStepper"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.24, -0.25)

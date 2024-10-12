@@ -13,7 +13,7 @@ var banked_charges: int = 0
 
 func _process(delta: float) -> void:
 	if cooldown_timer > 0:
-		cooldown_timer -= delta
+		cooldown_timer -= delta * (player.status.ff_timers.size() + 1)
 
 	if charging:
 		charge_timer += delta

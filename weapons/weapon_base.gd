@@ -36,6 +36,8 @@ signal hud_connected(category: int, index: int, ammo_type: String, alt_ammo_type
 @export var ammo_type: String = "none"
 ## The amount of ammo consumed per shot.
 @export var ammo_cost: int = 1
+## Whether this weapon is affected by the "berserk" powerup.
+@export var apply_berserk: bool = false
 ## If use_safety_catch is enabled, when the player switches to this weapon while
 ## holding the "fire" button, they will be prevented from firing until the
 ## "fire" button is released, so as to not waste ammo and/or blow onself up with
@@ -92,7 +94,7 @@ func _ready() -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta) -> void:
 	if cooldown_timer > 0:
-		cooldown_timer -= delta
+		cooldown_timer -= delta * (player.status.ff_timers.size() + 1)
 
 	if refire_penalty > 0:
 		refire_penalty -= delta
@@ -170,6 +172,8 @@ func emit_bullet(what: PackedScene, inherit_vel: bool = false) -> Node:
 
 	var instance = what.instantiate()
 	spawner.add_child(instance)
+	if apply_berserk and "damage" in instance:
+		instance.damage *= 10
 	if inherit_vel and instance is Bullet:
 		(instance as Bullet).linear_velocity = (
 				-(instance as Bullet).speed 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=152 format=4 uid="uid://ddybwy4hdo2q3"]
+[gd_scene load_steps=153 format=4 uid="uid://ddybwy4hdo2q3"]
 
 [ext_resource type="Script" path="res://levels/level.gd" id="1_lifds"]
 [ext_resource type="PackedScene" uid="uid://do61x5km3wthk" path="res://entities/player/player.tscn" id="1_npqeh"]
@@ -29,6 +29,7 @@
 [ext_resource type="PackedScene" uid="uid://dqugqrrqpxdih" path="res://entities/enemies/machines/gun_turret/gun_turret.tscn" id="37_w2aui"]
 [ext_resource type="Script" path="res://addons/func_godot/src/map/func_godot_map.gd" id="38_cabet"]
 [ext_resource type="Shader" path="res://shaders/spatial/depth_test.gdshader" id="39_34bav"]
+[ext_resource type="Material" uid="uid://cgrmnklrxmjec" path="res://entities/enemies/shadow_mat.tres" id="39_a4eva"]
 [ext_resource type="Resource" uid="uid://bkhxcqsquw1yg" path="res://addons/func_godot/func_godot_default_map_settings.tres" id="39_gspvf"]
 [ext_resource type="Shader" path="res://shaders/spatial/iridescent_psx.gdshader" id="39_vgoen"]
 [ext_resource type="Shader" path="res://shaders/spatial/psx_test.gdshader" id="40_8dl3b"]
@@ -1406,6 +1407,11 @@ mesh = SubResource("BoxMesh_h44b6")
 [node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 1, 4)
 material_override = SubResource("StandardMaterial3D_yeiyk")
+mesh = SubResource("BoxMesh_h44b6")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 1, 4)
+material_override = ExtResource("39_a4eva")
 mesh = SubResource("BoxMesh_h44b6")
 
 [editable path="Things/Teleporter"]

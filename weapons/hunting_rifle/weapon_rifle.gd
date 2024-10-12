@@ -20,7 +20,7 @@ func _ready() -> void:
 
 func _process(delta) -> void:
 	if cooldown_timer > 0:
-		cooldown_timer -= delta
+		cooldown_timer -= delta * (player.status.ff_timers.size() + 1)
 
 	if refire_penalty > 0:
 		refire_penalty -= delta

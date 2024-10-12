@@ -60,7 +60,7 @@ graph_offset = Vector2(-136, 58)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.25, -0.35)
 
 [node name="Axe" type="MeshInstance3D" parent="."]
-transform = Transform3D(0.499978, -0.866038, 0, 0.866038, 0.499978, 0, 0, 0, 1, -0.15, 0.00904285, 0)
+transform = Transform3D(0.499978, -0.866038, 0, 0.866038, 0.499978, 0, 0, 0, 1, -0.15, 0.00998318, 0)
 layers = 4
 material_override = ExtResource("1_qblvp")
 cast_shadow = 0
@@ -69,6 +69,8 @@ script = ExtResource("5_fkvwm")
 bullet = ExtResource("6_jc7bq")
 shot_cooldown = 0.4
 cam_recoil = -0.261799
+apply_berserk = true
+use_safety_catch = false
 
 [node name="Spawner" type="Marker3D" parent="Axe"]
 
@@ -78,30 +80,6 @@ cam_recoil = -0.261799
 root_node = NodePath(".")
 tree_root = SubResource("AnimationNodeStateMachine_o311l")
 anim_player = NodePath("../../AnimationPlayer")
-parameters/current_length = 2.0
-parameters/current_position = 0.808776
-parameters/current_delta = 0.142568
-parameters/End/current_length = null
-parameters/End/current_position = null
-parameters/End/current_delta = null
-parameters/Start/current_length = 0.0
-parameters/Start/current_position = 0.0
-parameters/Start/current_delta = 0.0
-parameters/alt_firing/current_length = null
-parameters/alt_firing/current_position = null
-parameters/alt_firing/current_delta = null
-parameters/alt_idle/current_length = null
-parameters/alt_idle/current_position = null
-parameters/alt_idle/current_delta = null
-parameters/deploy/current_length = 0.5
-parameters/deploy/current_position = 0.5
-parameters/deploy/current_delta = 0.228172
-parameters/firing/current_length = null
-parameters/firing/current_position = null
-parameters/firing/current_delta = null
-parameters/idle/current_length = 2.0
-parameters/idle/current_position = 0.808776
-parameters/idle/current_delta = 0.142568
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 root_node = NodePath("../Axe/AnimationTree")

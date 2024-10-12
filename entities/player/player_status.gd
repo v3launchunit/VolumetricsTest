@@ -11,6 +11,10 @@ signal key_acquired(key: int)
 
 @export var armor: float
 @export var held_keys: Array[bool] = [false, false, false]
+@export var powerups: Array[Powerup]
+@export var berserk_timer: float = 0.0
+@export var filters_timer: float = 0.0
+@export var ff_timers: PackedFloat32Array = []
 
 @onready var stream_player := get_parent().get_node("AudioStreamPlayer") as AudioStreamPlayer
 @onready var hud := get_parent().find_child("HUD") as HudHandler

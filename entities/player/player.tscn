@@ -235,10 +235,27 @@ mesh = SubResource("CapsuleMesh_iu3ba")
 [node name="Status" type="Node" parent="."]
 process_mode = 1
 script = ExtResource("22_pxs5m")
+max_armor = null
+armor_absorption = null
 injury_stream = SubResource("AudioStreamRandomizer_uyctv")
+armor = null
+held_keys = null
+powerups = null
+max_health = null
 gib_threshold = 5000.0
+base_damage_factor = null
 damage_multipliers = Array[float]([1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0])
+burn_prone = null
+burn_rate = null
 gibs = ExtResource("24_222pa")
+gibs_offset = null
+loot = null
+ripple_distance = null
+is_enemy = null
+score = null
+health = null
+is_dead = null
+burning = null
 
 [node name="StairStepper" parent="." instance=ExtResource("25_rotfo")]
 

@@ -2,7 +2,7 @@ extends Control
 
 
 enum TallyPhase {
-	FLASH,
+	MELT,
 	TIME,
 	KILLS,
 	SECRETS,

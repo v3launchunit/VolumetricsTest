@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="FuncGodotFGDPointClass" load_steps=4 format=3 uid="uid://cpc67jt1xi2qo"]
+
+[ext_resource type="Resource" uid="uid://63fs8fd3x07r" path="res://trench_broom/func_godot_fgd/entities/base/enemy_base_class.tres" id="1_qyoss"]
+[ext_resource type="PackedScene" uid="uid://c83b684bvkbu5" path="res://entities/enemies/locals/lizard/camo_lizard.tscn" id="2_q7mqy"]
+[ext_resource type="Script" path="res://addons/func_godot/src/fgd/func_godot_fgd_point_class.gd" id="3_4uuqp"]
+
+[resource]
+script = ExtResource("3_4uuqp")
+scene_file = ExtResource("2_q7mqy")
+apply_rotation_on_map_build = true
+classname = "enemy_camo_lizard"
+description = ""
+func_godot_internal = false
+base_classes = Array[Resource]([ExtResource("1_qyoss")])
+class_properties = {}
+class_property_descriptions = {}
+meta_properties = {
+"color": Color(0.8, 0.8, 0.8, 1),
+"size": AABB(-8, -8, -8, 8, 8, 8)
+}
+node_class = ""
+name_property = ""

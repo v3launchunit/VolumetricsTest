@@ -1,14 +1,31 @@
-[gd_scene load_steps=7 format=3 uid="uid://redbealnw6dv"]
+[gd_scene load_steps=12 format=3 uid="uid://redbealnw6dv"]
 
 [ext_resource type="Theme" uid="uid://dwof7m2ye3tjh" path="res://ui/default_theme.tres" id="1_8b1d4"]
 [ext_resource type="Script" path="res://levels/intermission/intermission_screen.gd" id="1_j6yne"]
 [ext_resource type="Texture2D" uid="uid://cmq3arf61ax4f" path="res://ui/menus/menu_panel.png" id="3_uenmx"]
 [ext_resource type="AudioStream" uid="uid://cfhhlt7csg7u7" path="res://audio/streams/weapons/firing/shotgun_fire.wav" id="4_ugqxr"]
+[ext_resource type="Shader" path="res://shaders/canvas/screenwipe_melt.gdshader" id="5_7ipf1"]
 
 [sub_resource type="Gradient" id="Gradient_v0l2t"]
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_uhran"]
 gradient = SubResource("Gradient_v0l2t")
+
+[sub_resource type="Gradient" id="Gradient_em8xn"]
+colors = PackedColorArray(0.1, 0.1, 0.1, 1, 1, 1, 1, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_3d347"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_0756h"]
+width = 1920
+height = 1
+color_ramp = SubResource("Gradient_em8xn")
+noise = SubResource("FastNoiseLite_3d347")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_effek"]
+shader = ExtResource("5_7ipf1")
+shader_parameter/melt_progress = 0.0
+shader_parameter/melt_noise = SubResource("NoiseTexture2D_0756h")
 
 [node name="IntermissionScreen" type="Control"]
 layout_mode = 3
@@ -143,3 +160,14 @@ patch_margin_left = 4
 patch_margin_top = 16
 patch_margin_right = 4
 patch_margin_bottom = 8
+
+[node name="ScreenWipeMelt" type="TextureRect" parent="."]
+visible = false
+material = SubResource("ShaderMaterial_effek")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture2D_uhran")

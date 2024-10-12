@@ -1,0 +1,19 @@
+[gd_resource type="ShaderMaterial" load_steps=4 format=3 uid="uid://cgrmnklrxmjec"]
+
+[ext_resource type="Shader" path="res://levels/debug/test_level/shadow_psx.gdshader" id="1_l0ujg"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_qmkff"]
+frequency = 1.0
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_21fmi"]
+width = 320
+height = 90
+noise = SubResource("FastNoiseLite_qmkff")
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_l0ujg")
+shader_parameter/albedo = Color(1, 1, 1, 1)
+shader_parameter/uv1_scale = null
+shader_parameter/uv1_offset = null
+shader_parameter/texture_albedo = SubResource("NoiseTexture2D_21fmi")
