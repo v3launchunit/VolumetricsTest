@@ -14,7 +14,8 @@ signal key_acquired(key: int)
 @export var powerups: Array[Powerup]
 @export var berserk_timer: float = 0.0
 @export var filters_timer: float = 0.0
-@export var ff_timers: PackedFloat32Array = []
+@export var invuln_timer: float = 0.0
+@export var ff_timers: PackedFloat64Array = []
 
 @onready var stream_player := get_parent().get_node("AudioStreamPlayer") as AudioStreamPlayer
 @onready var hud := get_parent().find_child("HUD") as HudHandler
@@ -48,8 +49,25 @@ func _process(_delta: float) -> void:
 #			health = max_health
 
 
+func _physics_process(delta: float) -> void:
+	super(delta)
+	if invuln_timer > 0:
+		invuln_timer -= delta
+	if berserk_timer > 0:
+		berserk_timer -= delta
+	if filters_timer > 0:
+		filters_timer -= delta
+	var i := 0
+	while i < ff_timers.size():
+		ff_timers.set(i, ff_timers[i] - delta)
+		if ff_timers[i] <= 0:
+			ff_timers.remove_at(i)
+		else:
+			i += 1
+
+
 func damage_typed(amount: float, type: DamageType, gib_mode: GibMode = GibMode.ALLOW_GIB) -> float: # returns damage dealt, for piercers
-	if is_dead:
+	if invuln_timer > 0 or is_dead:
 		return 0 # corpses cannot stop piercers
 	hud.flash(Color(1, 0, 0, clamp(amount / 10, 0.1, 1)))
 	if amount > 0:
@@ -68,6 +86,8 @@ func damage_typed(amount: float, type: DamageType, gib_mode: GibMode = GibMode.A
 
 
 func rapid_damage_typed(amount: float, type: DamageType, delta: float, gib_mode: GibMode = GibMode.ALLOW_GIB) -> void:
+	if invuln_timer > 0:
+		return
 	health -= amount * delta * base_damage_factor * damage_multipliers[type] * (1 - armor_absorption)
 	armor  -= amount * delta * base_damage_factor * damage_multipliers[type] * armor_absorption
 	hud.rapid_flash(type, delta)

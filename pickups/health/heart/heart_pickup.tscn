@@ -195,7 +195,7 @@ heal_amount = 200
 can_overheal = true
 event_string = "pickup.health.heart"
 pickup_sound = ExtResource("2_hobdx")
-pickup_text = "A still-beating heart (+200% bonus health)"
+pickup_text = "pickup.health.heart"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("CylinderShape3D_uc2sx")

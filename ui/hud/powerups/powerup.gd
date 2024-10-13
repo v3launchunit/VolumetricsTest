@@ -9,7 +9,7 @@ enum StackMode {
 }
 
 
-@export var stack_mode := StackMode.STACK_OVERWRITE 
+@export var stack_mode := StackMode.STACK_TIMER 
 @export_range(0.0, 120.0, 0.1, "or_greater", "suffix:s") var duration : float = 60.0
 
 
