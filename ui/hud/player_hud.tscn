@@ -481,6 +481,7 @@ grow_vertical = 0
 theme = ExtResource("10_y0l7u")
 
 [node name="FastFingersTimer" type="TextureProgressBar" parent="PowerupDisplay"]
+visible = false
 layout_mode = 2
 size_flags_horizontal = 3
 theme = ExtResource("10_y0l7u")
@@ -497,6 +498,7 @@ texture_progress = ExtResource("12_t2h22")
 tint_progress = Color(0.490196, 0.392157, 0, 1)
 
 [node name="BerserkTimer" type="TextureProgressBar" parent="PowerupDisplay"]
+visible = false
 layout_mode = 2
 size_flags_horizontal = 3
 theme = ExtResource("10_y0l7u")
@@ -514,6 +516,7 @@ texture_progress = ExtResource("12_t2h22")
 tint_progress = Color(0.53, 0, 0, 1)
 
 [node name="FiltersTimer" type="TextureProgressBar" parent="PowerupDisplay"]
+visible = false
 layout_mode = 2
 size_flags_horizontal = 3
 theme = ExtResource("10_y0l7u")
@@ -531,6 +534,7 @@ texture_progress = ExtResource("12_t2h22")
 tint_progress = Color(0.294118, 0.392157, 0.196078, 1)
 
 [node name="InvulnTimer" type="TextureProgressBar" parent="PowerupDisplay"]
+visible = false
 layout_mode = 2
 size_flags_horizontal = 3
 theme = ExtResource("10_y0l7u")
