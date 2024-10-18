@@ -1,4 +1,4 @@
-[gd_scene load_steps=104 format=3 uid="uid://cbo6wxdi4eryp"]
+[gd_scene load_steps=105 format=3 uid="uid://cbo6wxdi4eryp"]
 
 [ext_resource type="Script" path="res://entities/enemies/military/pinkerton/enemy_pinkerton.gd" id="1_4o8wq"]
 [ext_resource type="Script" path="res://entities/status.gd" id="2_p7cng"]
@@ -21,6 +21,7 @@
 [ext_resource type="AudioStream" uid="uid://dlc4tyjayi4sv" path="res://audio/streams/voices/pinkerton/detect/stop_her_1.wav" id="12_tfmbw"]
 [ext_resource type="AudioStream" uid="uid://cqcaj4cjjb1ip" path="res://audio/streams/voices/pinkerton/detect/tresspasser_1.wav" id="13_0jqmp"]
 [ext_resource type="PackedScene" uid="uid://blrtnnu61g5s" path="res://bullets/enemy/enemy_bullet_gen.tscn" id="14_0v8ti"]
+[ext_resource type="PackedScene" uid="uid://lcqg0bmf3q1s" path="res://bullets/enemy/enemy_hitscan_gen.tscn" id="15_ipccq"]
 [ext_resource type="AudioStream" uid="uid://b5ay00lvhbvmm" path="res://audio/streams/voices/pinkerton/death/scream_4.wav" id="15_kxmnn"]
 [ext_resource type="AudioStream" uid="uid://db7ebp6630xbh" path="res://audio/streams/voices/pinkerton/death/scream_3.wav" id="16_vn7a5"]
 [ext_resource type="AudioStream" uid="uid://472lwhnuv0ad" path="res://audio/streams/voices/pinkerton/death/scream_2.wav" id="17_n4f4t"]
@@ -920,6 +921,7 @@ detection_stream = SubResource("AudioStreamRandomizer_oao7a")
 bullet = ExtResource("14_0v8ti")
 volley = 5
 spread = 5.0
+nightmare_bullet = ExtResource("15_ipccq")
 flinch_chance = 0.25
 flinch_time = 0.35
 death_stream = SubResource("AudioStreamRandomizer_36k8d")
@@ -958,7 +960,7 @@ bones/20/scale = Vector3(1, 1, 1)
 bones/21/rotation = Quaternion(-0.0824806, -6.65001e-08, -1.41612e-08, 0.996593)
 
 [node name="Cylinder" parent="Pinkerton/Armature/Skeleton3D" index="0"]
-transform = Transform3D(-0.151912, -0.70768, 0.690009, 0.939844, -0.319532, -0.1208, 0.305968, 0.630149, 0.713649, -0.0941592, 0.335863, 0.157678)
+transform = Transform3D(-0.138191, -0.485057, 0.863495, 0.958705, -0.284332, -0.00629129, 0.248571, 0.826967, 0.504319, -0.0575586, 0.337023, 0.191126)
 
 [node name="Cylinder" parent="Pinkerton/Armature/Skeleton3D/Cylinder" index="0"]
 layers = 2
@@ -997,14 +999,14 @@ shadow_enabled = true
 distance_fade_enabled = true
 
 [node name="Cylinder_001" parent="Pinkerton/Armature/Skeleton3D" index="1"]
-transform = Transform3D(-0.227867, -0.70768, 1.03501, 1.40977, -0.319532, -0.181201, 0.458953, 0.630149, 1.07047, -0.129544, 0.319886, 0.189187)
+transform = Transform3D(-0.207287, -0.485057, 1.29524, 1.43806, -0.284332, -0.00943732, 0.372856, 0.826967, 0.756478, -0.0818121, 0.322806, 0.232475)
 
 [node name="Cylinder_001" parent="Pinkerton/Armature/Skeleton3D/Cylinder_001" index="0"]
 layers = 2
 material_override = SubResource("ShaderMaterial_bkory")
 
 [node name="Shotgun" parent="Pinkerton/Armature/Skeleton3D" index="2"]
-transform = Transform3D(0.999999, 8.9407e-08, -3.57628e-07, 1.19209e-07, -1, 1.19252e-08, -3.57628e-07, -1.19251e-08, -1, -0.4, -1.22, -0.05)
+transform = Transform3D(0.986639, 0.130913, 0.0969778, -0.160195, 0.887949, 0.431143, -0.0296693, -0.440918, 0.897057, -0.230856, 0.396004, 0.0636066)
 
 [node name="Shotgun" parent="Pinkerton/Armature/Skeleton3D/Shotgun" index="0"]
 layers = 2
@@ -1026,7 +1028,7 @@ omni_range = 10.0
 transform = Transform3D(-1.95578e-08, -1, 7.45058e-09, -3.72529e-08, 2.23517e-08, 1, -1, 2.04891e-08, -3.72529e-08, 0, 0.675, -0.135)
 
 [node name="Pump" parent="Pinkerton/Armature/Skeleton3D" index="3"]
-transform = Transform3D(0.999999, 8.9407e-08, -3.57628e-07, 1.19209e-07, -1, 1.19252e-08, -3.57628e-07, -1.19251e-08, -1, -0.4, -1.22, -0.05)
+transform = Transform3D(0.986639, 0.130913, 0.0969778, -0.160195, 0.887949, 0.431143, -0.0296693, -0.440918, 0.897057, -0.230856, 0.396004, 0.0636066)
 
 [node name="Pump" parent="Pinkerton/Armature/Skeleton3D/Pump" index="0"]
 layers = 2

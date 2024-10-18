@@ -112,6 +112,8 @@ enum DetectionType {
 @export_range(0.0, 180.0, 0.1, "degrees") var spread: float = 0.0
 ## The enemy's current known targets, in ascending order of priority.
 @export var current_targets: Array[PhysicsBody3D]
+@export_subgroup("Nightmare")
+@export var nightmare_bullet: PackedScene
 
 @export_group("Damage")
 ## The percent chance that this enemy will flinch and stop moving per incoming
@@ -637,7 +639,7 @@ func do_attack() -> void:
 		spawner.global_rotation = spawner_base_rotation
 		spawner.rotate_z(deg_to_rad(randf_range(-spread/2, spread/2)))
 		spawner.rotate_y(deg_to_rad(randf_range(-spread/4, spread/4)))
-		var instance = bullet.instantiate()
+		var instance = (nightmare_bullet if nightmare_bullet and Globals.s_nightmare else bullet).instantiate()
 		spawner.add_child(instance)
 		instance.reparent(get_tree().root)
 		if instance is PhysicsBody3D:

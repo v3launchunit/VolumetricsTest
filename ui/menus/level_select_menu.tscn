@@ -145,7 +145,7 @@ layout_mode = 2
 theme = ExtResource("3_30jf0")
 text = "E1M8"
 script = ExtResource("3_4djrb")
-level_name = "e1_boss"
+level_name = "e1m8"
 
 [node name="MS" type="Button" parent="SettingsPanel/LevelSelect/E1"]
 layout_mode = 2
@@ -153,7 +153,7 @@ size_flags_vertical = 10
 theme = ExtResource("3_30jf0")
 text = "E1MS"
 script = ExtResource("3_4djrb")
-level_name = "e1_secret"
+level_name = "e1ms"
 is_secret = true
 
 [node name="E2" type="VBoxContainer" parent="SettingsPanel/LevelSelect"]

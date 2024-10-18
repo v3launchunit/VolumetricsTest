@@ -260,7 +260,8 @@ func get_tooltip() -> String:
 	return (
 			"" # inoperable and/or moving
 			if (
-					not openable() 
+					properties.get("secret", false)
+					or not openable() 
 					or (
 							not open 
 							and properties["tooltip_closed"] == ""
@@ -296,7 +297,7 @@ func interact(body: Node3D) -> void:
 			properties["required_key"] != -1 # door requires key
 			and not body.find_child("Status").held_keys[properties["required_key"]] # player doesn't have the right key
 	):
-		if body is Player:
+		if body is Player and not properties.get("secret", false):
 			(body as Player).hud.set_alert(Globals.parse_text(
 					"alerts", 
 					"door.locked.%s" % properties["required_key"]

@@ -65,7 +65,12 @@ func _attack(_delta) -> void:
 func do_attack() -> void:
 	look_at(current_targets[-1].position)
 	rotation.x = 0
-	var current_bullet: PackedScene = patterns[current_pattern].bullet
+	var current_bullet: PackedScene = (
+			patterns[current_pattern].nightmare_bullet
+			if patterns[current_pattern].nightmare_bullet 
+					and Globals.s_nightmare
+			else patterns[current_pattern].bullet
+	)
 	var current_volley: int = patterns[current_pattern].volley
 	var current_spread: float = patterns[current_pattern].spread
 	var current_spawner: Node3D = (

@@ -1,4 +1,4 @@
-[gd_scene load_steps=64 format=4 uid="uid://dqugqrrqpxdih"]
+[gd_scene load_steps=65 format=4 uid="uid://dqugqrrqpxdih"]
 
 [ext_resource type="Script" path="res://entities/enemies/machines/gun_turret/turret.gd" id="1_1bh2h"]
 [ext_resource type="Script" path="res://entities/enemies/machines/enemy_turret.gd" id="1_q2b2k"]
@@ -11,6 +11,7 @@
 [ext_resource type="Material" uid="uid://4uvuq34871pc" path="res://entities/enemies/machines/metal_white_psx.tres" id="3_lhv5t"]
 [ext_resource type="Texture2D" uid="uid://hk0k2coukjwc" path="res://effects/halos/halo_tex.tres" id="4_wmb78"]
 [ext_resource type="Script" path="res://scripts/effects/halo.gd" id="5_xtdky"]
+[ext_resource type="PackedScene" uid="uid://lcqg0bmf3q1s" path="res://bullets/enemy/enemy_hitscan_gen.tscn" id="6_fq8l1"]
 [ext_resource type="Shader" path="res://shaders/spatial/psx_ul_add.gdshader" id="8_j4d2d"]
 [ext_resource type="Script" path="res://entities/status.gd" id="9_bbmqx"]
 [ext_resource type="ArrayMesh" uid="uid://bblg4t73miejx" path="res://weapons/muzzle_flash_alt.obj" id="9_shv2h"]
@@ -59,6 +60,7 @@ bullet = ExtResource("3_bdfa1")
 volley = 1
 spread = 2.5
 spawners = Array[NodePath]([NodePath("Body/Muzzle/Spawner/Marker3D")])
+nightmare_bullet = ExtResource("6_fq8l1")
 delay = 0.0
 recovery_time = 0.2
 animation = &"attacking"

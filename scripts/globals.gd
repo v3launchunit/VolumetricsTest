@@ -117,9 +117,9 @@ var s_music_volume: float = 100.0
 var s_difficulty := Difficulty.NORMAL
 ## Nightmare mode is handled separately because it affects gameplay differently
 ## from the regular difficulty slider.
-var s_nightmare_mode_active: bool = false
+var s_nightmare: bool = false
 ## Whether the player gets to keep their weapons and ammo between levels.
-var s_intruder_mode_active: bool = true
+var s_intruder: bool = true
 ## Whether crouching is a toggle or a hold.
 var s_toggle_crouch: bool = false
 
@@ -343,3 +343,11 @@ func get_all_children(node) -> Array:
 
 func menu_click() -> bool:
 	return Input.is_action_just_pressed("ui_click") or Input.is_action_just_pressed("interact")
+
+
+func uppercase(string: String) -> String:
+	var out: String = ""
+	
+	
+	
+	return out

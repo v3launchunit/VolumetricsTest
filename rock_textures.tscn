@@ -1,0 +1,125 @@
+[gd_scene load_steps=25 format=3 uid="uid://h64ldnoxksse"]
+
+[ext_resource type="Material" uid="uid://cj2l6n08ob5bh" path="res://trench_broom/textures/natural/rock_3.tres" id="1_2a8a4"]
+[ext_resource type="Texture2D" uid="uid://dkyns4riimoif" path="res://trench_broom/textures/_pbr/_others/rock051_albedo/rock051_albedo.png" id="1_y64sh"]
+[ext_resource type="Texture2D" uid="uid://bcqj7ltywdene" path="res://trench_broom/textures/_pbr/_others/rock051_albedo/rock051_normals.png" id="2_bf801"]
+[ext_resource type="Texture2D" uid="uid://dn32dfb86qfis" path="res://trench_broom/textures/_pbr/_others/rock051_albedo/rock051_roughness.png" id="3_jtfqa"]
+
+[sub_resource type="Gradient" id="Gradient_u8tl6"]
+interpolation_mode = 1
+offsets = PackedFloat32Array(0, 0.25, 0.375, 0.5, 0.625, 0.75)
+colors = PackedColorArray(0.3, 0.3, 0.3, 1, 0.25, 0.25, 0.25, 1, 0.35, 0.35, 0.35, 1, 0.4, 0.4, 0.4, 1, 0.5, 0.5, 0.5, 1, 0.45, 0.45, 0.45, 1)
+metadata/_snap_enabled = true
+metadata/_snap_count = 16
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_lbsxq"]
+noise_type = 5
+frequency = 0.025
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_qbolu"]
+seamless = true
+color_ramp = SubResource("Gradient_u8tl6")
+noise = SubResource("FastNoiseLite_lbsxq")
+
+[sub_resource type="Gradient" id="Gradient_2geap"]
+offsets = PackedFloat32Array(0, 0.988764)
+colors = PackedColorArray(0.1, 0.125, 0.2, 1, 0.225, 0.28125, 0.45, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_0yetb"]
+seed = 340
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_0pn13"]
+seamless = true
+color_ramp = SubResource("Gradient_2geap")
+noise = SubResource("FastNoiseLite_0yetb")
+
+[sub_resource type="Gradient" id="Gradient_4pl33"]
+colors = PackedColorArray(0.5, 0.5, 0.5, 1, 0.75, 0.75, 0.75, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_ytrkq"]
+noise_type = 5
+frequency = 0.025
+fractal_type = 3
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_s6la8"]
+seamless = true
+color_ramp = SubResource("Gradient_4pl33")
+noise = SubResource("FastNoiseLite_ytrkq")
+
+[sub_resource type="Gradient" id="Gradient_vpt3k"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_o4q7s"]
+seamless = true
+as_normal_map = true
+color_ramp = SubResource("Gradient_vpt3k")
+noise = SubResource("FastNoiseLite_0yetb")
+
+[sub_resource type="Gradient" id="Gradient_6olnu"]
+interpolation_mode = 1
+offsets = PackedFloat32Array(0, 0.25, 0.375, 0.5, 0.625, 0.75)
+colors = PackedColorArray(0, 0, 0, 1, 0.25, 0.25, 0.25, 1, 0.5, 0.5, 0.5, 1, 0.75, 0.75, 0.75, 1, 1, 1, 1, 1, 0, 0, 0, 1)
+metadata/_snap_enabled = true
+metadata/_snap_count = 16
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_jl23q"]
+seamless = true
+as_normal_map = true
+color_ramp = SubResource("Gradient_6olnu")
+noise = SubResource("FastNoiseLite_lbsxq")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_haniq"]
+albedo_texture = SubResource("NoiseTexture2D_qbolu")
+normal_enabled = true
+normal_texture = SubResource("NoiseTexture2D_jl23q")
+detail_enabled = true
+detail_mask = SubResource("NoiseTexture2D_s6la8")
+detail_albedo = SubResource("NoiseTexture2D_0pn13")
+detail_normal = SubResource("NoiseTexture2D_o4q7s")
+texture_filter = 0
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_k6ud4"]
+
+[sub_resource type="Gradient" id="Gradient_1gx22"]
+offsets = PackedFloat32Array(0, 0.483146, 1)
+colors = PackedColorArray(0.956863, 0.258824, 0.4, 1, 0.576471, 0, 0.0509804, 1, 0, 0, 0, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_5rgfl"]
+frequency = 0.05
+fractal_type = 3
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_btns6"]
+seamless = true
+color_ramp = SubResource("Gradient_1gx22")
+noise = SubResource("FastNoiseLite_5rgfl")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fv705"]
+albedo_texture = SubResource("NoiseTexture2D_btns6")
+texture_filter = 0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wj4eu"]
+albedo_texture = ExtResource("1_y64sh")
+roughness_texture = ExtResource("3_jtfqa")
+normal_enabled = true
+normal_texture = ExtResource("2_bf801")
+texture_filter = 0
+
+[node name="Node3D" type="Node3D"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+material_override = SubResource("StandardMaterial3D_haniq")
+mesh = SubResource("PlaneMesh_k6ud4")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.25, 0, 0)
+material_override = ExtResource("1_2a8a4")
+mesh = SubResource("PlaneMesh_k6ud4")
+
+[node name="MeshInstance3D4" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.5, 0, 0)
+material_override = SubResource("StandardMaterial3D_fv705")
+mesh = SubResource("PlaneMesh_k6ud4")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2.25)
+material_override = SubResource("StandardMaterial3D_wj4eu")
+mesh = SubResource("PlaneMesh_k6ud4")

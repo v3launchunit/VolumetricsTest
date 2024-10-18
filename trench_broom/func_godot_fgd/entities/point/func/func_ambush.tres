@@ -13,6 +13,7 @@ func_godot_internal = false
 base_classes = Array[Resource]([])
 class_properties = {
 "ambusher": {
+"camo lizard": "camo_lizard",
 "canary": "canary",
 "enforcer": "enforcer",
 "eyeball": "eyeball",

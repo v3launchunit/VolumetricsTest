@@ -465,21 +465,19 @@ Campaign:
 				Pinkerton
 				Canary
 				Lizard
-				*Tarantula
 		E1M4 (""):
-			An old mine system, composed of a maze of caves and tunnels
-			connected by a bridge network spanning the central chasm.
-			Weapons:
+			Mine tunnel maze.
+			Weapons: 
 				AKM
 				Boomstick
-				*BigIron
 			Enemies:
 				Pinkerton
 				Canary
 				Lizard
-				*Eyeball
+				*Camo Lizard
 		E1M5 (""):
-			Mine tunnel maze.
+			An old mine system, composed of a maze of caves and tunnels
+			connected by a bridge network spanning the central chasm.
 			Weapons:
 				AKM
 				Boomstick
@@ -489,9 +487,8 @@ Campaign:
 				Pinkerton
 				Canary
 				Lizard
+				Camo Lizard
 				Eyeball
-				Tarantula
-				*Enforcer
 		E1M6 ("Let There Be More Light"):
 			A secret laboratory, buried deep within the earth and harboring
 			all manner of strange and terrible OSHA violations.

@@ -37,6 +37,7 @@ class_properties = {
 "Requires green key": 1,
 "Requires red key": 0
 },
+"secret": false,
 "sound_pos": Vector3(0, 0, 0),
 "tooltip_closed": "open",
 "tooltip_open": "close"

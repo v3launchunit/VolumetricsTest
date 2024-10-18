@@ -240,7 +240,6 @@ armor_absorption = null
 injury_stream = SubResource("AudioStreamRandomizer_uyctv")
 armor = null
 held_keys = null
-powerups = null
 max_health = null
 gib_threshold = 5000.0
 base_damage_factor = null

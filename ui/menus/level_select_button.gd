@@ -16,6 +16,7 @@ func _ready() -> void:
 	level_path = Globals.get_level_path(level_name)
 	if level_path != "":
 		ResourceLoader.load_threaded_request(level_path, type_string(typeof(PackedScene)))
+		text = "%s -- %s" % [level_name.to_upper(), Globals.parse_text("levels", level_name)]
 	
 	if level_path == "" or not (
 			always_open 
