@@ -27,8 +27,11 @@ enum GibMode {
 @export var gib_threshold: float = 50.0
 @export var base_damage_factor: float = 1.0
 @export var damage_multipliers: Array[float] = [1.0, 1.0, 1.0, 1.0, 1.0]
-@export var burn_prone: bool = false ## if set to true, any attack will ignite
+## If set to true, any attack will ignite this node.
+@export var burn_prone: bool = false 
 @export var burn_rate: float = 4.0
+## The particle system that will activate when this node is set ablaze. If null,
+## this node will be immune to being set on fire.
 @export var burn_sys: GPUParticles3D
 ## The scene that instantiates whenever this node takes damage.
 @export var damage_sys: PackedScene
@@ -45,11 +48,12 @@ enum GibMode {
 @export var is_enemy: bool = false
 @export_range(0, 10, 1, "or_greater", "or_less") var score: int = 0
 
-@export_group("Save Data")
-@export var health: float
-@export var is_dead: bool = false
-@export var target_parent: Node
-@export var burning: bool = false:
+#@export_group("Save Data")
+@export_storage var health: float
+@export_storage var is_dead: bool = false
+## Which node to free when reduced to gibs.
+@export_storage var target_parent: Node
+@export_storage var burning: bool = false:
 	set(to):
 		if burn_sys != null:
 			burning = to
@@ -79,10 +83,13 @@ func _physics_process(delta: float) -> void:
 #			health = max_health
 
 
+## tbh i don't have any idea why i made this a separate function instead of just having 
+## damage type default to generic.
 func damage(amount: float, gib_mode: GibMode = GibMode.ALLOW_GIB) -> float:
 	return damage_typed(amount, DamageType.GENERIC, gib_mode)
 
 
+## Applies damage to this node. Returns the amount of damage actually recieved, for piercers.
 func damage_typed(amount: float, type: DamageType, gib_mode: GibMode = GibMode.ALLOW_GIB) -> float:
 	if is_dead and (type == DamageType.TOXIC or gib_mode == GibMode.BLOCK_GIB):
 		return 0 # toxic clouds shouldn't gib
@@ -112,6 +119,7 @@ func rapid_damage(amount: float, delta: float, gib_mode: GibMode = GibMode.ALLOW
 	rapid_damage_typed(amount, DamageType.GENERIC, delta, gib_mode)
 
 
+## Special damage function for hazards (e.g. lava, toxic clouds, etc).
 func rapid_damage_typed(amount: float, type: DamageType, delta: float, gib_mode: GibMode = GibMode.ALLOW_GIB) -> void:
 	if is_dead and (type == DamageType.TOXIC or gib_mode == GibMode.BLOCK_GIB):
 		return # toxic clouds shouldn't gib
@@ -133,6 +141,7 @@ func rapid_damage_typed(amount: float, type: DamageType, delta: float, gib_mode:
 	injured.emit()
 
 
+## Attempts to heal this node. Returns whether or not the healing was applied.
 func heal(amount: float, can_overheal: bool = false, heal_armor: bool = false) -> bool:
 	if not heal_armor and (health < max_health or can_overheal):
 		health += amount

@@ -5,7 +5,7 @@ extends Node3D
 @export_flags_3d_physics var layer_mask: int = 0b0000_0000_0000_0000_0000_0000_0100_0101#69
 @export_range(0.0, 1000.0, 0.1, "or_greater", "or_less") var max_range: float = 1000.0
 @export_range(0.0, 1000.0, 0.1, "or_greater") var damage: float = 10.0
-@export var player_damage_multiplier: Array[float] = [0.5, 0.75, 1.0, 1.0]
+@export var player_damage_multiplier: Array[float] = [0.5, 1.0, 1.5, 2.0]
 @export var damage_type: Status.DamageType = Status.DamageType.GENERIC
 @export var explosion: PackedScene
 @export_range(0.0, 100.0, 0.1, "or_greater") var knockback_force: float = 1.0

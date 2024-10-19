@@ -278,6 +278,8 @@ func open_level(level: PackedScene) -> void:
 	while GameMenu._active_menus > 0:
 		GameMenu.close_top_menu()
 
+
+## Returns the filepath for the specified entry in names.cfg.
 func parse_names(section: String, key: String) -> Variant:
 	if section.ends_with("_paths") or section.ends_with("_aliases"):
 		return names.get_value(section, key)

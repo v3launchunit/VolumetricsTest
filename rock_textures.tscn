@@ -1,9 +1,10 @@
-[gd_scene load_steps=25 format=3 uid="uid://h64ldnoxksse"]
+[gd_scene load_steps=30 format=3 uid="uid://h64ldnoxksse"]
 
 [ext_resource type="Material" uid="uid://cj2l6n08ob5bh" path="res://trench_broom/textures/natural/rock_3.tres" id="1_2a8a4"]
 [ext_resource type="Texture2D" uid="uid://dkyns4riimoif" path="res://trench_broom/textures/_pbr/_others/rock051_albedo/rock051_albedo.png" id="1_y64sh"]
 [ext_resource type="Texture2D" uid="uid://bcqj7ltywdene" path="res://trench_broom/textures/_pbr/_others/rock051_albedo/rock051_normals.png" id="2_bf801"]
 [ext_resource type="Texture2D" uid="uid://dn32dfb86qfis" path="res://trench_broom/textures/_pbr/_others/rock051_albedo/rock051_roughness.png" id="3_jtfqa"]
+[ext_resource type="Material" uid="uid://buun7qsmy53m5" path="res://trench_broom/textures/special/wall_crack_32.tres" id="5_6vx3g"]
 
 [sub_resource type="Gradient" id="Gradient_u8tl6"]
 interpolation_mode = 1
@@ -103,6 +104,23 @@ normal_enabled = true
 normal_texture = ExtResource("2_bf801")
 texture_filter = 0
 
+[sub_resource type="PlaneMesh" id="PlaneMesh_qhma3"]
+
+[sub_resource type="Gradient" id="Gradient_l6tkw"]
+offsets = PackedFloat32Array(0.589888, 0.769663)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_0m7pl"]
+frequency = 0.1005
+offset = Vector3(18.15, 23.6, 0)
+fractal_type = 2
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_11ck8"]
+width = 32
+height = 32
+color_ramp = SubResource("Gradient_l6tkw")
+noise = SubResource("FastNoiseLite_0m7pl")
+
 [node name="Node3D" type="Node3D"]
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
@@ -123,3 +141,16 @@ mesh = SubResource("PlaneMesh_k6ud4")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2.25)
 material_override = SubResource("StandardMaterial3D_wj4eu")
 mesh = SubResource("PlaneMesh_k6ud4")
+
+[node name="MeshInstance3D5" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.025, 0)
+material_override = ExtResource("5_6vx3g")
+mesh = SubResource("PlaneMesh_qhma3")
+
+[node name="Decal" type="Decal" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0)
+visible = false
+size = Vector3(1, 1, 1)
+texture_albedo = SubResource("NoiseTexture2D_11ck8")
+distance_fade_enabled = true
+cull_mask = 1048569
