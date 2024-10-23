@@ -202,7 +202,6 @@ _data = {
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, -0.5, -0.35)
 
 [node name="BigIron" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.00648498, 0)
 layers = 4
 cast_shadow = 0
 mesh = ExtResource("1_ampqd")
@@ -221,8 +220,7 @@ category = 3
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0774074, 1.65)
 
 [node name="MuzzleFlash" type="MeshInstance3D" parent="BigIron/Spawner"]
-transform = Transform3D(-1, 0, -1.50996e-07, 0, 1, 0, 1.50996e-07, 0, -1, 4.23193e-06, -0.000249945, 0.000486732)
-visible = false
+transform = Transform3D(0, 0, 0, 0, 0, 0, 0, 0, 0, 4.23193e-06, -0.000249945, 0.000486732)
 layers = 4
 material_override = ExtResource("7_vw85u")
 cast_shadow = 0
@@ -239,24 +237,6 @@ omni_shadow_mode = 0
 [node name="AnimationTree" type="AnimationTree" parent="BigIron"]
 tree_root = SubResource("AnimationNodeStateMachine_75ikx")
 anim_player = NodePath("../../AnimationPlayer")
-parameters/current_length = 2.0
-parameters/current_position = 1.39965
-parameters/current_delta = 0.0751636
-parameters/End/current_length = null
-parameters/End/current_position = null
-parameters/End/current_delta = null
-parameters/Start/current_length = 0.0
-parameters/Start/current_position = 0.0
-parameters/Start/current_delta = 0.0
-parameters/deploy/current_length = 1.0
-parameters/deploy/current_position = 1.0
-parameters/deploy/current_delta = 0.0221187
-parameters/firing/current_length = null
-parameters/firing/current_position = null
-parameters/firing/current_delta = null
-parameters/idle/current_length = 2.0
-parameters/idle/current_position = 1.39965
-parameters/idle/current_delta = 0.0751636
 
 [node name="Scope" type="Node3D" parent="BigIron"]
 script = ExtResource("4_p5y4d")

@@ -1,8 +1,7 @@
-[gd_scene load_steps=11 format=3 uid="uid://qag18ik5pc57"]
+[gd_scene load_steps=10 format=3 uid="uid://qag18ik5pc57"]
 
 [ext_resource type="Shader" path="res://shaders/spatial/psx_pb_aclip.gdshader" id="1_fb4mg"]
 [ext_resource type="Script" path="res://scripts/effects/particle_lifetime.gd" id="1_o2iqe"]
-[ext_resource type="AudioStream" uid="uid://b67mk1e7dskwd" path="res://audio/streams/effects/impact/metal_impact.wav" id="2_rvrp4"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_im8au"]
 render_priority = 0
@@ -47,10 +46,9 @@ albedo_color = Color(1, 1, 0, 1)
 material = SubResource("StandardMaterial3D_1y342")
 size = Vector3(0.063, 0.063, 0.063)
 
-[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_8v46a"]
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_hewn4"]
 random_pitch = 1.15
 streams_count = 1
-stream_0/stream = ExtResource("2_rvrp4")
 
 [node name="BulletImpact" type="GPUParticles3D"]
 layers = 2
@@ -63,7 +61,8 @@ draw_pass_1 = SubResource("BoxMesh_vhxfw")
 script = ExtResource("1_o2iqe")
 
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
-stream = SubResource("AudioStreamRandomizer_8v46a")
+process_mode = 4
+stream = SubResource("AudioStreamRandomizer_hewn4")
 pitch_scale = 1.3
 autoplay = true
 bus = &"Combat"

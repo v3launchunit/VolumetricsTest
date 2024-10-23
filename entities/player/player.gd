@@ -1,6 +1,9 @@
 class_name Player extends CharacterBody3D
 
 
+## Handles the player character.
+
+
 @export_group("Movement")
 ## The player's base movement speed.
 @export_range(0.0, 35.0, 0.1, "or_greater") var speed: float = 10.0
@@ -136,6 +139,8 @@ func _process(_delta) -> void:
 			interact_scan.get_collider().interact(self)
 			stream_player.stream = interact_stream
 			stream_player.play()
+	else:
+		hud.tooltip.visible = false
 
 	if Input.is_action_just_pressed("crouch") and not crouching:
 		if not is_on_floor() and not Input.is_action_pressed("jump"):
@@ -185,7 +190,8 @@ func _physics_process(delta: float) -> void:
 			reorienting = false
 
 	# Handle actually moving
-	if Globals.mouse_captured: _handle_joypad_camera_rotation(delta)
+	if Globals.mouse_captured: 
+		_handle_joypad_camera_rotation(delta)
 	velocity = (
 			_walk(delta)
 			+ _slide(delta)
@@ -216,19 +222,17 @@ func _unhandled_input(event: InputEvent) -> void:
 			_rotate_camera(camera_zoom_sens)
 
 
+## Actually rotates the player [Camera3D].
 func _rotate_camera(sens_mod: float = 1.0) -> void:
-#	print(camera.rotation)
-	rotation.y -= look_dir.x * Globals.s_camera_sensitivity * sens_mod
+	var sens: float = Globals.s_camera_sensitivity * sens_mod
+	rotation.y -= look_dir.x * sens
 	if is_on_floor() and not reorienting:
-		camera.rotation.x = clamp(
-				camera.rotation.x - look_dir.y * Globals.s_camera_sensitivity * sens_mod,
-				-1.5,
-				1.5
-		)
+		camera.rotation.x = clampf(camera.rotation.x - look_dir.y * sens, -1.5, 1.5)
 	else:
-		camera.rotation.x -= look_dir.y * Globals.s_camera_sensitivity * sens_mod
+		camera.rotation.x -= look_dir.y * sens
 
 
+## Applies joypad input to the player [Camera3D].
 func _handle_joypad_camera_rotation(delta: float, sens_mod: float = 1.0) -> void:
 	var joypad_dir: Vector2 = Input.get_vector(
 			"look_left", 
@@ -262,6 +266,7 @@ func _toggle_crouch(to: bool) -> void:
 	crouchbox.disabled = not to
 
 
+## Calculates and returns velocity from player directional input.
 func _walk(delta: float) -> Vector3:
 	var move_input: Vector2 = Input.get_vector(
 			"move_left", 
@@ -272,6 +277,17 @@ func _walk(delta: float) -> Vector3:
 	move_dir = move_dir.move_toward(move_input, delta * acceleration / speed)
 	var forward: Vector3 = transform.basis * Vector3(move_input.x, 0, move_input.y)
 	var walk_dir := Vector3(forward.x, 0, forward.z).normalized()
+
+	if slamming:
+		if (
+				Input.is_action_just_pressed("jump")
+				and move_input.length_squared() > Globals.C_EPSILON
+		):
+			slamming = false
+			grav_vel = Vector3.ZERO
+			slide_vel = walk_dir * speed/4
+		else:
+			return Vector3.ZERO
 
 	# Roll camera while strafing
 	camera.rotation.z = move_toward(
@@ -320,24 +336,17 @@ func _walk(delta: float) -> Vector3:
 			0.1
 	)
 
-	if (
-			slamming
-			and Input.is_action_just_pressed("jump")
-			and move_input.length_squared() > Globals.C_EPSILON
-	):
-		slamming = false
-		grav_vel = Vector3.ZERO
-		slide_vel = walk_dir * speed/4
-
-	return Vector3.ZERO if slamming else walk_vel
+	return walk_vel
 
 
+## Calculates and returns velocity from player sliding.
 func _slide(delta: float) -> Vector3:
 	if is_on_floor() or walk_vel.normalized().dot(slide_vel.normalized()) < 0.5:
 		slide_vel = slide_vel.move_toward(Vector3.ZERO, delta * slide_drag)
 	return Vector3.ZERO if slamming else slide_vel
 
 
+## Calculates and returns velocity due to gravity.
 func _gravity(delta: float) -> Vector3:
 	if slamming:
 		if is_on_floor():
@@ -368,6 +377,7 @@ func _gravity(delta: float) -> Vector3:
 	return grav_vel
 
 
+## Calculates and returns velocity from player jumping.
 func _jump(delta: float) -> Vector3:
 	if jumping:
 		if jumps > 0:
@@ -388,11 +398,14 @@ func _jump(delta: float) -> Vector3:
 	return jump_vel
 
 
+## Calculates and returns knockback velocity from impacts.
 func _knockback(delta: float) -> Vector3:
 	knockback_vel = knockback_vel.move_toward(Vector3.ZERO, knockback_drag * delta)
 	return knockback_vel
 
 
+# TODO implement carriable weapons logic
+## Called when the player picks up a carriable object. Not currently implemented.
 func _on_carriable_grabbed(what: Carriable) -> void:
 	camera.switched_weapons.emit(-1, -1)
 	holding = what

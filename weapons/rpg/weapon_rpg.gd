@@ -1,7 +1,13 @@
 class_name WeaponRPG
 extends WeaponAltFire
 
-var instance: Node = null
+## Rocket launcher weapon class.
+
+## A special version of [WeaponAltFire] meant for the RPG, that can only fire one 
+## primary-fire projectile at a time.
+
+## The projectile associated with this weapon.
+@export_storage var instance: Node = null
 
 
 # Called when the node enters the scene tree for the first time.

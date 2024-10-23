@@ -1,4 +1,5 @@
-class_name WeaponDoubleBarrel extends WeaponBase
+class_name WeaponDoubleBarrel 
+extends WeaponBase
 
 var from_alt_barrel: bool = false
 

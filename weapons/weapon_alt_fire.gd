@@ -2,6 +2,9 @@ class_name WeaponAltFire
 extends WeaponBase
 
 
+## A weapon that possesses two distinct fire modes.
+
+
 @export_group("Secondary Fire", "alt_")
 ## The bullet shot by the secondary fire.
 @export var alt_bullet: PackedScene
@@ -27,45 +30,45 @@ extends WeaponBase
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-#	var p = get_parent().get_parent()
 	manager.switched_weapons.connect(_on_player_cam_switched_weapons)
 	hud = find_parent("Player").find_child("HUD")
 	hud_connected.connect(hud._on_weapon_hud_connected)
 	hud_connected.emit(category, index, ammo_type, alt_ammo_type)
 	state_machine.start("deploy", true)
+#	var p = get_parent().get_parent()
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	if cooldown_timer > 0:
-		cooldown_timer -= delta
-
-	if refire_penalty > 0:
-		refire_penalty -= delta
-
-	if (
-			active and
-			(not safety_catch_active) and
-			Input.is_action_pressed("weapon_fire_main") and
-			cooldown_timer <= 0 and
-			manager.has_ammo(ammo_type, ammo_cost)
-	):
-		_fire()
-
-	if (
-			active and
-			(not safety_catch_active) and
-			Input.is_action_pressed("weapon_fire_alt") and
-			cooldown_timer <= 0 and
-			manager.has_ammo(alt_ammo_type, alt_ammo_cost)
-	):
-		_fire_alt()
-
-	if safety_catch_active and not (
-			Input.is_action_pressed("weapon_fire_main") or
-			Input.is_action_pressed("weapon_fire_alt")
-	):
-		safety_catch_active = false
+#func _process(delta):
+	#if cooldown_timer > 0:
+		#cooldown_timer -= delta
+#
+	#if refire_penalty > 0:
+		#refire_penalty -= delta
+#
+	#if (
+			#active and
+			#(not safety_catch_active) and
+			#Input.is_action_pressed("weapon_fire_main") and
+			#cooldown_timer <= 0 and
+			#manager.has_ammo(ammo_type, ammo_cost)
+	#):
+		#_fire()
+#
+	#if (
+			#active and
+			#(not safety_catch_active) and
+			#cooldown_timer <= 0 and
+			#Input.is_action_pressed("weapon_fire_alt") and
+			#manager.has_ammo(alt_ammo_type, alt_ammo_cost)
+	#):
+		#_fire_alt()
+#
+	#if safety_catch_active and not (
+			#Input.is_action_pressed("weapon_fire_main") or
+			#Input.is_action_pressed("weapon_fire_alt")
+	#):
+		#safety_catch_active = false
 
 
 func _deploy(with_safety_catch: bool = true) -> void:
@@ -74,6 +77,18 @@ func _deploy(with_safety_catch: bool = true) -> void:
 	safety_catch_active = use_safety_catch if with_safety_catch else false
 	hud_connected.emit(category, index, ammo_type, alt_ammo_type)
 	state_machine.start("deploy", true)
+
+
+func _listen_for_input() -> bool:
+	if super():
+		return true
+	if (
+			Input.is_action_pressed("weapon_fire_alt") 
+			and manager.has_ammo(alt_ammo_type, alt_ammo_cost)
+	):
+		_fire_alt()
+		return true
+	return false
 
 
 func _fire_alt():

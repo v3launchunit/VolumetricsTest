@@ -1,4 +1,5 @@
-class_name HudHandler extends Control
+class_name HudHandler 
+extends Control
 
 
 ## The scene that is instantiated when a new event is printed to the in-game

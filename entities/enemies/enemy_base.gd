@@ -580,7 +580,7 @@ func check_attack_readiness() -> bool:
 	return (
 			current_targets[-1].global_position.distance_squared_to(global_position)
 			< melee_range_squared or (
-					state_timer >= attack_interval + randf() and
+					(turret_mode or state_timer >= attack_interval + randf()) and
 					current_targets[-1].global_position.distance_squared_to(global_position)
 					< attack_range_squared and
 					can_see_target()

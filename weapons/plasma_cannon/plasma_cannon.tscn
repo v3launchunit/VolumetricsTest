@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://gabucpajtywv"]
+[gd_scene load_steps=31 format=3 uid="uid://gabucpajtywv"]
 
 [ext_resource type="ArrayMesh" uid="uid://ceibhbi3vm1n0" path="res://weapons/plasma_cannon/plasma_cannon.obj" id="1_rqd6x"]
 [ext_resource type="Material" uid="uid://bqaqpwu7ya4e1" path="res://weapons/crossbow/crossbow_mat_1.tres" id="1_xwh1k"]
@@ -105,6 +105,9 @@ animation = &"plasma_cannon_anims/plasma_cannon_deploy"
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_1kkqo"]
 animation = &"plasma_cannon_anims/plasma_cannon_fire"
 
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_x3qul"]
+animation = &"plasma_cannon_anims/plasma_cannon_flourish"
+
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_wfswt"]
 animation = &"plasma_cannon_anims/plasma_cannon_idle"
 
@@ -123,17 +126,27 @@ advance_mode = 2
 switch_mode = 2
 advance_mode = 2
 
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_13b8q"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_8loo8"]
+xfade_time = 0.1
+switch_mode = 2
+advance_mode = 2
+
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_cf4wg"]
+allow_transition_to_self = true
 states/alt_firing/node = SubResource("AnimationNodeAnimation_bxab6")
 states/alt_firing/position = Vector2(682.667, 217.144)
 states/deploy/node = SubResource("AnimationNodeAnimation_f5jmi")
 states/deploy/position = Vector2(373.333, 95.9259)
 states/firing/node = SubResource("AnimationNodeAnimation_1kkqo")
 states/firing/position = Vector2(486.667, 216.815)
+states/flourish/node = SubResource("AnimationNodeAnimation_x3qul")
+states/flourish/position = Vector2(737.667, 96.4568)
 states/idle/node = SubResource("AnimationNodeAnimation_wfswt")
 states/idle/position = Vector2(581.333, 96.4197)
-transitions = ["Start", "deploy", SubResource("AnimationNodeStateMachineTransition_m2fko"), "deploy", "idle", SubResource("AnimationNodeStateMachineTransition_vjpgy"), "firing", "idle", SubResource("AnimationNodeStateMachineTransition_k0cjf"), "alt_firing", "idle", SubResource("AnimationNodeStateMachineTransition_up5bw")]
-graph_offset = Vector2(4, 60)
+transitions = ["Start", "deploy", SubResource("AnimationNodeStateMachineTransition_m2fko"), "deploy", "idle", SubResource("AnimationNodeStateMachineTransition_vjpgy"), "firing", "idle", SubResource("AnimationNodeStateMachineTransition_k0cjf"), "alt_firing", "idle", SubResource("AnimationNodeStateMachineTransition_up5bw"), "idle", "flourish", SubResource("AnimationNodeStateMachineTransition_13b8q"), "flourish", "idle", SubResource("AnimationNodeStateMachineTransition_8loo8")]
+graph_offset = Vector2(7, -5)
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_0tb5o"]
 radius = 16.0
@@ -186,7 +199,7 @@ _data = {
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, -0.35, -0.35)
 
 [node name="PlasmaCannon" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0042517, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.00012483, 0)
 layers = 4
 material_override = ExtResource("1_xwh1k")
 cast_shadow = 0
@@ -198,7 +211,6 @@ alt_ammo_cost = 4
 bullet = ExtResource("4_swy3p")
 shot_cooldown = 0.1
 ammo_type = "cells"
-anti_clip_distance = 0.1
 category = 2
 index = 2
 
@@ -206,7 +218,7 @@ index = 2
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.475)
 
 [node name="MuzzleFlash" type="MeshInstance3D" parent="PlasmaCannon/Spawner"]
-transform = Transform3D(1, -1.50996e-07, 1.50996e-07, -1.50996e-07, -1, -2.09217e-18, 1.50996e-07, -2.27976e-14, -1, -8.71226e-10, 0, 0.0250344)
+transform = Transform3D(1, -1.50996e-07, 1.50996e-07, -1.50996e-07, -1, -2.19212e-18, 1.50996e-07, -2.27975e-14, -1, -8.71226e-10, 0, 0.0250344)
 visible = false
 layers = 4
 material_override = SubResource("ShaderMaterial_re0b1")
@@ -232,7 +244,7 @@ draw_pass_1 = SubResource("BoxMesh_pde2p")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.475)
 
 [node name="MuzzleFlash" type="MeshInstance3D" parent="PlasmaCannon/AltSpawner"]
-transform = Transform3D(1, 1.50996e-07, -1.50996e-07, 1.50996e-07, -1, -1.59242e-18, -1.50996e-07, -2.27981e-14, -1, -8.71226e-10, 0, 0.0250344)
+transform = Transform3D(1, 1.50996e-07, -1.50996e-07, 1.50996e-07, -1, -1.69237e-18, -1.50996e-07, -2.2798e-14, -1, -8.71226e-10, 0, 0.0250344)
 visible = false
 layers = 2
 material_override = SubResource("ShaderMaterial_re0b1")
@@ -251,27 +263,6 @@ omni_shadow_mode = 0
 root_node = NodePath("../..")
 tree_root = SubResource("AnimationNodeStateMachine_cf4wg")
 anim_player = NodePath("../../AnimationPlayer")
-parameters/current_length = 2.0
-parameters/current_position = 1.55005
-parameters/current_delta = 0.0312883
-parameters/End/current_length = null
-parameters/End/current_position = null
-parameters/End/current_delta = null
-parameters/Start/current_length = 0.0
-parameters/Start/current_position = 0.0
-parameters/Start/current_delta = 0.0
-parameters/alt_firing/current_length = null
-parameters/alt_firing/current_position = null
-parameters/alt_firing/current_delta = null
-parameters/deploy/current_length = 1.0
-parameters/deploy/current_position = 1.0
-parameters/deploy/current_delta = 0.0187507
-parameters/firing/current_length = null
-parameters/firing/current_position = null
-parameters/firing/current_delta = null
-parameters/idle/current_length = 2.0
-parameters/idle/current_position = 1.55005
-parameters/idle/current_delta = 0.0312883
 
 [node name="AlertRadius" type="Area3D" parent="PlasmaCannon"]
 collision_layer = 2

@@ -1,35 +1,96 @@
-[gd_resource type="StandardMaterial3D" load_steps=6 format=3 uid="uid://buun7qsmy53m5"]
+[gd_resource type="ShaderMaterial" load_steps=7 format=3 uid="uid://buun7qsmy53m5"]
+
+[sub_resource type="Shader" id="Shader_y2qf3"]
+code = "// NOTE: Shader automatically converted from Godot Engine 4.3.stable's StandardMaterial3D.
+
+shader_type spatial;
+render_mode blend_mix, depth_draw_opaque, cull_back, diffuse_burley, specular_schlick_ggx, unshaded;
+
+uniform vec4 albedo : source_color;
+uniform sampler2D texture_albedo : source_color, filter_nearest, repeat_enable;
+uniform float point_size : hint_range(0.1, 128.0, 0.1);
+
+uniform float roughness : hint_range(0.0, 1.0);
+uniform sampler2D texture_metallic : hint_default_white, filter_nearest, repeat_enable;
+uniform vec4 metallic_texture_channel;
+uniform sampler2D texture_roughness : hint_roughness_r, filter_nearest, repeat_enable;
+
+uniform float specular : hint_range(0.0, 1.0, 0.01);
+uniform float metallic : hint_range(0.0, 1.0, 0.01);
+
+uniform sampler2D texture_detail_albedo : source_color, filter_nearest, repeat_enable;
+uniform sampler2D texture_detail_normal : hint_normal, filter_nearest, repeat_enable;
+uniform sampler2D texture_detail_mask : hint_default_white, filter_nearest, repeat_enable;
+
+uniform vec3 uv1_scale;
+uniform vec3 uv1_offset;
+uniform vec3 uv2_scale;
+uniform vec3 uv2_offset;
+
+void vertex() {
+	UV = UV * uv1_scale.xy + uv1_offset.xy;
+}
+
+void fragment() {
+	vec2 base_uv = UV;
+
+	vec4 albedo_tex = texture(texture_albedo, base_uv);
+	ALBEDO = vec3(0);
+
+	float metallic_tex = dot(texture(texture_metallic, base_uv), metallic_texture_channel);
+	METALLIC = metallic_tex * metallic;
+	SPECULAR = specular;
+
+	vec4 roughness_texture_channel = vec4(1.0, 0.0, 0.0, 0.0);
+	float roughness_tex = dot(texture(texture_roughness, base_uv), roughness_texture_channel);
+	ROUGHNESS = roughness_tex * roughness;
+
+	// Detail: Enabled
+	vec4 detail_tex = texture(texture_detail_albedo, base_uv);
+	vec4 detail_norm_tex = texture(texture_detail_normal, base_uv);
+	vec4 detail_mask_tex = texture(texture_detail_mask, base_uv);
+	
+	ALPHA *= albedo.a * albedo_tex.a * detail_tex.a;
+}
+"
+
+[sub_resource type="Gradient" id="Gradient_aon5s"]
+offsets = PackedFloat32Array(0.7, 1)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_lignx"]
+gradient = SubResource("Gradient_aon5s")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(1, 0.5)
 
 [sub_resource type="Gradient" id="Gradient_l6tkw"]
 offsets = PackedFloat32Array(0.589888, 0.769663)
-colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+colors = PackedColorArray(0, 0, 0, 0, 0, 0, 0, 1)
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_0m7pl"]
 frequency = 0.1005
 offset = Vector3(18.15, 23.6, 0)
 fractal_type = 2
 
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_tlr3b"]
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_kaunw"]
 width = 64
 height = 64
 color_ramp = SubResource("Gradient_l6tkw")
 noise = SubResource("FastNoiseLite_0m7pl")
 
-[sub_resource type="Gradient" id="Gradient_6olqf"]
-offsets = PackedFloat32Array(0.7, 1)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_efkdp"]
-gradient = SubResource("Gradient_6olqf")
-width = 32
-height = 32
-fill = 1
-fill_from = Vector2(0.5, 0.5)
-fill_to = Vector2(1, 0.5)
-
 [resource]
-blend_mode = 3
-shading_mode = 0
-albedo_texture = SubResource("NoiseTexture2D_tlr3b")
-detail_enabled = true
-detail_mask = SubResource("GradientTexture2D_efkdp")
-texture_filter = 0
+render_priority = 0
+shader = SubResource("Shader_y2qf3")
+shader_parameter/albedo = Color(1, 1, 1, 1)
+shader_parameter/point_size = 1.0
+shader_parameter/roughness = 1.0
+shader_parameter/metallic_texture_channel = null
+shader_parameter/specular = 0.5
+shader_parameter/metallic = 0.0
+shader_parameter/uv1_scale = Vector3(1, 1, 1)
+shader_parameter/uv1_offset = Vector3(0, 0, 0)
+shader_parameter/uv2_scale = Vector3(1, 1, 1)
+shader_parameter/uv2_offset = Vector3(0, 0, 0)
+shader_parameter/texture_albedo = SubResource("GradientTexture2D_lignx")
+shader_parameter/texture_detail_albedo = SubResource("NoiseTexture2D_kaunw")

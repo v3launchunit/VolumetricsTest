@@ -1,3 +1,4 @@
+class_name WeaponRifle
 extends WeaponBase
 
 signal ready_to_save
@@ -48,6 +49,15 @@ func _process(delta) -> void:
 
 	if safety_catch_active and not Input.is_action_pressed("weapon_fire_main"):
 		safety_catch_active = false
+
+
+func _listen_for_input() -> bool:
+	if super():
+		return true
+	if Input.is_action_pressed("weapon_fire_alt"):
+		_charge()
+		return true
+	return false
 
 
 func _fire() -> void:

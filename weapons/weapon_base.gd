@@ -2,6 +2,9 @@ class_name WeaponBase
 extends Node3D
 
 
+## Base class for [Player]-owned weaponry.
+
+
 #signal recoiled(amount: Vector3)
 signal hud_connected(category: int, index: int, ammo_type: String, alt_ammo_type: String)
 
@@ -18,8 +21,8 @@ signal hud_connected(category: int, index: int, ammo_type: String, alt_ammo_type
 ## The maximum horizontal offset of the fired projectile(s), in degrees.
 ## Vertical spread is half this.
 @export_range(0, 90) var spread: float = 0.0
-## The amount of force that will be imparted onto the player when this weapon is
-## fired.
+## The amount of backwards force that will be imparted onto the player when this 
+## weapon is fired.
 @export var recoil: float = 0.0
 @export_range(
 		-180.0,
@@ -44,7 +47,7 @@ signal hud_connected(category: int, index: int, ammo_type: String, alt_ammo_type
 ## an explosive weapon in close quarters.
 @export var use_safety_catch: bool = true
 
-@export var anti_clip_distance: float = 0
+#@export var anti_clip_distance: float = 0
 
 @export_group("Sorting")
 ## The category where this weapon is stored. Categories 0-6 correspond to the
@@ -58,6 +61,7 @@ signal hud_connected(category: int, index: int, ammo_type: String, alt_ammo_type
 ## Holdover from before I knew what a "process mode" was. Will probably stick
 ## around forever.
 @export var active: bool = true
+## How long this weapon has left before it can do things again.
 @export var cooldown_timer: float = 0.0 # seconds
 
 ## Set to 1.0 when a bullet is instantiated (i.e. only applied to the first
@@ -67,28 +71,32 @@ signal hud_connected(category: int, index: int, ammo_type: String, alt_ammo_type
 ## will always be accurate.
 var refire_penalty: float = 0.0
 var safety_catch_active: bool = false
-var hud: Control
+var hud: HudHandler
 
 ## This node's global position is used to determine where the weapon's
 ## projectile(s) will be fired from.
 @onready var spawner := find_child("Spawner") as Node3D
-@onready var state_machine := find_child("AnimationTree").get(
+## This weapon's [AnimationTree].
+@onready var anim_tree := find_child("AnimationTree") as AnimationTree
+## The [AnimationNodeStateMachinePlayback] associated with this weapon's [AnimationTree].
+@onready var state_machine := anim_tree.get(
 		"parameters/playback") as AnimationNodeStateMachinePlayback
 @onready var manager := get_parent().get_parent() as WeaponManager
 @onready var eject_sys := find_child("ShellEject") as GPUParticles3D
+## The [Player] who owns this weapon.
 @onready var player := find_parent("Player") as Player
 #@onready var alert_area: Area3D = get_node_or_null("AlertRadius")
 
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-#	bullet_scene = load(bullet)
 	manager.switched_weapons.connect(_on_player_cam_switched_weapons)
-	hud = find_parent("Player").find_child("HUD")
+	hud = find_parent("Player").find_child("HUD") as HudHandler
 	hud_connected.connect(hud._on_weapon_hud_connected)
+	state_machine.start("deploy", true)
+#	bullet_scene = load(bullet)
 #	hud_connected.emit(ammo_type, "none")
 #	recoiled.connect(p.get_parent().get_script().apply_knockback)
-	state_machine.start("deploy", true)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -99,22 +107,18 @@ func _process(delta) -> void:
 	if refire_penalty > 0:
 		refire_penalty -= delta
 
-	if (
-			active and
-			(not safety_catch_active) and
-			Input.is_action_pressed("weapon_fire_main") and
-			cooldown_timer <= 0 and
-			manager.has_ammo(ammo_type, ammo_cost)
-	):
-		_fire()
-
-	if safety_catch_active and not Input.is_action_pressed("weapon_fire_main"):
+	if active and not safety_catch_active and cooldown_timer <= 0:
+		_listen_for_input()
+	
+	if safety_catch_active and not (Input.is_action_pressed("weapon_fire_main") 
+			or Input.is_action_pressed("weapon_fire_alt")):
 		safety_catch_active = false
 
 
 #func _unhandled_input(_event: InputEvent) -> void:
 
 
+## Called whenever the player switches weapons.
 func _on_player_cam_switched_weapons(c, i, catch) -> void:
 	if c == category and i == index:
 		_deploy(catch)
@@ -122,6 +126,7 @@ func _on_player_cam_switched_weapons(c, i, catch) -> void:
 		_holster()
 
 
+## Called when this weapon is selected.
 func _deploy(with_safety_catch: bool = true) -> void:
 	visible = true
 	active = true
@@ -130,11 +135,29 @@ func _deploy(with_safety_catch: bool = true) -> void:
 	state_machine.start("deploy", true)
 
 
+## Called when any weapon besides this one is selected.
 func _holster() -> void:
 	visible = false
 	active = false
 
 
+func _listen_for_input() -> bool:
+	if (
+			Input.is_action_pressed("weapon_fire_main") 
+			and manager.has_ammo(ammo_type, ammo_cost)
+	):
+		_fire()
+		return true
+	if (
+			anim_tree.tree_root is AnimationNodeStateMachine
+			and (anim_tree.tree_root as AnimationNodeStateMachine).has_node("flourish")
+			and Input.is_action_just_pressed("weapon_flourish")
+	):
+		state_machine.travel("flourish")
+	return false
+
+
+## Fires the weapon.
 func _fire() -> void:
 	var base_rotation = rotation
 	var spawner_base_rotation = spawner.global_rotation
@@ -160,6 +183,7 @@ func _fire() -> void:
 	#instance.AddCollisionExceptionWith(get_parent().get_parent())
 
 
+## Instantiates a single bullet from a [PackedScene], and returns the resulting [Node].
 func emit_bullet(what: PackedScene, inherit_vel: bool = false) -> Node:
 #	if manager.find_child("RayCast3D").is_colliding():
 #		spawner.look_at(manager.find_child("RayCast3D").get_collision_point())

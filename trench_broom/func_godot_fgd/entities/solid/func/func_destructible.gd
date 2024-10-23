@@ -16,13 +16,16 @@ func _ready() -> void:
 		status.burn_prone = func_godot_properties["burn_prone"]
 		status.burn_rate = func_godot_properties["burn_rate"]
 		
-		if func_godot_properties.has("damage_sys") and func_godot_properties["damage_sys"] != "":
-			status.damage_sys = load(Globals.parse_names("Effects", func_godot_properties["damage_sys"]))
+		if func_godot_properties.has("damage_sys") and func_godot_properties.get("damage_sys", "") != "":
+			status.damage_sys = load(Globals.parse_names("effects", func_godot_properties["damage_sys"]))
 			
-		if func_godot_properties.has("gibs") and func_godot_properties["gibs"] != "":
-			status.gibs = load(Globals.parse_names("Effects", func_godot_properties["gibs"]))
+		if func_godot_properties.has("gibs") and func_godot_properties.get("gibs", "") != "":
+			status.gibs = load(Globals.parse_names("effects", func_godot_properties["gibs"]))
 			
-		status.damage_multipliers = func_godot_properties["damage_multipliers"].split_floats(" ", false)
+		status.damage_multipliers = Array(Array(func_godot_properties[
+				"damage_multipliers"].split_floats(" ", false)), TYPE_FLOAT, "", null)
+		
+		status.name = "Status"
 		
 		add_child(status)
 		await get_tree().process_frame # make sure owner has had time to initialize

@@ -37,4 +37,3 @@ func interact(body: Player) -> void:
 		grabbed.connect(body._on_carriable_grabbed)
 	if holder == null:
 		holder = body
-

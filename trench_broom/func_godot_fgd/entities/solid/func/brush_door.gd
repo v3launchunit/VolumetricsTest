@@ -59,7 +59,7 @@ func _ready() -> void:
 				member.interacted.connect(toggle)
 		add_to_group(properties.get("group"), true)
 
-	if audio_player == null:
+	if audio_player == null and properties.get("open_sound", "") != "":
 		audio_player = AudioStreamPlayer3D.new()
 		audio_player.bus = "World"
 		audio_player.doppler_tracking = AudioStreamPlayer3D.DOPPLER_TRACKING_PHYSICS_STEP
