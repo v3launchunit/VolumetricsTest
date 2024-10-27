@@ -1,0 +1,22 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://y43vatu1fdqd"
+path="res://.godot/imported/spikeball.obj-464549b33baad5ee0e0c9a87e542107c.mesh"
+
+[deps]
+
+files=["res://.godot/imported/spikeball.obj-464549b33baad5ee0e0c9a87e542107c.mesh"]
+
+source_file="res://bullets/enemy/spikeball.obj"
+dest_files=["res://.godot/imported/spikeball.obj-464549b33baad5ee0e0c9a87e542107c.mesh", "res://.godot/imported/spikeball.obj-464549b33baad5ee0e0c9a87e542107c.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
+force_disable_mesh_compression=false

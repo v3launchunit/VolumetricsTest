@@ -379,18 +379,17 @@ button_pressed = true
 text = "Retro Palette"
 
 [node name="Palette" type="HFlowContainer" parent="."]
+visible = false
 layout_mode = 2
 size_flags_vertical = 3
 alignment = 1
 
 [node name="PaletteSelect" type="OptionButton" parent="Palette"]
-visible = false
 layout_mode = 2
 size_flags_vertical = 4
 theme = ExtResource("1_8amvi")
 
 [node name="ColorDepth" type="Control" parent="Palette"]
-visible = false
 custom_minimum_size = Vector2(256, 68)
 layout_mode = 2
 size_flags_horizontal = 3

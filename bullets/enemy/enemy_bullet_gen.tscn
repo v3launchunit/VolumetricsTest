@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://blrtnnu61g5s"]
+[gd_scene load_steps=17 format=3 uid="uid://blrtnnu61g5s"]
 
 [ext_resource type="Script" path="res://bullets/bullet.gd" id="1_5litf"]
 [ext_resource type="ArrayMesh" uid="uid://cqf6v4gaperkn" path="res://bullets/bullet.obj" id="2_afg0c"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" path="res://bullets/bullet_trail.gd" id="3_o658m"]
 [ext_resource type="AudioStream" uid="uid://crtqyq64m3wm1" path="res://audio/streams/ambient/bullet_ambient.wav" id="4_0y1a2"]
 [ext_resource type="Script" path="res://scripts/effects/lifetime.gd" id="5_fvl37"]
+[ext_resource type="Script" path="res://bullets/enemy/minor_omni_light_3d.gd" id="7_yeekn"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_h48e4"]
 size = Vector3(0.05, 0.05, 0.5)
@@ -148,6 +149,11 @@ wait_time = 30.0
 one_shot = true
 autostart = true
 script = ExtResource("5_fvl37")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+light_color = Color(1, 1, 0, 1)
+shadow_enabled = true
+script = ExtResource("7_yeekn")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="body_entered" from="." to="GPUParticles3D" method="_on_bullet_body_entered"]

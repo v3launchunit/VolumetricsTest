@@ -1,9 +1,10 @@
-[gd_scene load_steps=18 format=3 uid="uid://df5n18xo8w3kj"]
+[gd_scene load_steps=19 format=3 uid="uid://df5n18xo8w3kj"]
 
 [ext_resource type="Script" path="res://bullets/bullet.gd" id="1_daqx3"]
 [ext_resource type="PackedScene" uid="uid://dco7xp2cwuyge" path="res://scenes/effects/explosions/explosion.tscn" id="2_i7b7a"]
 [ext_resource type="Shader" path="res://shaders/spatial/psx_ul_mix.gdshader" id="3_ven1m"]
 [ext_resource type="Script" path="res://bullets/bullet_trail.gd" id="4_pfq3o"]
+[ext_resource type="Script" path="res://bullets/enemy/minor_omni_light_3d.gd" id="5_0b7ds"]
 [ext_resource type="Material" uid="uid://b78l63b32udy2" path="res://effects/halos/halo_mat.tres" id="5_h4omx"]
 [ext_resource type="Script" path="res://scripts/effects/halo.gd" id="6_lbxxy"]
 [ext_resource type="Script" path="res://scripts/effects/lifetime.gd" id="7_nam5y"]
@@ -108,6 +109,7 @@ light_color = Color(1, 0.501961, 0, 1)
 shadow_enabled = true
 distance_fade_enabled = true
 omni_shadow_mode = 0
+script = ExtResource("5_0b7ds")
 
 [node name="LensFlare" type="MeshInstance3D" parent="OmniLight3D"]
 layers = 2

@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://doj0aysg6oqh2"]
+[gd_scene load_steps=26 format=3 uid="uid://doj0aysg6oqh2"]
 
 [ext_resource type="Script" path="res://bullets/bullet.gd" id="1_ymvu6"]
 [ext_resource type="PackedScene" uid="uid://fn1fivb2ndvo" path="res://scenes/effects/impacts/bullet_impact_yellow.tscn" id="2_rlntx"]
@@ -6,6 +6,7 @@
 [ext_resource type="AudioStream" uid="uid://bhhnxh2cjbiuq" path="res://audio/streams/ambient/fire_ball_ambient.wav" id="3_ghwt3"]
 [ext_resource type="Script" path="res://scripts/effects/lifetime.gd" id="4_hhht4"]
 [ext_resource type="Material" uid="uid://b78l63b32udy2" path="res://effects/halos/halo_mat.tres" id="4_p5pbv"]
+[ext_resource type="Script" path="res://bullets/enemy/minor_omni_light_3d.gd" id="5_ix47d"]
 [ext_resource type="Script" path="res://scripts/effects/halo.gd" id="5_qgig2"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_6fgvk"]
@@ -192,8 +193,8 @@ input_ray_pickable = false
 gravity_scale = 0.0
 lock_rotation = true
 continuous_cd = true
-max_contacts_reported = 5
 contact_monitor = true
+max_contacts_reported = 5
 script = ExtResource("1_ymvu6")
 speed = 25.0
 damage = 35.0
@@ -230,6 +231,7 @@ doppler_tracking = 2
 layers = 2
 light_color = Color(1, 0.501961, 0, 1)
 distance_fade_enabled = true
+script = ExtResource("5_ix47d")
 
 [node name="LensFlare" type="MeshInstance3D" parent="OmniLight3D"]
 layers = 2

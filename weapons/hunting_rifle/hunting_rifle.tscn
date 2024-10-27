@@ -163,27 +163,6 @@ omni_shadow_mode = 0
 root_node = NodePath("../..")
 tree_root = SubResource("AnimationNodeStateMachine_p1jc4")
 anim_player = NodePath("../../AnimationPlayer")
-parameters/current_length = 1.0
-parameters/current_position = 0.362536
-parameters/current_delta = 0.143033
-parameters/End/current_length = null
-parameters/End/current_position = null
-parameters/End/current_delta = null
-parameters/Start/current_length = 0.0
-parameters/Start/current_position = 0.0
-parameters/Start/current_delta = 0.0
-parameters/charging/current_length = null
-parameters/charging/current_position = null
-parameters/charging/current_delta = null
-parameters/deploy/current_length = 0.65
-parameters/deploy/current_position = 0.65
-parameters/deploy/current_delta = 0.0176337
-parameters/firing/current_length = null
-parameters/firing/current_position = null
-parameters/firing/current_delta = null
-parameters/idle/current_length = 1.0
-parameters/idle/current_position = 0.362536
-parameters/idle/current_delta = 0.143033
 
 [node name="AlertRadius" type="Area3D" parent="hunting_rifle"]
 collision_layer = 2

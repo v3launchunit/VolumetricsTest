@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://cb1nvr0mua3y"]
+[gd_scene load_steps=25 format=3 uid="uid://cb1nvr0mua3y"]
 
 [ext_resource type="Script" path="res://bullets/bullet.gd" id="1_c8ur7"]
 [ext_resource type="Script" path="res://bullets/bullet_trail.gd" id="2_nkjwq"]
@@ -8,6 +8,7 @@
 [ext_resource type="Material" uid="uid://b78l63b32udy2" path="res://effects/halos/halo_mat.tres" id="3_t6mc4"]
 [ext_resource type="Script" path="res://scripts/effects/halo.gd" id="5_p6mw0"]
 [ext_resource type="Script" path="res://scripts/effects/lifetime.gd" id="5_vc8cb"]
+[ext_resource type="Script" path="res://bullets/enemy/minor_omni_light_3d.gd" id="7_1ypre"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_h48e4"]
 size = Vector3(0.15, 0.15, 1)
@@ -191,8 +192,8 @@ input_ray_pickable = false
 gravity_scale = 0.0
 lock_rotation = true
 continuous_cd = true
-max_contacts_reported = 5
 contact_monitor = true
+max_contacts_reported = 5
 script = ExtResource("1_c8ur7")
 speed = 35.0
 damage = 75.0
@@ -223,14 +224,8 @@ process_material = SubResource("ParticleProcessMaterial_rhsu2")
 draw_pass_1 = SubResource("CylinderMesh_3dr6j")
 script = ExtResource("2_nkjwq")
 
-[node name="OmniLight3D" type="OmniLight3D" parent="."]
-transform = Transform3D(-1, 1.50996e-07, 6.60024e-15, 0, -4.37114e-08, 1, 1.50996e-07, 1, 4.37114e-08, 0, 0, 0)
-layers = 2
-light_color = Color(0, 1, 1, 1)
-shadow_enabled = true
-distance_fade_enabled = true
-
-[node name="LensFlare" type="MeshInstance3D" parent="OmniLight3D"]
+[node name="LensFlare" type="MeshInstance3D" parent="."]
+transform = Transform3D(-1, 1.50996e-07, 6.60025e-15, 0, -4.37114e-08, 1, 1.50996e-07, 1, 4.37114e-08, 0, 0, 0)
 layers = 2
 material_override = ExtResource("3_t6mc4")
 cast_shadow = 0
@@ -238,8 +233,18 @@ visibility_range_end = 100.0
 visibility_range_end_margin = 25.0
 visibility_range_fade_mode = 1
 mesh = SubResource("QuadMesh_7khmj")
+skeleton = NodePath("../OmniLight3D")
 surface_material_override/0 = SubResource("StandardMaterial3D_x81yj")
 script = ExtResource("5_p6mw0")
+color = Color(0, 1, 1, 1)
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+transform = Transform3D(-1, 1.50996e-07, 6.60024e-15, 0, -4.37114e-08, 1, 1.50996e-07, 1, 4.37114e-08, 0, 0, 0)
+layers = 2
+light_color = Color(0, 1, 1, 1)
+shadow_enabled = true
+distance_fade_enabled = true
+script = ExtResource("7_1ypre")
 
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
 stream = ExtResource("3_1mhdb")

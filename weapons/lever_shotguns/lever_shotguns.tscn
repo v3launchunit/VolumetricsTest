@@ -1,0 +1,65 @@
+[gd_scene load_steps=7 format=3 uid="uid://bpmahfi65ka5j"]
+
+[ext_resource type="Script" path="res://weapons/weapon_dual_wield.gd" id="1_hohpo"]
+[ext_resource type="PackedScene" uid="uid://5ta546kfi5yj" path="res://weapons/lever_shogtun/lever_shotgun.glb" id="2_pxtkk"]
+[ext_resource type="Material" uid="uid://nv0jkcw45ofc" path="res://weapons/weapon_metal.tres" id="3_ibg5p"]
+
+[sub_resource type="AnimationNodeAdd2" id="AnimationNodeAdd2_jgjvs"]
+
+[sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_3u4af"]
+graph_offset = Vector2(-401.333, 114.667)
+nodes/Add2/node = SubResource("AnimationNodeAdd2_jgjvs")
+nodes/Add2/position = Vector2(53.3333, 160)
+node_connections = [&"output", 0, &"Add2"]
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_qjmq6"]
+states/firing/node = SubResource("AnimationNodeBlendTree_3u4af")
+states/firing/position = Vector2(604, 100.667)
+
+[node name="Node3D" type="Node3D"]
+script = ExtResource("1_hohpo")
+spread = 5.0
+
+[node name="Camera3D" type="Camera3D" parent="."]
+
+[node name="lever_shotgun" parent="." instance=ExtResource("2_pxtkk")]
+transform = Transform3D(-0.25, 0, 3.7749e-08, 0, 0.25, 0, -3.7749e-08, 0, -0.25, -0.05, -0.075, -0.1)
+
+[node name="Shotgun" parent="lever_shotgun" index="0"]
+material_override = ExtResource("3_ibg5p")
+
+[node name="Lever" parent="lever_shotgun/Shotgun" index="0"]
+material_override = ExtResource("3_ibg5p")
+
+[node name="WoodSide" parent="lever_shotgun/Shotgun" index="1"]
+material_override = ExtResource("3_ibg5p")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="lever_shotgun"]
+root_node = NodePath("../..")
+
+[node name="AnimationTree" type="AnimationTree" parent="lever_shotgun"]
+root_node = NodePath("../..")
+tree_root = SubResource("AnimationNodeStateMachine_qjmq6")
+parameters/firing/Add2/add_amount = 0
+
+[node name="lever_shotgun2" parent="." instance=ExtResource("2_pxtkk")]
+transform = Transform3D(-0.25, 0, 3.7749e-08, 0, 0.25, 0, -3.7749e-08, 0, -0.25, 0.05, -0.075, -0.1)
+
+[node name="Shotgun" parent="lever_shotgun2" index="0"]
+material_override = ExtResource("3_ibg5p")
+
+[node name="Lever" parent="lever_shotgun2/Shotgun" index="0"]
+material_override = ExtResource("3_ibg5p")
+
+[node name="WoodSide" parent="lever_shotgun2/Shotgun" index="1"]
+material_override = ExtResource("3_ibg5p")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="lever_shotgun2"]
+root_node = NodePath("../..")
+
+[node name="AnimationTree" type="AnimationTree" parent="lever_shotgun2"]
+tree_root = SubResource("AnimationNodeStateMachine_qjmq6")
+parameters/firing/Add2/add_amount = 0
+
+[editable path="lever_shotgun"]
+[editable path="lever_shotgun2"]

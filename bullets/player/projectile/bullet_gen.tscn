@@ -1,10 +1,11 @@
-[gd_scene load_steps=13 format=3 uid="uid://b4m3n1ffkk00l"]
+[gd_scene load_steps=14 format=3 uid="uid://b4m3n1ffkk00l"]
 
 [ext_resource type="Script" path="res://bullets/bullet.gd" id="1_j72ds"]
 [ext_resource type="Script" path="res://bullets/bullet_trail.gd" id="2_jmmva"]
 [ext_resource type="ArrayMesh" uid="uid://cqf6v4gaperkn" path="res://bullets/bullet.obj" id="2_m6y8l"]
 [ext_resource type="PackedScene" uid="uid://fn1fivb2ndvo" path="res://scenes/effects/impacts/bullet_impact_yellow.tscn" id="2_v8rhl"]
 [ext_resource type="AudioStream" uid="uid://crtqyq64m3wm1" path="res://audio/streams/ambient/bullet_ambient.wav" id="4_ldvif"]
+[ext_resource type="Script" path="res://bullets/enemy/minor_omni_light_3d.gd" id="6_qw28e"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_h48e4"]
 size = Vector3(0.05, 0.05, 2)
@@ -51,8 +52,8 @@ input_ray_pickable = false
 gravity_scale = 0.0
 lock_rotation = true
 continuous_cd = true
-max_contacts_reported = 5
 contact_monitor = true
+max_contacts_reported = 5
 script = ExtResource("1_j72ds")
 speed = 50.0
 explosion = ExtResource("2_v8rhl")
@@ -87,9 +88,9 @@ doppler_tracking = 2
 
 [node name="OmniLight3D" type="OmniLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.7)
-visible = false
 light_color = Color(1, 1, 0, 1)
 distance_fade_enabled = true
+script = ExtResource("6_qw28e")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="body_entered" from="." to="GPUParticles3D" method="_on_bullet_body_entered"]

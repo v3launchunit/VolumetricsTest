@@ -6,5 +6,5 @@
 [node name="Hitscan" type="Node3D"]
 script = ExtResource("1_lkxar")
 max_range = 3.0
-damage = 60.0
+damage = 80.0
 explosion = ExtResource("2_hq8xu")

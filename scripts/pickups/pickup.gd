@@ -1,7 +1,7 @@
 class_name Pickup 
 extends RigidBody3D
 
-signal collected;
+signal interacted(with: Node3D);
 
 @export var func_godot_properties: Dictionary
 
@@ -19,7 +19,7 @@ func _ready() -> void:
 	if func_godot_properties.get("pickup_group", "none") != "none":
 		for member in get_tree().get_nodes_in_group(func_godot_properties["pickup_group"]):
 			if member.has_method("on_triggered"):
-				collected.connect(member.on_triggered)
+				interacted.connect(member.on_triggered)
 		add_to_group(func_godot_properties["pickup_group"])
 
 
@@ -36,7 +36,7 @@ func picked_up(body: Node) -> void:
 	if body is not Player:
 		return
 	
-	collected.emit()
+	interacted.emit(body)
 	var hud := (body as Player).hud
 	if pickup_sound != null:
 		hud.flash_with_sound(flash_color, pickup_sound)

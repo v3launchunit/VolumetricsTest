@@ -95,10 +95,15 @@ var s_glow_enabled: bool = false
 ## Toggles a procedural cross-shaped lens flare post-processing effect. I worked
 ## very hard on it.
 var s_cross_glow_enabled: bool = true
+## Toggles volumetric fog.
 var s_volumetric_fog_enabled: bool = true
-var s_palette_compress_enabled: bool = true
+var s_palette_compress_enabled: bool = false
 var s_color_depth: float = 16
 var s_current_palette: String = "neutral"
+
+var s_minor_lights : bool = true
+var s_minor_shadows : bool = false
+var s_minor_shadows_mode := OmniLight3D.ShadowMode.SHADOW_CUBE
 
 ## The sensitivity multiplier applied to mouse movement with regards to the
 ## first-person camera.
@@ -175,7 +180,7 @@ func _load_config() -> void:
 	# Read from file and remember whether it was successful.
 	var err: Error = config.load("user://settings.cfg")
 
-	# If the file didn't load successfully (err != "OK"/0), ignore it and just
+	# If the file didn't load successfully (err != "OK"/0/false), ignore it and just
 	# keep the hardcoded defaults.
 	if err:
 		return
@@ -196,6 +201,9 @@ func _load_config() -> void:
 			s_volumetric_fog_enabled)
 	s_palette_compress_enabled = config.get_value("video", "palette_compress_enabled",
 			s_palette_compress_enabled)
+	s_minor_lights = config.get_value("video", "minor_lights_enabled", s_minor_lights)
+	s_minor_shadows = config.get_value("video", "minor_light_shadows", s_minor_shadows)
+	s_minor_shadows = config.get_value("video", "minor_shadows_mode", s_minor_shadows)
 
 	s_master_volume = config.get_value("audio", "master_volume", s_master_volume)
 	s_sound_volume = config.get_value("audio", "sound_volume", s_sound_volume)
@@ -231,6 +239,9 @@ func _on_settings_changed() -> void:
 	config.set_value("video", "cross_glow_enabled", s_cross_glow_enabled)
 	config.set_value("video", "volumetric_fog_enabled", s_volumetric_fog_enabled)
 	config.set_value("video", "palette_compress_enabled", s_palette_compress_enabled)
+	config.set_value("video", "minor_lights_enabled", s_minor_lights)
+	config.set_value("video", "minor_light_shadows", s_minor_shadows)
+	config.set_value("video", "minor_shadows_mode", s_minor_shadows)
 
 	config.set_value("audio", "master_volume", s_master_volume)
 	config.set_value("audio", "sound_volume", s_sound_volume)

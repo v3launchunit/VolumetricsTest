@@ -202,6 +202,7 @@ _data = {
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, -0.5, -0.35)
 
 [node name="BigIron" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.00393191, 0)
 layers = 4
 cast_shadow = 0
 mesh = ExtResource("1_ampqd")
@@ -213,14 +214,14 @@ script = ExtResource("2_o12ys")
 bullet = ExtResource("6_lqm6f")
 shot_cooldown = 1.25
 ammo_type = "big_iron_bullets"
-anti_clip_distance = 1.5
 category = 3
 
 [node name="Spawner" type="Marker3D" parent="BigIron"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0774074, 1.65)
 
 [node name="MuzzleFlash" type="MeshInstance3D" parent="BigIron/Spawner"]
-transform = Transform3D(0, 0, 0, 0, 0, 0, 0, 0, 0, 4.23193e-06, -0.000249945, 0.000486732)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.23193e-06, -0.000249945, 0.000486732)
+visible = false
 layers = 4
 material_override = ExtResource("7_vw85u")
 cast_shadow = 0

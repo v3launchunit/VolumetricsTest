@@ -377,6 +377,7 @@ collision_mask = 61
 hit_from_inside = true
 
 [node name="ViewmodelAntiClip" type="Area3D" parent="Control/SubViewportContainer/SubViewport/PlayerSync/PlayerCam"]
+process_mode = 4
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.2, -0.75)
 collision_layer = 2
 collision_mask = 13

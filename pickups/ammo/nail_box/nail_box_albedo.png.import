@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://1nyajw5i1ep8"
-path="res://.godot/imported/nail_box.png-cc47943afdc4e4f00751532b6c346688.ctex"
+uid="uid://bnbamh1e3lrba"
+path="res://.godot/imported/nail_box_albedo.png-6f44e415f5e13022984abf3efecf4eaa.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://pickups/keys/keys/nail_box/nail_box.png"
-dest_files=["res://.godot/imported/nail_box.png-cc47943afdc4e4f00751532b6c346688.ctex"]
+source_file="res://pickups/ammo/nail_box/nail_box_albedo.png"
+dest_files=["res://.godot/imported/nail_box_albedo.png-6f44e415f5e13022984abf3efecf4eaa.ctex"]
 
 [params]
 
@@ -31,4 +31,4 @@ process/normal_map_invert_y=false
 process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
 process/size_limit=0
-detect_3d/compress_to=1
+detect_3d/compress_to=0
