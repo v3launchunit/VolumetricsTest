@@ -1,4 +1,4 @@
-[gd_scene load_steps=153 format=4 uid="uid://ddybwy4hdo2q3"]
+[gd_scene load_steps=157 format=4 uid="uid://ddybwy4hdo2q3"]
 
 [ext_resource type="Script" path="res://levels/level.gd" id="1_lifds"]
 [ext_resource type="PackedScene" uid="uid://do61x5km3wthk" path="res://entities/player/player.tscn" id="1_npqeh"]
@@ -34,6 +34,7 @@
 [ext_resource type="Shader" path="res://shaders/spatial/iridescent_psx.gdshader" id="39_vgoen"]
 [ext_resource type="Shader" path="res://shaders/spatial/psx_test.gdshader" id="40_8dl3b"]
 [ext_resource type="Texture2D" uid="uid://cyg2snr1w5xw5" path="res://addons/func_godot/textures/default_texture.png" id="40_rt55l"]
+[ext_resource type="Shader" path="res://shaders/spatial/tv_static.gdshader" id="40_w0giw"]
 [ext_resource type="PackedScene" uid="uid://7e6nf0ho2ltr" path="res://scenes/objects/teleporter.tscn" id="41_dkm3o"]
 [ext_resource type="Material" uid="uid://biw3k00jqqq3l" path="res://trench_broom/textures/liquids/water.tres" id="42_m623u"]
 [ext_resource type="PackedScene" uid="uid://13po7ktlg4ba" path="res://entities/enemies/military/soldier/soldier.tscn" id="46_mht45"]
@@ -913,6 +914,18 @@ shading_mode = 0
 albedo_texture = SubResource("GradientTexture2D_2pwd8")
 texture_filter = 0
 
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_dgj7v"]
+noise_type = 5
+frequency = 1.0
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_rdsxl"]
+noise = SubResource("FastNoiseLite_dgj7v")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_cyedf"]
+render_priority = 0
+shader = ExtResource("40_w0giw")
+shader_parameter/noise = SubResource("NoiseTexture2D_rdsxl")
+
 [node name="Node3D" type="Node3D"]
 script = ExtResource("1_lifds")
 level_name = "TEST LEVEL"
@@ -1412,6 +1425,11 @@ mesh = SubResource("BoxMesh_h44b6")
 [node name="MeshInstance3D3" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 1, 4)
 material_override = ExtResource("39_a4eva")
+mesh = SubResource("BoxMesh_h44b6")
+
+[node name="MeshInstance3D4" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 1, 4)
+material_override = SubResource("ShaderMaterial_cyedf")
 mesh = SubResource("BoxMesh_h44b6")
 
 [editable path="Things/Teleporter"]

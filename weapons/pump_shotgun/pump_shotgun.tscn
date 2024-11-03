@@ -190,7 +190,7 @@ _data = {
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -0.15, -0.25, -0.35)
 
 [node name="PumpShotgun" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.00707068, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0090174, 0)
 layers = 4
 material_override = ExtResource("1_iyx8y")
 cast_shadow = 0
@@ -204,7 +204,6 @@ shot_cooldown = 0.85
 volley = 9
 spread = 5.0
 ammo_type = "shells"
-anti_clip_distance = 0.5
 category = 1
 
 [node name="Spawner" type="Marker3D" parent="PumpShotgun"]

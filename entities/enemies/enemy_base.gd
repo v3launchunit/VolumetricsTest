@@ -579,11 +579,12 @@ func rank_point(point: Vector3) -> float:
 func check_attack_readiness() -> bool:
 	return (
 			current_targets[-1].global_position.distance_squared_to(global_position)
-			< melee_range_squared or (
-					(turret_mode or state_timer >= attack_interval + randf()) and
-					current_targets[-1].global_position.distance_squared_to(global_position)
-					< attack_range_squared and
-					can_see_target()
+			< melee_range_squared 
+			or (
+					(state_timer * (0.5 if turret_mode else 1) >= attack_interval + randf()) 
+					and current_targets[-1].global_position.distance_squared_to(global_position)
+					< attack_range_squared 
+					and can_see_target()
 			)
 		) #and sight_line.get_collider() == current_target:
 
@@ -725,11 +726,11 @@ func _to_fleeing() -> void:
 func get_tooltip() -> String:
 	return Globals.parse_text(
 			"tooltips", eat_tooltip
-	) if edible and current_state == State.DEAD else ""
+	) if edible and current_state == State.DEAD and state_timer > 1.0 else ""
 
 
 func interact(body: Node3D) -> void:
-	if not edible or body is not Player:
+	if not (current_state == State.DEAD and state_timer > 1.0 and edible and body is Player):
 		return
 	if (body as Player).status.heal(corpse_food_value):
 		status.gibify()

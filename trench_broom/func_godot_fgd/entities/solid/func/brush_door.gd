@@ -312,12 +312,14 @@ func interact(body: Node3D) -> void:
 func toggle(_body: Node3D) -> void:
 	open = not open
 	door_state = DoorState.OPENING_0 if open else DoorState.CLOSING_0
-	audio_player.play()
+	if audio_player != null:
+		audio_player.play()
 
 
 func set_open(to: bool) -> void:
 	if open != to:
-		audio_player.play()
+		if audio_player != null:
+			audio_player.play()
 		door_state = DoorState.OPENING_0 if to else DoorState.CLOSING_0
 	open = to
 

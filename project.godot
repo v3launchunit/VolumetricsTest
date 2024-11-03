@@ -293,6 +293,7 @@ weapon_flourish={
 3d_physics/layer_8="Doors"
 3d_physics/layer_9="Porous"
 3d_physics/layer_10="Nails"
+3d_physics/layer_11="NavIgnore"
 
 [physics]
 

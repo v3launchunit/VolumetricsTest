@@ -24,11 +24,11 @@ func _ready() -> void:
 func update_properties() -> void:
 	var color: Color
 	if properties.has("_color"):
-		color = Color8(
-				roundi(properties.get("_color").x),
-				roundi(properties.get("_color").y),
-				roundi(properties.get("_color").z),
-		)
+		color = properties["_color"] #Color8(
+				#roundi(properties.get("_color").x),
+				#roundi(properties.get("_color").y),
+				#roundi(properties.get("_color").z),
+		#)
 	else:
 		color = Color8(
 				roundi(properties.get("color").x),
