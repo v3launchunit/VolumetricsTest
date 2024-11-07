@@ -443,18 +443,18 @@ level goals:
 		m1: escape building
 		m2: knock down building to get into condemned district of city
 		m3: get access key to enter mines
-		m4: navigate mines, find secret laboratory
-		m5: navigate secret laboratory
-		m6: blood sewer™
-		m7: 
-		m8: kill boss
+		m4: navigate mines, find old underground temples/catacombs/whatever
+		m5: get elevator key
+		m6: navigate secret laboratory, get plasma cannon
+		m7: ancient catacombs mixed with evil lab
+		m8: kill boss, enter portal
 	e2:
 		m1: 
 		m2: 
 		m3: 
 		m4: 
 		m5: 
-		m6: 
+		m6: blood sewer™
 		m7: 
 		m8: 
 	e3:

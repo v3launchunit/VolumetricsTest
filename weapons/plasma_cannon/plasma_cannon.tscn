@@ -196,10 +196,10 @@ _data = {
 }
 
 [node name="PlasmaCannon" type="Node3D"]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, -0.35, -0.35)
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -0.15, -0.35, -0.35)
 
 [node name="PlasmaCannon" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.00012483, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.008271, 0)
 layers = 4
 material_override = ExtResource("1_xwh1k")
 cast_shadow = 0
@@ -218,7 +218,7 @@ index = 2
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.475)
 
 [node name="MuzzleFlash" type="MeshInstance3D" parent="PlasmaCannon/Spawner"]
-transform = Transform3D(1, -1.50996e-07, 1.50996e-07, -1.50996e-07, -1, -2.19212e-18, 1.50996e-07, -2.27975e-14, -1, -8.71226e-10, 0, 0.0250344)
+transform = Transform3D(1, -1.50996e-07, 1.50996e-07, -1.50996e-07, -1, -2.29207e-18, 1.50996e-07, -2.27974e-14, -1, -8.71226e-10, 0, 0.0250344)
 visible = false
 layers = 4
 material_override = SubResource("ShaderMaterial_re0b1")
@@ -244,7 +244,7 @@ draw_pass_1 = SubResource("BoxMesh_pde2p")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.475)
 
 [node name="MuzzleFlash" type="MeshInstance3D" parent="PlasmaCannon/AltSpawner"]
-transform = Transform3D(1, 1.50996e-07, -1.50996e-07, 1.50996e-07, -1, -1.69237e-18, -1.50996e-07, -2.2798e-14, -1, -8.71226e-10, 0, 0.0250344)
+transform = Transform3D(1, 1.50996e-07, -1.50996e-07, 1.50996e-07, -1, -1.79232e-18, -1.50996e-07, -2.27979e-14, -1, -8.71226e-10, 0, 0.0250344)
 visible = false
 layers = 2
 material_override = SubResource("ShaderMaterial_re0b1")

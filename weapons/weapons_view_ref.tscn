@@ -48,8 +48,10 @@ visible = false
 visible = false
 
 [node name="BigIron" parent="SubViewport/Camera3D" instance=ExtResource("3_35ko8")]
+visible = false
 
 [node name="Boomstick" parent="SubViewport/Camera3D" instance=ExtResource("4_0dtrm")]
+transform = Transform3D(-1, 0, -1.50996e-07, 0, 1, 0, 1.50996e-07, 0, -1, -0.15, -0.35, 0)
 visible = false
 
 [node name="Crossbow" parent="SubViewport/Camera3D" instance=ExtResource("5_777jx")]

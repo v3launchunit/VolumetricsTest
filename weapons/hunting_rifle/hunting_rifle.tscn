@@ -115,7 +115,7 @@ _data = {
 }
 
 [node name="HuntingRifle" type="Node3D"]
-transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.125, 0, -0.15, -0.35)
+transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.125, -0.15, -0.15, -0.35)
 
 [node name="hunting_rifle" parent="." node_paths=PackedStringArray("_label") instance=ExtResource("1_2vytj")]
 script = ExtResource("2_rovkw")

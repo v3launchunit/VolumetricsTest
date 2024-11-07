@@ -1,4 +1,4 @@
-[gd_scene load_steps=157 format=4 uid="uid://ddybwy4hdo2q3"]
+[gd_scene load_steps=161 format=4 uid="uid://ddybwy4hdo2q3"]
 
 [ext_resource type="Script" path="res://levels/level.gd" id="1_lifds"]
 [ext_resource type="PackedScene" uid="uid://do61x5km3wthk" path="res://entities/player/player.tscn" id="1_npqeh"]
@@ -35,6 +35,7 @@
 [ext_resource type="Shader" path="res://shaders/spatial/psx_test.gdshader" id="40_8dl3b"]
 [ext_resource type="Texture2D" uid="uid://cyg2snr1w5xw5" path="res://addons/func_godot/textures/default_texture.png" id="40_rt55l"]
 [ext_resource type="Shader" path="res://shaders/spatial/tv_static.gdshader" id="40_w0giw"]
+[ext_resource type="Shader" path="res://shaders/portal.gdshader" id="41_0lrjq"]
 [ext_resource type="PackedScene" uid="uid://7e6nf0ho2ltr" path="res://scenes/objects/teleporter.tscn" id="41_dkm3o"]
 [ext_resource type="Material" uid="uid://biw3k00jqqq3l" path="res://trench_broom/textures/liquids/water.tres" id="42_m623u"]
 [ext_resource type="PackedScene" uid="uid://13po7ktlg4ba" path="res://entities/enemies/military/soldier/soldier.tscn" id="46_mht45"]
@@ -926,6 +927,18 @@ render_priority = 0
 shader = ExtResource("40_w0giw")
 shader_parameter/noise = SubResource("NoiseTexture2D_rdsxl")
 
+[sub_resource type="ViewportTexture" id="ViewportTexture_kyheb"]
+viewport_path = NodePath("Portal/SubViewport")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_fh8g7"]
+resource_local_to_scene = true
+render_priority = 0
+shader = ExtResource("41_0lrjq")
+shader_parameter/tex = SubResource("ViewportTexture_kyheb")
+
+[sub_resource type="QuadMesh" id="QuadMesh_j663w"]
+size = Vector2(2, 3)
+
 [node name="Node3D" type="Node3D"]
 script = ExtResource("1_lifds")
 level_name = "TEST LEVEL"
@@ -1431,5 +1444,25 @@ mesh = SubResource("BoxMesh_h44b6")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 1, 4)
 material_override = SubResource("ShaderMaterial_cyedf")
 mesh = SubResource("BoxMesh_h44b6")
+
+[node name="Portal" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 1, -8)
+visible = false
+material_override = SubResource("ShaderMaterial_fh8g7")
+mesh = SubResource("QuadMesh_j663w")
+
+[node name="SubViewport" type="SubViewport" parent="Portal"]
+size = Vector2i(960, 360)
+
+[node name="PortalCam" type="Camera3D" parent="Portal/SubViewport"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 1, -3.5)
+
+[node name="PortalExit" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 1, -8)
+visible = false
+material_override = SubResource("ShaderMaterial_fh8g7")
+mesh = SubResource("QuadMesh_j663w")
+
+[node name="PortalCam" type="Camera3D" parent="PortalExit"]
 
 [editable path="Things/Teleporter"]
