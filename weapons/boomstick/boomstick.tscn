@@ -241,7 +241,7 @@ shader_parameter/texture_detail_mask = ExtResource("5_e71qv")
 animation = &"boomstick_anims/boomstick_fire"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_2yivl"]
-animation = &"boomstick_anims/boomstick_deploy"
+animation = &"boomstick_anims/boomstick_deploy_center"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_t3q3t"]
 animation = &"boomstick_anims/boomstick_fire"
@@ -265,6 +265,7 @@ advance_mode = 2
 advance_mode = 2
 
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_b1n13"]
+allow_transition_to_self = true
 states/alt_firing/node = SubResource("AnimationNodeAnimation_l85rr")
 states/alt_firing/position = Vector2(477, 205)
 states/deploy/node = SubResource("AnimationNodeAnimation_2yivl")
@@ -389,7 +390,7 @@ radial_segments = 6
 transform = Transform3D(-1, 0, -1.50996e-07, 0, 1, 0, 1.50996e-07, 0, -1, -0.15, -0.35, 0)
 
 [node name="Boomstick" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.00204202, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.00998911, 0)
 layers = 4
 cast_shadow = 0
 mesh = ExtResource("1_7e58d")
@@ -404,6 +405,7 @@ shot_cooldown = 2.0
 volley = 36
 spread = 30.0
 recoil = 5.0
+cam_recoil = 0.261799
 ammo_type = "shells"
 ammo_cost = 2
 category = 1

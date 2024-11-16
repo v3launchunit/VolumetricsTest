@@ -29,6 +29,7 @@ switch_mode = 2
 advance_mode = 2
 
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_n8cqh"]
+allow_transition_to_self = true
 states/deploy/node = SubResource("AnimationNodeAnimation_grl0n")
 states/deploy/position = Vector2(356, 100.37)
 states/firing/node = SubResource("AnimationNodeAnimation_fi3a4")
@@ -53,9 +54,11 @@ _data = {
 }
 
 [node name="GrenadeLauncher" type="Node3D"]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -0.15, -0.35, -0.5)
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -0.15, -0.35, -0.6)
 script = ExtResource("1_sgyo5")
 bullet = ExtResource("2_o3wnk")
+shot_cooldown = 0.5
+cam_recoil = 0.261799
 ammo_type = "grenades"
 category = 4
 

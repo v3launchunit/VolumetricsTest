@@ -194,7 +194,7 @@ func emit_bullet(what: PackedScene, inherit_vel: bool = false) -> Node:
 	rotate_x(deg_to_rad(randf_range(-spread/4, spread/4) * refire_penalty))
 	refire_penalty = 1.0
 
-	var instance = what.instantiate()
+	var instance := what.instantiate() as Node3D
 	spawner.add_child(instance)
 	if apply_berserk and "damage" in instance:
 		instance.damage *= 10
@@ -207,5 +207,6 @@ func emit_bullet(what: PackedScene, inherit_vel: bool = false) -> Node:
 	elif instance is Hitscan:
 		instance.query_origin = manager.global_position
 	instance.reparent(get_tree().current_scene)
+	instance.scale = Vector3.ONE
 	instance.invoker = manager.find_parent("Player")
 	return instance

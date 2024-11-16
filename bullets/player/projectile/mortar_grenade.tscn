@@ -1,6 +1,6 @@
 [gd_scene load_steps=29 format=3 uid="uid://cp3asxmnm2wuy"]
 
-[ext_resource type="Script" path="res://bullets/bullet.gd" id="1_8xbqp"]
+[ext_resource type="Script" path="res://bullets/player/projectile/mortar_grenade.gd" id="1_o821v"]
 [ext_resource type="PackedScene" uid="uid://dco7xp2cwuyge" path="res://scenes/effects/explosions/explosion.tscn" id="2_ivelt"]
 [ext_resource type="Material" uid="uid://krobnjd1cbwe" path="res://entities/enemies/machines/metal_gray_psx.tres" id="3_g7s2j"]
 [ext_resource type="Shader" path="res://shaders/spatial/psx_ul_mix.gdshader" id="3_xr7yj"]
@@ -11,7 +11,7 @@
 [ext_resource type="Script" path="res://scripts/effects/lifetime.gd" id="8_l2lfr"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_ebcna"]
-bounce = 0.5
+bounce = 0.1
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_g7474"]
 radius = 0.1
@@ -155,7 +155,7 @@ physics_material_override = SubResource("PhysicsMaterial_ebcna")
 continuous_cd = true
 contact_monitor = true
 max_contacts_reported = 5
-script = ExtResource("1_8xbqp")
+script = ExtResource("1_o821v")
 speed = 25.0
 damage = 100.0
 damage_type = 1

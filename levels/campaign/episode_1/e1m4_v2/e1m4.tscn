@@ -1,4 +1,4 @@
-[gd_scene load_steps=566 format=4 uid="uid://d1cosndl4ry6y"]
+[gd_scene load_steps=557 format=4 uid="uid://d1cosndl4ry6y"]
 
 [ext_resource type="Script" path="res://levels/level.gd" id="1_7mvjr"]
 [ext_resource type="Script" path="res://addons/func_godot/src/map/func_godot_map.gd" id="1_s1uio"]
@@ -1931,154 +1931,6 @@ points = PackedVector3Array(-4, 4, -1, -4, -4, -1, 4, -4, -1, 4, 4, -1, -4, 4, 1
 
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_f812w"]
 points = PackedVector3Array(-3.5, 4, -1, -3.5, -4, -1, 3.5, -4, -1, 3.5, 4, -1, -3.5, 4, 1, -3.5, -4, 1, 3.5, -4, 1, 3.5, 4, 1)
-
-[sub_resource type="Shader" id="Shader_143fe"]
-code = "// NOTE: Shader automatically converted from Godot Engine 4.2.1.stable.mono's StandardMaterial3D.
-
-shader_type spatial;
-render_mode blend_mix,depth_draw_opaque,cull_back,diffuse_burley,specular_schlick_ggx,unshaded;
-instance uniform vec4 albedo : source_color;
-uniform sampler2D texture_albedo : source_color,filter_linear_mipmap,repeat_enable;
-uniform float point_size : hint_range(0,128);
-uniform float roughness : hint_range(0,1);
-uniform sampler2D texture_metallic : hint_default_white,filter_linear_mipmap,repeat_enable;
-uniform vec4 metallic_texture_channel;
-uniform sampler2D texture_roughness : hint_roughness_r,filter_linear_mipmap,repeat_enable;
-uniform float specular;
-uniform float metallic;
-uniform vec3 uv1_scale;
-uniform vec3 uv1_offset;
-uniform vec3 uv2_scale;
-uniform vec3 uv2_offset;
-
-#include \"res://shaders/includes/psx_inc.gdshaderinc\"
-
-void vertex() {
-	POSITION = map_affine(snap_vertex(PROJECTION_MATRIX * MODELVIEW_MATRIX * vec4(VERTEX, 1.0)));
-	UV=UV*uv1_scale.xy+uv1_offset.xy;
-}
-
-
-
-
-
-
-void fragment() {
-	vec2 base_uv = UV;
-	vec4 albedo_tex = texture(texture_albedo,base_uv);
-	ALBEDO = albedo.rgb * albedo_tex.rgb;
-	float metallic_tex = dot(texture(texture_metallic,base_uv),metallic_texture_channel);
-	METALLIC = metallic_tex * metallic;
-	vec4 roughness_texture_channel = vec4(1.0,0.0,0.0,0.0);
-	float roughness_tex = dot(texture(texture_roughness,base_uv),roughness_texture_channel);
-	ROUGHNESS = roughness_tex * roughness;
-	SPECULAR = specular;
-}
-"
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_1jqkf"]
-render_priority = 0
-shader = SubResource("Shader_143fe")
-shader_parameter/point_size = 1.0
-shader_parameter/roughness = 1.0
-shader_parameter/metallic_texture_channel = null
-shader_parameter/specular = 0.5
-shader_parameter/metallic = 0.0
-shader_parameter/uv1_scale = Vector3(1, 1, 1)
-shader_parameter/uv1_offset = Vector3(0, 0, 0)
-shader_parameter/uv2_scale = Vector3(1, 1, 1)
-shader_parameter/uv2_offset = Vector3(0, 0, 0)
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_qg1tm"]
-render_priority = 0
-shader = SubResource("Shader_143fe")
-shader_parameter/point_size = 1.0
-shader_parameter/roughness = 1.0
-shader_parameter/metallic_texture_channel = null
-shader_parameter/specular = 0.5
-shader_parameter/metallic = 0.0
-shader_parameter/uv1_scale = Vector3(1, 1, 1)
-shader_parameter/uv1_offset = Vector3(0, 0, 0)
-shader_parameter/uv2_scale = Vector3(1, 1, 1)
-shader_parameter/uv2_offset = Vector3(0, 0, 0)
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_f2n2k"]
-render_priority = 0
-shader = SubResource("Shader_143fe")
-shader_parameter/point_size = 1.0
-shader_parameter/roughness = 1.0
-shader_parameter/metallic_texture_channel = null
-shader_parameter/specular = 0.5
-shader_parameter/metallic = 0.0
-shader_parameter/uv1_scale = Vector3(1, 1, 1)
-shader_parameter/uv1_offset = Vector3(0, 0, 0)
-shader_parameter/uv2_scale = Vector3(1, 1, 1)
-shader_parameter/uv2_offset = Vector3(0, 0, 0)
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_8lopt"]
-render_priority = 0
-shader = SubResource("Shader_143fe")
-shader_parameter/point_size = 1.0
-shader_parameter/roughness = 1.0
-shader_parameter/metallic_texture_channel = null
-shader_parameter/specular = 0.5
-shader_parameter/metallic = 0.0
-shader_parameter/uv1_scale = Vector3(1, 1, 1)
-shader_parameter/uv1_offset = Vector3(0, 0, 0)
-shader_parameter/uv2_scale = Vector3(1, 1, 1)
-shader_parameter/uv2_offset = Vector3(0, 0, 0)
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_qu0by"]
-render_priority = 0
-shader = SubResource("Shader_143fe")
-shader_parameter/point_size = 1.0
-shader_parameter/roughness = 1.0
-shader_parameter/metallic_texture_channel = null
-shader_parameter/specular = 0.5
-shader_parameter/metallic = 0.0
-shader_parameter/uv1_scale = Vector3(1, 1, 1)
-shader_parameter/uv1_offset = Vector3(0, 0, 0)
-shader_parameter/uv2_scale = Vector3(1, 1, 1)
-shader_parameter/uv2_offset = Vector3(0, 0, 0)
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_oraea"]
-render_priority = 0
-shader = SubResource("Shader_143fe")
-shader_parameter/point_size = 1.0
-shader_parameter/roughness = 1.0
-shader_parameter/metallic_texture_channel = null
-shader_parameter/specular = 0.5
-shader_parameter/metallic = 0.0
-shader_parameter/uv1_scale = Vector3(1, 1, 1)
-shader_parameter/uv1_offset = Vector3(0, 0, 0)
-shader_parameter/uv2_scale = Vector3(1, 1, 1)
-shader_parameter/uv2_offset = Vector3(0, 0, 0)
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_rxq4p"]
-render_priority = 0
-shader = SubResource("Shader_143fe")
-shader_parameter/point_size = 1.0
-shader_parameter/roughness = 1.0
-shader_parameter/metallic_texture_channel = null
-shader_parameter/specular = 0.5
-shader_parameter/metallic = 0.0
-shader_parameter/uv1_scale = Vector3(1, 1, 1)
-shader_parameter/uv1_offset = Vector3(0, 0, 0)
-shader_parameter/uv2_scale = Vector3(1, 1, 1)
-shader_parameter/uv2_offset = Vector3(0, 0, 0)
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_2yqka"]
-render_priority = 0
-shader = SubResource("Shader_143fe")
-shader_parameter/point_size = 1.0
-shader_parameter/roughness = 1.0
-shader_parameter/metallic_texture_channel = null
-shader_parameter/specular = 0.5
-shader_parameter/metallic = 0.0
-shader_parameter/uv1_scale = Vector3(1, 1, 1)
-shader_parameter/uv1_offset = Vector3(0, 0, 0)
-shader_parameter/uv2_scale = Vector3(1, 1, 1)
-shader_parameter/uv2_offset = Vector3(0, 0, 0)
 
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_wpxev"]
 points = PackedVector3Array(-0.375, 2, -2, -0.375, -2, -2, 0.375, -2, -2, 0.375, 2, -2, -0.375, 2, 2, -0.375, -2, 2, 0.375, -2, 2, 0.375, 2, 2)
@@ -5872,7 +5724,6 @@ transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -163, 
 
 [node name="entity_223_light_lamp_big" parent="NavigationRegion3D/FuncGodotMap" instance=ExtResource("46_hf15w")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -163, -47, -110.5)
-material_override = SubResource("ShaderMaterial_1jqkf")
 instance_shader_parameters/albedo = Color(3, 2.02353, 1.04706, 3)
 properties = {
 "_color": Color(1, 0.67451, 0.34902, 1),
@@ -5885,7 +5736,6 @@ properties = {
 
 [node name="entity_224_light_lamp_big" parent="NavigationRegion3D/FuncGodotMap" instance=ExtResource("46_hf15w")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -169, -53, -110.5)
-material_override = SubResource("ShaderMaterial_qg1tm")
 instance_shader_parameters/albedo = Color(3, 2.02353, 1.04706, 3)
 properties = {
 "_color": Color(1, 0.67451, 0.34902, 1),
@@ -5898,7 +5748,6 @@ properties = {
 
 [node name="entity_225_light_lamp_big" parent="NavigationRegion3D/FuncGodotMap" instance=ExtResource("46_hf15w")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -175.5, -43, -110.5)
-material_override = SubResource("ShaderMaterial_f2n2k")
 instance_shader_parameters/albedo = Color(3, 2.02353, 1.04706, 3)
 properties = {
 "_color": Color(1, 0.67451, 0.34902, 1),
@@ -5911,7 +5760,6 @@ properties = {
 
 [node name="entity_226_light_lamp_big" parent="NavigationRegion3D/FuncGodotMap" instance=ExtResource("46_hf15w")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -175.5, -49, -105.5)
-material_override = SubResource("ShaderMaterial_8lopt")
 instance_shader_parameters/albedo = Color(3, 2.02353, 1.04706, 3)
 properties = {
 "_color": Color(1, 0.67451, 0.34902, 1),
@@ -5924,7 +5772,6 @@ properties = {
 
 [node name="entity_227_light_lamp_big" parent="NavigationRegion3D/FuncGodotMap" instance=ExtResource("46_hf15w")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -163, -42, -105.5)
-material_override = SubResource("ShaderMaterial_qu0by")
 instance_shader_parameters/albedo = Color(3, 2.02353, 1.04706, 3)
 properties = {
 "_color": Color(1, 0.67451, 0.34902, 1),
@@ -5937,7 +5784,6 @@ properties = {
 
 [node name="entity_228_light_lamp_big" parent="NavigationRegion3D/FuncGodotMap" instance=ExtResource("46_hf15w")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -156.5, -40, -105.5)
-material_override = SubResource("ShaderMaterial_oraea")
 instance_shader_parameters/albedo = Color(3, 2.02353, 1.04706, 3)
 properties = {
 "_color": Color(1, 0.67451, 0.34902, 1),
@@ -5950,7 +5796,6 @@ properties = {
 
 [node name="entity_229_light_lamp_big" parent="NavigationRegion3D/FuncGodotMap" instance=ExtResource("46_hf15w")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -156.5, -39, -110.5)
-material_override = SubResource("ShaderMaterial_rxq4p")
 instance_shader_parameters/albedo = Color(3, 2.02353, 1.04706, 3)
 properties = {
 "_color": Color(1, 0.67451, 0.34902, 1),
@@ -5963,7 +5808,6 @@ properties = {
 
 [node name="entity_230_light_lamp_big" parent="NavigationRegion3D/FuncGodotMap" instance=ExtResource("46_hf15w")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -169, -43, -105.5)
-material_override = SubResource("ShaderMaterial_2yqka")
 instance_shader_parameters/albedo = Color(3, 2.02353, 1.04706, 3)
 properties = {
 "_color": Color(1, 0.67451, 0.34902, 1),

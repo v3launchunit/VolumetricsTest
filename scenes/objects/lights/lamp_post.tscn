@@ -134,6 +134,7 @@ skeleton = NodePath("OmniLight3D")
 
 [node name="OmniLight3D" type="OmniLight3D" parent="Bulb"]
 light_color = Color(0.501961, 0.752941, 1, 1)
+light_energy = 3.0
 shadow_enabled = true
 distance_fade_enabled = true
 omni_range = 15.0

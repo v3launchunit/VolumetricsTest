@@ -140,7 +140,7 @@ radius = 16.0
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -0.15, -0.5, -0.25)
 
 [node name="AKM" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.00551073, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.00607377, 0)
 layers = 4
 cast_shadow = 0
 mesh = ExtResource("1_srb21")
@@ -150,8 +150,8 @@ script = ExtResource("2_aqwyy")
 bullet = ExtResource("6_15eot")
 shot_cooldown = 0.08
 spread = 2.5
+cam_recoil = 0.0261799
 ammo_type = "akm_bullets"
-anti_clip_distance = 1.0
 category = 2
 
 [node name="Spawner" type="Marker3D" parent="AKM"]
@@ -188,24 +188,6 @@ draw_pass_1 = SubResource("CylinderMesh_vf5lo")
 root_node = NodePath("../..")
 tree_root = SubResource("AnimationNodeStateMachine_hbp1m")
 anim_player = NodePath("../../AnimationPlayer")
-parameters/current_length = 2.0
-parameters/current_position = 0.534101
-parameters/current_delta = 0.0166667
-parameters/End/current_length = null
-parameters/End/current_position = null
-parameters/End/current_delta = null
-parameters/Start/current_length = 0.0
-parameters/Start/current_position = 0.0
-parameters/Start/current_delta = 0.0
-parameters/deploy/current_length = 0.25
-parameters/deploy/current_position = 0.25
-parameters/deploy/current_delta = 0.0277778
-parameters/firing/current_length = null
-parameters/firing/current_position = null
-parameters/firing/current_delta = null
-parameters/idle/current_length = 2.0
-parameters/idle/current_position = 0.534101
-parameters/idle/current_delta = 0.0166667
 
 [node name="Scope" type="Node3D" parent="AKM"]
 script = ExtResource("4_uav1m")
