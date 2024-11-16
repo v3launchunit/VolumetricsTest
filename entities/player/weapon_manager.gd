@@ -30,6 +30,8 @@ const ZOOM_SPEED: float = 10.0
 @export var prior_fov: float = Globals.s_fov_desired
 @export var prior_zoom: float = 1.0
 
+#@export var current_weapon_yaw_default: float
+
 @onready var anti_clip_box := $ViewmodelAntiClip as Area3D
 @onready var rummage_stream_player := $RummageStreamPlayer as AudioStreamPlayer
 
@@ -89,6 +91,7 @@ func _process(delta):
 		for key in ammo_amounts:
 			ammo_amounts[key] = ammo_types[key]
 
+	#get_selected_weapon_node().rotation.y = lerpf(get_selected_weapon_node().rotation.y, current_weapon_yaw_default)
 	#get_selected_weapon_node().position.z = move_toward(
 			#get_selected_weapon_node().position.z,
 			#get_selected_weapon_node().get_child(0).anti_clip_distance
@@ -102,6 +105,7 @@ func _next_weapon():
 	prior_index = current_index[current_category]
 
 	#get_selected_weapon_node().position.z = current_weapon_pos
+	#get_selected_weapon_node().rotation.y = current_weapon_yaw_default
 	current_index[current_category] += 1
 	while (
 			current_index[current_category] < weapons[current_category].size() and
@@ -128,6 +132,7 @@ func _next_weapon():
 	#print("%s\n%s\n%s\n" % [current_category, current_index, get_selected_weapon_path()])
 	switched_weapons.emit(current_category, current_index[current_category], false)
 	#current_weapon_pos = get_selected_weapon_node().position.z
+	#current_weapon_yaw_default = get_selected_weapon_node().rotation.y
 	rummage_stream_player.play()
 
 
@@ -136,6 +141,7 @@ func _previous_weapon():
 	prior_index = current_index[current_category]
 
 	#get_selected_weapon_node().position.z = current_weapon_pos
+	#get_selected_weapon_node().rotation.y = current_weapon_yaw_default
 	current_index[current_category] -= 1
 	while (
 			current_index[current_category] >= 0 and
@@ -161,6 +167,7 @@ func _previous_weapon():
 
 	switched_weapons.emit(current_category, current_index[current_category], false)
 	#current_weapon_pos = get_selected_weapon_node().position.z
+	#current_weapon_yaw_default = get_selected_weapon_node().rotation.y
 	rummage_stream_player.play()
 
 
@@ -169,10 +176,12 @@ func _select_weapon(category: int, index: int) -> void:
 	prior_index = current_index[current_category]
 
 	#get_selected_weapon_node().position.z = current_weapon_pos
+	#get_selected_weapon_node().rotation.y = current_weapon_yaw_default
 	current_category = category
 	current_index[category] = index
 	switched_weapons.emit(category, index, true)
 	#current_weapon_pos = get_selected_weapon_node().position.z
+	#current_weapon_yaw_default = get_selected_weapon_node().rotation.y
 	rummage_stream_player.play()
 
 
@@ -182,6 +191,7 @@ func _select_category(category: int) -> void:
 	prior_category = current_category
 	prior_index = current_index[current_category]
 	#get_selected_weapon_node().position.z = current_weapon_pos
+	#get_selected_weapon_node().rotation.y = current_weapon_yaw_default
 	if current_category == category:
 		current_index[category] += 1
 		if current_index[category] >= weapons[category].size():
@@ -201,6 +211,7 @@ func _select_category(category: int) -> void:
 				current_index[category] = 0
 	switched_weapons.emit(category, current_index[category], false)
 	#current_weapon_pos = get_selected_weapon_node().position.z
+	#current_weapon_yaw_default = get_selected_weapon_node().rotation.y
 	rummage_stream_player.play()
 
 
@@ -216,7 +227,7 @@ func has_ammo(type: String, amount: int = 1, virtual_charge: bool = false) -> bo
 
 
 func add_weapon(weapon: Node, _starting_ammo: int = 0) -> bool:
-	var weap: WeaponBase = weapon.get_child(0)
+	var weap: WeaponBase = weapon if weapon is WeaponBase else weapon.get_child(0)
 	if (
 			weapons[weap.category].is_empty() or
 			weapons[weap.category].size() <= weap.index or

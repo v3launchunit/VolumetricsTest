@@ -14,6 +14,8 @@ enum DoorState {
 	CLOSING_2,
 }
 
+signal interacted(with: Node3D)
+
 @export var properties: Dictionary
 
 @export_group("Save Data")
@@ -57,6 +59,8 @@ func _ready() -> void:
 		for member in get_tree().get_nodes_in_group(properties["group"]):
 			if member.has_signal("interacted"):
 				member.interacted.connect(toggle)
+			if member.has_method("on_triggered"):
+				interacted.connect(member.on_triggered)
 		add_to_group(properties.get("group"), true)
 
 	if audio_player == null and properties.get("open_sound", "") != "":
@@ -304,6 +308,7 @@ func interact(body: Node3D) -> void:
 			))
 		return
 	else:
+		interacted.emit(body)
 		open = not open
 		door_state = DoorState.OPENING_0 if open else DoorState.CLOSING_0
 		audio_player.play()

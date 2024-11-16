@@ -28,20 +28,21 @@ func _process(delta: float) -> void:
 
 func interact(body: Node3D) -> void:
 	if body is Player:
-		var manager := body.find_child("PlayerCam")
+		var manager := body.find_child("PlayerCam") as WeaponManager
 		var instance := weapon.instantiate()
+		var weap: WeaponBase = instance if instance is WeaponBase else instance.get_child(0)
 
-		manager.add_child(instance)
+		manager.get_node("WeaponsHolder").add_child(instance)
 
 		if manager.add_weapon(instance, starting_ammo):
-			manager.force_add_ammo(instance.get_child(0).ammo_type, starting_ammo)
-			if instance.get_child(0) is WeaponAltFire:
-				manager.force_add_ammo(instance.get_child(0).alt_ammo_type, starting_alt_ammo)
+			manager.force_add_ammo(weap.ammo_type, starting_ammo)
+			if weap is WeaponAltFire:
+				manager.force_add_ammo(weap.alt_ammo_type, starting_alt_ammo)
 			picked_up(body)
 		elif (
-				manager.add_ammo(instance.get_child(0).ammo_type, starting_ammo)
-				or instance.get_child(0) is WeaponAltFire
-				and manager.add_ammo(instance.get_child(0).alt_ammo_type, starting_alt_ammo)
+				manager.add_ammo(weap.ammo_type, starting_ammo)
+				or weap is WeaponAltFire
+				and manager.add_ammo(weap.alt_ammo_type, starting_alt_ammo)
 		):
 			instance.queue_free()
 			picked_up(body)

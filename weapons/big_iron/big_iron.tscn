@@ -202,7 +202,7 @@ _data = {
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, -0.5, -0.35)
 
 [node name="BigIron" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.00393191, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.00259259, 0)
 layers = 4
 cast_shadow = 0
 mesh = ExtResource("1_ampqd")

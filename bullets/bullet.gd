@@ -13,6 +13,7 @@ class_name Bullet extends RigidBody3D
 ## contacted surface. Otherwise, it will be parented to the root node's third
 ## child.
 @export var sticky: bool = false
+@export var bouncy: bool = false
 ## If set to "true" and this bullet kills the entity it impacts, it will
 ## have its damage reduced and continue to travel until it impacts something
 ## it cannot. Otherwise, this bullet is deleted as soon as it contacts any
@@ -47,6 +48,8 @@ func _physics_process(_delta: float) -> void:
 
 
 func _on_body_entered(body: Node) -> void:
+	if bouncy and body is not EnemyBase:
+		return
 	var e: Node3D
 	if explosion != null:
 		e = explosion.instantiate()

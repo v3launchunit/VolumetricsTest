@@ -117,6 +117,7 @@ alt_ammo_type = "grenades"
 alt_ammo_cost = 5
 ammo_type = "rockets"
 category = 4
+index = 1
 
 [node name="tube" parent="rpg" index="0"]
 layers = 4
@@ -143,33 +144,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2)
 root_node = NodePath("../..")
 tree_root = SubResource("AnimationNodeStateMachine_n72uv")
 anim_player = NodePath("../../AnimationPlayer")
-parameters/current_length = 1.5
-parameters/current_position = 0.124284
-parameters/current_delta = 0.0257052
-parameters/End/current_length = null
-parameters/End/current_position = null
-parameters/End/current_delta = null
-parameters/Start/current_length = 0.0
-parameters/Start/current_position = 0.0
-parameters/Start/current_delta = 0.0
-parameters/alt_firing/current_length = null
-parameters/alt_firing/current_position = null
-parameters/alt_firing/current_delta = null
-parameters/deploy/current_length = 1.0
-parameters/deploy/current_position = 1.0
-parameters/deploy/current_delta = 0.0234203
-parameters/empty/current_length = null
-parameters/empty/current_position = null
-parameters/empty/current_delta = null
-parameters/firing/current_length = null
-parameters/firing/current_position = null
-parameters/firing/current_delta = null
-parameters/idle/current_length = 1.5
-parameters/idle/current_position = 0.124284
-parameters/idle/current_delta = 0.0257052
-parameters/reloading/current_length = null
-parameters/reloading/current_position = null
-parameters/reloading/current_delta = null
 
 [node name="AlertRadius" type="Area3D" parent="rpg"]
 collision_layer = 2

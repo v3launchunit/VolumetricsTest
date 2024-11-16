@@ -14,7 +14,7 @@
 radius = 0.15
 height = 1.5
 
-[sub_resource type="Shader" id="Shader_errlx"]
+[sub_resource type="Shader" id="Shader_ysyr5"]
 code = "// NOTE: Shader automatically converted from Godot Engine 4.2.1.stable.mono's StandardMaterial3D.
 
 shader_type spatial;
@@ -57,7 +57,7 @@ void fragment() {
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_b0fus"]
 render_priority = 0
-shader = SubResource("Shader_errlx")
+shader = SubResource("Shader_ysyr5")
 shader_parameter/albedo = Color(1, 1, 1, 1)
 shader_parameter/point_size = 1.0
 shader_parameter/roughness = 1.0
@@ -72,13 +72,13 @@ shader_parameter/uv2_offset = Vector3(0, 0, 0)
 [sub_resource type="Gradient" id="Gradient_ti1gq"]
 colors = PackedColorArray(1, 0, 0, 1, 1, 1, 0, 1)
 
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_hxa1d"]
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_xrq4s"]
 gradient = SubResource("Gradient_ti1gq")
 
 [sub_resource type="Gradient" id="Gradient_5b5pq"]
 colors = PackedColorArray(1, 1, 0, 1, 1, 0, 0, 0)
 
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_0lb1k"]
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_a5do0"]
 gradient = SubResource("Gradient_5b5pq")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_0ftnx"]
@@ -87,17 +87,17 @@ emission_sphere_radius = 0.25
 direction = Vector3(0, 1, 0)
 initial_velocity_max = 0.25
 gravity = Vector3(0, 0, 0)
-color_ramp = SubResource("GradientTexture1D_0lb1k")
-color_initial_ramp = SubResource("GradientTexture1D_hxa1d")
+color_ramp = SubResource("GradientTexture1D_a5do0")
+color_initial_ramp = SubResource("GradientTexture1D_xrq4s")
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_yv6bv"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hjby2"]
 transparency = 1
 blend_mode = 1
 shading_mode = 0
 vertex_color_use_as_albedo = true
 
 [sub_resource type="BoxMesh" id="BoxMesh_0xg4w"]
-material = SubResource("StandardMaterial3D_yv6bv")
+material = SubResource("StandardMaterial3D_hjby2")
 size = Vector3(0.0625, 0.0625, 0.0625)
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_11nj7"]

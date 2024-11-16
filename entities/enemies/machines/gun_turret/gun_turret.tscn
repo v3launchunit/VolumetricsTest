@@ -693,6 +693,7 @@ libraries = {
 }
 
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="gun_turret"]
+bus = &"Enemies"
 
 [node name="Base" type="MeshInstance3D" parent="."]
 material_override = ExtResource("2_qskly")

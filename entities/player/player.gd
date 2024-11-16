@@ -199,12 +199,19 @@ func _physics_process(delta: float) -> void:
 			+ _jump(delta)
 			+ _knockback(delta)
 	)
-	cam_recoil_pos = camera_sync.rotation.x + cam_recoil_vel
-	cam_recoil_pos = smoothstep(camera_sync.rotation.x + cam_recoil_vel * delta, 0, delta)
-	cam_recoil_vel = lerpf(cam_recoil_vel, 0, delta)
+	#cam_recoil_pos = camera_sync.rotation.x + cam_recoil_vel
+	#cam_recoil_pos = smoothstep(camera_sync.rotation.x + cam_recoil_vel * delta, 0, delta)
+	#
 	camera_sync.global_transform = global_transform
+	# handle y offset
 	camera_sync.position.y += cam_y_offset
 	cam_y_offset = lerpf(cam_y_offset, 0.0, delta * crouch_speed)
+	# handle pitch recoil
+	if is_equal_approx(cam_recoil_vel, 0.0):
+		cam_recoil_pos = lerpf(cam_recoil_pos, 0.0, delta * 3)
+	else:
+		cam_recoil_pos += cam_recoil_vel * delta
+	cam_recoil_vel = move_toward(cam_recoil_vel, 0.0, delta * 3)
 	camera_sync.rotation.x = cam_recoil_pos
 
 	velocity = velocity.clamp(-max_speed, max_speed)

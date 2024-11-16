@@ -314,7 +314,7 @@ fov = 120.0
 near = 0.01
 far = 1000.0
 script = ExtResource("30_aegsx")
-weapons = Array[Array]([[NodePath("Axe")], [NodePath("PumpShotgun")], [], [], [], [], []])
+weapons = Array[Array]([[NodePath("WeaponsHolder/Axe")], [NodePath("WeaponsHolder/PumpShotgun")], [], [], [], []])
 current_category = 1
 ammo_types = {
 "akm_bullets": 200,
@@ -399,11 +399,6 @@ mesh = SubResource("QuadMesh_5eidy")
 skeleton = NodePath("../../../../../..")
 script = SubResource("GDScript_dlywb")
 
-[node name="Axe" parent="Control/SubViewportContainer/SubViewport/PlayerSync/PlayerCam" instance=ExtResource("35_uif20")]
-
-[node name="PumpShotgun" parent="Control/SubViewportContainer/SubViewport/PlayerSync/PlayerCam" instance=ExtResource("36_ytmbf")]
-transform = Transform3D(-1, 0, -1.50996e-07, 0, 1, 0, 1.50996e-07, 0, -1, -0.15, -0.25, -0.35)
-
 [node name="SlamWindSys" type="GPUParticles3D" parent="Control/SubViewportContainer/SubViewport/PlayerSync/PlayerCam"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3, -0.5)
 visible = false
@@ -415,6 +410,13 @@ draw_pass_1 = SubResource("QuadMesh_fyuqx")
 [node name="WindStreamPlayer" type="AudioStreamPlayer" parent="Control/SubViewportContainer/SubViewport/PlayerSync/PlayerCam/SlamWindSys"]
 stream = ExtResource("37_0ygxn")
 volume_db = 6.0
+
+[node name="WeaponsHolder" type="Node3D" parent="Control/SubViewportContainer/SubViewport/PlayerSync/PlayerCam"]
+
+[node name="Axe" parent="Control/SubViewportContainer/SubViewport/PlayerSync/PlayerCam/WeaponsHolder" instance=ExtResource("35_uif20")]
+
+[node name="PumpShotgun" parent="Control/SubViewportContainer/SubViewport/PlayerSync/PlayerCam/WeaponsHolder" instance=ExtResource("36_ytmbf")]
+transform = Transform3D(-1, 0, -1.50996e-07, 0, 1, 0, 1.50996e-07, 0, -1, -0.15, -0.25, -0.35)
 
 [node name="HUD" parent="Control" instance=ExtResource("37_wd13u")]
 layout_mode = 1

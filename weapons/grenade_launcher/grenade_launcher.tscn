@@ -1,0 +1,79 @@
+[gd_scene load_steps=16 format=3 uid="uid://cvoyjj4iotdgb"]
+
+[ext_resource type="ArrayMesh" uid="uid://k270ien3glvb" path="res://models/grenade_launcher.obj" id="1_2gdyd"]
+[ext_resource type="Script" path="res://weapons/weapon_base.gd" id="1_sgyo5"]
+[ext_resource type="PackedScene" uid="uid://cp3asxmnm2wuy" path="res://bullets/player/projectile/mortar_grenade.tscn" id="2_o3wnk"]
+[ext_resource type="Material" uid="uid://bf74i5chaorag" path="res://weapons/rpg/rpg_mat_1.tres" id="3_f3fnj"]
+[ext_resource type="AnimationLibrary" uid="uid://c17bia3f5foys" path="res://weapons/grenade_launcher/mortar_anims.res" id="5_rm51x"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_grl0n"]
+animation = &"mortar_anims/mortar_deploy"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_fi3a4"]
+animation = &"mortar_anims/mortar_fire"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_fgwr4"]
+animation = &"mortar_anims/mortar_idle"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_01tih"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_t7uko"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_f2gb2"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_c456s"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_n8cqh"]
+states/deploy/node = SubResource("AnimationNodeAnimation_grl0n")
+states/deploy/position = Vector2(356, 100.37)
+states/firing/node = SubResource("AnimationNodeAnimation_fi3a4")
+states/firing/position = Vector2(656, 100.667)
+states/idle/node = SubResource("AnimationNodeAnimation_fgwr4")
+states/idle/position = Vector2(509.333, 100.025)
+transitions = ["Start", "deploy", SubResource("AnimationNodeStateMachineTransition_01tih"), "deploy", "idle", SubResource("AnimationNodeStateMachineTransition_t7uko"), "idle", "firing", SubResource("AnimationNodeStateMachineTransition_f2gb2"), "firing", "idle", SubResource("AnimationNodeStateMachineTransition_c456s")]
+
+[sub_resource type="Animation" id="Animation_qma3t"]
+length = 0.001
+tracks/0/type = "position_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MeshInstance3D")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 0, 0, 0)
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_d4abo"]
+_data = {
+"RESET": SubResource("Animation_qma3t")
+}
+
+[node name="GrenadeLauncher" type="Node3D"]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -0.15, -0.35, -0.5)
+script = ExtResource("1_sgyo5")
+bullet = ExtResource("2_o3wnk")
+ammo_type = "grenades"
+category = 4
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+material_override = ExtResource("3_f3fnj")
+mesh = ExtResource("1_2gdyd")
+
+[node name="Spawner" type="Marker3D" parent="MeshInstance3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2)
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+tree_root = SubResource("AnimationNodeStateMachine_n8cqh")
+anim_player = NodePath("../AnimationPlayer")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_d4abo"),
+"mortar_anims": ExtResource("5_rm51x")
+}
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]

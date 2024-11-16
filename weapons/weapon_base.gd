@@ -81,7 +81,7 @@ var hud: HudHandler
 ## The [AnimationNodeStateMachinePlayback] associated with this weapon's [AnimationTree].
 @onready var state_machine := anim_tree.get(
 		"parameters/playback") as AnimationNodeStateMachinePlayback
-@onready var manager := get_parent().get_parent() as WeaponManager
+@onready var manager := find_parent("PlayerCam") as WeaponManager
 @onready var eject_sys := find_child("ShellEject") as GPUParticles3D
 ## The [Player] who owns this weapon.
 @onready var player := find_parent("Player") as Player

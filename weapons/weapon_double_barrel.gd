@@ -35,7 +35,7 @@ func _fire() -> void:
 		player.apply_knockback(recoil * get_global_transform().basis.z * -1)
 
 	if abs(cam_recoil) > deg_to_rad(Globals.C_EPSILON):
-		player.cam_recoil_pos += cam_recoil
+		player.cam_recoil_vel += cam_recoil
 
 	cooldown_timer = shot_cooldown
 	if eject_sys != null:
