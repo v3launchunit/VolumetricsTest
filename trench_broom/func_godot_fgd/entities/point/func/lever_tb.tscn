@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://cspj0yyl285bj"]
+[gd_scene load_steps=29 format=3 uid="uid://cspj0yyl285bj"]
 
 [ext_resource type="Script" path="res://trench_broom/func_godot_fgd/entities/point/lever_tb.gd" id="1_0ajli"]
 [ext_resource type="PackedScene" uid="uid://dhcc71k270vgk" path="res://models/objects/lever.glb" id="2_saqbp"]
@@ -6,23 +6,114 @@
 [ext_resource type="Texture2D" uid="uid://crltgslfg1nou" path="res://objects/interactable/lever/lever_emissions.png" id="4_oh51b"]
 [ext_resource type="Texture2D" uid="uid://c0qe7jq8ss6c4" path="res://objects/interactable/lever/lever_normals.png" id="5_5dtxu"]
 [ext_resource type="AudioStream" uid="uid://bmlxxe8maevqb" path="res://audio/streams/click.wav" id="6_abudg"]
+[ext_resource type="Shader" path="res://shaders/spatial/psx_pb_aclip.gdshader" id="6_uam60"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_f8nba"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0qsyh"]
-albedo_texture = ExtResource("3_8k4y8")
-roughness = 0.75
-emission_enabled = true
-emission_energy_multiplier = 5.0
-emission_texture = ExtResource("4_oh51b")
-normal_enabled = true
-normal_texture = ExtResource("5_5dtxu")
-texture_filter = 0
+[sub_resource type="Shader" id="Shader_i2v0y"]
+code = "// NOTE: Shader automatically converted from Godot Engine 4.3.stable's StandardMaterial3D.
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fs0u8"]
-albedo_color = Color(0.75, 0.75, 0.75, 1)
-metallic = 1.0
-roughness = 0.25
+shader_type spatial;
+render_mode blend_mix, depth_draw_opaque, cull_back, diffuse_burley, specular_schlick_ggx;
+
+uniform vec4 albedo : source_color;
+uniform sampler2D texture_albedo : source_color, filter_nearest, repeat_enable;
+uniform float point_size : hint_range(0.1, 128.0, 0.1);
+
+uniform float roughness : hint_range(0.0, 1.0);
+uniform sampler2D texture_metallic : hint_default_white, filter_nearest, repeat_enable;
+uniform vec4 metallic_texture_channel;
+uniform sampler2D texture_roughness : hint_roughness_r, filter_nearest, repeat_enable;
+
+uniform float specular : hint_range(0.0, 1.0, 0.01);
+uniform float metallic : hint_range(0.0, 1.0, 0.01);
+
+uniform sampler2D texture_emission : source_color, hint_default_black, filter_nearest, repeat_enable;
+uniform vec4 emission : source_color = vec4(1.0);
+uniform float emission_energy : hint_range(0.0, 100.0, 0.01);
+
+uniform sampler2D texture_normal : hint_roughness_normal, filter_nearest, repeat_enable;
+uniform float normal_scale : hint_range(-16.0, 16.0);
+
+uniform vec3 uv1_scale;
+uniform vec3 uv1_offset;
+uniform vec3 uv2_scale;
+uniform vec3 uv2_offset;
+
+#include \"res://shaders/includes/psx_inc.gdshaderinc\"
+
+void vertex() {
+	UV = UV * uv1_scale.xy + uv1_offset.xy;
+	POSITION = map_affine(snap_vertex(PROJECTION_MATRIX * MODELVIEW_MATRIX * vec4(VERTEX, 1.0)));
+}
+
+void fragment() {
+	vec2 base_uv = UV;
+
+	vec4 albedo_tex = texture(texture_albedo, base_uv);
+	ALBEDO = albedo.rgb * albedo_tex.rgb;
+
+	float metallic_tex = dot(texture(texture_metallic, base_uv), metallic_texture_channel);
+	METALLIC = metallic_tex * metallic;
+	SPECULAR = specular;
+
+	vec4 roughness_texture_channel = vec4(1.0, 0.0, 0.0, 0.0);
+	float roughness_tex = dot(texture(texture_roughness, base_uv), roughness_texture_channel);
+	ROUGHNESS = roughness_tex * roughness;
+
+	// Normal Map: Enabled
+	NORMAL_MAP = texture(texture_normal, base_uv).rgb;
+	NORMAL_MAP_DEPTH = normal_scale;
+
+	// Emission: Enabled
+	vec3 emission_tex = texture(texture_emission, base_uv).rgb;
+	// Emission Operator: Add
+	EMISSION = (emission.rgb * emission_tex) * emission_energy;
+}
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_rey83"]
+resource_local_to_scene = true
+render_priority = 0
+shader = SubResource("Shader_i2v0y")
+shader_parameter/albedo = Color(0.96, 0.736, 0.576, 1)
+shader_parameter/point_size = 1.0
+shader_parameter/roughness = 0.75
+shader_parameter/metallic_texture_channel = null
+shader_parameter/specular = 0.5
+shader_parameter/metallic = 0.0
+shader_parameter/emission = Color(1, 0, 0, 1)
+shader_parameter/emission_energy = 5.0
+shader_parameter/normal_scale = 1.0
+shader_parameter/uv1_scale = Vector3(1, 1, 1)
+shader_parameter/uv1_offset = Vector3(0, 0, 0)
+shader_parameter/uv2_scale = Vector3(1, 1, 1)
+shader_parameter/uv2_offset = Vector3(0, 0, 0)
+shader_parameter/texture_albedo = ExtResource("3_8k4y8")
+shader_parameter/texture_emission = ExtResource("4_oh51b")
+shader_parameter/texture_normal = ExtResource("5_5dtxu")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_8c81i"]
+render_priority = 0
+shader = ExtResource("6_uam60")
+shader_parameter/albedo_col = Color(1, 1, 1, 1)
+shader_parameter/alpha_clip_threshold = 0.5
+shader_parameter/normal_scale = 1.0
+shader_parameter/roughness = 0.25
+shader_parameter/metallic = 1.0
+shader_parameter/specular = 0.5
+shader_parameter/metallic_channel = Vector4(1, 0, 0, 0)
+shader_parameter/uv1_scale = Vector3(1, 1, 1)
+shader_parameter/uv1_offset = Vector3(0, 0, 0)
+shader_parameter/uv2_scale = Vector3(1, 1, 1)
+shader_parameter/uv2_offset = Vector3(0, 0, 0)
+shader_parameter/is_terrain_mat = false
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_6btag"]
+animation = &"activate"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_c60cf"]
+animation = &"deactivate"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_lb3m5"]
 animation = &"off"
@@ -30,31 +121,30 @@ animation = &"off"
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_gpvii"]
 animation = &"on"
 
-[sub_resource type="Curve" id="Curve_50ly3"]
-_data = [Vector2(0, 0), 0.0, 1.4, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
-point_count = 2
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_kstkh"]
-xfade_time = 0.5
-xfade_curve = SubResource("Curve_50ly3")
-
-[sub_resource type="Curve" id="Curve_0t1rv"]
-_data = [Vector2(0, 0), 0.0, 1.4, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
-point_count = 2
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_4jk3f"]
-xfade_time = 0.5
-xfade_curve = SubResource("Curve_0t1rv")
-
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_10giv"]
 advance_mode = 2
 
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_1rpol"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_unldo"]
+switch_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_dtu6b"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_6pw3e"]
+switch_mode = 2
+
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_72fw2"]
+states/activate/node = SubResource("AnimationNodeAnimation_6btag")
+states/activate/position = Vector2(531.667, 35.3333)
+states/deactivate/node = SubResource("AnimationNodeAnimation_c60cf")
+states/deactivate/position = Vector2(533, 168.667)
 states/off/node = SubResource("AnimationNodeAnimation_lb3m5")
 states/off/position = Vector2(396, 100.667)
 states/on/node = SubResource("AnimationNodeAnimation_gpvii")
-states/on/position = Vector2(666.667, 101.556)
-transitions = ["off", "on", SubResource("AnimationNodeStateMachineTransition_kstkh"), "on", "off", SubResource("AnimationNodeStateMachineTransition_4jk3f"), "Start", "off", SubResource("AnimationNodeStateMachineTransition_10giv")]
+states/on/position = Vector2(673.334, 99.9258)
+transitions = ["Start", "off", SubResource("AnimationNodeStateMachineTransition_10giv"), "off", "activate", SubResource("AnimationNodeStateMachineTransition_1rpol"), "activate", "on", SubResource("AnimationNodeStateMachineTransition_unldo"), "on", "deactivate", SubResource("AnimationNodeStateMachineTransition_dtu6b"), "deactivate", "off", SubResource("AnimationNodeStateMachineTransition_6pw3e")]
+graph_offset = Vector2(-7, -40)
 
 [sub_resource type="Animation" id="Animation_iiyc7"]
 resource_name = "off"
@@ -65,6 +155,18 @@ tracks/0/path = NodePath("lever/Switch")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = PackedFloat32Array(0, 1, 0.087, 0, 0, 0.996)
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("lever/Base:material_override:shader_parameter/emission")
+tracks/1/interp = 0
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [Color(1, 0, 0, 1)]
+}
 
 [sub_resource type="Animation" id="Animation_m4faq"]
 resource_name = "on"
@@ -75,9 +177,87 @@ tracks/0/path = NodePath("lever/Switch")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = PackedFloat32Array(0, 1, 0.996, 0, 0, 0.087)
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("lever/Base:material_override:shader_parameter/emission")
+tracks/1/interp = 0
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [Color(0, 1, 0, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_3dceq"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("lever/Base:material_override:shader_parameter/emission")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 0, 0, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_vb4rp"]
+resource_name = "off"
+length = 0.5
+step = 0.05
+tracks/0/type = "rotation_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("lever/Switch")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 0.087, 0, 0, 0.996, 0.5, 1, 0.996, 0, 0, 0.087)
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("lever/Base:material_override:shader_parameter/emission")
+tracks/1/interp = 0
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [Color(1, 0, 0, 1), Color(0, 0, 0, 1), Color(0, 1, 0, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_mcc3g"]
+resource_name = "deactivate"
+length = 0.5
+step = 0.05
+tracks/0/type = "rotation_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("lever/Switch")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 0.996, 0, 0, 0.087, 0.5, 1, 0.087, 0, 0, 0.996)
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("lever/Base:material_override:shader_parameter/emission")
+tracks/1/interp = 0
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [Color(0, 1, 0, 1), Color(0, 0, 0, 1), Color(1, 0, 0, 1)]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_bnujt"]
 _data = {
+"RESET": SubResource("Animation_3dceq"),
+"activate": SubResource("Animation_vb4rp"),
+"deactivate": SubResource("Animation_mcc3g"),
 "off": SubResource("Animation_iiyc7"),
 "on": SubResource("Animation_m4faq")
 }
@@ -98,11 +278,11 @@ shape = SubResource("SphereShape3D_f8nba")
 [node name="lever" parent="." instance=ExtResource("2_saqbp")]
 
 [node name="Base" parent="lever" index="0"]
-material_override = SubResource("StandardMaterial3D_0qsyh")
+material_override = SubResource("ShaderMaterial_rey83")
 
 [node name="Switch" parent="lever" index="1"]
 transform = Transform3D(0.05, 0, 0, 0, 0.0492428, -0.0086688, 0, 0.0086688, 0.0492428, 0, 0, 0.05)
-material_override = SubResource("StandardMaterial3D_fs0u8")
+material_override = SubResource("ShaderMaterial_8c81i")
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
 tree_root = SubResource("AnimationNodeStateMachine_72fw2")
