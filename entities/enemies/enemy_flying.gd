@@ -85,11 +85,13 @@ func _attack(delta) -> void:
 
 
 func _gravity(delta: float) -> Vector3:
-	grav_vel = Vector3.ZERO if is_on_floor() or current_state != State.DEAD \
+	grav_vel = (
+			Vector3.ZERO if is_on_floor() or current_state != State.DEAD 
 			else grav_vel.move_toward(Vector3(0, velocity.y - gravity, 0), gravity * delta)
-
+	)
 	return grav_vel
 
 
 #func _on_navigation_agent_3d_velocity_computed(safe_velocity: Vector3) -> void:
 #	pass
+	

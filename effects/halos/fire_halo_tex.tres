@@ -5,6 +5,7 @@ interpolation_mode = 2
 colors = PackedColorArray(2, 1, 0, 1, 0.501961, 0, 0, 0)
 
 [resource]
+resource_name = "_albedo"
 gradient = SubResource("Gradient_qignl")
 fill = 1
 fill_from = Vector2(0.5, 0.5)

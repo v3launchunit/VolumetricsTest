@@ -21,6 +21,11 @@ func _ready() -> void:
 			if member.has_method("on_triggered"):
 				interacted.connect(member.on_triggered)
 		add_to_group(func_godot_properties["pickup_group"])
+	if func_godot_properties.get("target", "") != "":
+		for member in get_tree().get_nodes_in_group(func_godot_properties["target"]):
+			if member.has_method("on_triggered"):
+				interacted.connect(member.on_triggered)
+		#add_to_group(func_godot_properties["pickup_group"])
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

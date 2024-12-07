@@ -54,6 +54,13 @@ func _ready() -> void:
 				if member.has_signal("interacted"):
 					member.interacted.connect(_on_trigger_body_entered)
 			add_to_group(properties["group"], true)
+		
+		if properties["targetname"] != "":
+			for member in get_tree().get_nodes_in_group("targets:%s" % properties["targetname"]):
+				if member.has_signal("interacted"):
+					member.interacted.connect(_on_trigger_body_entered)
+			add_to_group("targetname:%s" % properties["targetname"], true)
+	
 	if trigger != null && ambusher != null:
 		trigger.body_entered.connect(_on_trigger_body_entered)
 

@@ -1,0 +1,24 @@
+[gd_resource type="Resource" script_class="FuncGodotFGDPointClass" load_steps=5 format=3 uid="uid://cwiiraefn7d5c"]
+
+[ext_resource type="Resource" uid="uid://cixh6j5bjc608" path="res://trench_broom/func_godot_fgd/entities/base/light_base_class.tres" id="1_1wkdr"]
+[ext_resource type="PackedScene" uid="uid://bowd2xtj7q4vd" path="res://scenes/objects/lights/lamp_tb.tscn" id="2_450rj"]
+[ext_resource type="Script" path="res://addons/func_godot/src/fgd/func_godot_fgd_point_class.gd" id="3_ycwsx"]
+[ext_resource type="Script" path="res://trench_broom/func_godot_fgd/entities/point/light/lamp_tb.gd" id="4_xg240"]
+
+[resource]
+script = ExtResource("3_ycwsx")
+scene_file = ExtResource("2_450rj")
+script_class = ExtResource("4_xg240")
+apply_rotation_on_map_build = true
+classname = "light_lamp"
+description = ""
+func_godot_internal = false
+base_classes = Array[Resource]([ExtResource("1_1wkdr")])
+class_properties = {}
+class_property_descriptions = {}
+meta_properties = {
+"color": Color(0.8, 0.8, 0.8, 1),
+"size": AABB(-8, -8, -8, 8, 8, 8)
+}
+node_class = ""
+name_property = ""

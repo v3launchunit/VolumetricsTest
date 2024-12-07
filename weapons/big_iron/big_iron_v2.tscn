@@ -78,7 +78,7 @@ shot_cooldown = 1.25
 ammo_type = "big_iron_bullets"
 
 [node name="big_iron" parent="." instance=ExtResource("2_7qdfo")]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0.00626617, 0)
 
 [node name="BigIron" parent="big_iron" index="0"]
 material_override = ExtResource("3_alq1o")
@@ -96,7 +96,6 @@ material_override = ExtResource("4_3drvs")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.154, 3.3)
 
 [node name="MuzzleFlash" type="MeshInstance3D" parent="big_iron/Spawner"]
-transform = Transform3D(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
 visible = false
 layers = 4
 material_override = ExtResource("5_67vob")

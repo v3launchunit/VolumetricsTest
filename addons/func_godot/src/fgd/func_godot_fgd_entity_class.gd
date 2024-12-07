@@ -117,7 +117,10 @@ func build_def_text(target_editor: FuncGodotFGDFile.FuncGodotTargetMapEditors = 
 			if value is Dictionary and class_property_descriptions[prop] is Array:
 				var prop_arr: Array = class_property_descriptions[prop]
 				if prop_arr.size() > 1 and (prop_arr[1] is int or prop_arr[1] is String):
-					prop_description = "\"" + prop_arr[0] + "\" : " + str((str(prop_arr[1]) if prop_arr[1] is int else "\"%s\"" % str(prop_arr[1])))
+					if prop_arr[1] is int:
+						prop_description = "\"" + prop_arr[0] + "\" : " + str(prop_arr[1])
+					elif prop_arr[1] is String:
+						prop_description = "\"" + prop_arr[0] + "\" : \"" + str(prop_arr[1]) + "\""
 				else:
 					prop_description = "\"\" : 0"
 					printerr(str(prop) + " has incorrect description format. Should be [String description, int / String default value].")
@@ -159,7 +162,10 @@ func build_def_text(target_editor: FuncGodotFGDFile.FuncGodotTargetMapEditors = 
 				prop_val = FuncGodotUtil.newline() + "\t[" + FuncGodotUtil.newline()
 				for choice in value:
 					var choice_val = value[choice]
-					prop_val += "\t\t" + (str(choice_val) if choice_val is int else "\"%s\"" % str(choice_val)) + " : \"" + choice + "\"" + FuncGodotUtil.newline()
+					if typeof(choice_val) == TYPE_STRING:
+						if not (choice_val as String).begins_with("\""):
+							choice_val = "\"" + choice_val + "\""
+					prop_val += "\t\t" + str(choice_val) + " : \"" + choice + "\"" + FuncGodotUtil.newline()
 				prop_val += "\t]"
 			TYPE_ARRAY:
 				prop_type = "flags"

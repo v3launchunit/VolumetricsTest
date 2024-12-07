@@ -1,5 +1,6 @@
-[gd_resource type="Resource" script_class="FuncGodotFGDPointClass" load_steps=3 format=3 uid="uid://e6k5k6k0nfso"]
+[gd_resource type="Resource" script_class="FuncGodotFGDPointClass" load_steps=4 format=3 uid="uid://e6k5k6k0nfso"]
 
+[ext_resource type="Resource" uid="uid://c73xdr38wm4dj" path="res://trench_broom/func_godot_fgd/entities/base/linkable_base_class.tres" id="1_aunsh"]
 [ext_resource type="Script" path="res://addons/func_godot/src/fgd/func_godot_fgd_point_class.gd" id="1_durge"]
 [ext_resource type="Script" path="res://entities/enemies/ambush.gd" id="2_3lin6"]
 
@@ -10,7 +11,7 @@ apply_rotation_on_map_build = true
 classname = "triggerable_ambush"
 description = ""
 func_godot_internal = false
-base_classes = Array[Resource]([])
+base_classes = Array[Resource]([ExtResource("1_aunsh")])
 class_properties = {
 "ambusher": "pink",
 "group": "none"

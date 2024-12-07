@@ -20,6 +20,10 @@ func _ready() -> void:
 			if member.has_method("on_triggered"):
 				interacted.connect(member.on_triggered)
 		add_to_group(properties["group"])
+	if properties["target"] != "none":
+		for member in get_tree().get_nodes_in_group(properties["target"]):
+			if member.has_method("on_triggered"):
+				interacted.connect(member.on_triggered)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
