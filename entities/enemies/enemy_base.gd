@@ -113,6 +113,7 @@ enum DetectionType {
 ## The enemy's current known targets, in ascending order of priority.
 @export var current_targets: Array[PhysicsBody3D]
 @export_subgroup("Nightmare")
+## Alternate bullet used by this enemy in NIGHTMARE mode. Defaults to [member bullet].
 @export var nightmare_bullet: PackedScene
 
 @export_group("Damage")

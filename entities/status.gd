@@ -1,6 +1,7 @@
 class_name Status extends Node
 
 
+## Emitted whenever this node takes damage.
 signal injured(source: Node3D)
 signal died
 
@@ -10,12 +11,13 @@ enum DamageType {
 	FIRE,
 	TOXIC,
 	ELECTRIC,
+	ABSOLUTE = -1,
 }
 
 enum GibMode {
 	BLOCK_GIB,
 	ALLOW_GIB,
-	FORCE_GIB
+	FORCE_GIB,
 }
 
 
@@ -23,20 +25,24 @@ enum GibMode {
 ## amount of health it can be healed to (besides bonus health).
 @export var max_health: float = 100.0
 ## The amount of additional damage after death required to cause this node's
-## parent to explode into its gibs.
+## parent to explode into its gibs (if applicable).
 @export var gib_threshold: float = 50.0
+## Generic multiplier applied to all incoming damage.
 @export var base_damage_factor: float = 1.0
+## [enum DamageType]-specific damage multipliers.
 @export var damage_multipliers: Array[float] = [1.0, 1.0, 1.0, 1.0, 1.0]
 ## If set to true, any attack will ignite this node.
 @export var burn_prone: bool = false 
+## How much damage this node should take per second of being on fire. 
 @export var burn_rate: float = 4.0
-## The particle system that will activate when this node is set ablaze. If null,
+## The [GPUParticles3D] that will activate when this node is set ablaze. If null,
 ## this node will be immune to being set on fire.
 @export var burn_sys: GPUParticles3D
 ## The scene that instantiates whenever this node takes damage.
 @export var damage_sys: PackedScene
 ## The scene that instantiates if this node's parent is reduced to gibs.
 @export var gibs: PackedScene
+## The position offset to apply when spawning [member gibs].
 @export var gibs_offset: Vector3 = Vector3.ZERO
 ## One of the contained scenes will be randomly selected to be instantiated
 ## when this node's parent dies.
@@ -45,7 +51,9 @@ enum GibMode {
 @export var ripple_distance: int = 1
 
 @export_group("Scoring")
+## Whether this node should be considered by the kill counter.
 @export var is_enemy: bool = false
+## How many points should be awarded upon the death of this node.
 @export_range(0, 10, 1, "or_greater", "or_less") var score: int = 0
 
 #@export_group("Save Data")
@@ -141,7 +149,9 @@ func rapid_damage_typed(amount: float, type: DamageType, delta: float, gib_mode:
 	injured.emit()
 
 
-## Attempts to heal this node. Returns whether or not the healing was applied.
+## Attempts to heal this node. Returns whether or not the healing was applied 
+## (healing will fail if [member health] is already at or above [member max_health], 
+##  and [param can_overheal] is not [code]true[/code]).
 func heal(amount: float, can_overheal: bool = false, heal_armor: bool = false) -> bool:
 	if not heal_armor and (health < max_health or can_overheal):
 		health += amount

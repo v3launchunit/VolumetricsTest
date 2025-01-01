@@ -1,0 +1,14 @@
+[remap]
+
+importer="func_godot.map"
+type="Resource"
+uid="uid://dispvoq3l6ury"
+path="res://.godot/imported/test_gardens.map-417571235be00d2199ac5c1216954cf0.tres"
+
+[deps]
+
+source_file="res://maps/test_gardens.map"
+dest_files=["res://.godot/imported/test_gardens.map-417571235be00d2199ac5c1216954cf0.tres"]
+
+[params]
+

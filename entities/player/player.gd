@@ -49,33 +49,37 @@ class_name Player extends CharacterBody3D
 @export var interact_stream: AudioStream
 ## The audio stream that plays when the player jumps.
 @export var jump_stream: AudioStream
+## The audio stream that plays when the player performs a slide.
+@export var slide_stream: AudioStream
 #@export var slam_land_stream: AudioStream
 
 @export_group("Save Data")
-@export var jumping: bool = false
-@export var crouching: bool = false
-@export var slamming: bool = false
+@export_storage var jumping: bool = false
+@export_storage var crouching: bool = false
+@export_storage var slamming: bool = false
+@export_storage var slam_timer: float = 0.0
+@export_storage var slam_decay: float = 1.0
 
-@export var jumps: int = 1
-@export var gravity: float = ProjectSettings.get_setting("physics/3d/default_gravity")
+@export_storage var jumps: int = 1
+@export_storage var gravity: float = ProjectSettings.get_setting("physics/3d/default_gravity")
 
-@export var move_dir: Vector2 ## Input direction for movement.
-@export var look_dir: Vector2 ## Input direction for look/aim.
+@export_storage var move_dir: Vector2 ## Input direction for movement.
+@export_storage var look_dir: Vector2 ## Input direction for look/aim.
 
-@export var walk_vel: Vector3 ## The current walking velocity vector.
-@export var slide_vel: Vector3 ## The current sliding velocity vector.
-@export var grav_vel: Vector3 ## The current gravity velocity vector.
-@export var jump_vel: Vector3 ## The current jumping velocity vector.
-@export var knockback_vel: Vector3 ## The current knockback velocity vector.
+@export_storage var walk_vel: Vector3 ## The current walking velocity vector.
+@export_storage var slide_vel: Vector3 ## The current sliding velocity vector.
+@export_storage var grav_vel: Vector3 ## The current gravity velocity vector.
+@export_storage var jump_vel: Vector3 ## The current jumping velocity vector.
+@export_storage var knockback_vel: Vector3 ## The current knockback velocity vector.
 
-@export var camera_zoom_sens: float = 1.0
-@export var reorienting: bool = false
-@export var sway_timer: float = PI/2
+@export_storage var camera_zoom_sens: float = 1.0
+@export_storage var reorienting: bool = false
+@export_storage var sway_timer: float = PI/2
 
-@export var cam_recoil_pos: float = 0.0
-@export var cam_recoil_vel: float = 0.0
+@export_storage var cam_recoil_pos: float = 0.0
+@export_storage var cam_recoil_vel: float = 0.0
 
-@export var holding = null
+@export_storage var holding = null
 
 #var listening_for_cheats: bool = false
 var cam_y_offset: float = 0.0
@@ -268,6 +272,8 @@ func _toggle_crouch(to: bool) -> void:
 		translate(Vector3(0, -1 if to else 1, 0))
 		cam_y_offset += 1 if to else -1
 		slide_vel = walk_vel
+		stream_player.stream = slide_stream
+		stream_player.play()
 	crouching = to
 	hitbox.disabled = to
 	crouchbox.disabled = not to
@@ -291,8 +297,13 @@ func _walk(delta: float) -> Vector3:
 				and move_input.length_squared() > Globals.C_EPSILON
 		):
 			slamming = false
+			slam_decay = 0
+			slam_timer = 0
 			grav_vel = Vector3.ZERO
+			
 			slide_vel = walk_dir * speed/4
+			stream_player.stream = slide_stream
+			stream_player.play()
 		else:
 			return Vector3.ZERO
 
@@ -356,8 +367,10 @@ func _slide(delta: float) -> Vector3:
 ## Calculates and returns velocity due to gravity.
 func _gravity(delta: float) -> Vector3:
 	if slamming:
+		slam_timer += delta
 		if is_on_floor():
 			slamming = false
+			slam_decay = 1.0
 			var slam_wave := slam_wave_scene.instantiate()
 			add_child(slam_wave)
 			slam_wave.reparent(get_tree().current_scene)
@@ -370,6 +383,10 @@ func _gravity(delta: float) -> Vector3:
 		else:
 			grav_vel = Vector3(0, -slam_speed, 0)
 	else:
+		if slam_decay <= 0:
+			slam_timer = smoothstep(slam_timer, 0.0, delta)
+		else:
+			slam_decay -= delta
 		grav_vel = Vector3.ZERO if is_on_floor() else grav_vel.move_toward(
 				Vector3(0, velocity.y - (
 						rise_grav
@@ -388,20 +405,26 @@ func _gravity(delta: float) -> Vector3:
 func _jump(delta: float) -> Vector3:
 	if jumping:
 		if jumps > 0:
-			jump_vel = Vector3(0, sqrt(4 * jump_height * gravity), 0)
+			print(slam_timer)
+			jump_vel = Vector3(0, sqrt(4 * (jump_height) * gravity) + slam_timer * 10, 0)
 			jumps -= 1
+			slam_decay = 0
+			slam_timer = 0
 		jumping = false
 		reorienting = false
 		return jump_vel
 	if is_on_floor():
 		jump_vel = Vector3.ZERO
-	elif not Input.is_action_pressed("jump"):
+	else:
 		jump_vel = jump_vel.move_toward(
-				Vector3.ZERO, (
+				Vector3(0, sqrt(4 * jump_height * gravity), 0) 
+				if Input.is_action_pressed("jump") 
+				else Vector3.ZERO, (
 						rise_grav
 						#if Input.is_action_pressed("jump")
 						#else fall_grav
-				) * delta)
+				) * delta
+		)
 	return jump_vel
 
 
@@ -411,7 +434,7 @@ func _knockback(delta: float) -> Vector3:
 	return knockback_vel
 
 
-# TODO implement carriable weapons logic
+# TODO implement carriable object logic
 ## Called when the player picks up a carriable object. Not currently implemented.
 func _on_carriable_grabbed(what: Carriable) -> void:
 	camera.switched_weapons.emit(-1, -1)
@@ -425,3 +448,26 @@ func step_check(velocity: Vector3) -> bool:
 		pass
 	
 	return false
+
+
+
+#region manage console commands for this entity.
+func _enter_tree() -> void:
+	add_console_commands()
+
+
+func _exit_tree() -> void:
+	remove_console_commands()
+
+
+func add_console_commands() -> void:
+	Console.add_command("db_reset_pos", console_reset_pos)
+
+
+func remove_console_commands() -> void:
+	Console.remove_command("db_set_health")
+
+
+func console_reset_pos() -> void:
+	position = Vector3.ZERO
+#endregion

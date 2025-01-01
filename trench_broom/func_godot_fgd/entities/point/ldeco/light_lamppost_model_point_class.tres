@@ -6,7 +6,7 @@
 
 [resource]
 script = ExtResource("3_rg6qq")
-target_map_editor = 0
+target_map_editor = 1
 models_sub_folder = ""
 scale_expression = ""
 generate_size_property = false

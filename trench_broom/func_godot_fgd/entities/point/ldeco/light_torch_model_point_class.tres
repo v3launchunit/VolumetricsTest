@@ -5,7 +5,7 @@
 
 [resource]
 script = ExtResource("2_pgsy8")
-target_map_editor = 0
+target_map_editor = 1
 models_sub_folder = ""
 scale_expression = ""
 generate_size_property = false

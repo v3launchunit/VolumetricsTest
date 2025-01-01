@@ -7,21 +7,21 @@ signal key_acquired(key: int)
 
 @export var max_armor: float = 100
 @export_range(0, 1, 0.01) var armor_absorption := 0.5
+## [AudioStream] to play upon taking damage.
 @export var injury_stream: AudioStream
 
-@export var armor: float
-@export var held_keys: Array[bool] = [false, false, false]
-@export var powerups: Array[Powerup]
-@export var berserk_timer: float = 0.0
-@export var filters_timer: float = 0.0
-@export var invuln_timer: float = 0.0
-@export var ff_timers: PackedFloat64Array = []
+@export_storage var armor: float
+@export_storage var held_keys: Array[bool] = [false, false, false]
+@export_storage var powerups: Array[Powerup]
+@export_storage var berserk_timer: float = 0.0
+@export_storage var filters_timer: float = 0.0
+@export_storage var invuln_timer: float = 0.0
+@export_storage var ff_timers: PackedFloat64Array = []
 
 @onready var stream_player := get_parent().get_node("AudioStreamPlayer") as AudioStreamPlayer
 @onready var hud := get_parent().find_child("HUD") as HudHandler
 
 
-# Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	health = max_health
 	armor = max_armor / 4
@@ -31,7 +31,6 @@ func _ready() -> void:
 	key_acquired.connect(_on_key_acquired)
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed("debug_give_max_health"):
 		if health < 100.0:
@@ -124,3 +123,60 @@ func heal(amount: float, can_overheal: bool = false, heal_armor: bool = false) -
 
 func _on_key_acquired(key: int):
 	held_keys[key] = true
+
+
+#region manage console commands for this entity.
+func _enter_tree() -> void:
+	add_console_commands()
+
+
+func _exit_tree() -> void:
+	remove_console_commands()
+
+
+func add_console_commands() -> void:
+	Console.add_command("c_set_health", console_set_health, ["value"], 1, Globals.parse_text("console", "desc.set_health"))
+	Console.add_command("c_set_armor", console_set_armor, ["value"], 1, Globals.parse_text("console", "desc.set_armor"))
+	Console.add_command("c_set_absorption", console_set_absorption, ["value"], 1, Globals.parse_text("console", "desc.set_absorption"))
+	Console.add_command("c_set_key", console_set_key, ["which", "to"], 2, Globals.parse_text("console", "desc.set_key"))
+	Console.add_command("kill", kill, [], 0, Globals.parse_text("console.cmd", "desc.kill"))
+
+
+func remove_console_commands() -> void:
+	Console.remove_command("c_set_health")
+	Console.remove_command("c_set_armor")
+	Console.remove_command("c_set_absorption")
+	Console.remove_command("c_set_key")
+	Console.remove_command("kill")
+
+
+func console_set_health(to: String) -> void:
+	if Globals.try_run_cheat():
+		health = to.to_float()
+		Console.print_line(Globals.parse_text("console", "set") % ["health", to.to_float()])
+
+
+func console_set_armor(to: String) -> void:
+	if Globals.try_run_cheat():
+		armor = to.to_float()
+		Console.print_line(Globals.parse_text("console", "set") % ["armor", to.to_float()])
+
+
+func console_set_absorption(to: String) -> void:
+	if Globals.try_run_cheat():
+		armor_absorption = to.to_float()
+		Console.print_line(Globals.parse_text("console", "set") % ["armor_absorption", to.to_float()])
+
+
+func console_set_key(which: String, to: String) -> void:
+	if Globals.try_run_cheat():
+		if not which.is_valid_float():
+			Console.print_error(Globals.parse_text("console", "fail.bad_float") % "which")
+			return
+		if which.to_int() < 0 or which.to_int() > held_keys.size():
+			Console.print_error(Globals.parse_text("console", "fail.bad_range") % "which")
+		var to_b := Globals.get_pseudo_bool(to)
+		if to_b == -1:
+			Console.print_error(Globals.parse_text("console", "fail.bad_bool") % ["to", 0, held_keys.size()])
+		held_keys[which.to_int()] = (to_b == Globals.PseudoBool.TRUE)
+#endregion

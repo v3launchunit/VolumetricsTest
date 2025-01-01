@@ -659,7 +659,6 @@ speed = 5.0
 turning_speed = 3.0
 acceleration = 10.0
 knockback_multiplier = 3.0
-sight_line_sweep_angle = 1.5708
 sight_line_sweep_speed = 30.0
 detection_stream = SubResource("AudioStreamGenerator_xh0sx")
 attack_recovery_time = 0.5

@@ -387,10 +387,10 @@ height = 0.175
 radial_segments = 6
 
 [node name="Boomstick" type="Node3D"]
-transform = Transform3D(-1, 0, -1.50996e-07, 0, 1, 0, 1.50996e-07, 0, -1, -0.15, -0.35, 0)
+transform = Transform3D(-1, 0, -1.50996e-07, 0, 1, 0, 1.50996e-07, 0, -1, 0, -0.35, 0)
 
 [node name="Boomstick" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.00998911, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.00677622, 0)
 layers = 4
 cast_shadow = 0
 mesh = ExtResource("1_7e58d")

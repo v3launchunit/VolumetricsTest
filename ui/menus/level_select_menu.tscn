@@ -377,7 +377,7 @@ layout_mode = 2
 theme = ExtResource("3_30jf0")
 text = "TEST LEVEL"
 script = ExtResource("3_4djrb")
-level_name = "edm1"
+level_name = "test"
 is_debug = true
 
 [node name="Unsorted1" type="Button" parent="SettingsPanel/LevelSelect/Other"]

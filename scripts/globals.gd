@@ -24,6 +24,13 @@ enum Lang {
 	ENGLISH,
 }
 
+enum PseudoBool {
+	FALSE = 0,
+	TRUE = 1,
+	INVALID = -1,
+}
+
+#region constants
 # ---------------------------------------------------------------------------- #
 # --------------------------------- CONSTANTS -------------------------------- #
 # ---------------------------------------------------------------------------- #
@@ -63,12 +70,15 @@ const C_LIZARD_HOLE_POINT := Vector3(0.0, -1000.0, 0.0)
 
 ## The filepath that user quicksaves live in.
 const C_QUICKSAVE_PATH: String = "user://saves/auto/quicksave.scn"
+#endregion
 
+
+#region settings
 # ---------------------------------------------------------------------------- #
 # --------------------------------- SETTINGS --------------------------------- #
 # ---------------------------------------------------------------------------- #
 
-# ---------- Visual settings ---------- #
+#region visual settings
 ## The screen's base resolution.
 var s_resolution := Vector2i(1920, 1080)
 ## The screen's resolution is divided by this. Does not affect UI.
@@ -108,16 +118,18 @@ var s_minor_shadows_mode := OmniLight3D.ShadowMode.SHADOW_CUBE
 ## The sensitivity multiplier applied to mouse movement with regards to the
 ## first-person camera.
 var s_camera_sensitivity: float = 12.0
+#endregion
 
-# ---------- Audio settings ---------- #
+#region audio settings
 ## Self-explanatory.
 var s_master_volume: float = 70.0
 ## Self-explanatory.
 var s_sound_volume: float = 100.0
 ## Self-explanatory.
 var s_music_volume: float = 100.0
+#endregion
 
-# ---------- Gameplay settings ---------- #
+#region Gameplay settings
 ## Self-explanatory.
 var s_difficulty := Difficulty.NORMAL
 ## Nightmare mode is handled separately because it affects gameplay differently
@@ -127,10 +139,15 @@ var s_nightmare: bool = false
 var s_intruder: bool = true
 ## Whether crouching is a toggle or a hold.
 var s_toggle_crouch: bool = false
+#endregion
 
-# ---------- Accessibility settings ---------- #
+#region Accessibility settings
 var s_lang := Lang.ENGLISH
+#endregion
+#endregion
 
+
+#region other
 # ---------------------------------------------------------------------------- #
 # ---------------------------------- OTHER ----------------------------------- #
 # ---------------------------------------------------------------------------- #
@@ -140,8 +157,10 @@ var text := ConfigFile.new()
 var campaign := ConfigFile.new()
 var persistent := ConfigFile.new()
 var fun := randi_range(0, 999)
+var cheats_enabled: bool = false
 
 var mouse_captured: bool = false
+#endregion
 
 
 func _init() -> void:
@@ -155,12 +174,39 @@ func _init() -> void:
 	_setup_user()
 	_load_config()
 	persistent.load("user://saves/persistent.cfg")
+	cheats_enabled = OS.has_feature("editor")
 
 
 func _ready() -> void:
 	# When the settings get changed, save them to disq.
 	settings_changed.connect(_on_settings_changed)
 
+
+func _enter_tree() -> void:
+	Console.add_command("opensesame", open_sesame)
+	Console.add_command("closesesame", close_sesame)
+
+#region console commands
+func open_sesame() -> void:
+	if s_nightmare:
+		Console.print_error(parse_text("console", "fail.blocked.nightmare"))
+		return
+	elif cheats_enabled:
+		Console.print_error(parse_text("console", "fail.blocked.redundant.opensesame"))
+		return
+	cheats_enabled = true
+	Console.print_line(parse_text("console", "opensesame"))
+
+
+func close_sesame() -> void:
+	if s_nightmare:
+		return
+	elif not cheats_enabled:
+		Console.print_error(parse_text("console", "fail.blocked.redundant.closesesame"))
+		return
+	cheats_enabled = false
+	Console.print_line(parse_text("console", "closesesame"))
+#endregion
 
 #func _physics_process(delta: float) -> void:
 	#Engine.time_scale = smoothstep(Engine.time_scale, 1.0, delta / Engine.time_scale)
@@ -275,11 +321,22 @@ func save_game(to: String) -> void:
 	scene.pack(world)
 	push_error(ResourceSaver.save(scene, to))
 
-
+#region level management
+## Loads the level assoiciated with [param level_key], as defined within in [code]campaign.cfg[/code].
 func open_level_from_key(level_key: String) -> void:
-	open_level(ResourceLoader.load_threaded_get(get_level_path(level_key)))
+	var level := get_level_path(level_key)
+	if level == "":
+		Console.print_error(parse_text("console", "fail.bad_level") % level_key)
+	var status := ResourceLoader.load_threaded_get_status(level)
+	if status != ResourceLoader.THREAD_LOAD_LOADED:
+		print(status)
+		if status == ResourceLoader.THREAD_LOAD_INVALID_RESOURCE:
+			open_level(load(level))
+	else:
+		open_level(ResourceLoader.load_threaded_get(level))
 
 
+## Loads the specified [PackedScene].
 func open_level(level: PackedScene) -> void:
 	#var screen_image := get_tree().root.get_texture()
 	get_tree().change_scene_to_packed(level)
@@ -290,7 +347,26 @@ func open_level(level: PackedScene) -> void:
 		GameMenu.close_top_menu()
 
 
-## Returns the filepath for the specified entry in names.cfg.
+## Returns the filepath associated with [param level_key], per [code]campaign.cfg[/code].
+func get_level_path(level_key: String) -> String:
+	return campaign.get_value(level_key.substr(0,2), level_key.substr(2,2), "")
+
+
+# 0 = hidden
+# 1 = revealed
+# 2 = cleared
+## Returns whether the specified level has been revealed yet. 
+func level_revealed(level_name: String) -> bool:
+	return persistent.get_value("progress", "%s_status" % level_name, 0) > 0
+
+
+## Returns whether the specified level has been cleared yet. 
+func level_cleared(level_name: String) -> bool:
+	return persistent.get_value("progress", "%s_status" % level_name, 0) > 1
+#endregion
+
+
+## Returns the filepath for the specified entry in [code]names.cfg[/code].
 func parse_names(section: String, key: String) -> Variant:
 	if section.ends_with("_paths") or section.ends_with("_aliases"):
 		return names.get_value(section, key)
@@ -301,24 +377,13 @@ func parse_names(section: String, key: String) -> Variant:
 		)
 
 
+## Returns the localized string assigned to the specified entry in [code]text_[lang].cfg[/code].
 func parse_text(section: String, key: String) -> String:
 	#print(text.get_value(section, key))
-	return text.get_value(section, key, "MISSING: %s/%s" % [section, key]) as String
-
-
-func get_level_path(level_key: String) -> String:
-	return campaign.get_value(level_key.substr(0,2), level_key.substr(2,2), "")
-
-
-# 0 = hidden
-# 1 = revealed
-# 2 = cleared
-func level_revealed(level_name: String) -> bool:
-	return persistent.get_value("progress", "%s_status" % level_name, 0) > 0
-
-
-func level_cleared(level_name: String) -> bool:
-	return persistent.get_value("progress", "%s_status" % level_name, 0) > 1
+	var out := text.get_value(section, key, "MISSING: %s/%s" % [section, key]) as String
+	if out.begins_with("MISSING: "):
+		Console.print_error("ERROR: language %s/%s" % [section, key])
+	return out
 
 
 func get_lut(lut_name: String) -> ImageTexture3D:
@@ -330,8 +395,8 @@ func get_lut(lut_name: String) -> ImageTexture3D:
 	return img
 
 
-## returns from incremented or decremented by 1 towards to
-## (eg. intstep(1,5) returns 2)
+## returns [param from] incremented or decremented by 1 towards [param to] 
+## (eg. [code]intstep(1,5)[/code] returns 2).
 func intstep(from: int, to: int) -> int:
 	if from > to:
 		return from - 1
@@ -341,7 +406,7 @@ func intstep(from: int, to: int) -> int:
 		return from
 
 
-## returns an array containing all of that node's descendents, not just
+## Returns an [Array] containing all of that node's descendents, not just
 ## immediate children.
 func get_all_children(node) -> Array:
 	var nodes : Array = []
@@ -354,13 +419,44 @@ func get_all_children(node) -> Array:
 	return nodes
 
 
+## Helper function to define a generic 
 func menu_click() -> bool:
 	return Input.is_action_just_pressed("ui_click") or Input.is_action_just_pressed("interact")
 
 
+## Unimplemented.
 func uppercase(string: String) -> String:
 	var out: String = ""
 	
 	
 	
 	return out
+
+
+## Returns whether cheats are enabled.
+#func cheats_enabled() -> bool:
+	#return OS.has_feature("editor") or (not s_nightmare)
+
+
+## Converts a string to a [enum PseudoBool].
+func get_pseudo_bool(s: String) -> PseudoBool:
+	s = s.to_lower().strip_edges()
+	for t in text.get_section_keys("console.true"):
+		if s == t:
+			return PseudoBool.TRUE
+	for f in text.get_section_keys("console.false"):
+		if s == f:
+			return PseudoBool.FALSE
+	return PseudoBool.INVALID
+
+
+## Returns whether cheats are enabled, and logs an error message to the console if it is blocked.
+func try_run_cheat() -> bool:
+	if (cheats_enabled and not s_nightmare):
+		return true
+	elif s_nightmare:
+		Console.print_error(parse_text("console", "fail.blocked.nightmare"))
+		return false
+	else:
+		Console.print_error(parse_text("console", "fail.blocked.generic"))
+		return false

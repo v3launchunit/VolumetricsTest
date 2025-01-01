@@ -8,13 +8,14 @@ extends EnemyBase
 
 
 func _scan(delta) -> void:
-	sight_line.rotation.y = sin(state_timer * sight_line_sweep_speed + randf() /
-			sight_line_sweep_angle * 2) * sight_line_sweep_angle / 2
-	sight_line.rotation.x = cos(state_timer * sight_line_sweep_speed + randf() /
-			sight_line_sweep_angle * PI) * sight_line_sweep_angle / 2
-	if sight_line.is_colliding() and sight_line.get_collider() is Player:
-		detect_target(sight_line.get_collider())
-		change_state(State.PURSUING)
+	super(delta)
+	#sight_line.rotation.y = sin(state_timer * sight_line_sweep_speed + randf() /
+			#sight_line_sweep_angle * 2) * sight_line_sweep_angle / 2
+	#sight_line.rotation.x = cos(state_timer * sight_line_sweep_speed + randf() /
+			#sight_line_sweep_angle * PI) * sight_line_sweep_angle / 2
+	#if sight_line.is_colliding() and sight_line.get_collider() is Player:
+		#detect_target(sight_line.get_collider())
+		#change_state(State.PURSUING)
 	walk_vel = walk_vel.move_toward(Vector3.ZERO, acceleration * delta)
 	nav_agent.set_velocity(walk_vel)
 

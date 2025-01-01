@@ -27,6 +27,7 @@ Globals="*res://scripts/globals.gd"
 Intermission="*res://levels/intermission/intermission.tscn"
 GameMenu="*res://ui/menus/game_menu.tscn"
 Screenwipe="res://levels/intermission/screenwipe.tscn"
+Console="*res://addons/console/console.gd"
 
 [display]
 
@@ -49,7 +50,7 @@ version_control/autoload_on_startup=true
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/astarflood/plugin.cfg", "res://addons/func_godot/plugin.cfg")
+enabled=PackedStringArray("res://addons/astarflood/plugin.cfg", "res://addons/console/plugin.cfg", "res://addons/func_godot/plugin.cfg")
 
 [file_customization]
 

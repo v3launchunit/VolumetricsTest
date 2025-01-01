@@ -1,0 +1,66 @@
+[gd_scene load_steps=11 format=4 uid="uid://b3dlmvcuq8quq"]
+
+[ext_resource type="Script" path="res://levels/level.gd" id="1_g8h8n"]
+[ext_resource type="PackedScene" uid="uid://do61x5km3wthk" path="res://entities/player/player.tscn" id="2_rp1fy"]
+[ext_resource type="Script" path="res://addons/func_godot/src/map/func_godot_map.gd" id="3_ktbvk"]
+[ext_resource type="Resource" uid="uid://bkhxcqsquw1yg" path="res://addons/func_godot/func_godot_default_map_settings.tres" id="4_hj0vj"]
+[ext_resource type="Texture2D" uid="uid://cyg2snr1w5xw5" path="res://addons/func_godot/textures/default_texture.png" id="5_hcnln"]
+
+[sub_resource type="NavigationMesh" id="NavigationMesh_v6b08"]
+geometry_parsed_geometry_type = 1
+geometry_collision_mask = 4294965505
+agent_height = 2.5
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cwygx"]
+albedo_texture = ExtResource("5_hcnln")
+metallic_specular = 0.0
+texture_filter = 2
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_fiqt8"]
+_surfaces = [{
+"aabb": AABB(-16, -2, -16, 32, 1, 32),
+"attribute_data": PackedByteArray("AACAQAAAgD4AAIBAAAAAPwAAgMAAAAA/AACAwAAAgD4AAIDAAACAPgAAgEAAAIA+AACAQAAAAD8AAIDAAAAAPwAAgEAAAIDAAACAQAAAgEAAAIDAAACAQAAAgMAAAIDAAACAwAAAgMAAAIBAAACAwAAAgEAAAIBAAACAwAAAgEAAAIBAAACAPgAAgEAAAAA/AACAwAAAAD8AAIDAAACAPgAAgMAAAIA+AACAQAAAgD4AAIBAAAAAPwAAgMAAAAA/"),
+"format": 34359742487,
+"index_count": 36,
+"index_data": PackedByteArray("AAABAAIAAAACAAMABAAFAAYABAAGAAcACAAJAAoACAAKAAsADAANAA4ADAAOAA8AEAARABIAEAASABMAFAAVABYAFAAWABcA"),
+"material": SubResource("StandardMaterial3D_cwygx"),
+"name": "__TB_empty",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 24,
+"vertex_data": PackedByteArray("AACAwQAAgL8AAIDBAACAwQAAAMAAAIDBAACAQQAAAMAAAIDBAACAQQAAgL8AAIDBAACAwQAAgL8AAIDBAACAwQAAgL8AAIBBAACAwQAAAMAAAIBBAACAwQAAAMAAAIDBAACAQQAAAMAAAIDBAACAwQAAAMAAAIDBAACAwQAAAMAAAIBBAACAQQAAAMAAAIBBAACAQQAAgL8AAIDBAACAQQAAgL8AAIBBAACAwQAAgL8AAIBBAACAwQAAgL8AAIDBAACAQQAAgL8AAIDBAACAQQAAAMAAAIDBAACAQQAAAMAAAIBBAACAQQAAgL8AAIBBAACAwQAAgL8AAIBBAACAQQAAgL8AAIBBAACAQQAAAMAAAIBBAACAwQAAAMAAAIBB/////wAA/7//////AAD/v/////8AAP+//////wAA/78AAP9//3//vwAA/3//f/+/AAD/f/9//78AAP9//3//v/9/AAD//////38AAP//////fwAA//////9/AAD//////3////9//7//f////3//v/9/////f/+//3////9//7////9//////////3//////////f/////////9///////9//3////+//3//f////7//f/9/////v/9//3////+/")
+}]
+
+[sub_resource type="ArrayOccluder3D" id="ArrayOccluder3D_y6fjd"]
+vertices = PackedVector3Array(-16, -1, -16, -16, -2, -16, 16, -2, -16, 16, -1, -16, -16, -1, -16, -16, -1, 16, -16, -2, 16, -16, -2, -16, 16, -2, -16, -16, -2, -16, -16, -2, 16, 16, -2, 16, 16, -1, -16, 16, -1, 16, -16, -1, 16, -16, -1, -16, 16, -1, -16, 16, -2, -16, 16, -2, 16, 16, -1, 16, -16, -1, 16, 16, -1, 16, 16, -2, 16, -16, -2, 16)
+indices = PackedInt32Array(0, 1, 2, 0, 2, 3, 4, 5, 6, 4, 6, 7, 8, 9, 10, 8, 10, 11, 12, 13, 14, 12, 14, 15, 16, 17, 18, 16, 18, 19, 20, 21, 22, 20, 22, 23)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_w7l61"]
+points = PackedVector3Array(-16, -1, -16, -16, -2, -16, 16, -2, -16, 16, -1, -16, -16, -1, 16, -16, -2, 16, 16, -2, 16, 16, -1, 16)
+
+[node name="Level" type="Node3D"]
+script = ExtResource("1_g8h8n")
+level_key = "test"
+level_name = "test gardenss"
+
+[node name="Player" parent="." instance=ExtResource("2_rp1fy")]
+
+[node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
+navigation_mesh = SubResource("NavigationMesh_v6b08")
+
+[node name="FuncGodotMap" type="Node3D" parent="NavigationRegion3D"]
+script = ExtResource("3_ktbvk")
+local_map_file = "res://maps/test_gardens.map"
+map_settings = ExtResource("4_hj0vj")
+
+[node name="entity_0_worldspawn" type="StaticBody3D" parent="NavigationRegion3D/FuncGodotMap"]
+collision_mask = 0
+
+[node name="entity_0_mesh_instance" type="MeshInstance3D" parent="NavigationRegion3D/FuncGodotMap/entity_0_worldspawn"]
+mesh = SubResource("ArrayMesh_fiqt8")
+
+[node name="entity_0_occluder_instance" type="OccluderInstance3D" parent="NavigationRegion3D/FuncGodotMap/entity_0_worldspawn"]
+occluder = SubResource("ArrayOccluder3D_y6fjd")
+
+[node name="entity_0_brush_0_collision_shape" type="CollisionShape3D" parent="NavigationRegion3D/FuncGodotMap/entity_0_worldspawn"]
+shape = SubResource("ConvexPolygonShape3D_w7l61")
