@@ -35,9 +35,7 @@ func _on_area_body_entered(body: Node3D) -> void:
 			body.detect_target(invoker, EnemyBase.DetectionType.RETALIATION)
 	if body.has_method("apply_knockback"):
 		body.apply_knockback(
-			knockback_force 
-			* (body.global_position - global_position).normalized()
-			+ knockup_force
-			* Vector3.UP
+			knockback_force * (body.global_position - global_position).normalized(),
+			knockup_force
 	)
 	

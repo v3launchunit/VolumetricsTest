@@ -69,7 +69,7 @@ class_name Player extends CharacterBody3D
 @export_storage var walk_vel: Vector3 ## The current walking velocity vector.
 @export_storage var slide_vel: Vector3 ## The current sliding velocity vector.
 @export_storage var grav_vel: Vector3 ## The current gravity velocity vector.
-@export_storage var jump_vel: Vector3 ## The current jumping velocity vector.
+#@export_storage var jump_vel: Vector3 ## The current jumping velocity vector.
 @export_storage var knockback_vel: Vector3 ## The current knockback velocity vector.
 
 @export_storage var camera_zoom_sens: float = 1.0
@@ -204,7 +204,7 @@ func _physics_process(delta: float) -> void:
 			_walk(delta)
 			+ _slide(delta)
 			+ _gravity(delta)
-			+ _jump(delta)
+			#+ _jump(delta)
 			+ _knockback(delta)
 	)
 	#cam_recoil_pos = camera_sync.rotation.x + cam_recoil_vel
@@ -265,10 +265,10 @@ func _handle_joypad_camera_rotation(delta: float, sens_mod: float = 1.0) -> void
 		look_dir = Vector2.ZERO
 
 
-func apply_knockback(amount: Vector3) -> void:
-	if amount.y < 0:
-		jump_vel = Vector3.ZERO
-		grav_vel = Vector3.ZERO
+func apply_knockback(amount: Vector3, knockup: float = 0) -> void:
+	if amount.y < 0 or knockup > Globals.C_EPSILON:
+		#jump_vel = Vector3.ZERO
+		grav_vel = Vector3.UP * knockup
 		jumping = false
 		slamming = false
 	knockback_vel += amount
@@ -348,7 +348,7 @@ func _walk(delta: float) -> Vector3:
 			0,
 	) if is_on_floor() else Vector3(
 			0,
-			0.5 - clampf((grav_vel.y + jump_vel.y) * jump_sway, -0.1, 0.1),
+			0.5 - clampf((grav_vel.y) * jump_sway, -0.1, 0.1),
 			0,
 	)
 	# Manipulating the offsets like this makes it look like the weapon is
@@ -357,7 +357,7 @@ func _walk(delta: float) -> Vector3:
 	camera.v_offset = (
 			move_dir.length() * -sway_height / 6 * sin(10 * sway_timer)
 	) if is_on_floor() else clampf(
-			(grav_vel.y + jump_vel.y) * jump_sway,
+			(grav_vel.y) * jump_sway,
 			-0.1,
 			0.1
 	)
@@ -390,54 +390,59 @@ func _gravity(delta: float) -> Vector3:
 			#stream_player.play()
 		else:
 			grav_vel = Vector3(0, -slam_speed, 0)
-	else:
-		if slam_decay <= 0:
-			slam_timer = 0.0 #smoothstep(slam_timer, 0.0, delta)
-		else:
-			slam_decay -= delta
-		grav_vel = Vector3.ZERO if is_on_floor() else grav_vel.move_toward(
-				Vector3(0, velocity.y - (
-						rise_grav
-						if Input.is_action_pressed("jump")
-						else fall_grav
-				), 0), (
-						rise_grav
-						if Input.is_action_pressed("jump")
-						else fall_grav
-				) * delta
-		)
-	return grav_vel
-
-
-## Calculates and returns velocity from player jumping.
-func _jump(delta: float) -> Vector3:
-	if jumping:
+	elif jumping:
 		if jumps > 0:
 			print(slam_timer)
-			jump_vel = Vector3(0, sqrt(4 * (jump_height) * gravity) + slam_timer * 10, 0)
+			grav_vel = Vector3(0, sqrt(4 * (jump_height) * gravity) + slam_timer * 10, 0)
 			jumps -= 1
 			slam_decay = 0
 			slam_timer = 0
 		jumping = false
 		reorienting = false
-		return jump_vel
-	if is_on_floor():
-		jump_vel = Vector3.ZERO
 	else:
-		jump_vel = jump_vel.move_toward(
-				Vector3(0, sqrt(4 * jump_height * gravity), 0) 
-				if Input.is_action_pressed("jump") 
-				else Vector3.ZERO, (
-						rise_grav
+		if slam_decay <= 0:
+			slam_timer = 0.0 #smoothstep(slam_timer, 0.0, delta)
+		else:
+			slam_decay -= delta
+		if is_on_floor() or is_on_ceiling():
+			grav_vel = Vector3.ZERO
+		else:
+			grav_vel -= Vector3.UP * (rise_grav if Input.is_action_pressed("jump") else fall_grav) * delta
+		#grav_vel = Vector3.ZERO if is_on_floor() else grav_vel.move_toward(
+				#Vector3(0, velocity.y - (
+						#rise_grav
 						#if Input.is_action_pressed("jump")
 						#else fall_grav
-				) * delta
-		)
-	return jump_vel
+				#), 0), (
+						#rise_grav
+						#if Input.is_action_pressed("jump")
+						#else fall_grav
+				#) * delta
+		#)
+	return grav_vel
+
+
+## Calculates and returns velocity from player jumping.
+#func _jump(delta: float) -> Vector3:
+		#return jump_vel
+	#if is_on_floor():
+		#jump_vel = Vector3.ZERO
+	#else:
+		#jump_vel = jump_vel.move_toward(
+				#Vector3(0, sqrt(4 * jump_height * gravity), 0) 
+				#if Input.is_action_pressed("jump") 
+				#else Vector3.ZERO, (
+						#rise_grav
+						##if Input.is_action_pressed("jump")
+						##else fall_grav
+				#) * delta
+		#)
+	#return jump_vel
 
 
 ## Calculates and returns knockback velocity from impacts.
 func _knockback(delta: float) -> Vector3:
+	#if is_on_floor():
 	knockback_vel = knockback_vel.move_toward(Vector3.ZERO, knockback_drag * delta)
 	return knockback_vel
 

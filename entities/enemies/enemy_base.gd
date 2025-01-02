@@ -687,10 +687,11 @@ func _do_jump() -> void:
 		jumping = true
 
 
-func apply_knockback(amount: Vector3) -> void:
+func apply_knockback(amount: Vector3, knockup: float = 0.0) -> void:
 	if amount.y < 0:
 		jump_vel = Vector3.ZERO
-		grav_vel = Vector3.ZERO
+	if knockup > Globals.C_EPSILON:
+		grav_vel = Vector3.UP * knockup
 		#jumping = false
 	knockback_vel += amount * knockback_multiplier
 
