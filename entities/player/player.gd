@@ -99,6 +99,10 @@ var crouch_speed: float = 15.0
 @onready var hud := find_child("HUD") as HudHandler
 
 
+func _enter_tree() -> void:
+	add_console_commands()
+
+
 func _ready() -> void:
 	Globals.capture_mouse()
 
@@ -231,6 +235,10 @@ func _unhandled_input(event: InputEvent) -> void:
 		look_dir = event.relative * 0.001
 		if Globals.mouse_captured:
 			_rotate_camera(camera_zoom_sens)
+
+
+func _exit_tree() -> void:
+	remove_console_commands()
 
 
 ## Actually rotates the player [Camera3D].
@@ -384,7 +392,7 @@ func _gravity(delta: float) -> Vector3:
 			grav_vel = Vector3(0, -slam_speed, 0)
 	else:
 		if slam_decay <= 0:
-			slam_timer = smoothstep(slam_timer, 0.0, delta)
+			slam_timer = 0.0 #smoothstep(slam_timer, 0.0, delta)
 		else:
 			slam_decay -= delta
 		grav_vel = Vector3.ZERO if is_on_floor() else grav_vel.move_toward(
@@ -451,23 +459,15 @@ func step_check(velocity: Vector3) -> bool:
 
 
 
-#region manage console commands for this entity.
-func _enter_tree() -> void:
-	add_console_commands()
-
-
-func _exit_tree() -> void:
-	remove_console_commands()
-
-
+#region console commands
 func add_console_commands() -> void:
-	Console.add_command("db_reset_pos", console_reset_pos)
+	Console.add_command("reset_pos", cmd_reset_pos, [], 0, Globals.parse_text("console", "desc.reset_pos"))
 
 
 func remove_console_commands() -> void:
-	Console.remove_command("db_set_health")
+	Console.remove_command("reset_pos")
 
 
-func console_reset_pos() -> void:
+func cmd_reset_pos() -> void:
 	position = Vector3.ZERO
 #endregion

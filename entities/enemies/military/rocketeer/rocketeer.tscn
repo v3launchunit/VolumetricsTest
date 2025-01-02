@@ -445,6 +445,54 @@ tracks/21/path = NodePath("Rocketeer")
 tracks/21/interp = 1
 tracks/21/loop_wrap = true
 tracks/21/keys = PackedFloat32Array(0, 1, 0, 1, 0, 0)
+tracks/22/type = "value"
+tracks/22/imported = false
+tracks/22/enabled = true
+tracks/22/path = NodePath("Rocketeer/Armature/Skeleton3D/BoneAttachment3D/GPUParticles3D:emitting")
+tracks/22/interp = 1
+tracks/22/loop_wrap = true
+tracks/22/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/23/type = "value"
+tracks/23/imported = false
+tracks/23/enabled = true
+tracks/23/path = NodePath("Rocketeer/Armature/Skeleton3D/BoneAttachment3D/GPUParticles3D2:emitting")
+tracks/23/interp = 1
+tracks/23/loop_wrap = true
+tracks/23/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/24/type = "value"
+tracks/24/imported = false
+tracks/24/enabled = true
+tracks/24/path = NodePath("Rocketeer/Armature/Skeleton3D/BoneAttachment3D/GPUParticles3D3:emitting")
+tracks/24/interp = 1
+tracks/24/loop_wrap = true
+tracks/24/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/25/type = "value"
+tracks/25/imported = false
+tracks/25/enabled = true
+tracks/25/path = NodePath("Rocketeer/Armature/Skeleton3D/BoneAttachment3D/GPUParticles3D4:emitting")
+tracks/25/interp = 1
+tracks/25/loop_wrap = true
+tracks/25/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ext3k"]
 _data = {
@@ -527,7 +575,7 @@ states/ambush/position = Vector2(349.827, 99.037)
 states/attacking/node = SubResource("AnimationNodeAnimation_bvr3c")
 states/attacking/position = Vector2(784.333, 182.807)
 states/dead/node = SubResource("AnimationNodeAnimation_dttdc")
-states/dead/position = Vector2(380.333, 285.045)
+states/dead/position = Vector2(383, 285.045)
 states/flinching/node = SubResource("AnimationNodeAnimation_b1cvq")
 states/flinching/position = Vector2(712.074, 276.251)
 states/idle/node = SubResource("AnimationNodeAnimation_wep46")
@@ -577,13 +625,13 @@ bones/18/rotation = Quaternion(0.00780262, 9.06806e-08, 1.6966e-08, 0.99997)
 bones/18/scale = Vector3(1, 1, 1)
 
 [node name="rpg" parent="Rocketeer/Armature/Skeleton3D" index="0"]
-transform = Transform3D(3.98478, -0.304914, -0.169016, 0.316846, 3.9764, 0.296452, 0.14542, -0.308712, 3.98542, 3.15752, 4.83642, 9.51998)
+transform = Transform3D(3.98478, -0.328672, -0.116247, 0.318754, 3.97502, -0.312394, 0.14119, 0.301942, 3.98609, 3.19965, 4.16801, 10.1695)
 
 [node name="rpg" parent="Rocketeer/Armature/Skeleton3D/rpg" index="0"]
 material_override = SubResource("ShaderMaterial_am0uh")
 
 [node name="rocket" parent="Rocketeer/Armature/Skeleton3D" index="1"]
-transform = Transform3D(3.98478, -0.304914, -0.169016, 0.316846, 3.9764, 0.296452, 0.14542, -0.308712, 3.98542, 3.33133, 5.90818, 2.42201)
+transform = Transform3D(3.98478, -0.328672, -0.116247, 0.318754, 3.97502, -0.312394, 0.14119, 0.301942, 3.98609, 3.27161, 6.30471, 3.3146)
 
 [node name="rocket" parent="Rocketeer/Armature/Skeleton3D/rocket" index="0"]
 material_override = SubResource("ShaderMaterial_am0uh")
@@ -591,7 +639,7 @@ material_override = SubResource("ShaderMaterial_am0uh")
 [node name="Spawner" type="Marker3D" parent="Rocketeer/Armature/Skeleton3D/rocket/rocket" index="0"]
 
 [node name="Backpack" parent="Rocketeer/Armature/Skeleton3D" index="2"]
-transform = Transform3D(1, 0, 0, 0, 0.908848, -0.417128, 0, 0.417128, 0.908848, 0, 5.41301, -0.819933)
+transform = Transform3D(1, 0, 0, 0, 0.91432, -0.404993, 0, 0.404993, 0.91432, 0, 5.41975, -0.823343)
 
 [node name="Backpack" parent="Rocketeer/Armature/Skeleton3D/Backpack" index="0"]
 material_override = SubResource("ShaderMaterial_flj7k")
@@ -600,7 +648,7 @@ material_override = SubResource("ShaderMaterial_flj7k")
 material_override = SubResource("ShaderMaterial_b0yry")
 
 [node name="BoneAttachment3D" type="BoneAttachment3D" parent="Rocketeer/Armature/Skeleton3D" index="4"]
-transform = Transform3D(1, 0, 0, 0, 0.999982, 0.00604889, 0, -0.00604889, 0.999982, 0, 7.30529, 2.24915)
+transform = Transform3D(1, 0, 0, 0, 0.999798, -0.0201077, 0, 0.0201077, 0.999798, 0, 7.35273, 2.22028)
 bone_name = "Head"
 bone_idx = 3
 
@@ -683,32 +731,5 @@ libraries = {
 [node name="AnimationTree" type="AnimationTree" parent="."]
 tree_root = SubResource("AnimationNodeStateMachine_f30pq")
 anim_player = NodePath("../AnimationPlayer")
-parameters/current_length = 2.0
-parameters/current_position = 0.321755
-parameters/current_delta = 0.00555556
-parameters/End/current_length = null
-parameters/End/current_position = null
-parameters/End/current_delta = null
-parameters/Start/current_length = 0.0
-parameters/Start/current_position = 0.0
-parameters/Start/current_delta = 0.0
-parameters/ambush/current_length = 1.0
-parameters/ambush/current_position = 0.254703
-parameters/ambush/current_delta = 0.0166667
-parameters/attacking/current_length = 2.0
-parameters/attacking/current_position = 2.0
-parameters/attacking/current_delta = 0.0
-parameters/dead/current_length = 0.6
-parameters/dead/current_position = 0.6
-parameters/dead/current_delta = 0.0
-parameters/flinching/current_length = 1.0
-parameters/flinching/current_position = 1.0
-parameters/flinching/current_delta = 0.0
-parameters/idle/current_length = 2.0
-parameters/idle/current_position = 0.321755
-parameters/idle/current_delta = 0.00555556
-parameters/moving/current_length = 2.0
-parameters/moving/current_position = 1.71977
-parameters/moving/current_delta = 0.0166667
 
 [editable path="Rocketeer"]

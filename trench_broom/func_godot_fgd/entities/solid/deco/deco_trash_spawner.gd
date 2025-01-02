@@ -46,7 +46,7 @@ func spawn_trash_props(editor: bool = true) -> void:
 	
 	var mesh := (get_child(0) as MeshInstance3D).mesh
 	var shape := mesh.create_convex_shape(false)
-	var points := shape.points
+	#var points := shape.points
 	var bounds := mesh.get_aabb().abs()
 	var volume : float = bounds.get_volume()
 	

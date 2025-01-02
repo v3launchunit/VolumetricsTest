@@ -229,7 +229,7 @@ max_contacts_reported = 5
 linear_damp_mode = 1
 linear_damp = 100.0
 script = ExtResource("1_v0fks")
-speed = 75.0
+speed = 60.0
 damage = 0.0
 damage_type = 1
 explosion = ExtResource("2_h7m8i")
@@ -237,7 +237,7 @@ piercer = false
 knockback_force = 10.0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, -1.5)
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0)
 shape = SubResource("CapsuleShape3D_mkcmk")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]

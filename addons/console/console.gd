@@ -71,6 +71,8 @@ func _enter_tree() -> void:
 	canvas_layer.add_child(control)
 	var style := StyleBoxFlat.new()
 	style.bg_color = Color("000000d7")
+	var style_f := StyleBoxFlat.new()
+	style_f.bg_color = Color("00000000")
 	rich_label.selection_enabled = true
 	rich_label.context_menu_enabled = true
 	rich_label.bbcode_enabled = true
@@ -78,12 +80,13 @@ func _enter_tree() -> void:
 	rich_label.anchor_right = 1.0
 	rich_label.anchor_bottom = 0.5
 	rich_label.add_theme_stylebox_override("normal", style)
+	rich_label.add_theme_stylebox_override("focus", style_f)
 	control.add_child(rich_label)
 	rich_label.append_text("%s\n" % Globals.parse_text("console", "intro"))
 	line_edit.anchor_top = 0.5
 	line_edit.anchor_right = 1.0
 	line_edit.anchor_bottom = 0.5
-	line_edit.placeholder_text = "Enter \"help\" for instructions"
+	line_edit.placeholder_text = "enter \"help\" for instructions"
 	control.add_child(line_edit)
 	line_edit.text_submitted.connect(on_text_entered)
 	line_edit.text_changed.connect(on_line_edit_text_changed)
@@ -224,8 +227,12 @@ func enable():
 
 
 func toggle_console() -> void:
+	set_console(!control.visible)
+
+
+func set_console(to: bool) -> void:
 	if (enabled):
-		control.visible = !control.visible
+		control.visible = to
 	else:
 		control.visible = false
 
@@ -251,8 +258,13 @@ func scroll_to_bottom() -> void:
 	var scroll: ScrollBar = rich_label.get_v_scroll_bar()
 	scroll.value = scroll.max_value - scroll.page
 
+
 func print_error(text : String, print_godot := true) -> void:
 	print_line("[color=light_coral]	   ERROR:[/color] %s" % text, print_godot)
+
+
+func print_blocked(text : String, print_godot := true) -> void:
+	print_line("[color=#ff80ff]	   BLOCKED:[/color] %s" % text, print_godot)
 
 
 func print_line(text : String, print_godot := true) -> void:
@@ -338,7 +350,7 @@ func on_text_entered(new_text : String) -> void:
 			console_commands[text_command].function.callv(arguments)
 		else:
 			console_unknown_command.emit(text_command)
-			print_error("Command not found.")
+			print_error(Globals.parse_text("console", "fail.no"))
 
 
 func on_line_edit_text_changed(new_text : String) -> void:

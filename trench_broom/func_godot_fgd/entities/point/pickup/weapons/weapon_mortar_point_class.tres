@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="FuncGodotFGDPointClass" load_steps=4 format=3 uid="uid://c80kocsf2po1b"]
+
+[ext_resource type="Resource" uid="uid://cd8apv15m4feu" path="res://trench_broom/func_godot_fgd/entities/base/pickup_base_class.tres" id="1_t78r0"]
+[ext_resource type="PackedScene" uid="uid://cxy7g2dkotnvh" path="res://pickups/weapons/grenade_launcher_pickup.tscn" id="2_y4f8p"]
+[ext_resource type="Script" path="res://addons/func_godot/src/fgd/func_godot_fgd_point_class.gd" id="3_2h83l"]
+
+[resource]
+script = ExtResource("3_2h83l")
+scene_file = ExtResource("2_y4f8p")
+apply_rotation_on_map_build = true
+classname = "weapon_mortar"
+description = ""
+func_godot_internal = false
+base_classes = Array[Resource]([ExtResource("1_t78r0")])
+class_properties = {}
+class_property_descriptions = {}
+meta_properties = {
+"color": Color(0.8, 0.8, 0.8, 1),
+"size": AABB(-8, -8, -8, 8, 8, 8)
+}
+node_class = ""
+name_property = ""

@@ -1,0 +1,42 @@
+[gd_scene load_steps=4 format=3 uid="uid://cemr67fddi6p3"]
+
+[ext_resource type="Script" path="res://addons/console/console.gd" id="1_b5cqs"]
+[ext_resource type="Theme" uid="uid://dwof7m2ye3tjh" path="res://ui/default_theme.tres" id="2_ekhkm"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_q1pfd"]
+bg_color = Color(0, 0, 0, 0.843137)
+
+[node name="Console" type="Node"]
+process_mode = 3
+script = ExtResource("1_b5cqs")
+
+[node name="_CanvasLayer_8" type="CanvasLayer" parent="."]
+layer = 3
+
+[node name="_Control_9" type="Control" parent="_CanvasLayer_8"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_ekhkm")
+
+[node name="_RichTextLabel_10" type="RichTextLabel" parent="_CanvasLayer_8/_Control_9"]
+layout_mode = 0
+anchor_right = 1.0
+anchor_bottom = 0.5
+focus_mode = 2
+theme_override_styles/focus = SubResource("StyleBoxFlat_q1pfd")
+theme_override_styles/normal = SubResource("StyleBoxFlat_q1pfd")
+bbcode_enabled = true
+scroll_following = true
+context_menu_enabled = true
+selection_enabled = true
+
+[node name="_LineEdit_11" type="LineEdit" parent="_CanvasLayer_8/_Control_9"]
+layout_mode = 0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+placeholder_text = "Enter \"help\" for instructions"

@@ -121,6 +121,6 @@ func _physics_process(_delta: float) -> void:
 			exp.find_child("Area3D").invoker = invoker
 		
 	elif mesh: # if the bullet didn't hit anything
-		mesh.global_position = global_position + max_range * global_transform.basis.z
+		mesh.global_position = global_position - max_range * global_transform.basis.z
 		mesh.scale.z = max_range - 1
 		mesh.look_at(global_position)

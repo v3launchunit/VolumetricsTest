@@ -22,6 +22,10 @@ signal key_acquired(key: int)
 @onready var hud := get_parent().find_child("HUD") as HudHandler
 
 
+func _enter_tree() -> void:
+	add_console_commands()
+
+
 func _ready() -> void:
 	health = max_health
 	armor = max_armor / 4
@@ -30,6 +34,10 @@ func _ready() -> void:
 		target_parent = target_parent.get_parent()
 	key_acquired.connect(_on_key_acquired)
 
+
+func _exit_tree() -> void:
+	remove_console_commands()
+	
 
 func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed("debug_give_max_health"):
@@ -97,7 +105,7 @@ func rapid_damage_typed(amount: float, type: DamageType, delta: float, gib_mode:
 		kill()
 
 
-func kill():
+func kill() -> void:
 	is_dead = true
 	died.emit()
 	get_parent().process_mode = Node.PROCESS_MODE_DISABLED
@@ -125,50 +133,53 @@ func _on_key_acquired(key: int):
 	held_keys[key] = true
 
 
-#region manage console commands for this entity.
-func _enter_tree() -> void:
-	add_console_commands()
-
-
-func _exit_tree() -> void:
-	remove_console_commands()
-
-
+#region console commands
 func add_console_commands() -> void:
-	Console.add_command("c_set_health", console_set_health, ["value"], 1, Globals.parse_text("console", "desc.set_health"))
-	Console.add_command("c_set_armor", console_set_armor, ["value"], 1, Globals.parse_text("console", "desc.set_armor"))
-	Console.add_command("c_set_absorption", console_set_absorption, ["value"], 1, Globals.parse_text("console", "desc.set_absorption"))
-	Console.add_command("c_set_key", console_set_key, ["which", "to"], 2, Globals.parse_text("console", "desc.set_key"))
-	Console.add_command("kill", kill, [], 0, Globals.parse_text("console.cmd", "desc.kill"))
+	Console.add_command("get_health", func(): Console.print_line("%d" % health), [], 0, Globals.parse_text("console", "desc.get_health"))
+	Console.add_command("set_health", cmd_set_health, ["float value"], 1, Globals.parse_text("console", "desc.set_health"))
+	Console.add_command("get_armor", func(): Console.print_line("%d" % armor), [], 0, Globals.parse_text("console", "desc.get_armor"))
+	Console.add_command("set_armor", cmd_set_armor, ["float value"], 1, Globals.parse_text("console", "desc.set_armor"))
+	Console.add_command("get_absorption", func(): Console.print_line("%d" % armor_absorption), [], 0, Globals.parse_text("console", "desc.get_absorption"))
+	Console.add_command("set_absorption", cmd_set_absorption, ["0-1 float value"], 1, Globals.parse_text("console", "desc.set_absorption"))
+	Console.add_command("set_key", cmd_set_key, ["index of key to set (0 = red, 1 = green, 2 = blue)", "true/false"], 2, Globals.parse_text("console", "desc.set_key"))
+	Console.add_command("kill", kill, [], 0, Globals.parse_text("console", "desc.kill"))
 
 
 func remove_console_commands() -> void:
-	Console.remove_command("c_set_health")
-	Console.remove_command("c_set_armor")
-	Console.remove_command("c_set_absorption")
-	Console.remove_command("c_set_key")
+	Console.remove_command("get_health")
+	Console.remove_command("set_health")
+	Console.remove_command("get_armor")
+	Console.remove_command("set_armor")
+	Console.remove_command("get_absorption")
+	Console.remove_command("set_absorption")
+	Console.remove_command("set_key")
 	Console.remove_command("kill")
 
 
-func console_set_health(to: String) -> void:
+func cmd_kill() -> void:
+	kill()
+	#GameMenu.close_top_menu(false)
+
+
+func cmd_set_health(to: String) -> void:
 	if Globals.try_run_cheat():
 		health = to.to_float()
 		Console.print_line(Globals.parse_text("console", "set") % ["health", to.to_float()])
 
 
-func console_set_armor(to: String) -> void:
+func cmd_set_armor(to: String) -> void:
 	if Globals.try_run_cheat():
 		armor = to.to_float()
 		Console.print_line(Globals.parse_text("console", "set") % ["armor", to.to_float()])
 
 
-func console_set_absorption(to: String) -> void:
+func cmd_set_absorption(to: String) -> void:
 	if Globals.try_run_cheat():
 		armor_absorption = to.to_float()
 		Console.print_line(Globals.parse_text("console", "set") % ["armor_absorption", to.to_float()])
 
 
-func console_set_key(which: String, to: String) -> void:
+func cmd_set_key(which: String, to: String) -> void:
 	if Globals.try_run_cheat():
 		if not which.is_valid_float():
 			Console.print_error(Globals.parse_text("console", "fail.bad_float") % "which")

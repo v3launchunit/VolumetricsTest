@@ -918,6 +918,7 @@ jump_height = 2.0
 wake_up_time = 0.0
 sight_line_sweep_speed = 10.0
 detection_stream = SubResource("AudioStreamRandomizer_oao7a")
+attack_interval = 2.0
 bullet = ExtResource("14_0v8ti")
 volley = 5
 spread = 5.0
@@ -960,7 +961,7 @@ bones/20/scale = Vector3(1, 1, 1)
 bones/21/rotation = Quaternion(-0.0824806, -6.65001e-08, -1.41612e-08, 0.996593)
 
 [node name="Cylinder" parent="Pinkerton/Armature/Skeleton3D" index="0"]
-transform = Transform3D(-0.138191, -0.485057, 0.863495, 0.958705, -0.284332, -0.00629129, 0.248571, 0.826967, 0.504319, -0.0575586, 0.337023, 0.191126)
+transform = Transform3D(-0.152613, -0.988275, 0.00470313, 0.987771, -0.152686, -0.0315641, 0.0319121, -0.000171512, 0.999491, -0.171366, 0.362733, 0.0350944)
 
 [node name="Cylinder" parent="Pinkerton/Armature/Skeleton3D/Cylinder" index="0"]
 layers = 2
@@ -999,14 +1000,14 @@ shadow_enabled = true
 distance_fade_enabled = true
 
 [node name="Cylinder_001" parent="Pinkerton/Armature/Skeleton3D" index="1"]
-transform = Transform3D(-0.207287, -0.485057, 1.29524, 1.43806, -0.284332, -0.00943732, 0.372856, 0.826967, 0.756478, -0.0818121, 0.322806, 0.232475)
+transform = Transform3D(-0.22892, -0.988275, 0.00705481, 1.48166, -0.152686, -0.0473465, 0.0478684, -0.000171393, 1.49924, -0.220781, 0.355098, 0.0350859)
 
 [node name="Cylinder_001" parent="Pinkerton/Armature/Skeleton3D/Cylinder_001" index="0"]
 layers = 2
 material_override = SubResource("ShaderMaterial_bkory")
 
 [node name="Shotgun" parent="Pinkerton/Armature/Skeleton3D" index="2"]
-transform = Transform3D(0.986639, 0.130913, 0.0969778, -0.160195, 0.887949, 0.431143, -0.0296693, -0.440918, 0.897057, -0.230856, 0.396004, 0.0636066)
+transform = Transform3D(0.986604, 0.140524, 0.0828634, -0.16216, 0.900244, 0.404061, -0.0178168, -0.412085, 0.910971, -0.231419, 0.395237, 0.0597397)
 
 [node name="Shotgun" parent="Pinkerton/Armature/Skeleton3D/Shotgun" index="0"]
 layers = 2
@@ -1028,7 +1029,7 @@ omni_range = 10.0
 transform = Transform3D(-1.95578e-08, -1, 7.45058e-09, -3.72529e-08, 2.23517e-08, 1, -1, 2.04891e-08, -3.72529e-08, 0, 0.675, -0.135)
 
 [node name="Pump" parent="Pinkerton/Armature/Skeleton3D" index="3"]
-transform = Transform3D(0.986639, 0.130913, 0.0969778, -0.160195, 0.887949, 0.431143, -0.0296693, -0.440918, 0.897057, -0.230856, 0.396004, 0.0636066)
+transform = Transform3D(0.986604, 0.140524, 0.0828634, -0.16216, 0.900244, 0.404061, -0.0178168, -0.412085, 0.910971, -0.231419, 0.395237, 0.0597397)
 
 [node name="Pump" parent="Pinkerton/Armature/Skeleton3D/Pump" index="0"]
 layers = 2

@@ -178,14 +178,13 @@ _data = {
 }
 
 [node name="Crossbow" type="Node3D"]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, -0.35, 0)
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, -0.35, -0.25)
 
 [node name="Crossbow" parent="." instance=ExtResource("1_cxeg4")]
 script = ExtResource("2_vadfq")
 bullet = ExtResource("3_71ym8")
 shot_cooldown = 1.7
 ammo_type = "cells"
-anti_clip_distance = 0.75
 category = 3
 index = 2
 
@@ -236,27 +235,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.95)
 root_node = NodePath("../..")
 tree_root = SubResource("AnimationNodeStateMachine_d86tq")
 anim_player = NodePath("../../AnimationPlayer")
-parameters/current_length = 2.0
-parameters/current_position = 0.160294
-parameters/current_delta = 0.0219113
-parameters/End/current_length = null
-parameters/End/current_position = null
-parameters/End/current_delta = null
-parameters/Start/current_length = 0.0
-parameters/Start/current_position = 0.0
-parameters/Start/current_delta = 0.0
-parameters/charging/current_length = null
-parameters/charging/current_position = null
-parameters/charging/current_delta = null
-parameters/deploy/current_length = 0.7
-parameters/deploy/current_position = 0.7
-parameters/deploy/current_delta = 0.0255277
-parameters/firing/current_length = null
-parameters/firing/current_position = null
-parameters/firing/current_delta = null
-parameters/idle/current_length = 2.0
-parameters/idle/current_position = 0.160294
-parameters/idle/current_delta = 0.0219113
 
 [node name="AlertRadius" type="Area3D" parent="Crossbow"]
 collision_layer = 2

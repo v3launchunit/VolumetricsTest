@@ -1,13 +1,13 @@
 [gd_resource type="GradientTexture2D" load_steps=2 format=3 uid="uid://hk0k2coukjwc"]
 
 [sub_resource type="Gradient" id="Gradient_4uds8"]
-interpolation_mode = 2
-offsets = PackedFloat32Array(0, 0.5, 1)
-colors = PackedColorArray(1, 1, 1, 1, 0.501961, 0.501961, 0.501961, 0.501961, 0, 0, 0, 0)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 0)
 
 [resource]
 resource_name = "_albedo"
 gradient = SubResource("Gradient_4uds8")
+width = 16
+height = 16
 fill = 1
 fill_from = Vector2(0.5, 0.5)
 fill_to = Vector2(1, 0.5)

@@ -169,6 +169,7 @@ stream = SubResource("AudioStreamRandomizer_31jvl")
 [connection signal="menu_closed" from="." to="Settings" method="_on_menu_closed"]
 [connection signal="pressed" from="VBoxContainer/Campaign" to="." method="_on_campaign_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/Save" to="." method="_on_save_button_pressed"]
+[connection signal="button_down" from="VBoxContainer/Settings" to="." method="_on_button_down"]
 [connection signal="pressed" from="VBoxContainer/Settings" to="." method="_on_settings_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/Quit" to="." method="_on_quit_button_pressed"]
 [connection signal="pressed" from="CloseMenuButton" to="." method="_on_close_menu_button_pressed"]

@@ -1362,13 +1362,13 @@ _surfaces = [{
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_h7per"]
 
-[sub_resource type="Sky" id="Sky_udgag"]
+[sub_resource type="Sky" id="Sky_gbo6r"]
 sky_material = SubResource("ProceduralSkyMaterial_h7per")
 
 [sub_resource type="Environment" id="Environment_pj60o"]
 background_mode = 2
 background_energy_multiplier = 0.0
-sky = SubResource("Sky_udgag")
+sky = SubResource("Sky_gbo6r")
 glow_blend_mode = 0
 glow_map = ExtResource("16_7a838")
 fog_enabled = true

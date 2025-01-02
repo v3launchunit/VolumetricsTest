@@ -164,17 +164,28 @@ var mouse_captured: bool = false
 
 
 func _init() -> void:
+	var err: Error = OK
 	process_mode = Node.PROCESS_MODE_ALWAYS
-	if names.load("res://names.cfg"):
-		printerr("could not load names.cfg")
-	if text.load("res://text/text_%s.cfg" % get_lang_name(s_lang)):
-		printerr("could not load text_%s.cfg")
-	if campaign.load("res://campaign.cfg"):
-		printerr("could not load campaign.cfg")
+	err = names.load("res://names.cfg")
+	assert(not err, "could not load names.cfg (error code %s)" % err)
+	#if names.load("res://names.cfg"):
+		#printerr("could not load names.cfg")
+	err = text.load("res://text/text_%s.cfg" % get_lang_name(s_lang))
+	assert(not err, "could not load text_%s.cfg (error code %s)" % [get_lang_name(s_lang), err])
+	#if text.load("res://text/text_%s.cfg" % get_lang_name(s_lang)):
+		#printerr("could not load text_%s.cfg")
+	err = campaign.load("res://campaign.cfg")
+	assert(not err, "could not load campaign.cfg (error code %s)" % err)
+	#if campaign.load("res://campaign.cfg"):
+		#printerr("could not load campaign.cfg")
 	_setup_user()
 	_load_config()
 	persistent.load("user://saves/persistent.cfg")
 	cheats_enabled = OS.has_feature("editor")
+
+
+func _enter_tree() -> void:
+	add_console_commands()
 
 
 func _ready() -> void:
@@ -182,17 +193,22 @@ func _ready() -> void:
 	settings_changed.connect(_on_settings_changed)
 
 
-func _enter_tree() -> void:
+#region console commands
+func add_console_commands() -> void:
 	Console.add_command("opensesame", open_sesame)
 	Console.add_command("closesesame", close_sesame)
+	Console.add_command("reload_text", reload_text, [], 0, parse_text("console", "desc.reload_text"))
+	Console.add_command("map", cmd_map, ["level key"], 1, parse_text("console", "desc.map"))
+	Console.add_command("get_fun", func(): Console.print_line("%d" % fun))#, [], 0, parse_text("console", "desc.get_fun"))
+	Console.add_command("set_fun", cmd_set_fun, ["0-1000 int value"], 1)#, parse_text("console", "desc.set_fun"))
 
-#region console commands
+
 func open_sesame() -> void:
 	if s_nightmare:
-		Console.print_error(parse_text("console", "fail.blocked.nightmare"))
+		Console.print_line(parse_text("console", "fail.blocked.nightmare"))
 		return
 	elif cheats_enabled:
-		Console.print_error(parse_text("console", "fail.blocked.redundant.opensesame"))
+		Console.print_blocked(parse_text("console", "fail.blocked.redundant.opensesame"))
 		return
 	cheats_enabled = true
 	Console.print_line(parse_text("console", "opensesame"))
@@ -202,11 +218,29 @@ func close_sesame() -> void:
 	if s_nightmare:
 		return
 	elif not cheats_enabled:
-		Console.print_error(parse_text("console", "fail.blocked.redundant.closesesame"))
+		Console.print_blocked(parse_text("console", "fail.blocked.redundant.closesesame"))
 		return
 	cheats_enabled = false
 	Console.print_line(parse_text("console", "closesesame"))
+
+
+func reload_text() -> void:
+	var err: Error = names.load("res://names.cfg")
+	assert(not err, "could not load names.cfg (error code %s)" % err)
+
+
+func cmd_set_fun(to: int) -> void:
+	if try_run_cheat():
+		fun = to
+
+
+func cmd_map(level_key: String) -> void:
+	if s_nightmare:
+		Console.print_line(parse_text("console", "fail.blocked.nightmare"))
+		return
+	open_level_from_key(level_key)
 #endregion
+
 
 #func _physics_process(delta: float) -> void:
 	#Engine.time_scale = smoothstep(Engine.time_scale, 1.0, delta / Engine.time_scale)
@@ -382,7 +416,7 @@ func parse_text(section: String, key: String) -> String:
 	#print(text.get_value(section, key))
 	var out := text.get_value(section, key, "MISSING: %s/%s" % [section, key]) as String
 	if out.begins_with("MISSING: "):
-		Console.print_error("ERROR: language %s/%s" % [section, key])
+		Console.print_error("language key %s/%s does not correspond to a valid text_%s.cfg entry!" % [section, key, get_lang_name(s_lang)])
 	return out
 
 
@@ -455,8 +489,8 @@ func try_run_cheat() -> bool:
 	if (cheats_enabled and not s_nightmare):
 		return true
 	elif s_nightmare:
-		Console.print_error(parse_text("console", "fail.blocked.nightmare"))
+		Console.print_line(parse_text("console", "fail.blocked.nightmare"))
 		return false
 	else:
-		Console.print_error(parse_text("console", "fail.blocked.generic"))
+		Console.print_blocked(parse_text("console", "fail.blocked.generic"))
 		return false

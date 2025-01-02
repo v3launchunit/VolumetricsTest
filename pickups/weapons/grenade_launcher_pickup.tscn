@@ -161,7 +161,7 @@ script = ExtResource("6_6pyji")
 color = Color(1, 1, 0, 1)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Area3D"]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
+transform = Transform3D(0.5, 0, 0, 0, 0.482963, 0.12941, 0, -0.12941, 0.482963, 0, 0.225, 0.25)
 material_override = SubResource("ShaderMaterial_t7w83")
 mesh = ExtResource("7_uskm0")
 

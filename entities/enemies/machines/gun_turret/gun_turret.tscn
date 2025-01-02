@@ -316,7 +316,7 @@ shader_parameter/uv1_scale = Vector3(1, 1, 1)
 shader_parameter/uv1_offset = Vector3(0, 0, 0)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_odfgk"]
-size = Vector3(1, 0.35, 1)
+size = Vector3(1, 1, 1.5)
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_oxbkp"]
 animation = &"gun_turret_anims/gun_turret_fire"

@@ -14,6 +14,7 @@ disable_ambient_light = true
 disable_fog = true
 vertex_color_use_as_albedo = true
 albedo_texture = ExtResource("1_aobva")
+texture_filter = 1
 billboard_mode = 1
 fixed_size = true
 point_size = 64.0

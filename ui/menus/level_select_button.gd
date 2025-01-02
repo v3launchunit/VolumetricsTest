@@ -43,7 +43,7 @@ func check_unlocked() -> void:
 
 
 func _on_pressed() -> void:
-	_press_sound.play()
+	#_press_sound.play()
 	if _scene == null:
 		_scene = ResourceLoader.load_threaded_get(level_path)
 	Globals.open_level(_scene)

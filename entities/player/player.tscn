@@ -122,6 +122,7 @@ func _ready() -> void:
 
 
 func _on_globals_settings_changed() -> void:
+	return
 	#visible = Globals.s_palette_compress_enabled
 	material.set_shader_parameter(
 			\"palette\",
