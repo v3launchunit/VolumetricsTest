@@ -1,19 +1,22 @@
-[gd_resource type="Resource" script_class="FuncGodotFGDPointClass" load_steps=2 format=3 uid="uid://3caegiy3i6ra"]
+[gd_resource type="Resource" script_class="FuncGodotFGDPointClass" load_steps=4 format=3 uid="uid://3caegiy3i6ra"]
 
+[ext_resource type="Resource" uid="uid://c73xdr38wm4dj" path="res://trench_broom/func_godot_fgd/entities/base/linkable_base_class.tres" id="1_01b0m"]
 [ext_resource type="Script" path="res://addons/func_godot/src/fgd/func_godot_fgd_point_class.gd" id="1_02ny8"]
+[ext_resource type="PackedScene" uid="uid://7e6nf0ho2ltr" path="res://scenes/objects/teleporter.tscn" id="1_p0byb"]
 
 [resource]
 script = ExtResource("1_02ny8")
+scene_file = ExtResource("1_p0byb")
 apply_rotation_on_map_build = true
-classname = ""
+classname = "func_tele"
 description = ""
 func_godot_internal = false
-base_classes = Array[Resource]([])
+base_classes = Array[Resource]([ExtResource("1_01b0m")])
 class_properties = {}
 class_property_descriptions = {}
 meta_properties = {
 "color": Color(0.8, 0.8, 0.8, 1),
-"size": AABB(-8, -8, -8, 8, 8, 8)
+"size": AABB(-8, -8, -16, 8, 8, 16)
 }
 node_class = ""
 name_property = ""

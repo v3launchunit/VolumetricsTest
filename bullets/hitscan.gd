@@ -87,6 +87,11 @@ func _physics_process(_delta: float) -> void:
 		#if result.collider is RigidBody3D:
 			#(result.collider as RigidBody3D).apply_impulse(global_basis.z, result.position)
 		
+		if result.collider.has_method("apply_knockback"):
+			result.collider.apply_knockback(knockback_force * (
+					result.collider.global_position - global_position
+			).normalized())
+		
 		if result.collider.has_node("Status"):
 			var status: Status = result.collider.find_child("Status")
 			if (
@@ -95,9 +100,6 @@ func _physics_process(_delta: float) -> void:
 					and invoker != result.collider
 			):
 				result.collider.detect_target(invoker, EnemyBase.DetectionType.RETALIATION)
-				result.collider.apply_knockback(knockback_force * (
-						result.collider.global_position - global_position
-				).normalized())
 			
 			damage -= status.damage(damage * (
 					player_damage_multiplier[Globals.s_difficulty]

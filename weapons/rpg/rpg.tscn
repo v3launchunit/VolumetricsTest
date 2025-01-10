@@ -5,7 +5,7 @@
 [ext_resource type="Script" path="res://weapons/alert_area.gd" id="2_v1et6"]
 [ext_resource type="AnimationLibrary" uid="uid://c1poci1it3ds0" path="res://weapons/rpg/rpg_anims.res" id="3_ktpeh"]
 [ext_resource type="PackedScene" uid="uid://c356m28y5sg6h" path="res://bullets/player/projectile/rockets/mini_rocket.tscn" id="3_yt74d"]
-[ext_resource type="Material" uid="uid://digscwwl48m5g" path="res://weapons/rpg/rpg_mat_2.tres" id="4_0tpv3"]
+[ext_resource type="Material" uid="uid://digscwwl48m5g" path="res://weapons/rpg/rocket_mat_vm.tres" id="4_0tpv3"]
 [ext_resource type="PackedScene" uid="uid://d1cpxon0he540" path="res://bullets/player/projectile/rockets/guided_rocket.tscn" id="4_u0lpw"]
 [ext_resource type="Material" uid="uid://bf74i5chaorag" path="res://weapons/rpg/rpg_mat_1.tres" id="5_mmwam"]
 

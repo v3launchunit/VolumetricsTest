@@ -40,6 +40,11 @@ var alt_ammo_display: int = 0.0
 @onready var tooltip := find_child("Tooltip") as RichTextLabel
 @onready var heat_flash := $HeatFlash as Control
 
+@onready var berserk_timer := find_child("BerserkTimer") as TextureProgressBar
+@onready var filters_timer := find_child("FiltersTimer") as TextureProgressBar
+@onready var invuln_timer := find_child("InvulnTimer") as TextureProgressBar
+@onready var invuln_flash := find_child("InvulnFlash") as TextureRect
+
 
 func _ready() -> void:
 	flash_rect.visible = false
@@ -108,6 +113,25 @@ func _process(delta: float) -> void:
 		if heat_flash.modulate.a <= 0.0:
 			heat_flash.visible = false
 
+	if status.berserk_timer > 0:
+		berserk_timer.visible = true
+		berserk_timer.value = status.berserk_timer
+	else:
+		berserk_timer.visible = false
+	
+	if status.filters_timer > 0:
+		filters_timer.visible = true
+		filters_timer.value = status.filters_timer
+	else:
+		filters_timer.visible = false
+	
+	if status.invuln_timer > 0:
+		invuln_timer.visible = true
+		invuln_timer.value = status.invuln_timer
+	else:
+		invuln_timer.visible = false
+	invuln_flash.visible = invuln_timer.visible
+
 	if Input.is_action_just_pressed("quick_exit"):
 		get_tree().quit()
 
@@ -135,6 +159,7 @@ func rapid_flash(type: Status.DamageType, delta: float):
 func log_event(event_text: String) -> void:
 	var event := event_item.instantiate() as RichTextLabel
 	event.text = event_text
+	Console.print_line(event_text)
 	event_container.add_child(event)
 	#event_container.move_child(event, 0)
 

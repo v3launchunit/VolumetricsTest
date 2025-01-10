@@ -173,6 +173,12 @@ func _on_globals_settings_changed() -> void:
 	visible = Globals.s_cross_glow_enabled
 "
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_58b4n"]
+transparency = 1
+shading_mode = 0
+albedo_color = Color(1, 1, 1, 0.0627451)
+billboard_mode = 2
+
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_v43hw"]
 emission_shape = 3
 emission_box_extents = Vector3(2, 1, 0.5)
@@ -182,15 +188,12 @@ initial_velocity_min = 50.0
 initial_velocity_max = 50.0
 gravity = Vector3(0, 0, 0)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_58b4n"]
-transparency = 1
-shading_mode = 0
-albedo_color = Color(1, 1, 1, 0.0627451)
-billboard_mode = 2
-
-[sub_resource type="QuadMesh" id="QuadMesh_fyuqx"]
-material = SubResource("StandardMaterial3D_58b4n")
-size = Vector2(0.063, 1)
+[sub_resource type="CylinderMesh" id="CylinderMesh_pkwoh"]
+top_radius = 0.063
+bottom_radius = 0.063
+height = 1.0
+radial_segments = 4
+rings = 0
 
 [node name="Player" type="CharacterBody3D" groups=["players"]]
 editor_description = "The player character."
@@ -403,10 +406,11 @@ script = SubResource("GDScript_dlywb")
 [node name="SlamWindSys" type="GPUParticles3D" parent="Control/SubViewportContainer/SubViewport/PlayerSync/PlayerCam"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3, -0.5)
 visible = false
+material_override = SubResource("StandardMaterial3D_58b4n")
 lifetime = 0.1
 local_coords = true
 process_material = SubResource("ParticleProcessMaterial_v43hw")
-draw_pass_1 = SubResource("QuadMesh_fyuqx")
+draw_pass_1 = SubResource("CylinderMesh_pkwoh")
 
 [node name="WindStreamPlayer" type="AudioStreamPlayer" parent="Control/SubViewportContainer/SubViewport/PlayerSync/PlayerCam/SlamWindSys"]
 stream = ExtResource("37_0ygxn")

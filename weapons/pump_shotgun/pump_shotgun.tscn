@@ -7,14 +7,14 @@
 [ext_resource type="AnimationLibrary" uid="uid://byhlw1uu73dbf" path="res://weapons/pump_shotgun/shotgun_anims.res" id="5_eekxh"]
 [ext_resource type="PackedScene" uid="uid://rchnjnxfhuga" path="res://bullets/player/projectile/grenade.tscn" id="6_kwhqf"]
 [ext_resource type="PackedScene" uid="uid://d4mp4mj8p46h1" path="res://bullets/player/hitscan/hitscan_bullet.tscn" id="7_pot81"]
-[ext_resource type="Material" uid="uid://dq3a5fxspauox" path="res://weapons/muzzle_flash_yellow.tres" id="8_scexd"]
+[ext_resource type="Material" uid="uid://dq3a5fxspauox" path="res://weapons/muzzle_flash_yellow_vm.tres" id="8_scexd"]
 [ext_resource type="Texture2D" uid="uid://dbnasmfycrfat" path="res://pickups/ammo/shotgun_shell/shotgun_shell.png" id="8_xoaa3"]
 [ext_resource type="Texture2D" uid="uid://cxhsqnpu78e2q" path="res://pickups/ammo/shotgun_shell/shotgun_shell_metallic.png" id="9_2ordl"]
 [ext_resource type="Texture2D" uid="uid://dao3wvs485yhb" path="res://pickups/ammo/shotgun_shell/shotgun_shell_roughness.png" id="10_iuq6n"]
 [ext_resource type="Script" path="res://weapons/alert_area.gd" id="11_gubn0"]
 [ext_resource type="ArrayMesh" uid="uid://4fkwqxsei5n8" path="res://weapons/pump_shotgun/pump_shotgun_grip.obj" id="11_qkg1t"]
 [ext_resource type="Material" uid="uid://c086q2xby2v7i" path="res://weapons/pump_shotgun/pump_shotgun_mat_2.tres" id="14_ipw8l"]
-[ext_resource type="Material" uid="uid://nv0jkcw45ofc" path="res://weapons/weapon_metal.tres" id="15_4jabk"]
+[ext_resource type="Material" uid="uid://nv0jkcw45ofc" path="res://weapons/weapon_metal_vm.tres" id="15_4jabk"]
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_psgfd"]
 direction = Vector3(-1, 0, 0)

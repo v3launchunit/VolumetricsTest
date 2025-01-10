@@ -397,6 +397,7 @@ script = ExtResource("1_0ajli")
 shape = SubResource("SphereShape3D_f8nba")
 
 [node name="lever" parent="." instance=ExtResource("2_saqbp")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
 
 [node name="Base" parent="lever" index="0"]
 material_override = SubResource("ShaderMaterial_rey83")
@@ -419,14 +420,14 @@ stream = SubResource("AudioStreamRandomizer_7mfl3")
 bus = &"World"
 
 [node name="OmniLight3D" type="OmniLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.175, 0.075)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.175, -0.075)
 light_color = Color(1, 0, 0, 1)
 shadow_enabled = true
 distance_fade_enabled = true
 script = ExtResource("8_ml0r5")
 
 [node name="OmniLight3D2" type="OmniLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.175, 0.075)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.175, -0.075)
 visible = false
 light_color = Color(0, 1, 0, 1)
 shadow_enabled = true

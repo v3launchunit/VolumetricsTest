@@ -34,6 +34,7 @@ class_property_descriptions = {
 }
 meta_properties = {
 "color": Color(0.8, 0.8, 0.8, 1),
+"model": "{{ ambusher == \"camo lizard\" -> {\"path\": \"models/enemy_lizard.glb\"}, ambusher == \"canary\" -> {\"path\": \"models/enemy_canary.glb\"}, ambusher == \"enforcer\" -> {\"path\": \"models/enemy_enforcer.glb\"}, ambusher == \"eyeball\" -> {\"path\": \"models/enemy_eyeball.glb\"}, ambusher == \"lizard\" -> {\"path\": \"models/enemy_lizard.glb\"}, ambusher == \"pinkerton\" -> {\"path\": \"models/enemy_pinkerton.glb\"}, ambusher == \"plasma_droid\" -> {\"path\": \"models/enemy_plasma_droid.glb\"}, ambusher == \"rocketeer\" -> {\"path\": \"models/enemy_rocketeer.glb\"}, ambusher == \"eepy_lizard\" -> {\"path\": \"models/enemy_lizard.glb\"}, ambusher == \"soldier\" -> {\"path\": \"models/enemy_soldier.glb\"}, {\"path\": \"models/enemy_pinkerton.glb\"} }}",
 "size": AABB(-8, -8, -8, 8, 8, 8)
 }
 node_class = "Marker3D"

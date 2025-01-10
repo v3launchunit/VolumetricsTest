@@ -5,8 +5,8 @@
 [ext_resource type="AnimationLibrary" uid="uid://clbhlm2virvf0" path="res://weapons/nailgun/nailgun_anims.res" id="3_8tsnk"]
 [ext_resource type="ArrayMesh" uid="uid://crk83yrjbvbg6" path="res://weapons/muzzle_flash.obj" id="3_kb333"]
 [ext_resource type="PackedScene" uid="uid://dhplxq8nkqau3" path="res://bullets/player/projectile/nail.tscn" id="3_v6ia4"]
-[ext_resource type="Material" uid="uid://nv0jkcw45ofc" path="res://weapons/weapon_metal.tres" id="4_r4di6"]
-[ext_resource type="Material" uid="uid://dq3a5fxspauox" path="res://weapons/muzzle_flash_yellow.tres" id="4_tc63f"]
+[ext_resource type="Material" uid="uid://nv0jkcw45ofc" path="res://weapons/weapon_metal_vm.tres" id="4_r4di6"]
+[ext_resource type="Material" uid="uid://dq3a5fxspauox" path="res://weapons/muzzle_flash_yellow_vm.tres" id="4_tc63f"]
 [ext_resource type="Script" path="res://weapons/alert_area.gd" id="4_xgkgl"]
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_pa5f1"]

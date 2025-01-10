@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://hk0k2coukjwc" path="res://effects/halos/halo_tex.tres" id="4_ir4pn"]
 [ext_resource type="Script" path="res://scripts/effects/halo.gd" id="5_dijpx"]
 [ext_resource type="PackedScene" uid="uid://babited41kti5" path="res://weapons/rpg/rpg.glb" id="6_u5jkc"]
+[ext_resource type="Material" uid="uid://bu1ph5as16u6f" path="res://bullets/rocket_mat.tres" id="8_ksabr"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_uc2sx"]
 height = 1.0
@@ -119,20 +120,6 @@ shader_parameter/uv1_offset = Vector3(0, 0, 0)
 shader_parameter/uv2_scale = Vector3(1, 1, 1)
 shader_parameter/uv2_offset = Vector3(0, 0, 0)
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_mhjjd"]
-render_priority = 0
-shader = SubResource("Shader_snc4y")
-shader_parameter/albedo = Color(0.501961, 0.501961, 0.501961, 1)
-shader_parameter/point_size = 1.0
-shader_parameter/roughness = 0.25
-shader_parameter/metallic_texture_channel = Vector4(1, 0, 0, 0)
-shader_parameter/specular = 0.5
-shader_parameter/metallic = 1.0
-shader_parameter/uv1_scale = Vector3(1, 1, 1)
-shader_parameter/uv1_offset = Vector3(0, 0, 0)
-shader_parameter/uv2_scale = Vector3(1, 1, 1)
-shader_parameter/uv2_offset = Vector3(0, 0, 0)
-
 [sub_resource type="Animation" id="Animation_wivti"]
 resource_name = "anim"
 length = 10.0
@@ -202,7 +189,7 @@ material_override = SubResource("ShaderMaterial_0142x")
 
 [node name="rocket" parent="Area3D/rpg/tube" index="1"]
 layers = 2
-material_override = SubResource("ShaderMaterial_mhjjd")
+material_override = ExtResource("8_ksabr")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 root_node = NodePath("../Area3D")

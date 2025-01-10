@@ -677,7 +677,6 @@ target_position = Vector3(0, 0, -32)
 
 [node name="Status" type="Node" parent="gun_turret"]
 script = ExtResource("9_bbmqx")
-max_health = 300.0
 gib_threshold = 0.0
 damage_sys = ExtResource("12_ryqfr")
 gibs = ExtResource("13_xgnmw")

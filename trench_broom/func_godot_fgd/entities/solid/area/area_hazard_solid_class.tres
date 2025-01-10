@@ -31,10 +31,15 @@ class_properties = {
 "Toxic": "TOXIC"
 },
 "dps": 5.0,
+"hazard_type": {
+"death_barrier": 0,
+"lava": 1
+},
 "player_dps": 5.0
 }
 class_property_descriptions = {
-"damage_type": ["", "GENERIC"]
+"damage_type": ["", "GENERIC"],
+"hazard_type": ["", -1]
 }
 meta_properties = {
 "color": Color(0.8, 0.8, 0.8, 1),

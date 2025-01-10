@@ -8,8 +8,8 @@
 [ext_resource type="Script" path="res://weapons/alert_area.gd" id="6_tkwec"]
 [ext_resource type="Texture2D" uid="uid://cmq3arf61ax4f" path="res://ui/menus/menu_panel.png" id="7_fhw24"]
 [ext_resource type="AnimationLibrary" uid="uid://c3dmw3a4e8q1c" path="res://weapons/hunting_rifle/hunting_rifle_anims.res" id="7_mroe0"]
-[ext_resource type="Material" uid="uid://dq3a5fxspauox" path="res://weapons/muzzle_flash_yellow.tres" id="7_ndw68"]
-[ext_resource type="Material" uid="uid://nv0jkcw45ofc" path="res://weapons/weapon_metal.tres" id="7_xxpk2"]
+[ext_resource type="Material" uid="uid://dq3a5fxspauox" path="res://weapons/muzzle_flash_yellow_vm.tres" id="7_ndw68"]
+[ext_resource type="Material" uid="uid://nv0jkcw45ofc" path="res://weapons/weapon_metal_vm.tres" id="7_xxpk2"]
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_e5j86"]
 animation = &"hunting_rifle_anims/hunting_rifle_charge"
@@ -115,7 +115,7 @@ _data = {
 }
 
 [node name="HuntingRifle" type="Node3D"]
-transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.125, -0.15, -0.15, -0.35)
+transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.125, -0.05, -0.15, -0.35)
 
 [node name="hunting_rifle" parent="." node_paths=PackedStringArray("_label") instance=ExtResource("1_2vytj")]
 script = ExtResource("2_rovkw")

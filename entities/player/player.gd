@@ -404,7 +404,7 @@ func _gravity(delta: float) -> Vector3:
 			slam_timer = 0.0 #smoothstep(slam_timer, 0.0, delta)
 		else:
 			slam_decay -= delta
-		if is_on_floor() or is_on_ceiling():
+		if is_on_floor():
 			grav_vel = Vector3.ZERO
 		else:
 			grav_vel -= Vector3.UP * (rise_grav if Input.is_action_pressed("jump") else fall_grav) * delta

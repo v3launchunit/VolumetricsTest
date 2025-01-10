@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="FuncGodotFGDPointClass" load_steps=3 format=3 uid="uid://dhf6e8bbr40pb"]
+
+[ext_resource type="PackedScene" uid="uid://5onwaj47kop" path="res://pickups/powerups/invuln_pickup.tscn" id="1_yumw1"]
+[ext_resource type="Script" path="res://addons/func_godot/src/fgd/func_godot_fgd_point_class.gd" id="2_4eryk"]
+
+[resource]
+script = ExtResource("2_4eryk")
+scene_file = ExtResource("1_yumw1")
+apply_rotation_on_map_build = true
+classname = "powerup_invuln"
+description = ""
+func_godot_internal = false
+base_classes = Array[Resource]([])
+class_properties = {}
+class_property_descriptions = {}
+meta_properties = {
+"color": Color(0.8, 0.8, 0.8, 1),
+"size": AABB(-8, -8, -8, 8, 8, 8)
+}
+node_class = ""
+name_property = ""

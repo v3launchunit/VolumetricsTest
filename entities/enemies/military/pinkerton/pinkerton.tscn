@@ -906,7 +906,7 @@ states/moving/position = Vector2(597.334, 101.139)
 states/standby/node = SubResource("AnimationNodeAnimation_i2cel")
 states/standby/position = Vector2(458.68, 345.667)
 transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_2prg3"), "idle", "moving", SubResource("AnimationNodeStateMachineTransition_7oomp"), "moving", "idle", SubResource("AnimationNodeStateMachineTransition_dbccw"), "moving", "attacking", SubResource("AnimationNodeStateMachineTransition_4xupg"), "idle", "attacking", SubResource("AnimationNodeStateMachineTransition_majfp"), "attacking", "moving", SubResource("AnimationNodeStateMachineTransition_2nn25"), "attacking", "idle", SubResource("AnimationNodeStateMachineTransition_w5vit"), "attacking", "dead", SubResource("AnimationNodeStateMachineTransition_se8tw"), "idle", "dead", SubResource("AnimationNodeStateMachineTransition_bj5l4"), "moving", "dead", SubResource("AnimationNodeStateMachineTransition_x017w"), "idle", "flinching", SubResource("AnimationNodeStateMachineTransition_goefx"), "attacking", "flinching", SubResource("AnimationNodeStateMachineTransition_3fks7"), "moving", "flinching", SubResource("AnimationNodeStateMachineTransition_stoq6"), "flinching", "moving", SubResource("AnimationNodeStateMachineTransition_wpkvg"), "flinching", "dead", SubResource("AnimationNodeStateMachineTransition_mr23i"), "moving", "jumping", SubResource("AnimationNodeStateMachineTransition_gw055"), "jumping", "moving", SubResource("AnimationNodeStateMachineTransition_oewr8"), "jumping", "flinching", SubResource("AnimationNodeStateMachineTransition_xmef0"), "idle", "standby", SubResource("AnimationNodeStateMachineTransition_pcyj4"), "standby", "idle", SubResource("AnimationNodeStateMachineTransition_vxkm0"), "standby", "attacking", SubResource("AnimationNodeStateMachineTransition_c1qta"), "attacking", "standby", SubResource("AnimationNodeStateMachineTransition_tk35l"), "flinching", "standby", SubResource("AnimationNodeStateMachineTransition_7ls5p"), "standby", "flinching", SubResource("AnimationNodeStateMachineTransition_kvgif"), "standby", "dead", SubResource("AnimationNodeStateMachineTransition_4m1fh")]
-graph_offset = Vector2(-413, 217)
+graph_offset = Vector2(-399, 30)
 
 [node name="Pinkerton" type="CharacterBody3D"]
 collision_layer = 4
@@ -961,7 +961,7 @@ bones/20/scale = Vector3(1, 1, 1)
 bones/21/rotation = Quaternion(-0.0824806, -6.65001e-08, -1.41612e-08, 0.996593)
 
 [node name="Cylinder" parent="Pinkerton/Armature/Skeleton3D" index="0"]
-transform = Transform3D(-0.152613, -0.988275, 0.00470313, 0.987771, -0.152686, -0.0315641, 0.0319121, -0.000171512, 0.999491, -0.171366, 0.362733, 0.0350944)
+transform = Transform3D(-0.147369, -0.698597, 0.700175, 0.940582, -0.317937, -0.119251, 0.30592, 0.640998, 0.703942, -0.090031, 0.289035, 0.277909)
 
 [node name="Cylinder" parent="Pinkerton/Armature/Skeleton3D/Cylinder" index="0"]
 layers = 2
@@ -1000,14 +1000,14 @@ shadow_enabled = true
 distance_fade_enabled = true
 
 [node name="Cylinder_001" parent="Pinkerton/Armature/Skeleton3D" index="1"]
-transform = Transform3D(-0.22892, -0.988275, 0.00705481, 1.48166, -0.152686, -0.0473465, 0.0478684, -0.000171393, 1.49924, -0.220781, 0.355098, 0.0350859)
+transform = Transform3D(-0.221054, -0.698597, 1.05026, 1.41087, -0.317937, -0.178877, 0.45888, 0.640998, 1.05591, -0.124962, 0.273138, 0.309959)
 
 [node name="Cylinder_001" parent="Pinkerton/Armature/Skeleton3D/Cylinder_001" index="0"]
 layers = 2
 material_override = SubResource("ShaderMaterial_bkory")
 
 [node name="Shotgun" parent="Pinkerton/Armature/Skeleton3D" index="2"]
-transform = Transform3D(0.986604, 0.140524, 0.0828634, -0.16216, 0.900244, 0.404061, -0.0178168, -0.412085, 0.910971, -0.231419, 0.395237, 0.0597397)
+transform = Transform3D(0.0886027, 0.975894, 0.19945, 0.373066, 0.15315, -0.915078, -0.923564, 0.155486, -0.350504, 0.385154, -0.4477, 0.378488)
 
 [node name="Shotgun" parent="Pinkerton/Armature/Skeleton3D/Shotgun" index="0"]
 layers = 2
@@ -1029,7 +1029,7 @@ omni_range = 10.0
 transform = Transform3D(-1.95578e-08, -1, 7.45058e-09, -3.72529e-08, 2.23517e-08, 1, -1, 2.04891e-08, -3.72529e-08, 0, 0.675, -0.135)
 
 [node name="Pump" parent="Pinkerton/Armature/Skeleton3D" index="3"]
-transform = Transform3D(0.986604, 0.140524, 0.0828634, -0.16216, 0.900244, 0.404061, -0.0178168, -0.412085, 0.910971, -0.231419, 0.395237, 0.0597397)
+transform = Transform3D(0.0886027, 0.975894, 0.19945, 0.373066, 0.15315, -0.915078, -0.923564, 0.155486, -0.350504, 0.385154, -0.4477, 0.378488)
 
 [node name="Pump" parent="Pinkerton/Armature/Skeleton3D/Pump" index="0"]
 layers = 2

@@ -1,4 +1,4 @@
-[gd_scene load_steps=40 format=4 uid="uid://dh4rwigqkk6va"]
+[gd_scene load_steps=43 format=4 uid="uid://dh4rwigqkk6va"]
 
 [ext_resource type="Script" path="res://ui/hud/hud_handler.gd" id="1_prp1p"]
 [ext_resource type="Texture2D" uid="uid://co2ho6yh415d6" path="res://ui/hud/hud_bar.png" id="2_77nrq"]
@@ -31,6 +31,22 @@ fill_from = Vector2(0.5, 0.5)
 gradient = SubResource("Gradient_ljioa")
 fill = 1
 fill_from = Vector2(0.5, 0.5)
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_230g8"]
+blend_mode = 1
+
+[sub_resource type="Gradient" id="Gradient_s8m2x"]
+interpolation_mode = 2
+offsets = PackedFloat32Array(0.75, 1)
+colors = PackedColorArray(0, 0, 1, 0, 0, 0, 1, 0.25098)
+metadata/_snap_enabled = true
+metadata/_snap_count = 8
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_aukdt"]
+gradient = SubResource("Gradient_s8m2x")
+fill = 2
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(1, 0.5)
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_2rvi6"]
 seed = 475
@@ -209,6 +225,20 @@ grow_vertical = 2
 mouse_filter = 2
 texture = SubResource("GradientTexture2D_7oab2")
 
+[node name="InvulnFlash" type="TextureRect" parent="."]
+visible = false
+texture_filter = 2
+material = SubResource("CanvasItemMaterial_230g8")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_bottom = -32.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = SubResource("GradientTexture2D_aukdt")
+
 [node name="HeatFlash" type="Control" parent="."]
 visible = false
 layout_mode = 1
@@ -220,7 +250,6 @@ grow_vertical = 2
 mouse_filter = 2
 
 [node name="Flash" type="TextureRect" parent="HeatFlash"]
-visible = false
 modulate = Color(1, 0.501961, 0, 1)
 texture_filter = 2
 layout_mode = 1
@@ -233,6 +262,7 @@ mouse_filter = 2
 texture = SubResource("GradientTexture2D_7oab2")
 
 [node name="ColorRect" type="ColorRect" parent="HeatFlash"]
+visible = false
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0

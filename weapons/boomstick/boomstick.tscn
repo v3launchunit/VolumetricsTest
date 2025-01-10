@@ -13,7 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://byrs4y4a0drln" path="res://bullets/player/hitscan/boomstick_bullet.tscn" id="9_h281q"]
 [ext_resource type="PackedScene" uid="uid://8e2mh2q14v3k" path="res://bullets/player/projectile/harpoon.tscn" id="9_jcufi"]
 [ext_resource type="Script" path="res://weapons/alert_area.gd" id="10_khxxt"]
-[ext_resource type="Material" uid="uid://dq3a5fxspauox" path="res://weapons/muzzle_flash_yellow.tres" id="10_lwo5p"]
+[ext_resource type="Material" uid="uid://dq3a5fxspauox" path="res://weapons/muzzle_flash_yellow_vm.tres" id="10_lwo5p"]
 [ext_resource type="Texture2D" uid="uid://dbnasmfycrfat" path="res://pickups/ammo/shotgun_shell/shotgun_shell.png" id="12_546ee"]
 [ext_resource type="Texture2D" uid="uid://cxhsqnpu78e2q" path="res://pickups/ammo/shotgun_shell/shotgun_shell_metallic.png" id="13_6782y"]
 [ext_resource type="Texture2D" uid="uid://dao3wvs485yhb" path="res://pickups/ammo/shotgun_shell/shotgun_shell_roughness.png" id="14_d028w"]

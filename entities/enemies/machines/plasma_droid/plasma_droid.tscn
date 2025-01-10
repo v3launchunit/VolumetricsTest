@@ -457,6 +457,7 @@ melee_range = 4.0
 attack_recovery_time = 1.5
 flinch_chance = 0.0
 death_stream = SubResource("AudioStreamRandomizer_akb4x")
+edible = false
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("CapsuleShape3D_xqi1h")
@@ -576,30 +577,6 @@ libraries = {
 [node name="AnimationTree" type="AnimationTree" parent="."]
 tree_root = SubResource("AnimationNodeStateMachine_nc82m")
 anim_player = NodePath("../AnimationPlayer")
-parameters/current_length = 3.0
-parameters/current_position = 1.13333
-parameters/current_delta = 0.0162088
-parameters/End/current_length = null
-parameters/End/current_position = null
-parameters/End/current_delta = null
-parameters/Start/current_length = 0.0
-parameters/Start/current_position = 0.0
-parameters/Start/current_delta = 0.0
-parameters/ambush/current_length = 0.001
-parameters/ambush/current_position = 0.001
-parameters/ambush/current_delta = 0.0
-parameters/attacking/current_length = null
-parameters/attacking/current_position = null
-parameters/attacking/current_delta = null
-parameters/bullet_attacking/current_length = null
-parameters/bullet_attacking/current_position = null
-parameters/bullet_attacking/current_delta = null
-parameters/idle/current_length = 3.0
-parameters/idle/current_position = 1.13333
-parameters/idle/current_delta = 0.0162088
-parameters/moving/current_length = null
-parameters/moving/current_position = null
-parameters/moving/current_delta = null
 
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
 volume_db = 3.0
@@ -611,6 +588,7 @@ doppler_tracking = 2
 script = ExtResource("2_3ftdv")
 max_health = 500.0
 gib_threshold = 0.0
+damage_multipliers = Array[float]([1.0, 0.25, 1.0, 0.0, 2.0])
 damage_sys = ExtResource("3_bt5p4")
 gibs = ExtResource("3_rukio")
 loot = Array[PackedScene]([ExtResource("5_4ag46")])

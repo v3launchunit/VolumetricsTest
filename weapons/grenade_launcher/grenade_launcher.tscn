@@ -54,7 +54,7 @@ _data = {
 }
 
 [node name="GrenadeLauncher" type="Node3D"]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -0.15, -0.35, -0.6)
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -0.15, -0.35, -0.75)
 script = ExtResource("1_sgyo5")
 bullet = ExtResource("2_o3wnk")
 shot_cooldown = 0.5

@@ -691,7 +691,8 @@ func apply_knockback(amount: Vector3, knockup: float = 0.0) -> void:
 	if amount.y < 0:
 		jump_vel = Vector3.ZERO
 	if knockup > Globals.C_EPSILON:
-		grav_vel = Vector3.UP * knockup
+		grav_vel = Vector3.UP * knockup * knockback_multiplier
+		position.y += 1
 		#jumping = false
 	knockback_vel += amount * knockback_multiplier
 
@@ -710,9 +711,11 @@ func _jump(delta: float) -> Vector3:
 
 
 func _gravity(delta: float) -> Vector3:
-	grav_vel = Vector3.ZERO if is_on_floor() else grav_vel.move_toward(
-			Vector3(0, velocity.y - gravity, 0), gravity * delta
-	)
+	#grav_vel = Vector3.ZERO if is_on_floor() else grav_vel.move_toward(Vector3(0, velocity.y - gravity, 0), gravity * delta)
+	if is_on_floor() and grav_vel.y < 0:
+		grav_vel = Vector3.ZERO
+	else:
+		grav_vel -= Vector3.UP * gravity * delta
 	return grav_vel
 
 

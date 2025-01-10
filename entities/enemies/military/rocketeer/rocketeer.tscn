@@ -1,4 +1,4 @@
-[gd_scene load_steps=63 format=3 uid="uid://del4p8ar8qcwc"]
+[gd_scene load_steps=64 format=3 uid="uid://del4p8ar8qcwc"]
 
 [ext_resource type="Script" path="res://entities/enemies/enemy_attack_pattern.gd" id="1_amqno"]
 [ext_resource type="PackedScene" uid="uid://dtybrk353o1i5" path="res://bullets/enemy/rockets/enemy_fast_rocket.tscn" id="2_tab8w"]
@@ -10,6 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://cvtdvqqtnk5sc" path="res://entities/enemies/military/rocketeer/rocketeer_albedo.png" id="4_yy6cj"]
 [ext_resource type="PackedScene" uid="uid://c5pbs8t6p7ogl" path="res://scenes/effects/gibs/gibs.tscn" id="5_xapab"]
 [ext_resource type="Texture2D" uid="uid://dc7cakxmr78h2" path="res://entities/enemies/military/rocketeer/rocketeer_metallic.png" id="5_y5yxy"]
+[ext_resource type="Material" uid="uid://bu1ph5as16u6f" path="res://bullets/rocket_mat.tres" id="6_7b5jf"]
 [ext_resource type="Texture2D" uid="uid://cobrnuaq2l63n" path="res://entities/enemies/military/rocketeer/rocketeer_roughness.png" id="6_i5ae8"]
 [ext_resource type="Texture2D" uid="uid://clgl6xiya7ukn" path="res://entities/enemies/military/rocketeer/rocketeer_detail_mask.png" id="7_28bj8"]
 [ext_resource type="PackedScene" uid="uid://coopugxxes4xq" path="res://pickups/ammo/grenade_pickup.tscn" id="8_krnfx"]
@@ -625,21 +626,21 @@ bones/18/rotation = Quaternion(0.00780262, 9.06806e-08, 1.6966e-08, 0.99997)
 bones/18/scale = Vector3(1, 1, 1)
 
 [node name="rpg" parent="Rocketeer/Armature/Skeleton3D" index="0"]
-transform = Transform3D(3.98478, -0.328672, -0.116247, 0.318754, 3.97502, -0.312394, 0.14119, 0.301942, 3.98609, 3.19965, 4.16801, 10.1695)
+transform = Transform3D(3.98478, -0.304914, -0.169016, 0.315961, 3.97819, 0.272339, 0.147334, -0.284653, 3.98714, 3.15752, 4.77057, 9.5195)
 
 [node name="rpg" parent="Rocketeer/Armature/Skeleton3D/rpg" index="0"]
 material_override = SubResource("ShaderMaterial_am0uh")
 
 [node name="rocket" parent="Rocketeer/Armature/Skeleton3D" index="1"]
-transform = Transform3D(3.98478, -0.328672, -0.116247, 0.318754, 3.97502, -0.312394, 0.14119, 0.301942, 3.98609, 3.27161, 6.30471, 3.3146)
+transform = Transform3D(3.98478, -0.304914, -0.169016, 0.315961, 3.97819, 0.272339, 0.147334, -0.284653, 3.98714, 3.33133, 5.88526, 2.42815)
 
 [node name="rocket" parent="Rocketeer/Armature/Skeleton3D/rocket" index="0"]
-material_override = SubResource("ShaderMaterial_am0uh")
+material_override = ExtResource("6_7b5jf")
 
 [node name="Spawner" type="Marker3D" parent="Rocketeer/Armature/Skeleton3D/rocket/rocket" index="0"]
 
 [node name="Backpack" parent="Rocketeer/Armature/Skeleton3D" index="2"]
-transform = Transform3D(1, 0, 0, 0, 0.91432, -0.404993, 0, 0.404993, 0.91432, 0, 5.41975, -0.823343)
+transform = Transform3D(1, 0, 0, 0, 0.906308, -0.422618, 0, 0.422618, 0.906308, 0, 5.4097, -0.816735)
 
 [node name="Backpack" parent="Rocketeer/Armature/Skeleton3D/Backpack" index="0"]
 material_override = SubResource("ShaderMaterial_flj7k")
@@ -648,7 +649,7 @@ material_override = SubResource("ShaderMaterial_flj7k")
 material_override = SubResource("ShaderMaterial_b0yry")
 
 [node name="BoneAttachment3D" type="BoneAttachment3D" parent="Rocketeer/Armature/Skeleton3D" index="4"]
-transform = Transform3D(1, 0, 0, 0, 0.999798, -0.0201077, 0, 0.0201077, 0.999798, 0, 7.35273, 2.22028)
+transform = Transform3D(1, 0, 0, 0, 1, -8.9407e-08, 0, 8.9407e-08, 1, 0, 7.28339, 2.26374)
 bone_name = "Head"
 bone_idx = 3
 

@@ -24,6 +24,12 @@ func _process(_delta: float) -> void:
 
 
 func _on_area_body_entered(body: Node3D) -> void:
+	#var ray := PhysicsRayQueryParameters3D.create(global_position, body.global_position, collision_mask, [get_rid()])
+	#var space_state = get_world_3d().direct_space_state
+	#var hit := space_state.intersect_ray(ray)
+	#if hit["collider"] != body:
+		#return
+	
 	var d = player_damage_override if (body is Player or body.find_child("Status") is PlayerStatus) else damage
 	#print("%s hit %s, who is %s for %s" % [name, body.name, body is Player or body.find_child("Status") is PlayerStatus, d])
 	if body.has_node("Status"):

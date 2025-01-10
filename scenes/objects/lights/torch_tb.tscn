@@ -236,7 +236,6 @@ visibility_range_end_margin = 10.0
 visibility_range_fade_mode = 1
 amount = 64
 randomness = 1.0
-fixed_fps = 60
 process_material = SubResource("ParticleProcessMaterial_jd63c")
 draw_pass_1 = SubResource("BoxMesh_xu4jy")
 

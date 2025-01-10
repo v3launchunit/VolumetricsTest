@@ -1,3 +1,4 @@
+class_name MinorOmniLight3D
 extends OmniLight3D
 
 

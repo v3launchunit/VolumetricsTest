@@ -68,8 +68,12 @@ const C_MAX_WANDER_MOVE_TIME : float = 1.0
 
 const C_LIZARD_HOLE_POINT := Vector3(0.0, -1000.0, 0.0)
 
-## The filepath that user quicksaves live in.
+## The filepath that user quicksaves are stored to.
 const C_QUICKSAVE_PATH: String = "user://saves/auto/quicksave.scn"
+## The filepath that persistent data (high scores, best times, what levels have been unlocked/cleared, etc) is stored to.
+const C_PERSISTENT_PATH: String = "user://saves/persistent.cfg"
+## The filepath that user configuration settings are stored to.
+const C_SETTINGS_PATH: String = "user://settings.cfg"
 #endregion
 
 
@@ -180,7 +184,7 @@ func _init() -> void:
 		#printerr("could not load campaign.cfg")
 	_setup_user()
 	_load_config()
-	persistent.load("user://saves/persistent.cfg")
+	persistent.load(C_PERSISTENT_PATH)
 	cheats_enabled = OS.has_feature("editor")
 
 
@@ -258,7 +262,7 @@ func get_lang_name(lang: Lang) -> String:
 func _load_config() -> void:
 	var config := ConfigFile.new()
 	# Read from file and remember whether it was successful.
-	var err: Error = config.load("user://settings.cfg")
+	var err: Error = config.load(C_SETTINGS_PATH)
 
 	# If the file didn't load successfully (err != "OK"/0/false), ignore it and just
 	# keep the hardcoded defaults.
@@ -290,6 +294,7 @@ func _load_config() -> void:
 	s_music_volume = config.get_value("audio", "music_volume", s_music_volume)
 
 
+# Ensures that the expected filestructure exists within the user data folder.
 func _setup_user() -> void:
 	if not DirAccess.dir_exists_absolute("user://saves/auto"):
 		DirAccess.make_dir_recursive_absolute("user://saves/auto")
@@ -329,19 +334,22 @@ func _on_settings_changed() -> void:
 	
 	config.set_value("meta", "version", C_VERSION)
 
-	config.save("user://settings.cfg") # Write to file.
+	config.save(C_SETTINGS_PATH) # Write to file.
 
 
+## "Captures" the mouse, hiding it and preventing it from moving around.
 func capture_mouse() -> void:
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	mouse_captured = true
 
 
+## "Releases" the mouse, allowing it to move and render to the screen.
 func release_mouse() -> void:
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 	mouse_captured = false
 
 
+## Saves the level.
 func save_game(to: String) -> void:
 	var scene := PackedScene.new()
 	var world = get_tree().current_scene
@@ -354,6 +362,7 @@ func save_game(to: String) -> void:
 		node.owner = world
 	scene.pack(world)
 	push_error(ResourceSaver.save(scene, to))
+
 
 #region level management
 ## Loads the level assoiciated with [param level_key], as defined within in [code]campaign.cfg[/code].
@@ -383,7 +392,7 @@ func open_level(level: PackedScene) -> void:
 
 ## Returns the filepath associated with [param level_key], per [code]campaign.cfg[/code].
 func get_level_path(level_key: String) -> String:
-	return campaign.get_value(level_key.substr(0,2), level_key.substr(2,2), "")
+	return campaign.get_value(level_key.substr(0,2), level_key.substr(2), "")
 
 
 # 0 = hidden
@@ -453,7 +462,8 @@ func get_all_children(node) -> Array:
 	return nodes
 
 
-## Helper function to define a generic 
+## Helper function to define a generic "menu click" action, mostly for reloading 
+## after a death or progressing from an intermission. 
 func menu_click() -> bool:
 	return Input.is_action_just_pressed("ui_click") or Input.is_action_just_pressed("interact")
 

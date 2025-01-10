@@ -74,6 +74,7 @@ visible = false
 visible = false
 
 [node name="GrenadeLauncher" parent="SubViewport/Camera3D" instance=ExtResource("11_feotf")]
+visible = false
 
 [node name="OmniLight3D" type="OmniLight3D" parent="SubViewport"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.2, 1, -1)

@@ -13,6 +13,13 @@ const TRASH_LIST : Array[String] = [
 		"res://objects/deco/trash/trash_chair.tscn",
 ]
 
+## The layermask used during normal behavior.
+const DEFAULT_LAYERS : int = 0b0000_0000_0000_0000_0000_0000_0000_0001
+
+## The layermask used while placing trash props.
+const PROP_SPAWN_LAYERS : int = 0b1000_0000_0000_0000_0000_0000_0000_0000
+
+
 @export var func_godot_properties: Dictionary:
 	set(to):
 		func_godot_properties = to
@@ -21,7 +28,7 @@ const TRASH_LIST : Array[String] = [
 		else:
 			await tree_entered
 			spawn_trash_props()
-		collision_layer = 0b0000_0000_0000_0000_0000_0000_0000_0001
+		collision_layer = DEFAULT_LAYERS
 
 
 # Called when the node enters the scene tree for the first time.
@@ -35,14 +42,16 @@ func _process(delta: float) -> void:
 	pass
 
 
+## Generates the various trash props. If [param editor] is set, then runtime generation
+## will be blocked.
 func spawn_trash_props(editor: bool = true) -> void:
 	if editor and not Engine.is_editor_hint():
-		collision_layer = 0b0000_0000_0000_0000_0000_0000_0000_0001
+		collision_layer = DEFAULT_LAYERS
 		return
 	
 	if func_godot_properties.get("seed", "") != "":
 		seed(hash(func_godot_properties["seed"]))
-	collision_layer = 0b0000_0000_0000_0000_0000_0010_0000_0000
+	collision_layer = PROP_SPAWN_LAYERS
 	
 	var mesh := (get_child(0) as MeshInstance3D).mesh
 	var shape := mesh.create_convex_shape(false)
@@ -55,7 +64,7 @@ func spawn_trash_props(editor: bool = true) -> void:
 	var point_query := PhysicsPointQueryParameters3D.new()
 	point_query.collide_with_bodies = true
 	point_query.collide_with_areas = false
-	point_query.collision_mask = 0b0000_0000_0000_0000_0000_0010_0000_0000
+	point_query.collision_mask = PROP_SPAWN_LAYERS
 	
 	for i in range(roundi(volume * func_godot_properties["prop_density"])):
 		var pos := position + Vector3(
@@ -80,7 +89,7 @@ func spawn_trash_props(editor: bool = true) -> void:
 				randf_range(-PI, PI),
 		)
 	
-	collision_layer = 0b0000_0000_0000_0000_0000_0000_0000_0001
+	collision_layer = DEFAULT_LAYERS
 	if func_godot_properties.get("seed", "") != "":
 		randomize()
 
@@ -90,8 +99,19 @@ func get_trash_list(type: int) -> Array[String]:
 	var section : String = "trash_%s" % type
 	
 	var names := ConfigFile.new()
-	if names.load("res://names.cfg") or not names.has_section(section):
+	var err := names.load("res://names.cfg")
+	if err:
 		#print(TRASH_LIST)
+		if not Engine.is_editor_hint():
+			Console.print_error("\"res://names.cfg\" could not be loaded! (error code %s)" % err)
+		else:
+			printerr("\"res://names.cfg\" could not be loaded! (error code %s)" % err)
+		return TRASH_LIST
+	elif not names.has_section(section):
+		if not Engine.is_editor_hint():
+			Console.print_error("\"res://names.cfg\" does not have section %s!" % section)
+		else:
+			printerr("\"res://names.cfg\" does not have section %s!" % section)
 		return TRASH_LIST
 	
 	for key in names.get_section_keys(section):

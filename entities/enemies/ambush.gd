@@ -16,11 +16,11 @@ extends Marker3D
 @export var y_offset: float = 1
 ## This node's ambush will be triggered as soon as a player enters this Area3D
 ## for the first time.
-@export var trigger: Area3D:
-	set(p_trigger):
-		if p_trigger != trigger:
-			trigger = p_trigger
-			update_configuration_warnings()
+@export var trigger: Area3D
+	#set(to):
+		#if to != trigger:
+			#trigger = to
+			#update_configuration_warnings()
 
 @export var properties: Dictionary
 

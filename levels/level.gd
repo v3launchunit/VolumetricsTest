@@ -1,27 +1,38 @@
 class_name Level
 extends Node3D
 
+## identifier key for this level.
 @export var level_key: String = "e1m1"
+## name for this level.
 @export var level_name: String = "LEVEL"
 
-@export_group("Save Data")
-@export var level_version: String = "PENDING"
-@export var time: float = 0.0
-@export var physics_time: float = 0.0
-@export var kills: int = 0
-@export var foes: int = 0 ## total number of tallied foes in the level.
-@export var found_secrets: int = 0
-@export var secrets: int = 0 ## total number of secrets in the level.
-@export var score: int = 0
-@export var loaded_from_savegame: bool = false
-@export var fun: int = -1
+#@export_group("Save Data")
+## The game version that the level was last saved on, for migration purposes.
+@export_storage var level_version: String = "PENDING"
+## The total amount of time that the player has spent in the level, tallied during [method _process].
+@export_storage var time: float = 0.0
+## The total amount of time that the player has spent in the level, tallied during [method _physics_process].
+@export_storage var physics_time: float = 0.0
+## The number of enemies that the player has killed.
+@export_storage var kills: int = 0
+## The total number of tallied foes in the level.
+@export_storage var foes: int = 0 
+## The number of secrets that the player has found.
+@export_storage var found_secrets: int = 0
+## The total number of secrets in the level.
+@export_storage var secrets: int = 0 
+## The total accumulated score for this level.
+@export_storage var score: int = 0
+## Whether this level was loaded from a save file or not.
+@export_storage var loaded_from_savegame: bool = false
+## The [member fun] value that this level was initially loaded with.
+@export_storage var fun: int = -1
 
 func _init() -> void:
 	if fun == -1:
 		fun = Globals.fun
 
 
-# Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	if level_version == "PENDING":
 		level_version = Globals.C_VERSION
@@ -31,6 +42,5 @@ func _process(delta: float) -> void:
 	time += delta
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta: float) -> void:
 	physics_time += delta
