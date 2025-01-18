@@ -22,13 +22,13 @@ const ZOOM_SPEED: float = 10.0
 #@export var anti_clip_collisions: int = 0
 #@export var current_weapon_pos: float
 
-@export_group("Save Data")
-@export var prior_category: int = 0
-@export var prior_index: int = 0
+#@export_group("Save Data")
+@export_storage var prior_category: int = 0
+@export_storage var prior_index: int = 0
 
-@export var target_fov: float = Globals.s_fov_desired
-@export var prior_fov: float = Globals.s_fov_desired
-@export var prior_zoom: float = 1.0
+@export_storage var target_fov: float = Globals.s_fov_desired
+@export_storage var prior_fov: float = Globals.s_fov_desired
+@export_storage var prior_zoom: float = 1.0
 
 #@export var current_weapon_yaw_default: float
 
@@ -40,11 +40,11 @@ signal switched_weapons(category: int, index: int, with_safety_catch: bool)
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	#for key in ammo_amounts:
-		#ammo_amounts[key] = 0
+	for key in ammo_amounts:
+		ammo_amounts[key] = 0
 
-	#ammo_amounts["shells"] = 15
-	#ammo_amounts["grenades"] = 3
+	ammo_amounts["shells"] = 15
+	ammo_amounts["grenades"] = 3
 
 	#weapons[current_weapon].deploy
 	#switched_weapons.connect(find_child("HUD")._on_player_cam_switched_weapons)

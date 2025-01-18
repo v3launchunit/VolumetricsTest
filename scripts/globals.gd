@@ -59,7 +59,7 @@ const C_FLARE_RE_EVAL_CHANCE: float = 0.1
 const C_FLARE_RE_EVAL_DISTANCE_SQUARED: float = 4.0
 ## If a hitscan tracer is shorter than this value, it will be deleted.
 const C_HITSCAN_MIN_LENGTH: float = 0.125
-const C_PLAYER_MIN_HEIGHT: float = -1000.0
+const C_PLAYER_MIN_HEIGHT: float = -1024.0
 
 ## The maximum amount of time an enemy can spend between wanderings.
 const C_MAX_WANDER_IDLE_TIME : float = 1.0 

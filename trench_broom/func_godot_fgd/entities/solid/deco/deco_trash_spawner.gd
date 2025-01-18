@@ -81,7 +81,7 @@ func spawn_trash_props(editor: bool = true) -> void:
 		
 		var node := (load(pool.pick_random()) as PackedScene).instantiate() as Node3D
 		add_child(node)
-		node.set_owner(owner)
+		node.set_owner(get_tree().edited_scene_root)
 		node.global_position = pos
 		node.rotation = Vector3(
 				randf_range(-PI, PI), 

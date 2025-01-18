@@ -30,6 +30,7 @@ class_properties = {
 "Generic": "GENERIC",
 "Toxic": "TOXIC"
 },
+"decorate": true,
 "dps": 5.0,
 "hazard_type": {
 "death_barrier": 0,

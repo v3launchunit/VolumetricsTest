@@ -159,6 +159,11 @@ func heal(amount: float, can_overheal: bool = false, heal_armor: bool = false) -
 	return false
 
 
+func telefrag() -> bool:
+	kill()
+	return true
+
+
 func kill():
 	is_dead = true
 	died.emit()

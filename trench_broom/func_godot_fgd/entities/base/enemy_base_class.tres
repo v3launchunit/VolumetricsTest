@@ -22,6 +22,7 @@ class_properties = {
 "Sight: on, Sound: off": 7,
 "Sight: on, Sound: on": 4
 },
+"target": "",
 "tripwire_group": "none"
 }
 class_property_descriptions = {

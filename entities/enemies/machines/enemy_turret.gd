@@ -74,7 +74,7 @@ func _ready() -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta: float) -> void:
 	state_timer += delta
-	velocity = _jump(delta) + _gravity(delta) + _knockback(delta)
+	velocity = _gravity(delta) + _knockback(delta)
 	match current_state:
 		State.AMBUSHING:
 			if state_timer >= wake_up_time:

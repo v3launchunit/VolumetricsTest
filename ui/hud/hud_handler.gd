@@ -109,7 +109,7 @@ func _process(delta: float) -> void:
 			rapid_damage_player.stop()
 	
 	if heat_flash.visible:
-		heat_flash.modulate.a = move_toward(heat_flash.modulate.a, 0.0, delta * 0.25)
+		heat_flash.modulate.a = move_toward(heat_flash.modulate.a, 0.0, delta)
 		if heat_flash.modulate.a <= 0.0:
 			heat_flash.visible = false
 

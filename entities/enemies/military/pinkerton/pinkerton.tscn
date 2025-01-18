@@ -1,4 +1,4 @@
-[gd_scene load_steps=105 format=3 uid="uid://cbo6wxdi4eryp"]
+[gd_scene load_steps=111 format=3 uid="uid://cbo6wxdi4eryp"]
 
 [ext_resource type="Script" path="res://entities/enemies/military/pinkerton/enemy_pinkerton.gd" id="1_4o8wq"]
 [ext_resource type="Script" path="res://entities/status.gd" id="2_p7cng"]
@@ -789,6 +789,24 @@ _data = {
 "RESET": SubResource("Animation_o8lpw")
 }
 
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_d522k"]
+animation = &"pinkerton_anims/pinkerton_standby"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_7u3br"]
+animation = &"pinkerton_anims/pinkerton_move"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_4diwu"]
+animation = &"pinkerton_anims/pinkerton_move"
+play_mode = 1
+
+[sub_resource type="AnimationNodeBlendSpace1D" id="AnimationNodeBlendSpace1D_kxk8t"]
+blend_point_0/node = SubResource("AnimationNodeAnimation_d522k")
+blend_point_0/pos = 0.0
+blend_point_1/node = SubResource("AnimationNodeAnimation_7u3br")
+blend_point_1/pos = 1.0
+blend_point_2/node = SubResource("AnimationNodeAnimation_4diwu")
+blend_point_2/pos = -1.0
+
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_nfb3s"]
 animation = &"pinkerton_anims/pinkerton_attack"
 
@@ -889,7 +907,15 @@ xfade_time = 0.15
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_4m1fh"]
 xfade_time = 0.1
 
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_l4nnt"]
+xfade_time = 0.25
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_yl5ur"]
+xfade_time = 0.25
+
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_l00kp"]
+states/BlendSpace1D/node = SubResource("AnimationNodeBlendSpace1D_kxk8t")
+states/BlendSpace1D/position = Vector2(633.333, 16.5021)
 states/Start/position = Vector2(148, 100.889)
 states/attacking/node = SubResource("AnimationNodeAnimation_nfb3s")
 states/attacking/position = Vector2(306.889, 225)
@@ -905,8 +931,8 @@ states/moving/node = SubResource("AnimationNodeAnimation_imbdi")
 states/moving/position = Vector2(597.334, 101.139)
 states/standby/node = SubResource("AnimationNodeAnimation_i2cel")
 states/standby/position = Vector2(458.68, 345.667)
-transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_2prg3"), "idle", "moving", SubResource("AnimationNodeStateMachineTransition_7oomp"), "moving", "idle", SubResource("AnimationNodeStateMachineTransition_dbccw"), "moving", "attacking", SubResource("AnimationNodeStateMachineTransition_4xupg"), "idle", "attacking", SubResource("AnimationNodeStateMachineTransition_majfp"), "attacking", "moving", SubResource("AnimationNodeStateMachineTransition_2nn25"), "attacking", "idle", SubResource("AnimationNodeStateMachineTransition_w5vit"), "attacking", "dead", SubResource("AnimationNodeStateMachineTransition_se8tw"), "idle", "dead", SubResource("AnimationNodeStateMachineTransition_bj5l4"), "moving", "dead", SubResource("AnimationNodeStateMachineTransition_x017w"), "idle", "flinching", SubResource("AnimationNodeStateMachineTransition_goefx"), "attacking", "flinching", SubResource("AnimationNodeStateMachineTransition_3fks7"), "moving", "flinching", SubResource("AnimationNodeStateMachineTransition_stoq6"), "flinching", "moving", SubResource("AnimationNodeStateMachineTransition_wpkvg"), "flinching", "dead", SubResource("AnimationNodeStateMachineTransition_mr23i"), "moving", "jumping", SubResource("AnimationNodeStateMachineTransition_gw055"), "jumping", "moving", SubResource("AnimationNodeStateMachineTransition_oewr8"), "jumping", "flinching", SubResource("AnimationNodeStateMachineTransition_xmef0"), "idle", "standby", SubResource("AnimationNodeStateMachineTransition_pcyj4"), "standby", "idle", SubResource("AnimationNodeStateMachineTransition_vxkm0"), "standby", "attacking", SubResource("AnimationNodeStateMachineTransition_c1qta"), "attacking", "standby", SubResource("AnimationNodeStateMachineTransition_tk35l"), "flinching", "standby", SubResource("AnimationNodeStateMachineTransition_7ls5p"), "standby", "flinching", SubResource("AnimationNodeStateMachineTransition_kvgif"), "standby", "dead", SubResource("AnimationNodeStateMachineTransition_4m1fh")]
-graph_offset = Vector2(-399, 30)
+transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_2prg3"), "idle", "moving", SubResource("AnimationNodeStateMachineTransition_7oomp"), "moving", "idle", SubResource("AnimationNodeStateMachineTransition_dbccw"), "moving", "attacking", SubResource("AnimationNodeStateMachineTransition_4xupg"), "idle", "attacking", SubResource("AnimationNodeStateMachineTransition_majfp"), "attacking", "moving", SubResource("AnimationNodeStateMachineTransition_2nn25"), "attacking", "idle", SubResource("AnimationNodeStateMachineTransition_w5vit"), "attacking", "dead", SubResource("AnimationNodeStateMachineTransition_se8tw"), "idle", "dead", SubResource("AnimationNodeStateMachineTransition_bj5l4"), "moving", "dead", SubResource("AnimationNodeStateMachineTransition_x017w"), "idle", "flinching", SubResource("AnimationNodeStateMachineTransition_goefx"), "attacking", "flinching", SubResource("AnimationNodeStateMachineTransition_3fks7"), "moving", "flinching", SubResource("AnimationNodeStateMachineTransition_stoq6"), "flinching", "moving", SubResource("AnimationNodeStateMachineTransition_wpkvg"), "flinching", "dead", SubResource("AnimationNodeStateMachineTransition_mr23i"), "moving", "jumping", SubResource("AnimationNodeStateMachineTransition_gw055"), "jumping", "moving", SubResource("AnimationNodeStateMachineTransition_oewr8"), "jumping", "flinching", SubResource("AnimationNodeStateMachineTransition_xmef0"), "idle", "standby", SubResource("AnimationNodeStateMachineTransition_pcyj4"), "standby", "idle", SubResource("AnimationNodeStateMachineTransition_vxkm0"), "standby", "attacking", SubResource("AnimationNodeStateMachineTransition_c1qta"), "attacking", "standby", SubResource("AnimationNodeStateMachineTransition_tk35l"), "flinching", "standby", SubResource("AnimationNodeStateMachineTransition_7ls5p"), "standby", "flinching", SubResource("AnimationNodeStateMachineTransition_kvgif"), "standby", "dead", SubResource("AnimationNodeStateMachineTransition_4m1fh"), "standby", "moving", SubResource("AnimationNodeStateMachineTransition_l4nnt"), "moving", "standby", SubResource("AnimationNodeStateMachineTransition_yl5ur")]
+graph_offset = Vector2(-480, -38.5534)
 
 [node name="Pinkerton" type="CharacterBody3D"]
 collision_layer = 4
@@ -914,7 +940,6 @@ collision_mask = 407
 script = ExtResource("1_4o8wq")
 species = &"pinkertons"
 speed = 7.0
-jump_height = 2.0
 wake_up_time = 0.0
 sight_line_sweep_speed = 10.0
 detection_stream = SubResource("AudioStreamRandomizer_oao7a")
@@ -961,7 +986,7 @@ bones/20/scale = Vector3(1, 1, 1)
 bones/21/rotation = Quaternion(-0.0824806, -6.65001e-08, -1.41612e-08, 0.996593)
 
 [node name="Cylinder" parent="Pinkerton/Armature/Skeleton3D" index="0"]
-transform = Transform3D(-0.147369, -0.698597, 0.700175, 0.940582, -0.317937, -0.119251, 0.30592, 0.640998, 0.703942, -0.090031, 0.289035, 0.277909)
+transform = Transform3D(-0.0787005, -0.0189288, 0.996719, 0.911525, -0.406193, 0.0642596, 0.403643, 0.913591, 0.0492216, 0.0249801, 0.305004, 0.253965)
 
 [node name="Cylinder" parent="Pinkerton/Armature/Skeleton3D/Cylinder" index="0"]
 layers = 2
@@ -1000,14 +1025,14 @@ shadow_enabled = true
 distance_fade_enabled = true
 
 [node name="Cylinder_001" parent="Pinkerton/Armature/Skeleton3D" index="1"]
-transform = Transform3D(-0.221054, -0.698597, 1.05026, 1.41087, -0.317937, -0.178877, 0.45888, 0.640998, 1.05591, -0.124962, 0.273138, 0.309959)
+transform = Transform3D(-0.11805, -0.0189286, 1.49508, 1.36729, -0.406193, 0.0963891, 0.605465, 0.913591, 0.0738322, 0.0240337, 0.284694, 0.299646)
 
 [node name="Cylinder_001" parent="Pinkerton/Armature/Skeleton3D/Cylinder_001" index="0"]
 layers = 2
 material_override = SubResource("ShaderMaterial_bkory")
 
 [node name="Shotgun" parent="Pinkerton/Armature/Skeleton3D" index="2"]
-transform = Transform3D(0.0886027, 0.975894, 0.19945, 0.373066, 0.15315, -0.915078, -0.923564, 0.155486, -0.350504, 0.385154, -0.4477, 0.378488)
+transform = Transform3D(0.986613, 0.109838, 0.120543, -0.154811, 0.863197, 0.480546, -0.0512704, -0.492774, 0.868646, -0.231294, 0.394317, 0.0701722)
 
 [node name="Shotgun" parent="Pinkerton/Armature/Skeleton3D/Shotgun" index="0"]
 layers = 2
@@ -1029,7 +1054,7 @@ omni_range = 10.0
 transform = Transform3D(-1.95578e-08, -1, 7.45058e-09, -3.72529e-08, 2.23517e-08, 1, -1, 2.04891e-08, -3.72529e-08, 0, 0.675, -0.135)
 
 [node name="Pump" parent="Pinkerton/Armature/Skeleton3D" index="3"]
-transform = Transform3D(0.0886027, 0.975894, 0.19945, 0.373066, 0.15315, -0.915078, -0.923564, 0.155486, -0.350504, 0.385154, -0.4477, 0.378488)
+transform = Transform3D(0.986613, 0.109838, 0.120543, -0.154811, 0.863197, 0.480546, -0.0512704, -0.492774, 0.868646, -0.231294, 0.394317, 0.0701722)
 
 [node name="Pump" parent="Pinkerton/Armature/Skeleton3D/Pump" index="0"]
 layers = 2
@@ -1065,6 +1090,7 @@ libraries = {
 [node name="AnimationTree" type="AnimationTree" parent="."]
 tree_root = SubResource("AnimationNodeStateMachine_l00kp")
 anim_player = NodePath("../AnimationPlayer")
+parameters/BlendSpace1D/blend_position = 0.0
 
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
 bus = &"Enemies"

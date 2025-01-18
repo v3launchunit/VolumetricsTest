@@ -18,6 +18,9 @@ signal key_acquired(key: int)
 @export_storage var invuln_timer: float = 0.0
 @export_storage var ff_timers: PackedFloat64Array = []
 
+@export_storage var god: bool = false
+@export_storage var buddha: bool = false
+
 @onready var stream_player := get_parent().get_node("AudioStreamPlayer") as AudioStreamPlayer
 @onready var hud := get_parent().find_child("HUD") as HudHandler
 
@@ -74,7 +77,7 @@ func _physics_process(delta: float) -> void:
 
 
 func damage_typed(amount: float, type: DamageType, gib_mode: GibMode = GibMode.ALLOW_GIB) -> float: # returns damage dealt, for piercers
-	if invuln_timer > 0:
+	if god or invuln_timer > 0:
 		return amount # invulnerable players always stop piercers
 	elif is_dead:
 		return 0 # corpses cannot stop piercers
@@ -96,7 +99,7 @@ func damage_typed(amount: float, type: DamageType, gib_mode: GibMode = GibMode.A
 
 
 func rapid_damage_typed(amount: float, type: DamageType, delta: float, gib_mode: GibMode = GibMode.ALLOW_GIB) -> void:
-	if invuln_timer > 0:
+	if god or invuln_timer > 0:
 		return
 	var damage_factor: float = damage_multipliers[type] if type != DamageType.ABSOLUTE else 1.0
 	health -= amount * delta * base_damage_factor * damage_factor * (1 - armor_absorption)
@@ -107,6 +110,12 @@ func rapid_damage_typed(amount: float, type: DamageType, delta: float, gib_mode:
 		armor = 0
 	if health <= 0:
 		kill()
+
+
+# cannot telefrag players
+func telefrag() -> bool:
+	#kill()
+	return false
 
 
 func kill() -> void:
@@ -139,18 +148,20 @@ func _on_key_acquired(key: int):
 
 #region console commands
 func add_console_commands() -> void:
-	Console.add_command("get_health", func(): Console.print_line("%d" % health), [], 0, Globals.parse_text("console", "desc.get_health"))
+	Console.add_command("get_health", func(): Console.print_line("%f" % health), [], 0, Globals.parse_text("console", "desc.get_health"))
 	Console.add_command("set_health", cmd_set_health, ["float value"], 1, Globals.parse_text("console", "desc.set_health"))
-	Console.add_command("get_armor", func(): Console.print_line("%d" % armor), [], 0, Globals.parse_text("console", "desc.get_armor"))
+	Console.add_command("get_armor", func(): Console.print_line("%f" % armor), [], 0, Globals.parse_text("console", "desc.get_armor"))
 	Console.add_command("set_armor", cmd_set_armor, ["float value"], 1, Globals.parse_text("console", "desc.set_armor"))
-	Console.add_command("get_absorption", func(): Console.print_line("%d" % armor_absorption), [], 0, Globals.parse_text("console", "desc.get_absorption"))
+	Console.add_command("get_absorption", func(): Console.print_line("%f" % armor_absorption), [], 0, Globals.parse_text("console", "desc.get_absorption"))
 	Console.add_command("set_absorption", cmd_set_absorption, ["0-1 float value"], 1, Globals.parse_text("console", "desc.set_absorption"))
-	Console.add_command("get_berserk", func(): Console.print_line("%d" % berserk_timer), [], 0, Globals.parse_text("console", "desc.get_berserk"))
-	Console.add_command("get_berzerk", func(): Console.print_line("%d" % berserk_timer), [], 0, Globals.parse_text("console", "desc.get_berserk"))
-	Console.add_command("get_invuln", func(): Console.print_line("%d" % invuln_timer), [], 0, Globals.parse_text("console", "desc.get_invuln"))
-	Console.add_command("get_filters", func(): Console.print_line("%d" % filters_timer), [], 0, Globals.parse_text("console", "desc.get_filters"))
+	Console.add_command("get_berserk", func(): Console.print_line("%f" % berserk_timer), [], 0, Globals.parse_text("console", "desc.get_berserk"))
+	Console.add_command("get_berzerk", func(): Console.print_line("%f" % berserk_timer), [], 0, Globals.parse_text("console", "desc.get_berserk"))
+	Console.add_command("get_invuln", func(): Console.print_line("%f" % invuln_timer), [], 0, Globals.parse_text("console", "desc.get_invuln"))
+	Console.add_command("get_filters", func(): Console.print_line("%f" % filters_timer), [], 0, Globals.parse_text("console", "desc.get_filters"))
 	Console.add_command("set_key", cmd_set_key, ["index of key to set (0 = red, 1 = green, 2 = blue)", "true/false"], 2, Globals.parse_text("console", "desc.set_key"))
-	Console.add_command("kill", kill, [], 0, Globals.parse_text("console", "desc.kill"))
+	Console.add_command("kill", cmd_kill, [], 0, Globals.parse_text("console", "desc.kill"))
+	Console.add_command("god", cmd_god, ["true/false"], 0, Globals.parse_text("console", "desc.god"))
+	Console.add_command("buddha", cmd_buddha, ["true/false"], 0, Globals.parse_text("console", "desc.buddha"))
 
 
 func remove_console_commands() -> void:
@@ -160,8 +171,14 @@ func remove_console_commands() -> void:
 	Console.remove_command("set_armor")
 	Console.remove_command("get_absorption")
 	Console.remove_command("set_absorption")
+	Console.remove_command("get_berserk")
+	Console.remove_command("get_berzerk")
+	Console.remove_command("get_invuln")
+	Console.remove_command("get_filters")
 	Console.remove_command("set_key")
 	Console.remove_command("kill")
+	Console.remove_command("god")
+	Console.remove_command("buddha")
 
 
 func cmd_kill() -> void:
@@ -189,8 +206,8 @@ func cmd_set_absorption(to: String) -> void:
 
 func cmd_set_key(which: String, to: String) -> void:
 	if Globals.try_run_cheat():
-		if not which.is_valid_float():
-			Console.print_error(Globals.parse_text("console", "fail.bad_float") % "which")
+		if not which.is_valid_int():
+			Console.print_error(Globals.parse_text("console", "fail.bad_int") % "which")
 			return
 		if which.to_int() < 0 or which.to_int() > held_keys.size():
 			Console.print_error(Globals.parse_text("console", "fail.bad_range") % "which")
@@ -198,4 +215,30 @@ func cmd_set_key(which: String, to: String) -> void:
 		if to_b == -1:
 			Console.print_error(Globals.parse_text("console", "fail.bad_bool") % ["to", 0, held_keys.size()])
 		held_keys[which.to_int()] = (to_b == Globals.PseudoBool.TRUE)
+
+
+func cmd_god(to: String) -> void:
+	if Globals.try_run_cheat():
+		if to == "":
+			god = not god
+		else:
+			var to_b := Globals.get_pseudo_bool(to)
+			if to_b == -1:
+				Console.print_error(Globals.parse_text("console", "fail.bad_bool") % to)
+			else:
+				god = (to_b == Globals.PseudoBool.TRUE)
+			Console.print_line(Globals.parse_text("console", "god") % ("on" if god else "off"))
+
+
+func cmd_buddha(to: String) -> void:
+	if Globals.try_run_cheat():
+		if to == "":
+			buddha = not buddha
+		else:
+			var to_b := Globals.get_pseudo_bool(to)
+			if to_b == -1:
+				Console.print_error(Globals.parse_text("console", "fail.bad_bool") % to)
+			else:
+				buddha = (to_b == Globals.PseudoBool.TRUE)
+			Console.print_line(Globals.parse_text("console", "buddha") % ("on" if buddha else "off"))
 #endregion

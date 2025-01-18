@@ -48,10 +48,19 @@ func _process(delta: float) -> void:
 
 func _on_body_entered(body: Node3D) -> void:
 #	print("teleported " + body.name)
+	#var colliders: Array[Node] = body.find_children("*", "PhysicsBody3D")
+	#var state := get_world_3d().direct_space_state
+	#for collider in colliders:
+		#if body is PhysicsBody3D:
+			#return
+		#var params := PhysicsShapeQueryParameters3D.new()
+		#params.shape = (body as PhysicsBody3D)
+		#var result: Dictionary = state.intersect_shape(params)
+	
 	body.global_position = destination
 	for stream in streams:
 		stream.play()
-
+	
 	for sys in tele_sys:
 		sys.emitting = true
 		sys.restart()
@@ -59,6 +68,7 @@ func _on_body_entered(body: Node3D) -> void:
 #		sys.get_child(0).show()
 
 
+## Sets the teleporter's [membe r destination] to the specified [param new_dest].
 func set_destination(new_dest: Vector3) -> void:
 	to.global_position = new_dest
 	destination = new_dest

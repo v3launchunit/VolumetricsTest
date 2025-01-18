@@ -26,13 +26,13 @@ enum State {
 }
 
 enum DetectionType {
-	## For when the enemy just magically knows where you are
+	## For when the enemy just magically knows where you are.
 	INSTINCT,
-	## For when the enemy sees you
+	## For when the enemy sees you.
 	SIGHT,
-	## For when the enemy hears you
+	## For when the enemy hears you.
 	SOUND,
-	## For when the enemy got hit by you
+	## For when the enemy got hit by you.
 	RETALIATION,
 }
 
@@ -54,7 +54,7 @@ enum DetectionType {
 ## The rate at which the velocity imparted by knockback "decays" towards zero.
 @export var knockback_drag: float = 10.0
 ## Self-explanatory.
-@export_range(0.0, 3.0, 0.1, "or_greater") var jump_height: float = 0.0
+@export_range(0.0, 3.0, 0.1, "or_greater") var jump_height: float = 2.5
 #@export var target_pos_offset: Vector3 = Vector3.ZERO
 @export var wanderer: bool = false
 
@@ -133,20 +133,26 @@ enum DetectionType {
 @export var eat_text: String = "pickup.health.gen"
 @export var eat_flash_color := Color.GREEN
 
-@export_group("Save Data")
-@export var current_state: State = State.AMBUSHING
-@export var current_destination: Vector3
-@export var current_dest_score: float
-@export var wander_idling: bool = false
-@export var wander_idle_timer: float = 0.0
-@export var wander_dir: float = 0.0
-@export var jumping: bool = false
-@export var walk_vel := Vector3.ZERO # Walking velocity
-@export var safe_walk_vel := Vector3.ZERO
-@export var grav_vel := Vector3.ZERO # Gravity velocity
-@export var jump_vel := Vector3.ZERO # Jumping velocity
-@export var knockback_vel := Vector3.ZERO # Knockback velocity
-@export var state_timer: float = 0.0 ## How long I've been in my current state, in seconds
+#@export_group("Save Data")
+@export_storage var current_state: State = State.AMBUSHING
+@export_storage var current_destination: Vector3
+@export_storage var current_dest_score: float
+
+@export_storage var patrol_next_node: PathNode
+
+@export_storage var wander_idling: bool = false
+@export_storage var wander_idle_timer: float = 0.0
+@export_storage var wander_dir: float = 0.0
+
+@export_storage var jumping: bool = false
+@export_storage var walk_vel := Vector3.ZERO # Walking velocity
+@export_storage var safe_walk_vel := Vector3.ZERO
+@export_storage var grav_vel := Vector3.ZERO # Gravity velocity
+@export_storage var jump_vel := Vector3.ZERO # Jumping velocity
+@export_storage var knockback_vel := Vector3.ZERO # Knockback velocity
+@export_storage var state_timer: float = 0.0 ## How long I've been in my current state, in seconds
+
+static var player_hidden: bool = false
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity: float = ProjectSettings.get_setting("physics/3d/default_gravity")
@@ -166,6 +172,7 @@ var sight_line_sweep_dot: float = cos(sight_line_sweep_angle / 2.0)
 @onready var attack_range_squared = attack_range * attack_range
 @onready var melee_range_squared = melee_range * melee_range
 @onready var audio_player: AudioStreamPlayer3D = find_child("AudioStreamPlayer3D")
+@onready var jump_cast := find_child("JumpCast") as ShapeCast3D
 
 
 func _ready() -> void:
@@ -219,9 +226,10 @@ func _ready() -> void:
 	
 	match current_state:
 		State.AMBUSHING:
-			state_machine.start("ambush", true)
+			if (($AnimationTree as AnimationTree).tree_root as AnimationNodeStateMachine).has_node("ambush"):
+				state_machine.start("ambush", true)
 		State.IDLE:
-			state_machine.start("idle", true)
+			state_machine.start("moving" if properties.get("target", "") != "" else "idle", true)
 		State.SEARCHING:
 			state_machine.start("standby" if turret_mode else "moving", true)
 		State.PURSUING:
@@ -254,7 +262,7 @@ func _ready() -> void:
 func _physics_process(delta: float) -> void:
 	rotation.x = 0
 	state_timer += delta
-	velocity = _jump(delta) + _gravity(delta) + _knockback(delta)
+	velocity = _gravity(delta) + _knockback(delta)
 	match current_state:
 		State.AMBUSHING:
 			if state_timer >= wake_up_time:
@@ -266,7 +274,9 @@ func _physics_process(delta: float) -> void:
 				if not current_targets.is_empty():
 					detect_target(current_targets[-1], DetectionType.RETALIATION)
 		State.IDLE:
-			if wanderer:
+			if properties.get("target") != "":
+				_patrol(delta)
+			elif wanderer:
 				_wander(delta)
 			_scan(delta)
 		State.SEARCHING:
@@ -354,7 +364,7 @@ func change_state(to: State):
 
 
 func hear_target(target: Node3D) -> void:
-	print(target.name)
+	#print(target.name)
 	var space_state = get_world_3d().direct_space_state
 	var query := PhysicsRayQueryParameters3D.create(
 			global_position,
@@ -394,6 +404,30 @@ func detect_target(target: Node3D, via := DetectionType.INSTINCT) -> void:
 		change_state(State.PURSUING)
 
 
+func _patrol(delta) -> void:
+	if patrol_next_node == null:
+		patrol_next_node = get_tree().get_first_node_in_group("targetname:%s" % properties["target"]) as PathNode
+		nav_agent.target_position = patrol_next_node.global_position
+	if nav_agent.is_navigation_finished():
+		patrol_next_node = patrol_next_node.next
+		nav_agent.target_position = patrol_next_node.global_position
+	
+	var next_pos: Vector3 = nav_agent.get_next_path_position()
+	if is_on_floor() and should_jump():
+		_do_jump()
+	sight_line.look_at(next_pos)
+	global_rotation.y = lerp_angle(
+			global_rotation.y,
+			sight_line.global_rotation.y,
+			delta * turning_speed
+	)
+	walk_vel = walk_vel.move_toward(-speed * transform.basis.z * 0.5, acceleration * delta)
+	if nav_agent.avoidance_enabled:
+		nav_agent.set_velocity(walk_vel)
+	else:
+		velocity += walk_vel
+
+
 func _wander(delta) -> void:
 	if wander_idling:
 		if wander_idle_timer < Globals.C_EPSILON:
@@ -403,16 +437,19 @@ func _wander(delta) -> void:
 					#nav_agent.navigation_layers,
 					#false
 			#)
-			#nav_agent.target_position = current_destination
-			wander_dir = randf_range(0, 2 * PI)
+			current_destination = global_position + Vector3(randf_range(-50, 50), randf_range(-50, 50), randf_range(-50, 50))
+			nav_agent.target_position = current_destination
+			#wander_dir = randf_range(0, 2 * PI)
 			state_machine.travel("moving", true)
 			wander_idle_timer = randf_range(0.0, Globals.C_MAX_WANDER_MOVE_TIME)
 		#var next_pos: Vector3 = nav_agent.get_next_path_position()
 		#sight_line.look_at(next_pos)
 	else:
+		var next_pos: Vector3 = nav_agent.get_next_path_position()
+		sight_line.look_at(next_pos)
 		global_rotation.y = lerp_angle(
 				global_rotation.y,
-				wander_dir,
+				sight_line.global_rotation.y,
 				delta * turning_speed
 		)
 		walk_vel = walk_vel.move_toward(-speed * transform.basis.z, acceleration * delta)
@@ -440,19 +477,20 @@ func _scan(_delta) -> void:
 	#for prey in hunts_species:
 		#target_pool.append_array(get_tree().get_nodes_in_group(prey))
 	var target: Node3D = get_tree().get_first_node_in_group("players") as Node3D
-	if target == null:
-		print("no player")
+	if player_hidden or target == null:
+		#print("no player")
 		return
 	
 	# can't see target from behind
 	if global_basis.z.normalized().dot((global_position - target.global_position).normalized()) < sight_line_sweep_dot:
 		return
-	var space_state = get_world_3d().direct_space_state
+	var space_state := get_world_3d().direct_space_state
 	var query := PhysicsRayQueryParameters3D.create(
 			global_position,
 			target.global_position,
 			collision_mask,
 	)
+	# don't target yourself dumbass
 	query.exclude = [get_rid()]
 	var hit: Dictionary = space_state.intersect_ray(query)
 	#print(hit)
@@ -501,13 +539,15 @@ func _pursue(delta) -> void:
 				* current_targets[-1].global_basis.z.normalized()
 		)
 		#current_destination = get_current_destination()
-
+		
 		if check_path_staleness(): # Make sure my target is still where I think it is
 			nav_agent.target_position = current_destination
-
+		
 		# Casually approach target
 		var next_pos: Vector3 = nav_agent.get_next_path_position()
 		if is_on_floor():
+			if should_jump():
+				_do_jump()
 			sight_line.look_at(next_pos)
 			global_rotation.y = lerp_angle(
 					global_rotation.y,
@@ -609,13 +649,13 @@ func should_jump() -> bool:
 	var query := PhysicsShapeQueryParameters3D.new()
 	query.shape = SphereShape3D.new()
 	query.transform = global_transform
-	query.transform.origin += transform.basis.z
-	query.transform.origin -= Vector3(0, -0.25, 0)
-	query.collision_mask = 1 + 2 + 16 # default layer, player, projectiles
+	query.transform.origin -= transform.basis.z * 1.25
+	query.transform.origin += Vector3(0, 0.25, 0)
+	query.collision_mask = 1 + 2 + 16 + 128 + 256 # default layer, player, projectiles, doors, porous
 	query.exclude.append(get_rid())
 	var hit: Array[Dictionary] = space_state.intersect_shape(query)
 	#print(hit)
-	return not hit.is_empty()
+	return not (hit.is_empty() or hit[0].collider in current_targets)
 
 
 func _begin_attack() -> void:
@@ -682,7 +722,7 @@ func _flee(delta) -> void:
 
 
 func _do_jump() -> void:
-	state_machine.travel("jumping", true)
+	#state_machine.travel("jumping", true)
 	if is_on_floor():
 		jumping = true
 
@@ -697,25 +737,33 @@ func apply_knockback(amount: Vector3, knockup: float = 0.0) -> void:
 	knockback_vel += amount * knockback_multiplier
 
 
-func _jump(delta: float) -> Vector3:
-	if jumping:
-		if is_on_floor():
-			jump_vel = Vector3(0, sqrt(4 * jump_height * gravity), 0)
-		jumping = false
-		return jump_vel
-	jump_vel = Vector3.ZERO if is_on_floor() else jump_vel.move_toward(
-			Vector3.ZERO, gravity * delta)
-	if is_on_floor() and state_machine.get_current_node() == "jumping":
-		state_machine.travel("moving", true)
-	return jump_vel
+#func _jump(delta: float) -> Vector3:
+	#if jumping:
+		#if is_on_floor():
+			#jump_vel = Vector3(0, sqrt(4 * jump_height * gravity), 0)
+		#jumping = false
+		#return jump_vel
+	#jump_vel = Vector3.ZERO if is_on_floor() else jump_vel.move_toward(
+			#Vector3.ZERO, gravity * delta)
+	#if is_on_floor() and (state_machine.get_current_node() == "jumping" or state_machine.get_current_node() == "falling"):
+		#state_machine.travel("moving", true)
+	#return jump_vel
 
 
 func _gravity(delta: float) -> Vector3:
 	#grav_vel = Vector3.ZERO if is_on_floor() else grav_vel.move_toward(Vector3(0, velocity.y - gravity, 0), gravity * delta)
-	if is_on_floor() and grav_vel.y < 0:
+	if jumping:
+		if is_on_floor():
+			grav_vel = sqrt(4 * jump_height * gravity) * Vector3.UP
+			if (($AnimationTree as AnimationTree).tree_root as AnimationNodeStateMachine).has_node("jumping"):
+				state_machine.travel("jumping")
+		jumping = false
+	elif is_on_floor() and grav_vel.y < 0:
 		grav_vel = Vector3.ZERO
 	else:
 		grav_vel -= Vector3.UP * gravity * delta
+	if is_on_floor() and (state_machine.get_current_node() == "jumping" or state_machine.get_current_node() == "falling"):
+		state_machine.travel("moving", true)
 	return grav_vel
 
 

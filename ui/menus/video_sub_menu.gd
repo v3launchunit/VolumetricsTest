@@ -116,22 +116,22 @@ func _on_fov_slider_value_changed(value: float) -> void:
 
 
 func _on_flares_check_toggled(button_pressed: bool) -> void:
-	_press_sound.play()
+	#_press_sound.play()
 	Globals.s_flares_enabled = button_pressed
 
 
 func _on_bloom_check_toggled(button_pressed: bool) -> void:
-	_press_sound.play()
+	#_press_sound.play()
 	Globals.s_glow_enabled = button_pressed
 
 
 func _on_c_bloom_check_toggled(button_pressed: bool) -> void:
-	_press_sound.play()
+	#_press_sound.play()
 	Globals.s_cross_glow_enabled = button_pressed
 
 
 func _on_volumetric_fog_check_toggled(button_pressed: bool) -> void:
-	_press_sound.play()
+	#_press_sound.play()
 	Globals.s_volumetric_fog_enabled = button_pressed
 
 

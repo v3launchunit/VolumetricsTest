@@ -54,7 +54,7 @@ noise_type = 2
 frequency = 0.025
 
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_43ter"]
-height = 256
+width = 1024
 invert = true
 seamless = true
 color_ramp = SubResource("Gradient_m4bx2")
@@ -67,8 +67,8 @@ colors = PackedColorArray(0.0666667, 0.0666667, 0.0666667, 1, 0.25, 0.25, 0.25, 
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_1fgyn"]
 gradient = SubResource("Gradient_1tu58")
-width = 512
-height = 256
+width = 1024
+height = 512
 fill_from = Vector2(0.5, 0.5625)
 fill_to = Vector2(0.5, 0.4375)
 metadata/_snap_enabled = true
@@ -1302,20 +1302,6 @@ shape = SubResource("ConvexPolygonShape3D_xgmy1")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5, 3, -5)
 collision_layer = 128
 script = ExtResource("36_ba20l")
-properties = {
-"classname": "func_door",
-"closeable": 0,
-"group": "none",
-"nav_link_offset": Vector3(0, 0, 1.5),
-"open_order": Vector3(0, 0, 0),
-"open_pos": Vector3(0, 2.5, 0),
-"open_sound": "metal_open",
-"open_speed": 3.0,
-"required_key": 0,
-"sound_pos": Vector3(0, 0, 0),
-"tooltip_closed": "open",
-"tooltip_open": "close"
-}
 
 [node name="entity_1_mesh_instance" type="MeshInstance3D" parent="FuncGodotMap/entity_1_func_door"]
 layers = 2
@@ -1328,20 +1314,6 @@ shape = SubResource("ConvexPolygonShape3D_txbbl")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5, 3, 0)
 collision_layer = 128
 script = ExtResource("36_ba20l")
-properties = {
-"classname": "func_door",
-"closeable": 0,
-"group": "none",
-"nav_link_offset": Vector3(0, 0, 1.5),
-"open_order": Vector3(0, 0, 0),
-"open_pos": Vector3(0, 2.5, 0),
-"open_sound": "metal_open",
-"open_speed": 3.0,
-"required_key": 1,
-"sound_pos": Vector3(0, 0, 0),
-"tooltip_closed": "open",
-"tooltip_open": "close"
-}
 
 [node name="entity_2_mesh_instance" type="MeshInstance3D" parent="FuncGodotMap/entity_2_func_door"]
 layers = 2
@@ -1354,20 +1326,6 @@ shape = SubResource("ConvexPolygonShape3D_58fq5")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5, 3, 5)
 collision_layer = 128
 script = ExtResource("36_ba20l")
-properties = {
-"classname": "func_door",
-"closeable": 0,
-"group": "none",
-"nav_link_offset": Vector3(0, 0, 1.5),
-"open_order": Vector3(0, 0, 0),
-"open_pos": Vector3(0, 2.5, 0),
-"open_sound": "metal_open",
-"open_speed": 3.0,
-"required_key": 2,
-"sound_pos": Vector3(0, 0, 0),
-"tooltip_closed": "open",
-"tooltip_open": "close"
-}
 
 [node name="entity_3_mesh_instance" type="MeshInstance3D" parent="FuncGodotMap/entity_3_func_door"]
 layers = 2

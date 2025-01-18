@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="FuncGodotFGDPointClass" load_steps=3 format=3 uid="uid://dieso02d657go"]
+
+[ext_resource type="Script" path="res://addons/func_godot/src/fgd/func_godot_fgd_point_class.gd" id="1_e3856"]
+[ext_resource type="PackedScene" uid="uid://djugodjmvvg4v" path="res://objects/deco/hazards/lava_deco.tscn" id="1_gwd46"]
+
+[resource]
+script = ExtResource("1_e3856")
+scene_file = ExtResource("1_gwd46")
+apply_rotation_on_map_build = true
+classname = "deco_lava_sparks"
+description = ""
+func_godot_internal = false
+base_classes = Array[Resource]([])
+class_properties = {}
+class_property_descriptions = {}
+meta_properties = {
+"color": Color(0.8, 0.8, 0.8, 1),
+"size": AABB(-32, -32, 0, 32, 32, 16)
+}
+node_class = ""
+name_property = ""

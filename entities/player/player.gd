@@ -54,12 +54,18 @@ class_name Player extends CharacterBody3D
 #@export var slam_land_stream: AudioStream
 
 @export_group("Save Data")
+## Whether the player has a pending jump request.
 @export_storage var jumping: bool = false
+## Whether the player is currently crouching.
 @export_storage var crouching: bool = false
+## Whether the player is currently slamming.
 @export_storage var slamming: bool = false
+## How long the player has been slamming for.
 @export_storage var slam_timer: float = 0.0
+## How long the player can remain grounded before losing the post-slam jump boost.
 @export_storage var slam_decay: float = 1.0
 
+## The maximum number of times that the player can jump before landing.
 @export_storage var jumps: int = 1
 @export_storage var gravity: float = ProjectSettings.get_setting("physics/3d/default_gravity")
 
@@ -80,6 +86,8 @@ class_name Player extends CharacterBody3D
 @export_storage var cam_recoil_vel: float = 0.0
 
 @export_storage var holding = null
+
+@export_storage var noclip: bool = false
 
 #var listening_for_cheats: bool = false
 var cam_y_offset: float = 0.0
@@ -111,13 +119,14 @@ func _process(_delta) -> void:
 	if jumps < max_jumps and is_on_floor():
 		jumps = max_jumps
 
-	if Input.is_action_pressed("jump") and jumps > 0:
+	if not noclip and Input.is_action_pressed("jump") and jumps > 0:
 		stream_player.stream = jump_stream
 		stream_player.play()
 		jumping = true
 
 	if crouching and (
-			(
+			noclip
+			or (
 					Globals.s_toggle_crouch
 					and Input.is_action_just_pressed("crouch")
 			) or not (
@@ -150,7 +159,7 @@ func _process(_delta) -> void:
 	else:
 		hud.tooltip.visible = false
 
-	if Input.is_action_just_pressed("crouch") and not crouching:
+	if Input.is_action_just_pressed("crouch") and not (crouching or noclip):
 		if not is_on_floor() and not Input.is_action_pressed("jump"):
 			if floor_snap_cast.is_colliding():
 				apply_floor_snap()
@@ -179,6 +188,16 @@ func _process(_delta) -> void:
 
 
 func _physics_process(delta: float) -> void:
+	if noclip:
+		_physics_process_noclip(delta)
+	else:
+		_physics_process_default(delta)
+
+
+func _physics_process_default(delta: float) -> void:
+	
+	camera.rotation.x = fposmod(camera.rotation.x + PI, 2 * PI) - PI
+	
 	# Check if my camera rotation is valid
 	if is_on_floor() and not reorienting and (
 			camera.rotation.x < -PI / 2 or
@@ -196,10 +215,8 @@ func _physics_process(delta: float) -> void:
 		# To prevent eternal somersaulting
 		if abs(camera.rotation.x) < 0.1:
 			reorienting = false
-
+	
 	# Handle actually moving
-	if Globals.mouse_captured: 
-		_handle_joypad_camera_rotation(delta)
 	velocity = (
 			_walk(delta)
 			+ _slide(delta)
@@ -207,9 +224,15 @@ func _physics_process(delta: float) -> void:
 			#+ _jump(delta)
 			+ _knockback(delta)
 	)
+	
+	# Handle joypad look
+	if Globals.mouse_captured: 
+		_handle_joypad_camera_rotation(delta)
+	
 	#cam_recoil_pos = camera_sync.rotation.x + cam_recoil_vel
 	#cam_recoil_pos = smoothstep(camera_sync.rotation.x + cam_recoil_vel * delta, 0, delta)
-	#
+	# reset camera sync's transform to align with the player's 
+	# (needed because a subviewport breaks 3d transform inheritance)
 	camera_sync.global_transform = global_transform
 	# handle y offset
 	camera_sync.position.y += cam_y_offset
@@ -223,11 +246,40 @@ func _physics_process(delta: float) -> void:
 	camera_sync.rotation.x = cam_recoil_pos
 
 	velocity = velocity.clamp(-max_speed, max_speed)
+	
+	#var forward_test: bool = test_move(global_transform, velocity)
+	#if forward_test:
+	var slope_test: bool = test_move(global_transform, (velocity + velocity.length() * Vector3.UP) * delta)
+	if slope_test:
+		var step_pos := global_transform
+		step_pos.origin.y += 0.5
+		var step_test: bool = test_move(step_pos, velocity * delta)
+		if not step_test:
+			position.y += 0.5
+	
 	move_and_slide()
+	
+	if global_position.y < Globals.C_PLAYER_MIN_HEIGHT:
+		match (get_tree().current_scene as Level).bounds_behavior:
+			Level.BoundsBehavior.KILL:
+				if status.god or status.buddha:
+					global_position = Vector3.ZERO
+					grav_vel = Vector3.ZERO
+				else:
+					status.kill()
+			Level.BoundsBehavior.WRAP:
+				global_position.y = -Globals.C_PLAYER_MIN_HEIGHT
+				grav_vel = Vector3.ZERO
+			Level.BoundsBehavior.RESET:
+				global_position = Vector3.ZERO
+				grav_vel = Vector3.ZERO
 
-	if position.y < Globals.C_PLAYER_MIN_HEIGHT:
-		position.y = -Globals.C_PLAYER_MIN_HEIGHT
-		grav_vel = Vector3.ZERO
+
+func _physics_process_noclip(delta: float) -> void:
+	velocity = _fly(delta)
+	camera_sync.global_transform = global_transform
+	
+	move_and_slide()
 
 
 func _unhandled_input(event: InputEvent) -> void:
@@ -287,6 +339,8 @@ func _toggle_crouch(to: bool) -> void:
 	crouchbox.disabled = not to
 
 
+#region movement functions
+
 ## Calculates and returns velocity from player directional input.
 func _walk(delta: float) -> Vector3:
 	var move_input: Vector2 = Input.get_vector(
@@ -298,7 +352,7 @@ func _walk(delta: float) -> Vector3:
 	move_dir = move_dir.move_toward(move_input, delta * acceleration / speed)
 	var forward: Vector3 = transform.basis * Vector3(move_input.x, 0, move_input.y)
 	var walk_dir := Vector3(forward.x, 0, forward.z).normalized()
-
+	
 	if slamming:
 		if (
 				Input.is_action_just_pressed("jump")
@@ -313,22 +367,22 @@ func _walk(delta: float) -> Vector3:
 			stream_player.stream = slide_stream
 			stream_player.play()
 		else:
-			return Vector3.ZERO
-
+			#return Vector3.ZERO
+			walk_vel = walk_vel.move_toward(walk_dir * move_dir.length(), acceleration * delta)
+	else:
+		walk_vel = walk_vel.move_toward(walk_dir * speed * move_dir.length(), acceleration * delta)
+	
 	# Roll camera while strafing
 	camera.rotation.z = move_toward(
 			camera.rotation.z,
 			move_dir.x * -roll_intensity,
 			delta * roll_speed
 	)
-
-	walk_vel = walk_vel.move_toward(walk_dir * speed * move_dir.length(), acceleration * delta)
-
+	
 	if move_dir.length() <= Globals.C_EPSILON:
 		sway_timer = PI/2 #smoothstep(sway_timer, PI/2, delta)
 	else:
 		sway_timer += delta
-
 	# Handle camera & weapon sway/jump lag
 	camera.position = Vector3(
 			(
@@ -361,7 +415,6 @@ func _walk(delta: float) -> Vector3:
 			-0.1,
 			0.1
 	)
-
 	return walk_vel
 
 
@@ -392,8 +445,8 @@ func _gravity(delta: float) -> Vector3:
 			grav_vel = Vector3(0, -slam_speed, 0)
 	elif jumping:
 		if jumps > 0:
-			print(slam_timer)
-			grav_vel = Vector3(0, sqrt(4 * (jump_height) * gravity) + slam_timer * 10, 0)
+			#print(slam_timer)
+			grav_vel = (sqrt(4 * jump_height * gravity) + slam_timer * 10) * Vector3.UP #Vector3(0, sqrt(4 * (jump_height) * gravity) + slam_timer * 10, 0)
 			jumps -= 1
 			slam_decay = 0
 			slam_timer = 0
@@ -447,6 +500,23 @@ func _knockback(delta: float) -> Vector3:
 	return knockback_vel
 
 
+func _fly(delta: float) -> Vector3:
+	var move_input: Vector2 = Input.get_vector(
+			"move_left", 
+			"move_right", 
+			"move_forward", 
+			"move_backwards",
+	)
+	#move_dir = move_dir.move_toward(move_input, delta * acceleration / speed)
+	var fly_input: float = Input.get_axis("crouch", "jump")
+	var forward: Vector3 = camera.global_basis * Vector3(move_input.x, fly_input, move_input.y)
+	var walk_dir := forward.normalized()
+	walk_vel = walk_vel.move_toward(walk_dir * speed, acceleration * delta)
+	return walk_vel
+
+#endregion
+
+
 # TODO implement carriable object logic
 ## Called when the player picks up a carriable object. Not currently implemented.
 func _on_carriable_grabbed(what: Carriable) -> void:
@@ -463,16 +533,90 @@ func step_check(velocity: Vector3) -> bool:
 	return false
 
 
-
 #region console commands
+
 func add_console_commands() -> void:
 	Console.add_command("reset_pos", cmd_reset_pos, [], 0, Globals.parse_text("console", "desc.reset_pos"))
+	Console.add_command("tele", cmd_tele, ["x", "y", "z"], 3, Globals.parse_text("console", "desc.tele"))
+	Console.add_command("invis", cmd_invis, ["true/false"], 0, Globals.parse_text("console", "desc.invis"))
+	Console.add_command("noclip", cmd_noclip, ["true/false"], 0, Globals.parse_text("console", "desc.noclip"))
 
 
 func remove_console_commands() -> void:
 	Console.remove_command("reset_pos")
+	Console.remove_command("tele")
+	Console.remove_command("invis")
+	Console.remove_command("noclip")
 
 
 func cmd_reset_pos() -> void:
-	position = Vector3.ZERO
+	if Globals.try_run_cheat():
+		position = Vector3.ZERO
+
+
+func cmd_tele(x: String, y: String, z: String) -> void:
+	if Globals.try_run_cheat():
+		var to: Vector3
+		
+		if x.begins_with("~") and x.substr(1).is_valid_float():
+			to.x = global_position.x + x.substr(1).to_float()
+		elif x.is_valid_float():
+			to.x = x.to_float()
+		else:
+			Console.print_error(Globals.parse_text("console", "fail.bad_float") % x)
+			return
+		
+		if y.begins_with("~") and x.substr(1).is_valid_float():
+			to.y = global_position.x + x.substr(1).to_float()
+		elif y.is_valid_float():
+			to.y = y.to_float()
+		else:
+			Console.print_error(Globals.parse_text("console", "fail.bad_float") % y)
+			return
+		
+		if z.begins_with("~") and z.substr(1).is_valid_float():
+			to.z = global_position.z + z.substr(1).to_float()
+		elif z.is_valid_float():
+			to.x = z.to_float()
+		else:
+			Console.print_error(Globals.parse_text("console", "fail.bad_float") % z)
+			return
+		
+		global_position = to #Vector3(
+				#global_position.x if x == "~" else x.to_float(), 
+				#global_position.y if y == "~" else y.to_float(), 
+				#global_position.z if z == "~" else z.to_float(),
+		#)
+
+
+func cmd_invis(to: String) -> void:
+	if Globals.try_run_cheat():
+		if to == "":
+			EnemyBase.player_hidden = not EnemyBase.player_hidden
+		else:
+			var to_b := Globals.get_pseudo_bool(to)
+			if to_b == -1:
+				Console.print_error(Globals.parse_text("console", "fail.bad_bool") % to)
+			else:
+				EnemyBase.player_hidden = to_b == Globals.PseudoBool.TRUE
+			Console.print_line(Globals.parse_text("console", "invis") % ("on" if EnemyBase.player_hidden else "off"))
+
+
+func cmd_noclip(to: String) -> void:
+	if Globals.try_run_cheat():
+		if to == "":
+			noclip = not noclip
+		else:
+			var to_b := Globals.get_pseudo_bool(to)
+			if to_b == -1:
+				Console.print_error(Globals.parse_text("console", "fail.bad_bool") % to)
+			else:
+				noclip = to_b == Globals.PseudoBool.TRUE
+			if noclip:
+				hitbox.disabled = true
+				crouchbox.disabled = true
+			else:
+				hitbox.disabled = false
+			Console.print_line(Globals.parse_text("console", "noclip") % ("on" if noclip else "off"))
+
 #endregion

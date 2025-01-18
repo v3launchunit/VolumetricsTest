@@ -23,5 +23,5 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func on_triggered(by: Node3D) -> void:
-	print("forwarder triggered")
+	#print("forwarder triggered")
 	interacted.emit(by)

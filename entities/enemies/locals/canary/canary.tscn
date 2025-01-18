@@ -1,4 +1,4 @@
-[gd_scene load_steps=69 format=3 uid="uid://coe0vc85neefj"]
+[gd_scene load_steps=73 format=3 uid="uid://coe0vc85neefj"]
 
 [ext_resource type="Script" path="res://entities/enemies/enemy_base.gd" id="1_xpg4m"]
 [ext_resource type="PackedScene" uid="uid://d88it1ka8q05" path="res://entities/enemies/locals/canary/canary.glb" id="2_n8knu"]
@@ -515,6 +515,23 @@ _data = {
 "RESET": SubResource("Animation_o8lpw")
 }
 
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_tob0g"]
+animation = &"canary_anims/canary_idle"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_dc35u"]
+animation = &"canary_anims/canary_move"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_wv3lu"]
+animation = &"canary_anims/canary_move"
+
+[sub_resource type="AnimationNodeBlendSpace1D" id="AnimationNodeBlendSpace1D_gfo7p"]
+blend_point_0/node = SubResource("AnimationNodeAnimation_tob0g")
+blend_point_0/pos = 0.0
+blend_point_1/node = SubResource("AnimationNodeAnimation_dc35u")
+blend_point_1/pos = 1.0
+blend_point_2/node = SubResource("AnimationNodeAnimation_wv3lu")
+blend_point_2/pos = -1.0
+
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_fkyut"]
 animation = &"RESET"
 
@@ -588,6 +605,9 @@ switch_mode = 2
 advance_mode = 2
 
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_l00kp"]
+states/BlendSpace1D/node = SubResource("AnimationNodeBlendSpace1D_gfo7p")
+states/BlendSpace1D/position = Vector2(753.333, 95.7907)
+states/End/position = Vector2(902.667, 99.9018)
 states/RESET/node = SubResource("AnimationNodeAnimation_fkyut")
 states/RESET/position = Vector2(132.556, 16.9466)
 states/Start/position = Vector2(-26.6667, 100.593)
@@ -604,7 +624,7 @@ states/idle/position = Vector2(306.947, 100.008)
 states/moving/node = SubResource("AnimationNodeAnimation_imbdi")
 states/moving/position = Vector2(598.57, 100.065)
 transitions = ["idle", "moving", SubResource("AnimationNodeStateMachineTransition_7oomp"), "moving", "idle", SubResource("AnimationNodeStateMachineTransition_dbccw"), "moving", "attacking", SubResource("AnimationNodeStateMachineTransition_4xupg"), "idle", "attacking", SubResource("AnimationNodeStateMachineTransition_majfp"), "attacking", "moving", SubResource("AnimationNodeStateMachineTransition_2nn25"), "attacking", "idle", SubResource("AnimationNodeStateMachineTransition_w5vit"), "attacking", "dead", SubResource("AnimationNodeStateMachineTransition_se8tw"), "idle", "dead", SubResource("AnimationNodeStateMachineTransition_bj5l4"), "moving", "dead", SubResource("AnimationNodeStateMachineTransition_x017w"), "idle", "flinching", SubResource("AnimationNodeStateMachineTransition_goefx"), "attacking", "flinching", SubResource("AnimationNodeStateMachineTransition_3fks7"), "moving", "flinching", SubResource("AnimationNodeStateMachineTransition_stoq6"), "flinching", "moving", SubResource("AnimationNodeStateMachineTransition_wpkvg"), "flinching", "dead", SubResource("AnimationNodeStateMachineTransition_mr23i"), "Start", "ambush", SubResource("AnimationNodeStateMachineTransition_uocbj"), "ambush", "idle", SubResource("AnimationNodeStateMachineTransition_8412e")]
-graph_offset = Vector2(-165, -24)
+graph_offset = Vector2(-532, -46)
 
 [node name="Canary" type="CharacterBody3D"]
 collision_layer = 4
@@ -659,28 +679,28 @@ bones/21/rotation = Quaternion(0.0370042, -0.0100011, 0.259029, 0.965109)
 bones/22/rotation = Quaternion(-0.081984, -0.00699863, -0.086983, 0.992806)
 
 [node name="Cylinder_001" parent="Canary/Armature/Skeleton3D" index="0"]
-transform = Transform3D(1.2299, -0.565626, -0.13227, -0.842955, -0.765956, -0.468379, 0.163614, 0.305581, -1.41885, -0.102452, 0.096982, 0.291368)
+transform = Transform3D(1.22987, -0.565651, -0.132282, -0.846456, -0.772606, -0.436397, 0.144646, 0.288304, -1.42901, -0.102467, 0.0941432, 0.280558)
 
 [node name="Cylinder_001" parent="Canary/Armature/Skeleton3D/Cylinder_001" index="0"]
 layers = 2
 material_override = SubResource("ShaderMaterial_06smx")
 
 [node name="Cylinder_002" parent="Canary/Armature/Skeleton3D" index="1"]
-transform = Transform3D(1.22954, 0.566392, 0.128202, 0.842802, -0.766026, -0.468395, -0.167089, 0.303982, -1.41921, 0.103355, 0.0969692, 0.291077)
+transform = Transform3D(1.22957, 0.566367, 0.12819, 0.846303, -0.772677, -0.436413, -0.148121, 0.286705, -1.42937, 0.10334, 0.0941304, 0.280266)
 
 [node name="Cylinder_002" parent="Canary/Armature/Skeleton3D/Cylinder_002" index="0"]
 layers = 2
 material_override = SubResource("ShaderMaterial_06smx")
 
 [node name="Helmet" parent="Canary/Armature/Skeleton3D" index="2"]
-transform = Transform3D(0.999999, 0.00140326, 0.000174099, -6.19668e-05, 0.166503, -0.986041, -0.00141265, 0.98604, 0.166503, 0.000732057, 0.384537, 0.477198)
+transform = Transform3D(0.999999, 0.00140682, 0.000142544, -6.19676e-05, 0.14432, -0.989531, -0.00141265, 0.98953, 0.14432, 0.000725401, 0.377449, 0.472797)
 
 [node name="Helmet" parent="Canary/Armature/Skeleton3D/Helmet" index="0"]
 layers = 2
 material_override = SubResource("ShaderMaterial_lb10m")
 
 [node name="Cylinder" parent="Canary/Armature/Skeleton3D" index="3"]
-transform = Transform3D(0.999999, 0.000415128, -0.00135171, -6.19668e-05, -0.942148, -0.335198, -0.00141265, 0.335198, -0.942147, 0.000732259, 0.141205, 0.488016)
+transform = Transform3D(0.999999, 0.00038467, -0.00136069, -6.19676e-05, -0.949437, -0.313958, -0.00141265, 0.313958, -0.949436, 0.000717868, 0.133936, 0.478149)
 
 [node name="Cylinder" parent="Canary/Armature/Skeleton3D/Cylinder" index="0"]
 layers = 2
@@ -694,7 +714,7 @@ shadow_enabled = true
 distance_fade_enabled = true
 
 [node name="Pickaxe" parent="Canary/Armature/Skeleton3D" index="4"]
-transform = Transform3D(-0.149237, -0.0149661, 0.00210861, -0.0150256, 0.144655, -0.0367312, 0.00163135, -0.0367555, -0.145418, -0.285357, -0.614886, 0.406764)
+transform = Transform3D(-0.149191, -0.0147539, 0.00492718, -0.0155153, 0.144536, -0.0369937, -0.00110902, -0.0373039, -0.145283, -0.289101, -0.61259, 0.398307)
 
 [node name="Pickaxe" parent="Canary/Armature/Skeleton3D/Pickaxe" index="0"]
 layers = 2
@@ -730,6 +750,7 @@ libraries = {
 [node name="AnimationTree" type="AnimationTree" parent="."]
 tree_root = SubResource("AnimationNodeStateMachine_l00kp")
 anim_player = NodePath("../AnimationPlayer")
+parameters/BlendSpace1D/blend_position = 0.0
 
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
 bus = &"Enemies"

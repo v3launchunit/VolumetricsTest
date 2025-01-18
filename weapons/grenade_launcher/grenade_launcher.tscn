@@ -64,6 +64,7 @@ category = 4
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 material_override = ExtResource("3_f3fnj")
+cast_shadow = 0
 mesh = ExtResource("1_2gdyd")
 
 [node name="Spawner" type="Marker3D" parent="MeshInstance3D"]

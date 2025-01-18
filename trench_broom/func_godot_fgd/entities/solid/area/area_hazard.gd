@@ -24,7 +24,8 @@ const PROP_SPAWN_LAYERS : int = 0b1000_0000_0000_0000_0000_0000_0000_0000
 	set(to):
 		if to != func_godot_properties:
 			func_godot_properties = to
-			decorate_hazard()
+			if to.get("decorate", false):
+				decorate_hazard()
 
 @export var dps: float = 1.0
 @export var player_dps_override: float = 1.0
@@ -68,21 +69,41 @@ func _physics_process(delta: float) -> void:
 
 
 func decorate_hazard() -> void:
-	for m in get_children():
-		if m is not MeshInstance3D:
-			continue
-		var mesh := (m as MeshInstance3D).mesh
-		var shape := mesh.create_convex_shape(false)
-		var bounds := mesh.get_aabb().abs()
-		var volume : float = bounds.get_volume()
-		
-		var point_query := PhysicsPointQueryParameters3D.new()
-		point_query.collide_with_bodies = false
-		point_query.collide_with_areas = true
-		point_query.collision_mask = PROP_SPAWN_LAYERS
-		
-		var x = bounds.position.x
-		var y = bounds.position.y
+	await tree_entered
+	if not Engine.is_editor_hint():
+		return
+	match func_godot_properties.get("hazard_type", -1):
+		HazardType.LAVA:
+			var bounds := AABB(Vector3.ZERO, Vector3.ZERO)
+			for m in get_children():
+				if m is not MeshInstance3D:
+					continue
+				bounds = bounds.merge((m as MeshInstance3D).mesh.get_aabb())
+			var fog := FogVolume.new()
+			fog.material = preload("res://objects/deco/hazards/lava_fog.tres")
+			fog.size = bounds.size
+			add_child(fog)
+			fog.set_owner(get_tree().edited_scene_root)
+			fog.position = bounds.get_center()
+			return
+		_:
+			return
+	
+	#for m in get_children():
+		#if m is not MeshInstance3D:
+			#continue
+		#var mesh := (m as MeshInstance3D).mesh
+		#var shape := mesh.create_convex_shape(false)
+		#var bounds := mesh.get_aabb().abs()
+		#var volume : float = bounds.get_volume()
+		#
+		#var point_query := PhysicsPointQueryParameters3D.new()
+		#point_query.collide_with_bodies = false
+		#point_query.collide_with_areas = true
+		#point_query.collision_mask = PROP_SPAWN_LAYERS
+		#
+		#var x = bounds.position.x
+		#var y = bounds.position.y
 
 
 #class HazardType:

@@ -8,7 +8,7 @@ uniform float scroll_speed : hint_range(0.0, 0.5, 0.0001);
 
 void sky() {
 	if (AT_CUBEMAP_PASS) {
-		// Sets the radiance cubemap to a nice shade of blue instead of doing
+		// Sets the radiance cubemap to a nice shade of gray instead of doing
 		// expensive sky calculations
 		COLOR = sky_cubemap_color;
 	} else {
