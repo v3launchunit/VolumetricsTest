@@ -3,6 +3,12 @@ extends Marker3D
 ## Instantiates a scene when the player enters the set area.
 
 
+enum AmbushStyle {
+	AMBUSH,
+	TELEPORT,
+}
+
+
 ## The scene to be instantiated when this node's ambush is triggered.
 @export var ambusher: PackedScene:
 	set(p_ambusher):
@@ -92,6 +98,16 @@ func spawn_ambush() -> Node3D:
 	#print("placed ambusher in scene")
 	if a is Hitscan:
 		a.query_origin = a.global_position
+	if a is EnemyBase:
+		match properties["ambush_style"]:
+			AmbushStyle.TELEPORT:
+				var sys_scene : PackedScene = preload("res://effects/teleport_sys.tscn")
+				var sys : GPUParticles3D = sys_scene.instantiate()
+				add_child(sys)
+				(a as EnemyBase).state_machine.start("idle")
+				(a as EnemyBase).change_state(EnemyBase.State.IDLE)
+			_:
+				pass
 	return a
 
 

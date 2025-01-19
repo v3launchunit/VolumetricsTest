@@ -13,6 +13,10 @@ description = ""
 func_godot_internal = false
 base_classes = Array[Resource]([ExtResource("1_qtxkr")])
 class_properties = {
+"ambush_style": {
+"ambush": 0,
+"teleport": 1
+},
 "ambusher": {
 "camo lizard": "camo_lizard",
 "canary": "canary",
@@ -29,6 +33,7 @@ class_properties = {
 "turret_mode": false
 }
 class_property_descriptions = {
+"ambush_style": ["the manner in which the enemy enters the level.", "0"],
 "ambusher": ["The enemy to be spawned.", "pinkerton"],
 "group": "The group that activates this ambush."
 }

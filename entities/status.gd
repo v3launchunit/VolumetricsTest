@@ -186,7 +186,7 @@ func gibify():
 	target_parent.queue_free()
 	var i: Node3D
 	if gibs != null:
-		print("gibbed")
+		#print("gibbed")
 		i = gibs.instantiate() as Node3D
 		target_parent.add_child(i)
 		i.translate(gibs_offset)

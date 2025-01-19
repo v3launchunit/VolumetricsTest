@@ -1,0 +1,114 @@
+[gd_scene load_steps=19 format=3 uid="uid://dnwecjmbc78tq"]
+
+[ext_resource type="Texture2D" uid="uid://cu58hb7h0r68v" path="res://effects/look_up_tables/1d/1d_lut_16_color.png" id="1_a2epr"]
+[ext_resource type="Texture2D" uid="uid://dybaimi1b3b85" path="res://effects/glow/lens_dirt/lens_dirt_0.png" id="2_is1u4"]
+
+[sub_resource type="Shader" id="Shader_4dgl8"]
+code = "
+// NOTE: Shader automatically converted from Godot Engine 4.3.stable's PanoramaSkyMaterial.
+
+shader_type sky;
+
+uniform sampler2D source_panorama : filter_nearest, source_color, hint_default_black;
+uniform sampler2D layer_01 : filter_nearest, hint_default_black;
+uniform sampler2D layer_02 : filter_nearest, hint_default_black;
+uniform sampler2D layer_03 : filter_nearest, hint_default_black;
+uniform float exposure : hint_range(0, 128) = 1.0;
+uniform float layer_01_exposure : hint_range(0, 128) = 1.0;
+uniform float layer_02_exposure : hint_range(0, 128) = 1.0;
+uniform float layer_03_exposure : hint_range(0, 128) = 1.0;
+
+void sky() {
+	COLOR = texture(source_panorama, SKY_COORDS).rgb * exposure;
+	COLOR += texture(layer_01, SKY_COORDS).rgb * layer_01_exposure;
+	COLOR += texture(layer_02, SKY_COORDS).rgb * layer_02_exposure;
+	COLOR += texture(layer_03, SKY_COORDS).rgb * layer_03_exposure;
+}
+"
+
+[sub_resource type="Gradient" id="Gradient_wtqcv"]
+offsets = PackedFloat32Array(0.5, 1)
+colors = PackedColorArray(0, 0, 0, 1, 1, 0, 1, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_jn4r1"]
+seed = 1825
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_dtegq"]
+width = 1024
+generate_mipmaps = false
+seamless = true
+color_ramp = SubResource("Gradient_wtqcv")
+noise = SubResource("FastNoiseLite_jn4r1")
+
+[sub_resource type="Gradient" id="Gradient_lb77v"]
+offsets = PackedFloat32Array(0.5, 1)
+colors = PackedColorArray(0, 0, 0, 1, 0, 1, 1, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_cnpvy"]
+seed = 620
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_q06r6"]
+width = 1024
+generate_mipmaps = false
+seamless = true
+color_ramp = SubResource("Gradient_lb77v")
+noise = SubResource("FastNoiseLite_cnpvy")
+
+[sub_resource type="Gradient" id="Gradient_oyo7n"]
+colors = PackedColorArray(0, 0, 0, 1, 0, 0, 1, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_2q241"]
+seed = 3140
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_b0ro5"]
+width = 1024
+generate_mipmaps = false
+seamless = true
+color_ramp = SubResource("Gradient_oyo7n")
+noise = SubResource("FastNoiseLite_2q241")
+
+[sub_resource type="Gradient" id="Gradient_j5v22"]
+offsets = PackedFloat32Array(0.875, 1)
+metadata/_snap_enabled = true
+metadata/_snap_count = 16
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_5ysg7"]
+noise_type = 2
+frequency = 0.0713
+fractal_type = 0
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_bvkyb"]
+width = 1024
+invert = true
+color_ramp = SubResource("Gradient_j5v22")
+noise = SubResource("FastNoiseLite_5ysg7")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_i34e0"]
+shader = SubResource("Shader_4dgl8")
+shader_parameter/exposure = 1.0
+shader_parameter/layer_01_exposure = 0.05
+shader_parameter/layer_02_exposure = 0.05
+shader_parameter/layer_03_exposure = 0.05
+shader_parameter/source_panorama = SubResource("NoiseTexture2D_bvkyb")
+shader_parameter/layer_01 = SubResource("NoiseTexture2D_dtegq")
+shader_parameter/layer_02 = SubResource("NoiseTexture2D_q06r6")
+shader_parameter/layer_03 = SubResource("NoiseTexture2D_b0ro5")
+
+[sub_resource type="Sky" id="Sky_4rtre"]
+sky_material = SubResource("ShaderMaterial_i34e0")
+
+[sub_resource type="Environment" id="Environment_edwpe"]
+background_mode = 2
+sky = SubResource("Sky_4rtre")
+glow_blend_mode = 0
+glow_map = ExtResource("2_is1u4")
+volumetric_fog_enabled = true
+volumetric_fog_density = 0.0
+volumetric_fog_ambient_inject = 0.25
+volumetric_fog_temporal_reprojection_enabled = false
+adjustment_color_correction = ExtResource("1_a2epr")
+
+[node name="Node3D" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_edwpe")

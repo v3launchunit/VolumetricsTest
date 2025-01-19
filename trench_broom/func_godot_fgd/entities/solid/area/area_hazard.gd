@@ -81,7 +81,7 @@ func decorate_hazard() -> void:
 				bounds = bounds.merge((m as MeshInstance3D).mesh.get_aabb())
 			var fog := FogVolume.new()
 			fog.material = preload("res://objects/deco/hazards/lava_fog.tres")
-			fog.size = bounds.size
+			fog.size = bounds.size - 0.1 * Vector3.UP
 			add_child(fog)
 			fog.set_owner(get_tree().edited_scene_root)
 			fog.position = bounds.get_center()

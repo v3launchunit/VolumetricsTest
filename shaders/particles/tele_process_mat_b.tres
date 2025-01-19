@@ -1,21 +1,6 @@
-[gd_scene load_steps=7 format=3 uid="uid://cuyhixgs58ebf"]
+[gd_resource type="ShaderMaterial" load_steps=4 format=3 uid="uid://rq1gll8tkr40"]
 
-[ext_resource type="Shader" path="res://shaders/particles/tele_particles_shader.gdshader" id="1_ppgjo"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_d0fsr"]
-transparency = 3
-alpha_hash_scale = 1.0
-alpha_antialiasing_mode = 0
-shading_mode = 0
-vertex_color_use_as_albedo = true
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_ahkbf"]
-shader = ExtResource("1_ppgjo")
-
-[sub_resource type="BoxMesh" id="BoxMesh_3i2ya"]
-size = Vector3(0.063, 0.063, 0.063)
-
-[sub_resource type="Shader" id="Shader_5xib5"]
+[sub_resource type="Shader" id="Shader_pmvi2"]
 code = "// NOTE: Shader automatically converted from Godot Engine 4.3.stable's ParticleProcessMaterial.
 
 shader_type particles;
@@ -57,12 +42,9 @@ uniform float lifetime_randomness;
 uniform vec3 emission_shape_offset = vec3(0.0);
 uniform vec3 emission_shape_scale = vec3(1.0);
 uniform vec3 velocity_pivot = vec3(0.0);
-uniform vec3 emission_ring_axis;
-uniform float emission_ring_height;
-uniform float emission_ring_radius;
-uniform float emission_ring_inner_radius;
 uniform vec4 color_value : source_color;
 uniform vec3 gravity;
+uniform sampler2D color_ramp : repeat_disable;
 
 vec4 rotate_hue(vec4 current_color, float hue_rot_angle) {
 	float hue_rot_c = cos(hue_rot_angle);
@@ -169,34 +151,21 @@ void calculate_initial_display_params(inout DisplayParameters params, inout uint
 
 void process_display_param(inout DisplayParameters parameters, float lifetime) {
 	// Compile-time add textures.
+	parameters.color *= texture(color_ramp, vec2(lifetime));
 	parameters.color = rotate_hue(parameters.color, parameters.hue_rotation);
 }
 
-vec3 calculate_initial_position(inout uint alt_seed) {
+vec3 calculate_initial_position(inout uint alt_seed, uint idx) {
 	float pi = 3.14159;
 	vec3 pos = vec3(0.0);
 	{ // Emission shape.
-		float ring_spawn_angle = rand_from_seed(alt_seed) * 2.0 * pi;
-		float ring_random_radius = sqrt(rand_from_seed(alt_seed) * (emission_ring_radius * emission_ring_radius - emission_ring_inner_radius * emission_ring_inner_radius) + emission_ring_inner_radius * emission_ring_inner_radius);
-		vec3 axis = emission_ring_axis == vec3(0.0) ? vec3(0.0, 0.0, 1.0) : normalize(emission_ring_axis);
-		vec3 ortho_axis = vec3(0.0);
-		if (abs(axis) == vec3(1.0, 0.0, 0.0)) {
-			ortho_axis = cross(axis, vec3(0.0, 1.0, 0.0));
-		} else {
- 			ortho_axis = cross(axis, vec3(1.0, 0.0, 0.0));
-		}
-		ortho_axis = normalize(ortho_axis);
-		float s = sin(ring_spawn_angle);
-		float c = cos(ring_spawn_angle);
-		float oc = 1.0 - c;
-		ortho_axis = mat3(
-			vec3(c + axis.x * axis.x * oc, axis.x * axis.y * oc - axis.z * s, axis.x * axis.z *oc + axis.y * s),
-			vec3(axis.x * axis.y * oc + s * axis.z, c + axis.y * axis.y * oc, axis.y * axis.z * oc - axis.x * s),
-			vec3(axis.z * axis.x * oc - axis.y * s, axis.z * axis.y * oc + axis.x * s, c + axis.z * axis.z * oc)
-			) * ortho_axis;
-		ortho_axis = normalize(ortho_axis);
-		pos = ortho_axis * ring_random_radius + (rand_from_seed(alt_seed) * emission_ring_height - emission_ring_height / 2.0) * axis;
+	 	pos = vec3(0.0);
 	}
+
+	pos.x = cos(float(idx) / 8.0 + PI * float(int(idx) % 2)) * 0.5;
+	pos.y = float(idx) / 32.0 - 1.0;
+	pos.z = sin(float(idx) / 8.0 + PI * float(int(idx) % 2)) * 0.5;
+
 	return pos * emission_shape_scale + emission_shape_offset;
 }
 
@@ -275,7 +244,7 @@ void start() {
 		TRANSFORM[2].xyz = vec3(0.0, 0.0, 1.0);
 	}
 	if (RESTART_POSITION) {
-		TRANSFORM[3].xyz = calculate_initial_position(alt_seed);
+		TRANSFORM[3].xyz = calculate_initial_position(alt_seed, INDEX);
 		TRANSFORM = EMISSION_TRANSFORM * TRANSFORM;
 	}
 	if (RESTART_VELOCITY) {
@@ -339,7 +308,11 @@ void process() {
 		// Copied from previous version.
 		if (physics_params.damping > 0.0) {
 			float v = length(VELOCITY);
-			v -= physics_params.damping * DELTA;
+			if (v > 0.001) {
+				// Realistic friction formula. We assume the mass of a particle to be 0.05 kg.
+				float damp = v * v * physics_params.damping * 0.05 * DELTA;
+				v -= damp;
+			}
 			if (v < 0.0) {
 				VELOCITY = vec3(0.0);
 			} else {
@@ -375,13 +348,19 @@ void process() {
 }
 "
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_y4pax"]
-shader = SubResource("Shader_5xib5")
+[sub_resource type="Gradient" id="Gradient_kml8f"]
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_cqyxv"]
+gradient = SubResource("Gradient_kml8f")
+
+[resource]
+shader = SubResource("Shader_pmvi2")
 shader_parameter/direction = Vector3(0, 1, 0)
-shader_parameter/spread = 0.0
+shader_parameter/spread = 180.0
 shader_parameter/flatness = 0.0
 shader_parameter/inherit_emitter_velocity_ratio = 0.0
-shader_parameter/initial_linear_velocity_min = 1.0
+shader_parameter/initial_linear_velocity_min = 0.1
 shader_parameter/initial_linear_velocity_max = 1.0
 shader_parameter/directional_velocity_min = 1.0
 shader_parameter/directional_velocity_max = 1.0
@@ -389,16 +368,16 @@ shader_parameter/angular_velocity_min = 0.0
 shader_parameter/angular_velocity_max = 0.0
 shader_parameter/orbit_velocity_min = 0.0
 shader_parameter/orbit_velocity_max = 0.0
-shader_parameter/radial_velocity_min = 0.0
-shader_parameter/radial_velocity_max = 0.0
+shader_parameter/radial_velocity_min = null
+shader_parameter/radial_velocity_max = null
 shader_parameter/linear_accel_min = 0.0
 shader_parameter/linear_accel_max = 0.0
 shader_parameter/radial_accel_min = 0.0
 shader_parameter/radial_accel_max = 0.0
 shader_parameter/tangent_accel_min = 0.0
 shader_parameter/tangent_accel_max = 0.0
-shader_parameter/damping_min = 0.0
-shader_parameter/damping_max = 0.0
+shader_parameter/damping_min = 15.0
+shader_parameter/damping_max = 25.0
 shader_parameter/initial_angle_min = 0.0
 shader_parameter/initial_angle_max = 0.0
 shader_parameter/scale_min = 1.0
@@ -413,30 +392,6 @@ shader_parameter/lifetime_randomness = 0.0
 shader_parameter/emission_shape_offset = Vector3(0, 0, 0)
 shader_parameter/emission_shape_scale = Vector3(1, 1, 1)
 shader_parameter/velocity_pivot = Vector3(0, 0, 0)
-shader_parameter/emission_ring_axis = Vector3(0, 1, 0)
-shader_parameter/emission_ring_height = 0.0
-shader_parameter/emission_ring_radius = 0.5
-shader_parameter/emission_ring_inner_radius = 0.5
-shader_parameter/color_value = Color(1, 1, 1, 1)
+shader_parameter/color_value = Color(0, 3, 1.5, 1)
 shader_parameter/gravity = Vector3(0, -1e-06, 0)
-
-[node name="Node3D" type="Node3D"]
-
-[node name="GPUParticles3D" type="GPUParticles3D" parent="."]
-material_override = SubResource("StandardMaterial3D_d0fsr")
-emitting = false
-amount = 64
-lifetime = 0.5
-one_shot = true
-explosiveness = 0.5
-randomness = 1.0
-local_coords = true
-process_material = SubResource("ShaderMaterial_ahkbf")
-draw_pass_1 = SubResource("BoxMesh_3i2ya")
-
-[node name="GPUParticles3D2" type="GPUParticles3D" parent="."]
-visible = false
-amount = 64
-local_coords = true
-process_material = SubResource("ShaderMaterial_y4pax")
-draw_pass_1 = SubResource("BoxMesh_3i2ya")
+shader_parameter/color_ramp = SubResource("GradientTexture1D_cqyxv")

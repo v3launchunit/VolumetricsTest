@@ -1,0 +1,19 @@
+[gd_resource type="ParticleProcessMaterial" load_steps=3 format=3 uid="uid://cfr6ytm1w602i"]
+
+[sub_resource type="Gradient" id="Gradient_8a1aj"]
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_3nejb"]
+gradient = SubResource("Gradient_8a1aj")
+
+[resource]
+particle_flag_damping_as_friction = true
+direction = Vector3(0, 1, 0)
+spread = 180.0
+initial_velocity_min = 1.0
+initial_velocity_max = 3.0
+gravity = Vector3(0, 0, 0)
+damping_min = 95.0
+damping_max = 100.0
+color = Color(0, 3, 1.5, 1)
+color_ramp = SubResource("GradientTexture1D_3nejb")
