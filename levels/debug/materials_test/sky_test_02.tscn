@@ -1,7 +1,8 @@
-[gd_scene load_steps=19 format=3 uid="uid://dnwecjmbc78tq"]
+[gd_scene load_steps=27 format=3 uid="uid://dnwecjmbc78tq"]
 
 [ext_resource type="Texture2D" uid="uid://cu58hb7h0r68v" path="res://effects/look_up_tables/1d/1d_lut_16_color.png" id="1_a2epr"]
 [ext_resource type="Texture2D" uid="uid://dybaimi1b3b85" path="res://effects/glow/lens_dirt/lens_dirt_0.png" id="2_is1u4"]
+[ext_resource type="Shader" path="res://shaders/spatial/cloud_layer.gdshader" id="3_cax8u"]
 
 [sub_resource type="Shader" id="Shader_4dgl8"]
 code = "
@@ -108,7 +109,47 @@ volumetric_fog_ambient_inject = 0.25
 volumetric_fog_temporal_reprojection_enabled = false
 adjustment_color_correction = ExtResource("1_a2epr")
 
+[sub_resource type="Gradient" id="Gradient_ridvr"]
+colors = PackedColorArray(0, 0, 0, 1, 0.125911, 0.125911, 0.125911, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_yucj3"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_m76ab"]
+seamless = true
+color_ramp = SubResource("Gradient_ridvr")
+noise = SubResource("FastNoiseLite_yucj3")
+
+[sub_resource type="Gradient" id="Gradient_idtm6"]
+offsets = PackedFloat32Array(0.5, 1)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+metadata/_snap_enabled = true
+metadata/_snap_count = 16
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_cd3ui"]
+gradient = SubResource("Gradient_idtm6")
+width = 128
+height = 128
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(1, 0.5)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_qsjhe"]
+render_priority = 0
+shader = ExtResource("3_cax8u")
+shader_parameter/scroll_speed = Vector2(1, 1)
+shader_parameter/fade = SubResource("GradientTexture2D_cd3ui")
+shader_parameter/clouds = SubResource("NoiseTexture2D_m76ab")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_7t6v5"]
+flip_faces = true
+size = Vector2(512, 512)
+
 [node name="Node3D" type="Node3D"]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_edwpe")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 64, 0)
+material_override = SubResource("ShaderMaterial_qsjhe")
+mesh = SubResource("PlaneMesh_7t6v5")

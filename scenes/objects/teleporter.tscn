@@ -157,12 +157,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 collision_mask = 62
 script = ExtResource("1_1hc1g")
 
-[node name="NavigationLink3D" type="NavigationLink3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
-end_position = Vector3(0, 0, -1)
-enter_cost = 1.0
-travel_cost = 0.0
-
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("CylinderShape3D_360gk")
 
@@ -192,6 +186,6 @@ draw_pass_1 = SubResource("BoxMesh_f0mow")
 [node name="TeleportSys" parent="." instance=ExtResource("3_75on0")]
 
 [node name="Destination" type="Marker3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -3)
 
 [node name="TeleportSys" parent="Destination" instance=ExtResource("3_75on0")]

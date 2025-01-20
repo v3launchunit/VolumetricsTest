@@ -1,11 +1,23 @@
+@tool
+
 extends Marker3D
 
-@export var func_godot_properties: Dictionary
+@export var func_godot_properties: Dictionary:
+	set(to):
+		func_godot_properties = to
+		if not is_in_group("targetname:%s" % func_godot_properties["targetname"]):
+			for group in get_groups():
+				if not str(group).begins_with("_"):
+					remove_from_group(group)
+			add_to_group("targetname:%s" % func_godot_properties["targetname"], true)
 
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	add_to_group("targetname:%s" % func_godot_properties["targetname"], true)
+	if Engine.is_editor_hint():
+		return
+	if not is_in_group("targetname:%s" % func_godot_properties["targetname"]):
+		add_to_group("targetname:%s" % func_godot_properties["targetname"], true)
 	var tele := get_tree().get_first_node_in_group("targets:%s" % func_godot_properties["targetname"]) as Teleporter
 	if tele == null:
 		return

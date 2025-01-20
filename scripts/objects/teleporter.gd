@@ -1,19 +1,30 @@
+@tool
 class_name Teleporter
 extends Area3D
 
 @export var func_godot_properties: Dictionary
+	#set(to):
+		#func_godot_properties = to
+		#await get_tree().process_frame
 
 @export_storage var configured: bool = true
+@export_storage var nav_link: NavigationLink3D
 
 @onready var to := find_child("Destination") as Marker3D
 
 @onready var destination: Vector3 = find_child("Destination").global_position
-@onready var nav_link: NavigationLink3D = find_child("NavigationLink3D")
+#@onready var nav_link: NavigationLink3D = find_child("NavigationLink3D")
 @onready var streams: Array[Node] = find_children("AudioStreamPlayer3D")
 @onready var tele_sys: Array[Node] = find_children("TeleportSys")
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	if Engine.is_editor_hint():
+		#await get_tree().process_frame
+		#get_parent().set_editable_instance(self, true)
+		#print(get_parent().is_editable_instance(self))
+		return
+	
 	add_to_group("targets:%s" %  func_godot_properties["target"], true)
 	body_entered.connect(_on_body_entered)
 	if func_godot_properties:
@@ -28,11 +39,29 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
+	if nav_link == null and not func_godot_properties.is_empty():
+		nav_link = NavigationLink3D.new()
+		add_child(nav_link)
+		nav_link.set_owner(owner)
+		nav_link.position.y -= 0.5
+		var dest := get_tree().get_first_node_in_group("targetname:%s" % func_godot_properties["target"]) as Marker3D
+		if dest == null:
+			print("destination could not be found")
+			return
+		print(dest)
+		nav_link.set_global_end_position(dest.global_position)
+		nav_link.end_position.y -= 0.5
+		configured = true
+		#set_destination(dest.global_position)
 	if configured:
+		#print("already configured")
 		return
 	var dest := get_tree().get_first_node_in_group("targetname:%s" % func_godot_properties["target"]) as Marker3D
 	if dest == null:
+		print("destination could not be found")
 		return
+	print(dest)
+	nav_link.set_global_end_position(dest.global_position)
 	set_destination(dest.global_position)
 	configured = true
 	#if properties and get_tree().has_group(properties["to"]):
