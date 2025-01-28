@@ -612,11 +612,11 @@ func cmd_noclip(to: String) -> void:
 				Console.print_error(Globals.parse_text("console", "fail.bad_bool") % to)
 			else:
 				noclip = to_b == Globals.PseudoBool.TRUE
-			if noclip:
-				hitbox.disabled = true
-				crouchbox.disabled = true
-			else:
-				hitbox.disabled = false
-			Console.print_line(Globals.parse_text("console", "noclip") % ("on" if noclip else "off"))
+		if noclip:
+			hitbox.disabled = true
+			crouchbox.disabled = true
+		else:
+			hitbox.disabled = false
+		Console.print_line(Globals.parse_text("console", "noclip") % ("on" if noclip else "off"))
 
 #endregion

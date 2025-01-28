@@ -106,13 +106,32 @@ func _exit_tree() -> void:
 
 
 func _ready() -> void:
-	add_command("quit", quit, 0, 0, "quits the game.")
-	add_command("exit", quit, 0, 0, "quits the game.")
+	add_command("quit", quit, 0, 0, "closes the game.")
+	add_command("exit", quit, 0, 0, "closes the game.")
+	
 	add_command("clear", clear, 0, 0, "clears the text on the console.")
 	add_command("delete_history", delete_history, 0, 0, "deletes the history of previously entered commands.")
 	add_command("help", help, 0, 0, "displays instructions on how to use the console.")
+	
 	add_command("commands_list", commands_list, 0, 0, "lists all commands and their descriptions.")
+	add_command("list_commands", commands_list, 0, 0, "lists all commands and their descriptions.")
+	#add_command("lcmd", commands_list, 0, 0, "lists all commands and their descriptions.")
+	#add_command("lcmds", commands_list, 0, 0, "lists all commands and their descriptions.")
+	#add_command("cmdl", commands_list, 0, 0, "lists all commands and their descriptions.")
+	#add_command("cmdsl", commands_list, 0, 0, "lists all commands and their descriptions.")
+	#add_command("l_cmd", commands_list, 0, 0, "lists all commands and their descriptions.")
+	#add_command("l_cmds", commands_list, 0, 0, "lists all commands and their descriptions.")
+	#add_command("cmd_l", commands_list, 0, 0, "lists all commands and their descriptions.")
+	#add_command("cmds_l", commands_list, 0, 0, "lists all commands and their descriptions.")
+	add_command("list_cmd", commands_list, 0, 0, "lists all commands and their descriptions.")
+	add_command("list_cmds", commands_list, 0, 0, "lists all commands and their descriptions.")
+	add_command("cmd_list", commands_list, 0, 0, "lists all commands and their descriptions.")
+	add_command("cmds_list", commands_list, 0, 0, "lists all commands and their descriptions.")
+	
 	add_command("commands", commands, 0, 0, "lists commands with no descriptions.")
+	add_command("cmds", commands, 0, 0, "lists commands with no descriptions.")
+	add_command("cmd", commands, 0, 0, "lists commands with no descriptions.")
+	
 	add_command("calc", calculate, ["mathematical expression to evaluate"], 0, "Evaluates the math passed in for quick arithmetic.")
 
 

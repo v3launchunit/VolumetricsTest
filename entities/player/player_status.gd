@@ -227,7 +227,7 @@ func cmd_god(to: String) -> void:
 				Console.print_error(Globals.parse_text("console", "fail.bad_bool") % to)
 			else:
 				god = (to_b == Globals.PseudoBool.TRUE)
-			Console.print_line(Globals.parse_text("console", "god") % ("on" if god else "off"))
+		Console.print_line(Globals.parse_text("console", "god") % ("on" if god else "off"))
 
 
 func cmd_buddha(to: String) -> void:
@@ -240,5 +240,5 @@ func cmd_buddha(to: String) -> void:
 				Console.print_error(Globals.parse_text("console", "fail.bad_bool") % to)
 			else:
 				buddha = (to_b == Globals.PseudoBool.TRUE)
-			Console.print_line(Globals.parse_text("console", "buddha") % ("on" if buddha else "off"))
+		Console.print_line(Globals.parse_text("console", "buddha") % ("on" if buddha else "off"))
 #endregion
