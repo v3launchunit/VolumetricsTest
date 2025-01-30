@@ -69,25 +69,26 @@ func _physics_process(delta: float) -> void:
 
 
 func decorate_hazard() -> void:
-	await tree_entered
-	if not Engine.is_editor_hint():
-		return
-	match func_godot_properties.get("hazard_type", -1):
-		HazardType.LAVA:
-			var bounds := AABB(Vector3.ZERO, Vector3.ZERO)
-			for m in get_children():
-				if m is not MeshInstance3D:
-					continue
-				bounds = bounds.merge((m as MeshInstance3D).mesh.get_aabb())
-			var fog := FogVolume.new()
-			fog.material = preload("res://objects/deco/hazards/lava_fog.tres")
-			fog.size = bounds.size - 0.1 * Vector3.UP
-			add_child(fog)
-			fog.set_owner(get_tree().edited_scene_root)
-			fog.position = bounds.get_center()
-			return
-		_:
-			return
+	return
+	#await tree_entered
+	#if not Engine.is_editor_hint():
+		#return
+	#match func_godot_properties.get("hazard_type", -1):
+		#HazardType.LAVA:
+			#var bounds := AABB(Vector3.ZERO, Vector3.ZERO)
+			#for m in get_children():
+				#if m is not MeshInstance3D:
+					#continue
+				#bounds = bounds.merge((m as MeshInstance3D).mesh.get_aabb())
+			#var fog := FogVolume.new()
+			#fog.material = preload("res://objects/deco/hazards/lava_fog.tres")
+			#fog.size = bounds.size - 0.1 * Vector3.UP
+			#add_child(fog)
+			#fog.set_owner(get_tree().edited_scene_root)
+			#fog.position = bounds.get_center()
+			#return
+		#_:
+			#return
 	
 	#for m in get_children():
 		#if m is not MeshInstance3D:

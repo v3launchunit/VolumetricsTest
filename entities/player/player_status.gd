@@ -99,12 +99,12 @@ func damage_typed(amount: float, type: DamageType, gib_mode: GibMode = GibMode.A
 
 
 func rapid_damage_typed(amount: float, type: DamageType, delta: float, gib_mode: GibMode = GibMode.ALLOW_GIB) -> void:
+	hud.rapid_flash(type, delta, god or invuln_timer > 0)
 	if god or invuln_timer > 0:
 		return
 	var damage_factor: float = damage_multipliers[type] if type != DamageType.ABSOLUTE else 1.0
 	health -= amount * delta * base_damage_factor * damage_factor * (1 - armor_absorption)
 	armor  -= amount * delta * base_damage_factor * damage_factor * armor_absorption
-	hud.rapid_flash(type, delta)
 	if armor <= 0:
 		health += armor # armor will be negative
 		armor = 0

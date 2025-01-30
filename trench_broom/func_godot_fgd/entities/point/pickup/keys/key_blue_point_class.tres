@@ -16,6 +16,7 @@ class_properties = {
 "pickup_group": "blue"
 }
 class_property_descriptions = {}
+auto_apply_to_matching_node_properties = false
 meta_properties = {
 "color": Color(0, 0, 0.8, 1),
 "size": AABB(-8, -8, -8, 8, 8, 8)

@@ -567,6 +567,8 @@ shape = SubResource("SphereShape3D_n73ay")
 
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
 stream = SubResource("AudioStreamRandomizer_4pgkn")
+attenuation_model = 3
+volume_db = 10.0
 autoplay = true
 bus = &"Combat"
 doppler_tracking = 2

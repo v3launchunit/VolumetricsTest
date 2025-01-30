@@ -17,6 +17,11 @@ collision_layer = 1
 collision_mask = 39
 collision_priority = 1.0
 collision_shape_margin = 0.04
+add_textures_metadata = false
+add_vertex_metadata = false
+add_face_position_metadata = false
+add_face_normal_metadata = false
+add_collision_shape_face_range_metadata = false
 script_class = ExtResource("2_f2h6u")
 classname = "area_hazard"
 description = ""
@@ -42,6 +47,7 @@ class_property_descriptions = {
 "damage_type": ["", "GENERIC"],
 "hazard_type": ["", -1]
 }
+auto_apply_to_matching_node_properties = false
 meta_properties = {
 "color": Color(0.8, 0.8, 0.8, 1),
 "size": AABB(-8, -8, -8, 8, 8, 8)

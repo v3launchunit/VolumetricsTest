@@ -249,7 +249,8 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
-[node name="Flash" type="TextureRect" parent="HeatFlash"]
+[node name="FlashOld" type="TextureRect" parent="HeatFlash"]
+visible = false
 modulate = Color(1, 0.501961, 0, 1)
 texture_filter = 2
 layout_mode = 1
@@ -260,13 +261,6 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 texture = SubResource("GradientTexture2D_7oab2")
-
-[node name="ColorRect" type="ColorRect" parent="HeatFlash"]
-visible = false
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
-color = Color(1, 0.501961, 0, 1)
 
 [node name="BackBufferCopy" type="BackBufferCopy" parent="HeatFlash"]
 copy_mode = 2
@@ -280,6 +274,16 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
+
+[node name="Flash" type="ColorRect" parent="HeatFlash"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(1, 0.5, 0, 0.501961)
 
 [node name="HUDPanel" type="NinePatchRect" parent="."]
 layout_mode = 1

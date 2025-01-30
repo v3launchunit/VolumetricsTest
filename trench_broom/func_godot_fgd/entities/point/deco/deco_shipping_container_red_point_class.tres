@@ -13,6 +13,7 @@ func_godot_internal = false
 base_classes = Array[Resource]([])
 class_properties = {}
 class_property_descriptions = {}
+auto_apply_to_matching_node_properties = false
 meta_properties = {
 "color": Color(1, 0, 0, 1),
 "size": AABB(-48, -48, -20, 48, 48, 22)

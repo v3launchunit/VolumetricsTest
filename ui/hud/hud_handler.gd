@@ -109,7 +109,7 @@ func _process(delta: float) -> void:
 			rapid_damage_player.stop()
 	
 	if heat_flash.visible:
-		heat_flash.modulate.a = move_toward(heat_flash.modulate.a, 0.0, delta)
+		heat_flash.modulate.a = move_toward(heat_flash.modulate.a, 0.0, delta * 5)
 		if heat_flash.modulate.a <= 0.0:
 			heat_flash.visible = false
 
@@ -147,13 +147,13 @@ func flash_with_sound(color: Color, sound: AudioStream) -> void:
 	stream_player.play()
 
 
-func rapid_flash(type: Status.DamageType, delta: float):
-	if not rapid_damage_player.playing:
+func rapid_flash(type: Status.DamageType, delta: float, silent: bool = false):
+	if not (silent or rapid_damage_player.playing):
 		rapid_damage_player.playing = true
 	rapid_damage_timer = 0.25
 	if type == Status.DamageType.FIRE:
 		heat_flash.visible = true
-		heat_flash.modulate.a = move_toward(heat_flash.modulate.a, 1.0, delta * 2.5)
+		heat_flash.modulate.a = 1.0 #move_toward(heat_flash.modulate.a, 1.0, delta * 2.5)
 
 
 func log_event(event_text: String) -> void:

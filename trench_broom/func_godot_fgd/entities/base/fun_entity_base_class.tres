@@ -12,6 +12,7 @@ class_properties = {
 "fun_expression": "0 <= x <= 1000"
 }
 class_property_descriptions = {}
+auto_apply_to_matching_node_properties = false
 meta_properties = {
 "color": Color(0.8, 0.8, 0.8, 1),
 "size": AABB(-8, -8, -8, 8, 8, 8)

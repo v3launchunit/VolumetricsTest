@@ -63,7 +63,7 @@ fill_to = Vector2(1, 0.5)
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_qsjhe"]
 render_priority = 0
 shader = ExtResource("3_j8a6h")
-shader_parameter/scroll_speed = Vector2(1, 1)
+shader_parameter/scroll_speed = Vector2(0.01, 0.01)
 shader_parameter/fade = SubResource("GradientTexture2D_cd3ui")
 shader_parameter/clouds = SubResource("NoiseTexture2D_m76ab")
 

@@ -14,6 +14,7 @@ func_godot_internal = false
 base_classes = Array[Resource]([ExtResource("1_bnbir")])
 class_properties = {}
 class_property_descriptions = {}
+auto_apply_to_matching_node_properties = false
 meta_properties = {
 "color": Color(0.8, 0.8, 0.8, 1),
 "size": AABB(-8, -8, -8, 8, 8, 8)

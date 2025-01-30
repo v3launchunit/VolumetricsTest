@@ -1,40 +1,12 @@
-[gd_scene load_steps=10 format=3 uid="uid://mitqdv2ma8wg"]
+[gd_scene load_steps=5 format=3 uid="uid://mitqdv2ma8wg"]
 
 [ext_resource type="Texture2D" uid="uid://cu58hb7h0r68v" path="res://effects/look_up_tables/1d/1d_lut_16_color.png" id="1_bn4u7"]
 [ext_resource type="Texture2D" uid="uid://dybaimi1b3b85" path="res://effects/glow/lens_dirt/lens_dirt_0.png" id="2_xqpyy"]
-[ext_resource type="Texture2D" uid="uid://b2qujg1fro3kc" path="res://skies/sky_uv_01.png" id="3_y7ldp"]
-
-[sub_resource type="Shader" id="Shader_2kmw8"]
-code = "shader_type sky;
-
-uniform sampler2D texture_sky_uv;
-uniform sampler2D texture_sky;
-
-void sky() {
-	vec4 sky_uv = texture(texture_sky_uv, SKY_COORDS);
-	
-	//if (sky_uv.b > 0.0) {
-		COLOR = mix(texture(texture_sky, sky_uv.rg).rgb, vec3(0.0), 1.0 - sky_uv.b);
-	//}
-}
-"
-
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_qena5"]
-
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_5hit8"]
-noise = SubResource("FastNoiseLite_qena5")
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_irk53"]
-shader = SubResource("Shader_2kmw8")
-shader_parameter/texture_sky_uv = ExtResource("3_y7ldp")
-shader_parameter/texture_sky = SubResource("NoiseTexture2D_5hit8")
-
-[sub_resource type="Sky" id="Sky_4rtre"]
-sky_material = SubResource("ShaderMaterial_irk53")
+[ext_resource type="Sky" uid="uid://c6my47n1h24na" path="res://skies/sky_overcast_gray.tres" id="3_e5k7f"]
 
 [sub_resource type="Environment" id="Environment_edwpe"]
 background_mode = 2
-sky = SubResource("Sky_4rtre")
+sky = ExtResource("3_e5k7f")
 glow_blend_mode = 0
 glow_map = ExtResource("2_xqpyy")
 volumetric_fog_enabled = true

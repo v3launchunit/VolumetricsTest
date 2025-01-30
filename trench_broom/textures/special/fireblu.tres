@@ -7,7 +7,6 @@
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_rfpwm"]
 noise_type = 2
 frequency = 0.025
-fractal_octaves = 2
 
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_ngxd3"]
 seamless = true

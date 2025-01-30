@@ -21,6 +21,7 @@ class_properties = {
 class_property_descriptions = {
 "mount_type": ["", 0]
 }
+auto_apply_to_matching_node_properties = false
 meta_properties = {
 "color": Color(0.8, 0.8, 0.8, 1),
 "model": "{{ mount_type == 0 -> {\"path\": \"models/enemy_gun_turret.glb\"}, mount_type == 1 -> {\"path\": \"models/enemy_gun_turret_wall.glb\"}, {\"path\": \"models/enemy_gun_turret.glb\"} }}",
