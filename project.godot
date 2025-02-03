@@ -26,7 +26,6 @@ buses/default_bus_layout="res://audio/default_bus_layout.tres"
 Globals="*res://scripts/globals.gd"
 Intermission="*res://levels/intermission/intermission.tscn"
 GameMenu="*res://ui/menus/game_menu.tscn"
-Screenwipe="res://levels/intermission/screenwipe.tscn"
 Console="*res://addons/console/console.gd"
 
 [display]

@@ -708,8 +708,6 @@ Credits:
 		Laighter
 		Audacity
 
-
-
  {{ 
 	ambusher == "camo lizard" -> "path": "models/enemy_lizard.glb", 
 	ambusher == "canary" -> "path": "models/enemy_canary.glb", 
@@ -723,3 +721,6 @@ Credits:
 	ambusher == "soldier" -> "path": "models/enemy_soldier.glb", 
 	"path": "models/enemy_pinkerton.glb" 
 }}
+
+bleep frequency: 1000hz
+tinnitus frequency: 2100hz

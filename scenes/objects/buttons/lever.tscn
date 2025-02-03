@@ -2,9 +2,9 @@
 
 [ext_resource type="Script" path="res://scripts/objects/button.gd" id="1_g1dqr"]
 [ext_resource type="PackedScene" uid="uid://dhcc71k270vgk" path="res://models/objects/lever.glb" id="2_eoldm"]
-[ext_resource type="Texture2D" uid="uid://2gj3tv6stgsr" path="res://objects/interactable/lever/lever_albedo.png" id="3_82ns7"]
-[ext_resource type="Texture2D" uid="uid://crltgslfg1nou" path="res://objects/interactable/lever/lever_emissions.png" id="4_o2sfm"]
-[ext_resource type="Texture2D" uid="uid://c0qe7jq8ss6c4" path="res://objects/interactable/lever/lever_normals.png" id="5_eppt4"]
+[ext_resource type="Texture2D" uid="uid://2gj3tv6stgsr" path="res://objects/interactable/lever_01/lever_albedo.png" id="3_82ns7"]
+[ext_resource type="Texture2D" uid="uid://crltgslfg1nou" path="res://objects/interactable/lever_01/lever_emissions.png" id="4_o2sfm"]
+[ext_resource type="Texture2D" uid="uid://c0qe7jq8ss6c4" path="res://objects/interactable/lever_01/lever_normals.png" id="5_eppt4"]
 [ext_resource type="AudioStream" uid="uid://bmlxxe8maevqb" path="res://audio/streams/click.wav" id="6_4k6bl"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_f8nba"]

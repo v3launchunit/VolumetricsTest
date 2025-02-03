@@ -247,15 +247,16 @@ func _physics_process_default(delta: float) -> void:
 
 	velocity = velocity.clamp(-max_speed, max_speed)
 	
-	#var forward_test: bool = test_move(global_transform, velocity)
-	#if forward_test:
-	var slope_test: bool = test_move(global_transform, (velocity + velocity.length() * Vector3.UP) * delta)
-	if slope_test:
-		var step_pos := global_transform
-		step_pos.origin.y += 0.5
-		var step_test: bool = test_move(step_pos, velocity * delta)
-		if not step_test:
-			position.y += 0.5
+	var forward_test: bool = test_move(global_transform, velocity)
+	if forward_test:
+		var slope_test: bool = test_move(global_transform, (velocity + velocity.length() * Vector3.UP) * delta)
+		if slope_test:
+			var step_pos := global_transform
+			step_pos.origin.y += 0.5
+			var step_test: bool = test_move(global_transform, Vector3.UP * 0.5) or test_move(step_pos, velocity * delta)
+			if not step_test:
+				position.y += 0.5
+				cam_y_offset -= 0.5
 	
 	move_and_slide()
 	
@@ -511,6 +512,10 @@ func _fly(delta: float) -> Vector3:
 	var fly_input: float = Input.get_axis("crouch", "jump")
 	var forward: Vector3 = camera.global_basis * Vector3(move_input.x, fly_input, move_input.y)
 	var walk_dir := forward.normalized()
+	grav_vel = Vector3.ZERO
+	camera.position = Vector3(0.0, 0.5, 0.0)
+	camera.h_offset = 0.0
+	camera.v_offset = 0.0
 	walk_vel = walk_vel.move_toward(walk_dir * speed, acceleration * delta)
 	return walk_vel
 

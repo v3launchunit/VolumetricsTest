@@ -257,6 +257,7 @@ draw_pass_1 = SubResource("PointMesh_bm88g")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.375, 0)
 layers = 2
 light_color = Color(1, 0.501961, 0, 1)
+light_energy = 2.0
 light_bake_mode = 1
 shadow_enabled = true
 distance_fade_enabled = true

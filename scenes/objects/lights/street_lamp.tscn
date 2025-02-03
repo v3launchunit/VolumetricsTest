@@ -47,7 +47,8 @@ surface_material_override/3 = ExtResource("2_xuq4u")
 [node name="SpotLight3D" type="SpotLight3D" parent="LampPost"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 8, -2)
 light_color = Color(1, 0.886275, 0, 1)
-light_energy = 10.0
+light_energy = 5.0
+light_volumetric_fog_energy = 2.0
 shadow_enabled = true
 distance_fade_enabled = true
 spot_range = 15.0

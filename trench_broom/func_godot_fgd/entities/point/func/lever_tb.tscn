@@ -2,9 +2,9 @@
 
 [ext_resource type="Script" path="res://trench_broom/func_godot_fgd/entities/point/lever_tb.gd" id="1_0ajli"]
 [ext_resource type="PackedScene" uid="uid://dhcc71k270vgk" path="res://models/objects/lever.glb" id="2_saqbp"]
-[ext_resource type="Texture2D" uid="uid://2gj3tv6stgsr" path="res://objects/interactable/lever/lever_albedo.png" id="3_8k4y8"]
-[ext_resource type="Texture2D" uid="uid://crltgslfg1nou" path="res://objects/interactable/lever/lever_emissions.png" id="4_oh51b"]
-[ext_resource type="Texture2D" uid="uid://c0qe7jq8ss6c4" path="res://objects/interactable/lever/lever_normals.png" id="5_5dtxu"]
+[ext_resource type="Texture2D" uid="uid://2gj3tv6stgsr" path="res://objects/interactable/lever_01/lever_albedo.png" id="3_8k4y8"]
+[ext_resource type="Texture2D" uid="uid://crltgslfg1nou" path="res://objects/interactable/lever_01/lever_emissions.png" id="4_oh51b"]
+[ext_resource type="Texture2D" uid="uid://c0qe7jq8ss6c4" path="res://objects/interactable/lever_01/lever_normals.png" id="5_5dtxu"]
 [ext_resource type="AudioStream" uid="uid://bmlxxe8maevqb" path="res://audio/streams/click.wav" id="6_abudg"]
 [ext_resource type="Shader" path="res://shaders/spatial/psx_pb_aclip.gdshader" id="6_uam60"]
 [ext_resource type="Script" path="res://bullets/enemy/minor_omni_light_3d.gd" id="8_ml0r5"]

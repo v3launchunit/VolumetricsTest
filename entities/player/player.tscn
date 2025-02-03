@@ -1,4 +1,4 @@
-[gd_scene load_steps=58 format=3 uid="uid://do61x5km3wthk"]
+[gd_scene load_steps=53 format=3 uid="uid://do61x5km3wthk"]
 
 [ext_resource type="Script" path="res://entities/player/player.gd" id="1_oc1sr"]
 [ext_resource type="PackedScene" uid="uid://cnhiimq1hl1lc" path="res://scenes/effects/explosions/slam_wave.tscn" id="2_8vg7n"]
@@ -33,7 +33,6 @@
 [ext_resource type="AudioStream" uid="uid://dyub7yfblkj1f" path="res://audio/streams/typewriter.wav" id="31_b0m84"]
 [ext_resource type="Texture2D" uid="uid://c0bhiisq4qel1" path="res://entities/player/flashlight_projector.png" id="32_tgokv"]
 [ext_resource type="Script" path="res://entities/player/flashlight.gd" id="33_aknmp"]
-[ext_resource type="Shader" path="res://shaders/spatial/cross_bloom_mesh.gdshader" id="34_bevih"]
 [ext_resource type="PackedScene" uid="uid://bjpo451a0eupa" path="res://weapons/axe/axe.tscn" id="35_uif20"]
 [ext_resource type="PackedScene" uid="uid://bimc4ufk5hicg" path="res://weapons/pump_shotgun/pump_shotgun.tscn" id="36_ytmbf"]
 [ext_resource type="AudioStream" uid="uid://crtqyq64m3wm1" path="res://audio/streams/ambient/bullet_ambient.wav" id="37_0ygxn"]
@@ -143,36 +142,6 @@ random_pitch = 1.15
 streams_count = 1
 stream_0/stream = ExtResource("31_b0m84")
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_jf2a8"]
-size = Vector3(0.5, 0.5, 1)
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_65bbo"]
-render_priority = 0
-shader = ExtResource("34_bevih")
-shader_parameter/intensity = 4.0
-shader_parameter/threshold = 0.9
-shader_parameter/spread = 8
-shader_parameter/scale = 0.0
-
-[sub_resource type="QuadMesh" id="QuadMesh_5eidy"]
-custom_aabb = AABB(-1000, -1000, -1000, 2000, 2000, 2000)
-flip_faces = true
-size = Vector2(2, 2)
-
-[sub_resource type="GDScript" id="GDScript_dlywb"]
-script/source = "extends MeshInstance3D
-
-
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	Globals.settings_changed.connect(_on_globals_settings_changed)
-	_on_globals_settings_changed()
-
-
-func _on_globals_settings_changed() -> void:
-	visible = Globals.s_cross_glow_enabled
-"
-
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_58b4n"]
 transparency = 1
 shading_mode = 0
@@ -245,6 +214,7 @@ damage_multipliers = Array[float]([1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0])
 gibs = ExtResource("24_222pa")
 
 [node name="StairStepper" parent="." instance=ExtResource("25_rotfo")]
+process_mode = 4
 
 [node name="Control" type="Control" parent="."]
 layout_mode = 3
@@ -379,29 +349,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.5)
 target_position = Vector3(0, 0, -1000)
 collision_mask = 61
 hit_from_inside = true
-
-[node name="ViewmodelAntiClip" type="Area3D" parent="Control/SubViewportContainer/SubViewport/PlayerSync/PlayerCam"]
-process_mode = 4
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.2, -0.75)
-collision_layer = 2
-collision_mask = 13
-monitoring = false
-monitorable = false
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Control/SubViewportContainer/SubViewport/PlayerSync/PlayerCam/ViewmodelAntiClip"]
-shape = SubResource("BoxShape3D_jf2a8")
-
-[node name="CrossBloom" type="MeshInstance3D" parent="Control/SubViewportContainer/SubViewport/PlayerSync/PlayerCam"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, -1)
-visible = false
-layers = 4
-material_override = SubResource("ShaderMaterial_65bbo")
-cast_shadow = 0
-custom_aabb = AABB(-1000, -1000, -1000, 2000, 2000, 2000)
-ignore_occlusion_culling = true
-mesh = SubResource("QuadMesh_5eidy")
-skeleton = NodePath("../../../../../..")
-script = SubResource("GDScript_dlywb")
 
 [node name="SlamWindSys" type="GPUParticles3D" parent="Control/SubViewportContainer/SubViewport/PlayerSync/PlayerCam"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3, -0.5)

@@ -645,8 +645,10 @@ text = "[center]dolor sit amet[/center]
 fit_content = true
 
 [node name="Diagnostics" type="Label" parent="."]
+process_mode = 4
 process_priority = 1
 process_physics_priority = 1
+visible = false
 layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
@@ -677,8 +679,10 @@ grow_vertical = 2
 color = Color(0, 0, 0, 0.25098)
 
 [node name="Statistics" type="Label" parent="."]
+process_mode = 4
 process_priority = 1
 process_physics_priority = 1
+visible = false
 layout_mode = 1
 offset_left = 4.0
 offset_top = 4.0

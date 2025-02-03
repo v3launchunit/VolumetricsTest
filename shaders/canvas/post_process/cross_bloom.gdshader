@@ -9,6 +9,9 @@ uniform sampler2D screen_texture : hint_screen_texture, repeat_disable, filter_l
 
 global uniform ivec2 screen_size;
 
+#define MAX_BRIGHTNESS 5.0
+#define BLOOM_SAMPLE(dir) clamp(texture(screen_texture, SCREEN_UV + dir).rgb - threshold, 0.0, MAX_BRIGHTNESS)
+
 bool is_above_threshold(vec3 in_col) {
 	return in_col.x >= threshold || in_col.y >= threshold || in_col.z >= threshold;
 }
@@ -20,10 +23,10 @@ void fragment() {
 	for (int i = 1; i < spread; i++) {
 		float x_dist = float(i) * SCREEN_PIXEL_SIZE.x; // float(screen_size.x);
 		float y_dist = float(i) * SCREEN_PIXEL_SIZE.y; // float(screen_size.y);
-		vec3 col_up_left = max(texture(screen_texture, SCREEN_UV + vec2(-x_dist, y_dist)).xyz - threshold, 0);
-		vec3 col_up_right = max(texture(screen_texture, SCREEN_UV + vec2(x_dist, y_dist)).xyz - threshold, 0);
-		vec3 col_down_left = max(texture(screen_texture, SCREEN_UV + vec2(-x_dist, -y_dist)).xyz - threshold, 0);
-		vec3 col_down_right = max(texture(screen_texture, SCREEN_UV + vec2(x_dist, -y_dist)).xyz - threshold, 0);
+		vec3 col_up_left = BLOOM_SAMPLE(vec2(-x_dist, y_dist));
+		vec3 col_up_right = BLOOM_SAMPLE(vec2(x_dist, y_dist));
+		vec3 col_down_left = BLOOM_SAMPLE(vec2(-x_dist, -y_dist));
+		vec3 col_down_right = BLOOM_SAMPLE(vec2(x_dist, -y_dist));
 
 		float str = mix(0.25 * inv_spread, 0.0, float(i) * inv_spread);
 

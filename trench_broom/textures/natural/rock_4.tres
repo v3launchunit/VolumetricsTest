@@ -1,0 +1,12 @@
+[gd_resource type="StandardMaterial3D" load_steps=3 format=3 uid="uid://bu5gjv0d5gvbf"]
+
+[ext_resource type="Texture2D" uid="uid://6jksq8ug6rhv" path="res://trench_broom/textures/_pbr/cliffstone/cliffstone_albedo_seamless_b.png" id="1_wcahe"]
+[ext_resource type="Texture2D" uid="uid://koiu5ar81prp" path="res://trench_broom/textures/_pbr/cliffstone/cliffstone_normals_seamless_b.png" id="2_febwv"]
+
+[resource]
+albedo_texture = ExtResource("1_wcahe")
+roughness = 0.75
+normal_enabled = true
+normal_texture = ExtResource("2_febwv")
+uv1_world_triplanar = true
+texture_filter = 0
