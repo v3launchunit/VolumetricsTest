@@ -350,7 +350,6 @@ layout_mode = 2
 tooltip_text = "Toggles the procedural halos created 
 by the \"glow\" post-processing effect."
 theme = ExtResource("1_8amvi")
-button_pressed = true
 text = "Bilinear Bloom"
 
 [node name="CBloomCheck" type="CheckButton" parent="Effects"]

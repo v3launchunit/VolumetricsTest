@@ -1,6 +1,29 @@
-[gd_scene load_steps=2 format=3 uid="uid://dqmlqgy6n1rqr"]
+[gd_scene load_steps=3 format=3 uid="uid://dqmlqgy6n1rqr"]
 
 [ext_resource type="Theme" uid="uid://dwof7m2ye3tjh" path="res://ui/default_theme.tres" id="1_234e3"]
+[ext_resource type="Script" path="res://ui/menus/settings/accessibility_sub_menu.gd" id="2_qo6hd"]
 
 [node name="Accessibility" type="VBoxContainer"]
 theme = ExtResource("1_234e3")
+script = ExtResource("2_qo6hd")
+
+[node name="Language" type="Control" parent="."]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Language"]
+layout_mode = 1
+offset_right = 173.0
+offset_bottom = 26.0
+theme = ExtResource("1_234e3")
+text = "Pixel Scale Factor"
+horizontal_alignment = 1
+uppercase = true
+
+[node name="LanguageDropdown" type="OptionButton" parent="Language"]
+layout_mode = 2
+offset_top = 26.0
+offset_right = 30.0
+offset_bottom = 52.0
+selected = 0
+item_count = 1
+popup/item_0/text = "ENGLISH"
