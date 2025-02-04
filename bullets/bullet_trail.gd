@@ -3,13 +3,19 @@ extends GPUParticles3D
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	if not get_parent().body_entered.is_connected(_on_bullet_body_entered):
+	if get_parent().has_signal("detonated"):
+		get_parent().detonated.connect(_on_detonated)
+	elif not get_parent().body_entered.is_connected(_on_bullet_body_entered):
 		get_parent().body_entered.connect(_on_bullet_body_entered)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
 	pass
+
+
+func _on_detonated():
+	_on_bullet_body_entered(null)
 
 
 func _on_bullet_body_entered(_body):

@@ -590,7 +590,7 @@ mesh = SubResource("QuadMesh_w3cqw")
 skeleton = NodePath("../..")
 
 [node name="Area3D" type="Area3D" parent="."]
-collision_mask = 7
+collision_mask = 39
 script = ExtResource("3_e2vgx")
 damage = 60.0
 damage_type = 1
@@ -600,7 +600,7 @@ knockback_force = 5.0
 shape = SubResource("SphereShape3D_er5bi")
 
 [node name="Area3D2" type="Area3D" parent="."]
-collision_mask = 7
+collision_mask = 39
 script = ExtResource("3_e2vgx")
 damage = 60.0
 player_damage_override = 0.0

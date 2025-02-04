@@ -1,6 +1,9 @@
 extends Bullet
 
 
+signal detonated
+
+
 @export var explode_timer: float = 0.0
 @export var primed: bool = false
 

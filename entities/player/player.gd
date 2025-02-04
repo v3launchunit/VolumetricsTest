@@ -247,15 +247,15 @@ func _physics_process_default(delta: float) -> void:
 
 	velocity = velocity.clamp(-max_speed, max_speed)
 	
-	#var forward_test: bool = test_move(global_transform, velocity)
-	#if forward_test:
-	var slope_test: bool = test_move(global_transform, (velocity + velocity.length() * Vector3.UP) * delta)
-	if slope_test:
-		var step_pos := global_transform
-		step_pos.origin.y += 0.5
-		var step_test: bool = test_move(step_pos, velocity * delta)
-		if not step_test:
-			position.y += 0.5
+	var forward_test: bool = test_move(global_transform, velocity)
+	if forward_test:
+		var slope_test: bool = test_move(global_transform, (velocity + velocity.length() * Vector3.UP) * delta)
+		if slope_test:
+			var step_pos := global_transform
+			step_pos.origin.y += 0.5
+			var step_test: bool = test_move(step_pos, velocity * delta)
+			if not step_test:
+				position.y += 0.5
 	
 	move_and_slide()
 	
