@@ -320,8 +320,6 @@ viewport/hdr_2d=true
 occlusion_culling/use_occlusion_culling=true
 environment/defaults/default_environment="res://levels/default_environment.tres"
 reflections/main_scene="res://scenes/levels/e1m5_v1.tscn"
-shading/volumetric_fog/volume_depth=32
-shading/volumetric_fog/use_filter=0
 
 [shader_globals]
 
