@@ -1,8 +1,8 @@
 [gd_resource type="ShaderMaterial" load_steps=9 format=3 uid="uid://dfx72vq82n85j"]
 
-[ext_resource type="Texture2D" uid="uid://b23ugm7sgumny" path="res://trench_broom/textures/_pbr/shutter_door/shutter_door_albedo.png" id="1_uhpqp"]
-[ext_resource type="Texture2D" uid="uid://dtbvd0e8uaahg" path="res://trench_broom/textures/_pbr/shutter_door/shutter_door_detail_mask.png" id="2_alc1l"]
-[ext_resource type="Texture2D" uid="uid://psf6gp0wakyy" path="res://trench_broom/textures/_pbr/shutter_door/shutter_door_normals.png" id="3_sdwcg"]
+[ext_resource type="Texture2D" uid="uid://b23ugm7sgumny" path="res://materials/terrain/_pbr/shutter_door/shutter_door_albedo.png" id="1_uhpqp"]
+[ext_resource type="Texture2D" uid="uid://dtbvd0e8uaahg" path="res://materials/terrain/_pbr/shutter_door/shutter_door_detail_mask.png" id="2_alc1l"]
+[ext_resource type="Texture2D" uid="uid://psf6gp0wakyy" path="res://materials/terrain/_pbr/shutter_door/shutter_door_normals.png" id="3_sdwcg"]
 
 [sub_resource type="Shader" id="Shader_0bbsg"]
 code = "// NOTE: Shader automatically converted from Godot Engine 4.2.1.stable.mono's StandardMaterial3D.

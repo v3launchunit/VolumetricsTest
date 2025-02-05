@@ -1,7 +1,7 @@
 [gd_resource type="StandardMaterial3D" load_steps=8 format=3 uid="uid://do2cbn6keg5jn"]
 
-[ext_resource type="Texture2D" uid="uid://b0a8c20t05q14" path="res://trench_broom/textures/terrain/custom_hand/glass/glass_albedo.png" id="1_2y6x5"]
-[ext_resource type="Texture2D" uid="uid://cwfs3yd67cdxg" path="res://trench_broom/textures/terrain/custom_hand/bricks/bricks_heights.png" id="2_fyu45"]
+[ext_resource type="Texture2D" uid="uid://b0a8c20t05q14" path="res://materials/terrain/custom_hand/glass/glass_albedo.png" id="1_2y6x5"]
+[ext_resource type="Texture2D" uid="uid://cwfs3yd67cdxg" path="res://materials/terrain/custom_hand/bricks/bricks_heights.png" id="2_fyu45"]
 
 [sub_resource type="Gradient" id="Gradient_80mgi"]
 interpolation_mode = 1

@@ -1,9 +1,9 @@
 [gd_resource type="StandardMaterial3D" load_steps=7 format=3 uid="uid://cj1r6jgxrihlc"]
 
-[ext_resource type="Texture2D" uid="uid://ddnx6ltesmaw2" path="res://trench_broom/textures/terrain/custom_hand/cobble_stone/big_cobble_stone_albedo.png" id="1_jk26w"]
-[ext_resource type="Texture2D" uid="uid://cplbltlro8yii" path="res://trench_broom/textures/terrain/custom_hand/cobble_stone/big_cobble_stone_pre_detail_mask.png" id="2_8lqss"]
-[ext_resource type="Texture2D" uid="uid://csomg66kxecyn" path="res://trench_broom/textures/terrain/custom_hand/cobble_stone/big_cobble_stone_normals_smooth.png" id="3_ps3j4"]
-[ext_resource type="Texture2D" uid="uid://dxbesqb8wiess" path="res://trench_broom/textures/terrain/custom_hand/cobble_stone/big_cobble_stone_roughness.png" id="4_qw4gd"]
+[ext_resource type="Texture2D" uid="uid://ddnx6ltesmaw2" path="res://materials/terrain/custom_hand/cobble_stone/big_cobble_stone_albedo.png" id="1_jk26w"]
+[ext_resource type="Texture2D" uid="uid://cplbltlro8yii" path="res://materials/terrain/custom_hand/cobble_stone/big_cobble_stone_pre_detail_mask.png" id="2_8lqss"]
+[ext_resource type="Texture2D" uid="uid://csomg66kxecyn" path="res://materials/terrain/custom_hand/cobble_stone/big_cobble_stone_normals_smooth.png" id="3_ps3j4"]
+[ext_resource type="Texture2D" uid="uid://dxbesqb8wiess" path="res://materials/terrain/custom_hand/cobble_stone/big_cobble_stone_roughness.png" id="4_qw4gd"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_druab"]
 noise_type = 2

@@ -1,9 +1,9 @@
 [gd_resource type="ShaderMaterial" load_steps=9 format=3 uid="uid://du0t164vjs7bh"]
 
 [ext_resource type="Shader" uid="uid://cosm6js1ibts0" path="res://shaders/spatial/terrain/terrain_diffuse_detail_mix.tres" id="1_05yuh"]
-[ext_resource type="Texture2D" uid="uid://b3bq3t6i16h1a" path="res://trench_broom/textures/_pbr/concrete/concrete_albedo.png" id="1_ujlfj"]
-[ext_resource type="Texture2D" uid="uid://no8yw8052hi2" path="res://trench_broom/textures/_pbr/concrete/concrete_detail_mask.png" id="2_0bv6d"]
-[ext_resource type="Texture2D" uid="uid://b0on1djjbcq80" path="res://trench_broom/textures/_pbr/concrete/concrete_normals.png" id="3_bvwlx"]
+[ext_resource type="Texture2D" uid="uid://b3bq3t6i16h1a" path="res://materials/terrain/_pbr/concrete/concrete_albedo.png" id="1_ujlfj"]
+[ext_resource type="Texture2D" uid="uid://no8yw8052hi2" path="res://materials/terrain/_pbr/concrete/concrete_detail_mask.png" id="2_0bv6d"]
+[ext_resource type="Texture2D" uid="uid://b0on1djjbcq80" path="res://materials/terrain/_pbr/concrete/concrete_normals.png" id="3_bvwlx"]
 
 [sub_resource type="Gradient" id="Gradient_thl2d"]
 interpolation_mode = 1

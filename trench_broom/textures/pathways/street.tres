@@ -1,8 +1,8 @@
 [gd_resource type="ShaderMaterial" load_steps=7 format=3 uid="uid://boykh807if2ua"]
 
-[ext_resource type="Texture2D" uid="uid://xtpd7e5ubx53" path="res://trench_broom/textures/terrain/custom_hand/street/street_albedo.png" id="1_81vqy"]
-[ext_resource type="Texture2D" uid="uid://jl28mk6e0ui8" path="res://trench_broom/textures/terrain/custom_hand/street/street_detail_mask.png" id="2_1tfwm"]
-[ext_resource type="Texture2D" uid="uid://dem88r7f0n2js" path="res://trench_broom/textures/terrain/custom_hand/street/street_roughness.png" id="3_1c45w"]
+[ext_resource type="Texture2D" uid="uid://xtpd7e5ubx53" path="res://materials/terrain/custom_hand/street/street_albedo.png" id="1_81vqy"]
+[ext_resource type="Texture2D" uid="uid://jl28mk6e0ui8" path="res://materials/terrain/custom_hand/street/street_detail_mask.png" id="2_1tfwm"]
+[ext_resource type="Texture2D" uid="uid://dem88r7f0n2js" path="res://materials/terrain/custom_hand/street/street_roughness.png" id="3_1c45w"]
 
 [sub_resource type="Shader" id="Shader_6o5rf"]
 code = "// NOTE: Shader automatically converted from Godot Engine 4.2.1.stable.mono's StandardMaterial3D.

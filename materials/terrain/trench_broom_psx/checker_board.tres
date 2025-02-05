@@ -1,8 +1,8 @@
 [gd_resource type="ShaderMaterial" load_steps=9 format=3 uid="uid://dfsygfq7ea8jv"]
 
-[ext_resource type="Texture2D" uid="uid://bsrjf2w2bhc7j" path="res://trench_broom/textures/terrain/custom_hand/checker_board/checker_board_albedo.png" id="1_mij5t"]
+[ext_resource type="Texture2D" uid="uid://bsrjf2w2bhc7j" path="res://materials/terrain/custom_hand/checker_board/checker_board_albedo.png" id="1_mij5t"]
 [ext_resource type="Shader" uid="uid://cosm6js1ibts0" path="res://shaders/spatial/terrain/terrain_diffuse_detail_mix.tres" id="1_u4gu3"]
-[ext_resource type="Texture2D" uid="uid://b4aespbjs25r2" path="res://trench_broom/textures/terrain/custom_hand/checker_board/checker_board_normals.png" id="2_qf58p"]
+[ext_resource type="Texture2D" uid="uid://b4aespbjs25r2" path="res://materials/terrain/custom_hand/checker_board/checker_board_normals.png" id="2_qf58p"]
 
 [sub_resource type="Gradient" id="Gradient_mpb80"]
 offsets = PackedFloat32Array(0)

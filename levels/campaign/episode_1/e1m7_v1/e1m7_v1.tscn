@@ -21,7 +21,7 @@
 [ext_resource type="Resource" uid="uid://bkhxcqsquw1yg" path="res://addons/func_godot/func_godot_default_map_settings.tres" id="28_6xp86"]
 [ext_resource type="PackedScene" uid="uid://lt47oncbceb2" path="res://pickups/weapons/akm_pickup.tscn" id="28_qdtve"]
 [ext_resource type="Texture2D" uid="uid://cyg2snr1w5xw5" path="res://addons/func_godot/textures/default_texture.png" id="29_vwlsh"]
-[ext_resource type="Material" uid="uid://df5b16vky66cy" path="res://trench_broom/textures/terrain/trench_broom/bricks.tres" id="29_y7r0m"]
+[ext_resource type="Material" uid="uid://df5b16vky66cy" path="res://materials/terrain/trench_broom_2/bricks.tres" id="29_y7r0m"]
 [ext_resource type="PackedScene" uid="uid://comxjm2yao5ny" path="res://entities/enemies/military/enforcer/enforcer.tscn" id="30_sw5to"]
 [ext_resource type="PackedScene" uid="uid://cqfw5pys7s4yh" path="res://scenes/objects/lights/lamp_post.tscn" id="30_x8nak"]
 [ext_resource type="Script" path="res://trench_broom/func_godot_fgd/entities/point/tb_ref_probe.gd" id="32_i2xv8"]

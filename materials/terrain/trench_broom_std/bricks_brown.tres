@@ -1,8 +1,8 @@
 [gd_resource type="StandardMaterial3D" load_steps=7 format=3 uid="uid://c4hv23ws8v5oc"]
 
-[ext_resource type="Texture2D" uid="uid://bu7kx2k8hs1rs" path="res://trench_broom/textures/terrain/custom_hand/bricks_brown/bricks_brown_albedo.png" id="1_hpc7g"]
-[ext_resource type="Texture2D" uid="uid://bhycy45by36s4" path="res://trench_broom/textures/terrain/custom_hand/bricks_brown/bricks_brown_heights.png" id="2_ww5kg"]
-[ext_resource type="Texture2D" uid="uid://cpeg5pac6divu" path="res://trench_broom/textures/terrain/custom_hand/bricks_brown/bricks_brown_normals.png" id="3_1gtag"]
+[ext_resource type="Texture2D" uid="uid://bu7kx2k8hs1rs" path="res://materials/terrain/custom_hand/bricks_brown/bricks_brown_albedo.png" id="1_hpc7g"]
+[ext_resource type="Texture2D" uid="uid://bhycy45by36s4" path="res://materials/terrain/custom_hand/bricks_brown/bricks_brown_heights.png" id="2_ww5kg"]
+[ext_resource type="Texture2D" uid="uid://cpeg5pac6divu" path="res://materials/terrain/custom_hand/bricks_brown/bricks_brown_normals.png" id="3_1gtag"]
 
 [sub_resource type="Gradient" id="Gradient_8sg56"]
 interpolation_mode = 1

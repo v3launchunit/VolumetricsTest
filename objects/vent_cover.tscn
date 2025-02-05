@@ -1,8 +1,8 @@
 [gd_scene load_steps=9 format=3 uid="uid://cx7440mdew586"]
 
 [ext_resource type="Shader" path="res://shaders/spatial/psx_pb_aclip.gdshader" id="1_e3msk"]
-[ext_resource type="Texture2D" uid="uid://dyastc7xeg5gh" path="res://trench_broom/textures/_pbr/vent_panel/vent_panel_destructable_albedo.png" id="2_0tyxj"]
-[ext_resource type="Texture2D" uid="uid://c7mr77fvkkfuy" path="res://trench_broom/textures/_pbr/vent_panel/vent_panel_destructable_normals.png" id="3_esh3n"]
+[ext_resource type="Texture2D" uid="uid://dyastc7xeg5gh" path="res://materials/terrain/_pbr/vent_panel/vent_panel_destructable_albedo.png" id="2_0tyxj"]
+[ext_resource type="Texture2D" uid="uid://c7mr77fvkkfuy" path="res://materials/terrain/_pbr/vent_panel/vent_panel_destructable_normals.png" id="3_esh3n"]
 [ext_resource type="Script" path="res://entities/status.gd" id="4_m1nng"]
 [ext_resource type="PackedScene" uid="uid://bfctj0w1fkgwy" path="res://scenes/effects/gibs/metal_shards.tscn" id="5_2v1gw"]
 

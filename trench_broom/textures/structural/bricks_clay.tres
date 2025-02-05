@@ -1,13 +1,13 @@
 [gd_resource type="ShaderMaterial" load_steps=12 format=3 uid="uid://bx6iv4chnue2j"]
 
 [ext_resource type="Shader" path="res://trench_broom/textures/structural/bricks.gdshader" id="1_cadi2"]
-[ext_resource type="Texture2D" uid="uid://coxdlu0742p08" path="res://trench_broom/textures/_pbr/bricks_clay/bricks_clay_detail_mask.png" id="2_p6o5e"]
-[ext_resource type="Texture2D" uid="uid://boudx7duytmiy" path="res://trench_broom/textures/_pbr/bricks_clay/bricks_clay_detail_normals.tres" id="3_00h1h"]
-[ext_resource type="Texture2D" uid="uid://yuskd0tmi4a8" path="res://trench_broom/textures/_pbr/bricks_clay/bricks_clay_flux_map.png" id="4_fxf44"]
-[ext_resource type="Texture2D" uid="uid://bnjon6ehccyhy" path="res://trench_broom/textures/_pbr/shared/bricks_flux_noise.tres" id="5_4owcb"]
-[ext_resource type="Texture2D" uid="uid://dcyokaymonunq" path="res://trench_broom/textures/_pbr/bricks_clay/bricks_clay_flux_palette.png" id="6_oxe72"]
-[ext_resource type="Texture2D" uid="uid://w4lhs6q5nlb" path="res://trench_broom/textures/_pbr/bricks_clay/bricks_clay_albedo.png" id="7_mwn2j"]
-[ext_resource type="Texture2D" uid="uid://dadrib77x03bm" path="res://trench_broom/textures/_pbr/bricks_clay/bricks_clay_normals.png" id="8_lejs8"]
+[ext_resource type="Texture2D" uid="uid://coxdlu0742p08" path="res://materials/terrain/_pbr/bricks_clay/bricks_clay_detail_mask.png" id="2_p6o5e"]
+[ext_resource type="Texture2D" uid="uid://boudx7duytmiy" path="res://materials/terrain/_pbr/bricks_clay/bricks_clay_detail_normals.tres" id="3_00h1h"]
+[ext_resource type="Texture2D" uid="uid://yuskd0tmi4a8" path="res://materials/terrain/_pbr/bricks_clay/bricks_clay_flux_map.png" id="4_fxf44"]
+[ext_resource type="Texture2D" uid="uid://bnjon6ehccyhy" path="res://materials/terrain/_pbr/shared/bricks_flux_noise.tres" id="5_4owcb"]
+[ext_resource type="Texture2D" uid="uid://dcyokaymonunq" path="res://materials/terrain/_pbr/bricks_clay/bricks_clay_flux_palette.png" id="6_oxe72"]
+[ext_resource type="Texture2D" uid="uid://w4lhs6q5nlb" path="res://materials/terrain/_pbr/bricks_clay/bricks_clay_albedo.png" id="7_mwn2j"]
+[ext_resource type="Texture2D" uid="uid://dadrib77x03bm" path="res://materials/terrain/_pbr/bricks_clay/bricks_clay_normals.png" id="8_lejs8"]
 
 [sub_resource type="Gradient" id="Gradient_2adxq"]
 colors = PackedColorArray(0.65, 0.65, 0.65, 1, 1, 1, 1, 1)

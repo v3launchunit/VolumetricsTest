@@ -1,7 +1,7 @@
 [gd_resource type="ShaderMaterial" load_steps=4 format=3 uid="uid://bhl1e3hut6hpo"]
 
 [ext_resource type="Texture2D" uid="uid://d1mf3oaajnl80" path="res://trench_broom/textures/natural/log_end.png" id="1_c20bv"]
-[ext_resource type="Texture2D" uid="uid://dsmd00jgy5c2x" path="res://trench_broom/textures/terrain/custom_hand/log_end/log_end_normals.png" id="2_d11of"]
+[ext_resource type="Texture2D" uid="uid://dsmd00jgy5c2x" path="res://materials/terrain/custom_hand/log_end/log_end_normals.png" id="2_d11of"]
 
 [sub_resource type="Shader" id="Shader_tf5uw"]
 code = "// NOTE: Shader automatically converted from Godot Engine 4.2.1.stable.mono's StandardMaterial3D.

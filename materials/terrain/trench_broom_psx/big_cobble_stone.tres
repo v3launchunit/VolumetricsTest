@@ -1,9 +1,9 @@
 [gd_resource type="ShaderMaterial" load_steps=5 format=3 uid="uid://cyb1chldjdmvt"]
 
 [ext_resource type="Shader" uid="uid://dmltlhdbujniy" path="res://shaders/spatial/terrain/terrain_diffuse.tres" id="1_scvrk"]
-[ext_resource type="Texture2D" uid="uid://ddnx6ltesmaw2" path="res://trench_broom/textures/terrain/custom_hand/cobble_stone/big_cobble_stone_albedo.png" id="1_xjr4a"]
-[ext_resource type="Texture2D" uid="uid://csomg66kxecyn" path="res://trench_broom/textures/terrain/custom_hand/cobble_stone/big_cobble_stone_normals_smooth.png" id="2_x5p17"]
-[ext_resource type="Texture2D" uid="uid://dxbesqb8wiess" path="res://trench_broom/textures/terrain/custom_hand/cobble_stone/big_cobble_stone_roughness.png" id="3_rel0b"]
+[ext_resource type="Texture2D" uid="uid://ddnx6ltesmaw2" path="res://materials/terrain/custom_hand/cobble_stone/big_cobble_stone_albedo.png" id="1_xjr4a"]
+[ext_resource type="Texture2D" uid="uid://csomg66kxecyn" path="res://materials/terrain/custom_hand/cobble_stone/big_cobble_stone_normals_smooth.png" id="2_x5p17"]
+[ext_resource type="Texture2D" uid="uid://dxbesqb8wiess" path="res://materials/terrain/custom_hand/cobble_stone/big_cobble_stone_roughness.png" id="3_rel0b"]
 
 [resource]
 render_priority = 0

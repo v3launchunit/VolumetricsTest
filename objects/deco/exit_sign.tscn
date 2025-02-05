@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://byphwnhjdeanl"]
 
 [ext_resource type="Shader" path="res://shaders/spatial/psx_ul_mix.gdshader" id="1_2k2dj"]
-[ext_resource type="Texture2D" uid="uid://burc2lworfnx8" path="res://trench_broom/textures/_pbr/exit_sign/exit_sign_emissions.png" id="2_vbsgk"]
+[ext_resource type="Texture2D" uid="uid://burc2lworfnx8" path="res://materials/terrain/_pbr/exit_sign/exit_sign_emissions.png" id="2_vbsgk"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_x35sd"]
 render_priority = 0

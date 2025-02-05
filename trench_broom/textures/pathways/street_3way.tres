@@ -1,8 +1,8 @@
 [gd_resource type="ShaderMaterial" load_steps=7 format=3 uid="uid://djtsgh7b7fhgi"]
 
-[ext_resource type="Texture2D" uid="uid://bltd3oue6dhrs" path="res://trench_broom/textures/terrain/custom_hand/street/street_3way_albedo.png" id="1_ywosr"]
-[ext_resource type="Texture2D" uid="uid://66108xevmalp" path="res://trench_broom/textures/terrain/custom_hand/street/street_3way_detail_mask.png" id="2_w5vs6"]
-[ext_resource type="Texture2D" uid="uid://bj2vomym2rynt" path="res://trench_broom/textures/terrain/custom_hand/street/street_3way_roughness.png" id="3_yprw0"]
+[ext_resource type="Texture2D" uid="uid://bltd3oue6dhrs" path="res://materials/terrain/custom_hand/street/street_3way_albedo.png" id="1_ywosr"]
+[ext_resource type="Texture2D" uid="uid://66108xevmalp" path="res://materials/terrain/custom_hand/street/street_3way_detail_mask.png" id="2_w5vs6"]
+[ext_resource type="Texture2D" uid="uid://bj2vomym2rynt" path="res://materials/terrain/custom_hand/street/street_3way_roughness.png" id="3_yprw0"]
 
 [sub_resource type="Shader" id="Shader_6o5rf"]
 code = "// NOTE: Shader automatically converted from Godot Engine 4.2.1.stable.mono's StandardMaterial3D.
