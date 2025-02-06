@@ -1,13 +1,13 @@
 [gd_resource type="ShaderMaterial" load_steps=12 format=3 uid="uid://bx6iv4chnue2j"]
 
 [ext_resource type="Shader" path="res://trench_broom/textures/structural/bricks.gdshader" id="1_cadi2"]
-[ext_resource type="Texture2D" uid="uid://coxdlu0742p08" path="res://materials/terrain/_pbr/bricks_clay/bricks_clay_detail_mask.png" id="2_p6o5e"]
-[ext_resource type="Texture2D" uid="uid://boudx7duytmiy" path="res://materials/terrain/_pbr/bricks_clay/bricks_clay_detail_normals.tres" id="3_00h1h"]
-[ext_resource type="Texture2D" uid="uid://yuskd0tmi4a8" path="res://materials/terrain/_pbr/bricks_clay/bricks_clay_flux_map.png" id="4_fxf44"]
-[ext_resource type="Texture2D" uid="uid://bnjon6ehccyhy" path="res://materials/terrain/_pbr/shared/bricks_flux_noise.tres" id="5_4owcb"]
-[ext_resource type="Texture2D" uid="uid://dcyokaymonunq" path="res://materials/terrain/_pbr/bricks_clay/bricks_clay_flux_palette.png" id="6_oxe72"]
-[ext_resource type="Texture2D" uid="uid://w4lhs6q5nlb" path="res://materials/terrain/_pbr/bricks_clay/bricks_clay_albedo.png" id="7_mwn2j"]
-[ext_resource type="Texture2D" uid="uid://dadrib77x03bm" path="res://materials/terrain/_pbr/bricks_clay/bricks_clay_normals.png" id="8_lejs8"]
+[ext_resource type="Texture2D" uid="uid://coxdlu0742p08" path="res://materials/terrain/_pbr/bricks_clay/bricks_clay_detail_mask.png" id="2_uxvdr"]
+[ext_resource type="Texture2D" uid="uid://boudx7duytmiy" path="res://materials/terrain/_pbr/bricks_clay/bricks_clay_detail_normals.tres" id="3_7molv"]
+[ext_resource type="Texture2D" uid="uid://yuskd0tmi4a8" path="res://materials/terrain/_pbr/bricks_clay/bricks_clay_flux_map.png" id="4_s8ir7"]
+[ext_resource type="Texture2D" uid="uid://bnjon6ehccyhy" path="res://materials/terrain/_pbr/shared/bricks_flux_noise.tres" id="5_a46tx"]
+[ext_resource type="Texture2D" uid="uid://dcyokaymonunq" path="res://materials/terrain/_pbr/bricks_clay/bricks_clay_flux_palette.png" id="6_la600"]
+[ext_resource type="Texture2D" uid="uid://w4lhs6q5nlb" path="res://materials/terrain/_pbr/bricks_clay/bricks_clay_albedo.png" id="7_8x46x"]
+[ext_resource type="Texture2D" uid="uid://dadrib77x03bm" path="res://materials/terrain/_pbr/bricks_clay/bricks_clay_normals.png" id="8_j0vg8"]
 
 [sub_resource type="Gradient" id="Gradient_2adxq"]
 colors = PackedColorArray(0.65, 0.65, 0.65, 1, 1, 1, 1, 1)
@@ -31,11 +31,11 @@ shader_parameter/uv_base_scale = Vector2(2, 2)
 shader_parameter/uv_tile_scale = Vector2(1.0015, 1)
 shader_parameter/uv_detail_scale = Vector2(0.0625, 0.0625)
 shader_parameter/uv_flux_scale = Vector2(0.0625, 0.0625)
-shader_parameter/tile_albedo = ExtResource("7_mwn2j")
-shader_parameter/tile_normals = ExtResource("8_lejs8")
-shader_parameter/detail_mask = ExtResource("2_p6o5e")
+shader_parameter/tile_albedo = ExtResource("7_8x46x")
+shader_parameter/tile_normals = ExtResource("8_j0vg8")
+shader_parameter/detail_mask = ExtResource("2_uxvdr")
 shader_parameter/detail_albedo = SubResource("NoiseTexture2D_q5lsm")
-shader_parameter/detail_normals = ExtResource("3_00h1h")
-shader_parameter/flux_map = ExtResource("4_fxf44")
-shader_parameter/flux_noise = ExtResource("5_4owcb")
-shader_parameter/flux_palette = ExtResource("6_oxe72")
+shader_parameter/detail_normals = ExtResource("3_7molv")
+shader_parameter/flux_map = ExtResource("4_s8ir7")
+shader_parameter/flux_noise = ExtResource("5_a46tx")
+shader_parameter/flux_palette = ExtResource("6_la600")

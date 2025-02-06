@@ -1,0 +1,14 @@
+[remap]
+
+importer="func_godot.map"
+type="Resource"
+uid="uid://chicwab0okee3"
+path="res://.godot/imported/e1m3_v4.map-1cd6567652781e7de4bd7dc2a7ae0d10.tres"
+
+[deps]
+
+source_file="res://maps/e1m3_v4.map"
+dest_files=["res://.godot/imported/e1m3_v4.map-1cd6567652781e7de4bd7dc2a7ae0d10.tres"]
+
+[params]
+

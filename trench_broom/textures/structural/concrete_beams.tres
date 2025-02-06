@@ -1,8 +1,8 @@
 [gd_resource type="StandardMaterial3D" load_steps=8 format=3 uid="uid://svl0kiyq2tjg"]
 
-[ext_resource type="Texture2D" uid="uid://byovnrx5iuv72" path="res://materials/terrain/_pbr/concrete_beams/concrete_beams_metallic.png" id="1_n8tgg"]
-[ext_resource type="Texture2D" uid="uid://bk8brpysyodjk" path="res://materials/terrain/_pbr/concrete_beams/concrete_beams_normals.png" id="2_o07ck"]
-[ext_resource type="Texture2D" uid="uid://bqaucm1o37hm7" path="res://materials/terrain/_pbr/concrete_beams/concrete_beams_roughness.png" id="3_joxbj"]
+[ext_resource type="Texture2D" uid="uid://byovnrx5iuv72" path="res://materials/terrain/_pbr/concrete_beams/concrete_beams_metallic.png" id="1_wcmo8"]
+[ext_resource type="Texture2D" uid="uid://bk8brpysyodjk" path="res://materials/terrain/_pbr/concrete_beams/concrete_beams_normals.png" id="2_tl3i0"]
+[ext_resource type="Texture2D" uid="uid://bqaucm1o37hm7" path="res://materials/terrain/_pbr/concrete_beams/concrete_beams_roughness.png" id="3_ymxel"]
 
 [sub_resource type="Gradient" id="Gradient_uli5b"]
 offsets = PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.8)
@@ -33,12 +33,12 @@ noise = SubResource("FastNoiseLite_3c4ji")
 [resource]
 albedo_texture = SubResource("NoiseTexture2D_xrg68")
 metallic = 1.0
-metallic_texture = ExtResource("1_n8tgg")
-roughness_texture = ExtResource("3_joxbj")
+metallic_texture = ExtResource("1_wcmo8")
+roughness_texture = ExtResource("3_ymxel")
 normal_enabled = true
 normal_texture = SubResource("NoiseTexture2D_1negk")
 detail_enabled = true
-detail_mask = ExtResource("1_n8tgg")
-detail_normal = ExtResource("2_o07ck")
+detail_mask = ExtResource("1_wcmo8")
+detail_normal = ExtResource("2_tl3i0")
 uv1_scale = Vector3(0.5, 0.5, 0.5)
 texture_filter = 0

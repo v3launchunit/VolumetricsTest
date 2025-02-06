@@ -1,7 +1,7 @@
 [gd_resource type="StandardMaterial3D" load_steps=9 format=3 uid="uid://dmkpoptkp7sqd"]
 
-[ext_resource type="Texture2D" uid="uid://ddnx6ltesmaw2" path="res://materials/terrain/custom_hand/cobble_stone/big_cobble_stone_albedo.png" id="1_ycqwe"]
-[ext_resource type="Texture2D" uid="uid://cplbltlro8yii" path="res://materials/terrain/custom_hand/cobble_stone/big_cobble_stone_pre_detail_mask.png" id="2_4yc2f"]
+[ext_resource type="Texture2D" uid="uid://ddnx6ltesmaw2" path="res://materials/terrain/custom_hand/cobble_stone/big_cobble_stone_albedo.png" id="1_8jkh8"]
+[ext_resource type="Texture2D" uid="uid://cplbltlro8yii" path="res://materials/terrain/custom_hand/cobble_stone/big_cobble_stone_pre_detail_mask.png" id="2_srfb7"]
 
 [sub_resource type="Gradient" id="Gradient_gtlwu"]
 interpolation_mode = 2
@@ -46,8 +46,8 @@ albedo_texture = SubResource("NoiseTexture2D_irq8w")
 roughness = 0.5
 normal_enabled = true
 normal_texture = SubResource("NoiseTexture2D_r4su7")
-detail_mask = ExtResource("2_4yc2f")
-detail_albedo = ExtResource("1_ycqwe")
+detail_mask = ExtResource("2_srfb7")
+detail_albedo = ExtResource("1_8jkh8")
 detail_normal = SubResource("NoiseTexture2D_fy11u")
 uv1_scale = Vector3(0.5, 0.5, 0.5)
 uv1_world_triplanar = true
