@@ -14,7 +14,7 @@ config/name="VolumetricsTest"
 config/version="0.1.0.0"
 config/tags=PackedStringArray("3d", "fps")
 run/main_scene="res://levels/title_screen.tscn"
-config/features=PackedStringArray("4.3", "Forward Plus")
+config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="res://icon.svg"
 
 [audio]
