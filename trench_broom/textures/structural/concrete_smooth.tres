@@ -11,8 +11,6 @@ frequency = 0.05
 cellular_jitter = 0.995
 
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_lgdgn"]
-width = 256
-height = 256
 generate_mipmaps = false
 seamless = true
 seamless_blend_skirt = 0.2
@@ -55,4 +53,5 @@ normal_scale = 0.5
 normal_texture = SubResource("NoiseTexture2D_88ows")
 detail_albedo = SubResource("NoiseTexture2D_b8r0m")
 detail_normal = SubResource("NoiseTexture2D_jd1rg")
-texture_filter = 2
+uv1_scale = Vector3(0.5, 0.5, 0.5)
+texture_filter = 0
