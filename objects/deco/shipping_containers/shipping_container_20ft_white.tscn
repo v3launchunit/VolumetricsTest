@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://dwm4ecje5avh5"]
 
-[ext_resource type="Shader" path="res://shaders/spatial/psx_pb_aclip.gdshader" id="1_t6cav"]
+[ext_resource type="Shader" uid="uid://bvuxceynh6rex" path="res://shaders/spatial/psx_pb_aclip.gdshader" id="1_t6cav"]
 [ext_resource type="ArrayMesh" uid="uid://bhaqglfqhubh4" path="res://models/shipping_crate_20ft.obj" id="1_ujhf7"]
 [ext_resource type="Texture2D" uid="uid://dwd7xholqdktf" path="res://materials/terrain/_pbr/shipping_container/shipping_container_normals.png" id="2_ux08i"]
 
@@ -12,6 +12,7 @@ render_priority = 0
 shader = ExtResource("1_t6cav")
 shader_parameter/albedo_col = Color(1, 1, 1, 1)
 shader_parameter/alpha_clip_threshold = 0.5
+shader_parameter/normal_tex = ExtResource("2_ux08i")
 shader_parameter/normal_scale = 1.0
 shader_parameter/roughness = 0.5
 shader_parameter/metallic = 1.0
@@ -22,7 +23,6 @@ shader_parameter/uv1_offset = Vector3(0, 0, 0)
 shader_parameter/uv2_scale = Vector3(1, 1, 1)
 shader_parameter/uv2_offset = Vector3(0, 0, 0)
 shader_parameter/is_terrain_mat = false
-shader_parameter/normal_tex = ExtResource("2_ux08i")
 
 [node name="ShippingContainer20ft" type="StaticBody3D"]
 

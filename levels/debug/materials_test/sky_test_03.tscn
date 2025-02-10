@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://cu58hb7h0r68v" path="res://effects/look_up_tables/1d/1d_lut_16_color.png" id="1_2s3ux"]
 [ext_resource type="Texture2D" uid="uid://dybaimi1b3b85" path="res://effects/glow/lens_dirt/lens_dirt_0.png" id="2_e144d"]
-[ext_resource type="Shader" path="res://shaders/spatial/cloud_layer.gdshader" id="3_j8a6h"]
+[ext_resource type="Shader" uid="uid://jugjbdj6k51u" path="res://shaders/spatial/cloud_layer.gdshader" id="3_j8a6h"]
 
 [sub_resource type="Gradient" id="Gradient_y4gu7"]
 interpolation_mode = 2
@@ -63,9 +63,9 @@ fill_to = Vector2(1, 0.5)
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_qsjhe"]
 render_priority = 0
 shader = ExtResource("3_j8a6h")
-shader_parameter/scroll_speed = Vector2(0.01, 0.01)
 shader_parameter/fade = SubResource("GradientTexture2D_cd3ui")
 shader_parameter/clouds = SubResource("NoiseTexture2D_m76ab")
+shader_parameter/scroll_speed = Vector2(0.01, 0.01)
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_7t6v5"]
 flip_faces = true

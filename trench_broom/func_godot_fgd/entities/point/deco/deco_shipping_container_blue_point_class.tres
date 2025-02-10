@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="FuncGodotFGDPointClass" load_steps=3 format=3 uid="uid://c3nyhshsvkugi"]
 
 [ext_resource type="PackedScene" uid="uid://bl3r2ef3m4kji" path="res://objects/deco/shipping_containers/shipping_container_20ft_blue.tscn" id="1_ektmk"]
-[ext_resource type="Script" path="res://addons/func_godot/src/fgd/func_godot_fgd_point_class.gd" id="2_yc38m"]
+[ext_resource type="Script" uid="uid://cw2atun4e3eyv" path="res://addons/func_godot/src/fgd/func_godot_fgd_point_class.gd" id="2_yc38m"]
 
 [resource]
 script = ExtResource("2_yc38m")

@@ -1,6 +1,6 @@
 [gd_scene load_steps=13 format=3 uid="uid://bqors63m1ug05"]
 
-[ext_resource type="Script" path="res://scripts/pickups/ammo_pickup.gd" id="1_pfxll"]
+[ext_resource type="Script" uid="uid://bft3wkpl5bv8p" path="res://scripts/pickups/ammo_pickup.gd" id="1_pfxll"]
 [ext_resource type="AudioStream" uid="uid://g7unocdbdokw" path="res://audio/streams/pickups/pickup_ammo.wav" id="2_o5jiy"]
 [ext_resource type="ArrayMesh" uid="uid://dnda4sjlmlawu" path="res://bullets/nail.obj" id="3_1u5as"]
 [ext_resource type="Texture2D" uid="uid://hk0k2coukjwc" path="res://effects/halos/halo_tex.tres" id="3_ftx4c"]
@@ -102,7 +102,7 @@ tracks/1/keys = PackedFloat32Array(0, 1, 0, 0, 0, 2.5, 1, 0, 0.05, 0, 5, 1, 0, 0
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_4pudi"]
 _data = {
-"anim": SubResource("Animation_wivti")
+&"anim": SubResource("Animation_wivti")
 }
 
 [node name="NailPickup" type="RigidBody3D"]

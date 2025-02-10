@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://dfjyubcpppg0g"]
 
-[ext_resource type="Script" path="res://entities/enemies/locals/lizard/lizard_hole.gd" id="1_okl7m"]
+[ext_resource type="Script" uid="uid://dfql0gonlv81q" path="res://entities/enemies/locals/lizard/lizard_hole.gd" id="1_okl7m"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_djrqj"]
 

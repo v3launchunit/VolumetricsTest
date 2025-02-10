@@ -3,7 +3,7 @@
 [ext_resource type="Material" uid="uid://deiwjwa2emqli" path="res://weapons/axe/axe_mat.tres" id="1_qblvp"]
 [ext_resource type="ArrayMesh" uid="uid://cdgo2jvrkn5bc" path="res://weapons/axe/axe.obj" id="1_sq7xt"]
 [ext_resource type="AnimationLibrary" uid="uid://b7bfeeqv2plqj" path="res://weapons/axe/axe_anims.res" id="3_t18wh"]
-[ext_resource type="Script" path="res://weapons/weapon_double_barrel.gd" id="5_fkvwm"]
+[ext_resource type="Script" uid="uid://cg48mfyeopfar" path="res://weapons/weapon_double_barrel.gd" id="5_fkvwm"]
 [ext_resource type="PackedScene" uid="uid://chdnpriqcxbgj" path="res://bullets/player/hitscan/axe_scan.tscn" id="6_jc7bq"]
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_aiqnh"]

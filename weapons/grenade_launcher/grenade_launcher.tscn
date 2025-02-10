@@ -1,7 +1,7 @@
 [gd_scene load_steps=16 format=3 uid="uid://cvoyjj4iotdgb"]
 
 [ext_resource type="ArrayMesh" uid="uid://k270ien3glvb" path="res://models/grenade_launcher.obj" id="1_2gdyd"]
-[ext_resource type="Script" path="res://weapons/weapon_base.gd" id="1_sgyo5"]
+[ext_resource type="Script" uid="uid://c022da054b2ky" path="res://weapons/weapon_base.gd" id="1_sgyo5"]
 [ext_resource type="PackedScene" uid="uid://cp3asxmnm2wuy" path="res://bullets/player/projectile/mortar_grenade.tscn" id="2_o3wnk"]
 [ext_resource type="Material" uid="uid://bf74i5chaorag" path="res://weapons/rpg/rpg_mat_1.tres" id="3_f3fnj"]
 [ext_resource type="AnimationLibrary" uid="uid://c17bia3f5foys" path="res://weapons/grenade_launcher/mortar_anims.res" id="5_rm51x"]
@@ -50,7 +50,7 @@ tracks/0/keys = PackedFloat32Array(0, 1, 0, 0, 0)
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_d4abo"]
 _data = {
-"RESET": SubResource("Animation_qma3t")
+&"RESET": SubResource("Animation_qma3t")
 }
 
 [node name="GrenadeLauncher" type="Node3D"]

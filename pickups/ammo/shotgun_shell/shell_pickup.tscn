@@ -1,6 +1,6 @@
 [gd_scene load_steps=17 format=3 uid="uid://dl7fuv4wdxtjx"]
 
-[ext_resource type="Script" path="res://scripts/pickups/ammo_pickup.gd" id="1_c0jw1"]
+[ext_resource type="Script" uid="uid://bft3wkpl5bv8p" path="res://scripts/pickups/ammo_pickup.gd" id="1_c0jw1"]
 [ext_resource type="AudioStream" uid="uid://g7unocdbdokw" path="res://audio/streams/pickups/pickup_ammo.wav" id="2_m87dd"]
 [ext_resource type="Texture2D" uid="uid://dbnasmfycrfat" path="res://pickups/ammo/shotgun_shell/shotgun_shell.png" id="3_o475v"]
 [ext_resource type="Texture2D" uid="uid://hk0k2coukjwc" path="res://effects/halos/halo_tex.tres" id="3_ujirm"]
@@ -73,18 +73,18 @@ void fragment() {
 render_priority = 0
 shader = SubResource("Shader_nor7x")
 shader_parameter/albedo = Color(1, 1, 1, 1)
+shader_parameter/texture_albedo = ExtResource("3_o475v")
 shader_parameter/point_size = 1.0
 shader_parameter/roughness = 1.0
+shader_parameter/texture_metallic = ExtResource("4_nmgqc")
 shader_parameter/metallic_texture_channel = Vector4(1, 0, 0, 0)
+shader_parameter/texture_roughness = ExtResource("5_abm1o")
 shader_parameter/specular = 0.5
 shader_parameter/metallic = 1.0
 shader_parameter/uv1_scale = Vector3(1, 1, 1)
 shader_parameter/uv1_offset = Vector3(0, 0, 0)
 shader_parameter/uv2_scale = Vector3(1, 1, 1)
 shader_parameter/uv2_offset = Vector3(0, 0, 0)
-shader_parameter/texture_albedo = ExtResource("3_o475v")
-shader_parameter/texture_metallic = ExtResource("4_nmgqc")
-shader_parameter/texture_roughness = ExtResource("5_abm1o")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_h3bjd"]
 albedo_texture = ExtResource("3_o475v")
@@ -121,7 +121,7 @@ tracks/1/keys = PackedFloat32Array(0, 1, 0, 0, 0, 2.5, 1, 0, 0.05, 0, 5, 1, 0, 0
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_4pudi"]
 _data = {
-"anim": SubResource("Animation_wivti")
+&"anim": SubResource("Animation_wivti")
 }
 
 [node name="ShellPickup" type="RigidBody3D"]

@@ -1,9 +1,9 @@
 [gd_scene load_steps=68 format=4 uid="uid://dmgxmmtshe4dh"]
 
-[ext_resource type="Script" path="res://entities/enemies/enemy_flying.gd" id="1_pxyj5"]
+[ext_resource type="Script" uid="uid://bu0oybqpk6rbc" path="res://entities/enemies/enemy_flying.gd" id="1_pxyj5"]
 [ext_resource type="PackedScene" uid="uid://bosuaqplx64vr" path="res://bullets/enemy/enemy_bullet_blood.tscn" id="2_2wk7d"]
 [ext_resource type="PackedScene" uid="uid://cr0slxppts0pq" path="res://entities/enemies/locals/eyeball/eyeball.glb" id="2_3mulw"]
-[ext_resource type="Script" path="res://entities/status.gd" id="3_67ny2"]
+[ext_resource type="Script" uid="uid://cly1es2vyxx12" path="res://entities/status.gd" id="3_67ny2"]
 [ext_resource type="AnimationLibrary" uid="uid://ccdixrnqbenik" path="res://entities/enemies/locals/eyeball/eyeball_anims.res" id="3_h6fvy"]
 [ext_resource type="PackedScene" uid="uid://bnsepaqu7j4p4" path="res://pickups/health/health_bonus_pickup.tscn" id="4_cn2w1"]
 [ext_resource type="PackedScene" uid="uid://cqctw8dd0ar4n" path="res://scenes/effects/damage/damage_sys.tscn" id="5_gpi87"]
@@ -145,23 +145,23 @@ resource_local_to_scene = true
 render_priority = 0
 shader = SubResource("Shader_k5gkm")
 shader_parameter/albedo = Color(1, 1, 1, 1)
+shader_parameter/texture_albedo = SubResource("GradientTexture2D_owdsg")
 shader_parameter/point_size = 1.0
 shader_parameter/roughness = 1.0
-shader_parameter/metallic_texture_channel = null
+shader_parameter/metallic_texture_channel = Vector4(0, 0, 0, 0)
+shader_parameter/texture_roughness = SubResource("GradientTexture2D_femrh")
 shader_parameter/specular = 0.5
 shader_parameter/metallic = 0.0
+shader_parameter/texture_emission = SubResource("GradientTexture2D_t2ac1")
 shader_parameter/emission = Color(0, 0, 0, 1)
 shader_parameter/emission_energy = 4.0
+shader_parameter/texture_detail_albedo = SubResource("NoiseTexture2D_sdsj8")
+shader_parameter/texture_detail_normal = SubResource("NoiseTexture2D_gbnyt")
+shader_parameter/texture_detail_mask = SubResource("GradientTexture2D_kymkb")
 shader_parameter/uv1_scale = Vector3(1, 1, 1)
 shader_parameter/uv1_offset = Vector3(0, 0, 0)
 shader_parameter/uv2_scale = Vector3(1, 1, 1)
 shader_parameter/uv2_offset = Vector3(0, 0, 0)
-shader_parameter/texture_albedo = SubResource("GradientTexture2D_owdsg")
-shader_parameter/texture_roughness = SubResource("GradientTexture2D_femrh")
-shader_parameter/texture_emission = SubResource("GradientTexture2D_t2ac1")
-shader_parameter/texture_detail_albedo = SubResource("NoiseTexture2D_sdsj8")
-shader_parameter/texture_detail_normal = SubResource("NoiseTexture2D_gbnyt")
-shader_parameter/texture_detail_mask = SubResource("GradientTexture2D_kymkb")
 
 [sub_resource type="Shader" id="Shader_d6b1o"]
 code = "// NOTE: Shader automatically converted from Godot Engine 4.2.1.stable.mono's StandardMaterial3D.
@@ -238,19 +238,19 @@ noise = SubResource("FastNoiseLite_s81cl")
 render_priority = 0
 shader = SubResource("Shader_d6b1o")
 shader_parameter/albedo = Color(1, 1, 1, 1)
+shader_parameter/texture_albedo = SubResource("NoiseTexture2D_1adec")
 shader_parameter/alpha_hash_scale = 1.0
 shader_parameter/point_size = 1.0
 shader_parameter/roughness = 0.5
-shader_parameter/metallic_texture_channel = null
+shader_parameter/metallic_texture_channel = Vector4(0, 0, 0, 0)
 shader_parameter/specular = 0.5
 shader_parameter/metallic = 0.0
+shader_parameter/texture_normal = SubResource("NoiseTexture2D_8wq4g")
 shader_parameter/normal_scale = 2.0
 shader_parameter/uv1_scale = Vector3(1, 1, 1)
 shader_parameter/uv1_offset = Vector3(0, 0, 0)
 shader_parameter/uv2_scale = Vector3(1, 1, 1)
 shader_parameter/uv2_offset = Vector3(0, 0, 0)
-shader_parameter/texture_albedo = SubResource("NoiseTexture2D_1adec")
-shader_parameter/texture_normal = SubResource("NoiseTexture2D_8wq4g")
 
 [sub_resource type="Shader" id="Shader_71btv"]
 code = "// NOTE: Shader automatically converted from Godot Engine 4.2.1.stable.mono's StandardMaterial3D.
@@ -298,16 +298,16 @@ resource_local_to_scene = true
 render_priority = 0
 shader = SubResource("Shader_71btv")
 shader_parameter/albedo = Color(4, 4, 4, 1)
+shader_parameter/texture_albedo = SubResource("GradientTexture2D_t2ac1")
 shader_parameter/point_size = 1.0
 shader_parameter/roughness = 1.0
-shader_parameter/metallic_texture_channel = null
+shader_parameter/metallic_texture_channel = Vector4(0, 0, 0, 0)
 shader_parameter/specular = 0.5
 shader_parameter/metallic = 0.0
 shader_parameter/uv1_scale = Vector3(1, 1, 1)
 shader_parameter/uv1_offset = Vector3(0, 0, 0)
 shader_parameter/uv2_scale = Vector3(1, 1, 1)
 shader_parameter/uv2_offset = Vector3(0, 0, 0)
-shader_parameter/texture_albedo = SubResource("GradientTexture2D_t2ac1")
 
 [sub_resource type="Gradient" id="Gradient_3xk18"]
 colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
@@ -585,7 +585,7 @@ tracks/30/keys = PackedFloat32Array(0, 1, 0, 0, 0, 1)
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_2ufq5"]
 _data = {
-"RESET": SubResource("Animation_71ksj")
+&"RESET": SubResource("Animation_71ksj")
 }
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_uyjsu"]

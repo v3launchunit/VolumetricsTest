@@ -1,11 +1,11 @@
 [gd_scene load_steps=162 format=4 uid="uid://ddybwy4hdo2q3"]
 
-[ext_resource type="Script" path="res://levels/level.gd" id="1_lifds"]
+[ext_resource type="Script" uid="uid://bmu1uqqe8qsqm" path="res://levels/level.gd" id="1_lifds"]
 [ext_resource type="PackedScene" uid="uid://do61x5km3wthk" path="res://entities/player/player.tscn" id="1_npqeh"]
 [ext_resource type="Texture2D" uid="uid://cu58hb7h0r68v" path="res://effects/look_up_tables/1d/1d_lut_16_color.png" id="2_6e4xq"]
 [ext_resource type="Texture2D" uid="uid://dybaimi1b3b85" path="res://effects/glow/lens_dirt/lens_dirt_0.png" id="3_in5hi"]
-[ext_resource type="Shader" path="res://shaders/skybox/overcast.gdshader" id="4_0mynj"]
-[ext_resource type="Script" path="res://scripts/effects/env_settings_hook.gd" id="5_ivhkg"]
+[ext_resource type="Shader" uid="uid://bx1vhyqxmy2l3" path="res://shaders/skybox/overcast.gdshader" id="4_0mynj"]
+[ext_resource type="Script" uid="uid://bhkks8bsvt4l2" path="res://scripts/effects/env_settings_hook.gd" id="5_ivhkg"]
 [ext_resource type="ArrayOccluder3D" uid="uid://de24am4sbu2ce" path="res://levels/debug/test_level/test_level.occ" id="6_1knku"]
 [ext_resource type="CompressedTexture3D" uid="uid://cbk1h1yxquuv1" path="res://levels/debug/test_level/test_level.GPUParticlesCollisionSDF3D_data.exr" id="7_qp8ah"]
 [ext_resource type="Texture2D" uid="uid://c8k3lo0nolynw" path="res://materials/terrain/trench_broom_2/bricks.png" id="8_u4pqh"]
@@ -24,23 +24,23 @@
 [ext_resource type="PackedScene" uid="uid://ce2yor24rivr3" path="res://pickups/weapons/nailgun_pickup.tscn" id="33_j5qjm"]
 [ext_resource type="PackedScene" uid="uid://dakry3wmqjckc" path="res://pickups/weapons/crossbow_pickup.tscn" id="34_jl723"]
 [ext_resource type="PackedScene" uid="uid://dxyhvyy821swt" path="res://pickups/weapons/hunting_rifle_pickup.tscn" id="35_u0dbq"]
-[ext_resource type="Script" path="res://trench_broom/func_godot_fgd/entities/solid/func/brush_door.gd" id="36_ba20l"]
+[ext_resource type="Script" uid="uid://blyitdblilgra" path="res://trench_broom/func_godot_fgd/entities/solid/func/brush_door.gd" id="36_ba20l"]
 [ext_resource type="PackedScene" uid="uid://df20em4dv0q37" path="res://pickups/weapons/rpg_pickup.tscn" id="36_v5hyr"]
-[ext_resource type="Script" path="res://trench_broom/func_godot_fgd/entities/solid/func/level_exit.gd" id="37_vcbyu"]
+[ext_resource type="Script" uid="uid://bbkdp6jli1dpe" path="res://trench_broom/func_godot_fgd/entities/solid/func/level_exit.gd" id="37_vcbyu"]
 [ext_resource type="PackedScene" uid="uid://dqugqrrqpxdih" path="res://entities/enemies/machines/gun_turret/gun_turret.tscn" id="37_w2aui"]
-[ext_resource type="Script" path="res://addons/func_godot/src/map/func_godot_map.gd" id="38_cabet"]
-[ext_resource type="Shader" path="res://shaders/spatial/depth_test.gdshader" id="39_34bav"]
+[ext_resource type="Script" uid="uid://21cqeu52nt12" path="res://addons/func_godot/src/map/func_godot_map.gd" id="38_cabet"]
+[ext_resource type="Shader" uid="uid://cer135qfxd6fl" path="res://shaders/spatial/depth_test.gdshader" id="39_34bav"]
 [ext_resource type="Material" uid="uid://cgrmnklrxmjec" path="res://entities/enemies/shadow_mat.tres" id="39_a4eva"]
 [ext_resource type="Resource" uid="uid://bkhxcqsquw1yg" path="res://addons/func_godot/func_godot_default_map_settings.tres" id="39_gspvf"]
-[ext_resource type="Shader" path="res://shaders/spatial/iridescent_psx.gdshader" id="39_vgoen"]
-[ext_resource type="Shader" path="res://shaders/spatial/psx_test.gdshader" id="40_8dl3b"]
+[ext_resource type="Shader" uid="uid://bdyqub3wokw88" path="res://shaders/spatial/iridescent_psx.gdshader" id="39_vgoen"]
+[ext_resource type="Shader" uid="uid://bh63aeoimg3jo" path="res://shaders/spatial/psx_test.gdshader" id="40_8dl3b"]
 [ext_resource type="Texture2D" uid="uid://cyg2snr1w5xw5" path="res://addons/func_godot/textures/default_texture.png" id="40_rt55l"]
-[ext_resource type="Shader" path="res://shaders/spatial/tv_static.gdshader" id="40_w0giw"]
-[ext_resource type="Shader" path="res://shaders/portal.gdshader" id="41_0lrjq"]
+[ext_resource type="Shader" uid="uid://bk6kwgdgnhu1d" path="res://shaders/spatial/tv_static.gdshader" id="40_w0giw"]
+[ext_resource type="Shader" uid="uid://dvper36k2f82x" path="res://shaders/portal.gdshader" id="41_0lrjq"]
 [ext_resource type="PackedScene" uid="uid://7e6nf0ho2ltr" path="res://scenes/objects/teleporter.tscn" id="41_dkm3o"]
 [ext_resource type="Material" uid="uid://biw3k00jqqq3l" path="res://trench_broom/textures/liquids/water.tres" id="42_m623u"]
 [ext_resource type="PackedScene" uid="uid://13po7ktlg4ba" path="res://entities/enemies/military/soldier/soldier.tscn" id="46_mht45"]
-[ext_resource type="Script" path="res://trench_broom/func_godot_fgd/entities/solid/area/area_hazard.gd" id="57_iagox"]
+[ext_resource type="Script" uid="uid://c7lhqwn4gnw3k" path="res://trench_broom/func_godot_fgd/entities/solid/area/area_hazard.gd" id="57_iagox"]
 [ext_resource type="PackedScene" uid="uid://bfqcephq1sfd3" path="res://entities/neutral/mystery_man/mystery_man.tscn" id="62_kax4q"]
 
 [sub_resource type="Gradient" id="Gradient_m4bx2"]
@@ -77,10 +77,10 @@ metadata/_snap_count = 16
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_2pp38"]
 shader = ExtResource("4_0mynj")
 shader_parameter/sky_cubemap_color = Color(0.25098, 0.25098, 0.25098, 1)
-shader_parameter/scroll_speed = 0.005
 shader_parameter/sky_tex = SubResource("NoiseTexture2D_43ter")
 shader_parameter/cloud_tex_a = SubResource("NoiseTexture2D_43ter")
 shader_parameter/horizon_tex = SubResource("GradientTexture2D_1fgyn")
+shader_parameter/scroll_speed = 0.005
 
 [sub_resource type="Sky" id="Sky_ccsn7"]
 sky_material = SubResource("ShaderMaterial_2pp38")
@@ -169,12 +169,15 @@ void fragment() {
 render_priority = 0
 shader = SubResource("Shader_wvlbm")
 shader_parameter/albedo = Color(1, 1, 1, 1)
+shader_parameter/texture_albedo = ExtResource("8_u4pqh")
 shader_parameter/point_size = 1.0
 shader_parameter/roughness = 0.75
-shader_parameter/metallic_texture_channel = null
+shader_parameter/metallic_texture_channel = Vector4(0, 0, 0, 0)
 shader_parameter/specular = 0.5
 shader_parameter/metallic = 0.0
+shader_parameter/texture_normal = ExtResource("10_nve4p")
 shader_parameter/normal_scale = 1.0
+shader_parameter/texture_heightmap = ExtResource("9_nniwt")
 shader_parameter/heightmap_scale = 1.0
 shader_parameter/heightmap_min_layers = 8
 shader_parameter/heightmap_max_layers = 32
@@ -183,9 +186,6 @@ shader_parameter/uv1_scale = Vector3(6.25, 6.25, 6.25)
 shader_parameter/uv1_offset = Vector3(0, 0, 0)
 shader_parameter/uv2_scale = Vector3(1, 1, 1)
 shader_parameter/uv2_offset = Vector3(0, 0, 0)
-shader_parameter/texture_albedo = ExtResource("8_u4pqh")
-shader_parameter/texture_normal = ExtResource("10_nve4p")
-shader_parameter/texture_heightmap = ExtResource("9_nniwt")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_pjpoy"]
 size = Vector3(25, 1, 25)
@@ -467,11 +467,11 @@ noise = SubResource("FastNoiseLite_tuhld")
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_5abgc"]
 render_priority = 0
 shader = ExtResource("40_8dl3b")
+shader_parameter/albedo = SubResource("NoiseTexture2D_jor0j")
 shader_parameter/affine_mapping = true
 shader_parameter/alpha_scissor = 0.5
 shader_parameter/jitter = 0.25
 shader_parameter/resolution = Vector2i(683, 384)
-shader_parameter/albedo = SubResource("NoiseTexture2D_jor0j")
 
 [sub_resource type="BoxMesh" id="BoxMesh_l4wb7"]
 
@@ -647,22 +647,22 @@ noise = SubResource("FastNoiseLite_l8jn8")
 render_priority = 0
 shader = SubResource("Shader_aaxox")
 shader_parameter/albedo = Color(0.25098, 0.25098, 0.25098, 1)
+shader_parameter/texture_albedo = SubResource("NoiseTexture2D_8trxb")
 shader_parameter/point_size = 1.0
 shader_parameter/roughness = 0.1
-shader_parameter/metallic_texture_channel = null
+shader_parameter/metallic_texture_channel = Vector4(0, 0, 0, 0)
 shader_parameter/specular = 0.5
 shader_parameter/metallic = 0.0
+shader_parameter/texture_refraction = SubResource("NoiseTexture2D_ru8s6")
 shader_parameter/refraction = 0.05
-shader_parameter/refraction_texture_channel = null
+shader_parameter/refraction_texture_channel = Vector4(0, 0, 0, 0)
+shader_parameter/texture_normal = SubResource("NoiseTexture2D_jieqa")
 shader_parameter/normal_scale = 1.0
 shader_parameter/uv1_scale = Vector3(3, 2, 2)
 shader_parameter/uv1_offset = Vector3(0, 0, 0)
 shader_parameter/uv2_scale = Vector3(1, 1, 1)
 shader_parameter/uv2_offset = Vector3(0, 0, 0)
 shader_parameter/scroll_speed = 0.125
-shader_parameter/texture_albedo = SubResource("NoiseTexture2D_8trxb")
-shader_parameter/texture_refraction = SubResource("NoiseTexture2D_ru8s6")
-shader_parameter/texture_normal = SubResource("NoiseTexture2D_jieqa")
 
 [sub_resource type="BoxMesh" id="BoxMesh_e4nf1"]
 size = Vector3(8, 8, 8)
@@ -733,7 +733,7 @@ shader_parameter/albedo = Color(0.752941, 1, 0.501961, 1)
 shader_parameter/alpha_hash_scale = 1.0
 shader_parameter/point_size = 1.0
 shader_parameter/roughness = 1.0
-shader_parameter/metallic_texture_channel = null
+shader_parameter/metallic_texture_channel = Vector4(0, 0, 0, 0)
 shader_parameter/specular = 0.5
 shader_parameter/metallic = 0.0
 shader_parameter/uv1_scale = Vector3(1, 1, 1)
@@ -749,8 +749,7 @@ point_count = 4
 curve = SubResource("Curve_4pci3")
 
 [sub_resource type="Curve" id="Curve_pos2j"]
-min_value = -2.0
-max_value = 2.0
+_limits = [-2.0, 2.0, 0.0, 1.0]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
 point_count = 2
 
@@ -897,7 +896,7 @@ gradient = SubResource("Gradient_judde")
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_xufc5"]
 render_priority = 0
 shader = ExtResource("39_vgoen")
-shader_parameter/roughness = null
+shader_parameter/roughness = 0.0
 shader_parameter/rainbow = SubResource("GradientTexture1D_0a1a2")
 
 [sub_resource type="BoxMesh" id="BoxMesh_h44b6"]

@@ -2,8 +2,8 @@
 
 [ext_resource type="PackedScene" uid="uid://bfpoyydd4y6gc" path="res://weapons/crossbow/crossbow.glb" id="1_cxeg4"]
 [ext_resource type="AnimationLibrary" uid="uid://doq8kttqg86x7" path="res://weapons/crossbow/crossbow_anims.res" id="2_exmv2"]
-[ext_resource type="Script" path="res://weapons/crossbow/weapon_crossbow.gd" id="2_vadfq"]
-[ext_resource type="Script" path="res://weapons/alert_area.gd" id="3_2m668"]
+[ext_resource type="Script" uid="uid://byvp3rqol3kj0" path="res://weapons/crossbow/weapon_crossbow.gd" id="2_vadfq"]
+[ext_resource type="Script" uid="uid://cm4w83326cpew" path="res://weapons/alert_area.gd" id="3_2m668"]
 [ext_resource type="PackedScene" uid="uid://u6obomqkbr77" path="res://bullets/player/hitscan/crossbow_bolt.tscn" id="3_71ym8"]
 [ext_resource type="Material" uid="uid://bqaqpwu7ya4e1" path="res://weapons/crossbow/crossbow_mat_1.tres" id="4_vr385"]
 [ext_resource type="Material" uid="uid://cuyk7qd8rw2ab" path="res://weapons/crossbow/crossbow_mat_2.tres" id="5_452mq"]
@@ -174,7 +174,7 @@ tracks/6/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_2b3ff"]
 _data = {
-"RESET": SubResource("Animation_q1nis")
+&"RESET": SubResource("Animation_q1nis")
 }
 
 [node name="Crossbow" type="Node3D"]

@@ -1,6 +1,6 @@
 [gd_scene load_steps=99 format=3 uid="uid://qijffmyyksm0"]
 
-[ext_resource type="Script" path="res://entities/enemies/locals/lizard/enemy_lizard.gd" id="1_vmwu0"]
+[ext_resource type="Script" uid="uid://e0mfhosbxmht" path="res://entities/enemies/locals/lizard/enemy_lizard.gd" id="1_vmwu0"]
 [ext_resource type="PackedScene" uid="uid://dj8yo2whvp2w7" path="res://bullets/enemy/enemy_melee_scan.tscn" id="2_p5c7q"]
 [ext_resource type="AudioStream" uid="uid://dccli7qg88gwt" path="res://audio/streams/voices/lizard/detect_roar.wav" id="3_p86kj"]
 [ext_resource type="AudioStream" uid="uid://o3hie6osd6lv" path="res://audio/streams/voices/lizard/detect_roar_2.wav" id="4_pvn6v"]
@@ -9,14 +9,14 @@
 [ext_resource type="AudioStream" uid="uid://dc1es3ux857yw" path="res://audio/streams/voices/wilhelm_scream.ogg" id="7_d0ams"]
 [ext_resource type="PackedScene" uid="uid://pidxth8qpjjm" path="res://entities/enemies/locals/lizard/lizard.glb" id="8_ccvo6"]
 [ext_resource type="Texture2D" uid="uid://ds5gx6rr0ytfx" path="res://effects/snore.png" id="9_s2a04"]
-[ext_resource type="Shader" path="res://shaders/spatial/psx_ul_mix.gdshader" id="10_ashiv"]
+[ext_resource type="Shader" uid="uid://bycruau5ish4o" path="res://shaders/spatial/psx_ul_mix.gdshader" id="10_ashiv"]
 [ext_resource type="AnimationLibrary" uid="uid://bre8ccbuc7fbn" path="res://entities/enemies/locals/lizard/lizard_anims.res" id="10_f64uo"]
-[ext_resource type="Script" path="res://entities/status.gd" id="11_sgqsl"]
+[ext_resource type="Script" uid="uid://cly1es2vyxx12" path="res://entities/status.gd" id="11_sgqsl"]
 [ext_resource type="PackedScene" uid="uid://cqctw8dd0ar4n" path="res://scenes/effects/damage/damage_sys.tscn" id="12_sfw3v"]
 [ext_resource type="PackedScene" uid="uid://c5pbs8t6p7ogl" path="res://scenes/effects/gibs/gibs.tscn" id="13_tpj4t"]
 [ext_resource type="PackedScene" uid="uid://bnsepaqu7j4p4" path="res://pickups/health/health_bonus_pickup.tscn" id="14_bi5do"]
 [ext_resource type="PackedScene" uid="uid://b8i1fe0bwht3k" path="res://pickups/armor/armor_bonus_pickup.tscn" id="15_tscye"]
-[ext_resource type="Script" path="res://entities/stair_stepper.gd" id="16_51dlk"]
+[ext_resource type="Script" uid="uid://d2b0n45s0c5y7" path="res://entities/stair_stepper.gd" id="16_51dlk"]
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_hkga1"]
 random_pitch = 1.25
@@ -135,19 +135,19 @@ shader_parameter/roughness = 0.25
 shader_parameter/metallic_texture_channel = Vector4(1, 0, 0, 0)
 shader_parameter/specular = 0.5
 shader_parameter/metallic = 1.0
+shader_parameter/texture_normal = SubResource("NoiseTexture2D_1ywp7")
 shader_parameter/normal_scale = 1.0
 shader_parameter/uv1_scale = Vector3(1, 1, 1)
 shader_parameter/uv1_offset = Vector3(0, 0, 0)
 shader_parameter/uv2_scale = Vector3(1, 1, 1)
 shader_parameter/uv2_offset = Vector3(0, 0, 0)
-shader_parameter/texture_normal = SubResource("NoiseTexture2D_1ywp7")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_uxr7w"]
 render_priority = 0
 shader = ExtResource("10_ashiv")
 shader_parameter/albedo = Color(1, 0, 0, 1)
-shader_parameter/uv1_scale = null
-shader_parameter/uv1_offset = null
+shader_parameter/uv1_scale = Vector3(0, 0, 0)
+shader_parameter/uv1_offset = Vector3(0, 0, 0)
 
 [sub_resource type="Gradient" id="Gradient_mj6ne"]
 colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
@@ -181,19 +181,19 @@ shader_parameter/roughness = 0.25
 shader_parameter/metallic_texture_channel = Vector4(1, 0, 0, 0)
 shader_parameter/specular = 0.5
 shader_parameter/metallic = 1.0
+shader_parameter/texture_normal = SubResource("NoiseTexture2D_1ywp7")
 shader_parameter/normal_scale = 1.0
 shader_parameter/uv1_scale = Vector3(1, 1, 1)
 shader_parameter/uv1_offset = Vector3(0, 0, 0)
 shader_parameter/uv2_scale = Vector3(1, 1, 1)
 shader_parameter/uv2_offset = Vector3(0, 0, 0)
-shader_parameter/texture_normal = SubResource("NoiseTexture2D_1ywp7")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_c02c6"]
 render_priority = 0
 shader = ExtResource("10_ashiv")
 shader_parameter/albedo = Color(1, 0, 0, 1)
-shader_parameter/uv1_scale = null
-shader_parameter/uv1_offset = null
+shader_parameter/uv1_scale = Vector3(0, 0, 0)
+shader_parameter/uv1_offset = Vector3(0, 0, 0)
 
 [sub_resource type="SphereMesh" id="SphereMesh_42m1i"]
 material = SubResource("StandardMaterial3D_niape")
@@ -271,18 +271,18 @@ noise = SubResource("FastNoiseLite_lq8pl")
 render_priority = 0
 shader = SubResource("Shader_hyf2c")
 shader_parameter/albedo = Color(0.752941, 0.501961, 0.752941, 1)
+shader_parameter/texture_albedo = SubResource("NoiseTexture2D_vk4du")
 shader_parameter/point_size = 1.0
 shader_parameter/roughness = 1.0
-shader_parameter/metallic_texture_channel = null
+shader_parameter/metallic_texture_channel = Vector4(0, 0, 0, 0)
 shader_parameter/specular = 0.5
 shader_parameter/metallic = 0.0
+shader_parameter/texture_normal = SubResource("NoiseTexture2D_tdvix")
 shader_parameter/normal_scale = 1.0
 shader_parameter/uv1_scale = Vector3(1, 1, 1)
 shader_parameter/uv1_offset = Vector3(0, 0, 0)
 shader_parameter/uv2_scale = Vector3(1, 1, 1)
 shader_parameter/uv2_offset = Vector3(0, 0, 0)
-shader_parameter/texture_albedo = SubResource("NoiseTexture2D_vk4du")
-shader_parameter/texture_normal = SubResource("NoiseTexture2D_tdvix")
 
 [sub_resource type="Animation" id="Animation_j4qs2"]
 resource_name = "RESET"
@@ -550,7 +550,7 @@ tracks/34/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_dalwl"]
 _data = {
-"RESET": SubResource("Animation_j4qs2")
+&"RESET": SubResource("Animation_j4qs2")
 }
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_116pp"]

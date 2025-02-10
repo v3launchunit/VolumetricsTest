@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://b5jvcu4x6ggol"]
 
-[ext_resource type="Script" path="res://objects/interactable/wooden_door/door_obj.gd" id="1_etyex"]
+[ext_resource type="Script" uid="uid://d0ts17iwn0gey" path="res://objects/interactable/wooden_door/door_obj.gd" id="1_etyex"]
 [ext_resource type="ArrayMesh" uid="uid://dgkjk7srhga0r" path="res://objects/interactable/wooden_door/door_1.5x3.obj" id="1_qw62i"]
 [ext_resource type="AudioStream" uid="uid://ql1ep2md8c3u" path="res://audio/streams/effects/door_move_wood.wav" id="3_mfdje"]
 

@@ -1,6 +1,6 @@
 [gd_scene load_steps=85 format=3 uid="uid://c83b684bvkbu5"]
 
-[ext_resource type="Script" path="res://entities/enemies/locals/lizard/enemy_lizard.gd" id="1_cefll"]
+[ext_resource type="Script" uid="uid://e0mfhosbxmht" path="res://entities/enemies/locals/lizard/enemy_lizard.gd" id="1_cefll"]
 [ext_resource type="PackedScene" uid="uid://dj8yo2whvp2w7" path="res://bullets/enemy/enemy_melee_scan.tscn" id="2_o2com"]
 [ext_resource type="AudioStream" uid="uid://dccli7qg88gwt" path="res://audio/streams/voices/lizard/detect_roar.wav" id="3_vs1yu"]
 [ext_resource type="AudioStream" uid="uid://o3hie6osd6lv" path="res://audio/streams/voices/lizard/detect_roar_2.wav" id="4_y45ee"]
@@ -8,15 +8,15 @@
 [ext_resource type="AudioStream" uid="uid://bfaxlqoxr3aed" path="res://audio/streams/voices/lizard/death_roar.wav" id="6_kj0b6"]
 [ext_resource type="AudioStream" uid="uid://dc1es3ux857yw" path="res://audio/streams/voices/wilhelm_scream.ogg" id="7_pkv2a"]
 [ext_resource type="PackedScene" uid="uid://pidxth8qpjjm" path="res://entities/enemies/locals/lizard/lizard.glb" id="8_4kcvq"]
-[ext_resource type="Shader" path="res://shaders/spatial/psx_ul_mix.gdshader" id="9_8aumv"]
+[ext_resource type="Shader" uid="uid://bycruau5ish4o" path="res://shaders/spatial/psx_ul_mix.gdshader" id="9_8aumv"]
 [ext_resource type="Material" uid="uid://cgrmnklrxmjec" path="res://entities/enemies/shadow_mat.tres" id="9_o7vwu"]
 [ext_resource type="AnimationLibrary" uid="uid://bre8ccbuc7fbn" path="res://entities/enemies/locals/lizard/lizard_anims.res" id="10_kynjh"]
-[ext_resource type="Script" path="res://entities/status.gd" id="11_5mioy"]
+[ext_resource type="Script" uid="uid://cly1es2vyxx12" path="res://entities/status.gd" id="11_5mioy"]
 [ext_resource type="PackedScene" uid="uid://cqctw8dd0ar4n" path="res://scenes/effects/damage/damage_sys.tscn" id="12_v1mtp"]
 [ext_resource type="PackedScene" uid="uid://c5pbs8t6p7ogl" path="res://scenes/effects/gibs/gibs.tscn" id="13_j0r17"]
 [ext_resource type="PackedScene" uid="uid://bnsepaqu7j4p4" path="res://pickups/health/health_bonus_pickup.tscn" id="14_p7gvy"]
 [ext_resource type="PackedScene" uid="uid://b8i1fe0bwht3k" path="res://pickups/armor/armor_bonus_pickup.tscn" id="15_64bnk"]
-[ext_resource type="Script" path="res://entities/stair_stepper.gd" id="16_huone"]
+[ext_resource type="Script" uid="uid://d2b0n45s0c5y7" path="res://entities/stair_stepper.gd" id="16_huone"]
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_hkga1"]
 random_pitch = 1.25
@@ -45,8 +45,8 @@ height = 2.5
 render_priority = 0
 shader = ExtResource("9_8aumv")
 shader_parameter/albedo = Color(1, 0, 0, 1)
-shader_parameter/uv1_scale = null
-shader_parameter/uv1_offset = null
+shader_parameter/uv1_scale = Vector3(0, 0, 0)
+shader_parameter/uv1_offset = Vector3(0, 0, 0)
 
 [sub_resource type="Gradient" id="Gradient_mj6ne"]
 colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
@@ -75,8 +75,8 @@ rings = 3
 render_priority = 0
 shader = ExtResource("9_8aumv")
 shader_parameter/albedo = Color(1, 0, 0, 1)
-shader_parameter/uv1_scale = null
-shader_parameter/uv1_offset = null
+shader_parameter/uv1_scale = Vector3(0, 0, 0)
+shader_parameter/uv1_offset = Vector3(0, 0, 0)
 
 [sub_resource type="SphereMesh" id="SphereMesh_42m1i"]
 material = SubResource("StandardMaterial3D_niape")
@@ -350,7 +350,7 @@ tracks/34/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_dalwl"]
 _data = {
-"RESET": SubResource("Animation_j4qs2")
+&"RESET": SubResource("Animation_j4qs2")
 }
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_116pp"]

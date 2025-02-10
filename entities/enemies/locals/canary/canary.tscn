@@ -1,11 +1,11 @@
 [gd_scene load_steps=73 format=3 uid="uid://coe0vc85neefj"]
 
-[ext_resource type="Script" path="res://entities/enemies/enemy_base.gd" id="1_xpg4m"]
+[ext_resource type="Script" uid="uid://cssklp4gt40pl" path="res://entities/enemies/enemy_base.gd" id="1_xpg4m"]
 [ext_resource type="PackedScene" uid="uid://d88it1ka8q05" path="res://entities/enemies/locals/canary/canary.glb" id="2_n8knu"]
 [ext_resource type="AudioStream" uid="uid://kvksscy35kso" path="res://audio/streams/voices/canary/detect_moan_1.wav" id="2_sybod"]
 [ext_resource type="AudioStream" uid="uid://cxmy0py34q134" path="res://audio/streams/voices/canary/detect_moan_2.wav" id="3_xu1ly"]
 [ext_resource type="AudioStream" uid="uid://cl44ukycugok" path="res://audio/streams/voices/canary/detect_moan_3.wav" id="4_u2vh3"]
-[ext_resource type="Script" path="res://entities/status.gd" id="5_3hbwc"]
+[ext_resource type="Script" uid="uid://cly1es2vyxx12" path="res://entities/status.gd" id="5_3hbwc"]
 [ext_resource type="AnimationLibrary" uid="uid://ci7iptmlbm84k" path="res://entities/enemies/locals/canary/canary_anims.res" id="5_7exts"]
 [ext_resource type="AudioStream" uid="uid://ci3c0uultgsgr" path="res://audio/streams/voices/canary/detect_moan_4.wav" id="5_51qrl"]
 [ext_resource type="PackedScene" uid="uid://dj8yo2whvp2w7" path="res://bullets/enemy/enemy_melee_scan.tscn" id="6_a2d18"]
@@ -248,21 +248,21 @@ noise = SubResource("FastNoiseLite_m3hgk")
 render_priority = 0
 shader = SubResource("Shader_7cdto")
 shader_parameter/albedo = Color(1, 1, 1, 1)
+shader_parameter/texture_albedo = ExtResource("11_yhbt5")
 shader_parameter/point_size = 1.0
 shader_parameter/roughness = 1.0
+shader_parameter/texture_metallic = ExtResource("12_0ovrm")
 shader_parameter/metallic_texture_channel = Vector4(1, 0, 0, 0)
+shader_parameter/texture_roughness = ExtResource("13_ks6xw")
 shader_parameter/specular = 0.5
 shader_parameter/metallic = 1.0
+shader_parameter/texture_detail_albedo = SubResource("NoiseTexture2D_m8rgt")
+shader_parameter/texture_detail_normal = SubResource("NoiseTexture2D_0cfm0")
+shader_parameter/texture_detail_mask = ExtResource("12_0nc5f")
 shader_parameter/uv1_scale = Vector3(1, 1, 1)
 shader_parameter/uv1_offset = Vector3(0, 0, 0)
 shader_parameter/uv2_scale = Vector3(1, 1, 1)
 shader_parameter/uv2_offset = Vector3(0, 0, 0)
-shader_parameter/texture_albedo = ExtResource("11_yhbt5")
-shader_parameter/texture_metallic = ExtResource("12_0ovrm")
-shader_parameter/texture_roughness = ExtResource("13_ks6xw")
-shader_parameter/texture_detail_albedo = SubResource("NoiseTexture2D_m8rgt")
-shader_parameter/texture_detail_normal = SubResource("NoiseTexture2D_0cfm0")
-shader_parameter/texture_detail_mask = ExtResource("12_0nc5f")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_c7x5q"]
 transparency = 1
@@ -512,7 +512,7 @@ tracks/28/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_rb0vb"]
 _data = {
-"RESET": SubResource("Animation_o8lpw")
+&"RESET": SubResource("Animation_o8lpw")
 }
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_tob0g"]

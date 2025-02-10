@@ -1,7 +1,7 @@
 [gd_scene load_steps=22 format=3 uid="uid://7e6nf0ho2ltr"]
 
-[ext_resource type="Script" path="res://scripts/objects/teleporter.gd" id="1_1hc1g"]
-[ext_resource type="Shader" path="res://shaders/spatial/psx_ul_mix.gdshader" id="2_7084i"]
+[ext_resource type="Script" uid="uid://cb18r87g7yo2w" path="res://scripts/objects/teleporter.gd" id="1_1hc1g"]
+[ext_resource type="Shader" uid="uid://bycruau5ish4o" path="res://shaders/spatial/psx_ul_mix.gdshader" id="2_7084i"]
 [ext_resource type="PackedScene" uid="uid://b6og4kcs5xlt0" path="res://effects/teleport_sys.tscn" id="3_75on0"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_360gk"]
@@ -65,16 +65,16 @@ fill_to = Vector2(1, 0.5)
 render_priority = 0
 shader = SubResource("Shader_xtn20")
 shader_parameter/albedo = Color(1, 1, 1, 1)
+shader_parameter/texture_albedo = SubResource("GradientTexture2D_m76p8")
 shader_parameter/point_size = 1.0
 shader_parameter/roughness = 1.0
-shader_parameter/metallic_texture_channel = null
+shader_parameter/metallic_texture_channel = Vector4(0, 0, 0, 0)
 shader_parameter/specular = 0.5
 shader_parameter/metallic = 0.0
 shader_parameter/uv1_scale = Vector3(1, 1, 1)
 shader_parameter/uv1_offset = Vector3(0, 0, 0)
 shader_parameter/uv2_scale = Vector3(1, 1, 1)
 shader_parameter/uv2_offset = Vector3(0, 0, 0)
-shader_parameter/texture_albedo = SubResource("GradientTexture2D_m76p8")
 
 [sub_resource type="Gradient" id="Gradient_an5ye"]
 offsets = PackedFloat32Array(0, 0.5, 1)
@@ -117,20 +117,17 @@ metadata/_snap_count = 16
 gradient = SubResource("Gradient_ql7el")
 
 [sub_resource type="Curve" id="Curve_ggrvl"]
-min_value = -2.0
-max_value = 2.0
+_limits = [-2.0, 2.0, 0.0, 1.0]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
 point_count = 2
 
 [sub_resource type="Curve" id="Curve_a1kwn"]
-min_value = -2.0
-max_value = 2.0
+_limits = [-2.0, 2.0, 0.0, 1.0]
 _data = [Vector2(0, -2), 0.0, 0.0, 0, 0, Vector2(1, -2), 0.0, 0.0, 0, 0]
 point_count = 2
 
 [sub_resource type="Curve" id="Curve_8k0uo"]
-min_value = -2.0
-max_value = 2.0
+_limits = [-2.0, 2.0, 0.0, 1.0]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
 point_count = 2
 

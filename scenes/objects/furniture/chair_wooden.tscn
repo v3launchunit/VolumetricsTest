@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://crih0rgk10al6" path="res://weapons/pump_shotgun/shotgun_detail_mask.png" id="1_bfdwv"]
 [ext_resource type="ArrayMesh" uid="uid://ogv7qwoxjkgc" path="res://models/objects/chair.obj" id="2_e163t"]
-[ext_resource type="Script" path="res://entities/status.gd" id="3_5wb7k"]
+[ext_resource type="Script" uid="uid://cly1es2vyxx12" path="res://entities/status.gd" id="3_5wb7k"]
 [ext_resource type="PackedScene" uid="uid://bynbdpv50o6q2" path="res://scenes/effects/gibs/wood_shards.tscn" id="4_042e2"]
 [ext_resource type="PackedScene" uid="uid://bnsepaqu7j4p4" path="res://pickups/health/health_bonus_pickup.tscn" id="4_karhn"]
 [ext_resource type="PackedScene" uid="uid://b8i1fe0bwht3k" path="res://pickups/armor/armor_bonus_pickup.tscn" id="5_76q0s"]
@@ -89,21 +89,21 @@ noise = SubResource("FastNoiseLite_q3vr3")
 render_priority = 0
 shader = SubResource("Shader_kldm2")
 shader_parameter/albedo = Color(1, 1, 1, 1)
+shader_parameter/texture_albedo = SubResource("NoiseTexture2D_h5i32")
 shader_parameter/point_size = 1.0
 shader_parameter/roughness = 0.75
-shader_parameter/metallic_texture_channel = null
+shader_parameter/metallic_texture_channel = Vector4(0, 0, 0, 0)
 shader_parameter/specular = 0.5
 shader_parameter/metallic = 0.0
+shader_parameter/texture_normal = SubResource("NoiseTexture2D_1b18h")
 shader_parameter/normal_scale = 1.0
 shader_parameter/clearcoat = 1.0
 shader_parameter/clearcoat_roughness = 0.25
+shader_parameter/texture_clearcoat = ExtResource("1_bfdwv")
 shader_parameter/uv1_scale = Vector3(1, 1, 1)
 shader_parameter/uv1_offset = Vector3(0, 0, 0)
 shader_parameter/uv2_scale = Vector3(1, 1, 1)
 shader_parameter/uv2_offset = Vector3(0, 0, 0)
-shader_parameter/texture_albedo = SubResource("NoiseTexture2D_h5i32")
-shader_parameter/texture_normal = SubResource("NoiseTexture2D_1b18h")
-shader_parameter/texture_clearcoat = ExtResource("1_bfdwv")
 
 [node name="Chair" type="RigidBody3D"]
 collision_mask = 23

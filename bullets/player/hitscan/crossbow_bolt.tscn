@@ -1,10 +1,10 @@
 [gd_scene load_steps=24 format=3 uid="uid://u6obomqkbr77"]
 
-[ext_resource type="Script" path="res://bullets/lightning_scan.gd" id="1_3mdio"]
+[ext_resource type="Script" uid="uid://b67sjwoxog50w" path="res://bullets/lightning_scan.gd" id="1_3mdio"]
 [ext_resource type="ArrayMesh" uid="uid://cfjlieto7r0xy" path="res://bullets/hitscan_bullet.obj" id="2_co20h"]
 [ext_resource type="PackedScene" uid="uid://r5omla7tiysx" path="res://scenes/effects/explosions/nail_explosion.tscn" id="2_o64b4"]
-[ext_resource type="Shader" path="res://shaders/spatial/lightning.gdshader" id="4_ttioc"]
-[ext_resource type="Shader" path="res://shaders/spatial/crossbow_bolt.gdshader" id="5_c1ccc"]
+[ext_resource type="Shader" uid="uid://cm1v5bo0u4qb3" path="res://shaders/spatial/lightning.gdshader" id="4_ttioc"]
+[ext_resource type="Shader" uid="uid://ct8toosu1qga" path="res://shaders/spatial/crossbow_bolt.gdshader" id="5_c1ccc"]
 
 [sub_resource type="Shader" id="Shader_s6w3a"]
 code = "// NOTE: Shader automatically converted from Godot Engine 4.2.1.stable.mono's StandardMaterial3D.
@@ -62,16 +62,16 @@ metadata/_snap_count = 8
 render_priority = 0
 shader = SubResource("Shader_s6w3a")
 shader_parameter/albedo = Color(0, 5, 5, 1)
+shader_parameter/texture_albedo = SubResource("GradientTexture2D_16e03")
 shader_parameter/point_size = 1.0
 shader_parameter/roughness = 1.0
-shader_parameter/metallic_texture_channel = null
+shader_parameter/metallic_texture_channel = Vector4(0, 0, 0, 0)
 shader_parameter/specular = 0.5
 shader_parameter/metallic = 0.0
 shader_parameter/uv1_scale = Vector3(1, 1, 1)
 shader_parameter/uv1_offset = Vector3(0, 0, 0)
 shader_parameter/uv2_scale = Vector3(1, 1, 1)
 shader_parameter/uv2_offset = Vector3(0, 0, 0)
-shader_parameter/texture_albedo = SubResource("GradientTexture2D_16e03")
 
 [sub_resource type="Skin" id="Skin_axrfg"]
 
@@ -116,11 +116,11 @@ width = 16
 resource_local_to_scene = true
 render_priority = 0
 shader = ExtResource("4_ttioc")
-shader_parameter/intensity = 0.75
-shader_parameter/scroll_speed = 2.0
 shader_parameter/tex = SubResource("GradientTexture2D_r6gdn")
 shader_parameter/tex_2 = SubResource("GradientTexture1D_qox87")
 shader_parameter/noise = SubResource("NoiseTexture2D_gyies")
+shader_parameter/intensity = 0.75
+shader_parameter/scroll_speed = 2.0
 
 [sub_resource type="QuadMesh" id="QuadMesh_rgpba"]
 orientation = 0
@@ -157,8 +157,8 @@ render_priority = 0
 shader = ExtResource("5_c1ccc")
 shader_parameter/scale = 1.0
 shader_parameter/dance_rate = 1.0
-shader_parameter/col = Color(1, 1, 1, 1)
 shader_parameter/dance_tex = SubResource("NoiseTexture2D_mdolw")
+shader_parameter/col = Color(1, 1, 1, 1)
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_jh1jo"]
 resource_local_to_scene = true

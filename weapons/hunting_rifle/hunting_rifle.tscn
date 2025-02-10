@@ -2,10 +2,10 @@
 
 [ext_resource type="PackedScene" uid="uid://ewr07g72fjaa" path="res://weapons/hunting_rifle/hunting_rifle.glb" id="1_2vytj"]
 [ext_resource type="ArrayMesh" uid="uid://bblg4t73miejx" path="res://weapons/muzzle_flash_alt.obj" id="2_jyn3n"]
-[ext_resource type="Script" path="res://weapons/hunting_rifle/weapon_rifle.gd" id="2_rovkw"]
+[ext_resource type="Script" uid="uid://bw31mjnewjui0" path="res://weapons/hunting_rifle/weapon_rifle.gd" id="2_rovkw"]
 [ext_resource type="PackedScene" uid="uid://bf80ik7ckctt6" path="res://bullets/player/hitscan/hunting_rifle_bullet.tscn" id="3_m5odq"]
 [ext_resource type="Material" uid="uid://b51r3qn7a72rk" path="res://weapons/hunting_rifle/hunting_rifle_mat_1.tres" id="4_vhd88"]
-[ext_resource type="Script" path="res://weapons/alert_area.gd" id="6_tkwec"]
+[ext_resource type="Script" uid="uid://cm4w83326cpew" path="res://weapons/alert_area.gd" id="6_tkwec"]
 [ext_resource type="Texture2D" uid="uid://cmq3arf61ax4f" path="res://ui/menus/menu_panel.png" id="7_fhw24"]
 [ext_resource type="AnimationLibrary" uid="uid://c3dmw3a4e8q1c" path="res://weapons/hunting_rifle/hunting_rifle_anims.res" id="7_mroe0"]
 [ext_resource type="Material" uid="uid://dq3a5fxspauox" path="res://weapons/muzzle_flash_yellow_vm.tres" id="7_ndw68"]
@@ -111,7 +111,7 @@ tracks/5/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_3k0yj"]
 _data = {
-"RESET": SubResource("Animation_c5vnn")
+&"RESET": SubResource("Animation_c5vnn")
 }
 
 [node name="HuntingRifle" type="Node3D"]

@@ -2,7 +2,7 @@
 
 [ext_resource type="Resource" uid="uid://63fs8fd3x07r" path="res://trench_broom/func_godot_fgd/entities/base/enemy_base_class.tres" id="1_q8uux"]
 [ext_resource type="PackedScene" uid="uid://coe0vc85neefj" path="res://entities/enemies/locals/canary/canary.tscn" id="2_wusne"]
-[ext_resource type="Script" path="res://addons/func_godot/src/fgd/func_godot_fgd_point_class.gd" id="3_s5ocu"]
+[ext_resource type="Script" uid="uid://cw2atun4e3eyv" path="res://addons/func_godot/src/fgd/func_godot_fgd_point_class.gd" id="3_s5ocu"]
 
 [resource]
 script = ExtResource("3_s5ocu")

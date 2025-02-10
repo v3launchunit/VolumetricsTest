@@ -1,9 +1,9 @@
 [gd_scene load_steps=10 format=3 uid="uid://dfro7scss6rvv"]
 
-[ext_resource type="Shader" path="res://shaders/spatial/psx_pb_aclip.gdshader" id="1_07mat"]
+[ext_resource type="Shader" uid="uid://bvuxceynh6rex" path="res://shaders/spatial/psx_pb_aclip.gdshader" id="1_07mat"]
 [ext_resource type="Texture2D" uid="uid://bnlohim1orpfo" path="res://objects/deco/barrel/barrel_albedo.png" id="2_uanar"]
 [ext_resource type="Texture2D" uid="uid://d3qt2a3s045dt" path="res://objects/deco/barrel/barrel_normals.png" id="3_3vvwv"]
-[ext_resource type="Script" path="res://entities/status.gd" id="4_ljeym"]
+[ext_resource type="Script" uid="uid://cly1es2vyxx12" path="res://entities/status.gd" id="4_ljeym"]
 [ext_resource type="PackedScene" uid="uid://cu70msbgu2ysm" path="res://scenes/effects/damage/metal_damage_sys.tscn" id="5_lcr2j"]
 [ext_resource type="PackedScene" uid="uid://bfctj0w1fkgwy" path="res://scenes/effects/gibs/metal_shards.tscn" id="6_gv6o0"]
 
@@ -14,7 +14,9 @@ height = 1.5
 render_priority = 0
 shader = ExtResource("1_07mat")
 shader_parameter/albedo_col = Color(1, 1, 1, 1)
+shader_parameter/albedo_tex = ExtResource("2_uanar")
 shader_parameter/alpha_clip_threshold = 0.5
+shader_parameter/normal_tex = ExtResource("3_3vvwv")
 shader_parameter/normal_scale = 1.0
 shader_parameter/roughness = 0.5
 shader_parameter/metallic = 1.0
@@ -25,8 +27,6 @@ shader_parameter/uv1_offset = Vector3(0, 0, 0)
 shader_parameter/uv2_scale = Vector3(1, 1, 1)
 shader_parameter/uv2_offset = Vector3(0, 0, 0)
 shader_parameter/is_terrain_mat = false
-shader_parameter/albedo_tex = ExtResource("2_uanar")
-shader_parameter/normal_tex = ExtResource("3_3vvwv")
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_o4fo5"]
 height = 1.5

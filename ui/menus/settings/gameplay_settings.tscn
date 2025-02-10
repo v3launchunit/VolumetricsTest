@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://dmiwibswbh0cn"]
 
 [ext_resource type="Theme" uid="uid://dwof7m2ye3tjh" path="res://ui/default_theme.tres" id="1_cxdvy"]
-[ext_resource type="Script" path="res://ui/menus/gameplay_sub_menu.gd" id="2_lu5u0"]
+[ext_resource type="Script" uid="uid://d0k86m3voai6v" path="res://ui/menus/gameplay_sub_menu.gd" id="2_lu5u0"]
 
 [node name="Gameplay" type="VBoxContainer"]
 offset_right = 162.0

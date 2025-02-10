@@ -1,6 +1,6 @@
 [gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://c6fs0qxg5vbch"]
 
-[ext_resource type="Shader" path="res://shaders/spatial/psx_ul_add.gdshader" id="1_iclqq"]
+[ext_resource type="Shader" uid="uid://cgfn3iqbl45r7" path="res://shaders/spatial/psx_ul_add.gdshader" id="1_iclqq"]
 
 [resource]
 render_priority = 0

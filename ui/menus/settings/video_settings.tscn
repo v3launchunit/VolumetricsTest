@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://dw3bo3v1dv272"]
 
 [ext_resource type="Theme" uid="uid://dwof7m2ye3tjh" path="res://ui/default_theme.tres" id="1_8amvi"]
-[ext_resource type="Script" path="res://ui/menus/video_sub_menu.gd" id="2_ob35w"]
+[ext_resource type="Script" uid="uid://bd4ijku07li0d" path="res://ui/menus/video_sub_menu.gd" id="2_ob35w"]
 
 [node name="Video" type="VBoxContainer"]
 process_priority = 2

@@ -1,6 +1,6 @@
 [gd_resource type="ShaderMaterial" load_steps=12 format=3 uid="uid://bx6iv4chnue2j"]
 
-[ext_resource type="Shader" path="res://trench_broom/textures/structural/bricks.gdshader" id="1_cadi2"]
+[ext_resource type="Shader" uid="uid://bqk21m5p6d4ht" path="res://trench_broom/textures/structural/bricks.gdshader" id="1_cadi2"]
 [ext_resource type="Texture2D" uid="uid://coxdlu0742p08" path="res://materials/terrain/_pbr/bricks_clay/bricks_clay_detail_mask.png" id="2_uxvdr"]
 [ext_resource type="Texture2D" uid="uid://boudx7duytmiy" path="res://materials/terrain/_pbr/bricks_clay/bricks_clay_detail_normals.tres" id="3_7molv"]
 [ext_resource type="Texture2D" uid="uid://yuskd0tmi4a8" path="res://materials/terrain/_pbr/bricks_clay/bricks_clay_flux_map.png" id="4_s8ir7"]

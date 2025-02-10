@@ -1,6 +1,6 @@
 [gd_scene load_steps=18 format=3 uid="uid://ce7jor6ru8srq"]
 
-[ext_resource type="Script" path="res://scripts/objects/button.gd" id="1_53hhf"]
+[ext_resource type="Script" uid="uid://dyrnoptop886" path="res://scripts/objects/button.gd" id="1_53hhf"]
 [ext_resource type="Material" uid="uid://b33py6y5v6idy" path="res://materials/objects/door_shutter_2x3.tres" id="2_asvw4"]
 [ext_resource type="AudioStream" uid="uid://ckncf1p1v8lhi" path="res://audio/streams/effects/door_move_metal.wav" id="3_2p1oe"]
 
@@ -47,7 +47,6 @@ tracks/0/keys = {
 random_pitch = 1.15
 streams_count = 1
 stream_0/stream = ExtResource("3_2p1oe")
-stream_0/weight = 1.0
 
 [sub_resource type="Animation" id="Animation_g6xl5"]
 resource_name = "on"
@@ -82,9 +81,9 @@ tracks/1/use_blend = true
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_eyg5r"]
 _data = {
-"RESET": SubResource("Animation_rsbqx"),
-"off": SubResource("Animation_7do0f"),
-"on": SubResource("Animation_g6xl5")
+&"RESET": SubResource("Animation_rsbqx"),
+&"off": SubResource("Animation_7do0f"),
+&"on": SubResource("Animation_g6xl5")
 }
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_qnv6m"]

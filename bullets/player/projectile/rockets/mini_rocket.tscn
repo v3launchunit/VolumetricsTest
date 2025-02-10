@@ -1,14 +1,14 @@
 [gd_scene load_steps=27 format=3 uid="uid://c356m28y5sg6h"]
 
-[ext_resource type="Script" path="res://bullets/homing_rocket.gd" id="1_bigms"]
+[ext_resource type="Script" uid="uid://ckua1iqn0v4js" path="res://bullets/homing_rocket.gd" id="1_bigms"]
 [ext_resource type="PackedScene" uid="uid://dco7xp2cwuyge" path="res://scenes/effects/explosions/explosion.tscn" id="2_cs6yl"]
 [ext_resource type="ArrayMesh" uid="uid://cqf6v4gaperkn" path="res://bullets/bullet.obj" id="3_cgkev"]
 [ext_resource type="Material" uid="uid://by4h3hrepyr2o" path="res://bullets/bullet_metal.tres" id="3_f42lm"]
-[ext_resource type="Script" path="res://bullets/bullet_trail.gd" id="3_nvmr5"]
+[ext_resource type="Script" uid="uid://dqsxgbvhlqnq" path="res://bullets/bullet_trail.gd" id="3_nvmr5"]
 [ext_resource type="Material" uid="uid://08yqplf2icxd" path="res://effects/halos/fire_halo_mat.tres" id="4_ldcer"]
-[ext_resource type="Script" path="res://scripts/effects/halo.gd" id="5_qs0dx"]
+[ext_resource type="Script" uid="uid://qbss7pion7pi" path="res://scripts/effects/halo.gd" id="5_qs0dx"]
 [ext_resource type="AudioStream" uid="uid://bhhnxh2cjbiuq" path="res://audio/streams/ambient/fire_ball_ambient.wav" id="6_1jtql"]
-[ext_resource type="Script" path="res://bullets/enemy/minor_omni_light_3d.gd" id="6_jgxiv"]
+[ext_resource type="Script" uid="uid://oqbx6pignrqi" path="res://bullets/enemy/minor_omni_light_3d.gd" id="6_jgxiv"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_8c4xb"]
 radius = 0.15
@@ -61,7 +61,7 @@ shader = SubResource("Shader_ysyr5")
 shader_parameter/albedo = Color(1, 1, 1, 1)
 shader_parameter/point_size = 1.0
 shader_parameter/roughness = 1.0
-shader_parameter/metallic_texture_channel = null
+shader_parameter/metallic_texture_channel = Vector4(0, 0, 0, 0)
 shader_parameter/specular = 0.5
 shader_parameter/metallic = 0.0
 shader_parameter/uv1_scale = Vector3(1, 1, 1)

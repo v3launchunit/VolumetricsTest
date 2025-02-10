@@ -2,7 +2,7 @@
 
 [ext_resource type="Resource" uid="uid://cd8apv15m4feu" path="res://trench_broom/func_godot_fgd/entities/base/pickup_base_class.tres" id="1_0b7wu"]
 [ext_resource type="PackedScene" uid="uid://d62xcu27rha1" path="res://pickups/keys/keys/key_red_pickup.tscn" id="2_01eqq"]
-[ext_resource type="Script" path="res://addons/func_godot/src/fgd/func_godot_fgd_point_class.gd" id="3_mvn8k"]
+[ext_resource type="Script" uid="uid://cw2atun4e3eyv" path="res://addons/func_godot/src/fgd/func_godot_fgd_point_class.gd" id="3_mvn8k"]
 
 [resource]
 script = ExtResource("3_mvn8k")
@@ -16,6 +16,7 @@ class_properties = {
 "pickup_group": "red"
 }
 class_property_descriptions = {}
+auto_apply_to_matching_node_properties = false
 meta_properties = {
 "color": Color(0.8, 0, 0, 1),
 "size": AABB(-8, -8, -8, 8, 8, 8)

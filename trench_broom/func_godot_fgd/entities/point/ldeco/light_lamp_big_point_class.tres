@@ -2,8 +2,8 @@
 
 [ext_resource type="Resource" uid="uid://cixh6j5bjc608" path="res://trench_broom/func_godot_fgd/entities/base/light_base_class.tres" id="1_lqgea"]
 [ext_resource type="PackedScene" uid="uid://bvoee6rh57674" path="res://scenes/objects/lights/lamp_big_tb.tscn" id="2_s2pvt"]
-[ext_resource type="Script" path="res://addons/func_godot/src/fgd/func_godot_fgd_point_class.gd" id="3_pjcbs"]
-[ext_resource type="Script" path="res://trench_broom/func_godot_fgd/entities/point/light/lamp_tb.gd" id="4_o0sj3"]
+[ext_resource type="Script" uid="uid://cw2atun4e3eyv" path="res://addons/func_godot/src/fgd/func_godot_fgd_point_class.gd" id="3_pjcbs"]
+[ext_resource type="Script" uid="uid://bfo3tcmtay6yf" path="res://trench_broom/func_godot_fgd/entities/point/light/lamp_tb.gd" id="4_o0sj3"]
 
 [resource]
 script = ExtResource("3_pjcbs")
@@ -16,6 +16,7 @@ func_godot_internal = false
 base_classes = Array[Resource]([ExtResource("1_lqgea")])
 class_properties = {}
 class_property_descriptions = {}
+auto_apply_to_matching_node_properties = false
 meta_properties = {
 "color": Color(0.8, 0.8, 0.8, 1),
 "size": AABB(-8, -8, -8, 8, 8, 8)

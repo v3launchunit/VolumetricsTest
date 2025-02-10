@@ -5,9 +5,9 @@
 [ext_resource type="Texture2D" uid="uid://cjarcv7edo6ue" path="res://objects/floodlight/floodlight_projector.png" id="3_gcdu4"]
 [ext_resource type="Material" uid="uid://c42r6gnwbsttx" path="res://effects/halos/fancy_halo.tres" id="4_ju66r"]
 [ext_resource type="Texture2D" uid="uid://hk0k2coukjwc" path="res://effects/halos/halo_tex.tres" id="4_k3p2m"]
-[ext_resource type="Script" path="res://entities/status.gd" id="4_ttjty"]
+[ext_resource type="Script" uid="uid://cly1es2vyxx12" path="res://entities/status.gd" id="4_ttjty"]
 [ext_resource type="PackedScene" uid="uid://cu70msbgu2ysm" path="res://scenes/effects/damage/metal_damage_sys.tscn" id="6_1a880"]
-[ext_resource type="Script" path="res://scripts/effects/halo.gd" id="6_7uru3"]
+[ext_resource type="Script" uid="uid://qbss7pion7pi" path="res://scripts/effects/halo.gd" id="6_7uru3"]
 [ext_resource type="PackedScene" uid="uid://bnsepaqu7j4p4" path="res://pickups/health/health_bonus_pickup.tscn" id="6_k2gu1"]
 [ext_resource type="PackedScene" uid="uid://b8i1fe0bwht3k" path="res://pickups/armor/armor_bonus_pickup.tscn" id="7_44sqi"]
 [ext_resource type="PackedScene" uid="uid://dl7fuv4wdxtjx" path="res://pickups/ammo/shotgun_shell/shell_pickup.tscn" id="8_t7pem"]
@@ -132,19 +132,19 @@ metadata/_snap_count = 32
 render_priority = 0
 shader = SubResource("Shader_75fvq")
 shader_parameter/albedo = Color(1, 1, 1, 1)
+shader_parameter/texture_albedo = SubResource("GradientTexture2D_mv8o2")
 shader_parameter/point_size = 1.0
 shader_parameter/roughness = 0.25
 shader_parameter/metallic_texture_channel = Vector4(1, 0, 0, 0)
 shader_parameter/specular = 0.5
 shader_parameter/metallic = 1.0
+shader_parameter/texture_emission = ExtResource("2_lw5of")
 shader_parameter/emission = Color(0, 0, 0, 1)
 shader_parameter/emission_energy = 5.0
 shader_parameter/uv1_scale = Vector3(1, 1, 1)
 shader_parameter/uv1_offset = Vector3(0, 0, 0)
 shader_parameter/uv2_scale = Vector3(1, 1, 1)
 shader_parameter/uv2_offset = Vector3(0, 0, 0)
-shader_parameter/texture_albedo = SubResource("GradientTexture2D_mv8o2")
-shader_parameter/texture_emission = ExtResource("2_lw5of")
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_70trk"]
 load_path = "res://.godot/imported/halo.png-88068247d44276e09ca924d46b3606d1.s3tc.ctex"

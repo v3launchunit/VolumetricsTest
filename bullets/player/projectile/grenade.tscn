@@ -1,13 +1,13 @@
 [gd_scene load_steps=19 format=3 uid="uid://rchnjnxfhuga"]
 
-[ext_resource type="Script" path="res://bullets/bullet.gd" id="1_daqx3"]
+[ext_resource type="Script" uid="uid://v2g043uyqdfa" path="res://bullets/bullet.gd" id="1_daqx3"]
 [ext_resource type="PackedScene" uid="uid://dco7xp2cwuyge" path="res://scenes/effects/explosions/explosion.tscn" id="2_i7b7a"]
-[ext_resource type="Shader" path="res://shaders/spatial/psx_ul_mix.gdshader" id="3_ven1m"]
-[ext_resource type="Script" path="res://bullets/bullet_trail.gd" id="4_pfq3o"]
+[ext_resource type="Shader" uid="uid://bycruau5ish4o" path="res://shaders/spatial/psx_ul_mix.gdshader" id="3_ven1m"]
+[ext_resource type="Script" uid="uid://dqsxgbvhlqnq" path="res://bullets/bullet_trail.gd" id="4_pfq3o"]
 [ext_resource type="Material" uid="uid://b78l63b32udy2" path="res://effects/halos/halo_mat.tres" id="5_h4omx"]
-[ext_resource type="Script" path="res://bullets/enemy/minor_omni_light_3d.gd" id="5_r0bwp"]
-[ext_resource type="Script" path="res://scripts/effects/halo.gd" id="6_lbxxy"]
-[ext_resource type="Script" path="res://scripts/effects/lifetime.gd" id="7_nam5y"]
+[ext_resource type="Script" uid="uid://oqbx6pignrqi" path="res://bullets/enemy/minor_omni_light_3d.gd" id="5_r0bwp"]
+[ext_resource type="Script" uid="uid://qbss7pion7pi" path="res://scripts/effects/halo.gd" id="6_lbxxy"]
+[ext_resource type="Script" uid="uid://b5h7xnsiqnyy7" path="res://scripts/effects/lifetime.gd" id="7_nam5y"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_s6itv"]
 radius = 0.063

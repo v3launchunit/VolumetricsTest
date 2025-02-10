@@ -1,6 +1,6 @@
 [gd_scene load_steps=9 format=3 uid="uid://cu70msbgu2ysm"]
 
-[ext_resource type="Script" path="res://scripts/effects/particle_lifetime.gd" id="1_d25g5"]
+[ext_resource type="Script" uid="uid://b6bektmpvs3xa" path="res://scripts/effects/particle_lifetime.gd" id="1_d25g5"]
 [ext_resource type="AudioStream" uid="uid://b67mk1e7dskwd" path="res://audio/streams/effects/impact/metal_impact.wav" id="2_5fwbv"]
 
 [sub_resource type="Gradient" id="Gradient_l122e"]
@@ -34,7 +34,6 @@ size = Vector3(0.063, 0.063, 0.063)
 random_pitch = 1.15
 streams_count = 1
 stream_0/stream = ExtResource("2_5fwbv")
-stream_0/weight = 1.0
 
 [node name="BulletImpact" type="GPUParticles3D"]
 layers = 2

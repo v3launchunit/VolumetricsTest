@@ -1,13 +1,13 @@
 [gd_scene load_steps=30 format=3 uid="uid://cspj0yyl285bj"]
 
-[ext_resource type="Script" path="res://trench_broom/func_godot_fgd/entities/point/lever_tb.gd" id="1_0ajli"]
+[ext_resource type="Script" uid="uid://crl5nwjju5d11" path="res://trench_broom/func_godot_fgd/entities/point/lever_tb.gd" id="1_0ajli"]
 [ext_resource type="PackedScene" uid="uid://dhcc71k270vgk" path="res://models/objects/lever.glb" id="2_saqbp"]
 [ext_resource type="Texture2D" uid="uid://2gj3tv6stgsr" path="res://objects/interactable/lever_01/lever_albedo.png" id="3_8k4y8"]
 [ext_resource type="Texture2D" uid="uid://crltgslfg1nou" path="res://objects/interactable/lever_01/lever_emissions.png" id="4_oh51b"]
 [ext_resource type="Texture2D" uid="uid://c0qe7jq8ss6c4" path="res://objects/interactable/lever_01/lever_normals.png" id="5_5dtxu"]
 [ext_resource type="AudioStream" uid="uid://bmlxxe8maevqb" path="res://audio/streams/click.wav" id="6_abudg"]
-[ext_resource type="Shader" path="res://shaders/spatial/psx_pb_aclip.gdshader" id="6_uam60"]
-[ext_resource type="Script" path="res://bullets/enemy/minor_omni_light_3d.gd" id="8_ml0r5"]
+[ext_resource type="Shader" uid="uid://bvuxceynh6rex" path="res://shaders/spatial/psx_pb_aclip.gdshader" id="6_uam60"]
+[ext_resource type="Script" uid="uid://oqbx6pignrqi" path="res://bullets/enemy/minor_omni_light_3d.gd" id="8_ml0r5"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_f8nba"]
 
@@ -78,21 +78,21 @@ resource_local_to_scene = true
 render_priority = 0
 shader = SubResource("Shader_i2v0y")
 shader_parameter/albedo = Color(0.96, 0.736, 0.576, 1)
+shader_parameter/texture_albedo = ExtResource("3_8k4y8")
 shader_parameter/point_size = 1.0
 shader_parameter/roughness = 0.75
-shader_parameter/metallic_texture_channel = null
+shader_parameter/metallic_texture_channel = Vector4(0, 0, 0, 0)
 shader_parameter/specular = 0.5
 shader_parameter/metallic = 0.0
+shader_parameter/texture_emission = ExtResource("4_oh51b")
 shader_parameter/emission = Color(1, 0, 0, 1)
 shader_parameter/emission_energy = 5.0
+shader_parameter/texture_normal = ExtResource("5_5dtxu")
 shader_parameter/normal_scale = 1.0
 shader_parameter/uv1_scale = Vector3(1, 1, 1)
 shader_parameter/uv1_offset = Vector3(0, 0, 0)
 shader_parameter/uv2_scale = Vector3(1, 1, 1)
 shader_parameter/uv2_offset = Vector3(0, 0, 0)
-shader_parameter/texture_albedo = ExtResource("3_8k4y8")
-shader_parameter/texture_emission = ExtResource("4_oh51b")
-shader_parameter/texture_normal = ExtResource("5_5dtxu")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_8c81i"]
 render_priority = 0
@@ -376,11 +376,11 @@ tracks/3/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_bnujt"]
 _data = {
-"RESET": SubResource("Animation_3dceq"),
-"activate": SubResource("Animation_vb4rp"),
-"deactivate": SubResource("Animation_mcc3g"),
-"off": SubResource("Animation_iiyc7"),
-"on": SubResource("Animation_m4faq")
+&"RESET": SubResource("Animation_3dceq"),
+&"activate": SubResource("Animation_vb4rp"),
+&"deactivate": SubResource("Animation_mcc3g"),
+&"off": SubResource("Animation_iiyc7"),
+&"on": SubResource("Animation_m4faq")
 }
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_7mfl3"]

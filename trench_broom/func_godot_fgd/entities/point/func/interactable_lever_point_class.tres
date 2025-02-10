@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="FuncGodotFGDPointClass" load_steps=3 format=3 uid="uid://b840glkspxm5b"]
 
-[ext_resource type="Script" path="res://addons/func_godot/src/fgd/func_godot_fgd_point_class.gd" id="1_buiy6"]
+[ext_resource type="Script" uid="uid://cw2atun4e3eyv" path="res://addons/func_godot/src/fgd/func_godot_fgd_point_class.gd" id="1_buiy6"]
 [ext_resource type="PackedScene" uid="uid://cspj0yyl285bj" path="res://trench_broom/func_godot_fgd/entities/point/func/lever_tb.tscn" id="1_o318d"]
 
 [resource]
@@ -20,6 +20,7 @@ class_properties = {
 "unpull_tooltip": "lever.unpull"
 }
 class_property_descriptions = {}
+auto_apply_to_matching_node_properties = false
 meta_properties = {
 "color": Color(0.8, 0.8, 0.8, 1),
 "size": AABB(-8, -8, -8, 8, 8, 8)

@@ -1,13 +1,13 @@
 [gd_scene load_steps=92 format=3 uid="uid://comxjm2yao5ny"]
 
-[ext_resource type="Script" path="res://entities/enemies/enemy_base.gd" id="1_0swba"]
+[ext_resource type="Script" uid="uid://cssklp4gt40pl" path="res://entities/enemies/enemy_base.gd" id="1_0swba"]
 [ext_resource type="PackedScene" uid="uid://bya1mdjxmkciv" path="res://entities/enemies/military/enforcer/enforcer.glb" id="2_8p41i"]
 [ext_resource type="AudioStream" uid="uid://blqiw1bbhirit" path="res://audio/streams/voices/enforcer/do_not_resist_1.wav" id="2_e14nc"]
 [ext_resource type="AnimationLibrary" uid="uid://du588vnfkcvlu" path="res://entities/enemies/military/enforcer/enforcer_anims.res" id="3_0s1i5"]
 [ext_resource type="AudioStream" uid="uid://dpkk8wjnp5dei" path="res://audio/streams/voices/enforcer/do_not_resist_2.wav" id="3_eyhef"]
 [ext_resource type="Texture2D" uid="uid://de8bnuh6pe6kq" path="res://entities/enemies/military/enforcer/enforcer_albedo.png" id="3_vihtt"]
 [ext_resource type="Texture2D" uid="uid://i6afltuq426d" path="res://entities/enemies/military/enforcer/enforcer_metallic.png" id="4_2gp33"]
-[ext_resource type="Script" path="res://entities/status.gd" id="4_hw6rr"]
+[ext_resource type="Script" uid="uid://cly1es2vyxx12" path="res://entities/status.gd" id="4_hw6rr"]
 [ext_resource type="Texture2D" uid="uid://d2yq2sb1s1xm3" path="res://entities/enemies/military/enforcer/enforcer_detail_mask.png" id="4_mxea2"]
 [ext_resource type="AudioStream" uid="uid://ds6mgyyyfycw8" path="res://audio/streams/voices/enforcer/remain_silent_1.wav" id="4_q2lmv"]
 [ext_resource type="AudioStream" uid="uid://bcl761pu7ohnj" path="res://audio/streams/voices/enforcer/remain_silent_2.wav" id="5_0ocsi"]
@@ -30,7 +30,7 @@
 [ext_resource type="AudioStream" uid="uid://du156r0ypwpe6" path="res://audio/streams/voices/enforcer/death_scream_8.wav" id="17_0gudb"]
 [ext_resource type="PackedScene" uid="uid://cqctw8dd0ar4n" path="res://scenes/effects/damage/damage_sys.tscn" id="21_onmc0"]
 [ext_resource type="PackedScene" uid="uid://c5pbs8t6p7ogl" path="res://scenes/effects/gibs/gibs.tscn" id="22_7751q"]
-[ext_resource type="Script" path="res://scripts/effects/bullet_plink.gd" id="24_656rh"]
+[ext_resource type="Script" uid="uid://cajnvad2wqowl" path="res://scripts/effects/bullet_plink.gd" id="24_656rh"]
 [ext_resource type="PackedScene" uid="uid://cu70msbgu2ysm" path="res://scenes/effects/damage/metal_damage_sys.tscn" id="27_gha6b"]
 [ext_resource type="PackedScene" uid="uid://qy044barx365" path="res://entities/stair_stepper.tscn" id="33_mrcoq"]
 
@@ -136,13 +136,13 @@ shader_parameter/albedo = Color(1, 1, 1, 1)
 shader_parameter/point_size = 1.0
 shader_parameter/roughness = 1.0
 shader_parameter/metallic_texture_channel = Vector4(1, 0, 0, 0)
+shader_parameter/texture_roughness = SubResource("NoiseTexture2D_fdp5y")
 shader_parameter/specular = 0.5
 shader_parameter/metallic = 1.0
 shader_parameter/uv1_scale = Vector3(1, 1, 1)
 shader_parameter/uv1_offset = Vector3(0, 0, 0)
 shader_parameter/uv2_scale = Vector3(1, 1, 1)
 shader_parameter/uv2_offset = Vector3(0, 0, 0)
-shader_parameter/texture_roughness = SubResource("NoiseTexture2D_fdp5y")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_c0dl1"]
 size = Vector3(1.875, 0.125, 1.05)
@@ -221,21 +221,21 @@ noise = SubResource("FastNoiseLite_7w8jn")
 render_priority = 0
 shader = SubResource("Shader_vqbu6")
 shader_parameter/albedo = Color(1, 1, 1, 1)
+shader_parameter/texture_albedo = ExtResource("3_vihtt")
 shader_parameter/point_size = 1.0
 shader_parameter/roughness = 1.0
+shader_parameter/texture_metallic = ExtResource("4_2gp33")
 shader_parameter/metallic_texture_channel = Vector4(1, 0, 0, 0)
+shader_parameter/texture_roughness = ExtResource("6_qyvl0")
 shader_parameter/specular = 0.5
 shader_parameter/metallic = 1.0
+shader_parameter/texture_detail_albedo = SubResource("NoiseTexture2D_walv8")
+shader_parameter/texture_detail_normal = SubResource("NoiseTexture2D_2rymq")
+shader_parameter/texture_detail_mask = ExtResource("4_mxea2")
 shader_parameter/uv1_scale = Vector3(1, 1, 1)
 shader_parameter/uv1_offset = Vector3(0, 0, 0)
 shader_parameter/uv2_scale = Vector3(1, 1, 1)
 shader_parameter/uv2_offset = Vector3(0, 0, 0)
-shader_parameter/texture_albedo = ExtResource("3_vihtt")
-shader_parameter/texture_metallic = ExtResource("4_2gp33")
-shader_parameter/texture_roughness = ExtResource("6_qyvl0")
-shader_parameter/texture_detail_albedo = SubResource("NoiseTexture2D_walv8")
-shader_parameter/texture_detail_normal = SubResource("NoiseTexture2D_2rymq")
-shader_parameter/texture_detail_mask = ExtResource("4_mxea2")
 
 [sub_resource type="Animation" id="Animation_oshfn"]
 length = 0.001
@@ -422,7 +422,7 @@ tracks/24/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_mhfwu"]
 _data = {
-"RESET": SubResource("Animation_oshfn")
+&"RESET": SubResource("Animation_oshfn")
 }
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_0xsnc"]

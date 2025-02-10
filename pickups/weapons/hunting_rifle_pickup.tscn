@@ -1,11 +1,11 @@
 [gd_scene load_steps=28 format=3 uid="uid://dxyhvyy821swt"]
 
-[ext_resource type="Script" path="res://scripts/pickups/weapon_pickup.gd" id="1_0ekm5"]
+[ext_resource type="Script" uid="uid://yrdtgm5mut51" path="res://scripts/pickups/weapon_pickup.gd" id="1_0ekm5"]
 [ext_resource type="PackedScene" uid="uid://bsjlv88juhpn5" path="res://weapons/hunting_rifle/hunting_rifle.tscn" id="2_blgui"]
 [ext_resource type="AudioStream" uid="uid://dxscywpf2ven0" path="res://audio/streams/pickups/pickup_weapon.wav" id="2_mse5f"]
 [ext_resource type="Material" uid="uid://b78l63b32udy2" path="res://effects/halos/halo_mat.tres" id="3_hj8pb"]
 [ext_resource type="Texture2D" uid="uid://hk0k2coukjwc" path="res://effects/halos/halo_tex.tres" id="4_vkhhb"]
-[ext_resource type="Script" path="res://scripts/effects/halo.gd" id="5_lu4xq"]
+[ext_resource type="Script" uid="uid://qbss7pion7pi" path="res://scripts/effects/halo.gd" id="5_lu4xq"]
 [ext_resource type="ArrayMesh" uid="uid://b2iah5c5km8s4" path="res://weapons/hunting_rifle/hunting_rifle.obj" id="6_8ieef"]
 [ext_resource type="Texture2D" uid="uid://c23vayn4doala" path="res://weapons/big_iron/big_iron_detail_mask.png" id="7_m6tx8"]
 [ext_resource type="Texture2D" uid="uid://ss8r0up4rgsx" path="res://weapons/big_iron/big_iron_metallic.png" id="8_f1ps4"]
@@ -127,21 +127,21 @@ shader = SubResource("Shader_w7gs2")
 shader_parameter/albedo = Color(0.501961, 0.501961, 0.501961, 1)
 shader_parameter/point_size = 1.0
 shader_parameter/roughness = 1.0
+shader_parameter/texture_metallic = ExtResource("8_f1ps4")
 shader_parameter/metallic_texture_channel = Vector4(1, 0, 0, 0)
+shader_parameter/texture_roughness = ExtResource("9_4t8nw")
 shader_parameter/specular = 0.5
 shader_parameter/metallic = 1.0
 shader_parameter/clearcoat = 1.0
 shader_parameter/clearcoat_roughness = 0.25
-shader_parameter/uv1_scale = Vector3(1, 1, 1)
-shader_parameter/uv1_offset = Vector3(0, 0, 0)
-shader_parameter/uv2_scale = Vector3(1, 1, 1)
-shader_parameter/uv2_offset = Vector3(0, 0, 0)
-shader_parameter/texture_metallic = ExtResource("8_f1ps4")
-shader_parameter/texture_roughness = ExtResource("9_4t8nw")
 shader_parameter/texture_clearcoat = ExtResource("7_m6tx8")
 shader_parameter/texture_detail_albedo = SubResource("NoiseTexture2D_p0187")
 shader_parameter/texture_detail_normal = SubResource("NoiseTexture2D_1wj7s")
 shader_parameter/texture_detail_mask = SubResource("GradientTexture1D_6qadg")
+shader_parameter/uv1_scale = Vector3(1, 1, 1)
+shader_parameter/uv1_offset = Vector3(0, 0, 0)
+shader_parameter/uv2_scale = Vector3(1, 1, 1)
+shader_parameter/uv2_offset = Vector3(0, 0, 0)
 
 [sub_resource type="Shader" id="Shader_snc4y"]
 code = "// NOTE: Shader automatically converted from Godot Engine 4.2.1.stable.mono's StandardMaterial3D.
@@ -231,7 +231,7 @@ tracks/1/keys = PackedFloat32Array(0, 1, 0, 0, 0, 2.5, 1, 0, 0.05, 0, 5, 1, 0, 0
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_4pudi"]
 _data = {
-"anim": SubResource("Animation_wivti")
+&"anim": SubResource("Animation_wivti")
 }
 
 [node name="HuntingRiflePickup" type="RigidBody3D"]

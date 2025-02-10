@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://dd1186jg35gq7"]
 
 [ext_resource type="PackedScene" uid="uid://dbvvle5ea3nns" path="res://objects/deco/trash/trash_bag_mesh.tscn" id="1_op7nk"]
-[ext_resource type="Script" path="res://entities/status.gd" id="2_coh6s"]
+[ext_resource type="Script" uid="uid://cly1es2vyxx12" path="res://entities/status.gd" id="2_coh6s"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_23xde"]
 height = 0.75

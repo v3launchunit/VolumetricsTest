@@ -1,7 +1,7 @@
 [gd_scene load_steps=11 format=3 uid="uid://cqctw8dd0ar4n"]
 
 [ext_resource type="Material" uid="uid://imrpm2psout6" path="res://scenes/effects/blood_mat.tres" id="1_2ot8h"]
-[ext_resource type="Script" path="res://scripts/effects/particle_lifetime.gd" id="1_yi5yf"]
+[ext_resource type="Script" uid="uid://b6bektmpvs3xa" path="res://scripts/effects/particle_lifetime.gd" id="1_yi5yf"]
 [ext_resource type="AudioStream" uid="uid://caas1v6nwmctk" path="res://audio/streams/effects/impact/hitreg.wav" id="2_3bk5q"]
 [ext_resource type="Material" uid="uid://b76l7sgenogwq" path="res://scenes/effects/blood_trail_procmat.tres" id="3_jns8m"]
 

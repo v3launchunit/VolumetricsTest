@@ -1,7 +1,7 @@
 [gd_scene load_steps=11 format=3 uid="uid://bfctj0w1fkgwy"]
 
 [ext_resource type="AudioStream" uid="uid://duaykpmpnx0s2" path="res://audio/streams/effects/falling_pipe.wav" id="2_8mfh6"]
-[ext_resource type="Script" path="res://scripts/effects/particle_lifetime.gd" id="2_r6u15"]
+[ext_resource type="Script" uid="uid://b6bektmpvs3xa" path="res://scripts/effects/particle_lifetime.gd" id="2_r6u15"]
 
 [sub_resource type="Shader" id="Shader_vhu6h"]
 code = "// NOTE: Shader automatically converted from Godot Engine 4.2.1.stable.mono's StandardMaterial3D.

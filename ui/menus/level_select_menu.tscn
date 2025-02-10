@@ -1,8 +1,8 @@
 [gd_scene load_steps=5 format=3 uid="uid://c58frru7780pf"]
 
-[ext_resource type="Script" path="res://ui/menus/level_select_menu.gd" id="1_kus5n"]
+[ext_resource type="Script" uid="uid://c6wjhaubvicjv" path="res://ui/menus/level_select_menu.gd" id="1_kus5n"]
 [ext_resource type="Texture2D" uid="uid://cmq3arf61ax4f" path="res://ui/menus/menu_panel.png" id="2_nwilm"]
-[ext_resource type="Script" path="res://ui/menus/level_select_button.gd" id="3_4djrb"]
+[ext_resource type="Script" uid="uid://tnfetud0xcrw" path="res://ui/menus/level_select_button.gd" id="3_4djrb"]
 [ext_resource type="Theme" uid="uid://dwof7m2ye3tjh" path="res://ui/default_theme.tres" id="3_30jf0"]
 
 [node name="LevelSelect" type="Control"]

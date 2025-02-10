@@ -1,7 +1,7 @@
 [gd_scene load_steps=28 format=3 uid="uid://bmemasxt00ky2"]
 
-[ext_resource type="Script" path="res://scripts/objects/button.gd" id="1_e4t6u"]
-[ext_resource type="Script" path="res://entities/status.gd" id="3_lkcyn"]
+[ext_resource type="Script" uid="uid://dyrnoptop886" path="res://scripts/objects/button.gd" id="1_e4t6u"]
+[ext_resource type="Script" uid="uid://cly1es2vyxx12" path="res://entities/status.gd" id="3_lkcyn"]
 [ext_resource type="PackedScene" uid="uid://cgot11wwdrtbh" path="res://scenes/effects/damage/wood_damage_sys.tscn" id="4_xfysd"]
 [ext_resource type="PackedScene" uid="uid://bynbdpv50o6q2" path="res://scenes/effects/gibs/wood_shards.tscn" id="5_83qgn"]
 [ext_resource type="AudioStream" uid="uid://ql1ep2md8c3u" path="res://audio/streams/effects/door_move_wood.wav" id="5_qtxkj"]
@@ -85,18 +85,18 @@ noise = SubResource("FastNoiseLite_q3vr3")
 render_priority = 0
 shader = SubResource("Shader_ljxvj")
 shader_parameter/albedo = Color(1, 1, 1, 1)
+shader_parameter/texture_albedo = SubResource("NoiseTexture2D_ti8ho")
 shader_parameter/point_size = 1.0
 shader_parameter/roughness = 0.75
-shader_parameter/metallic_texture_channel = null
+shader_parameter/metallic_texture_channel = Vector4(0, 0, 0, 0)
 shader_parameter/specular = 0.5
 shader_parameter/metallic = 0.0
+shader_parameter/texture_normal = SubResource("NoiseTexture2D_ifyxs")
 shader_parameter/normal_scale = 1.0
 shader_parameter/uv1_scale = Vector3(1.024, 0.128, 1.024)
 shader_parameter/uv1_offset = Vector3(0, 0, 0)
 shader_parameter/uv2_scale = Vector3(1, 1, 1)
 shader_parameter/uv2_offset = Vector3(0, 0, 0)
-shader_parameter/texture_albedo = SubResource("NoiseTexture2D_ti8ho")
-shader_parameter/texture_normal = SubResource("NoiseTexture2D_ifyxs")
 
 [sub_resource type="BoxMesh" id="BoxMesh_pbebj"]
 size = Vector3(2, 3, 0.2)
@@ -105,7 +105,6 @@ size = Vector3(2, 3, 0.2)
 random_pitch = 1.25
 streams_count = 1
 stream_0/stream = ExtResource("5_qtxkj")
-stream_0/weight = 1.0
 
 [sub_resource type="Animation" id="Animation_mtla8"]
 resource_name = "off"
@@ -137,7 +136,6 @@ tracks/1/use_blend = true
 random_pitch = 1.25
 streams_count = 1
 stream_0/stream = ExtResource("5_qtxkj")
-stream_0/weight = 1.0
 
 [sub_resource type="Animation" id="Animation_5qnxo"]
 resource_name = "on"
@@ -167,8 +165,8 @@ tracks/1/use_blend = true
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ybg32"]
 _data = {
-"off": SubResource("Animation_mtla8"),
-"on": SubResource("Animation_5qnxo")
+&"off": SubResource("Animation_mtla8"),
+&"on": SubResource("Animation_5qnxo")
 }
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_e4duc"]

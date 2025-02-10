@@ -1,11 +1,11 @@
 [gd_scene load_steps=16 format=3 uid="uid://coopugxxes4xq"]
 
-[ext_resource type="Script" path="res://scripts/pickups/ammo_pickup.gd" id="1_ovutx"]
+[ext_resource type="Script" uid="uid://bft3wkpl5bv8p" path="res://scripts/pickups/ammo_pickup.gd" id="1_ovutx"]
 [ext_resource type="AudioStream" uid="uid://g7unocdbdokw" path="res://audio/streams/pickups/pickup_ammo.wav" id="2_75gpn"]
 [ext_resource type="Material" uid="uid://b78l63b32udy2" path="res://effects/halos/halo_mat.tres" id="3_nadlh"]
 [ext_resource type="Texture2D" uid="uid://hk0k2coukjwc" path="res://effects/halos/halo_tex.tres" id="3_vta4w"]
-[ext_resource type="Script" path="res://scripts/effects/halo.gd" id="5_5s04d"]
-[ext_resource type="Shader" path="res://shaders/spatial/psx_ul_mix.gdshader" id="6_7mnpl"]
+[ext_resource type="Script" uid="uid://qbss7pion7pi" path="res://scripts/effects/halo.gd" id="5_5s04d"]
+[ext_resource type="Shader" uid="uid://bycruau5ish4o" path="res://shaders/spatial/psx_ul_mix.gdshader" id="6_7mnpl"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_uc2sx"]
 height = 1.0
@@ -71,7 +71,7 @@ tracks/1/keys = PackedFloat32Array(0, 1, 0, 0, 0, 2.5, 1, 0, 0.05, 0, 5, 1, 0, 0
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_4pudi"]
 _data = {
-"anim": SubResource("Animation_wivti")
+&"anim": SubResource("Animation_wivti")
 }
 
 [node name="GrenadePickup" type="RigidBody3D"]

@@ -1,8 +1,8 @@
 [gd_resource type="Resource" script_class="FuncGodotFGDSolidClass" load_steps=4 format=3 uid="uid://ddib2usij3ho0"]
 
-[ext_resource type="Script" path="res://addons/func_godot/src/fgd/func_godot_fgd_solid_class.gd" id="1_1115f"]
+[ext_resource type="Script" uid="uid://bncud33hs01ck" path="res://addons/func_godot/src/fgd/func_godot_fgd_solid_class.gd" id="1_1115f"]
 [ext_resource type="Resource" uid="uid://c73xdr38wm4dj" path="res://trench_broom/func_godot_fgd/entities/base/linkable_base_class.tres" id="1_vottg"]
-[ext_resource type="Script" path="res://trench_broom/func_godot_fgd/entities/solid/area/area_trigger.gd" id="2_mvjc1"]
+[ext_resource type="Script" uid="uid://ot7w3l0b4dsm" path="res://trench_broom/func_godot_fgd/entities/solid/area/area_trigger.gd" id="2_mvjc1"]
 
 [resource]
 script = ExtResource("1_1115f")

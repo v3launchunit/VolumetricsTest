@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="FuncGodotFGDFile" load_steps=98 format=3 uid="uid://couiu1ixyhdhl"]
 
 [ext_resource type="Resource" uid="uid://63fs8fd3x07r" path="res://trench_broom/func_godot_fgd/entities/base/enemy_base_class.tres" id="1_2wa7w"]
-[ext_resource type="Script" path="res://addons/func_godot/src/fgd/func_godot_fgd_file.gd" id="1_hr81g"]
+[ext_resource type="Script" uid="uid://cvytv1hjntf8j" path="res://addons/func_godot/src/fgd/func_godot_fgd_file.gd" id="1_hr81g"]
 [ext_resource type="Resource" uid="uid://crgpdahjaj" path="res://addons/func_godot/fgd/func_godot_fgd.tres" id="1_lu5na"]
 [ext_resource type="Resource" uid="uid://c7qufnbpsf2fx" path="res://trench_broom/func_godot_fgd/entities/base/fun_entity_base_class.tres" id="2_amnkp"]
 [ext_resource type="Resource" uid="uid://cixh6j5bjc608" path="res://trench_broom/func_godot_fgd/entities/base/light_base_class.tres" id="3_pxt8h"]

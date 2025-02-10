@@ -1,12 +1,12 @@
 [gd_scene load_steps=19 format=3 uid="uid://fd8mwvba35jo"]
 
-[ext_resource type="Script" path="res://bullets/bullet.gd" id="1_bykpv"]
-[ext_resource type="Script" path="res://bullets/bullet_trail.gd" id="2_3tmpf"]
+[ext_resource type="Script" uid="uid://v2g043uyqdfa" path="res://bullets/bullet.gd" id="1_bykpv"]
+[ext_resource type="Script" uid="uid://dqsxgbvhlqnq" path="res://bullets/bullet_trail.gd" id="2_3tmpf"]
 [ext_resource type="PackedScene" uid="uid://ctgdbydttjqwq" path="res://scenes/effects/explosions/plasma_explosion.tscn" id="2_xkuk1"]
 [ext_resource type="Material" uid="uid://c6fs0qxg5vbch" path="res://bullets/plasma_bullet_mat.tres" id="3_cfvt2"]
 [ext_resource type="Material" uid="uid://b78l63b32udy2" path="res://effects/halos/halo_mat.tres" id="3_j7cvy"]
-[ext_resource type="Script" path="res://scripts/effects/halo.gd" id="4_10o8e"]
-[ext_resource type="Script" path="res://bullets/enemy/minor_omni_light_3d.gd" id="5_5kiuu"]
+[ext_resource type="Script" uid="uid://qbss7pion7pi" path="res://scripts/effects/halo.gd" id="4_10o8e"]
+[ext_resource type="Script" uid="uid://oqbx6pignrqi" path="res://bullets/enemy/minor_omni_light_3d.gd" id="5_5kiuu"]
 [ext_resource type="AudioStream" uid="uid://bsv250k61o40r" path="res://audio/streams/ambient/plasma_shot_ambient.wav" id="5_pik6u"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_h48e4"]

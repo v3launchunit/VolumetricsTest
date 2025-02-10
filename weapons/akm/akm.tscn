@@ -1,16 +1,16 @@
 [gd_scene load_steps=26 format=3 uid="uid://xpo774l18flk"]
 
 [ext_resource type="ArrayMesh" uid="uid://53jffpg6vhkj" path="res://weapons/akm/akm.obj" id="1_srb21"]
-[ext_resource type="Script" path="res://weapons/weapon_base.gd" id="2_aqwyy"]
+[ext_resource type="Script" uid="uid://c022da054b2ky" path="res://weapons/weapon_base.gd" id="2_aqwyy"]
 [ext_resource type="Material" uid="uid://b603otl4v7w70" path="res://weapons/akm/akm_mat.tres" id="2_dd7di"]
 [ext_resource type="ArrayMesh" uid="uid://bblg4t73miejx" path="res://weapons/muzzle_flash_alt.obj" id="3_s7ev5"]
-[ext_resource type="Script" path="res://weapons/scope.gd" id="4_uav1m"]
+[ext_resource type="Script" uid="uid://lc15mf5d6qv7" path="res://weapons/scope.gd" id="4_uav1m"]
 [ext_resource type="Material" uid="uid://nv0jkcw45ofc" path="res://weapons/weapon_metal_vm.tres" id="5_616k3"]
 [ext_resource type="AnimationLibrary" uid="uid://dvna0xeatmq0y" path="res://weapons/anims.res" id="5_q7x1e"]
 [ext_resource type="PackedScene" uid="uid://cwytbvgvgmk00" path="res://bullets/player/hitscan/akm_bullet.tscn" id="6_15eot"]
 [ext_resource type="AnimationLibrary" uid="uid://pyw3ltt10q24" path="res://weapons/akm/akm_anims.res" id="6_w4nrh"]
 [ext_resource type="Material" uid="uid://dq3a5fxspauox" path="res://weapons/muzzle_flash_yellow_vm.tres" id="7_uc8ir"]
-[ext_resource type="Script" path="res://weapons/alert_area.gd" id="8_ehvva"]
+[ext_resource type="Script" uid="uid://cm4w83326cpew" path="res://weapons/alert_area.gd" id="8_ehvva"]
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_2wbku"]
 direction = Vector3(-1, 0, 0)
@@ -84,6 +84,7 @@ shader = SubResource("Shader_b1bkt")
 shader_parameter/albedo = Color(0.94902, 0.901961, 0.690196, 1)
 shader_parameter/point_size = 1.0
 shader_parameter/roughness = 0.25
+shader_parameter/texture_metallic = SubResource("GradientTexture1D_udjmw")
 shader_parameter/metallic_texture_channel = Vector4(1, 0, 0, 0)
 shader_parameter/specular = 0.5
 shader_parameter/metallic = 1.0
@@ -91,7 +92,6 @@ shader_parameter/uv1_scale = Vector3(1, 1, 1)
 shader_parameter/uv1_offset = Vector3(0, 0, 0)
 shader_parameter/uv2_scale = Vector3(1, 1, 1)
 shader_parameter/uv2_offset = Vector3(0, 0, 0)
-shader_parameter/texture_metallic = SubResource("GradientTexture1D_udjmw")
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_vf5lo"]
 material = SubResource("ShaderMaterial_16l2y")

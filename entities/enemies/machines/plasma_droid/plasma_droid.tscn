@@ -1,23 +1,23 @@
 [gd_scene load_steps=64 format=3 uid="uid://pr3j5d4ifvrt"]
 
-[ext_resource type="Script" path="res://entities/enemies/enemy_attack_pattern.gd" id="1_jd6vl"]
+[ext_resource type="Script" uid="uid://dtlsbvucy16cj" path="res://entities/enemies/enemy_attack_pattern.gd" id="1_jd6vl"]
 [ext_resource type="PackedScene" uid="uid://b12xu872st3c" path="res://entities/enemies/machines/plasma_droid/plasma_droid.glb" id="1_whe1e"]
-[ext_resource type="Script" path="res://entities/status.gd" id="2_3ftdv"]
+[ext_resource type="Script" uid="uid://cly1es2vyxx12" path="res://entities/status.gd" id="2_3ftdv"]
 [ext_resource type="AudioStream" uid="uid://duaykpmpnx0s2" path="res://audio/streams/effects/falling_pipe.wav" id="2_cqd0j"]
 [ext_resource type="AudioStream" uid="uid://ccvyploa5k7uu" path="res://audio/streams/voices/plasma_droid/plasma_droid_detect.wav" id="2_duui2"]
 [ext_resource type="ArrayMesh" uid="uid://ceibhbi3vm1n0" path="res://weapons/plasma_cannon/plasma_cannon.obj" id="2_scks3"]
-[ext_resource type="Script" path="res://entities/enemies/attack_pattern.gd" id="3_3f3op"]
+[ext_resource type="Script" uid="uid://shmvkrxxebgs" path="res://entities/enemies/attack_pattern.gd" id="3_3f3op"]
 [ext_resource type="Material" uid="uid://b78l63b32udy2" path="res://effects/halos/halo_mat.tres" id="3_54erg"]
 [ext_resource type="PackedScene" uid="uid://fd8mwvba35jo" path="res://bullets/enemy/plasma/enemy_plasma_rocket.tscn" id="3_avpih"]
 [ext_resource type="PackedScene" uid="uid://cu70msbgu2ysm" path="res://scenes/effects/damage/metal_damage_sys.tscn" id="3_bt5p4"]
 [ext_resource type="PackedScene" uid="uid://ctgdbydttjqwq" path="res://scenes/effects/explosions/plasma_explosion.tscn" id="3_rukio"]
-[ext_resource type="Script" path="res://scripts/effects/halo.gd" id="4_ifk2m"]
+[ext_resource type="Script" uid="uid://qbss7pion7pi" path="res://scripts/effects/halo.gd" id="4_ifk2m"]
 [ext_resource type="PackedScene" uid="uid://beg6173x6vjha" path="res://bullets/enemy/plasma/enemy_plasma_bullet.tscn" id="4_k6qs3"]
 [ext_resource type="PackedScene" uid="uid://b3n8ejiapfh8" path="res://pickups/ammo/large_cell_pickup.tscn" id="5_4ag46"]
 [ext_resource type="ArrayMesh" uid="uid://bq2ld7p1te64i" path="res://weapons/plasma_cannon/muzzle_flash_plasma.obj" id="5_8e7tr"]
 [ext_resource type="AnimationLibrary" uid="uid://cu6kaw3wmnu2i" path="res://entities/enemies/machines/plasma_droid/plasma_droid_anims.res" id="8_hkuiw"]
-[ext_resource type="Shader" path="res://shaders/spatial/psx_ul_add.gdshader" id="11_o6law"]
-[ext_resource type="Shader" path="res://shaders/spatial/psx_ul_mix.gdshader" id="12_djo4k"]
+[ext_resource type="Shader" uid="uid://cgfn3iqbl45r7" path="res://shaders/spatial/psx_ul_add.gdshader" id="11_o6law"]
+[ext_resource type="Shader" uid="uid://bycruau5ish4o" path="res://shaders/spatial/psx_ul_mix.gdshader" id="12_djo4k"]
 [ext_resource type="PackedScene" uid="uid://qy044barx365" path="res://entities/stair_stepper.tscn" id="18_7c8tp"]
 
 [sub_resource type="Resource" id="Resource_ba0li"]
@@ -162,16 +162,16 @@ fill_to = Vector2(0, 0.2)
 render_priority = 0
 shader = SubResource("Shader_4a45e")
 shader_parameter/albedo = Color(1, 1, 1, 1)
+shader_parameter/texture_albedo = SubResource("GradientTexture2D_kweik")
 shader_parameter/point_size = 1.0
 shader_parameter/roughness = 1.0
-shader_parameter/metallic_texture_channel = null
+shader_parameter/metallic_texture_channel = Vector4(0, 0, 0, 0)
 shader_parameter/specular = 0.5
 shader_parameter/metallic = 0.0
 shader_parameter/uv1_scale = Vector3(1, 1, 1)
 shader_parameter/uv1_offset = Vector3(0, 0, 0)
 shader_parameter/uv2_scale = Vector3(1, 1, 1)
 shader_parameter/uv2_offset = Vector3(0, 0, 0)
-shader_parameter/texture_albedo = SubResource("GradientTexture2D_kweik")
 
 [sub_resource type="Gradient" id="Gradient_4h0ey"]
 colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
@@ -202,8 +202,8 @@ size = Vector2(0.15, 0.15)
 render_priority = 0
 shader = ExtResource("11_o6law")
 shader_parameter/albedo = Color(1, 0, 2, 1)
-shader_parameter/uv1_scale = null
-shader_parameter/uv1_offset = null
+shader_parameter/uv1_scale = Vector3(0, 0, 0)
+shader_parameter/uv1_offset = Vector3(0, 0, 0)
 
 [sub_resource type="Gradient" id="Gradient_pawwp"]
 colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
@@ -278,7 +278,7 @@ shader = SubResource("Shader_hxicf")
 shader_parameter/albedo = Color(1, 0, 2, 1)
 shader_parameter/point_size = 1.0
 shader_parameter/roughness = 1.0
-shader_parameter/metallic_texture_channel = null
+shader_parameter/metallic_texture_channel = Vector4(0, 0, 0, 0)
 shader_parameter/specular = 0.5
 shader_parameter/metallic = 0.0
 shader_parameter/uv1_scale = Vector3(1, 1, 1)
@@ -294,8 +294,8 @@ size = Vector3(0.063, 0.063, 0.063)
 render_priority = 0
 shader = ExtResource("12_djo4k")
 shader_parameter/albedo = Color(0, 1, 1, 1)
-shader_parameter/uv1_scale = null
-shader_parameter/uv1_offset = null
+shader_parameter/uv1_scale = Vector3(0, 0, 0)
+shader_parameter/uv1_offset = Vector3(0, 0, 0)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qbyuk"]
 shading_mode = 0
@@ -370,7 +370,7 @@ tracks/7/keys = PackedFloat32Array(0, 1, 0.707, 0, 0, 0.707)
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_4knrq"]
 _data = {
-"RESET": SubResource("Animation_n3fjs")
+&"RESET": SubResource("Animation_n3fjs")
 }
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_fcwup"]

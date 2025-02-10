@@ -1,11 +1,11 @@
 [gd_scene load_steps=22 format=3 uid="uid://c2qvls07vc0m4"]
 
-[ext_resource type="Script" path="res://scripts/pickups/weapon_pickup.gd" id="1_lyn61"]
+[ext_resource type="Script" uid="uid://yrdtgm5mut51" path="res://scripts/pickups/weapon_pickup.gd" id="1_lyn61"]
 [ext_resource type="PackedScene" uid="uid://bpmahfi65ka5j" path="res://weapons/lever_shotguns/lever_shotguns.tscn" id="2_0g404"]
 [ext_resource type="AudioStream" uid="uid://dxscywpf2ven0" path="res://audio/streams/pickups/pickup_weapon.wav" id="3_ek1ht"]
 [ext_resource type="Material" uid="uid://b78l63b32udy2" path="res://effects/halos/halo_mat.tres" id="4_417mx"]
 [ext_resource type="Texture2D" uid="uid://hk0k2coukjwc" path="res://effects/halos/halo_tex.tres" id="5_ix035"]
-[ext_resource type="Script" path="res://scripts/effects/halo.gd" id="6_5hcp2"]
+[ext_resource type="Script" uid="uid://qbss7pion7pi" path="res://scripts/effects/halo.gd" id="6_5hcp2"]
 [ext_resource type="PackedScene" uid="uid://5ta546kfi5yj" path="res://weapons/lever_shogtun/lever_shotgun.glb" id="7_nh46y"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_uc2sx"]
@@ -173,11 +173,13 @@ noise = SubResource("FastNoiseLite_q3vr3")
 render_priority = 0
 shader = SubResource("Shader_bav83")
 shader_parameter/albedo = Color(1, 1, 1, 1)
+shader_parameter/texture_albedo = SubResource("NoiseTexture2D_ti8ho")
 shader_parameter/point_size = 1.0
 shader_parameter/roughness = 0.75
 shader_parameter/metallic_texture_channel = Vector4(1, 0, 0, 0)
 shader_parameter/specular = 0.5
 shader_parameter/metallic = 0.0
+shader_parameter/texture_normal = SubResource("NoiseTexture2D_ifyxs")
 shader_parameter/normal_scale = 1.0
 shader_parameter/clearcoat = 1.0
 shader_parameter/clearcoat_roughness = 0.25
@@ -185,8 +187,6 @@ shader_parameter/uv1_scale = Vector3(0.25, 1, 0.25)
 shader_parameter/uv1_offset = Vector3(0, 0, 0)
 shader_parameter/uv2_scale = Vector3(1, 1, 1)
 shader_parameter/uv2_offset = Vector3(0, 0, 0)
-shader_parameter/texture_albedo = SubResource("NoiseTexture2D_ti8ho")
-shader_parameter/texture_normal = SubResource("NoiseTexture2D_ifyxs")
 
 [sub_resource type="Animation" id="Animation_wivti"]
 resource_name = "anim"
@@ -209,7 +209,7 @@ tracks/1/keys = PackedFloat32Array(0, 1, 0, 0, 0, 2.5, 1, 0, 0.05, 0, 5, 1, 0, 0
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_4pudi"]
 _data = {
-"anim": SubResource("Animation_wivti")
+&"anim": SubResource("Animation_wivti")
 }
 
 [node name="SluggersPickup" type="RigidBody3D"]

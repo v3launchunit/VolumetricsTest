@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://dqmlqgy6n1rqr"]
 
 [ext_resource type="Theme" uid="uid://dwof7m2ye3tjh" path="res://ui/default_theme.tres" id="1_234e3"]
-[ext_resource type="Script" path="res://ui/menus/settings/accessibility_sub_menu.gd" id="2_qo6hd"]
+[ext_resource type="Script" uid="uid://bkl2poi27qt1" path="res://ui/menus/settings/accessibility_sub_menu.gd" id="2_qo6hd"]
 
 [node name="Accessibility" type="VBoxContainer"]
 theme = ExtResource("1_234e3")

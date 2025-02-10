@@ -1,9 +1,9 @@
 [gd_scene load_steps=40 format=3 uid="uid://ctgdbydttjqwq"]
 
-[ext_resource type="Script" path="res://scripts/effects/lifetime.gd" id="1_6sl8e"]
-[ext_resource type="Script" path="res://scripts/auto_play.gd" id="2_etkcd"]
+[ext_resource type="Script" uid="uid://b5h7xnsiqnyy7" path="res://scripts/effects/lifetime.gd" id="1_6sl8e"]
+[ext_resource type="Script" uid="uid://b7g82w2xxwd0u" path="res://scripts/auto_play.gd" id="2_etkcd"]
 [ext_resource type="ArrayMesh" uid="uid://cx13p5fo0cmf6" path="res://models/effects/octagon_quad.obj" id="2_qmcat"]
-[ext_resource type="Script" path="res://scripts/effects/area_damage.gd" id="3_e2vgx"]
+[ext_resource type="Script" uid="uid://iq4n1kv8ucdv" path="res://scripts/effects/area_damage.gd" id="3_e2vgx"]
 [ext_resource type="Texture2D" uid="uid://djg6ch15ainnw" path="res://effects/radial_n.png" id="3_vhjgo"]
 [ext_resource type="AudioStream" uid="uid://tv57kig5mcoh" path="res://audio/streams/effects/kaboom.wav" id="4_22yul"]
 [ext_resource type="AudioStream" uid="uid://b4em0t5e3pb8a" path="res://audio/streams/effects/vine_boom.mp3" id="5_vgmmu"]
@@ -435,8 +435,8 @@ tracks/13/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_7h3vl"]
 _data = {
-"RESET": SubResource("Animation_3e3i5"),
-"anim": SubResource("Animation_1qm5a")
+&"RESET": SubResource("Animation_3e3i5"),
+&"anim": SubResource("Animation_1qm5a")
 }
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3anle"]

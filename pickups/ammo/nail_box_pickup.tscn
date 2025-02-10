@@ -1,6 +1,6 @@
 [gd_scene load_steps=15 format=3 uid="uid://joq438puropu"]
 
-[ext_resource type="Script" path="res://scripts/pickups/ammo_pickup.gd" id="1_0s2ma"]
+[ext_resource type="Script" uid="uid://bft3wkpl5bv8p" path="res://scripts/pickups/ammo_pickup.gd" id="1_0s2ma"]
 [ext_resource type="AudioStream" uid="uid://g7unocdbdokw" path="res://audio/streams/pickups/pickup_ammo.wav" id="2_xspqa"]
 [ext_resource type="Texture2D" uid="uid://hk0k2coukjwc" path="res://effects/halos/halo_tex.tres" id="3_tj2xe"]
 [ext_resource type="Texture2D" uid="uid://bnbamh1e3lrba" path="res://pickups/ammo/nail_box/nail_box_albedo.png" id="3_xb3wr"]
@@ -76,18 +76,18 @@ void fragment() {
 render_priority = 0
 shader = SubResource("Shader_t3io4")
 shader_parameter/albedo = Color(1, 1, 1, 1)
+shader_parameter/texture_albedo = ExtResource("3_xb3wr")
 shader_parameter/point_size = 1.0
 shader_parameter/roughness = 0.75
 shader_parameter/metallic_texture_channel = Vector4(1, 0, 0, 0)
 shader_parameter/specular = 0.5
 shader_parameter/metallic = 0.0
+shader_parameter/texture_normal = ExtResource("4_tu1tn")
 shader_parameter/normal_scale = 1.0
 shader_parameter/uv1_scale = Vector3(1, 1, 1)
 shader_parameter/uv1_offset = Vector3(0, 0, 0)
 shader_parameter/uv2_scale = Vector3(1, 1, 1)
 shader_parameter/uv2_offset = Vector3(0, 0, 0)
-shader_parameter/texture_albedo = ExtResource("3_xb3wr")
-shader_parameter/texture_normal = ExtResource("4_tu1tn")
 
 [sub_resource type="BoxMesh" id="BoxMesh_78ec6"]
 size = Vector3(0.5, 0.5, 0.5)
@@ -113,7 +113,7 @@ tracks/1/keys = PackedFloat32Array(0, 1, 0, 0, 0, 2.5, 1, 0, 0.05, 0, 5, 1, 0, 0
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_4pudi"]
 _data = {
-"anim": SubResource("Animation_wivti")
+&"anim": SubResource("Animation_wivti")
 }
 
 [node name="NailBoxPickup" type="RigidBody3D"]

@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://bitvyx74dtwm5"]
 
-[ext_resource type="Shader" path="res://shaders/spatial/psx_pb_aclip.gdshader" id="1_gkytj"]
+[ext_resource type="Shader" uid="uid://bvuxceynh6rex" path="res://shaders/spatial/psx_pb_aclip.gdshader" id="1_gkytj"]
 
 [sub_resource type="Gradient" id="Gradient_7hgy5"]
 colors = PackedColorArray(0.490196, 0.262745, 0.192157, 1, 0.615686, 0.403922, 0.333333, 1)
@@ -19,6 +19,7 @@ noise = SubResource("FastNoiseLite_1acgs")
 render_priority = 0
 shader = ExtResource("1_gkytj")
 shader_parameter/albedo_col = Color(1, 1, 1, 1)
+shader_parameter/albedo_tex = SubResource("NoiseTexture2D_mdjhe")
 shader_parameter/alpha_clip_threshold = 0.5
 shader_parameter/normal_scale = 1.0
 shader_parameter/roughness = 0.75
@@ -30,7 +31,6 @@ shader_parameter/uv1_offset = Vector3(0, 0, 0)
 shader_parameter/uv2_scale = Vector3(1, 1, 1)
 shader_parameter/uv2_offset = Vector3(0, 0, 0)
 shader_parameter/is_terrain_mat = false
-shader_parameter/albedo_tex = SubResource("NoiseTexture2D_mdjhe")
 
 [sub_resource type="BoxMesh" id="BoxMesh_qcen5"]
 size = Vector3(0.25, 0.25, 0.5)

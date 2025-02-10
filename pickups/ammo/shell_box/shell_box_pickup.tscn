@@ -1,12 +1,12 @@
 [gd_scene load_steps=21 format=3 uid="uid://boxs6v8ktotma"]
 
-[ext_resource type="Script" path="res://scripts/pickups/ammo_pickup.gd" id="1_ve4na"]
+[ext_resource type="Script" uid="uid://bft3wkpl5bv8p" path="res://scripts/pickups/ammo_pickup.gd" id="1_ve4na"]
 [ext_resource type="AudioStream" uid="uid://g7unocdbdokw" path="res://audio/streams/pickups/pickup_ammo.wav" id="2_jodgy"]
 [ext_resource type="Texture2D" uid="uid://d0bquc3skclkb" path="res://pickups/ammo/shell_box/shell_box.png" id="3_2eqfn"]
 [ext_resource type="Material" uid="uid://b78l63b32udy2" path="res://effects/halos/halo_mat.tres" id="3_7jsya"]
 [ext_resource type="Texture2D" uid="uid://hk0k2coukjwc" path="res://effects/halos/halo_tex.tres" id="3_w7jbw"]
 [ext_resource type="Texture2D" uid="uid://cn80mlgjttjp3" path="res://pickups/ammo/shell_box/shell_box_heights.png" id="4_v3hoq"]
-[ext_resource type="Script" path="res://scripts/effects/halo.gd" id="5_8unii"]
+[ext_resource type="Script" uid="uid://qbss7pion7pi" path="res://scripts/effects/halo.gd" id="5_8unii"]
 [ext_resource type="Texture2D" uid="uid://b6k5ky260w0ck" path="res://pickups/ammo/shell_box/shell_box_metallic.png" id="5_fi4vq"]
 [ext_resource type="Texture2D" uid="uid://bbdlnl6ud6wfs" path="res://pickups/ammo/shell_box/shell_box_normals.png" id="6_xbbru"]
 [ext_resource type="Texture2D" uid="uid://bjp8fl3yckpac" path="res://pickups/ammo/shell_box/shell_box_roughness.png" id="7_s1bop"]
@@ -92,12 +92,17 @@ void fragment() {
 render_priority = 0
 shader = SubResource("Shader_bh6o5")
 shader_parameter/albedo = Color(1, 1, 1, 1)
+shader_parameter/texture_albedo = ExtResource("3_2eqfn")
 shader_parameter/point_size = 1.0
 shader_parameter/roughness = 1.0
+shader_parameter/texture_metallic = ExtResource("5_fi4vq")
 shader_parameter/metallic_texture_channel = Vector4(1, 0, 0, 0)
+shader_parameter/texture_roughness = ExtResource("7_s1bop")
 shader_parameter/specular = 0.5
 shader_parameter/metallic = 1.0
+shader_parameter/texture_normal = ExtResource("6_xbbru")
 shader_parameter/normal_scale = 1.0
+shader_parameter/texture_heightmap = ExtResource("4_v3hoq")
 shader_parameter/heightmap_scale = 5.0
 shader_parameter/heightmap_min_layers = 8
 shader_parameter/heightmap_max_layers = 32
@@ -106,11 +111,6 @@ shader_parameter/uv1_scale = Vector3(1, 1, 1)
 shader_parameter/uv1_offset = Vector3(0, 0, 0)
 shader_parameter/uv2_scale = Vector3(1, 1, 1)
 shader_parameter/uv2_offset = Vector3(0, 0, 0)
-shader_parameter/texture_albedo = ExtResource("3_2eqfn")
-shader_parameter/texture_metallic = ExtResource("5_fi4vq")
-shader_parameter/texture_roughness = ExtResource("7_s1bop")
-shader_parameter/texture_normal = ExtResource("6_xbbru")
-shader_parameter/texture_heightmap = ExtResource("4_v3hoq")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_evuw2"]
 albedo_texture = ExtResource("3_2eqfn")
@@ -148,7 +148,7 @@ tracks/1/keys = PackedFloat32Array(0, 1, 0, 0, 0, 2.5, 1, 0, 0.05, 0, 5, 1, 0, 0
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_4pudi"]
 _data = {
-"anim": SubResource("Animation_wivti")
+&"anim": SubResource("Animation_wivti")
 }
 
 [node name="ShellBoxPickup" type="RigidBody3D"]

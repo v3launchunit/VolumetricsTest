@@ -1,13 +1,13 @@
 [gd_scene load_steps=30 format=3 uid="uid://du780rqis8eqo"]
 
-[ext_resource type="Script" path="res://scripts/pickups/weapon_pickup.gd" id="1_dciki"]
+[ext_resource type="Script" uid="uid://yrdtgm5mut51" path="res://scripts/pickups/weapon_pickup.gd" id="1_dciki"]
 [ext_resource type="AudioStream" uid="uid://dxscywpf2ven0" path="res://audio/streams/pickups/pickup_weapon.wav" id="2_1sh8p"]
 [ext_resource type="PackedScene" uid="uid://crvf6qiekfqex" path="res://weapons/boomstick/boomstick.tscn" id="2_gquns"]
 [ext_resource type="Material" uid="uid://b78l63b32udy2" path="res://effects/halos/halo_mat.tres" id="3_nlojk"]
 [ext_resource type="Texture2D" uid="uid://hk0k2coukjwc" path="res://effects/halos/halo_tex.tres" id="3_o60x8"]
 [ext_resource type="ArrayMesh" uid="uid://cjx7th4qqdgak" path="res://weapons/boomstick/boomstick.obj" id="3_uposn"]
 [ext_resource type="Texture2D" uid="uid://bbbk8k7whvl1m" path="res://weapons/boomstick/boomstick_detail_mask.png" id="4_lpgj7"]
-[ext_resource type="Script" path="res://scripts/effects/halo.gd" id="5_88hh6"]
+[ext_resource type="Script" uid="uid://qbss7pion7pi" path="res://scripts/effects/halo.gd" id="5_88hh6"]
 [ext_resource type="Texture2D" uid="uid://b84lximnqxpsk" path="res://weapons/boomstick/boomstick_metallic.png" id="5_mfxo6"]
 [ext_resource type="Texture2D" uid="uid://bswjthncpsxna" path="res://weapons/boomstick/boomstick_roughness.png" id="6_5ky6y"]
 [ext_resource type="Texture2D" uid="uid://ct1gr7br07rn4" path="res://weapons/boomstick/boomstick_stock_detail_mask.png" id="7_hndj5"]
@@ -122,21 +122,21 @@ shader = SubResource("Shader_0h1ko")
 shader_parameter/albedo = Color(0.501961, 0.501961, 0.501961, 1)
 shader_parameter/point_size = 1.0
 shader_parameter/roughness = 1.0
+shader_parameter/texture_metallic = ExtResource("5_mfxo6")
 shader_parameter/metallic_texture_channel = Vector4(1, 0, 0, 0)
+shader_parameter/texture_roughness = ExtResource("6_5ky6y")
 shader_parameter/specular = 0.5
 shader_parameter/metallic = 1.0
 shader_parameter/clearcoat = 1.0
 shader_parameter/clearcoat_roughness = 0.25
-shader_parameter/uv1_scale = Vector3(1, 1, 1)
-shader_parameter/uv1_offset = Vector3(0, 0, 0)
-shader_parameter/uv2_scale = Vector3(1, 1, 1)
-shader_parameter/uv2_offset = Vector3(0, 0, 0)
-shader_parameter/texture_metallic = ExtResource("5_mfxo6")
-shader_parameter/texture_roughness = ExtResource("6_5ky6y")
 shader_parameter/texture_clearcoat = ExtResource("4_lpgj7")
 shader_parameter/texture_detail_albedo = SubResource("NoiseTexture2D_ul6i2")
 shader_parameter/texture_detail_normal = SubResource("NoiseTexture2D_t2ny3")
 shader_parameter/texture_detail_mask = ExtResource("4_lpgj7")
+shader_parameter/uv1_scale = Vector3(1, 1, 1)
+shader_parameter/uv1_offset = Vector3(0, 0, 0)
+shader_parameter/uv2_scale = Vector3(1, 1, 1)
+shader_parameter/uv2_offset = Vector3(0, 0, 0)
 
 [sub_resource type="Shader" id="Shader_pk70i"]
 code = "// NOTE: Shader automatically converted from Godot Engine 4.2.1.stable.mono's StandardMaterial3D.
@@ -215,21 +215,21 @@ shader = SubResource("Shader_pk70i")
 shader_parameter/albedo = Color(0.501961, 0.501961, 0.501961, 1)
 shader_parameter/point_size = 1.0
 shader_parameter/roughness = 1.0
+shader_parameter/texture_metallic = ExtResource("8_l6wnu")
 shader_parameter/metallic_texture_channel = Vector4(1, 0, 0, 0)
+shader_parameter/texture_roughness = ExtResource("9_p2moh")
 shader_parameter/specular = 0.5
 shader_parameter/metallic = 1.0
 shader_parameter/clearcoat = 1.0
 shader_parameter/clearcoat_roughness = 0.25
-shader_parameter/uv1_scale = Vector3(1, 1, 1)
-shader_parameter/uv1_offset = Vector3(0, 0, 0)
-shader_parameter/uv2_scale = Vector3(1, 1, 1)
-shader_parameter/uv2_offset = Vector3(0, 0, 0)
-shader_parameter/texture_metallic = ExtResource("8_l6wnu")
-shader_parameter/texture_roughness = ExtResource("9_p2moh")
 shader_parameter/texture_clearcoat = ExtResource("7_hndj5")
 shader_parameter/texture_detail_albedo = SubResource("NoiseTexture2D_vqneo")
 shader_parameter/texture_detail_normal = SubResource("NoiseTexture2D_rp7ad")
 shader_parameter/texture_detail_mask = ExtResource("7_hndj5")
+shader_parameter/uv1_scale = Vector3(1, 1, 1)
+shader_parameter/uv1_offset = Vector3(0, 0, 0)
+shader_parameter/uv2_scale = Vector3(1, 1, 1)
+shader_parameter/uv2_offset = Vector3(0, 0, 0)
 
 [sub_resource type="Animation" id="Animation_wivti"]
 resource_name = "anim"
@@ -252,7 +252,7 @@ tracks/1/keys = PackedFloat32Array(0, 1, 0, 0, 0, 2.5, 1, 0, 0.05, 0, 5, 1, 0, 0
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_4pudi"]
 _data = {
-"anim": SubResource("Animation_wivti")
+&"anim": SubResource("Animation_wivti")
 }
 
 [node name="BoomstickPickup" type="RigidBody3D"]

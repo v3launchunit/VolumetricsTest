@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="FuncGodotFGDPointClass" load_steps=3 format=3 uid="uid://cyb0j886ldtha"]
 
-[ext_resource type="Script" path="res://addons/func_godot/src/fgd/func_godot_fgd_point_class.gd" id="1_isyfl"]
+[ext_resource type="Script" uid="uid://cw2atun4e3eyv" path="res://addons/func_godot/src/fgd/func_godot_fgd_point_class.gd" id="1_isyfl"]
 [ext_resource type="PackedScene" uid="uid://cte8nigqju6x4" path="res://objects/deco/fake_window/fake_window.tscn" id="1_prn64"]
 
 [resource]
@@ -15,6 +15,7 @@ class_properties = {
 "window_light_color": Color(0, 0, 0, 1)
 }
 class_property_descriptions = {}
+auto_apply_to_matching_node_properties = false
 meta_properties = {
 "color": Color(0.8, 0.8, 0.8, 1),
 "size": AABB(-16, -16, -16, 16, 16, 16)

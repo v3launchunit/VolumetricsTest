@@ -1,7 +1,7 @@
 [gd_scene load_steps=15 format=3 uid="uid://dqlr68wocxmo1"]
 
-[ext_resource type="Script" path="res://scripts/effects/particle_lifetime.gd" id="1_8p6cp"]
-[ext_resource type="Shader" path="res://shaders/spatial/psx_pb_aclip.gdshader" id="1_imory"]
+[ext_resource type="Script" uid="uid://b6bektmpvs3xa" path="res://scripts/effects/particle_lifetime.gd" id="1_8p6cp"]
+[ext_resource type="Shader" uid="uid://bvuxceynh6rex" path="res://shaders/spatial/psx_pb_aclip.gdshader" id="1_imory"]
 [ext_resource type="ArrayMesh" uid="uid://bssx7wfjh7rbq" path="res://models/gib.obj" id="2_yennu"]
 [ext_resource type="AudioStream" uid="uid://7yv7v1pgy2fk" path="res://audio/streams/effects/rock_break.wav" id="4_f5j57"]
 
@@ -42,7 +42,9 @@ noise = SubResource("FastNoiseLite_la7r5")
 render_priority = 0
 shader = ExtResource("1_imory")
 shader_parameter/albedo_col = Color(1, 1, 1, 1)
+shader_parameter/albedo_tex = SubResource("NoiseTexture2D_igxem")
 shader_parameter/alpha_clip_threshold = 0.5
+shader_parameter/normal_tex = SubResource("NoiseTexture2D_2da3m")
 shader_parameter/normal_scale = 1.0
 shader_parameter/roughness = 0.75
 shader_parameter/metallic = 0.0
@@ -53,8 +55,6 @@ shader_parameter/uv1_offset = Vector3(0, 0, 0)
 shader_parameter/uv2_scale = Vector3(1, 1, 1)
 shader_parameter/uv2_offset = Vector3(0, 0, 0)
 shader_parameter/is_terrain_mat = false
-shader_parameter/albedo_tex = SubResource("NoiseTexture2D_igxem")
-shader_parameter/normal_tex = SubResource("NoiseTexture2D_2da3m")
 
 [sub_resource type="Gradient" id="Gradient_qqwon"]
 offsets = PackedFloat32Array(0.9, 1)

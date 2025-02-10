@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://1shniliqahvt"]
 
 [ext_resource type="Theme" uid="uid://dwof7m2ye3tjh" path="res://ui/default_theme.tres" id="1_amxke"]
-[ext_resource type="Script" path="res://ui/menus/audio_sub_menu.gd" id="2_5ql04"]
+[ext_resource type="Script" uid="uid://bp8nhdpt8eioe" path="res://ui/menus/audio_sub_menu.gd" id="2_5ql04"]
 [ext_resource type="AudioStream" uid="uid://bmlxxe8maevqb" path="res://audio/streams/click.wav" id="3_dswdr"]
 
 [node name="Audio" type="VBoxContainer"]

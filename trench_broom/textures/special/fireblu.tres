@@ -1,6 +1,6 @@
 [gd_resource type="ShaderMaterial" load_steps=5 format=3 uid="uid://cqgovoahf1u4"]
 
-[ext_resource type="Shader" path="res://trench_broom/textures/special/fireblu.gdshader" id="1_5cola"]
+[ext_resource type="Shader" uid="uid://lre51x7x5vkl" path="res://trench_broom/textures/special/fireblu.gdshader" id="1_5cola"]
 
 [sub_resource type="Gradient" id="Gradient_so5vp"]
 

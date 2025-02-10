@@ -1,13 +1,13 @@
 [gd_scene load_steps=7 format=3 uid="uid://3d0gti265ixd"]
 
-[ext_resource type="Shader" path="res://shaders/spatial/psx_ul_add.gdshader" id="1_hlcjr"]
+[ext_resource type="Shader" uid="uid://cgfn3iqbl45r7" path="res://shaders/spatial/psx_ul_add.gdshader" id="1_hlcjr"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_63h5n"]
 render_priority = 0
 shader = ExtResource("1_hlcjr")
 shader_parameter/albedo = Color(1, 1, 1, 1)
-shader_parameter/uv1_scale = null
-shader_parameter/uv1_offset = null
+shader_parameter/uv1_scale = Vector3(0, 0, 0)
+shader_parameter/uv1_offset = Vector3(0, 0, 0)
 
 [sub_resource type="Gradient" id="Gradient_lppp4"]
 colors = PackedColorArray(1, 0, 0, 1, 1, 1, 0, 1)

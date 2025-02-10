@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://cu58hb7h0r68v" path="res://effects/look_up_tables/1d/1d_lut_16_color.png" id="1_a2epr"]
 [ext_resource type="Texture2D" uid="uid://dybaimi1b3b85" path="res://effects/glow/lens_dirt/lens_dirt_0.png" id="2_is1u4"]
-[ext_resource type="Shader" path="res://shaders/spatial/cloud_layer.gdshader" id="3_cax8u"]
+[ext_resource type="Shader" uid="uid://jugjbdj6k51u" path="res://shaders/spatial/cloud_layer.gdshader" id="3_cax8u"]
 
 [sub_resource type="Shader" id="Shader_4dgl8"]
 code = "
@@ -86,14 +86,14 @@ noise = SubResource("FastNoiseLite_5ysg7")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_i34e0"]
 shader = SubResource("Shader_4dgl8")
-shader_parameter/exposure = 1.0
-shader_parameter/layer_01_exposure = 0.05
-shader_parameter/layer_02_exposure = 0.05
-shader_parameter/layer_03_exposure = 0.05
 shader_parameter/source_panorama = SubResource("NoiseTexture2D_bvkyb")
 shader_parameter/layer_01 = SubResource("NoiseTexture2D_dtegq")
 shader_parameter/layer_02 = SubResource("NoiseTexture2D_q06r6")
 shader_parameter/layer_03 = SubResource("NoiseTexture2D_b0ro5")
+shader_parameter/exposure = 1.0
+shader_parameter/layer_01_exposure = 0.05
+shader_parameter/layer_02_exposure = 0.05
+shader_parameter/layer_03_exposure = 0.05
 
 [sub_resource type="Sky" id="Sky_4rtre"]
 sky_material = SubResource("ShaderMaterial_i34e0")
@@ -136,9 +136,9 @@ fill_to = Vector2(1, 0.5)
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_qsjhe"]
 render_priority = 0
 shader = ExtResource("3_cax8u")
-shader_parameter/scroll_speed = Vector2(1, 1)
 shader_parameter/fade = SubResource("GradientTexture2D_cd3ui")
 shader_parameter/clouds = SubResource("NoiseTexture2D_m76ab")
+shader_parameter/scroll_speed = Vector2(1, 1)
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_7t6v5"]
 flip_faces = true

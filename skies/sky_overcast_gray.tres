@@ -1,6 +1,6 @@
 [gd_resource type="Sky" load_steps=9 format=3 uid="uid://c6my47n1h24na"]
 
-[ext_resource type="Shader" path="res://shaders/skybox/sky_scroll.gdshader" id="1_d3tgo"]
+[ext_resource type="Shader" uid="uid://c8pyqdh8sby1a" path="res://shaders/skybox/sky_scroll.gdshader" id="1_d3tgo"]
 
 [sub_resource type="Gradient" id="Gradient_eawp4"]
 colors = PackedColorArray(0, 0, 0, 1, 0.5, 0.5, 0.5, 1)
@@ -32,13 +32,13 @@ shader = ExtResource("1_d3tgo")
 shader_parameter/base_color = Color(0.25, 0.25, 0.25, 1)
 shader_parameter/sky_distance = 8.0
 shader_parameter/sky_color = Color(1, 1, 1, 1)
+shader_parameter/texture_sky = SubResource("NoiseTexture2D_5hit8")
 shader_parameter/uv_sky_scale = Vector2(0.125, 0.125)
 shader_parameter/uv_sky_scroll_speed = Vector2(0.05, 0.05)
-shader_parameter/texture_sky = SubResource("NoiseTexture2D_5hit8")
 shader_parameter/sky_clouds_1_color = Color(1, 1, 1, 1)
+shader_parameter/texture_sky_clouds_1 = SubResource("NoiseTexture2D_lrtde")
 shader_parameter/uv_sky_clouds_1_scale = Vector2(0.125, 0.125)
 shader_parameter/uv_sky_clouds_1_scroll_speed = Vector2(0.075, 0.075)
-shader_parameter/texture_sky_clouds_1 = SubResource("NoiseTexture2D_lrtde")
 shader_parameter/surface_distance = 32.0
 shader_parameter/surface_color = Color(0, 0, 0, 1)
 shader_parameter/uv_surface_scale = Vector2(0.125, 0.125)

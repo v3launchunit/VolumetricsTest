@@ -1,7 +1,7 @@
 [gd_scene load_steps=8 format=3 uid="uid://bfqcephq1sfd3"]
 
 [ext_resource type="Texture2D" uid="uid://cu7f15pd68iyj" path="res://entities/neutral/mystery_man/mystery_man.png" id="1_1hpv2"]
-[ext_resource type="Script" path="res://entities/neutral/mystery_man/mystery_man.gd" id="1_rjq26"]
+[ext_resource type="Script" uid="uid://dse4224qak3r8" path="res://entities/neutral/mystery_man/mystery_man.gd" id="1_rjq26"]
 [ext_resource type="Texture2D" uid="uid://bb3lo0budk2r1" path="res://entities/neutral/mystery_man/mystery_man_2.png" id="2_yogub"]
 [ext_resource type="AudioStream" uid="uid://nsaskhiln28n" path="res://audio/streams/effects/mystery_man_tele.wav" id="4_6u0gs"]
 

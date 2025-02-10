@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="FuncGodotFGDFile" load_steps=3 format=3 uid="uid://bif8eu4hrkt4u"]
 
-[ext_resource type="Script" path="res://addons/func_godot/src/fgd/func_godot_fgd_file.gd" id="1_ae5w1"]
+[ext_resource type="Script" uid="uid://cvytv1hjntf8j" path="res://addons/func_godot/src/fgd/func_godot_fgd_file.gd" id="1_ae5w1"]
 [ext_resource type="Resource" uid="uid://cvxkyiwtkkmrb" path="res://trench_broom/func_godot_fgd/entities/point/enemy/model/enemy_pinkerton_model_point_class.tres" id="1_l832t"]
 
 [resource]

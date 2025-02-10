@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://dv0a4feruvg2r"]
 
-[ext_resource type="Script" path="res://scripts/effects/lifetime.gd" id="1_mlvnr"]
+[ext_resource type="Script" uid="uid://b5h7xnsiqnyy7" path="res://scripts/effects/lifetime.gd" id="1_mlvnr"]
 [ext_resource type="Theme" uid="uid://dwof7m2ye3tjh" path="res://ui/default_theme.tres" id="1_r5ujv"]
 
 [node name="Event" type="RichTextLabel"]

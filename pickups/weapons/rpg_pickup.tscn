@@ -1,11 +1,11 @@
 [gd_scene load_steps=21 format=3 uid="uid://df20em4dv0q37"]
 
-[ext_resource type="Script" path="res://scripts/pickups/weapon_pickup.gd" id="1_2musx"]
+[ext_resource type="Script" uid="uid://yrdtgm5mut51" path="res://scripts/pickups/weapon_pickup.gd" id="1_2musx"]
 [ext_resource type="PackedScene" uid="uid://bs3eibrb48t0m" path="res://weapons/rpg/rpg.tscn" id="2_3egwi"]
 [ext_resource type="AudioStream" uid="uid://dxscywpf2ven0" path="res://audio/streams/pickups/pickup_weapon.wav" id="2_fqxmo"]
 [ext_resource type="Material" uid="uid://b78l63b32udy2" path="res://effects/halos/halo_mat.tres" id="3_awdrf"]
 [ext_resource type="Texture2D" uid="uid://hk0k2coukjwc" path="res://effects/halos/halo_tex.tres" id="4_ir4pn"]
-[ext_resource type="Script" path="res://scripts/effects/halo.gd" id="5_dijpx"]
+[ext_resource type="Script" uid="uid://qbss7pion7pi" path="res://scripts/effects/halo.gd" id="5_dijpx"]
 [ext_resource type="PackedScene" uid="uid://babited41kti5" path="res://weapons/rpg/rpg.glb" id="6_u5jkc"]
 [ext_resource type="Material" uid="uid://bu1ph5as16u6f" path="res://bullets/rocket_mat.tres" id="8_ksabr"]
 
@@ -141,7 +141,7 @@ tracks/1/keys = PackedFloat32Array(0, 1, 0, 0, 0, 2.5, 1, 0, 0.05, 0, 5, 1, 0, 0
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_4pudi"]
 _data = {
-"anim": SubResource("Animation_wivti")
+&"anim": SubResource("Animation_wivti")
 }
 
 [node name="RPGPickup" type="RigidBody3D"]

@@ -1,11 +1,11 @@
 [gd_scene load_steps=16 format=3 uid="uid://bosuaqplx64vr"]
 
-[ext_resource type="Script" path="res://bullets/bullet.gd" id="1_omamu"]
+[ext_resource type="Script" uid="uid://v2g043uyqdfa" path="res://bullets/bullet.gd" id="1_omamu"]
 [ext_resource type="PackedScene" uid="uid://bth7t7bnwn01s" path="res://scenes/effects/impacts/blood_bullet_impact.tscn" id="2_c13ba"]
 [ext_resource type="ArrayMesh" uid="uid://cqf6v4gaperkn" path="res://bullets/bullet.obj" id="2_hv2vv"]
-[ext_resource type="Script" path="res://bullets/bullet_trail.gd" id="3_yv8xl"]
+[ext_resource type="Script" uid="uid://dqsxgbvhlqnq" path="res://bullets/bullet_trail.gd" id="3_yv8xl"]
 [ext_resource type="AudioStream" uid="uid://crtqyq64m3wm1" path="res://audio/streams/ambient/bullet_ambient.wav" id="4_efove"]
-[ext_resource type="Script" path="res://scripts/effects/lifetime.gd" id="5_anj2i"]
+[ext_resource type="Script" uid="uid://b5h7xnsiqnyy7" path="res://scripts/effects/lifetime.gd" id="5_anj2i"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_h48e4"]
 size = Vector3(0.05, 0.05, 0.5)
@@ -70,7 +70,7 @@ shader_parameter/albedo = Color(1, 0, 0, 1)
 shader_parameter/alpha_hash_scale = 1.0
 shader_parameter/point_size = 1.0
 shader_parameter/roughness = 1.0
-shader_parameter/metallic_texture_channel = null
+shader_parameter/metallic_texture_channel = Vector4(0, 0, 0, 0)
 shader_parameter/specular = 0.5
 shader_parameter/metallic = 0.0
 shader_parameter/uv1_scale = Vector3(1, 1, 1)
@@ -85,7 +85,7 @@ shader_parameter/albedo = Color(1, 0, 0, 1)
 shader_parameter/alpha_hash_scale = 1.0
 shader_parameter/point_size = 1.0
 shader_parameter/roughness = 1.0
-shader_parameter/metallic_texture_channel = null
+shader_parameter/metallic_texture_channel = Vector4(0, 0, 0, 0)
 shader_parameter/specular = 0.5
 shader_parameter/metallic = 0.0
 shader_parameter/uv1_scale = Vector3(1, 1, 1)

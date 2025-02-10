@@ -1,7 +1,7 @@
 [gd_scene load_steps=11 format=3 uid="uid://cte8nigqju6x4"]
 
 [ext_resource type="Texture2D" uid="uid://dq8085wgtcel5" path="res://objects/deco/fake_window/fake_window_emissions.png" id="1_c7uu4"]
-[ext_resource type="Script" path="res://objects/deco/fake_window/fake_window.gd" id="1_wq8c4"]
+[ext_resource type="Script" uid="uid://dmaf5g2upyrci" path="res://objects/deco/fake_window/fake_window.gd" id="1_wq8c4"]
 [ext_resource type="Texture2D" uid="uid://dokrtkd3ksm7t" path="res://objects/deco/fake_window/fake_window_albedo.png" id="2_awe7g"]
 [ext_resource type="ArrayMesh" uid="uid://1kx0yejeuwd0" path="res://models/objects/fake_window.obj" id="2_n560n"]
 [ext_resource type="Texture2D" uid="uid://cjt80d3qcldfe" path="res://objects/deco/fake_window/fake_window_normals.png" id="4_258ra"]
@@ -90,21 +90,21 @@ noise = SubResource("FastNoiseLite_buxic")
 render_priority = 0
 shader = SubResource("Shader_35c4e")
 shader_parameter/albedo = Color(1, 1, 1, 1)
+shader_parameter/texture_albedo = ExtResource("2_awe7g")
+shader_parameter/texture_albedo_b = SubResource("NoiseTexture2D_xrmkr")
 shader_parameter/point_size = 1.0
 shader_parameter/roughness = 0.25
-shader_parameter/metallic_texture_channel = null
+shader_parameter/metallic_texture_channel = Vector4(0, 0, 0, 0)
 shader_parameter/specular = 0.5
 shader_parameter/metallic = 0.0
+shader_parameter/texture_emission = ExtResource("1_c7uu4")
 shader_parameter/emission_energy = 1.0
+shader_parameter/texture_normal = ExtResource("4_258ra")
 shader_parameter/normal_scale = 1.0
 shader_parameter/uv1_scale = Vector3(1, 1, 1)
 shader_parameter/uv1_offset = Vector3(0, 0, 0)
 shader_parameter/uv2_scale = Vector3(1, 1, 1)
 shader_parameter/uv2_offset = Vector3(0, 0, 0)
-shader_parameter/texture_albedo = ExtResource("2_awe7g")
-shader_parameter/texture_albedo_b = SubResource("NoiseTexture2D_xrmkr")
-shader_parameter/texture_emission = ExtResource("1_c7uu4")
-shader_parameter/texture_normal = ExtResource("4_258ra")
 
 [node name="FakeWindow" type="Node3D"]
 script = ExtResource("1_wq8c4")

@@ -1,9 +1,9 @@
 [gd_scene load_steps=22 format=3 uid="uid://bpg03gfcso3kl"]
 
-[ext_resource type="Script" path="res://scripts/pickups/health_pickup.gd" id="1_sb0jk"]
+[ext_resource type="Script" uid="uid://c5fw3v01gendn" path="res://scripts/pickups/health_pickup.gd" id="1_sb0jk"]
 [ext_resource type="AudioStream" uid="uid://cr8v5feyxtf4l" path="res://audio/streams/pickups/pickup_health.wav" id="2_hobdx"]
 [ext_resource type="Texture2D" uid="uid://hk0k2coukjwc" path="res://effects/halos/halo_tex.tres" id="3_k2e0h"]
-[ext_resource type="Script" path="res://scripts/effects/halo.gd" id="4_ec80x"]
+[ext_resource type="Script" uid="uid://qbss7pion7pi" path="res://scripts/effects/halo.gd" id="4_ec80x"]
 [ext_resource type="ArrayMesh" uid="uid://e0yjfivl6sup" path="res://pickups/health/heart/heart.obj" id="5_tvl1v"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_uc2sx"]
@@ -144,13 +144,17 @@ noise = SubResource("FastNoiseLite_ddnp3")
 render_priority = 0
 shader = SubResource("Shader_3a3pj")
 shader_parameter/albedo = Color(0, 1, 0, 1)
+shader_parameter/texture_albedo = SubResource("NoiseTexture2D_blpww")
 shader_parameter/point_size = 1.0
 shader_parameter/roughness = 1.0
-shader_parameter/metallic_texture_channel = null
+shader_parameter/metallic_texture_channel = Vector4(0, 0, 0, 0)
+shader_parameter/texture_roughness = SubResource("NoiseTexture2D_el3df")
 shader_parameter/specular = 0.5
 shader_parameter/metallic = 0.0
+shader_parameter/texture_emission = SubResource("NoiseTexture2D_t5qiw")
 shader_parameter/emission = Color(0, 0, 0, 1)
 shader_parameter/emission_energy = 3.0
+shader_parameter/texture_normal = SubResource("NoiseTexture2D_eps00")
 shader_parameter/normal_scale = 1.0
 shader_parameter/uv1_scale = Vector3(1, 1, 1)
 shader_parameter/uv1_offset = Vector3(0, 0, 0)
@@ -158,10 +162,6 @@ shader_parameter/uv2_scale = Vector3(1, 1, 1)
 shader_parameter/uv2_offset = Vector3(0, 0, 0)
 shader_parameter/min_size = 1.0
 shader_parameter/scale_flux = 0.5
-shader_parameter/texture_albedo = SubResource("NoiseTexture2D_blpww")
-shader_parameter/texture_roughness = SubResource("NoiseTexture2D_el3df")
-shader_parameter/texture_emission = SubResource("NoiseTexture2D_t5qiw")
-shader_parameter/texture_normal = SubResource("NoiseTexture2D_eps00")
 
 [sub_resource type="Animation" id="Animation_wivti"]
 resource_name = "anim"
@@ -184,7 +184,7 @@ tracks/1/keys = PackedFloat32Array(0, 1, 0, 0, 0, 2.5, 1, 0, 0.05, 0, 5, 1, 0, 0
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_4pudi"]
 _data = {
-"anim": SubResource("Animation_wivti")
+&"anim": SubResource("Animation_wivti")
 }
 
 [node name="HeartPickup" type="RigidBody3D"]

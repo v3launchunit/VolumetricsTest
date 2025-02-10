@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="FuncGodotFGDSolidClass" load_steps=3 format=3 uid="uid://un3afw25sqds"]
 
-[ext_resource type="Script" path="res://addons/func_godot/src/fgd/func_godot_fgd_solid_class.gd" id="1_akwfa"]
-[ext_resource type="Script" path="res://trench_broom/func_godot_fgd/entities/solid/area/area_hazard.gd" id="2_f2h6u"]
+[ext_resource type="Script" uid="uid://bncud33hs01ck" path="res://addons/func_godot/src/fgd/func_godot_fgd_solid_class.gd" id="1_akwfa"]
+[ext_resource type="Script" uid="uid://c7lhqwn4gnw3k" path="res://trench_broom/func_godot_fgd/entities/solid/area/area_hazard.gd" id="2_f2h6u"]
 
 [resource]
 script = ExtResource("1_akwfa")

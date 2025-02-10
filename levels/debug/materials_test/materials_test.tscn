@@ -1,7 +1,5 @@
-[gd_scene load_steps=87 format=4 uid="uid://soert5a2w1kb"]
+[gd_scene load_steps=86 format=4 uid="uid://soert5a2w1kb"]
 
-[ext_resource type="Script" path="res://addons/qodot/src/nodes/qodot_map.gd" id="1_86ll2"]
-[ext_resource type="Resource" path="res://addons/qodot/game_definitions/fgd/qodot_fgd.tres" id="2_jc7bm"]
 [ext_resource type="Material" uid="uid://cj1r6jgxrihlc" path="res://trench_broom/textures/pathways/big_cobble_stone.tres" id="3_ojeyn"]
 [ext_resource type="Material" uid="uid://bx6iv4chnue2j" path="res://trench_broom/textures/structural/bricks_clay.tres" id="4_6wa0y"]
 [ext_resource type="Material" uid="uid://cqgovoahf1u4" path="res://trench_broom/textures/special/fireblu.tres" id="4_hxp2w"]
@@ -35,8 +33,13 @@
 [ext_resource type="Material" uid="uid://cb4c2yxg51cwb" path="res://trench_broom/textures/natural/rock.tres" id="27_ojp5r"]
 [ext_resource type="Material" uid="uid://8nrdnhdxtp0t" path="res://trench_broom/textures/structural/metal_grate.tres" id="29_3pv30"]
 [ext_resource type="Material" uid="uid://bqvg2s1888yrr" path="res://trench_broom/textures/structural/bricks_stone_nomortar.tres" id="29_50ugv"]
-[ext_resource type="Texture2D" path="res://textures/structural/metal_bars.png" id="35_msqcu"]
 [ext_resource type="Material" uid="uid://qt3bjecsm0qb" path="res://trench_broom/textures/shutter_door.tres" id="37_8pu73"]
+
+[sub_resource type="Resource" id="Resource_hi87o"]
+metadata/__load_path__ = "res://addons/qodot/src/nodes/qodot_map.gd"
+
+[sub_resource type="Resource" id="Resource_uc73w"]
+metadata/__load_path__ = "res://addons/qodot/game_definitions/fgd/qodot_fgd.tres"
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_aeadg"]
 
@@ -61,7 +64,6 @@ albedo_texture = ExtResource("24_mr6dv")
 albedo_texture = ExtResource("25_01cm0")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2nf4t"]
-albedo_texture = ExtResource("35_msqcu")
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_7u3o7"]
 _surfaces = [{
@@ -619,9 +621,9 @@ points = PackedVector3Array(88, 1, -8, 88, -1, -8, 104, -1, -8, 104, 1, -8, 88, 
 [node name="Node3D" type="Node3D"]
 
 [node name="QodotMap" type="Node3D" parent="."]
-script = ExtResource("1_86ll2")
+script = SubResource("Resource_hi87o")
 map_file = "C:/Users/lengl/OneDrive/Documents/Godot/VolumetricsTest/levels/debug/materials_test/materials_test.map"
-entity_fgd = ExtResource("2_jc7bm")
+entity_fgd = SubResource("Resource_uc73w")
 texture_file_extensions = PackedStringArray("png", "jpg", "jpeg", "bmp")
 default_material = SubResource("StandardMaterial3D_aeadg")
 

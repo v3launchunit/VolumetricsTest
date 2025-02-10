@@ -1,13 +1,13 @@
 [gd_scene load_steps=42 format=3 uid="uid://dco7xp2cwuyge"]
 
-[ext_resource type="Script" path="res://scripts/effects/lifetime.gd" id="1_eyiwv"]
-[ext_resource type="Script" path="res://scripts/auto_play.gd" id="2_w10mg"]
-[ext_resource type="Script" path="res://scripts/effects/area_damage.gd" id="3_6neht"]
+[ext_resource type="Script" uid="uid://b5h7xnsiqnyy7" path="res://scripts/effects/lifetime.gd" id="1_eyiwv"]
+[ext_resource type="Script" uid="uid://b7g82w2xxwd0u" path="res://scripts/auto_play.gd" id="2_w10mg"]
+[ext_resource type="Script" uid="uid://iq4n1kv8ucdv" path="res://scripts/effects/area_damage.gd" id="3_6neht"]
 [ext_resource type="Texture2D" uid="uid://djg6ch15ainnw" path="res://effects/radial_n.png" id="3_kqyqy"]
 [ext_resource type="ArrayMesh" uid="uid://cx13p5fo0cmf6" path="res://models/effects/octagon_quad.obj" id="3_nm51l"]
 [ext_resource type="AudioStream" uid="uid://tv57kig5mcoh" path="res://audio/streams/effects/kaboom.wav" id="4_evxji"]
 [ext_resource type="AudioStream" uid="uid://b4em0t5e3pb8a" path="res://audio/streams/effects/vine_boom.mp3" id="5_8svvk"]
-[ext_resource type="Shader" path="res://shaders/canvas/canvas_shockwave.gdshader" id="7_wpe3s"]
+[ext_resource type="Shader" uid="uid://thnorbwmx6am" path="res://shaders/canvas/canvas_shockwave.gdshader" id="7_wpe3s"]
 
 [sub_resource type="Gradient" id="Gradient_6b6sv"]
 interpolation_mode = 2
@@ -384,8 +384,8 @@ tracks/11/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_7h3vl"]
 _data = {
-"RESET": SubResource("Animation_3e3i5"),
-"anim": SubResource("Animation_l41wm")
+&"RESET": SubResource("Animation_3e3i5"),
+&"anim": SubResource("Animation_l41wm")
 }
 
 [sub_resource type="Gradient" id="Gradient_f5tuf"]

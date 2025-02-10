@@ -1,10 +1,10 @@
 [gd_scene load_steps=11 format=3 uid="uid://cthr827o2iho4"]
 
-[ext_resource type="Shader" path="res://shaders/spatial/psx_pb_aclip.gdshader" id="1_e48og"]
+[ext_resource type="Shader" uid="uid://bvuxceynh6rex" path="res://shaders/spatial/psx_pb_aclip.gdshader" id="1_e48og"]
 [ext_resource type="Texture2D" uid="uid://60ymdllbjfv0" path="res://objects/deco/barrel/barrel_rad_albedo.png" id="2_0vvcw"]
 [ext_resource type="Texture2D" uid="uid://d3qt2a3s045dt" path="res://objects/deco/barrel/barrel_normals.png" id="3_bf4oi"]
 [ext_resource type="Texture2D" uid="uid://8whq3nfvxa5q" path="res://objects/deco/barrel/barrel_rad_metallic.png" id="3_fk4rc"]
-[ext_resource type="Script" path="res://entities/status.gd" id="4_3ww4c"]
+[ext_resource type="Script" uid="uid://cly1es2vyxx12" path="res://entities/status.gd" id="4_3ww4c"]
 [ext_resource type="PackedScene" uid="uid://cu70msbgu2ysm" path="res://scenes/effects/damage/metal_damage_sys.tscn" id="5_g1p6n"]
 [ext_resource type="PackedScene" uid="uid://dco7xp2cwuyge" path="res://scenes/effects/explosions/explosion.tscn" id="7_hl8bo"]
 
@@ -15,20 +15,20 @@ height = 1.5
 render_priority = 0
 shader = ExtResource("1_e48og")
 shader_parameter/albedo_col = Color(1, 1, 1, 1)
+shader_parameter/albedo_tex = ExtResource("2_0vvcw")
 shader_parameter/alpha_clip_threshold = 0.5
+shader_parameter/normal_tex = ExtResource("3_bf4oi")
 shader_parameter/normal_scale = 1.0
 shader_parameter/roughness = 0.5
 shader_parameter/metallic = 1.0
 shader_parameter/specular = 0.5
+shader_parameter/metallic_tex = ExtResource("3_fk4rc")
 shader_parameter/metallic_channel = Vector4(1, 0, 0, 0)
 shader_parameter/uv1_scale = Vector3(1, 1, 1)
 shader_parameter/uv1_offset = Vector3(0, 0, 0)
 shader_parameter/uv2_scale = Vector3(1, 1, 1)
 shader_parameter/uv2_offset = Vector3(0, 0, 0)
 shader_parameter/is_terrain_mat = false
-shader_parameter/albedo_tex = ExtResource("2_0vvcw")
-shader_parameter/normal_tex = ExtResource("3_bf4oi")
-shader_parameter/metallic_tex = ExtResource("3_fk4rc")
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_o4fo5"]
 height = 1.5

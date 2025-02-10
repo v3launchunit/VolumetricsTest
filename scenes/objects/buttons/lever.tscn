@@ -1,6 +1,6 @@
 [gd_scene load_steps=22 format=3 uid="uid://bt72j2kw0f6dm"]
 
-[ext_resource type="Script" path="res://scripts/objects/button.gd" id="1_g1dqr"]
+[ext_resource type="Script" uid="uid://dyrnoptop886" path="res://scripts/objects/button.gd" id="1_g1dqr"]
 [ext_resource type="PackedScene" uid="uid://dhcc71k270vgk" path="res://models/objects/lever.glb" id="2_eoldm"]
 [ext_resource type="Texture2D" uid="uid://2gj3tv6stgsr" path="res://objects/interactable/lever_01/lever_albedo.png" id="3_82ns7"]
 [ext_resource type="Texture2D" uid="uid://crltgslfg1nou" path="res://objects/interactable/lever_01/lever_emissions.png" id="4_o2sfm"]
@@ -78,8 +78,8 @@ tracks/0/keys = PackedFloat32Array(0, 1, 0.996, 0, 0, 0.087)
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_bnujt"]
 _data = {
-"off": SubResource("Animation_iiyc7"),
-"on": SubResource("Animation_m4faq")
+&"off": SubResource("Animation_iiyc7"),
+&"on": SubResource("Animation_m4faq")
 }
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_ay0js"]

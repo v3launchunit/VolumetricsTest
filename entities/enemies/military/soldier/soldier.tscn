@@ -1,9 +1,9 @@
 [gd_scene load_steps=71 format=3 uid="uid://13po7ktlg4ba"]
 
-[ext_resource type="Script" path="res://entities/enemies/enemy_attack_pattern.gd" id="1_hocf7"]
-[ext_resource type="Script" path="res://entities/enemies/attack_pattern.gd" id="2_2bhwk"]
+[ext_resource type="Script" uid="uid://dtlsbvucy16cj" path="res://entities/enemies/enemy_attack_pattern.gd" id="1_hocf7"]
+[ext_resource type="Script" uid="uid://shmvkrxxebgs" path="res://entities/enemies/attack_pattern.gd" id="2_2bhwk"]
 [ext_resource type="PackedScene" uid="uid://b7nab3x7ubi16" path="res://models/entities/soldier.glb" id="2_b42bk"]
-[ext_resource type="Script" path="res://entities/status.gd" id="3_1l8qx"]
+[ext_resource type="Script" uid="uid://cly1es2vyxx12" path="res://entities/status.gd" id="3_1l8qx"]
 [ext_resource type="PackedScene" uid="uid://blrtnnu61g5s" path="res://bullets/enemy/enemy_bullet_gen.tscn" id="3_7t4uc"]
 [ext_resource type="Texture2D" uid="uid://broweqdhl5i4r" path="res://weapons/akm/akm_detail_mask.png" id="3_bka8i"]
 [ext_resource type="Texture2D" uid="uid://bav8pkl55om5n" path="res://weapons/akm/akm_metallic.png" id="4_6hx3w"]
@@ -12,11 +12,11 @@
 [ext_resource type="PackedScene" uid="uid://c5pbs8t6p7ogl" path="res://scenes/effects/gibs/gibs.tscn" id="5_7axx7"]
 [ext_resource type="Texture2D" uid="uid://dre07gr8t1lp2" path="res://weapons/akm/akm_roughness.png" id="5_tu0ki"]
 [ext_resource type="Texture2D" uid="uid://diqkkt6sonc7x" path="res://entities/enemies/military/soldier/soldier_albedo.png" id="6_6wgkq"]
-[ext_resource type="Shader" path="res://shaders/spatial/psx_pb_aclip.gdshader" id="6_qg131"]
+[ext_resource type="Shader" uid="uid://bvuxceynh6rex" path="res://shaders/spatial/psx_pb_aclip.gdshader" id="6_qg131"]
 [ext_resource type="PackedScene" uid="uid://bnsepaqu7j4p4" path="res://pickups/health/health_bonus_pickup.tscn" id="6_tnlic"]
 [ext_resource type="PackedScene" uid="uid://b8i1fe0bwht3k" path="res://pickups/armor/armor_bonus_pickup.tscn" id="7_evwei"]
 [ext_resource type="Texture2D" uid="uid://b02m6126ojxcn" path="res://entities/enemies/military/soldier/soldier_metallic.png" id="7_t6fdy"]
-[ext_resource type="Shader" path="res://shaders/spatial/psx_ul_add.gdshader" id="8_balu6"]
+[ext_resource type="Shader" uid="uid://cgfn3iqbl45r7" path="res://shaders/spatial/psx_ul_add.gdshader" id="8_balu6"]
 [ext_resource type="Texture2D" uid="uid://di1wgqvbp36g" path="res://entities/enemies/military/soldier/soldier_roughness.png" id="8_bp4pw"]
 [ext_resource type="PackedScene" uid="uid://dl7fuv4wdxtjx" path="res://pickups/ammo/shotgun_shell/shell_pickup.tscn" id="8_d1roa"]
 [ext_resource type="PackedScene" uid="uid://qy044barx365" path="res://entities/stair_stepper.tscn" id="9_d0012"]
@@ -181,28 +181,28 @@ shader = SubResource("Shader_hocoe")
 shader_parameter/albedo = Color(0.3, 0.3, 0.3, 1)
 shader_parameter/point_size = 1.0
 shader_parameter/roughness = 1.0
+shader_parameter/texture_metallic = ExtResource("4_6hx3w")
 shader_parameter/metallic_texture_channel = Vector4(1, 0, 0, 0)
+shader_parameter/texture_roughness = ExtResource("5_tu0ki")
 shader_parameter/specular = 0.5
 shader_parameter/metallic = 1.0
 shader_parameter/clearcoat = 1.0
 shader_parameter/clearcoat_roughness = 0.25
-shader_parameter/uv1_scale = Vector3(1, 1, 1)
-shader_parameter/uv1_offset = Vector3(0, 0, 0)
-shader_parameter/uv2_scale = Vector3(1, 1, 1)
-shader_parameter/uv2_offset = Vector3(0, 0, 0)
-shader_parameter/texture_metallic = ExtResource("4_6hx3w")
-shader_parameter/texture_roughness = ExtResource("5_tu0ki")
 shader_parameter/texture_clearcoat = ExtResource("3_bka8i")
 shader_parameter/texture_detail_albedo = SubResource("NoiseTexture2D_dyb1y")
 shader_parameter/texture_detail_normal = SubResource("NoiseTexture2D_dbe1r")
 shader_parameter/texture_detail_mask = ExtResource("3_bka8i")
+shader_parameter/uv1_scale = Vector3(1, 1, 1)
+shader_parameter/uv1_offset = Vector3(0, 0, 0)
+shader_parameter/uv2_scale = Vector3(1, 1, 1)
+shader_parameter/uv2_offset = Vector3(0, 0, 0)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ahmhx"]
 render_priority = 0
 shader = ExtResource("8_balu6")
 shader_parameter/albedo = Color(1, 1, 0, 1)
-shader_parameter/uv1_scale = null
-shader_parameter/uv1_offset = null
+shader_parameter/uv1_scale = Vector3(0, 0, 0)
+shader_parameter/uv1_offset = Vector3(0, 0, 0)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_qimvr"]
 render_priority = 0
@@ -233,6 +233,7 @@ render_priority = 0
 shader = ExtResource("6_qg131")
 shader_parameter/albedo_col = Color(0.498039, 0.360784, 0.14902, 1)
 shader_parameter/alpha_clip_threshold = 0.5
+shader_parameter/normal_tex = SubResource("NoiseTexture2D_pyjhq")
 shader_parameter/normal_scale = 1.0
 shader_parameter/roughness = 0.75
 shader_parameter/metallic = 0.0
@@ -243,7 +244,6 @@ shader_parameter/uv1_offset = Vector3(0, 0, 0)
 shader_parameter/uv2_scale = Vector3(1, 1, 1)
 shader_parameter/uv2_offset = Vector3(0, 0, 0)
 shader_parameter/is_terrain_mat = false
-shader_parameter/normal_tex = SubResource("NoiseTexture2D_pyjhq")
 
 [sub_resource type="Shader" id="Shader_wrefi"]
 code = "shader_type spatial;
@@ -296,21 +296,21 @@ void fragment() {
 render_priority = 0
 shader = SubResource("Shader_wrefi")
 shader_parameter/albedo_col = Color(1, 1, 1, 1)
+shader_parameter/albedo_tex = ExtResource("6_6wgkq")
 shader_parameter/alpha_clip_threshold = 0.5
+shader_parameter/normal_tex = SubResource("NoiseTexture2D_pyjhq")
 shader_parameter/normal_scale = 1.0
 shader_parameter/roughness = 1.0
+shader_parameter/roughness_tex = ExtResource("8_bp4pw")
 shader_parameter/metallic = 1.0
 shader_parameter/specular = 0.5
+shader_parameter/metallic_tex = ExtResource("7_t6fdy")
 shader_parameter/metallic_channel = Vector4(1, 0, 0, 0)
 shader_parameter/uv1_scale = Vector3(1, 1, 1)
 shader_parameter/uv1_offset = Vector3(0, 0, 0)
 shader_parameter/uv2_scale = Vector3(1, 1, 1)
 shader_parameter/uv2_offset = Vector3(0, 0, 0)
 shader_parameter/is_terrain_mat = false
-shader_parameter/albedo_tex = ExtResource("6_6wgkq")
-shader_parameter/normal_tex = SubResource("NoiseTexture2D_pyjhq")
-shader_parameter/roughness_tex = ExtResource("8_bp4pw")
-shader_parameter/metallic_tex = ExtResource("7_t6fdy")
 
 [sub_resource type="Gradient" id="Gradient_njwjt"]
 colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
@@ -369,7 +369,7 @@ shader = SubResource("Shader_fq5cc")
 shader_parameter/albedo = Color(1, 0, 0, 1)
 shader_parameter/point_size = 1.0
 shader_parameter/roughness = 1.0
-shader_parameter/metallic_texture_channel = null
+shader_parameter/metallic_texture_channel = Vector4(0, 0, 0, 0)
 shader_parameter/specular = 0.5
 shader_parameter/metallic = 0.0
 shader_parameter/uv1_scale = Vector3(1, 1, 1)
@@ -607,7 +607,7 @@ tracks/28/keys = PackedFloat32Array(0, 1, 0, 0, 0)
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_kwsl3"]
 _data = {
-"RESET": SubResource("Animation_qcc01")
+&"RESET": SubResource("Animation_qcc01")
 }
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_wyfek"]

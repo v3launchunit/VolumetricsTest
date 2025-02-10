@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://cuyhixgs58ebf"]
 
-[ext_resource type="Shader" path="res://shaders/particles/tele_particles_shader.gdshader" id="1_ppgjo"]
+[ext_resource type="Shader" uid="uid://drrmwwh2wsnb6" path="res://shaders/particles/tele_particles_shader.gdshader" id="1_ppgjo"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_d0fsr"]
 transparency = 3

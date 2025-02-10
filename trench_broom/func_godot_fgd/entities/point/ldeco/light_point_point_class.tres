@@ -1,8 +1,8 @@
 [gd_resource type="Resource" script_class="FuncGodotFGDPointClass" load_steps=4 format=3 uid="uid://dh7624u1hnfdd"]
 
 [ext_resource type="Resource" uid="uid://cixh6j5bjc608" path="res://trench_broom/func_godot_fgd/entities/base/light_base_class.tres" id="1_b33nu"]
-[ext_resource type="Script" path="res://addons/func_godot/src/fgd/func_godot_fgd_point_class.gd" id="2_1i1fs"]
-[ext_resource type="Script" path="res://trench_broom/func_godot_fgd/entities/point/light/light_tb.gd" id="3_f8in4"]
+[ext_resource type="Script" uid="uid://cw2atun4e3eyv" path="res://addons/func_godot/src/fgd/func_godot_fgd_point_class.gd" id="2_1i1fs"]
+[ext_resource type="Script" uid="uid://bouegmjnoxoll" path="res://trench_broom/func_godot_fgd/entities/point/light/light_tb.gd" id="3_f8in4"]
 
 [resource]
 script = ExtResource("2_1i1fs")
@@ -14,6 +14,7 @@ func_godot_internal = false
 base_classes = Array[Resource]([ExtResource("1_b33nu")])
 class_properties = {}
 class_property_descriptions = {}
+auto_apply_to_matching_node_properties = false
 meta_properties = {
 "color": Color(0.8, 0.8, 0.8, 1),
 "size": AABB(-8, -8, -8, 8, 8, 8)
