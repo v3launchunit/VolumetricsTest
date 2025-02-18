@@ -1,4 +1,4 @@
-[gd_scene load_steps=299 format=4 uid="uid://b3dlmvcuq8quq"]
+[gd_scene load_steps=326 format=4 uid="uid://b3dlmvcuq8quq"]
 
 [ext_resource type="Script" uid="uid://bmu1uqqe8qsqm" path="res://levels/level.gd" id="1_g8h8n"]
 [ext_resource type="PackedScene" uid="uid://do61x5km3wthk" path="res://entities/player/player.tscn" id="2_rp1fy"]
@@ -1247,6 +1247,276 @@ top_radius = 0.125
 bottom_radius = 0.125
 height = 5.0
 radial_segments = 4
+
+[sub_resource type="Shader" id="Shader_kldm2"]
+code = "// NOTE: Shader automatically converted from Godot Engine 4.2.1.stable.mono's StandardMaterial3D.
+
+shader_type spatial;
+render_mode blend_mix,depth_draw_opaque,cull_back,diffuse_burley,specular_schlick_ggx;
+uniform vec4 albedo : source_color;
+uniform sampler2D texture_albedo : source_color,filter_nearest,repeat_enable;
+uniform float point_size : hint_range(0,128);
+uniform float roughness : hint_range(0,1);
+uniform sampler2D texture_metallic : hint_default_white,filter_nearest,repeat_enable;
+uniform vec4 metallic_texture_channel;
+uniform sampler2D texture_roughness : hint_roughness_r,filter_nearest,repeat_enable;
+uniform float specular;
+uniform float metallic;
+uniform sampler2D texture_normal : hint_roughness_normal,filter_nearest,repeat_enable;
+uniform float normal_scale : hint_range(-16,16);
+uniform float clearcoat : hint_range(0,1);
+uniform float clearcoat_roughness : hint_range(0,1);
+uniform sampler2D texture_clearcoat : hint_default_white,filter_nearest,repeat_enable;
+uniform vec3 uv1_scale;
+uniform vec3 uv1_offset;
+uniform vec3 uv2_scale;
+uniform vec3 uv2_offset;
+
+#include \"res://shaders/includes/psx_inc.gdshaderinc\"
+
+void vertex() {
+	POSITION = map_affine(snap_vertex(PROJECTION_MATRIX * MODELVIEW_MATRIX * vec4(VERTEX, 1.0)));
+}
+
+void fragment() {
+	vec2 base_uv = UV;
+	vec4 albedo_tex = texture(texture_albedo,base_uv);
+	ALBEDO = albedo.rgb * albedo_tex.rgb;
+	float metallic_tex = dot(texture(texture_metallic,base_uv),metallic_texture_channel);
+	METALLIC = metallic_tex * metallic;
+	vec4 roughness_texture_channel = vec4(1.0,0.0,0.0,0.0);
+	float roughness_tex = dot(texture(texture_roughness,base_uv),roughness_texture_channel);
+	ROUGHNESS = roughness_tex * roughness;
+	SPECULAR = specular;
+	NORMAL_MAP = texture(texture_normal,base_uv).rgb;
+	NORMAL_MAP_DEPTH = normal_scale;
+	vec2 clearcoat_tex = texture(texture_clearcoat,base_uv).xy;
+	CLEARCOAT = clearcoat*clearcoat_tex.x;	CLEARCOAT_ROUGHNESS = clearcoat_roughness*clearcoat_tex.y;
+}
+"
+
+[sub_resource type="Gradient" id="Gradient_v5jf5"]
+interpolation_mode = 1
+offsets = PackedFloat32Array(0, 0.2, 0.5, 0.7)
+colors = PackedColorArray(0.278431, 0.172549, 0.0470588, 1, 0.341176, 0.207843, 0.0784314, 1, 0.447059, 0.298039, 0.14902, 1, 0.415686, 0.313726, 0.145098, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_q3vr3"]
+frequency = 0.1
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_h5i32"]
+width = 48
+height = 192
+generate_mipmaps = false
+seamless_blend_skirt = 1.0
+color_ramp = SubResource("Gradient_v5jf5")
+noise = SubResource("FastNoiseLite_q3vr3")
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_1b18h"]
+width = 48
+height = 192
+generate_mipmaps = false
+seamless_blend_skirt = 1.0
+as_normal_map = true
+bump_strength = 1.0
+noise = SubResource("FastNoiseLite_q3vr3")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_v1de4"]
+render_priority = 0
+shader = SubResource("Shader_kldm2")
+shader_parameter/albedo = Color(1, 1, 1, 1)
+shader_parameter/texture_albedo = SubResource("NoiseTexture2D_h5i32")
+shader_parameter/point_size = 1.0
+shader_parameter/roughness = 0.75
+shader_parameter/metallic_texture_channel = Vector4(0, 0, 0, 0)
+shader_parameter/specular = 0.5
+shader_parameter/metallic = 0.0
+shader_parameter/texture_normal = SubResource("NoiseTexture2D_1b18h")
+shader_parameter/normal_scale = 1.0
+shader_parameter/clearcoat = 1.0
+shader_parameter/clearcoat_roughness = 0.25
+shader_parameter/uv1_scale = Vector3(1, 1, 1)
+shader_parameter/uv1_offset = Vector3(0, 0, 0)
+shader_parameter/uv2_scale = Vector3(1, 1, 1)
+shader_parameter/uv2_offset = Vector3(0, 0, 0)
+
+[sub_resource type="Gradient" id="Gradient_7hgy5"]
+colors = PackedColorArray(0.490196, 0.262745, 0.192157, 1, 0.615686, 0.403922, 0.333333, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_1acgs"]
+noise_type = 3
+frequency = 0.25
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_mdjhe"]
+width = 48
+height = 32
+color_ramp = SubResource("Gradient_7hgy5")
+noise = SubResource("FastNoiseLite_1acgs")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_3061b"]
+render_priority = 0
+shader = ExtResource("66_sdvxg")
+shader_parameter/albedo_col = Color(1, 1, 1, 1)
+shader_parameter/albedo_tex = SubResource("NoiseTexture2D_mdjhe")
+shader_parameter/alpha_clip_threshold = 0.5
+shader_parameter/normal_scale = 1.0
+shader_parameter/roughness = 0.75
+shader_parameter/metallic = 0.0
+shader_parameter/specular = 0.5
+shader_parameter/metallic_channel = Vector4(1, 0, 0, 0)
+shader_parameter/uv1_scale = Vector3(1, 1, 1)
+shader_parameter/uv1_offset = Vector3(0, 0, 0)
+shader_parameter/uv2_scale = Vector3(1, 1, 1)
+shader_parameter/uv2_offset = Vector3(0, 0, 0)
+shader_parameter/is_terrain_mat = false
+
+[sub_resource type="BoxMesh" id="BoxMesh_qcen5"]
+size = Vector3(0.25, 0.25, 0.5)
+
+[sub_resource type="Gradient" id="Gradient_vid5n"]
+interpolation_mode = 1
+offsets = PackedFloat32Array(0, 0.25, 0.5, 0.625)
+colors = PackedColorArray(0, 0, 0, 1, 0.1, 0.1, 0.1, 1, 0.15, 0.15, 0.15, 1, 0.2, 0.2, 0.2, 1)
+metadata/_snap_enabled = true
+metadata/_snap_count = 8
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_alkxl"]
+frequency = 0.05
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_dhfil"]
+width = 128
+height = 128
+color_ramp = SubResource("Gradient_vid5n")
+noise = SubResource("FastNoiseLite_alkxl")
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_u6nwt"]
+width = 128
+height = 128
+as_normal_map = true
+bump_strength = 4.0
+noise = SubResource("FastNoiseLite_alkxl")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_t6r3v"]
+albedo_texture = SubResource("NoiseTexture2D_dhfil")
+normal_enabled = true
+normal_texture = SubResource("NoiseTexture2D_u6nwt")
+texture_filter = 0
+
+[sub_resource type="Shader" id="Shader_depl2"]
+code = "// NOTE: Shader automatically converted from Godot Engine 4.2.1.stable.mono's StandardMaterial3D.
+
+shader_type spatial;
+render_mode blend_mix,depth_draw_opaque,cull_back,diffuse_burley,specular_schlick_ggx;
+uniform vec4 albedo : source_color;
+uniform sampler2D texture_albedo : source_color,filter_linear_mipmap,repeat_enable;
+uniform float point_size : hint_range(0,128);
+uniform float roughness : hint_range(0,1);
+uniform sampler2D texture_metallic : hint_default_white,filter_linear_mipmap,repeat_enable;
+uniform vec4 metallic_texture_channel;
+uniform sampler2D texture_roughness : hint_roughness_r,filter_linear_mipmap,repeat_enable;
+uniform float specular;
+uniform float metallic;
+uniform vec3 uv1_scale;
+uniform vec3 uv1_offset;
+uniform vec3 uv2_scale;
+uniform vec3 uv2_offset;
+
+#include \"res://shaders/includes/psx_inc.gdshaderinc\"
+
+void vertex() {
+	UV=UV*uv1_scale.xy+uv1_offset.xy;
+	POSITION = map_affine(snap_vertex(PROJECTION_MATRIX * MODELVIEW_MATRIX * vec4(VERTEX, 1.0)));
+}
+
+void fragment() {
+	vec2 base_uv = UV;
+	vec4 albedo_tex = texture(texture_albedo,base_uv);
+	ALBEDO = albedo.rgb * albedo_tex.rgb;
+	float metallic_tex = dot(texture(texture_metallic,base_uv),metallic_texture_channel);
+	METALLIC = metallic_tex * metallic;
+	vec4 roughness_texture_channel = vec4(1.0,0.0,0.0,0.0);
+	float roughness_tex = dot(texture(texture_roughness,base_uv),roughness_texture_channel);
+	ROUGHNESS = roughness_tex * roughness;
+	SPECULAR = specular;
+}
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_dycpg"]
+render_priority = 0
+shader = SubResource("Shader_depl2")
+shader_parameter/albedo = Color(0.75, 0.75, 0.75, 1)
+shader_parameter/point_size = 1.0
+shader_parameter/roughness = 0.25
+shader_parameter/metallic_texture_channel = Vector4(1, 0, 0, 0)
+shader_parameter/specular = 0.5
+shader_parameter/metallic = 1.0
+shader_parameter/uv1_scale = Vector3(1, 1, 1)
+shader_parameter/uv1_offset = Vector3(0, 0, 0)
+shader_parameter/uv2_scale = Vector3(1, 1, 1)
+shader_parameter/uv2_offset = Vector3(0, 0, 0)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_wx8jg"]
+top_radius = 0.125
+bottom_radius = 0.125
+height = 5.0
+radial_segments = 4
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_4oeff"]
+render_priority = 0
+shader = ExtResource("66_sdvxg")
+shader_parameter/albedo_col = Color(1, 1, 1, 1)
+shader_parameter/albedo_tex = ExtResource("67_6e6un")
+shader_parameter/alpha_clip_threshold = 0.5
+shader_parameter/normal_tex = ExtResource("68_ygtpk")
+shader_parameter/normal_scale = 1.0
+shader_parameter/roughness = 0.25
+shader_parameter/metallic = 1.0
+shader_parameter/specular = 0.5
+shader_parameter/metallic_channel = Vector4(1, 0, 0, 0)
+shader_parameter/uv1_scale = Vector3(1, 1, 1)
+shader_parameter/uv1_offset = Vector3(0, 0, 0)
+shader_parameter/uv2_scale = Vector3(1, 1, 1)
+shader_parameter/uv2_offset = Vector3(0, 0, 0)
+shader_parameter/is_terrain_mat = false
+
+[sub_resource type="Gradient" id="Gradient_6ane3"]
+interpolation_mode = 1
+offsets = PackedFloat32Array(0, 0.2, 0.5, 0.7)
+colors = PackedColorArray(0.27864, 0.171009, 0.0479525, 1, 0.341176, 0.207843, 0.0784314, 1, 0.44578, 0.298009, 0.150174, 1, 0.417342, 0.31476, 0.146004, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_lictq"]
+frequency = 0.1
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_da70s"]
+width = 3
+height = 64
+seamless = true
+seamless_blend_skirt = 0.25
+color_ramp = SubResource("Gradient_6ane3")
+noise = SubResource("FastNoiseLite_lictq")
+
+[sub_resource type="Gradient" id="Gradient_3jaum"]
+offsets = PackedFloat32Array(0.5)
+colors = PackedColorArray(0.341176, 0.207843, 0.0784314, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_urdv3"]
+gradient = SubResource("Gradient_3jaum")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4s5fk"]
+albedo_texture = SubResource("NoiseTexture2D_da70s")
+roughness = 0.75
+normal_enabled = true
+normal_texture = ExtResource("70_hs5w1")
+heightmap_enabled = true
+heightmap_scale = 3.25
+heightmap_texture = ExtResource("69_nihrt")
+detail_enabled = true
+detail_mask = ExtResource("69_nihrt")
+detail_albedo = SubResource("GradientTexture2D_urdv3")
+detail_normal = ExtResource("70_hs5w1")
+texture_filter = 0
+
+[sub_resource type="BoxMesh" id="BoxMesh_w78nq"]
+material = SubResource("StandardMaterial3D_4s5fk")
 
 [sub_resource type="Environment" id="Environment_oghbr"]
 background_mode = 2
@@ -3462,444 +3732,713 @@ mesh = SubResource("ArrayMesh_l4sh1")
 [node name="entity_143_brush_0_collision_shape" type="CollisionShape3D" parent="NavigationRegion3D/FuncGodotMap/entity_143_deco_trash_spawner"]
 shape = SubResource("ConvexPolygonShape3D_115sc")
 
-[node name="TrashBag" type="MeshInstance3D" parent="NavigationRegion3D/FuncGodotMap/entity_143_deco_trash_spawner" instance=ExtResource("76_tlxej")]
+[node name="TrashBag" parent="NavigationRegion3D/FuncGodotMap/entity_143_deco_trash_spawner" instance=ExtResource("76_tlxej")]
 transform = Transform3D(0.550619, -0.675618, 0.490265, -0.363141, 0.33496, 0.869443, -0.75163, -0.656766, -0.0609098, -1.96316, 0.15571, -2.93791)
 material_override = SubResource("StandardMaterial3D_uhuhh")
-visibility_range_end = 75.0
-visibility_range_end_margin = 10.0
-mesh = ExtResource("77_4wet4")
 
-[node name="@MeshInstance3D@33418" type="MeshInstance3D" parent="NavigationRegion3D/FuncGodotMap/entity_143_deco_trash_spawner" instance=ExtResource("76_tlxej")]
+[node name="@MeshInstance3D@33418" parent="NavigationRegion3D/FuncGodotMap/entity_143_deco_trash_spawner" instance=ExtResource("76_tlxej")]
 transform = Transform3D(0.103723, -0.973199, -0.205246, 0.0153519, 0.207901, -0.978029, 0.994488, 0.0982928, 0.0365044, 3.49151, -0.145256, 3.11972)
 material_override = SubResource("StandardMaterial3D_uhuhh")
-visibility_range_end = 75.0
-visibility_range_end_margin = 10.0
-mesh = ExtResource("77_4wet4")
 
-[node name="TrashBrick" type="MeshInstance3D" parent="NavigationRegion3D/FuncGodotMap/entity_143_deco_trash_spawner" instance=ExtResource("75_dolju")]
+[node name="TrashBrick" parent="NavigationRegion3D/FuncGodotMap/entity_143_deco_trash_spawner" instance=ExtResource("75_dolju")]
 transform = Transform3D(0.222414, 0.652406, -0.724499, 0.788721, -0.557226, -0.259649, -0.573106, -0.513679, -0.638501, -0.611782, -0.138964, -1.44701)
 material_override = SubResource("ShaderMaterial_16xmr")
-visibility_range_end = 50.0
-visibility_range_end_margin = 10.0
 mesh = SubResource("BoxMesh_eupat")
 
-[node name="@MeshInstance3D@33419" type="MeshInstance3D" parent="NavigationRegion3D/FuncGodotMap/entity_143_deco_trash_spawner" instance=ExtResource("76_tlxej")]
+[node name="@MeshInstance3D@33419" parent="NavigationRegion3D/FuncGodotMap/entity_143_deco_trash_spawner" instance=ExtResource("76_tlxej")]
 transform = Transform3D(0.388448, -0.919939, 0.0531017, 0.486839, 0.155959, -0.859456, 0.782366, 0.359706, 0.508444, 1.66171, 0.448841, 0.556183)
 material_override = SubResource("StandardMaterial3D_uhuhh")
-visibility_range_end = 75.0
-visibility_range_end_margin = 10.0
-mesh = ExtResource("77_4wet4")
 
-[node name="Chair" type="MeshInstance3D" parent="NavigationRegion3D/FuncGodotMap/entity_143_deco_trash_spawner" instance=ExtResource("78_5ob6h")]
+[node name="Chair" parent="NavigationRegion3D/FuncGodotMap/entity_143_deco_trash_spawner" instance=ExtResource("78_5ob6h")]
 transform = Transform3D(0.501099, -0.256612, -0.826468, 0.858019, 0.271707, 0.435866, 0.112709, -0.927537, 0.35633, -3.18466, -0.0182705, 1.90668)
-layers = 2
 material_override = SubResource("ShaderMaterial_yrh3t")
-visibility_range_end = 75.0
-visibility_range_end_margin = 10.0
-mesh = ExtResource("79_w7pb1")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="NavigationRegion3D/FuncGodotMap/entity_143_deco_trash_spawner" instance=ExtResource("71_w8rxn")]
+[node name="MeshInstance3D" parent="NavigationRegion3D/FuncGodotMap/entity_143_deco_trash_spawner" instance=ExtResource("71_w8rxn")]
 transform = Transform3D(0.135338, 0.0503984, 0.0405412, 0.0482702, -0.14128, 0.0144911, 0.0430532, -2.84303e-05, -0.143689, 0.469137, -0.484385, -3.35645)
 material_override = SubResource("ShaderMaterial_yk28w")
-mesh = ExtResource("72_gi2rq")
 
-[node name="MetalCrate" type="MeshInstance3D" parent="NavigationRegion3D/FuncGodotMap/entity_143_deco_trash_spawner" instance=ExtResource("65_uupyt")]
+[node name="MetalCrate" parent="NavigationRegion3D/FuncGodotMap/entity_143_deco_trash_spawner" instance=ExtResource("65_uupyt")]
 transform = Transform3D(0.969336, -0.234155, -0.0745546, -0.155161, -0.347934, -0.92459, 0.190557, 0.907807, -0.373597, -1.86329, -0.00552881, 1.64507)
-layers = 2
 material_override = SubResource("ShaderMaterial_jp0e3")
 mesh = SubResource("BoxMesh_y7oh4")
 
-[node name="@MeshInstance3D@33420" type="MeshInstance3D" parent="NavigationRegion3D/FuncGodotMap/entity_143_deco_trash_spawner" instance=ExtResource("76_tlxej")]
+[node name="@MeshInstance3D@33420" parent="NavigationRegion3D/FuncGodotMap/entity_143_deco_trash_spawner" instance=ExtResource("76_tlxej")]
 transform = Transform3D(-0.95808, 0.235953, 0.162505, -0.106653, 0.232708, -0.966681, -0.265908, -0.94349, -0.197788, 3.86717, -0.0958179, 2.15678)
 material_override = SubResource("StandardMaterial3D_uhuhh")
-visibility_range_end = 75.0
-visibility_range_end_margin = 10.0
-mesh = ExtResource("77_4wet4")
 
-[node name="@MeshInstance3D@33421" type="MeshInstance3D" parent="NavigationRegion3D/FuncGodotMap/entity_143_deco_trash_spawner" instance=ExtResource("76_tlxej")]
+[node name="@MeshInstance3D@33421" parent="NavigationRegion3D/FuncGodotMap/entity_143_deco_trash_spawner" instance=ExtResource("76_tlxej")]
 transform = Transform3D(-0.531414, 0.839082, 0.116361, 0.0680733, 0.179217, -0.981452, -0.844373, -0.513636, -0.152358, -2.98414, 0.221354, -3.27553)
 material_override = SubResource("StandardMaterial3D_uhuhh")
-visibility_range_end = 75.0
-visibility_range_end_margin = 10.0
-mesh = ExtResource("77_4wet4")
 
-[node name="@MeshInstance3D@33422" type="MeshInstance3D" parent="NavigationRegion3D/FuncGodotMap/entity_143_deco_trash_spawner" instance=ExtResource("76_tlxej")]
+[node name="@MeshInstance3D@33422" parent="NavigationRegion3D/FuncGodotMap/entity_143_deco_trash_spawner" instance=ExtResource("76_tlxej")]
 transform = Transform3D(0.744997, -0.655173, -0.125412, 0.152319, 0.350119, -0.924238, 0.649445, 0.669452, 0.360632, -3.17187, 0.0844953, -0.454815)
 material_override = SubResource("StandardMaterial3D_uhuhh")
-visibility_range_end = 75.0
-visibility_range_end_margin = 10.0
-mesh = ExtResource("77_4wet4")
 
-[node name="@MeshInstance3D@33423" type="MeshInstance3D" parent="NavigationRegion3D/FuncGodotMap/entity_143_deco_trash_spawner" instance=ExtResource("78_5ob6h")]
+[node name="@MeshInstance3D@33423" parent="NavigationRegion3D/FuncGodotMap/entity_143_deco_trash_spawner" instance=ExtResource("78_5ob6h")]
 transform = Transform3D(0.942911, -0.332995, 0.00570221, 0.328927, 0.928437, -0.172661, 0.0522011, 0.16468, 0.984965, 2.64911, -0.445455, -1.70334)
-layers = 2
 material_override = SubResource("ShaderMaterial_yrh3t")
-visibility_range_end = 75.0
-visibility_range_end_margin = 10.0
-mesh = ExtResource("79_w7pb1")
 
-[node name="TrashPole" type="MeshInstance3D" parent="NavigationRegion3D/FuncGodotMap/entity_143_deco_trash_spawner" instance=ExtResource("73_va2qf")]
+[node name="TrashPole" parent="NavigationRegion3D/FuncGodotMap/entity_143_deco_trash_spawner" instance=ExtResource("73_va2qf")]
 transform = Transform3D(-0.29657, -0.954863, -0.0168081, -0.520631, 0.176406, -0.835359, 0.800619, -0.238991, -0.549448, 3.50198, 0.359524, -2.14793)
-material_override = ExtResource("74_6s4nu")
-visibility_range_end = 75.0
-visibility_range_end_margin = 10.0
 mesh = SubResource("CylinderMesh_ev1rv")
 
-[node name="@MeshInstance3D@33424" type="MeshInstance3D" parent="NavigationRegion3D/FuncGodotMap/entity_143_deco_trash_spawner" instance=ExtResource("75_dolju")]
+[node name="@MeshInstance3D@33424" parent="NavigationRegion3D/FuncGodotMap/entity_143_deco_trash_spawner" instance=ExtResource("75_dolju")]
 transform = Transform3D(-0.424119, 0.270245, 0.864344, -0.44896, 0.766148, -0.45984, -0.786485, -0.583082, -0.203609, -1.56427, 0.484791, -3.81276)
 material_override = SubResource("ShaderMaterial_16xmr")
-visibility_range_end = 50.0
-visibility_range_end_margin = 10.0
 mesh = SubResource("BoxMesh_eupat")
 
-[node name="@MeshInstance3D@33425" type="MeshInstance3D" parent="NavigationRegion3D/FuncGodotMap/entity_143_deco_trash_spawner" instance=ExtResource("65_uupyt")]
+[node name="@MeshInstance3D@33425" parent="NavigationRegion3D/FuncGodotMap/entity_143_deco_trash_spawner" instance=ExtResource("65_uupyt")]
 transform = Transform3D(-0.990014, 0.0997183, -0.0996418, -0.0977536, 0.0236585, 0.994929, 0.10157, 0.994734, -0.0136744, 3.15175, -0.24051, 0.999546)
-layers = 2
 material_override = SubResource("ShaderMaterial_jp0e3")
 mesh = SubResource("BoxMesh_y7oh4")
 
-[node name="@MeshInstance3D@33426" type="MeshInstance3D" parent="NavigationRegion3D/FuncGodotMap/entity_143_deco_trash_spawner" instance=ExtResource("73_va2qf")]
+[node name="@MeshInstance3D@33426" parent="NavigationRegion3D/FuncGodotMap/entity_143_deco_trash_spawner" instance=ExtResource("73_va2qf")]
 transform = Transform3D(0.200455, 0.97967, 0.0080916, 0.0602027, -0.0040739, -0.998178, -0.977851, 0.200577, -0.0597954, -3.91335, 0.399814, 1.14806)
-material_override = ExtResource("74_6s4nu")
-visibility_range_end = 75.0
-visibility_range_end_margin = 10.0
 mesh = SubResource("CylinderMesh_ev1rv")
 
-[node name="@MeshInstance3D@33427" type="MeshInstance3D" parent="NavigationRegion3D/FuncGodotMap/entity_143_deco_trash_spawner" instance=ExtResource("78_5ob6h")]
+[node name="@MeshInstance3D@33427" parent="NavigationRegion3D/FuncGodotMap/entity_143_deco_trash_spawner" instance=ExtResource("78_5ob6h")]
 transform = Transform3D(0.934336, -0.340796, -0.104276, -0.0881736, 0.0624463, -0.994146, 0.345312, 0.938061, 0.0282966, -3.44198, 0.39802, -0.14212)
-layers = 2
 material_override = SubResource("ShaderMaterial_yrh3t")
-visibility_range_end = 75.0
-visibility_range_end_margin = 10.0
-mesh = ExtResource("79_w7pb1")
 
-[node name="@MeshInstance3D@33428" type="MeshInstance3D" parent="NavigationRegion3D/FuncGodotMap/entity_143_deco_trash_spawner" instance=ExtResource("73_va2qf")]
+[node name="@MeshInstance3D@33428" parent="NavigationRegion3D/FuncGodotMap/entity_143_deco_trash_spawner" instance=ExtResource("73_va2qf")]
 transform = Transform3D(0.743219, 0.488595, -0.457056, -0.132559, 0.777138, 0.615211, 0.655785, -0.396649, 0.642351, -3.59793, 0.069744, 0.430649)
-material_override = ExtResource("74_6s4nu")
-visibility_range_end = 75.0
-visibility_range_end_margin = 10.0
 mesh = SubResource("CylinderMesh_ev1rv")
 
-[node name="@MeshInstance3D@33429" type="MeshInstance3D" parent="NavigationRegion3D/FuncGodotMap/entity_143_deco_trash_spawner" instance=ExtResource("76_tlxej")]
+[node name="@MeshInstance3D@33429" parent="NavigationRegion3D/FuncGodotMap/entity_143_deco_trash_spawner" instance=ExtResource("76_tlxej")]
 transform = Transform3D(-0.506066, -0.412571, -0.757418, -0.82867, -0.0109376, 0.559631, -0.239172, 0.91086, -0.33635, 1.98298, 0.310319, 2.18548)
 material_override = SubResource("StandardMaterial3D_uhuhh")
-visibility_range_end = 75.0
-visibility_range_end_margin = 10.0
-mesh = ExtResource("77_4wet4")
 
-[node name="@MeshInstance3D@33430" type="MeshInstance3D" parent="NavigationRegion3D/FuncGodotMap/entity_143_deco_trash_spawner" instance=ExtResource("75_dolju")]
+[node name="@MeshInstance3D@33430" parent="NavigationRegion3D/FuncGodotMap/entity_143_deco_trash_spawner" instance=ExtResource("75_dolju")]
 transform = Transform3D(-0.654792, -0.637863, 0.405435, -0.522824, -0.00511411, -0.852426, 0.545804, -0.770133, -0.330141, -1.47627, 0.440061, 1.48786)
 material_override = SubResource("ShaderMaterial_16xmr")
-visibility_range_end = 50.0
-visibility_range_end_margin = 10.0
 mesh = SubResource("BoxMesh_eupat")
 
-[node name="@MeshInstance3D@33431" type="MeshInstance3D" parent="NavigationRegion3D/FuncGodotMap/entity_143_deco_trash_spawner" instance=ExtResource("71_w8rxn")]
+[node name="@MeshInstance3D@33431" parent="NavigationRegion3D/FuncGodotMap/entity_143_deco_trash_spawner" instance=ExtResource("71_w8rxn")]
 transform = Transform3D(0.0772256, 0.0890623, 0.0927584, -0.0947914, -0.0336882, 0.111264, 0.0868953, -0.115901, 0.0389384, 0.691055, 0.185673, 0.119465)
 material_override = SubResource("ShaderMaterial_yk28w")
-mesh = ExtResource("72_gi2rq")
 
-[node name="@MeshInstance3D@33432" type="MeshInstance3D" parent="NavigationRegion3D/FuncGodotMap/entity_143_deco_trash_spawner" instance=ExtResource("65_uupyt")]
+[node name="@MeshInstance3D@33432" parent="NavigationRegion3D/FuncGodotMap/entity_143_deco_trash_spawner" instance=ExtResource("65_uupyt")]
 transform = Transform3D(0.122954, -0.534238, 0.836344, -0.956014, -0.289904, -0.0446378, 0.266307, -0.794069, -0.546384, -3.38419, 0.432811, -1.96515)
-layers = 2
 material_override = SubResource("ShaderMaterial_jp0e3")
 mesh = SubResource("BoxMesh_y7oh4")
 
-[node name="@MeshInstance3D@33433" type="MeshInstance3D" parent="NavigationRegion3D/FuncGodotMap/entity_143_deco_trash_spawner" instance=ExtResource("75_dolju")]
+[node name="@MeshInstance3D@33433" parent="NavigationRegion3D/FuncGodotMap/entity_143_deco_trash_spawner" instance=ExtResource("75_dolju")]
 transform = Transform3D(-0.064646, 0.354349, 0.932876, -0.905596, -0.413521, 0.0943188, 0.419186, -0.838711, 0.347629, 1.58718, 0.340901, 2.24155)
 material_override = SubResource("ShaderMaterial_16xmr")
-visibility_range_end = 50.0
-visibility_range_end_margin = 10.0
 mesh = SubResource("BoxMesh_eupat")
 
-[node name="@MeshInstance3D@33434" type="MeshInstance3D" parent="NavigationRegion3D/FuncGodotMap/entity_143_deco_trash_spawner" instance=ExtResource("78_5ob6h")]
+[node name="@MeshInstance3D@33434" parent="NavigationRegion3D/FuncGodotMap/entity_143_deco_trash_spawner" instance=ExtResource("78_5ob6h")]
 transform = Transform3D(-0.279877, 0.244174, 0.928465, -0.196747, -0.961177, 0.19347, 0.939659, -0.128525, 0.317051, 2.77857, -0.345015, 0.178158)
-layers = 2
 material_override = SubResource("ShaderMaterial_yrh3t")
-visibility_range_end = 75.0
-visibility_range_end_margin = 10.0
-mesh = ExtResource("79_w7pb1")
 
-[node name="@MeshInstance3D@33435" type="MeshInstance3D" parent="NavigationRegion3D/FuncGodotMap/entity_143_deco_trash_spawner" instance=ExtResource("76_tlxej")]
+[node name="@MeshInstance3D@33435" parent="NavigationRegion3D/FuncGodotMap/entity_143_deco_trash_spawner" instance=ExtResource("76_tlxej")]
 transform = Transform3D(-0.948302, -0.240593, 0.206973, -0.213652, 0.966202, 0.144242, -0.234681, 0.0925653, -0.967655, 0.787275, -0.0493857, 2.89737)
 material_override = SubResource("StandardMaterial3D_uhuhh")
-visibility_range_end = 75.0
-visibility_range_end_margin = 10.0
-mesh = ExtResource("77_4wet4")
 
-[node name="@MeshInstance3D@33436" type="MeshInstance3D" parent="NavigationRegion3D/FuncGodotMap/entity_143_deco_trash_spawner" instance=ExtResource("71_w8rxn")]
+[node name="@MeshInstance3D@33436" parent="NavigationRegion3D/FuncGodotMap/entity_143_deco_trash_spawner" instance=ExtResource("71_w8rxn")]
 transform = Transform3D(-0.0302119, -0.0146563, 0.146193, -0.0179212, -0.14777, -0.0185179, 0.145829, -0.0211961, 0.0280116, -2.34909, -0.413542, 0.40633)
 material_override = SubResource("ShaderMaterial_yk28w")
-mesh = ExtResource("72_gi2rq")
 
-[node name="@MeshInstance3D@33437" type="MeshInstance3D" parent="NavigationRegion3D/FuncGodotMap/entity_143_deco_trash_spawner" instance=ExtResource("65_uupyt")]
+[node name="@MeshInstance3D@33437" parent="NavigationRegion3D/FuncGodotMap/entity_143_deco_trash_spawner" instance=ExtResource("65_uupyt")]
 transform = Transform3D(-0.643867, 0.764971, -0.0159539, -0.126991, -0.127402, -0.983688, -0.754525, -0.631338, 0.179175, 1.57784, -0.309848, 2.60645)
-layers = 2
 material_override = SubResource("ShaderMaterial_jp0e3")
 mesh = SubResource("BoxMesh_y7oh4")
 
-[node name="@MeshInstance3D@33438" type="MeshInstance3D" parent="NavigationRegion3D/FuncGodotMap/entity_143_deco_trash_spawner" instance=ExtResource("73_va2qf")]
+[node name="@MeshInstance3D@33438" parent="NavigationRegion3D/FuncGodotMap/entity_143_deco_trash_spawner" instance=ExtResource("73_va2qf")]
 transform = Transform3D(0.496859, 0.813729, -0.301625, 0.628629, -0.0978574, 0.771524, 0.598295, -0.572948, -0.560155, 0.598862, -0.184244, -0.0333366)
-material_override = ExtResource("74_6s4nu")
-visibility_range_end = 75.0
-visibility_range_end_margin = 10.0
 mesh = SubResource("CylinderMesh_ev1rv")
 
-[node name="@MeshInstance3D@33439" type="MeshInstance3D" parent="NavigationRegion3D/FuncGodotMap/entity_143_deco_trash_spawner" instance=ExtResource("75_dolju")]
+[node name="@MeshInstance3D@33439" parent="NavigationRegion3D/FuncGodotMap/entity_143_deco_trash_spawner" instance=ExtResource("75_dolju")]
 transform = Transform3D(0.73888, -0.633059, -0.230853, 0.668453, 0.645393, 0.369646, -0.0850172, -0.427438, 0.900038, 2.96589, -0.0326831, 2.75261)
 material_override = SubResource("ShaderMaterial_16xmr")
-visibility_range_end = 50.0
-visibility_range_end_margin = 10.0
 mesh = SubResource("BoxMesh_eupat")
 
-[node name="@MeshInstance3D@33440" type="MeshInstance3D" parent="NavigationRegion3D/FuncGodotMap/entity_143_deco_trash_spawner" instance=ExtResource("75_dolju")]
+[node name="@MeshInstance3D@33440" parent="NavigationRegion3D/FuncGodotMap/entity_143_deco_trash_spawner" instance=ExtResource("75_dolju")]
 transform = Transform3D(-0.520721, -0.849965, 0.080053, -0.537411, 0.253484, -0.804323, 0.663355, -0.461849, -0.588775, -0.0865889, -0.0975044, -2.05666)
 material_override = SubResource("ShaderMaterial_16xmr")
-visibility_range_end = 50.0
-visibility_range_end_margin = 10.0
 mesh = SubResource("BoxMesh_eupat")
 
-[node name="@MeshInstance3D@33441" type="MeshInstance3D" parent="NavigationRegion3D/FuncGodotMap/entity_143_deco_trash_spawner" instance=ExtResource("73_va2qf")]
+[node name="@MeshInstance3D@33441" parent="NavigationRegion3D/FuncGodotMap/entity_143_deco_trash_spawner" instance=ExtResource("73_va2qf")]
 transform = Transform3D(-0.602818, 0.795697, 0.0589632, -0.788239, -0.60536, 0.110542, 0.123652, 0.0201599, 0.992121, 2.51883, -0.0584617, -0.905445)
-material_override = ExtResource("74_6s4nu")
-visibility_range_end = 75.0
-visibility_range_end_margin = 10.0
 mesh = SubResource("CylinderMesh_ev1rv")
 
-[node name="@MeshInstance3D@33442" type="MeshInstance3D" parent="NavigationRegion3D/FuncGodotMap/entity_143_deco_trash_spawner" instance=ExtResource("75_dolju")]
+[node name="@MeshInstance3D@33442" parent="NavigationRegion3D/FuncGodotMap/entity_143_deco_trash_spawner" instance=ExtResource("75_dolju")]
 transform = Transform3D(0.753929, 0.642173, -0.138579, -0.259471, 0.0972804, -0.960839, -0.603544, 0.760362, 0.239968, -3.91937, -0.427169, 3.90848)
 material_override = SubResource("ShaderMaterial_16xmr")
-visibility_range_end = 50.0
-visibility_range_end_margin = 10.0
 mesh = SubResource("BoxMesh_eupat")
 
-[node name="@MeshInstance3D@33443" type="MeshInstance3D" parent="NavigationRegion3D/FuncGodotMap/entity_143_deco_trash_spawner" instance=ExtResource("78_5ob6h")]
+[node name="@MeshInstance3D@33443" parent="NavigationRegion3D/FuncGodotMap/entity_143_deco_trash_spawner" instance=ExtResource("78_5ob6h")]
 transform = Transform3D(0.484975, -0.773137, 0.408728, -0.545439, 0.0979202, 0.832411, -0.68359, -0.626635, -0.37421, -1.61318, -0.168149, 0.278858)
-layers = 2
 material_override = SubResource("ShaderMaterial_yrh3t")
-visibility_range_end = 75.0
-visibility_range_end_margin = 10.0
-mesh = ExtResource("79_w7pb1")
 
-[node name="@MeshInstance3D@33444" type="MeshInstance3D" parent="NavigationRegion3D/FuncGodotMap/entity_143_deco_trash_spawner" instance=ExtResource("73_va2qf")]
+[node name="@MeshInstance3D@33444" parent="NavigationRegion3D/FuncGodotMap/entity_143_deco_trash_spawner" instance=ExtResource("73_va2qf")]
 transform = Transform3D(-0.201993, -0.960807, -0.189863, 0.918112, -0.118269, -0.378264, 0.340984, -0.250722, 0.906018, 0.234388, -0.0626798, 1.78524)
-material_override = ExtResource("74_6s4nu")
-visibility_range_end = 75.0
-visibility_range_end_margin = 10.0
 mesh = SubResource("CylinderMesh_ev1rv")
 
-[node name="@MeshInstance3D@33445" type="MeshInstance3D" parent="NavigationRegion3D/FuncGodotMap/entity_143_deco_trash_spawner" instance=ExtResource("65_uupyt")]
+[node name="@MeshInstance3D@33445" parent="NavigationRegion3D/FuncGodotMap/entity_143_deco_trash_spawner" instance=ExtResource("65_uupyt")]
 transform = Transform3D(0.290052, -0.938225, -0.188691, -0.658072, -0.052379, -0.751131, 0.694846, 0.342039, -0.632612, -3.01675, 0.00808513, 0.964802)
-layers = 2
 material_override = SubResource("ShaderMaterial_jp0e3")
 mesh = SubResource("BoxMesh_y7oh4")
 
-[node name="@MeshInstance3D@33446" type="MeshInstance3D" parent="NavigationRegion3D/FuncGodotMap/entity_143_deco_trash_spawner" instance=ExtResource("75_dolju")]
+[node name="@MeshInstance3D@33446" parent="NavigationRegion3D/FuncGodotMap/entity_143_deco_trash_spawner" instance=ExtResource("75_dolju")]
 transform = Transform3D(-0.5015, -0.865155, -0.00217075, -0.863873, 0.500617, 0.0557347, -0.0471325, 0.0298262, -0.998443, 3.97689, -0.144702, -1.69789)
 material_override = SubResource("ShaderMaterial_16xmr")
-visibility_range_end = 50.0
-visibility_range_end_margin = 10.0
 mesh = SubResource("BoxMesh_eupat")
 
-[node name="@MeshInstance3D@33447" type="MeshInstance3D" parent="NavigationRegion3D/FuncGodotMap/entity_143_deco_trash_spawner" instance=ExtResource("65_uupyt")]
+[node name="@MeshInstance3D@33447" parent="NavigationRegion3D/FuncGodotMap/entity_143_deco_trash_spawner" instance=ExtResource("65_uupyt")]
 transform = Transform3D(0.262613, -0.744702, -0.613558, -0.1122, 0.607995, -0.785973, 0.958356, 0.275248, 0.0761121, 2.01396, 0.427299, 3.90144)
-layers = 2
 material_override = SubResource("ShaderMaterial_jp0e3")
 mesh = SubResource("BoxMesh_y7oh4")
 
-[node name="@MeshInstance3D@33448" type="MeshInstance3D" parent="NavigationRegion3D/FuncGodotMap/entity_143_deco_trash_spawner" instance=ExtResource("78_5ob6h")]
+[node name="@MeshInstance3D@33448" parent="NavigationRegion3D/FuncGodotMap/entity_143_deco_trash_spawner" instance=ExtResource("78_5ob6h")]
 transform = Transform3D(0.125831, -0.485754, 0.864991, 0.866852, -0.37017, -0.333978, 0.482425, 0.791844, 0.374498, -3.75943, 0.170367, -2.03084)
-layers = 2
 material_override = SubResource("ShaderMaterial_yrh3t")
-visibility_range_end = 75.0
-visibility_range_end_margin = 10.0
-mesh = ExtResource("79_w7pb1")
 
-[node name="@MeshInstance3D@33449" type="MeshInstance3D" parent="NavigationRegion3D/FuncGodotMap/entity_143_deco_trash_spawner" instance=ExtResource("75_dolju")]
+[node name="@MeshInstance3D@33449" parent="NavigationRegion3D/FuncGodotMap/entity_143_deco_trash_spawner" instance=ExtResource("75_dolju")]
 transform = Transform3D(0.285652, -0.93819, 0.195454, -0.0847801, -0.227891, -0.969989, 0.954576, 0.260508, -0.144637, 2.86627, 0.41913, -1.43229)
 material_override = SubResource("ShaderMaterial_16xmr")
-visibility_range_end = 50.0
-visibility_range_end_margin = 10.0
 mesh = SubResource("BoxMesh_eupat")
 
-[node name="@MeshInstance3D@33450" type="MeshInstance3D" parent="NavigationRegion3D/FuncGodotMap/entity_143_deco_trash_spawner" instance=ExtResource("73_va2qf")]
+[node name="@MeshInstance3D@33450" parent="NavigationRegion3D/FuncGodotMap/entity_143_deco_trash_spawner" instance=ExtResource("73_va2qf")]
 transform = Transform3D(-0.878519, -0.0010829, 0.477705, 0.447022, 0.350754, 0.822887, -0.168448, 0.936467, -0.30766, 3.80993, 0.498521, -3.74961)
-material_override = ExtResource("74_6s4nu")
-visibility_range_end = 75.0
-visibility_range_end_margin = 10.0
 mesh = SubResource("CylinderMesh_ev1rv")
 
-[node name="@MeshInstance3D@33451" type="MeshInstance3D" parent="NavigationRegion3D/FuncGodotMap/entity_143_deco_trash_spawner" instance=ExtResource("78_5ob6h")]
+[node name="@MeshInstance3D@33451" parent="NavigationRegion3D/FuncGodotMap/entity_143_deco_trash_spawner" instance=ExtResource("78_5ob6h")]
 transform = Transform3D(-0.367776, -0.437396, -0.820625, -0.570659, -0.590613, 0.570548, -0.734227, 0.678131, -0.0323908, -1.31648, 0.131679, 3.22012)
-layers = 2
 material_override = SubResource("ShaderMaterial_yrh3t")
-visibility_range_end = 75.0
-visibility_range_end_margin = 10.0
-mesh = ExtResource("79_w7pb1")
 
-[node name="@MeshInstance3D@33452" type="MeshInstance3D" parent="NavigationRegion3D/FuncGodotMap/entity_143_deco_trash_spawner" instance=ExtResource("71_w8rxn")]
+[node name="@MeshInstance3D@33452" parent="NavigationRegion3D/FuncGodotMap/entity_143_deco_trash_spawner" instance=ExtResource("71_w8rxn")]
 transform = Transform3D(0.0598262, 0.0116338, -0.13706, 0.0713222, -0.130425, 0.0200612, -0.117618, -0.0731708, -0.0575505, 1.33733, -0.345918, -1.73318)
 material_override = SubResource("ShaderMaterial_yk28w")
-mesh = ExtResource("72_gi2rq")
 
-[node name="@MeshInstance3D@33453" type="MeshInstance3D" parent="NavigationRegion3D/FuncGodotMap/entity_143_deco_trash_spawner" instance=ExtResource("71_w8rxn")]
+[node name="@MeshInstance3D@33453" parent="NavigationRegion3D/FuncGodotMap/entity_143_deco_trash_spawner" instance=ExtResource("71_w8rxn")]
 transform = Transform3D(0.143116, -0.0367721, -0.0257969, 0.0405515, 0.0687193, 0.127017, -0.0193195, -0.128162, 0.0755068, -3.71964, -0.19326, 1.22346)
 material_override = SubResource("ShaderMaterial_yk28w")
-mesh = ExtResource("72_gi2rq")
 
-[node name="@MeshInstance3D@33454" type="MeshInstance3D" parent="NavigationRegion3D/FuncGodotMap/entity_143_deco_trash_spawner" instance=ExtResource("65_uupyt")]
+[node name="@MeshInstance3D@33454" parent="NavigationRegion3D/FuncGodotMap/entity_143_deco_trash_spawner" instance=ExtResource("65_uupyt")]
 transform = Transform3D(-0.150376, -0.82054, 0.551453, 0.973049, -0.221479, -0.0642115, 0.174824, 0.526935, 0.831731, 0.129381, 0.417305, 3.18814)
-layers = 2
 material_override = SubResource("ShaderMaterial_jp0e3")
 mesh = SubResource("BoxMesh_y7oh4")
 
-[node name="@MeshInstance3D@33455" type="MeshInstance3D" parent="NavigationRegion3D/FuncGodotMap/entity_143_deco_trash_spawner" instance=ExtResource("75_dolju")]
+[node name="@MeshInstance3D@33455" parent="NavigationRegion3D/FuncGodotMap/entity_143_deco_trash_spawner" instance=ExtResource("75_dolju")]
 transform = Transform3D(-0.951447, 0.275118, 0.138056, 0.291681, 0.949109, 0.118807, -0.0983445, 0.153307, -0.983273, 3.95943, 0.139587, -2.2437)
 material_override = SubResource("ShaderMaterial_16xmr")
-visibility_range_end = 50.0
-visibility_range_end_margin = 10.0
 mesh = SubResource("BoxMesh_eupat")
 
-[node name="@MeshInstance3D@33456" type="MeshInstance3D" parent="NavigationRegion3D/FuncGodotMap/entity_143_deco_trash_spawner" instance=ExtResource("75_dolju")]
+[node name="@MeshInstance3D@33456" parent="NavigationRegion3D/FuncGodotMap/entity_143_deco_trash_spawner" instance=ExtResource("75_dolju")]
 transform = Transform3D(0.451416, -0.829035, 0.330037, 0.460481, 0.533246, 0.709653, -0.764318, -0.168373, 0.62247, -0.819093, -0.179017, -0.285595)
 material_override = SubResource("ShaderMaterial_16xmr")
-visibility_range_end = 50.0
-visibility_range_end_margin = 10.0
 mesh = SubResource("BoxMesh_eupat")
 
-[node name="@MeshInstance3D@33457" type="MeshInstance3D" parent="NavigationRegion3D/FuncGodotMap/entity_143_deco_trash_spawner" instance=ExtResource("65_uupyt")]
+[node name="@MeshInstance3D@33457" parent="NavigationRegion3D/FuncGodotMap/entity_143_deco_trash_spawner" instance=ExtResource("65_uupyt")]
 transform = Transform3D(-0.0920019, 0.363046, 0.927218, -0.980057, 0.131695, -0.148809, -0.176134, -0.922418, 0.34369, 0.689201, -0.261719, 2.84431)
-layers = 2
 material_override = SubResource("ShaderMaterial_jp0e3")
 mesh = SubResource("BoxMesh_y7oh4")
 
-[node name="@MeshInstance3D@33458" type="MeshInstance3D" parent="NavigationRegion3D/FuncGodotMap/entity_143_deco_trash_spawner" instance=ExtResource("76_tlxej")]
+[node name="@MeshInstance3D@33458" parent="NavigationRegion3D/FuncGodotMap/entity_143_deco_trash_spawner" instance=ExtResource("76_tlxej")]
 transform = Transform3D(0.280572, -0.737876, -0.613855, -0.854417, -0.483393, 0.190531, -0.437322, 0.471031, -0.766081, 1.32377, -0.274482, -2.17714)
 material_override = SubResource("StandardMaterial3D_uhuhh")
-visibility_range_end = 75.0
-visibility_range_end_margin = 10.0
-mesh = ExtResource("77_4wet4")
 
-[node name="@MeshInstance3D@33459" type="MeshInstance3D" parent="NavigationRegion3D/FuncGodotMap/entity_143_deco_trash_spawner" instance=ExtResource("65_uupyt")]
+[node name="@MeshInstance3D@33459" parent="NavigationRegion3D/FuncGodotMap/entity_143_deco_trash_spawner" instance=ExtResource("65_uupyt")]
 transform = Transform3D(-0.717225, -0.545505, 0.433604, 0.57511, -0.814747, -0.0737189, 0.393492, 0.196497, 0.898083, -3.54672, 0.0469148, -3.38136)
-layers = 2
 material_override = SubResource("ShaderMaterial_jp0e3")
 mesh = SubResource("BoxMesh_y7oh4")
 
-[node name="@MeshInstance3D@33460" type="MeshInstance3D" parent="NavigationRegion3D/FuncGodotMap/entity_143_deco_trash_spawner" instance=ExtResource("75_dolju")]
+[node name="@MeshInstance3D@33460" parent="NavigationRegion3D/FuncGodotMap/entity_143_deco_trash_spawner" instance=ExtResource("75_dolju")]
 transform = Transform3D(0.620426, -0.0133284, -0.784152, 0.660896, 0.5472, 0.513604, 0.422243, -0.836896, 0.348306, -1.98334, -0.190603, -1.80653)
 material_override = SubResource("ShaderMaterial_16xmr")
-visibility_range_end = 50.0
-visibility_range_end_margin = 10.0
 mesh = SubResource("BoxMesh_eupat")
 
-[node name="@MeshInstance3D@33461" type="MeshInstance3D" parent="NavigationRegion3D/FuncGodotMap/entity_143_deco_trash_spawner" instance=ExtResource("78_5ob6h")]
+[node name="@MeshInstance3D@33461" parent="NavigationRegion3D/FuncGodotMap/entity_143_deco_trash_spawner" instance=ExtResource("78_5ob6h")]
 transform = Transform3D(0.141637, 0.878348, 0.456556, -0.802137, -0.168436, 0.572893, 0.5801, -0.447363, 0.680698, -3.96948, -0.241572, -2.68737)
-layers = 2
 material_override = SubResource("ShaderMaterial_yrh3t")
-visibility_range_end = 75.0
-visibility_range_end_margin = 10.0
-mesh = ExtResource("79_w7pb1")
 
-[node name="@MeshInstance3D@33462" type="MeshInstance3D" parent="NavigationRegion3D/FuncGodotMap/entity_143_deco_trash_spawner" instance=ExtResource("78_5ob6h")]
+[node name="@MeshInstance3D@33462" parent="NavigationRegion3D/FuncGodotMap/entity_143_deco_trash_spawner" instance=ExtResource("78_5ob6h")]
 transform = Transform3D(-0.414088, -0.885035, 0.212708, 0.320344, -0.360431, -0.876053, 0.852004, -0.294623, 0.432766, -1.24317, 0.383463, 2.56683)
-layers = 2
 material_override = SubResource("ShaderMaterial_yrh3t")
-visibility_range_end = 75.0
-visibility_range_end_margin = 10.0
-mesh = ExtResource("79_w7pb1")
 
-[node name="@MeshInstance3D@33463" type="MeshInstance3D" parent="NavigationRegion3D/FuncGodotMap/entity_143_deco_trash_spawner" instance=ExtResource("71_w8rxn")]
+[node name="@MeshInstance3D@33463" parent="NavigationRegion3D/FuncGodotMap/entity_143_deco_trash_spawner" instance=ExtResource("71_w8rxn")]
 transform = Transform3D(0.0555107, 0.0561244, 0.127548, -0.0943551, 0.116172, -0.0100542, -0.102546, -0.0765116, 0.0782962, 0.0604639, 0.382056, -3.81948)
 material_override = SubResource("ShaderMaterial_yk28w")
-mesh = ExtResource("72_gi2rq")
 
-[node name="@MeshInstance3D@33464" type="MeshInstance3D" parent="NavigationRegion3D/FuncGodotMap/entity_143_deco_trash_spawner" instance=ExtResource("76_tlxej")]
+[node name="@MeshInstance3D@33464" parent="NavigationRegion3D/FuncGodotMap/entity_143_deco_trash_spawner" instance=ExtResource("76_tlxej")]
 transform = Transform3D(0.425391, 0.838048, -0.34164, -0.13788, -0.313079, -0.939665, -0.894445, 0.446831, -0.017631, 0.932209, 0.495032, -3.52142)
 material_override = SubResource("StandardMaterial3D_uhuhh")
-visibility_range_end = 75.0
-visibility_range_end_margin = 10.0
-mesh = ExtResource("77_4wet4")
 
-[node name="@MeshInstance3D@33465" type="MeshInstance3D" parent="NavigationRegion3D/FuncGodotMap/entity_143_deco_trash_spawner" instance=ExtResource("73_va2qf")]
+[node name="@MeshInstance3D@33465" parent="NavigationRegion3D/FuncGodotMap/entity_143_deco_trash_spawner" instance=ExtResource("73_va2qf")]
 transform = Transform3D(0.24488, -0.961952, -0.121171, 0.741392, 0.266322, -0.615963, 0.624797, 0.061002, 0.778401, -3.96247, -0.343574, 3.11744)
-material_override = ExtResource("74_6s4nu")
-visibility_range_end = 75.0
-visibility_range_end_margin = 10.0
 mesh = SubResource("CylinderMesh_ev1rv")
 
-[node name="@MeshInstance3D@33466" type="MeshInstance3D" parent="NavigationRegion3D/FuncGodotMap/entity_143_deco_trash_spawner" instance=ExtResource("65_uupyt")]
+[node name="@MeshInstance3D@33466" parent="NavigationRegion3D/FuncGodotMap/entity_143_deco_trash_spawner" instance=ExtResource("65_uupyt")]
 transform = Transform3D(0.317442, 0.699279, 0.6405, -0.421187, -0.501182, 0.755922, 0.849607, -0.509732, 0.135431, 2.05984, -0.370446, 1.6637)
-layers = 2
 material_override = SubResource("ShaderMaterial_jp0e3")
 mesh = SubResource("BoxMesh_y7oh4")
 
-[node name="@MeshInstance3D@33467" type="MeshInstance3D" parent="NavigationRegion3D/FuncGodotMap/entity_143_deco_trash_spawner" instance=ExtResource("78_5ob6h")]
+[node name="@MeshInstance3D@33467" parent="NavigationRegion3D/FuncGodotMap/entity_143_deco_trash_spawner" instance=ExtResource("78_5ob6h")]
 transform = Transform3D(-0.464422, 0.468737, 0.751397, -0.697124, 0.329782, -0.636602, -0.546196, -0.819469, 0.17361, -3.74126, 0.411306, 3.38593)
-layers = 2
 material_override = SubResource("ShaderMaterial_yrh3t")
-visibility_range_end = 75.0
-visibility_range_end_margin = 10.0
-mesh = ExtResource("79_w7pb1")
 
-[node name="@MeshInstance3D@33468" type="MeshInstance3D" parent="NavigationRegion3D/FuncGodotMap/entity_143_deco_trash_spawner" instance=ExtResource("75_dolju")]
+[node name="@MeshInstance3D@33468" parent="NavigationRegion3D/FuncGodotMap/entity_143_deco_trash_spawner" instance=ExtResource("75_dolju")]
 transform = Transform3D(-0.165606, -0.950282, 0.263704, 0.692835, -0.3024, -0.654625, 0.701822, 0.0742932, 0.708468, -1.72923, 0.482288, 3.72222)
 material_override = SubResource("ShaderMaterial_16xmr")
-visibility_range_end = 50.0
-visibility_range_end_margin = 10.0
 mesh = SubResource("BoxMesh_eupat")
 
-[node name="@MeshInstance3D@33469" type="MeshInstance3D" parent="NavigationRegion3D/FuncGodotMap/entity_143_deco_trash_spawner" instance=ExtResource("75_dolju")]
+[node name="@MeshInstance3D@33469" parent="NavigationRegion3D/FuncGodotMap/entity_143_deco_trash_spawner" instance=ExtResource("75_dolju")]
 transform = Transform3D(-0.978132, -0.010477, 0.20772, 0.02971, -0.995527, 0.0896893, 0.205851, 0.0938994, 0.974068, 1.17167, 0.329045, 1.35032)
 material_override = SubResource("ShaderMaterial_16xmr")
-visibility_range_end = 50.0
-visibility_range_end_margin = 10.0
 mesh = SubResource("BoxMesh_eupat")
 
-[node name="@MeshInstance3D@33470" type="MeshInstance3D" parent="NavigationRegion3D/FuncGodotMap/entity_143_deco_trash_spawner" instance=ExtResource("73_va2qf")]
+[node name="@MeshInstance3D@33470" parent="NavigationRegion3D/FuncGodotMap/entity_143_deco_trash_spawner" instance=ExtResource("73_va2qf")]
 transform = Transform3D(0.995551, 0.0178024, -0.0925295, -0.0753332, -0.439483, -0.895086, -0.0565998, 0.898075, -0.436186, 3.09317, 0.210559, -0.297558)
-material_override = ExtResource("74_6s4nu")
-visibility_range_end = 75.0
-visibility_range_end_margin = 10.0
 mesh = SubResource("CylinderMesh_ev1rv")
 
-[node name="@MeshInstance3D@33471" type="MeshInstance3D" parent="NavigationRegion3D/FuncGodotMap/entity_143_deco_trash_spawner" instance=ExtResource("78_5ob6h")]
+[node name="@MeshInstance3D@33471" parent="NavigationRegion3D/FuncGodotMap/entity_143_deco_trash_spawner" instance=ExtResource("78_5ob6h")]
 transform = Transform3D(-0.777135, 0.100765, -0.621214, -0.241181, -0.959421, 0.146091, -0.581285, 0.263358, 0.769903, -3.6492, -0.0777698, 3.09366)
-layers = 2
 material_override = SubResource("ShaderMaterial_yrh3t")
+
+[node name="@MeshInstance3D@33472" parent="NavigationRegion3D/FuncGodotMap/entity_143_deco_trash_spawner" instance=ExtResource("76_tlxej")]
+transform = Transform3D(-0.776698, -0.629377, -0.0250123, -0.147935, 0.143675, 0.978505, -0.612255, 0.763703, -0.204699, -0.0996208, 0.312115, -3.18536)
+material_override = SubResource("StandardMaterial3D_uhuhh")
+
+[node name="@MeshInstance3D@33473" parent="NavigationRegion3D/FuncGodotMap/entity_143_deco_trash_spawner" instance=ExtResource("75_dolju")]
+transform = Transform3D(-0.101219, 0.994864, 6.71514e-05, 0.000130894, -5.41807e-05, 1, 0.994864, 0.101219, -0.000124738, -2.30836, 0.110148, 3.45459)
+material_override = SubResource("ShaderMaterial_16xmr")
+mesh = SubResource("BoxMesh_eupat")
+
+[node name="@MeshInstance3D@33474" parent="NavigationRegion3D/FuncGodotMap/entity_143_deco_trash_spawner" instance=ExtResource("78_5ob6h")]
+transform = Transform3D(-0.462417, 0.722687, 0.513707, -0.213103, -0.652974, 0.726782, 0.860673, 0.226604, 0.455953, -3.48405, -0.0208234, -1.51491)
+material_override = SubResource("ShaderMaterial_yrh3t")
+
+[node name="@MeshInstance3D@33475" parent="NavigationRegion3D/FuncGodotMap/entity_143_deco_trash_spawner" instance=ExtResource("78_5ob6h")]
+transform = Transform3D(-0.599095, 0.541058, 0.590204, -0.247275, -0.826124, 0.506334, 0.761538, 0.1574, 0.628717, -2.07042, -0.486218, 0.873711)
+material_override = SubResource("ShaderMaterial_yrh3t")
+
+[node name="@MeshInstance3D@23349" type="MeshInstance3D" parent="NavigationRegion3D/FuncGodotMap/entity_143_deco_trash_spawner" instance=ExtResource("78_5ob6h")]
+transform = Transform3D(-0.726591, 0.509041, -0.461458, 0.646149, 0.277931, -0.710807, -0.233576, -0.814636, -0.530858, -0.447336, 0.369972, 1.06099)
+layers = 2
+material_override = SubResource("ShaderMaterial_v1de4")
 visibility_range_end = 75.0
 visibility_range_end_margin = 10.0
 mesh = ExtResource("79_w7pb1")
 
-[node name="@MeshInstance3D@33472" type="MeshInstance3D" parent="NavigationRegion3D/FuncGodotMap/entity_143_deco_trash_spawner" instance=ExtResource("76_tlxej")]
-transform = Transform3D(-0.776698, -0.629377, -0.0250123, -0.147935, 0.143675, 0.978505, -0.612255, 0.763703, -0.204699, -0.0996208, 0.312115, -3.18536)
-material_override = SubResource("StandardMaterial3D_uhuhh")
+[node name="@MeshInstance3D@23350" type="MeshInstance3D" parent="NavigationRegion3D/FuncGodotMap/entity_143_deco_trash_spawner" instance=ExtResource("78_5ob6h")]
+transform = Transform3D(0.439432, 0.890083, 0.121048, -0.147263, -0.0615498, 0.98718, 0.886123, -0.451624, 0.104029, 3.30545, -0.476913, -2.0474)
+layers = 2
+material_override = SubResource("ShaderMaterial_v1de4")
+visibility_range_end = 75.0
+visibility_range_end_margin = 10.0
+mesh = ExtResource("79_w7pb1")
+
+[node name="@MeshInstance3D@23351" type="MeshInstance3D" parent="NavigationRegion3D/FuncGodotMap/entity_143_deco_trash_spawner" instance=ExtResource("78_5ob6h")]
+transform = Transform3D(0.171004, -0.985083, 0.019204, -0.0412164, -0.0266262, -0.998795, 0.984408, 0.170006, -0.0451548, -2.04091, 0.0102061, 2.78558)
+layers = 2
+material_override = SubResource("ShaderMaterial_v1de4")
+visibility_range_end = 75.0
+visibility_range_end_margin = 10.0
+mesh = ExtResource("79_w7pb1")
+
+[node name="@MeshInstance3D@23352" type="MeshInstance3D" parent="NavigationRegion3D/FuncGodotMap/entity_143_deco_trash_spawner" instance=ExtResource("75_dolju")]
+transform = Transform3D(-0.47931, 0.843793, 0.241405, 0.0674226, -0.238846, 0.968714, 0.875052, 0.48059, 0.0575903, 0.584426, -0.313737, -0.183018)
+material_override = SubResource("ShaderMaterial_3061b")
+visibility_range_end = 50.0
+visibility_range_end_margin = 10.0
+mesh = SubResource("BoxMesh_qcen5")
+
+[node name="@MeshInstance3D@23353" type="MeshInstance3D" parent="NavigationRegion3D/FuncGodotMap/entity_143_deco_trash_spawner" instance=ExtResource("76_tlxej")]
+transform = Transform3D(0.927065, -0.374884, -0.00354681, -0.00330622, 0.00128494, -0.999994, 0.374886, 0.927071, -4.82237e-05, 2.27521, -0.430332, -1.58071)
+material_override = SubResource("StandardMaterial3D_t6r3v")
 visibility_range_end = 75.0
 visibility_range_end_margin = 10.0
 mesh = ExtResource("77_4wet4")
 
-[node name="@MeshInstance3D@33473" type="MeshInstance3D" parent="NavigationRegion3D/FuncGodotMap/entity_143_deco_trash_spawner" instance=ExtResource("75_dolju")]
-transform = Transform3D(-0.101219, 0.994864, 6.71514e-05, 0.000130894, -5.41807e-05, 1, 0.994864, 0.101219, -0.000124738, -2.30836, 0.110148, 3.45459)
-material_override = SubResource("ShaderMaterial_16xmr")
+[node name="@MeshInstance3D@23354" type="MeshInstance3D" parent="NavigationRegion3D/FuncGodotMap/entity_143_deco_trash_spawner" instance=ExtResource("75_dolju")]
+transform = Transform3D(0.179444, 0.78787, 0.589119, 0.306779, 0.524162, -0.794443, -0.934712, 0.323287, -0.147644, 1.82181, 0.378551, -3.01357)
+material_override = SubResource("ShaderMaterial_3061b")
 visibility_range_end = 50.0
 visibility_range_end_margin = 10.0
-mesh = SubResource("BoxMesh_eupat")
+mesh = SubResource("BoxMesh_qcen5")
 
-[node name="@MeshInstance3D@33474" type="MeshInstance3D" parent="NavigationRegion3D/FuncGodotMap/entity_143_deco_trash_spawner" instance=ExtResource("78_5ob6h")]
-transform = Transform3D(-0.462417, 0.722687, 0.513707, -0.213103, -0.652974, 0.726782, 0.860673, 0.226604, 0.455953, -3.48405, -0.0208234, -1.51491)
+[node name="@MeshInstance3D@23355" type="MeshInstance3D" parent="NavigationRegion3D/FuncGodotMap/entity_143_deco_trash_spawner" instance=ExtResource("71_w8rxn")]
+transform = Transform3D(-0.101703, -0.104114, -0.0362892, 0.0845228, -0.105323, 0.0652915, -0.0707989, 0.0238204, 0.130077, 0.0694294, -0.470812, -0.555923)
+material_override = SubResource("ShaderMaterial_dycpg")
+mesh = ExtResource("72_gi2rq")
+
+[node name="@MeshInstance3D@23356" type="MeshInstance3D" parent="NavigationRegion3D/FuncGodotMap/entity_143_deco_trash_spawner" instance=ExtResource("76_tlxej")]
+transform = Transform3D(0.246657, -0.59899, 0.761821, 0.458394, 0.76472, 0.452855, -0.853835, 0.237515, 0.463197, -2.6321, 0.164755, 3.03086)
+material_override = SubResource("StandardMaterial3D_t6r3v")
+visibility_range_end = 75.0
+visibility_range_end_margin = 10.0
+mesh = ExtResource("77_4wet4")
+
+[node name="@MeshInstance3D@23357" type="MeshInstance3D" parent="NavigationRegion3D/FuncGodotMap/entity_143_deco_trash_spawner" instance=ExtResource("73_va2qf")]
+transform = Transform3D(-0.785353, -0.511018, 0.349402, -0.42907, 0.0424965, -0.902271, 0.446228, -0.858519, -0.252637, 0.3243, -0.42188, -3.01326)
+material_override = ExtResource("74_6s4nu")
+visibility_range_end = 75.0
+visibility_range_end_margin = 10.0
+mesh = SubResource("CylinderMesh_wx8jg")
+
+[node name="@MeshInstance3D@23358" type="MeshInstance3D" parent="NavigationRegion3D/FuncGodotMap/entity_143_deco_trash_spawner" instance=ExtResource("75_dolju")]
+transform = Transform3D(-0.419376, -0.891699, -0.170284, 0.877006, -0.349502, -0.32971, 0.234487, -0.287613, 0.928598, -3.42782, -0.0551537, 0.732986)
+material_override = SubResource("ShaderMaterial_3061b")
+visibility_range_end = 50.0
+visibility_range_end_margin = 10.0
+mesh = SubResource("BoxMesh_qcen5")
+
+[node name="@MeshInstance3D@23359" type="MeshInstance3D" parent="NavigationRegion3D/FuncGodotMap/entity_143_deco_trash_spawner" instance=ExtResource("65_uupyt")]
+transform = Transform3D(0.583233, -0.796884, -0.157525, 0.0264846, 0.212475, -0.976808, 0.811873, 0.565535, 0.145028, -0.500356, 0.227969, -3.911)
 layers = 2
-material_override = SubResource("ShaderMaterial_yrh3t")
+material_override = SubResource("ShaderMaterial_4oeff")
+mesh = SubResource("BoxMesh_w78nq")
+
+[node name="@MeshInstance3D@23360" type="MeshInstance3D" parent="NavigationRegion3D/FuncGodotMap/entity_143_deco_trash_spawner" instance=ExtResource("78_5ob6h")]
+transform = Transform3D(0.465175, -0.885166, 0.00964177, 0.116771, 0.0721552, 0.990534, -0.877483, -0.459646, 0.136926, 3.83511, -0.259767, -0.229397)
+layers = 2
+material_override = SubResource("ShaderMaterial_v1de4")
 visibility_range_end = 75.0
 visibility_range_end_margin = 10.0
 mesh = ExtResource("79_w7pb1")
 
-[node name="@MeshInstance3D@33475" type="MeshInstance3D" parent="NavigationRegion3D/FuncGodotMap/entity_143_deco_trash_spawner" instance=ExtResource("78_5ob6h")]
-transform = Transform3D(-0.599095, 0.541058, 0.590204, -0.247275, -0.826124, 0.506334, 0.761538, 0.1574, 0.628717, -2.07042, -0.486218, 0.873711)
+[node name="@MeshInstance3D@23361" type="MeshInstance3D" parent="NavigationRegion3D/FuncGodotMap/entity_143_deco_trash_spawner" instance=ExtResource("73_va2qf")]
+transform = Transform3D(-0.531811, 0.845354, -0.050528, -0.413229, -0.311116, -0.855832, -0.739201, -0.434261, 0.51478, 1.16216, -0.157113, -0.833485)
+material_override = ExtResource("74_6s4nu")
+visibility_range_end = 75.0
+visibility_range_end_margin = 10.0
+mesh = SubResource("CylinderMesh_wx8jg")
+
+[node name="@MeshInstance3D@23362" type="MeshInstance3D" parent="NavigationRegion3D/FuncGodotMap/entity_143_deco_trash_spawner" instance=ExtResource("75_dolju")]
+transform = Transform3D(-0.489414, -0.845142, -0.214963, -0.332495, -0.0470366, 0.941931, -0.806177, 0.532469, -0.257985, -2.79835, -0.070013, 2.45449)
+material_override = SubResource("ShaderMaterial_3061b")
+visibility_range_end = 50.0
+visibility_range_end_margin = 10.0
+mesh = SubResource("BoxMesh_qcen5")
+
+[node name="@MeshInstance3D@23363" type="MeshInstance3D" parent="NavigationRegion3D/FuncGodotMap/entity_143_deco_trash_spawner" instance=ExtResource("76_tlxej")]
+transform = Transform3D(-0.957367, 0.28717, 0.0313426, 0.239536, 0.728518, 0.641782, 0.161467, 0.621928, -0.766246, 2.7668, -0.330195, 2.60229)
+material_override = SubResource("StandardMaterial3D_t6r3v")
+visibility_range_end = 75.0
+visibility_range_end_margin = 10.0
+mesh = ExtResource("77_4wet4")
+
+[node name="@MeshInstance3D@23364" type="MeshInstance3D" parent="NavigationRegion3D/FuncGodotMap/entity_143_deco_trash_spawner" instance=ExtResource("76_tlxej")]
+transform = Transform3D(-0.497189, 0.603502, 0.623369, -0.286544, -0.792363, 0.538567, 0.81896, 0.0891475, 0.566884, 1.91307, -0.224967, 2.58414)
+material_override = SubResource("StandardMaterial3D_t6r3v")
+visibility_range_end = 75.0
+visibility_range_end_margin = 10.0
+mesh = ExtResource("77_4wet4")
+
+[node name="@MeshInstance3D@23365" type="MeshInstance3D" parent="NavigationRegion3D/FuncGodotMap/entity_143_deco_trash_spawner" instance=ExtResource("73_va2qf")]
+transform = Transform3D(0.436472, -0.154992, -0.886267, 0.131535, -0.963474, 0.233274, -0.890051, -0.218393, -0.400143, 0.807967, 0.00496173, -1.83752)
+material_override = ExtResource("74_6s4nu")
+visibility_range_end = 75.0
+visibility_range_end_margin = 10.0
+mesh = SubResource("CylinderMesh_wx8jg")
+
+[node name="@MeshInstance3D@23366" type="MeshInstance3D" parent="NavigationRegion3D/FuncGodotMap/entity_143_deco_trash_spawner" instance=ExtResource("76_tlxej")]
+transform = Transform3D(-0.31053, 0.169472, -0.935334, 0.604711, -0.723976, -0.331939, -0.733414, -0.668684, 0.122334, 3.83499, 0.352524, -0.137238)
+material_override = SubResource("StandardMaterial3D_t6r3v")
+visibility_range_end = 75.0
+visibility_range_end_margin = 10.0
+mesh = ExtResource("77_4wet4")
+
+[node name="@MeshInstance3D@23367" type="MeshInstance3D" parent="NavigationRegion3D/FuncGodotMap/entity_143_deco_trash_spawner" instance=ExtResource("71_w8rxn")]
+transform = Transform3D(-0.0177122, 0.0479809, 0.141011, 0.141601, 0.0494804, 0.000949912, -0.0462114, 0.133227, -0.0511369, -3.03753, 0.340984, -0.635571)
+material_override = SubResource("ShaderMaterial_dycpg")
+mesh = ExtResource("72_gi2rq")
+
+[node name="@MeshInstance3D@23368" type="MeshInstance3D" parent="NavigationRegion3D/FuncGodotMap/entity_143_deco_trash_spawner" instance=ExtResource("71_w8rxn")]
+transform = Transform3D(0.082861, 0.00887766, -0.124721, -0.120271, -0.0352536, -0.0824141, -0.03419, 0.145528, -0.0123561, -0.060153, 0.416145, -3.72225)
+material_override = SubResource("ShaderMaterial_dycpg")
+mesh = ExtResource("72_gi2rq")
+
+[node name="@MeshInstance3D@23369" type="MeshInstance3D" parent="NavigationRegion3D/FuncGodotMap/entity_143_deco_trash_spawner" instance=ExtResource("75_dolju")]
+transform = Transform3D(0.567249, -0.798632, 0.201037, 0.124123, 0.324231, 0.937799, -0.814139, -0.507013, 0.283048, 3.35024, 0.489723, -3.12848)
+material_override = SubResource("ShaderMaterial_3061b")
+visibility_range_end = 50.0
+visibility_range_end_margin = 10.0
+mesh = SubResource("BoxMesh_qcen5")
+
+[node name="@MeshInstance3D@23370" type="MeshInstance3D" parent="NavigationRegion3D/FuncGodotMap/entity_143_deco_trash_spawner" instance=ExtResource("76_tlxej")]
+transform = Transform3D(0.914221, 0.375502, 0.152308, -0.261582, 0.833953, -0.485899, -0.309473, 0.404378, 0.860642, -2.19541, 0.175811, 0.902821)
+material_override = SubResource("StandardMaterial3D_t6r3v")
+visibility_range_end = 75.0
+visibility_range_end_margin = 10.0
+mesh = ExtResource("77_4wet4")
+
+[node name="@MeshInstance3D@23371" type="MeshInstance3D" parent="NavigationRegion3D/FuncGodotMap/entity_143_deco_trash_spawner" instance=ExtResource("76_tlxej")]
+transform = Transform3D(-0.596862, 0.762868, 0.248571, 0.221725, 0.454568, -0.862674, -0.771099, -0.459783, -0.440461, -0.105096, 0.120254, 1.75158)
+material_override = SubResource("StandardMaterial3D_t6r3v")
+visibility_range_end = 75.0
+visibility_range_end_margin = 10.0
+mesh = ExtResource("77_4wet4")
+
+[node name="@MeshInstance3D@23372" type="MeshInstance3D" parent="NavigationRegion3D/FuncGodotMap/entity_143_deco_trash_spawner" instance=ExtResource("75_dolju")]
+transform = Transform3D(-0.199532, 0.777076, -0.596942, -0.971552, -0.0775804, 0.223757, 0.127565, 0.624608, 0.77045, 3.10401, 0.042661, -3.12153)
+material_override = SubResource("ShaderMaterial_3061b")
+visibility_range_end = 50.0
+visibility_range_end_margin = 10.0
+mesh = SubResource("BoxMesh_qcen5")
+
+[node name="@MeshInstance3D@23373" type="MeshInstance3D" parent="NavigationRegion3D/FuncGodotMap/entity_143_deco_trash_spawner" instance=ExtResource("78_5ob6h")]
+transform = Transform3D(-0.81488, -0.0360951, -0.578505, 0.553163, 0.249724, -0.794764, 0.173153, -0.967644, -0.183528, -3.05184, 0.336791, 1.55362)
 layers = 2
-material_override = SubResource("ShaderMaterial_yrh3t")
+material_override = SubResource("ShaderMaterial_v1de4")
 visibility_range_end = 75.0
 visibility_range_end_margin = 10.0
 mesh = ExtResource("79_w7pb1")
+
+[node name="@MeshInstance3D@23374" type="MeshInstance3D" parent="NavigationRegion3D/FuncGodotMap/entity_143_deco_trash_spawner" instance=ExtResource("65_uupyt")]
+transform = Transform3D(0.957592, 0.285903, -0.0357462, -0.096052, 0.199794, -0.975119, -0.271647, 0.937199, 0.218783, -1.44406, -0.124339, -2.92835)
+layers = 2
+material_override = SubResource("ShaderMaterial_4oeff")
+mesh = SubResource("BoxMesh_w78nq")
+
+[node name="@MeshInstance3D@23375" type="MeshInstance3D" parent="NavigationRegion3D/FuncGodotMap/entity_143_deco_trash_spawner" instance=ExtResource("65_uupyt")]
+transform = Transform3D(-0.180733, 0.235507, 0.95492, -0.802182, 0.526468, -0.281665, -0.569069, -0.816926, 0.0937698, -3.8626, -0.150587, 0.678967)
+layers = 2
+material_override = SubResource("ShaderMaterial_4oeff")
+mesh = SubResource("BoxMesh_w78nq")
+
+[node name="@MeshInstance3D@23376" type="MeshInstance3D" parent="NavigationRegion3D/FuncGodotMap/entity_143_deco_trash_spawner" instance=ExtResource("75_dolju")]
+transform = Transform3D(-0.285782, -0.280606, 0.916291, 0.894345, -0.421538, 0.149845, 0.344204, 0.862303, 0.371427, -0.417944, 0.359538, 0.586399)
+material_override = SubResource("ShaderMaterial_3061b")
+visibility_range_end = 50.0
+visibility_range_end_margin = 10.0
+mesh = SubResource("BoxMesh_qcen5")
+
+[node name="@MeshInstance3D@23377" type="MeshInstance3D" parent="NavigationRegion3D/FuncGodotMap/entity_143_deco_trash_spawner" instance=ExtResource("65_uupyt")]
+transform = Transform3D(-0.766424, 0.169911, 0.619455, -0.470518, -0.805011, -0.361344, 0.437271, -0.568407, 0.696927, -2.71686, -0.127426, -1.27539)
+layers = 2
+material_override = SubResource("ShaderMaterial_4oeff")
+mesh = SubResource("BoxMesh_w78nq")
+
+[node name="@MeshInstance3D@23378" type="MeshInstance3D" parent="NavigationRegion3D/FuncGodotMap/entity_143_deco_trash_spawner" instance=ExtResource("78_5ob6h")]
+transform = Transform3D(-0.980294, -0.16155, 0.113691, 0.116523, -0.00813237, 0.993155, -0.15952, 0.986831, 0.0267964, 3.70947, -0.156059, -0.275993)
+layers = 2
+material_override = SubResource("ShaderMaterial_v1de4")
+visibility_range_end = 75.0
+visibility_range_end_margin = 10.0
+mesh = ExtResource("79_w7pb1")
+
+[node name="@MeshInstance3D@23379" type="MeshInstance3D" parent="NavigationRegion3D/FuncGodotMap/entity_143_deco_trash_spawner" instance=ExtResource("76_tlxej")]
+transform = Transform3D(0.764906, 0.44001, 0.470436, 0.259364, 0.458124, -0.850207, -0.589618, 0.772343, 0.236299, 1.84195, 0.426167, -2.59735)
+material_override = SubResource("StandardMaterial3D_t6r3v")
+visibility_range_end = 75.0
+visibility_range_end_margin = 10.0
+mesh = ExtResource("77_4wet4")
+
+[node name="@MeshInstance3D@23380" type="MeshInstance3D" parent="NavigationRegion3D/FuncGodotMap/entity_143_deco_trash_spawner" instance=ExtResource("78_5ob6h")]
+transform = Transform3D(-0.824135, -0.143052, 0.548031, 0.274295, 0.745743, 0.607148, -0.495545, 0.650694, -0.575354, 1.41141, -0.334711, 2.59501)
+layers = 2
+material_override = SubResource("ShaderMaterial_v1de4")
+visibility_range_end = 75.0
+visibility_range_end_margin = 10.0
+mesh = ExtResource("79_w7pb1")
+
+[node name="@MeshInstance3D@23381" type="MeshInstance3D" parent="NavigationRegion3D/FuncGodotMap/entity_143_deco_trash_spawner" instance=ExtResource("71_w8rxn")]
+transform = Transform3D(-0.0590794, 0.0532184, 0.127191, 0.0752788, 0.128381, -0.0187497, -0.115511, 0.0564469, -0.0772724, 1.98238, 0.222913, -3.15755)
+material_override = SubResource("ShaderMaterial_dycpg")
+mesh = ExtResource("72_gi2rq")
+
+[node name="@MeshInstance3D@23382" type="MeshInstance3D" parent="NavigationRegion3D/FuncGodotMap/entity_143_deco_trash_spawner" instance=ExtResource("65_uupyt")]
+transform = Transform3D(-0.731119, 0.359535, -0.579827, 0.295234, -0.599451, -0.743972, -0.615062, -0.715117, 0.332123, 0.102313, 0.376015, -1.02314)
+layers = 2
+material_override = SubResource("ShaderMaterial_4oeff")
+mesh = SubResource("BoxMesh_w78nq")
+
+[node name="@MeshInstance3D@23383" type="MeshInstance3D" parent="NavigationRegion3D/FuncGodotMap/entity_143_deco_trash_spawner" instance=ExtResource("73_va2qf")]
+transform = Transform3D(0.335502, -0.9105, -0.241717, -0.892998, -0.225679, -0.389389, 0.299988, 0.346494, -0.888791, -2.63201, -0.0530422, -1.43364)
+material_override = ExtResource("74_6s4nu")
+visibility_range_end = 75.0
+visibility_range_end_margin = 10.0
+mesh = SubResource("CylinderMesh_wx8jg")
+
+[node name="@MeshInstance3D@23384" type="MeshInstance3D" parent="NavigationRegion3D/FuncGodotMap/entity_143_deco_trash_spawner" instance=ExtResource("71_w8rxn")]
+transform = Transform3D(-0.148849, 0.00757989, 0.0169279, -0.0168084, 0.0027515, -0.14903, -0.00784138, -0.149783, -0.00188102, -1.31629, -0.247038, 1.40421)
+material_override = SubResource("ShaderMaterial_dycpg")
+mesh = ExtResource("72_gi2rq")
+
+[node name="@MeshInstance3D@23385" type="MeshInstance3D" parent="NavigationRegion3D/FuncGodotMap/entity_143_deco_trash_spawner" instance=ExtResource("71_w8rxn")]
+transform = Transform3D(0.0699462, 0.104009, -0.0823997, 0.0290647, -0.102894, -0.105205, -0.129471, 0.0330919, -0.0681334, 0.0928969, -0.425779, -2.86889)
+material_override = SubResource("ShaderMaterial_dycpg")
+mesh = ExtResource("72_gi2rq")
+
+[node name="@MeshInstance3D@23386" type="MeshInstance3D" parent="NavigationRegion3D/FuncGodotMap/entity_143_deco_trash_spawner" instance=ExtResource("71_w8rxn")]
+transform = Transform3D(0.112983, 0.0762364, -0.0626332, -0.0746315, 0.00374995, -0.130062, -0.0645371, 0.129128, 0.0407554, 0.996544, 0.158334, 1.84641)
+material_override = SubResource("ShaderMaterial_dycpg")
+mesh = ExtResource("72_gi2rq")
+
+[node name="@MeshInstance3D@23387" type="MeshInstance3D" parent="NavigationRegion3D/FuncGodotMap/entity_143_deco_trash_spawner" instance=ExtResource("78_5ob6h")]
+transform = Transform3D(-0.288293, 0.61498, -0.733952, 0.931738, 0.00342054, -0.363116, -0.220799, -0.788535, -0.573986, -0.126926, 0.230731, -0.576088)
+layers = 2
+material_override = SubResource("ShaderMaterial_v1de4")
+visibility_range_end = 75.0
+visibility_range_end_margin = 10.0
+mesh = ExtResource("79_w7pb1")
+
+[node name="@MeshInstance3D@23388" type="MeshInstance3D" parent="NavigationRegion3D/FuncGodotMap/entity_143_deco_trash_spawner" instance=ExtResource("78_5ob6h")]
+transform = Transform3D(-0.381967, 0.454741, -0.804557, -0.795677, -0.60465, 0.0359981, -0.470106, 0.653918, 0.592784, 0.599694, 0.0570493, 2.55057)
+layers = 2
+material_override = SubResource("ShaderMaterial_v1de4")
+visibility_range_end = 75.0
+visibility_range_end_margin = 10.0
+mesh = ExtResource("79_w7pb1")
+
+[node name="@MeshInstance3D@23389" type="MeshInstance3D" parent="NavigationRegion3D/FuncGodotMap/entity_143_deco_trash_spawner" instance=ExtResource("71_w8rxn")]
+transform = Transform3D(-0.140364, 0.0524124, -0.00713417, 0.00550704, 0.0346009, 0.145851, 0.0526082, 0.136219, -0.0343024, 2.34783, 0.352398, -0.139462)
+material_override = SubResource("ShaderMaterial_dycpg")
+mesh = ExtResource("72_gi2rq")
+
+[node name="@MeshInstance3D@23390" type="MeshInstance3D" parent="NavigationRegion3D/FuncGodotMap/entity_143_deco_trash_spawner" instance=ExtResource("73_va2qf")]
+transform = Transform3D(-0.162993, -0.788902, 0.592509, 0.0530756, -0.606681, -0.793171, 0.985199, -0.0978333, 0.140756, -0.683653, -0.331413, -2.05871)
+material_override = ExtResource("74_6s4nu")
+visibility_range_end = 75.0
+visibility_range_end_margin = 10.0
+mesh = SubResource("CylinderMesh_wx8jg")
+
+[node name="@MeshInstance3D@23391" type="MeshInstance3D" parent="NavigationRegion3D/FuncGodotMap/entity_143_deco_trash_spawner" instance=ExtResource("71_w8rxn")]
+transform = Transform3D(0.0486463, -0.124378, -0.0682901, 0.066426, 0.0837551, -0.105227, 0.125384, 0.00388438, 0.0822423, 0.192848, 0.0554898, 3.61516)
+material_override = SubResource("ShaderMaterial_dycpg")
+mesh = ExtResource("72_gi2rq")
+
+[node name="@MeshInstance3D@23392" type="MeshInstance3D" parent="NavigationRegion3D/FuncGodotMap/entity_143_deco_trash_spawner" instance=ExtResource("76_tlxej")]
+transform = Transform3D(0.6303, -0.394673, 0.668547, 0.774738, 0.375254, -0.508887, -0.0500309, 0.8387, 0.542291, -3.7878, 0.217594, 3.15627)
+material_override = SubResource("StandardMaterial3D_t6r3v")
+visibility_range_end = 75.0
+visibility_range_end_margin = 10.0
+mesh = ExtResource("77_4wet4")
+
+[node name="@MeshInstance3D@23393" type="MeshInstance3D" parent="NavigationRegion3D/FuncGodotMap/entity_143_deco_trash_spawner" instance=ExtResource("76_tlxej")]
+transform = Transform3D(-0.775715, 0.599539, -0.197028, -0.569174, -0.52979, 0.62878, 0.272595, 0.599897, 0.752207, 1.01708, -0.016088, -1.41165)
+material_override = SubResource("StandardMaterial3D_t6r3v")
+visibility_range_end = 75.0
+visibility_range_end_margin = 10.0
+mesh = ExtResource("77_4wet4")
+
+[node name="@MeshInstance3D@23394" type="MeshInstance3D" parent="NavigationRegion3D/FuncGodotMap/entity_143_deco_trash_spawner" instance=ExtResource("75_dolju")]
+transform = Transform3D(-0.677469, -0.422754, 0.601925, -0.247839, -0.639284, -0.727936, 0.69254, -0.642335, 0.328321, -1.6303, -0.203169, 3.65445)
+material_override = SubResource("ShaderMaterial_3061b")
+visibility_range_end = 50.0
+visibility_range_end_margin = 10.0
+mesh = SubResource("BoxMesh_qcen5")
+
+[node name="@MeshInstance3D@23395" type="MeshInstance3D" parent="NavigationRegion3D/FuncGodotMap/entity_143_deco_trash_spawner" instance=ExtResource("71_w8rxn")]
+transform = Transform3D(-0.122832, 0.0771127, 0.0382883, -0.0860648, -0.108209, -0.0581695, -0.00228312, -0.0696023, 0.132854, -1.88648, -0.0651121, -3.67681)
+material_override = SubResource("ShaderMaterial_dycpg")
+mesh = ExtResource("72_gi2rq")
+
+[node name="@MeshInstance3D@23396" type="MeshInstance3D" parent="NavigationRegion3D/FuncGodotMap/entity_143_deco_trash_spawner" instance=ExtResource("75_dolju")]
+transform = Transform3D(0.975391, -0.220237, -0.0104077, 0.0159225, 0.117441, -0.992952, 0.219908, 0.968351, 0.118058, -1.97464, 0.00413918, 1.02268)
+material_override = SubResource("ShaderMaterial_3061b")
+visibility_range_end = 50.0
+visibility_range_end_margin = 10.0
+mesh = SubResource("BoxMesh_qcen5")
+
+[node name="@MeshInstance3D@23397" type="MeshInstance3D" parent="NavigationRegion3D/FuncGodotMap/entity_143_deco_trash_spawner" instance=ExtResource("75_dolju")]
+transform = Transform3D(-0.677854, 0.733567, 0.0489097, 0.666489, 0.641226, -0.38029, -0.310331, -0.225184, -0.923573, 2.3811, 0.169136, 1.05783)
+material_override = SubResource("ShaderMaterial_3061b")
+visibility_range_end = 50.0
+visibility_range_end_margin = 10.0
+mesh = SubResource("BoxMesh_qcen5")
+
+[node name="@MeshInstance3D@23398" type="MeshInstance3D" parent="NavigationRegion3D/FuncGodotMap/entity_143_deco_trash_spawner" instance=ExtResource("73_va2qf")]
+transform = Transform3D(0.966677, 0.237434, 0.0957132, 0.169648, -0.314151, -0.934093, -0.191717, 0.919203, -0.343962, 0.570312, 0.0965376, -3.23293)
+material_override = ExtResource("74_6s4nu")
+visibility_range_end = 75.0
+visibility_range_end_margin = 10.0
+mesh = SubResource("CylinderMesh_wx8jg")
+
+[node name="@MeshInstance3D@23399" type="MeshInstance3D" parent="NavigationRegion3D/FuncGodotMap/entity_143_deco_trash_spawner" instance=ExtResource("71_w8rxn")]
+transform = Transform3D(0.0539974, 0.042645, -0.133288, -0.139842, 0.0110051, -0.0531317, -0.00532639, 0.143389, 0.0437189, -0.870465, 0.304185, -1.32848)
+material_override = SubResource("ShaderMaterial_dycpg")
+mesh = ExtResource("72_gi2rq")
+
+[node name="@MeshInstance3D@23400" type="MeshInstance3D" parent="NavigationRegion3D/FuncGodotMap/entity_143_deco_trash_spawner" instance=ExtResource("78_5ob6h")]
+transform = Transform3D(-0.949626, -0.174976, 0.259987, -0.250426, -0.0750619, -0.965221, 0.188406, -0.981707, 0.0274621, -1.86163, 0.475753, 3.84801)
+layers = 2
+material_override = SubResource("ShaderMaterial_v1de4")
+visibility_range_end = 75.0
+visibility_range_end_margin = 10.0
+mesh = ExtResource("79_w7pb1")
+
+[node name="@MeshInstance3D@23401" type="MeshInstance3D" parent="NavigationRegion3D/FuncGodotMap/entity_143_deco_trash_spawner" instance=ExtResource("73_va2qf")]
+transform = Transform3D(-0.187089, 0.330259, -0.925163, 0.953419, 0.287902, -0.0900292, 0.236624, -0.898911, -0.368739, 3.83557, -0.311807, -0.796177)
+material_override = ExtResource("74_6s4nu")
+visibility_range_end = 75.0
+visibility_range_end_margin = 10.0
+mesh = SubResource("CylinderMesh_wx8jg")
+
+[node name="@MeshInstance3D@23402" type="MeshInstance3D" parent="NavigationRegion3D/FuncGodotMap/entity_143_deco_trash_spawner" instance=ExtResource("73_va2qf")]
+transform = Transform3D(-0.755747, -0.546366, -0.361014, 0.39669, 0.0566738, -0.916202, 0.521041, -0.835627, 0.173907, 2.27536, -0.169834, -0.450142)
+material_override = ExtResource("74_6s4nu")
+visibility_range_end = 75.0
+visibility_range_end_margin = 10.0
+mesh = SubResource("CylinderMesh_wx8jg")
+
+[node name="@MeshInstance3D@23403" type="MeshInstance3D" parent="NavigationRegion3D/FuncGodotMap/entity_143_deco_trash_spawner" instance=ExtResource("71_w8rxn")]
+transform = Transform3D(-0.00456261, -0.0694201, 0.132891, -0.0910148, 0.106935, 0.0527364, -0.119145, -0.0790296, -0.0453744, 1.77889, -0.059432, 0.582775)
+material_override = SubResource("ShaderMaterial_dycpg")
+mesh = ExtResource("72_gi2rq")
+
+[node name="@MeshInstance3D@23404" type="MeshInstance3D" parent="NavigationRegion3D/FuncGodotMap/entity_143_deco_trash_spawner" instance=ExtResource("76_tlxej")]
+transform = Transform3D(-0.545628, -0.61322, 0.571185, -0.771279, 0.634021, -0.0560892, -0.327748, -0.471147, -0.818903, 3.06993, 0.263139, -2.61882)
+material_override = SubResource("StandardMaterial3D_t6r3v")
+visibility_range_end = 75.0
+visibility_range_end_margin = 10.0
+mesh = ExtResource("77_4wet4")
+
+[node name="@MeshInstance3D@23405" type="MeshInstance3D" parent="NavigationRegion3D/FuncGodotMap/entity_143_deco_trash_spawner" instance=ExtResource("78_5ob6h")]
+transform = Transform3D(0.157188, 0.985867, 0.05795, 0.0188132, -0.0616581, 0.99792, 0.987389, -0.155771, -0.0282392, -3.13803, -0.0818213, -1.3951)
+layers = 2
+material_override = SubResource("ShaderMaterial_v1de4")
+visibility_range_end = 75.0
+visibility_range_end_margin = 10.0
+mesh = ExtResource("79_w7pb1")
+
+[node name="@MeshInstance3D@23406" type="MeshInstance3D" parent="NavigationRegion3D/FuncGodotMap/entity_143_deco_trash_spawner" instance=ExtResource("75_dolju")]
+transform = Transform3D(-0.143237, -0.51515, 0.845047, 0.175034, 0.827205, 0.533942, -0.974087, 0.224393, -0.0283177, -3.50684, -0.328724, 1.28038)
+material_override = SubResource("ShaderMaterial_3061b")
+visibility_range_end = 50.0
+visibility_range_end_margin = 10.0
+mesh = SubResource("BoxMesh_qcen5")
+
+[node name="@MeshInstance3D@23407" type="MeshInstance3D" parent="NavigationRegion3D/FuncGodotMap/entity_143_deco_trash_spawner" instance=ExtResource("65_uupyt")]
+transform = Transform3D(0.591535, -0.547771, 0.591636, 0.100429, 0.778128, 0.620024, -0.8, -0.307348, 0.515303, 1.06835, 0.34381, -3.94134)
+layers = 2
+material_override = SubResource("ShaderMaterial_4oeff")
+mesh = SubResource("BoxMesh_w78nq")
+
+[node name="@MeshInstance3D@23408" type="MeshInstance3D" parent="NavigationRegion3D/FuncGodotMap/entity_143_deco_trash_spawner" instance=ExtResource("75_dolju")]
+transform = Transform3D(0.803703, -0.309814, 0.508013, -0.524289, 0.0350383, 0.85082, -0.281396, -0.950151, -0.134272, -2.09597, 0.493081, 1.06672)
+material_override = SubResource("ShaderMaterial_3061b")
+visibility_range_end = 50.0
+visibility_range_end_margin = 10.0
+mesh = SubResource("BoxMesh_qcen5")
+
+[node name="@MeshInstance3D@23409" type="MeshInstance3D" parent="NavigationRegion3D/FuncGodotMap/entity_143_deco_trash_spawner" instance=ExtResource("75_dolju")]
+transform = Transform3D(0.746887, 0.663922, 0.0369882, -0.664949, 0.745588, 0.0440511, 0.00166854, -0.0574965, 0.998344, -0.0312262, -0.0451931, 2.10813)
+material_override = SubResource("ShaderMaterial_3061b")
+visibility_range_end = 50.0
+visibility_range_end_margin = 10.0
+mesh = SubResource("BoxMesh_qcen5")
+
+[node name="@MeshInstance3D@23410" type="MeshInstance3D" parent="NavigationRegion3D/FuncGodotMap/entity_143_deco_trash_spawner" instance=ExtResource("76_tlxej")]
+transform = Transform3D(0.658424, -0.0417417, -0.751489, 0.454635, -0.773664, 0.441306, -0.599821, -0.632219, -0.490422, -3.47084, -0.11021, 2.62299)
+material_override = SubResource("StandardMaterial3D_t6r3v")
+visibility_range_end = 75.0
+visibility_range_end_margin = 10.0
+mesh = ExtResource("77_4wet4")
+
+[node name="@MeshInstance3D@23411" type="MeshInstance3D" parent="NavigationRegion3D/FuncGodotMap/entity_143_deco_trash_spawner" instance=ExtResource("73_va2qf")]
+transform = Transform3D(-0.406896, 0.140224, -0.902648, -0.707117, -0.673916, 0.214063, -0.578292, 0.725379, 0.373368, 1.64657, 0.0908884, 2.00632)
+material_override = ExtResource("74_6s4nu")
+visibility_range_end = 75.0
+visibility_range_end_margin = 10.0
+mesh = SubResource("CylinderMesh_wx8jg")
+
+[node name="@MeshInstance3D@23412" type="MeshInstance3D" parent="NavigationRegion3D/FuncGodotMap/entity_143_deco_trash_spawner" instance=ExtResource("71_w8rxn")]
+transform = Transform3D(-0.0456939, 0.0322889, -0.139174, 0.129656, -0.052004, -0.054634, -0.0600113, -0.136942, -0.0120679, 0.46236, -0.134942, 2.3074)
+material_override = SubResource("ShaderMaterial_dycpg")
+mesh = ExtResource("72_gi2rq")
 
 [node name="entity_144_light_point" type="OmniLight3D" parent="NavigationRegion3D/FuncGodotMap"]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 1.5, 52)

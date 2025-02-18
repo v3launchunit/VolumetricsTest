@@ -15,5 +15,5 @@ render_priority = 0
 shader = ExtResource("1_l0ujg")
 shader_parameter/albedo = Color(1, 1, 1, 1)
 shader_parameter/texture_albedo = SubResource("NoiseTexture2D_21fmi")
-shader_parameter/uv1_scale = null
-shader_parameter/uv1_offset = null
+shader_parameter/uv1_scale = Vector3(0, 0, 0)
+shader_parameter/uv1_offset = Vector3(0, 0, 0)
