@@ -327,8 +327,7 @@ light_projector = ExtResource("32_tgokv")
 light_bake_mode = 0
 light_cull_mask = 4294967291
 shadow_enabled = true
-spot_range = 20.0
-spot_attenuation = 0.333333
+spot_range = 30.0
 spot_angle = 35.0
 script = ExtResource("33_aknmp")
 
@@ -377,3 +376,6 @@ layout_mode = 1
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
 target_position = Vector3(0, -1.1, 0)
 collision_mask = 389
+
+[node name="SlamWaveSpawner" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)

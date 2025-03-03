@@ -111,6 +111,10 @@ var s_glow_enabled: bool = false
 var s_cross_glow_enabled: bool = true
 ## Toggles volumetric fog.
 var s_volumetric_fog_enabled: bool = true
+var s_brightness: float = 1.0
+var s_contrast: float = 1.0
+var s_saturation: float = 1.0
+
 var s_palette_compress_enabled: bool = false
 var s_color_depth: float = 16
 var s_current_palette: String = "neutral"

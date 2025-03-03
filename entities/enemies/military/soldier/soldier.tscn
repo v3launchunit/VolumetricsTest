@@ -604,6 +604,18 @@ tracks/28/path = NodePath("soldier/Armature")
 tracks/28/interp = 1
 tracks/28/loop_wrap = true
 tracks/28/keys = PackedFloat32Array(0, 1, 0, 0, 0)
+tracks/29/type = "value"
+tracks/29/imported = false
+tracks/29/enabled = true
+tracks/29/path = NodePath(".:collision_layer")
+tracks/29/interp = 1
+tracks/29/loop_wrap = true
+tracks/29/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [4]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_kwsl3"]
 _data = {
@@ -736,28 +748,28 @@ bones/23/scale = Vector3(1, 1, 1)
 bones/24/rotation = Quaternion(-0.0824806, -6.65001e-08, -1.41612e-08, 0.996593)
 
 [node name="Cylinder" parent="soldier/Armature/Skeleton3D" index="0"]
-transform = Transform3D(0.978168, -0.0659246, 0.197082, 0.153, -0.413328, -0.897636, 0.140636, 0.908193, -0.394218, 0.0136491, 0.267256, 0.529768)
+transform = Transform3D(0.909479, -0.387329, 0.151076, -0.00581349, -0.375195, -0.926928, 0.415709, 0.842143, -0.343484, -0.0340202, 0.26897, 0.5268)
 
 [node name="Cylinder" parent="soldier/Armature/Skeleton3D/Cylinder" index="0"]
 layers = 2
 material_override = SubResource("ShaderMaterial_jcsmp")
 
 [node name="Cylinder_001" parent="soldier/Armature/Skeleton3D" index="1"]
-transform = Transform3D(1.46725, -0.0659246, 0.295623, 0.2295, -0.413328, -1.34645, 0.210954, 0.908193, -0.591327, 0.00870477, 0.236256, 0.597883)
+transform = Transform3D(1.36422, -0.387329, 0.226614, -0.00872024, -0.375195, -1.39039, 0.623563, 0.842143, -0.515225, -0.0630699, 0.24083, 0.589961)
 
 [node name="Cylinder_001" parent="soldier/Armature/Skeleton3D/Cylinder_001" index="0"]
 layers = 2
 material_override = SubResource("ShaderMaterial_jcsmp")
 
 [node name="Cylinder_003" parent="soldier/Armature/Skeleton3D" index="2"]
-transform = Transform3D(0.445405, 0.895312, -0.0055338, 0.259905, -0.135209, -0.956122, -0.856775, 0.424423, -0.292919, 0.117325, 0.297182, 0.477935)
+transform = Transform3D(0.706235, 0.703594, -0.0786626, 0.163014, -0.26973, -0.949038, -0.688955, 0.65742, -0.305188, 0.083534, 0.280283, 0.507204)
 
 [node name="Cylinder_003" parent="soldier/Armature/Skeleton3D/Cylinder_003" index="0"]
 layers = 2
 material_override = SubResource("ShaderMaterial_jcsmp")
 
 [node name="Cylinder_002" parent="soldier/Armature/Skeleton3D" index="3"]
-transform = Transform3D(0.668108, 0.895312, -0.0083007, 0.389857, -0.135209, -1.43418, -1.28516, 0.424423, -0.439378, 0.184473, 0.287041, 0.509767)
+transform = Transform3D(1.05935, 0.703594, -0.117994, 0.244521, -0.26973, -1.42356, -1.03343, 0.65742, -0.457782, 0.136304, 0.260054, 0.556511)
 
 [node name="Cylinder_002" parent="soldier/Armature/Skeleton3D/Cylinder_002" index="0"]
 layers = 2
@@ -803,7 +815,7 @@ layers = 2
 material_override = SubResource("ShaderMaterial_2r8ip")
 
 [node name="BoneAttachment3D" type="BoneAttachment3D" parent="soldier/Armature/Skeleton3D" index="8"]
-transform = Transform3D(0.432972, -0.250006, -0.866044, 0.0580543, 0.966508, -0.249984, 0.899536, 0.0579585, 0.432985, 7.40376e-09, 0.213437, 0.333155)
+transform = Transform3D(0.163682, -0.094513, -0.981975, 0.00785601, 0.995493, -0.0945046, 0.986482, 0.00775433, 0.163687, 7.40376e-09, 0.213437, 0.333155)
 bone_name = "Head"
 bone_idx = 3
 
@@ -852,8 +864,8 @@ score = 1
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
-"": SubResource("AnimationLibrary_kwsl3"),
-"soldier_anims": ExtResource("18_syann")
+&"": SubResource("AnimationLibrary_kwsl3"),
+&"soldier_anims": ExtResource("18_syann")
 }
 
 [node name="AnimationTree" type="AnimationTree" parent="."]

@@ -104,6 +104,7 @@ var crouch_speed: float = 15.0
 @onready var floor_snap_cast := $FloorSnapCast as RayCast3D
 @onready var stream_player := $AudioStreamPlayer as AudioStreamPlayer
 @onready var slam_wind_sys := find_child("SlamWindSys") as GPUParticles3D
+@onready var slam_wave_spawner := find_child("SlamWaveSpawner") as Marker3D
 @onready var hud := find_child("HUD") as HudHandler
 
 
@@ -434,7 +435,7 @@ func _gravity(delta: float) -> Vector3:
 			slamming = false
 			slam_decay = 1.0
 			var slam_wave := slam_wave_scene.instantiate()
-			add_child(slam_wave)
+			slam_wave_spawner.add_child(slam_wave)
 			slam_wave.reparent(get_tree().current_scene)
 			# this feels really dirty but i can't think of a better way to do it
 			# that doesn't require sacrificing performance to find_child()

@@ -135,7 +135,7 @@ skeleton = NodePath("../AnimationPlayer")
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 root_node = NodePath("../SlamWave")
 libraries = {
-"": SubResource("AnimationLibrary_fpctx")
+&"": SubResource("AnimationLibrary_fpctx")
 }
 script = ExtResource("3_430du")
 
