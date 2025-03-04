@@ -1,6 +1,6 @@
 [gd_scene load_steps=9 format=3 uid="uid://dl2s16poygxvk"]
 
-[ext_resource type="Shader" uid="uid://bycruau5ish4o" path="res://shaders/spatial/psx_ul_mix.gdshader" id="1_1pxu8"]
+[ext_resource type="Shader" uid="uid://b8h2bq5npbupf" path="res://shaders/spatial/entities/psx_ul_mix.gdshader" id="1_1pxu8"]
 [ext_resource type="ArrayMesh" uid="uid://csscrw28bv1u1" path="res://models/objects/shroom.obj" id="1_icids"]
 [ext_resource type="Material" uid="uid://b78l63b32udy2" path="res://effects/halos/halo_mat.tres" id="2_3fnjj"]
 [ext_resource type="Texture2D" uid="uid://hk0k2coukjwc" path="res://effects/halos/halo_tex.tres" id="3_0l2qy"]

@@ -13,7 +13,7 @@
 [ext_resource type="AudioStream" uid="uid://dc1es3ux857yw" path="res://audio/streams/voices/wilhelm_scream.ogg" id="5_4ak67"]
 [ext_resource type="PackedScene" uid="uid://bosuaqplx64vr" path="res://bullets/enemy/enemy_bullet_blood.tscn" id="5_535y2"]
 [ext_resource type="PackedScene" uid="uid://b8i1fe0bwht3k" path="res://pickups/armor/armor_bonus_pickup.tscn" id="5_igm48"]
-[ext_resource type="Shader" uid="uid://bycruau5ish4o" path="res://shaders/spatial/psx_ul_mix.gdshader" id="9_0mr8g"]
+[ext_resource type="Shader" uid="uid://b8h2bq5npbupf" path="res://shaders/spatial/entities/psx_ul_mix.gdshader" id="9_0mr8g"]
 [ext_resource type="PackedScene" uid="uid://c5pbs8t6p7ogl" path="res://scenes/effects/gibs/gibs.tscn" id="11_p5oxo"]
 [ext_resource type="Script" uid="uid://d2b0n45s0c5y7" path="res://entities/stair_stepper.gd" id="15_csdjx"]
 

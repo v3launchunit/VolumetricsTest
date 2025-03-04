@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://3d0gti265ixd"]
 
-[ext_resource type="Shader" uid="uid://cgfn3iqbl45r7" path="res://shaders/spatial/psx_ul_add.gdshader" id="1_hlcjr"]
+[ext_resource type="Shader" uid="uid://cbo8e60sbj20l" path="res://shaders/spatial/entities/psx_ul_add.gdshader" id="1_hlcjr"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_63h5n"]
 render_priority = 0

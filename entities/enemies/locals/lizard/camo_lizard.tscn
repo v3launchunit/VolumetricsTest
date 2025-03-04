@@ -8,7 +8,7 @@
 [ext_resource type="AudioStream" uid="uid://bfaxlqoxr3aed" path="res://audio/streams/voices/lizard/death_roar.wav" id="6_kj0b6"]
 [ext_resource type="AudioStream" uid="uid://dc1es3ux857yw" path="res://audio/streams/voices/wilhelm_scream.ogg" id="7_pkv2a"]
 [ext_resource type="PackedScene" uid="uid://pidxth8qpjjm" path="res://entities/enemies/locals/lizard/lizard.glb" id="8_4kcvq"]
-[ext_resource type="Shader" uid="uid://bycruau5ish4o" path="res://shaders/spatial/psx_ul_mix.gdshader" id="9_8aumv"]
+[ext_resource type="Shader" uid="uid://b8h2bq5npbupf" path="res://shaders/spatial/entities/psx_ul_mix.gdshader" id="9_8aumv"]
 [ext_resource type="Material" uid="uid://cgrmnklrxmjec" path="res://entities/enemies/shadow_mat.tres" id="9_o7vwu"]
 [ext_resource type="AnimationLibrary" uid="uid://bre8ccbuc7fbn" path="res://entities/enemies/locals/lizard/lizard_anims.res" id="10_kynjh"]
 [ext_resource type="Script" uid="uid://cly1es2vyxx12" path="res://entities/status.gd" id="11_5mioy"]

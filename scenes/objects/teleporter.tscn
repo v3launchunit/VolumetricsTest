@@ -1,7 +1,7 @@
 [gd_scene load_steps=22 format=3 uid="uid://7e6nf0ho2ltr"]
 
 [ext_resource type="Script" uid="uid://cb18r87g7yo2w" path="res://scripts/objects/teleporter.gd" id="1_1hc1g"]
-[ext_resource type="Shader" uid="uid://bycruau5ish4o" path="res://shaders/spatial/psx_ul_mix.gdshader" id="2_7084i"]
+[ext_resource type="Shader" uid="uid://b8h2bq5npbupf" path="res://shaders/spatial/entities/psx_ul_mix.gdshader" id="2_7084i"]
 [ext_resource type="PackedScene" uid="uid://b6og4kcs5xlt0" path="res://effects/teleport_sys.tscn" id="3_75on0"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_360gk"]

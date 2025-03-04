@@ -1,7 +1,7 @@
 [gd_scene load_steps=15 format=3 uid="uid://dqlr68wocxmo1"]
 
 [ext_resource type="Script" uid="uid://b6bektmpvs3xa" path="res://scripts/effects/particle_lifetime.gd" id="1_8p6cp"]
-[ext_resource type="Shader" uid="uid://bvuxceynh6rex" path="res://shaders/spatial/psx_pb_aclip.gdshader" id="1_imory"]
+[ext_resource type="Shader" uid="uid://b1vlx0ah3jbml" path="res://shaders/spatial/entities/psx_pb_aclip.gdshader" id="1_imory"]
 [ext_resource type="ArrayMesh" uid="uid://bssx7wfjh7rbq" path="res://models/gib.obj" id="2_yennu"]
 [ext_resource type="AudioStream" uid="uid://7yv7v1pgy2fk" path="res://audio/streams/effects/rock_break.wav" id="4_f5j57"]
 

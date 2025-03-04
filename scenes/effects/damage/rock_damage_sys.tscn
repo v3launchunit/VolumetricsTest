@@ -1,6 +1,6 @@
 [gd_scene load_steps=10 format=3 uid="uid://qag18ik5pc57"]
 
-[ext_resource type="Shader" uid="uid://bvuxceynh6rex" path="res://shaders/spatial/psx_pb_aclip.gdshader" id="1_fb4mg"]
+[ext_resource type="Shader" uid="uid://b1vlx0ah3jbml" path="res://shaders/spatial/entities/psx_pb_aclip.gdshader" id="1_fb4mg"]
 [ext_resource type="Script" uid="uid://b6bektmpvs3xa" path="res://scripts/effects/particle_lifetime.gd" id="1_o2iqe"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_im8au"]

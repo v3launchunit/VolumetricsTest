@@ -771,47 +771,47 @@
 // entity 16
 {
 "classname" "light_lamp"
-"origin" "-1312 592 368"
+"origin" "-1312 592 367"
 }
 // entity 17
 {
 "classname" "light_lamp"
-"origin" "-1312 592 448"
+"origin" "-1312 592 447"
 }
 // entity 18
 {
 "classname" "light_lamp"
-"origin" "-1312 592 288"
+"origin" "-1312 592 287"
 }
 // entity 19
 {
 "classname" "light_lamp"
-"origin" "-1088 592 448"
+"origin" "-1088 592 447"
 }
 // entity 20
 {
 "classname" "light_lamp"
-"origin" "-1088 592 368"
+"origin" "-1088 592 367"
 }
 // entity 21
 {
 "classname" "light_lamp"
-"origin" "-1088 592 288"
+"origin" "-1088 592 287"
 }
 // entity 22
 {
 "classname" "light_lamp"
-"origin" "-1008 592 448"
+"origin" "-1008 592 447"
 }
 // entity 23
 {
 "classname" "light_lamp"
-"origin" "-1008 592 368"
+"origin" "-1008 592 367"
 }
 // entity 24
 {
 "classname" "light_lamp"
-"origin" "-1008 592 288"
+"origin" "-1008 592 287"
 }
 // entity 25
 {

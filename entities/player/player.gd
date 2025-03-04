@@ -530,10 +530,10 @@ func _on_carriable_grabbed(what: Carriable) -> void:
 	holding = what
 
 
-func step_check(velocity: Vector3) -> bool:
+func step_check(vel: Vector3) -> bool:
 	#var test_transform := Transform3D(global_transform)
 	
-	if test_move(global_transform, velocity) and not test_move(global_transform, velocity + 0.5 * Vector3.UP):
+	if test_move(global_transform, vel) and not test_move(global_transform, vel + 0.5 * Vector3.UP):
 		pass
 	
 	return false

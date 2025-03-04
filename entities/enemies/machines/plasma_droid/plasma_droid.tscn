@@ -16,8 +16,8 @@
 [ext_resource type="PackedScene" uid="uid://b3n8ejiapfh8" path="res://pickups/ammo/large_cell_pickup.tscn" id="5_4ag46"]
 [ext_resource type="ArrayMesh" uid="uid://bq2ld7p1te64i" path="res://weapons/plasma_cannon/muzzle_flash_plasma.obj" id="5_8e7tr"]
 [ext_resource type="AnimationLibrary" uid="uid://cu6kaw3wmnu2i" path="res://entities/enemies/machines/plasma_droid/plasma_droid_anims.res" id="8_hkuiw"]
-[ext_resource type="Shader" uid="uid://cgfn3iqbl45r7" path="res://shaders/spatial/psx_ul_add.gdshader" id="11_o6law"]
-[ext_resource type="Shader" uid="uid://bycruau5ish4o" path="res://shaders/spatial/psx_ul_mix.gdshader" id="12_djo4k"]
+[ext_resource type="Shader" uid="uid://cgfn3iqbl45r7" path="res://shaders/spatial/entities/psx_ul_add.gdshader" id="11_o6law"]
+[ext_resource type="Shader" uid="uid://b8h2bq5npbupf" path="res://shaders/spatial/entities/psx_ul_mix.gdshader" id="12_djo4k"]
 [ext_resource type="PackedScene" uid="uid://qy044barx365" path="res://entities/stair_stepper.tscn" id="18_7c8tp"]
 
 [sub_resource type="Resource" id="Resource_ba0li"]

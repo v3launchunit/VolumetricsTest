@@ -9,7 +9,7 @@
 [ext_resource type="AudioStream" uid="uid://dc1es3ux857yw" path="res://audio/streams/voices/wilhelm_scream.ogg" id="7_d0ams"]
 [ext_resource type="PackedScene" uid="uid://pidxth8qpjjm" path="res://entities/enemies/locals/lizard/lizard.glb" id="8_ccvo6"]
 [ext_resource type="Texture2D" uid="uid://ds5gx6rr0ytfx" path="res://effects/snore.png" id="9_s2a04"]
-[ext_resource type="Shader" uid="uid://bycruau5ish4o" path="res://shaders/spatial/psx_ul_mix.gdshader" id="10_ashiv"]
+[ext_resource type="Shader" uid="uid://b8h2bq5npbupf" path="res://shaders/spatial/entities/psx_ul_mix.gdshader" id="10_ashiv"]
 [ext_resource type="AnimationLibrary" uid="uid://bre8ccbuc7fbn" path="res://entities/enemies/locals/lizard/lizard_anims.res" id="10_f64uo"]
 [ext_resource type="Script" uid="uid://cly1es2vyxx12" path="res://entities/status.gd" id="11_sgqsl"]
 [ext_resource type="PackedScene" uid="uid://cqctw8dd0ar4n" path="res://scenes/effects/damage/damage_sys.tscn" id="12_sfw3v"]

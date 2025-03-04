@@ -1,6 +1,6 @@
 [gd_resource type="ShaderMaterial" load_steps=5 format=3 uid="uid://c7qaym0wo58u5"]
 
-[ext_resource type="Shader" path="res://shaders/spatial/psx_pb_aclip.gdshader" id="1_2gjhd"]
+[ext_resource type="Shader" uid="uid://b1vlx0ah3jbml" path="res://shaders/spatial/entities/psx_pb_aclip.gdshader" id="1_2gjhd"]
 [ext_resource type="Texture2D" uid="uid://bj7k0s5aqtqnd" path="res://materials/terrain/custom_hand/metal_grate/metal_grate_albedo.png" id="2_k3wsb"]
 [ext_resource type="Texture2D" uid="uid://bxseh8i2ycy1g" path="res://materials/terrain/custom_hand/metal_grate/metal_grate_normals.png" id="3_finje"]
 [ext_resource type="Texture2D" uid="uid://drbdr4yyvy7as" path="res://materials/terrain/custom_hand/metal/metal_roughness.tres" id="4_6s12w"]

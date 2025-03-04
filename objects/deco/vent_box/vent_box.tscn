@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://ch5xal1ux1roc"]
 
-[ext_resource type="Shader" uid="uid://bvuxceynh6rex" path="res://shaders/spatial/psx_pb_aclip.gdshader" id="1_vuqgp"]
+[ext_resource type="Shader" uid="uid://b1vlx0ah3jbml" path="res://shaders/spatial/entities/psx_pb_aclip.gdshader" id="1_vuqgp"]
 [ext_resource type="Texture2D" uid="uid://bggswdashikdf" path="res://objects/deco/vent_box/vent_box_albedo.png" id="2_mr0ua"]
 [ext_resource type="Texture2D" uid="uid://c1dn64k8mmlaj" path="res://objects/deco/vent_box/vent_box_normals.png" id="3_dlhf5"]
 

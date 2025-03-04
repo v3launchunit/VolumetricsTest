@@ -45,7 +45,7 @@
 [ext_resource type="PackedScene" uid="uid://cxe1gjgdpac7q" path="res://pickups/health/health_pack/health_pack_pickup.tscn" id="40_00hyg"]
 [ext_resource type="PackedScene" uid="uid://du780rqis8eqo" path="res://pickups/weapons/boomstick_pickup.tscn" id="41_ld0b6"]
 [ext_resource type="PackedScene" uid="uid://b5msw3470sol" path="res://pickups/keys/keys/key_blue_pickup.tscn" id="42_n4qjf"]
-[ext_resource type="Shader" uid="uid://bvuxceynh6rex" path="res://shaders/spatial/psx_pb_aclip.gdshader" id="42_xppjq"]
+[ext_resource type="Shader" uid="uid://b1vlx0ah3jbml" path="res://shaders/spatial/entities/psx_pb_aclip.gdshader" id="42_xppjq"]
 [ext_resource type="Material" uid="uid://dh6h4bfv6pod2" path="res://trench_broom/textures/key_metal_blue.tres" id="43_tbftg"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_wnmn3"]

@@ -6,7 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://crltgslfg1nou" path="res://objects/interactable/lever_01/lever_emissions.png" id="4_oh51b"]
 [ext_resource type="Texture2D" uid="uid://c0qe7jq8ss6c4" path="res://objects/interactable/lever_01/lever_normals.png" id="5_5dtxu"]
 [ext_resource type="AudioStream" uid="uid://bmlxxe8maevqb" path="res://audio/streams/click.wav" id="6_abudg"]
-[ext_resource type="Shader" uid="uid://bvuxceynh6rex" path="res://shaders/spatial/psx_pb_aclip.gdshader" id="6_uam60"]
+[ext_resource type="Shader" uid="uid://b1vlx0ah3jbml" path="res://shaders/spatial/entities/psx_pb_aclip.gdshader" id="6_uam60"]
 [ext_resource type="Script" uid="uid://oqbx6pignrqi" path="res://bullets/enemy/minor_omni_light_3d.gd" id="8_ml0r5"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_f8nba"]

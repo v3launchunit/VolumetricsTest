@@ -50,7 +50,7 @@ func _physics_process(delta: float) -> void:
 		return
 
 	var space_state = get_world_3d().direct_space_state
-	var query: PhysicsRayQueryParameters3D = PhysicsRayQueryParameters3D.create(
+	var query := PhysicsRayQueryParameters3D.create(
 			global_position,
 			player_cam.global_position,
 			collision_mask,
