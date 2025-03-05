@@ -367,7 +367,6 @@ volume_db = 6.0
 [node name="Axe" parent="Control/SubViewportContainer/SubViewport/PlayerSync/PlayerCam/WeaponsHolder" instance=ExtResource("35_uif20")]
 
 [node name="PumpShotgun" parent="Control/SubViewportContainer/SubViewport/PlayerSync/PlayerCam/WeaponsHolder" instance=ExtResource("36_ytmbf")]
-transform = Transform3D(-1, 0, -1.50996e-07, 0, 1, 0, 1.50996e-07, 0, -1, -0.15, -0.25, -0.35)
 
 [node name="HUD" parent="Control" instance=ExtResource("37_wd13u")]
 layout_mode = 1
