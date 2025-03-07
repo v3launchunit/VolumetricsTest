@@ -33,9 +33,7 @@ color_ramp = SubResource("GradientTexture1D_oraxr")
 hue_variation_max = 0.17
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_y4mvg"]
-transparency = 3
-alpha_hash_scale = 1.0
-alpha_antialiasing_mode = 0
+transparency = 1
 blend_mode = 1
 shading_mode = 0
 vertex_color_use_as_albedo = true
@@ -97,6 +95,7 @@ radius = 0.031
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3anle"]
 resource_local_to_scene = true
 transparency = 1
+blend_mode = 1
 shading_mode = 0
 albedo_color = Color(1, 1, 0, 1)
 
@@ -269,7 +268,7 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0, 0.6, 10),
 "transitions": PackedFloat32Array(0.25, 1.75, 1),
 "update": 0,
-"values": [Vector3(0, 0, 0), Vector3(5, 5, 5), Vector3(15, 15, 15)]
+"values": [Vector3(0.01, 0.01, 0.01), Vector3(5, 5, 5), Vector3(15, 15, 15)]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -289,7 +288,7 @@ tracks/3/enabled = true
 tracks/3/path = NodePath("Fireball")
 tracks/3/interp = 1
 tracks/3/loop_wrap = false
-tracks/3/keys = PackedFloat32Array(0, 1, 0, 0, 0, 0.3, 1, 10, 10, 10)
+tracks/3/keys = PackedFloat32Array(0, 1, 0.01, 0.01, 0.01, 0.3, 1, 10, 10, 10)
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
@@ -356,7 +355,7 @@ tracks/9/enabled = true
 tracks/9/path = NodePath("Blastwave")
 tracks/9/interp = 1
 tracks/9/loop_wrap = false
-tracks/9/keys = PackedFloat32Array(0, 1, 0, 0, 0, 0.3, 1, 30, 30, 30)
+tracks/9/keys = PackedFloat32Array(0, 1, 0.01, 0.01, 0.01, 0.3, 1, 30, 30, 30)
 tracks/10/type = "value"
 tracks/10/imported = false
 tracks/10/enabled = true
@@ -402,6 +401,7 @@ fill_to = Vector2(1, 0.5)
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rl26o"]
 resource_local_to_scene = true
 transparency = 1
+blend_mode = 1
 cull_mode = 2
 shading_mode = 0
 albedo_color = Color(1, 1, 0, 1)
@@ -514,7 +514,7 @@ process_material = SubResource("ParticleProcessMaterial_t1l36")
 draw_pass_1 = SubResource("TubeTrailMesh_0yp4d")
 
 [node name="Fireball" type="MeshInstance3D" parent="."]
-transform = Transform3D(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+transform = Transform3D(0.00999999, 0, 0, 0, 0.00999999, 0, 0, 0, 0.00999999, 0, 0, 0)
 layers = 2
 material_override = SubResource("StandardMaterial3D_3anle")
 mesh = SubResource("SphereMesh_cpldg")
@@ -527,12 +527,12 @@ material = SubResource("FogMaterial_hi1pk")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
-"": SubResource("AnimationLibrary_7h3vl")
+&"": SubResource("AnimationLibrary_7h3vl")
 }
 script = ExtResource("2_w10mg")
 
 [node name="Blastwave" type="MeshInstance3D" parent="."]
-transform = Transform3D(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+transform = Transform3D(0.00999999, 0, 0, 0, 0.00999999, 0, 0, 0, 0.00999999, 0, 0, 0)
 material_override = SubResource("StandardMaterial3D_rl26o")
 mesh = ExtResource("3_nm51l")
 skeleton = NodePath("../AnimationPlayer")
@@ -550,6 +550,7 @@ script = ExtResource("3_6neht")
 damage = 60.0
 damage_type = 1
 knockback_force = 5.0
+knockup_force = 2.5
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
 shape = SubResource("SphereShape3D_er5bi")
@@ -560,7 +561,8 @@ script = ExtResource("3_6neht")
 damage = 60.0
 player_damage_override = 0.0
 damage_type = 1
-knockback_force = 2.5
+knockback_force = 5.0
+knockup_force = 2.5
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D2"]
 shape = SubResource("SphereShape3D_n73ay")

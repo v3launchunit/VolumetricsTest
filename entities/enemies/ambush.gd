@@ -28,44 +28,44 @@ enum AmbushStyle {
 			#trigger = to
 			#update_configuration_warnings()
 
-@export var properties: Dictionary
+@export var func_godot_properties: Dictionary
 
 
 func _ready() -> void:
-	if properties:
+	if func_godot_properties:
 		y_offset = 0
-		ambusher = load(Globals.parse_names("species", properties["ambusher"]))
-		#print((properties["group"] as String).begins_with("fun."))
+		ambusher = load(Globals.parse_names("species", func_godot_properties["ambusher"]))
+		#print((func_godot_properties["group"] as String).begins_with("fun."))
 		#print(Globals.fun)
-		#print("%s: %s" % [name, (properties["group"] as String).substr(4,4).to_int()])
-		#print("%s: %s" % [name, (properties["group"] as String).substr(9,4).to_int()])
+		#print("%s: %s" % [name, (func_godot_properties["group"] as String).substr(4,4).to_int()])
+		#print("%s: %s" % [name, (func_godot_properties["group"] as String).substr(9,4).to_int()])
 		#print(
-				#(properties["group"] as String).substr(4,4).to_int() <= Globals.fun 
-				#and (properties["group"] as String).substr(9,4).to_int() > Globals.fun
+				#(func_godot_properties["group"] as String).substr(4,4).to_int() <= Globals.fun 
+				#and (func_godot_properties["group"] as String).substr(9,4).to_int() > Globals.fun
 		#)
-		if (properties["group"] as String).begins_with("fun."):
+		if (func_godot_properties["group"] as String).begins_with("fun."):
 			var fun: int = (get_tree().current_scene as Level).fun
 			if fun < 0:
 				fun = Globals.fun
 			if (
-					(properties["group"] as String).substr(4,3).to_int() <= fun 
-					and (properties["group"] as String).substr(8,3).to_int() > fun
+					(func_godot_properties["group"] as String).substr(4,3).to_int() <= fun 
+					and (func_godot_properties["group"] as String).substr(8,3).to_int() > fun
 			):
 				await get_tree().process_frame
 				spawn_ambush()
 			#else:
 				#queue_free()
-		elif properties.get("group", "none") != "none":
-			for member in get_tree().get_nodes_in_group(properties["group"]):
+		elif func_godot_properties.get("group", "none") != "none":
+			for member in get_tree().get_nodes_in_group(func_godot_properties["group"]):
 				if member.has_signal("interacted"):
 					member.interacted.connect(_on_trigger_body_entered)
-			add_to_group(properties["group"], true)
+			add_to_group(func_godot_properties["group"], true)
 		
-		if properties["targetname"] != "":
-			for member in get_tree().get_nodes_in_group("targets:%s" % properties["targetname"]):
-				if member.has_signal("interacted"):
-					member.interacted.connect(_on_trigger_body_entered)
-			add_to_group("targetname:%s" % properties["targetname"], true)
+		if func_godot_properties["targetname"] != "":
+			for member in get_tree().get_nodes_in_group("targets:%s" % func_godot_properties["targetname"]):
+				if member.has_signal("interacted") and not member.interacted.is_connected(on_triggered):
+					member.interacted.connect(on_triggered)
+			add_to_group("targetname:%s" % func_godot_properties["targetname"], true)
 	
 	if trigger != null && ambusher != null:
 		trigger.body_entered.connect(_on_trigger_body_entered)
@@ -86,10 +86,10 @@ func spawn_ambush() -> Node3D:
 	var a: Node3D = ambusher.instantiate()
 	#print("instantiated ambusher")
 	if "properties" in a:
-		a.properties = properties.duplicate()
+		a.properties = func_godot_properties.duplicate()
 		#print("applied properties to ambusher")
 	elif "func_godot_properties" in a:
-		a.func_godot_properties = properties.duplicate()
+		a.func_godot_properties = func_godot_properties.duplicate()
 	add_child(a)
 	#print("placed ambusher in scenetree")
 	a.position += Vector3(0, y_offset, 0)
@@ -99,7 +99,7 @@ func spawn_ambush() -> Node3D:
 	if a is Hitscan:
 		a.query_origin = a.global_position
 	if a is EnemyBase:
-		match properties["ambush_style"]:
+		match func_godot_properties["ambush_style"]:
 			AmbushStyle.TELEPORT:
 				var sys_scene : PackedScene = preload("res://effects/teleport_sys.tscn")
 				var sys : GPUParticles3D = sys_scene.instantiate()

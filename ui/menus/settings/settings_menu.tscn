@@ -207,6 +207,8 @@ offset_right = -16.0
 offset_bottom = -15.0
 grow_horizontal = 2
 grow_vertical = 2
+follow_focus = true
+vertical_scroll_mode = 2
 
 [node name="Gameplay" parent="SettingsPanel/GameplayScroll" instance=ExtResource("6_q7uba")]
 layout_mode = 2
@@ -224,6 +226,8 @@ offset_right = -16.0
 offset_bottom = -15.0
 grow_horizontal = 2
 grow_vertical = 2
+follow_focus = true
+horizontal_scroll_mode = 2
 
 [node name="Input" parent="SettingsPanel/InputScroll" instance=ExtResource("7_c282q")]
 layout_mode = 2
@@ -241,6 +245,8 @@ offset_right = -16.0
 offset_bottom = -15.0
 grow_horizontal = 2
 grow_vertical = 2
+follow_focus = true
+horizontal_scroll_mode = 2
 
 [node name="Accessibility" parent="SettingsPanel/AccessibilityScroll" instance=ExtResource("8_e5s2f")]
 layout_mode = 2
@@ -258,6 +264,8 @@ offset_right = -16.0
 offset_bottom = -15.0
 grow_horizontal = 2
 grow_vertical = 2
+follow_focus = true
+horizontal_scroll_mode = 2
 
 [node name="Other" parent="SettingsPanel/OtherScroll" instance=ExtResource("9_nyk5b")]
 layout_mode = 2

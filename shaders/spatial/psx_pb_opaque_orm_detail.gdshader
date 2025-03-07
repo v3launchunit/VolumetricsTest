@@ -5,12 +5,14 @@ uniform vec4 albedo_col : source_color = vec4(1.0);
 uniform sampler2D albedo_tex : source_color,filter_nearest,repeat_enable;
 //uniform float alpha_clip_threshold : hint_range(0.0, 1.0, 0.1) = 0.5;
 uniform sampler2D normal_tex : hint_roughness_normal,filter_nearest,repeat_enable;
-uniform float normal_scale : hint_range(-16,16) = 1.0;
-uniform float roughness : hint_range(0,1) = 0.75;
+uniform float normal_scale : hint_range(-16.0, 16.0) = 1.0;
+uniform float roughness : hint_range(0.0, 1.0) = 0.75;
 //uniform sampler2D roughness_tex : hint_roughness_r,filter_nearest,repeat_enable;
-uniform float metallic : hint_range(0.0, 1.0, 0.1) = 0.0;
-uniform float specular : hint_range(0.0, 1.0, 0.1) = 0.5;
+uniform float metallic : hint_range(0.0, 1.0, 0.01) = 0.0;
+uniform float specular : hint_range(0.0, 1.0, 0.01) = 0.5;
+uniform float detail : hint_range(0.0, 1.0, 0.1) = 1.0;
 uniform sampler2D orm_tex : hint_default_white,filter_nearest,repeat_enable;
+uniform sampler2D detail_albedo_tex: source_color,hint_default_transparent,filter_nearest,repeat_disable;
 //uniform vec4 metallic_channel = vec4(1.0, 0.0, 0.0, 0.0);
 uniform vec3 uv1_scale = vec3(1.0);
 uniform vec3 uv1_offset = vec3(0.0);
@@ -32,12 +34,13 @@ void vertex() {
 
 void fragment() {
 	vec4 albedo = COLOR * texture(albedo_tex, UV) * albedo_col;
+	vec4 detail_albedo = texture(detail_albedo_tex, UV);
+	vec4 orm = texture(orm_tex, UV);
 	//if (albedo.a < alpha_clip_threshold) {
 		//discard;
 	//}
-	ALBEDO = albedo.rgb;
+	ALBEDO = mix(albedo.rgb, detail_albedo.rgb, detail * orm.r * detail_albedo.a);
 	NORMAL_MAP = texture(normal_tex, UV).rgb * normal_scale;
-	vec4 orm = texture(orm_tex, UV);
 	METALLIC = metallic * orm.b;
 	ROUGHNESS = roughness * orm.g;
 	SPECULAR = specular;

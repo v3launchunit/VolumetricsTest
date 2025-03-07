@@ -320,7 +320,7 @@ func _handle_joypad_camera_rotation(delta: float, sens_mod: float = 1.0) -> void
 
 
 func apply_knockback(amount: Vector3, knockup: float = 0) -> void:
-	if amount.y < 0 or knockup > Globals.C_EPSILON:
+	if amount.y > Globals.C_EPSILON or knockup > Globals.C_EPSILON:
 		#jump_vel = Vector3.ZERO
 		grav_vel = Vector3.UP * knockup
 		jumping = false

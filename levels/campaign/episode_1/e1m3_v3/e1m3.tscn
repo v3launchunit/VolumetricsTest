@@ -895,7 +895,7 @@ transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 12.5, 
 [node name="entity_33_func_ambush" type="Marker3D" parent="NavigationRegion3D/FuncGodotMap"]
 transform = Transform3D(0.5, 0, -0.866025, 0, 1, 0, 0.866025, 0, 0.5, 12.5, 32, -57.5)
 script = ExtResource("17_gcncw")
-properties = {
+func_godot_properties = {
 "ambush_style": "0",
 "ambusher": "eyeball",
 "angle": "120",
@@ -910,7 +910,7 @@ properties = {
 [node name="entity_34_func_ambush" type="Marker3D" parent="NavigationRegion3D/FuncGodotMap"]
 transform = Transform3D(0.5, 0, -0.866025, 0, 1, 0, 0.866025, 0, 0.5, 12.5, 32, -53.5)
 script = ExtResource("17_gcncw")
-properties = {
+func_godot_properties = {
 "ambush_style": "0",
 "ambusher": "eyeball",
 "angle": "120",
@@ -925,7 +925,7 @@ properties = {
 [node name="entity_35_func_ambush" type="Marker3D" parent="NavigationRegion3D/FuncGodotMap"]
 transform = Transform3D(0.5, 0, -0.866025, 0, 1, 0, 0.866025, 0, 0.5, 12.5, 32, -49.5)
 script = ExtResource("17_gcncw")
-properties = {
+func_godot_properties = {
 "ambush_style": "0",
 "ambusher": "eyeball",
 "angle": "120",
@@ -940,7 +940,7 @@ properties = {
 [node name="entity_36_func_ambush" type="Marker3D" parent="NavigationRegion3D/FuncGodotMap"]
 transform = Transform3D(0.5, 0, -0.866025, 0, 1, 0, 0.866025, 0, 0.5, 12.5, 32, -41.5)
 script = ExtResource("17_gcncw")
-properties = {
+func_godot_properties = {
 "ambush_style": "0",
 "ambusher": "eyeball",
 "angle": "120",
@@ -955,7 +955,7 @@ properties = {
 [node name="entity_37_func_ambush" type="Marker3D" parent="NavigationRegion3D/FuncGodotMap"]
 transform = Transform3D(0.5, 0, -0.866025, 0, 1, 0, 0.866025, 0, 0.5, 12.5, 32, -45.5)
 script = ExtResource("17_gcncw")
-properties = {
+func_godot_properties = {
 "ambush_style": "0",
 "ambusher": "eyeball",
 "angle": "120",
@@ -989,26 +989,75 @@ mesh = SubResource("ArrayMesh_vucas")
 [node name="entity_39_collision_shape" type="CollisionShape3D" parent="NavigationRegion3D/FuncGodotMap/entity_39_func_detail"]
 shape = SubResource("ConcavePolygonShape3D_0lxxq")
 
-[node name="entity_40_area_trigger" type="Area3D" parent="NavigationRegion3D/FuncGodotMap"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 38, 31.5, -68)
-collision_mask = 2
-script = ExtResource("18_7pqtb")
+[node name="entity_40_light_lamp" parent="NavigationRegion3D/FuncGodotMap" instance=ExtResource("13_hkq2a")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 15, 27.9375, -82)
+instance_shader_parameters/albedo = Color(3, 2.02353, 1.04706, 3)
 properties = {
-"_tb_layer": "1",
-"classname": "area_trigger",
-"group": "none",
-"max_trips": 1,
-"target": "rooftop",
-"targetname": ""
+"_color": Color(1, 0.67451, 0.34902, 1),
+"classname": "light_lamp",
+"energy": 3.0,
+"origin": "-1312 240 447",
+"range": 15.0
 }
 
-[node name="entity_40_brush_0_collision_shape" type="CollisionShape3D" parent="NavigationRegion3D/FuncGodotMap/entity_40_area_trigger"]
-shape = SubResource("ConvexPolygonShape3D_lm7l7")
+[node name="entity_41_light_lamp" parent="NavigationRegion3D/FuncGodotMap" instance=ExtResource("13_hkq2a")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 15, 22.9375, -82)
+instance_shader_parameters/albedo = Color(3, 2.02353, 1.04706, 3)
+properties = {
+"_color": Color(1, 0.67451, 0.34902, 1),
+"classname": "light_lamp",
+"energy": 3.0,
+"origin": "-1312 240 367",
+"range": 15.0
+}
 
-[node name="entity_41_enemy_enforcer" parent="NavigationRegion3D/FuncGodotMap" instance=ExtResource("19_jso0d")]
+[node name="entity_42_light_lamp" parent="NavigationRegion3D/FuncGodotMap" instance=ExtResource("13_hkq2a")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 15, 17.9375, -82)
+instance_shader_parameters/albedo = Color(3, 2.02353, 1.04706, 3)
+properties = {
+"_color": Color(1, 0.67451, 0.34902, 1),
+"classname": "light_lamp",
+"energy": 3.0,
+"origin": "-1312 240 287",
+"range": 15.0
+}
+
+[node name="entity_43_light_lamp" parent="NavigationRegion3D/FuncGodotMap" instance=ExtResource("13_hkq2a")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 26, 27.9375, -82)
+instance_shader_parameters/albedo = Color(3, 2.02353, 1.04706, 3)
+properties = {
+"_color": Color(1, 0.67451, 0.34902, 1),
+"classname": "light_lamp",
+"energy": 3.0,
+"origin": "-1312 416 447",
+"range": 15.0
+}
+
+[node name="entity_44_light_lamp" parent="NavigationRegion3D/FuncGodotMap" instance=ExtResource("13_hkq2a")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 26, 22.9375, -82)
+instance_shader_parameters/albedo = Color(3, 2.02353, 1.04706, 3)
+properties = {
+"_color": Color(1, 0.67451, 0.34902, 1),
+"classname": "light_lamp",
+"energy": 3.0,
+"origin": "-1312 416 367",
+"range": 15.0
+}
+
+[node name="entity_45_light_lamp" parent="NavigationRegion3D/FuncGodotMap" instance=ExtResource("13_hkq2a")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 26, 17.9375, -82)
+instance_shader_parameters/albedo = Color(3, 2.02353, 1.04706, 3)
+properties = {
+"_color": Color(1, 0.67451, 0.34902, 1),
+"classname": "light_lamp",
+"energy": 3.0,
+"origin": "-1312 416 287",
+"range": 15.0
+}
+
+[node name="entity_46_enemy_enforcer" parent="NavigationRegion3D/FuncGodotMap" instance=ExtResource("19_jso0d")]
 transform = Transform3D(1.39071e-07, 0, 1, 0, 1, 0, -1, 0, 1.39071e-07, 34, 15, -82)
 properties = {
-"_tb_layer": "1",
 "angle": "270",
 "classname": "enemy_enforcer",
 "corpse": false,
@@ -1018,6 +1067,22 @@ properties = {
 "target": "",
 "tripwire_group": "none"
 }
+
+[node name="entity_47_area_trigger" type="Area3D" parent="NavigationRegion3D/FuncGodotMap"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 38, 31.5, -68)
+collision_mask = 2
+script = ExtResource("18_7pqtb")
+func_godot_properties = {
+"_tb_layer": "1",
+"classname": "area_trigger",
+"group": "none",
+"max_trips": 1,
+"target": "rooftop",
+"targetname": ""
+}
+
+[node name="entity_47_brush_0_collision_shape" type="CollisionShape3D" parent="NavigationRegion3D/FuncGodotMap/entity_47_area_trigger"]
+shape = SubResource("ConvexPolygonShape3D_lm7l7")
 
 [node name="GPUParticlesCollisionSDF3D" type="GPUParticlesCollisionSDF3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15, 11, -27)

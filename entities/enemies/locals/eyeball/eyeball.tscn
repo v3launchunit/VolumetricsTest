@@ -707,6 +707,8 @@ layers = 2
 material_override = SubResource("ShaderMaterial_sli5c")
 
 [node name="GPUParticles3D" type="GPUParticles3D" parent="Eyeball/Eyeball" index="5"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.7955e-10, 0.00548542, 0)
+visible = false
 layers = 2
 material_override = SubResource("ShaderMaterial_6qh7d")
 amount = 16
@@ -750,8 +752,8 @@ collision_mask = 3
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 root_node = NodePath("../AnimationTree")
 libraries = {
-"": SubResource("AnimationLibrary_2ufq5"),
-"eyeball_anims": ExtResource("3_h6fvy")
+&"": SubResource("AnimationLibrary_2ufq5"),
+&"eyeball_anims": ExtResource("3_h6fvy")
 }
 
 [node name="AnimationTree" type="AnimationTree" parent="."]

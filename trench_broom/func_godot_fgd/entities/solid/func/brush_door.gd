@@ -69,6 +69,7 @@ func _ready() -> void:
 				member.interacted.connect(on_triggered)
 				#print("%s got targeted by %s" % [name, member.name])
 		add_to_group("targetname:%s" % func_godot_properties["targetname"], true)
+	
 	if func_godot_properties["target"] != "":
 		for member in get_tree().get_nodes_in_group("targetname:%s" % func_godot_properties["target"]):
 			if member.has_method("on_triggered"):

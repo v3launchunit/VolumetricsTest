@@ -354,6 +354,7 @@ func release_mouse() -> void:
 
 
 ## Saves the level.
+# TODO rework this system to actually work properly.
 func save_game(to: String) -> void:
 	var scene := PackedScene.new()
 	var world = get_tree().current_scene
@@ -362,10 +363,15 @@ func save_game(to: String) -> void:
 	for node: Node in get_all_children(world):
 		if node.has_method("pre_save"):
 			node.pre_save()
-			await node.ready_to_save
-		node.owner = world
+			if node.has_signal("ready_to_save"):
+				await node.ready_to_save
+		if node.has_method("save"):
+			node.save()
+		#node.owner = world
+		#node.scene_file_path = ""
+		#set_editable_instance(node, true)
 	scene.pack(world)
-	push_error(ResourceSaver.save(scene, to))
+	assert(ResourceSaver.save(scene, to) == OK)
 
 
 #region level management
@@ -387,6 +393,7 @@ func open_level_from_key(level_key: String) -> void:
 func open_level(level: PackedScene) -> void:
 	#var screen_image := get_tree().root.get_texture()
 	get_tree().change_scene_to_packed(level)
+	#Console.print_line("loaded %s")
 	#print(get_tree().current_scene)
 	#if get_tree().current_scene is Level and (get_tree().current_scene as Level).fun != -1:
 		#fun = (get_tree().current_scene as Level).fun

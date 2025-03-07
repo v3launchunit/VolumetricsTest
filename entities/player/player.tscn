@@ -322,12 +322,12 @@ transform = Transform3D(0.996117, 0.0145506, 0.0868242, -0.00695469, 0.99617, -0
 visible = false
 layers = 2
 light_color = Color(1, 0.831373, 0.501961, 1)
-light_energy = 4.0
+light_energy = 5.0
 light_projector = ExtResource("32_tgokv")
 light_bake_mode = 0
 light_cull_mask = 4294967291
 shadow_enabled = true
-spot_range = 30.0
+spot_range = 50.0
 spot_angle = 35.0
 script = ExtResource("33_aknmp")
 

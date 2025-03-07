@@ -1,13 +1,16 @@
 extends Control
 
+signal menu_closed(menu_layer: int)
+
 var _active_menus: int = 0
 
 @onready var _level_select_menu: Control = $LevelSelect
 @onready var _settings_menu: Control = $Settings
 @onready var _press_sound: AudioStreamPlayer = $ButtonPress
 #@onready var player: Player = get_tree().root.find_child("Player")
-
-signal menu_closed(menu_layer: int)
+@onready var _save_button: Button = $VBoxContainer/Save
+@onready var _save_file: FileDialog = $VBoxContainer/Save/SaveFile
+@onready var _load_file: FileDialog = $VBoxContainer/Load/LoadFile
 
 
 func _ready() -> void:
@@ -25,6 +28,9 @@ func _ready() -> void:
 
 
 func _process(_delta: float) -> void:
+	
+	_save_button.disabled = get_tree().current_scene is not Level 
+	
 	if _active_menus <= 0 and not get_tree().root.has_focus():
 		open_pause_menu()
 	if Input.is_action_just_pressed("ui_cancel"):
@@ -64,11 +70,25 @@ func _on_campaign_button_pressed() -> void:
 
 
 func _on_save_button_pressed() -> void:
-	pass # Replace with function body.
+	_save_file.current_file = "%s_%s.scn" % [
+			Time.get_date_string_from_system(), 
+			Time.get_time_string_from_system()
+	]
+	_save_file.show()
+	#await _save_file.file_selected
 
 
-#func _on_load_button_pressed() -> void:
-#	pass # Replace with function body.
+func _on_save_file_file_selected(path: String) -> void:
+	Globals.save_game(path)
+
+
+func _on_load_button_pressed() -> void:
+	_load_file.show()
+	#await _load_file.file_selected
+
+
+func _on_load_file_file_selected(path: String) -> void:
+	Globals.open_level(load(path) as PackedScene)
 
 
 func _on_settings_button_pressed() -> void:
