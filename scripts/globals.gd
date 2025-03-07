@@ -367,7 +367,8 @@ func save_game(to: String) -> void:
 				await node.ready_to_save
 		if node.has_method("save"):
 			node.save()
-		#node.owner = world
+		if node.owner == null:
+			node.owner = world
 		#node.scene_file_path = ""
 		#set_editable_instance(node, true)
 	scene.pack(world)

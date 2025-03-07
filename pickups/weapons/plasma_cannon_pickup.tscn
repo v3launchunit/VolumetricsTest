@@ -1,6 +1,6 @@
 [gd_scene load_steps=19 format=3 uid="uid://b2q7xucggusys"]
 
-[ext_resource type="Script" uid="uid://yrdtgm5mut51" path="res://scripts/pickups/weapon_pickup.gd" id="1_po7tn"]
+[ext_resource type="Script" uid="uid://yrdtgm5mut51" path="res://pickups/weapon_pickup.gd" id="1_po7tn"]
 [ext_resource type="PackedScene" uid="uid://gabucpajtywv" path="res://weapons/plasma_cannon/plasma_cannon.tscn" id="2_4el3i"]
 [ext_resource type="AudioStream" uid="uid://dxscywpf2ven0" path="res://audio/streams/pickups/pickup_weapon.wav" id="2_d0qa4"]
 [ext_resource type="ArrayMesh" uid="uid://ceibhbi3vm1n0" path="res://weapons/plasma_cannon/plasma_cannon.obj" id="2_i1dks"]

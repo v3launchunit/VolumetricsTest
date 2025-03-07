@@ -1,6 +1,6 @@
 [gd_scene load_steps=19 format=3 uid="uid://cxy7g2dkotnvh"]
 
-[ext_resource type="Script" uid="uid://yrdtgm5mut51" path="res://scripts/pickups/weapon_pickup.gd" id="1_c5fqu"]
+[ext_resource type="Script" uid="uid://yrdtgm5mut51" path="res://pickups/weapon_pickup.gd" id="1_c5fqu"]
 [ext_resource type="PackedScene" uid="uid://cvoyjj4iotdgb" path="res://weapons/grenade_launcher/grenade_launcher.tscn" id="2_vjc4v"]
 [ext_resource type="AudioStream" uid="uid://dxscywpf2ven0" path="res://audio/streams/pickups/pickup_weapon.wav" id="3_72rbo"]
 [ext_resource type="Material" uid="uid://b78l63b32udy2" path="res://effects/halos/halo_mat.tres" id="4_pxbyo"]

@@ -1,6 +1,6 @@
 [gd_scene load_steps=21 format=3 uid="uid://boxs6v8ktotma"]
 
-[ext_resource type="Script" uid="uid://bft3wkpl5bv8p" path="res://scripts/pickups/ammo_pickup.gd" id="1_ve4na"]
+[ext_resource type="Script" uid="uid://bft3wkpl5bv8p" path="res://pickups/ammo_pickup.gd" id="1_ve4na"]
 [ext_resource type="AudioStream" uid="uid://g7unocdbdokw" path="res://audio/streams/pickups/pickup_ammo.wav" id="2_jodgy"]
 [ext_resource type="Texture2D" uid="uid://d0bquc3skclkb" path="res://pickups/ammo/shell_box/shell_box.png" id="3_2eqfn"]
 [ext_resource type="Material" uid="uid://b78l63b32udy2" path="res://effects/halos/halo_mat.tres" id="3_7jsya"]

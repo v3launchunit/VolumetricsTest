@@ -1,6 +1,6 @@
 [gd_scene load_steps=18 format=4 uid="uid://dakry3wmqjckc"]
 
-[ext_resource type="Script" uid="uid://yrdtgm5mut51" path="res://scripts/pickups/weapon_pickup.gd" id="1_dwsa0"]
+[ext_resource type="Script" uid="uid://yrdtgm5mut51" path="res://pickups/weapon_pickup.gd" id="1_dwsa0"]
 [ext_resource type="PackedScene" uid="uid://dah6eunyfmnqh" path="res://weapons/crossbow/crossbow.tscn" id="2_0cfru"]
 [ext_resource type="AudioStream" uid="uid://dxscywpf2ven0" path="res://audio/streams/pickups/pickup_weapon.wav" id="2_i63jb"]
 [ext_resource type="Texture2D" uid="uid://hk0k2coukjwc" path="res://effects/halos/halo_tex.tres" id="3_dexhw"]

@@ -70,9 +70,10 @@ func _on_campaign_button_pressed() -> void:
 
 
 func _on_save_button_pressed() -> void:
-	_save_file.current_file = "%s_%s.scn" % [
+	_save_file.current_file = "%s_%s_%s.scn" % [
+			(get_tree().current_scene as Level).level_name,
 			Time.get_date_string_from_system(), 
-			Time.get_time_string_from_system()
+			Time.get_time_string_from_system(),
 	]
 	_save_file.show()
 	#await _save_file.file_selected

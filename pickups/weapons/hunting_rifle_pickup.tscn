@@ -1,6 +1,6 @@
 [gd_scene load_steps=28 format=3 uid="uid://dxyhvyy821swt"]
 
-[ext_resource type="Script" uid="uid://yrdtgm5mut51" path="res://scripts/pickups/weapon_pickup.gd" id="1_0ekm5"]
+[ext_resource type="Script" uid="uid://yrdtgm5mut51" path="res://pickups/weapon_pickup.gd" id="1_0ekm5"]
 [ext_resource type="PackedScene" uid="uid://bsjlv88juhpn5" path="res://weapons/hunting_rifle/hunting_rifle.tscn" id="2_blgui"]
 [ext_resource type="AudioStream" uid="uid://dxscywpf2ven0" path="res://audio/streams/pickups/pickup_weapon.wav" id="2_mse5f"]
 [ext_resource type="Material" uid="uid://b78l63b32udy2" path="res://effects/halos/halo_mat.tres" id="3_hj8pb"]

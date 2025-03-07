@@ -1,6 +1,6 @@
 [gd_scene load_steps=16 format=3 uid="uid://ce2yor24rivr3"]
 
-[ext_resource type="Script" uid="uid://yrdtgm5mut51" path="res://scripts/pickups/weapon_pickup.gd" id="1_qg8tj"]
+[ext_resource type="Script" uid="uid://yrdtgm5mut51" path="res://pickups/weapon_pickup.gd" id="1_qg8tj"]
 [ext_resource type="AudioStream" uid="uid://dxscywpf2ven0" path="res://audio/streams/pickups/pickup_weapon.wav" id="2_12kw6"]
 [ext_resource type="PackedScene" uid="uid://cprbuapjccc8b" path="res://weapons/nailgun/nailgun.tscn" id="2_cyypm"]
 [ext_resource type="Texture2D" uid="uid://hk0k2coukjwc" path="res://effects/halos/halo_tex.tres" id="3_as8xy"]

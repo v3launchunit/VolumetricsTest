@@ -3,6 +3,7 @@ extends RigidBody3D
 
 signal interacted(with: Node3D);
 
+
 @export var func_godot_properties: Dictionary
 
 @export var flash_color: Color = Color.GREEN

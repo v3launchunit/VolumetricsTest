@@ -1,6 +1,6 @@
 [gd_scene load_steps=25 format=3 uid="uid://b2ceyvvn2j4nq"]
 
-[ext_resource type="Script" uid="uid://yrdtgm5mut51" path="res://scripts/pickups/weapon_pickup.gd" id="1_iysxo"]
+[ext_resource type="Script" uid="uid://yrdtgm5mut51" path="res://pickups/weapon_pickup.gd" id="1_iysxo"]
 [ext_resource type="PackedScene" uid="uid://bfxuay7qxu7lj" path="res://weapons/big_iron/big_iron.tscn" id="2_4dbr2"]
 [ext_resource type="AudioStream" uid="uid://dxscywpf2ven0" path="res://audio/streams/pickups/pickup_weapon.wav" id="2_yykfy"]
 [ext_resource type="Material" uid="uid://b78l63b32udy2" path="res://effects/halos/halo_mat.tres" id="3_4ae8u"]

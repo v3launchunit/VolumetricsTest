@@ -1,6 +1,6 @@
 [gd_scene load_steps=25 format=3 uid="uid://lt47oncbceb2"]
 
-[ext_resource type="Script" uid="uid://yrdtgm5mut51" path="res://scripts/pickups/weapon_pickup.gd" id="1_bxpsa"]
+[ext_resource type="Script" uid="uid://yrdtgm5mut51" path="res://pickups/weapon_pickup.gd" id="1_bxpsa"]
 [ext_resource type="AudioStream" uid="uid://dxscywpf2ven0" path="res://audio/streams/pickups/pickup_weapon.wav" id="2_dmkcn"]
 [ext_resource type="ArrayMesh" uid="uid://53jffpg6vhkj" path="res://weapons/akm/akm.obj" id="2_l81mn"]
 [ext_resource type="PackedScene" uid="uid://xpo774l18flk" path="res://weapons/akm/akm.tscn" id="2_xvbkw"]

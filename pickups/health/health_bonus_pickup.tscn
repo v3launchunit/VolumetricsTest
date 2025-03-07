@@ -1,11 +1,11 @@
 [gd_scene load_steps=16 format=3 uid="uid://bnsepaqu7j4p4"]
 
-[ext_resource type="Script" uid="uid://c5fw3v01gendn" path="res://scripts/pickups/health_pickup.gd" id="1_e1j35"]
+[ext_resource type="Script" uid="uid://c5fw3v01gendn" path="res://pickups/health_pickup.gd" id="1_e1j35"]
 [ext_resource type="AudioStream" uid="uid://cr8v5feyxtf4l" path="res://audio/streams/pickups/pickup_health.wav" id="2_7pkm3"]
 [ext_resource type="Texture2D" uid="uid://hk0k2coukjwc" path="res://effects/halos/halo_tex.tres" id="3_6m4ys"]
 [ext_resource type="Material" uid="uid://b78l63b32udy2" path="res://effects/halos/halo_mat.tres" id="3_8duam"]
 [ext_resource type="Script" uid="uid://qbss7pion7pi" path="res://scripts/effects/halo.gd" id="5_4gbki"]
-[ext_resource type="Shader" uid="uid://b8h2bq5npbupf" path="res://shaders/spatial/entities/psx_ul_mix.gdshader" id="6_15fa3"]
+[ext_resource type="Shader" uid="uid://bycruau5ish4o" path="res://shaders/spatial/entities/psx_ul_mix.gdshader" id="6_15fa3"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_uc2sx"]
 height = 1.0
