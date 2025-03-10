@@ -9,9 +9,7 @@ classname = "pickup_base"
 description = ""
 func_godot_internal = false
 base_classes = Array[Resource]([ExtResource("1_6duty")])
-class_properties = {
-"pickup_group": "none"
-}
+class_properties = {}
 class_property_descriptions = {}
 auto_apply_to_matching_node_properties = false
 meta_properties = {

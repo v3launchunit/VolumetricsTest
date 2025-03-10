@@ -10,6 +10,7 @@ description = ""
 func_godot_internal = false
 base_classes = Array[Resource]([ExtResource("1_a58gd")])
 class_properties = {
+"angles": Vector3(0, 0, 0),
 "corpse": false,
 "detect_mode": {
 "Sight: default, Sound: default": 0,

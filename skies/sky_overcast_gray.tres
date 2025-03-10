@@ -15,7 +15,7 @@ color_ramp = SubResource("Gradient_eawp4")
 noise = SubResource("FastNoiseLite_qena5")
 
 [sub_resource type="Gradient" id="Gradient_8yl48"]
-colors = PackedColorArray(0, 0, 0, 0, 0.5, 0.5, 0.5, 1)
+colors = PackedColorArray(0.3, 0.3, 0.3, 0, 0.75, 0.75, 0.75, 1)
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_2krc6"]
 noise_type = 2
@@ -29,7 +29,8 @@ noise = SubResource("FastNoiseLite_2krc6")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_irk53"]
 shader = ExtResource("1_d3tgo")
-shader_parameter/base_color = Color(0.25, 0.25, 0.25, 1)
+shader_parameter/base_color = Color(0.35, 0.35, 0.35, 1)
+shader_parameter/exposure = 1.0
 shader_parameter/sky_distance = 8.0
 shader_parameter/sky_color = Color(1, 1, 1, 1)
 shader_parameter/texture_sky = SubResource("NoiseTexture2D_5hit8")
@@ -39,8 +40,8 @@ shader_parameter/sky_clouds_1_color = Color(1, 1, 1, 1)
 shader_parameter/texture_sky_clouds_1 = SubResource("NoiseTexture2D_lrtde")
 shader_parameter/uv_sky_clouds_1_scale = Vector2(0.125, 0.125)
 shader_parameter/uv_sky_clouds_1_scroll_speed = Vector2(0.075, 0.075)
-shader_parameter/surface_distance = 32.0
-shader_parameter/surface_color = Color(0, 0, 0, 1)
+shader_parameter/surface_distance = 1.0
+shader_parameter/surface_color = Color(0.2, 0.2, 0.2, 1)
 shader_parameter/uv_surface_scale = Vector2(0.125, 0.125)
 shader_parameter/uv_surface_scroll_speed = Vector2(0, 0)
 

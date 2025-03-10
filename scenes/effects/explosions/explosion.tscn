@@ -1,7 +1,7 @@
 [gd_scene load_steps=42 format=3 uid="uid://dco7xp2cwuyge"]
 
+[ext_resource type="Script" uid="uid://it17y5hskb07" path="res://scenes/effects/explosions/explosion_saver.gd" id="1_5ljrq"]
 [ext_resource type="Script" uid="uid://b5h7xnsiqnyy7" path="res://scripts/effects/lifetime.gd" id="1_eyiwv"]
-[ext_resource type="Script" uid="uid://b7g82w2xxwd0u" path="res://scripts/auto_play.gd" id="2_w10mg"]
 [ext_resource type="Script" uid="uid://iq4n1kv8ucdv" path="res://scripts/effects/area_damage.gd" id="3_6neht"]
 [ext_resource type="Texture2D" uid="uid://djg6ch15ainnw" path="res://effects/radial_n.png" id="3_kqyqy"]
 [ext_resource type="ArrayMesh" uid="uid://cx13p5fo0cmf6" path="res://models/effects/octagon_quad.obj" id="3_nm51l"]
@@ -474,6 +474,7 @@ shader_parameter/width = 0.04
 shader_parameter/feather = 0.135
 
 [node name="Explosion" type="Node3D"]
+script = ExtResource("1_5ljrq")
 
 [node name="OmniLight3D" type="OmniLight3D" parent="."]
 layers = 2
@@ -529,7 +530,7 @@ material = SubResource("FogMaterial_hi1pk")
 libraries = {
 &"": SubResource("AnimationLibrary_7h3vl")
 }
-script = ExtResource("2_w10mg")
+autoplay = "anim"
 
 [node name="Blastwave" type="MeshInstance3D" parent="."]
 transform = Transform3D(0.00999999, 0, 0, 0, 0.00999999, 0, 0, 0, 0.00999999, 0, 0, 0)

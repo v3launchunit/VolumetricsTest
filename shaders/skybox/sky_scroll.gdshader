@@ -1,27 +1,28 @@
 shader_type sky;
 
-uniform vec3 base_color: source_color = vec3(0.5);
+uniform vec3 base_color : source_color = vec3(0.5);
+uniform float exposure : hint_range(0.0, 16.0, 0.01) = 1.0;
 
 // sky (upper half of background) uniforms
 group_uniforms sky;
-uniform float sky_distance: hint_range(0.0, 32.0, 0.1) = 8.0;
-uniform vec4 sky_color: source_color = vec4(1.0);
+uniform float sky_distance : hint_range(0.0, 32.0, 0.1) = 8.0;
+uniform vec4 sky_color : source_color = vec4(1.0);
 uniform sampler2D texture_sky: source_color, filter_nearest, hint_default_white;
 uniform vec2 uv_sky_scale = vec2(0.125);
 uniform vec2 uv_sky_scroll_speed = vec2(0.05);
 
 // cloud layer 1 uniforms
 group_uniforms sky_clouds_1;
-uniform vec4 sky_clouds_1_color: source_color = vec4(1.0);
-uniform sampler2D texture_sky_clouds_1: source_color, filter_nearest, hint_default_transparent;
+uniform vec4 sky_clouds_1_color : source_color = vec4(1.0);
+uniform sampler2D texture_sky_clouds_1 : source_color, filter_nearest, hint_default_transparent;
 uniform vec2 uv_sky_clouds_1_scale = vec2(0.125);
 uniform vec2 uv_sky_clouds_1_scroll_speed = vec2(0.05);
 
 // surface (lower half of background) uniforms
 group_uniforms surface;
-uniform float surface_distance: hint_range(0.0, 32.0, 0.1) = 32.0;
-uniform vec4 surface_color: source_color = vec4(vec3(0.0), 1.0);
-uniform sampler2D texture_surface: source_color, filter_nearest, hint_default_white;
+uniform float surface_distance : hint_range(0.0, 32.0, 0.1) = 32.0;
+uniform vec4 surface_color : source_color = vec4(vec3(0.0), 1.0);
+uniform sampler2D texture_surface : source_color, filter_nearest, hint_default_white;
 uniform vec2 uv_surface_scale = vec2(0.125);
 uniform vec2 uv_surface_scroll_speed = vec2(0.0);
 
@@ -58,9 +59,9 @@ vec3 get_sky_color(vec3 eye_dir, float time) {
 void sky() {
 	if (AT_CUBEMAP_PASS) {
 		// don't animate the cubemap (otherwise it'll get updated every frame)
-		COLOR = get_sky_color(EYEDIR, 0.0);
+		COLOR = get_sky_color(EYEDIR, 0.0) * exposure;
 	} else {
 		// do animate the actual background
-		COLOR = get_sky_color(EYEDIR, TIME);
+		COLOR = get_sky_color(EYEDIR, TIME) * exposure;
 	}
 }

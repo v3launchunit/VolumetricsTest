@@ -6,22 +6,22 @@ class_name Player extends CharacterBody3D
 
 @export_group("Movement")
 ## The player's base movement speed.
-@export_range(0.0, 35.0, 0.1, "or_greater") var speed: float = 10.0
+@export_range(0.0, 35.0, 0.1, "or_greater") var speed: float = 15.0
 ## The rate at which the player accelerates from standing still to moving at
 ## full speed.
-@export_range(0.0, 100.0, 0.1, "or_greater") var acceleration: float = 100.0
+@export_range(0.0, 100.0, 0.1, "or_greater") var acceleration: float = 50.0
 ## The absolute fastest that the player can travel in each direction.
-@export var max_speed := Vector3(100.0, 100.0, 100.0)
+@export var max_speed := Vector3(1000.0, 10000.0, 1000.0)
 ## The rate at which the velocity imparted by sliding "decays" towards zero.
-@export_range(0.0, 100.0, 0.1, "or_greater") var slide_drag: float = 10.0
+@export_range(0.0, 100.0, 0.1, "or_greater") var slide_drag: float = 25.0
 ## Ditto for knockback.
 @export_range(0.0, 100.0, 0.1, "or_greater") var knockback_drag: float = 10.0
 ## Self-explanatory.
-@export_range(0.1, 3.0, 0.1, "or_greater") var jump_height: float = 1
+@export_range(0.1, 3.0, 0.1, "or_greater") var jump_height: float = 2.0
 @export_range(1, 10, 1, "or_greater") var max_jumps: int = 1
 @export_range(0.0, 100.0, 0.1, "or_greater") var rise_grav: float = 9.8
-@export_range(0.0, 100.0, 0.1, "or_greater") var fall_grav: float = 9.8
-@export_range(0.0, 100.0, 0.1, "or_greater") var slam_speed: float = 100.0
+@export_range(0.0, 100.0, 0.1, "or_greater") var fall_grav: float = 19.6
+@export_range(0.0, 100.0, 0.1, "or_greater") var slam_speed: float = 50.0
 @export var slam_wave_scene: PackedScene
 
 @export_group("Camera")
@@ -40,8 +40,9 @@ class_name Player extends CharacterBody3D
 ## camera's transform position and vertical offset) corresponds to the player's
 ## current falling speed, multiplied by this.
 @export_range(0.0, 1.0, 0.001) var jump_sway: float = 0.01
-@export_range(0.0, 1.0, 0.001) var strafe_sway: float = 0.025
+@export_range(0.0, 1.0, 0.001) var strafe_sway: float = 0.05
 @export_range(-1.0, 1.0, 0.01) var look_drag: float = 0.25
+@export_range(0.0, 16.0, 0.05) var _cam_recoil_accel: float = 3.0
 
 @export_group("Sounds")
 ## The audio stream that plays when the player attempts to interact with an
@@ -226,6 +227,8 @@ func _physics_process_default(delta: float) -> void:
 			+ _knockback(delta)
 	)
 	
+	_animate_camera(delta)
+	
 	# Handle joypad look
 	if Globals.mouse_captured: 
 		_handle_joypad_camera_rotation(delta)
@@ -237,13 +240,6 @@ func _physics_process_default(delta: float) -> void:
 	camera_sync.global_transform = global_transform
 	# handle y offset
 	camera_sync.position.y += cam_y_offset
-	cam_y_offset = lerpf(cam_y_offset, 0.0, delta * crouch_speed)
-	# handle pitch recoil
-	if is_equal_approx(cam_recoil_vel, 0.0):
-		cam_recoil_pos = lerpf(cam_recoil_pos, 0.0, delta * 3)
-	else:
-		cam_recoil_pos += cam_recoil_vel * delta
-	cam_recoil_vel = move_toward(cam_recoil_vel, 0.0, delta * 3)
 	camera_sync.rotation.x = cam_recoil_pos
 
 	velocity = velocity.clamp(-max_speed, max_speed)
@@ -319,6 +315,62 @@ func _handle_joypad_camera_rotation(delta: float, sens_mod: float = 1.0) -> void
 		look_dir = Vector2.ZERO
 
 
+func _animate_camera(delta: float) -> void:
+	# Roll camera while strafing
+	camera.rotation.z = move_toward(
+			camera.rotation.z,
+			move_dir.x * -roll_intensity,
+			delta * roll_speed
+	)
+	
+	if move_dir.length() <= Globals.C_EPSILON:
+		sway_timer = PI/2 #smoothstep(sway_timer, PI/2, delta)
+	else:
+		sway_timer += delta
+	
+	# Handle camera & weapon sway/jump lag
+	camera.position = Vector3(
+			(
+					move_dir.length() 
+					* sway_height 
+					* cos(sway_speed * sway_timer) 
+					- move_dir.x 
+					* strafe_sway
+			),
+			(
+					0.5 
+					+ move_dir.length() 
+					* sway_height 
+					/ 3 
+					* sin(2 * sway_speed * sway_timer)
+			),
+			0,
+	) if is_on_floor() else Vector3(
+			0,
+			0.5 - clampf((grav_vel.y) * jump_sway, -0.1, 0.1),
+			0,
+	)
+	# Manipulating the offsets like this makes it look like the weapon is
+	# moving relative to the camera without having to actually move the weapon
+	camera.h_offset = move_dir.x * strafe_sway
+	camera.v_offset = (
+			move_dir.length() * -sway_height / 6 * sin(10 * sway_timer)
+	) if is_on_floor() else clampf(
+			(grav_vel.y) * jump_sway,
+			-0.1,
+			0.1
+	)
+	
+	cam_y_offset = lerpf(cam_y_offset, 0.0, delta * crouch_speed)
+	
+	# handle pitch recoil
+	if is_equal_approx(cam_recoil_vel, 0.0):
+		cam_recoil_pos = lerpf(cam_recoil_pos, 0.0, delta * _cam_recoil_accel)
+	else:
+		cam_recoil_pos += cam_recoil_vel * delta
+	cam_recoil_vel = move_toward(cam_recoil_vel, 0.0, delta * _cam_recoil_accel)
+
+
 func apply_knockback(amount: Vector3, knockup: float = 0) -> void:
 	if amount.y > Globals.C_EPSILON or knockup > Globals.C_EPSILON:
 		#jump_vel = Vector3.ZERO
@@ -373,50 +425,6 @@ func _walk(delta: float) -> Vector3:
 			walk_vel = walk_vel.move_toward(walk_dir * move_dir.length(), acceleration * delta)
 	else:
 		walk_vel = walk_vel.move_toward(walk_dir * speed * move_dir.length(), acceleration * delta)
-	
-	# Roll camera while strafing
-	camera.rotation.z = move_toward(
-			camera.rotation.z,
-			move_dir.x * -roll_intensity,
-			delta * roll_speed
-	)
-	
-	if move_dir.length() <= Globals.C_EPSILON:
-		sway_timer = PI/2 #smoothstep(sway_timer, PI/2, delta)
-	else:
-		sway_timer += delta
-	# Handle camera & weapon sway/jump lag
-	camera.position = Vector3(
-			(
-					move_dir.length() 
-					* sway_height 
-					* cos(sway_speed * sway_timer) 
-					- move_dir.x 
-					* strafe_sway
-			),
-			(
-					0.5 
-					+ move_dir.length() 
-					* sway_height 
-					/ 3 
-					* sin(2 * sway_speed * sway_timer)
-			),
-			0,
-	) if is_on_floor() else Vector3(
-			0,
-			0.5 - clampf((grav_vel.y) * jump_sway, -0.1, 0.1),
-			0,
-	)
-	# Manipulating the offsets like this makes it look like the weapon is
-	# moving relative to the camera without having to actually move the weapon
-	camera.h_offset = move_dir.x * strafe_sway
-	camera.v_offset = (
-			move_dir.length() * -sway_height / 6 * sin(10 * sway_timer)
-	) if is_on_floor() else clampf(
-			(grav_vel.y) * jump_sway,
-			-0.1,
-			0.1
-	)
 	return walk_vel
 
 

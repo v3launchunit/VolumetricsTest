@@ -57,10 +57,12 @@ transitions = ["Start", "deploy", SubResource("AnimationNodeStateMachineTransiti
 graph_offset = Vector2(-136, 58)
 
 [node name="Axe" type="Node3D"]
+
+[node name="Anchor" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.25, -0.35)
 
-[node name="Axe" type="MeshInstance3D" parent="."]
-transform = Transform3D(0.499978, -0.866038, 0, 0.866038, 0.499978, 0, 0, 0, 1, -0.15, 0.0023735, 0)
+[node name="Axe" type="MeshInstance3D" parent="Anchor"]
+transform = Transform3D(0.499978, -0.866038, 0, 0.866038, 0.499978, 0, 0, 0, 1, -0.15, 4.14344e-05, 0)
 layers = 4
 material_override = ExtResource("1_qblvp")
 cast_shadow = 0
@@ -72,21 +74,21 @@ cam_recoil = -0.436332
 apply_berserk = true
 use_safety_catch = false
 
-[node name="Spawner" type="Marker3D" parent="Axe"]
+[node name="Spawner" type="Marker3D" parent="Anchor/Axe"]
 
-[node name="AltSpawner" type="Marker3D" parent="Axe"]
+[node name="AltSpawner" type="Marker3D" parent="Anchor/Axe"]
 
-[node name="AnimationTree" type="AnimationTree" parent="Axe"]
+[node name="AnimationTree" type="AnimationTree" parent="Anchor/Axe"]
 root_node = NodePath(".")
 tree_root = SubResource("AnimationNodeStateMachine_o311l")
 anim_player = NodePath("../../AnimationPlayer")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Anchor"]
 root_node = NodePath("../Axe/AnimationTree")
 libraries = {
-"axe_anims": ExtResource("3_t18wh")
+&"axe_anims": ExtResource("3_t18wh")
 }
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Anchor"]
 volume_db = -3.0
 bus = &"Weapons"

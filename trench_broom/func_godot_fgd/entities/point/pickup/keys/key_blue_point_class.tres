@@ -13,7 +13,7 @@ description = ""
 func_godot_internal = false
 base_classes = Array[Resource]([ExtResource("1_r27oo")])
 class_properties = {
-"pickup_group": "blue"
+"target": "blue"
 }
 class_property_descriptions = {}
 auto_apply_to_matching_node_properties = false
