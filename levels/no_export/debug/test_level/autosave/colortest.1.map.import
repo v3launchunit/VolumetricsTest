@@ -1,0 +1,14 @@
+[remap]
+
+importer="func_godot.map"
+type="Resource"
+uid="uid://d2an2mps65gpn"
+path="res://.godot/imported/colortest.1.map-6ca368f86e36cb9e236b7c94bcb4d6ad.tres"
+
+[deps]
+
+source_file="res://levels/no_export/debug/test_level/autosave/colortest.1.map"
+dest_files=["res://.godot/imported/colortest.1.map-6ca368f86e36cb9e236b7c94bcb4d6ad.tres"]
+
+[params]
+

@@ -1,6 +1,6 @@
 [gd_resource type="ShaderMaterial" load_steps=4 format=3 uid="uid://cgrmnklrxmjec"]
 
-[ext_resource type="Shader" uid="uid://kbf1psyb3m5h" path="res://levels/debug/test_level/shadow_psx.gdshader" id="1_l0ujg"]
+[ext_resource type="Shader" uid="uid://kbf1psyb3m5h" path="res://levels/no_export/debug/test_level/shadow_psx.gdshader" id="1_l0ujg"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_qmkff"]
 frequency = 1.0

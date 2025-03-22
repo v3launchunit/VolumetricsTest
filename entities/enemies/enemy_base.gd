@@ -162,13 +162,13 @@ var sight_line_sweep_dot: float = cos(sight_line_sweep_angle / 2.0)
 
 @onready var nav_agent: NavigationAgent3D = find_child("NavigationAgent3D")
 @onready var nav_region := get_tree().current_scene.find_child(
-		"NavigationRegion3D") as NavigationRegion3D
+	"NavigationRegion3D") as NavigationRegion3D
 @onready var sight_line: RayCast3D = find_child("SightLine")
 @onready var status: Status = find_child("Status")
 
 @onready var spawner: Node3D = find_child("Spawner")
 @onready var state_machine: AnimationNodeStateMachinePlayback = $AnimationTree.get(
-		"parameters/playback")
+	"parameters/playback")
 @onready var attack_range_squared = attack_range * attack_range
 @onready var melee_range_squared = melee_range * melee_range
 @onready var audio_player: AudioStreamPlayer3D = find_child("AudioStreamPlayer3D")
@@ -179,8 +179,8 @@ func _ready() -> void:
 	turret_mode = properties.get("turret_mode", false)
 	
 	path_re_eval_distance_squared = (
-			$NavigationAgent3D.target_desired_distance
-			* $NavigationAgent3D.target_desired_distance
+		$NavigationAgent3D.target_desired_distance
+		* $NavigationAgent3D.target_desired_distance
 	)
 	
 	if "detect_mode" in properties and properties["detect_mode"] > 0:
@@ -267,9 +267,9 @@ func _physics_process(delta: float) -> void:
 		State.AMBUSHING:
 			if state_timer >= wake_up_time:
 				change_state(
-						State.IDLE 
-						if current_targets.is_empty()
-						else State.PURSUING
+					State.IDLE
+					if current_targets.is_empty()
+					else State.PURSUING
 				)
 				if not current_targets.is_empty():
 					detect_target(current_targets[-1], DetectionType.RETALIATION)
@@ -482,7 +482,9 @@ func _scan(_delta) -> void:
 		return
 	
 	# can't see target from behind
-	if global_basis.z.normalized().dot((global_position - target.global_position).normalized()) < sight_line_sweep_dot:
+	if global_basis.z.normalized().dot(
+			(global_position - target.global_position).normalized()
+	) < sight_line_sweep_dot:
 		return
 	var space_state := get_world_3d().direct_space_state
 	var query := PhysicsRayQueryParameters3D.create(

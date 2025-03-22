@@ -1,0 +1,173 @@
+[gd_scene load_steps=12 format=3 uid="uid://redbealnw6dv"]
+
+[ext_resource type="Theme" uid="uid://dwof7m2ye3tjh" path="res://ui/default_theme.tres" id="1_8b1d4"]
+[ext_resource type="Script" uid="uid://uxlfv7qba6ja" path="res://levels/no_export/intermission/intermission_screen.gd" id="1_j6yne"]
+[ext_resource type="Texture2D" uid="uid://cmq3arf61ax4f" path="res://ui/menus/menu_panel.png" id="3_uenmx"]
+[ext_resource type="AudioStream" uid="uid://cfhhlt7csg7u7" path="res://audio/streams/weapons/firing/shotgun_fire.wav" id="4_ugqxr"]
+[ext_resource type="Shader" uid="uid://co7lc7hmo67u1" path="res://shaders/canvas/screenwipe_melt.gdshader" id="5_7ipf1"]
+
+[sub_resource type="Gradient" id="Gradient_v0l2t"]
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_uhran"]
+gradient = SubResource("Gradient_v0l2t")
+
+[sub_resource type="Gradient" id="Gradient_em8xn"]
+colors = PackedColorArray(0.1, 0.1, 0.1, 1, 1, 1, 1, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_3d347"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_0756h"]
+width = 1920
+height = 1
+color_ramp = SubResource("Gradient_em8xn")
+noise = SubResource("FastNoiseLite_3d347")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_effek"]
+shader = ExtResource("5_7ipf1")
+shader_parameter/melt_progress = 0.0
+shader_parameter/melt_noise = SubResource("NoiseTexture2D_0756h")
+
+[node name="IntermissionScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_j6yne")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture2D_uhran")
+
+[node name="StatsPanel" type="NinePatchRect" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -136.0
+offset_top = -64.0
+offset_right = 136.0
+offset_bottom = 64.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_uenmx")
+patch_margin_left = 4
+patch_margin_top = 16
+patch_margin_right = 4
+patch_margin_bottom = 8
+
+[node name="Labels" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -122.0
+offset_top = -64.0
+offset_right = 122.0
+offset_bottom = 64.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_8b1d4")
+alignment = 1
+
+[node name="TimeLabel" type="Label" parent="Labels"]
+layout_mode = 2
+text = "TIME: "
+
+[node name="KillsLabel" type="Label" parent="Labels"]
+layout_mode = 2
+text = "KILLS:"
+
+[node name="SecretsLabel" type="Label" parent="Labels"]
+layout_mode = 2
+text = "SECRETS:"
+
+[node name="Tallies" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -122.0
+offset_top = -64.0
+offset_right = 122.0
+offset_bottom = 64.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_8b1d4")
+alignment = 1
+
+[node name="TimeLabel" type="Label" parent="Tallies"]
+layout_mode = 2
+text = "00:00:00.000"
+horizontal_alignment = 2
+
+[node name="KillsLabel" type="Label" parent="Tallies"]
+layout_mode = 2
+text = "2901/3620"
+horizontal_alignment = 2
+
+[node name="SecretsLabel" type="Label" parent="Tallies"]
+layout_mode = 2
+text = "29/94"
+horizontal_alignment = 2
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_ugqxr")
+
+[node name="Label" type="Label" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -128.5
+offset_top = 79.5
+offset_right = 28.5
+offset_bottom = 102.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "CLICK TO CONTINUE"
+
+[node name="StatsPanel" type="NinePatchRect" parent="Label"]
+show_behind_parent = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -8.0
+offset_top = -16.0
+offset_right = 8.0
+offset_bottom = 9.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_uenmx")
+patch_margin_left = 4
+patch_margin_top = 16
+patch_margin_right = 4
+patch_margin_bottom = 8
+
+[node name="ScreenWipeMelt" type="TextureRect" parent="."]
+visible = false
+material = SubResource("ShaderMaterial_effek")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture2D_uhran")
