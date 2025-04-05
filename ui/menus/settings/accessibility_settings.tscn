@@ -4,26 +4,39 @@
 [ext_resource type="Script" uid="uid://bkl2poi27qt1" path="res://ui/menus/settings/accessibility_sub_menu.gd" id="2_qo6hd"]
 
 [node name="Accessibility" type="VBoxContainer"]
+offset_right = 181.0
+offset_bottom = 68.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
 theme = ExtResource("1_234e3")
 script = ExtResource("2_qo6hd")
 
 [node name="Language" type="Control" parent="."]
+custom_minimum_size = Vector2(68, 0)
 layout_mode = 2
 
 [node name="Label" type="Label" parent="Language"]
 layout_mode = 1
-offset_right = 173.0
-offset_bottom = 26.0
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 22.0
+grow_horizontal = 2
 theme = ExtResource("1_234e3")
-text = "Pixel Scale Factor"
+text = "LANGUAGE"
 horizontal_alignment = 1
 uppercase = true
 
 [node name="LanguageDropdown" type="OptionButton" parent="Language"]
-layout_mode = 2
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
 offset_top = 26.0
-offset_right = 30.0
-offset_bottom = 52.0
+offset_bottom = 58.0
+grow_horizontal = 2
+grow_vertical = 2
 selected = 0
 item_count = 1
 popup/item_0/text = "ENGLISH"
+popup/item_0/id = 0

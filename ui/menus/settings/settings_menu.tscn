@@ -246,7 +246,7 @@ offset_bottom = -15.0
 grow_horizontal = 2
 grow_vertical = 2
 follow_focus = true
-horizontal_scroll_mode = 2
+vertical_scroll_mode = 2
 
 [node name="Accessibility" parent="SettingsPanel/AccessibilityScroll" instance=ExtResource("8_e5s2f")]
 layout_mode = 2

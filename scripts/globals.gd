@@ -20,9 +20,9 @@ enum Difficulty {
 	NIGHTMARE,
 }
 
-enum Lang {
-	ENGLISH,
-}
+#enum Lang {
+	#ENGLISH,
+#}
 
 enum PseudoBool {
 	FALSE = 0,
@@ -150,7 +150,9 @@ var s_toggle_crouch: bool = false
 #endregion
 
 #region Accessibility settings
-var s_lang := Lang.ENGLISH
+var langs: Dictionary[String, String]
+## The game's current language.
+var s_lang : String = "text_eng.cfg";
 #endregion
 #endregion
 
@@ -174,18 +176,25 @@ var mouse_captured: bool = false
 func _init() -> void:
 	var err: Error = OK
 	process_mode = Node.PROCESS_MODE_ALWAYS
+	
+	# load enemy names mapper
 	err = names.load("res://names.cfg")
 	assert(not err, "could not load names.cfg (error code %s)" % err)
 	#if names.load("res://names.cfg"):
 		#printerr("could not load names.cfg")
-	err = text.load("res://text/text_%s.cfg" % get_lang_name(s_lang))
-	assert(not err, "could not load text_%s.cfg (error code %s)" % [get_lang_name(s_lang), err])
-	#if text.load("res://text/text_%s.cfg" % get_lang_name(s_lang)):
-		#printerr("could not load text_%s.cfg")
+	
+	# load language file
+	err = text.load("res://text/%s" % s_lang)
+	if text.load("res://text/text_%s.cfg" % s_lang):
+		Console.print_error("could not load %s (error code %s)" % [s_lang, err])
+	#assert(not err, "could not load %s (error code %s)" % [get_lang_name(s_lang), err])
+	
+	# load campaign mapper
 	err = campaign.load("res://campaign.cfg")
 	assert(not err, "could not load campaign.cfg (error code %s)" % err)
 	#if campaign.load("res://campaign.cfg"):
 		#printerr("could not load campaign.cfg")
+	
 	_setup_user()
 	_load_config()
 	persistent.load(C_PERSISTENT_PATH)
@@ -254,12 +263,21 @@ func cmd_map(level_key: String) -> void:
 	#Engine.time_scale = smoothstep(Engine.time_scale, 1.0, delta / Engine.time_scale)
 
 
-func get_lang_name(lang: Lang) -> String:
-	match lang:
-		Lang.ENGLISH:
-			return "eng"
-		_:
-			return "eng"
+func load_languages() -> void:
+	var config := ConfigFile.new()
+	for item: String in ResourceLoader.list_directory("res://text"):
+		config.load("res://text/%s" % item)
+		if not langs.get(config.get_value("meta", "name")):
+			langs.set(config.get_value("meta", "name"), item)
+
+
+func get_lang_name(lang: String) -> String:
+	return langs.get(lang, "text_eng.cfg")
+	#match lang:
+		#Lang.ENGLISH:
+			#return "eng"
+		#_:
+			#return "eng"
 
 
 ## Reads the current configuration settings from disq and loads them into memory.
@@ -437,7 +455,7 @@ func parse_text(section: String, key: String) -> String:
 	#print(text.get_value(section, key))
 	var out := text.get_value(section, key, "MISSING: %s/%s" % [section, key]) as String
 	if out.begins_with("MISSING: "):
-		Console.print_error("language key %s/%s does not correspond to a valid text_%s.cfg entry!" % [section, key, get_lang_name(s_lang)])
+		Console.print_error("language key %s/%s does not correspond to a valid %s entry!" % [section, key, get_lang_name(s_lang)])
 	return out
 
 

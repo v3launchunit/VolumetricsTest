@@ -12,14 +12,15 @@
 [sub_resource type="Gradient" id="Gradient_2adxq"]
 colors = PackedColorArray(0.65, 0.65, 0.65, 1, 1, 1, 1, 1)
 
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_d758c"]
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_c6u0j"]
+frequency = 0.05
 
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_q5lsm"]
 width = 256
 height = 256
 seamless = true
 color_ramp = SubResource("Gradient_2adxq")
-noise = SubResource("FastNoiseLite_d758c")
+noise = SubResource("FastNoiseLite_c6u0j")
 
 [resource]
 render_priority = 0

@@ -74,7 +74,7 @@ script = ExtResource("1_evxcs")
 heal_amount = 1
 can_overheal = true
 is_armor_pickup = true
-event_string = "pickup.armor.gen"
+event_string = "pickup.armor.bonus"
 flash_color = Color(0, 0, 1, 1)
 pickup_sound = ExtResource("2_lqt4n")
 pickup_text = "+1 bonus armor"
@@ -108,5 +108,5 @@ surface_material_override/0 = SubResource("ShaderMaterial_0klpa")
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 root_node = NodePath("../Area3D")
 libraries = {
-"": SubResource("AnimationLibrary_4pudi")
+&"": SubResource("AnimationLibrary_4pudi")
 }
