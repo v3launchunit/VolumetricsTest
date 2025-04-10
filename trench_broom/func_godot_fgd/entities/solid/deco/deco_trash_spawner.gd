@@ -11,6 +11,7 @@ const TRASH_LIST : Array[String] = [
 		"res://objects/deco/trash/trash_brick.tscn",
 		"res://scenes/objects/crate_metal.tscn",
 		"res://objects/deco/trash/trash_chair.tscn",
+		"res://objects/deco/trash/trash_floodlight_frame.tscn",
 ]
 
 const TRASH_PREFIX : String = "TrashProp"

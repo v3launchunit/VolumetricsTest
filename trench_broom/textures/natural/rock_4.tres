@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://koiu5ar81prp" path="res://materials/terrain/_pbr/cliffstone/cliffstone_normals_seamless_b.png" id="2_xqx7b"]
 
 [resource]
+albedo_color = Color(0.74978, 0.74978, 0.74978, 1)
 albedo_texture = ExtResource("1_78bfw")
 roughness = 0.75
 normal_enabled = true

@@ -7,7 +7,7 @@
 script = ExtResource("2_xynsn")
 scene_file = ExtResource("1_3mtbo")
 apply_rotation_on_map_build = true
-classname = "light_barrel"
+classname = "ldeco_barrel"
 description = ""
 func_godot_internal = false
 base_classes = Array[Resource]([])

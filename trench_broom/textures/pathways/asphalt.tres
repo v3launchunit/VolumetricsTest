@@ -5,12 +5,16 @@
 
 [sub_resource type="Gradient" id="Gradient_gtlwu"]
 interpolation_mode = 2
-offsets = PackedFloat32Array(0.00561798, 0.5, 1)
+offsets = PackedFloat32Array(0.00561798, 0.8125, 1)
 colors = PackedColorArray(0.25, 0.25, 0.25, 1, 0.75, 0.75, 0.75, 1, 1, 1, 1, 1)
+metadata/_snap_enabled = true
+metadata/_snap_count = 16
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_3lhh0"]
 noise_type = 2
+seed = 3
 frequency = 0.1
+fractal_gain = 0.75
 
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_irq8w"]
 invert = true

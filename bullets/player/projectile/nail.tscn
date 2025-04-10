@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://v2g043uyqdfa" path="res://bullets/bullet.gd" id="1_e5fcg"]
 [ext_resource type="PackedScene" uid="uid://ew75cbfb63v5" path="res://bullets/player/special/lodged_nail.tscn" id="2_anp6i"]
 [ext_resource type="ArrayMesh" uid="uid://dnda4sjlmlawu" path="res://bullets/nail.obj" id="2_ia8ek"]
-[ext_resource type="Material" uid="uid://by4h3hrepyr2o" path="res://bullets/bullet_metal.tres" id="3_a5dfc"]
+[ext_resource type="Material" uid="uid://by4h3hrepyr2o" path="res://bullets/metal_psx.tres" id="3_a5dfc"]
 [ext_resource type="AudioStream" uid="uid://crtqyq64m3wm1" path="res://audio/streams/ambient/bullet_ambient.wav" id="4_i3kve"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_h48e4"]

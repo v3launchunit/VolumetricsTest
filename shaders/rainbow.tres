@@ -1,10 +1,6 @@
 [gd_resource type="GradientTexture1D" load_steps=2 format=3 uid="uid://dns7kqrjm17ei"]
 
-[sub_resource type="Gradient" id="Gradient_judde"]
-offsets = PackedFloat32Array(0, 0.25, 0.5, 0.75, 1)
-colors = PackedColorArray(1, 0, 0, 1, 1, 1, 0, 1, 0, 1, 0, 1, 0, 1, 1, 1, 0, 0, 1, 1)
-metadata/_snap_enabled = true
-metadata/_snap_count = 12
+[ext_resource type="Gradient" uid="uid://dqpjbykh08e8g" path="res://shaders/rainbow_gradient.tres" id="1_rebb7"]
 
 [resource]
-gradient = SubResource("Gradient_judde")
+gradient = ExtResource("1_rebb7")

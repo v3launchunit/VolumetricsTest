@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://v2g043uyqdfa" path="res://bullets/bullet.gd" id="1_a4ujm"]
 [ext_resource type="PackedScene" uid="uid://ew75cbfb63v5" path="res://bullets/player/special/lodged_nail.tscn" id="2_ay4r3"]
-[ext_resource type="Material" uid="uid://by4h3hrepyr2o" path="res://bullets/bullet_metal.tres" id="3_dkf47"]
+[ext_resource type="Material" uid="uid://by4h3hrepyr2o" path="res://bullets/metal_psx.tres" id="3_dkf47"]
 [ext_resource type="ArrayMesh" uid="uid://d13ytgdp3744o" path="res://models/harpoon.obj" id="4_mt046"]
 [ext_resource type="AudioStream" uid="uid://crtqyq64m3wm1" path="res://audio/streams/ambient/bullet_ambient.wav" id="5_0mrb3"]
 

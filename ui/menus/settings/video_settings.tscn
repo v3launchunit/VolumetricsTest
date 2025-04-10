@@ -350,7 +350,7 @@ layout_mode = 2
 tooltip_text = "Toggles the procedural halos created 
 by the \"glow\" post-processing effect."
 theme = ExtResource("1_8amvi")
-text = "Bilinear Bloom"
+text = "Standard Bloom"
 
 [node name="CBloomCheck" type="CheckButton" parent="Effects"]
 layout_mode = 2
@@ -370,11 +370,11 @@ button_pressed = true
 text = "Volumetric Fog"
 
 [node name="PaletteCheck" type="CheckButton" parent="Effects"]
+visible = false
 layout_mode = 2
 size_flags_vertical = 4
-tooltip_text = "Toggles volumetric fog."
+tooltip_text = "Toggles a quantized color shader meant to simulate the restricted palettes of older games."
 theme = ExtResource("1_8amvi")
-button_pressed = true
 text = "Retro Palette"
 
 [node name="Palette" type="HFlowContainer" parent="."]

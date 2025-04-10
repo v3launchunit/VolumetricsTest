@@ -52,8 +52,8 @@ void fragment() {
 	vec4 detail_mask_tex = texture(texture_detail_mask,base_uv);
 	vec3 detail = mix(ALBEDO.rgb,detail_tex.rgb,detail_tex.a);
 	vec3 detail_norm = mix(NORMAL_MAP,detail_norm_tex.rgb,detail_tex.a);
-	vec4 crack = texture(texture_crack_albedo, UV);
-	vec4 crack_norm = texture(texture_crack_normal, UV);
+	vec4 crack = texture(texture_crack_albedo, UV * 0.5);
+	vec4 crack_norm = texture(texture_crack_normal, UV * 0.5);
 	NORMAL_MAP = mix(NORMAL_MAP,mix(detail_norm, crack_norm.rgb, crack.a),detail_mask_tex.r);
 	ALBEDO.rgb = mix(ALBEDO.rgb,detail * crack.rgb,detail_mask_tex.r);
 }
@@ -66,12 +66,11 @@ metadata/_snap_enabled = true
 metadata/_snap_count = 16
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_ar42f"]
-fractal_type = 2
+fractal_type = 3
 
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_qjpnj"]
-width = 256
-height = 256
 invert = true
+generate_mipmaps = false
 color_ramp = SubResource("Gradient_6ici4")
 noise = SubResource("FastNoiseLite_ar42f")
 
@@ -82,9 +81,8 @@ metadata/_snap_enabled = true
 metadata/_snap_count = 16
 
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_s6pid"]
-width = 256
-height = 256
 invert = true
+generate_mipmaps = false
 as_normal_map = true
 color_ramp = SubResource("Gradient_c0llh")
 noise = SubResource("FastNoiseLite_ar42f")
@@ -117,20 +115,20 @@ noise = SubResource("FastNoiseLite_3c4ji")
 render_priority = 0
 shader = SubResource("Shader_u8hl0")
 shader_parameter/albedo = Color(1, 1, 1, 1)
+shader_parameter/texture_albedo = ExtResource("1_tce5q")
 shader_parameter/point_size = 1.0
 shader_parameter/roughness = 0.75
-shader_parameter/metallic_texture_channel = null
+shader_parameter/metallic_texture_channel = Vector4(0, 0, 0, 0)
 shader_parameter/specular = 0.5
 shader_parameter/metallic = 0.0
-shader_parameter/normal_scale = 1.0
-shader_parameter/uv1_scale = Vector3(1, 1, 1)
-shader_parameter/uv1_offset = Vector3(0, 0, 0)
-shader_parameter/uv2_scale = Vector3(1, 1, 1)
-shader_parameter/uv2_offset = Vector3(0, 0, 0)
-shader_parameter/texture_albedo = ExtResource("1_tce5q")
 shader_parameter/texture_normal = ExtResource("3_bbo8f")
+shader_parameter/normal_scale = 1.0
 shader_parameter/texture_detail_albedo = SubResource("NoiseTexture2D_b8r0m")
 shader_parameter/texture_detail_normal = SubResource("NoiseTexture2D_isfpt")
 shader_parameter/texture_detail_mask = ExtResource("2_p1weh")
 shader_parameter/texture_crack_albedo = SubResource("NoiseTexture2D_qjpnj")
 shader_parameter/texture_crack_normal = SubResource("NoiseTexture2D_s6pid")
+shader_parameter/uv1_scale = Vector3(1, 1, 1)
+shader_parameter/uv1_offset = Vector3(0, 0, 0)
+shader_parameter/uv2_scale = Vector3(1, 1, 1)
+shader_parameter/uv2_offset = Vector3(0, 0, 0)

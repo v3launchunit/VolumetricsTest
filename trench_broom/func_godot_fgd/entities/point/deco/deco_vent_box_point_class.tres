@@ -1,0 +1,29 @@
+[gd_resource type="Resource" script_class="FuncGodotFGDModelPointClass" load_steps=4 format=3 uid="uid://ci12w72twwkfk"]
+
+[ext_resource type="Resource" uid="uid://db62xxbcljw26" path="res://trench_broom/func_godot_fgd/entities/base/angles_base_class.tres" id="1_hvfwj"]
+[ext_resource type="PackedScene" uid="uid://ch5xal1ux1roc" path="res://objects/deco/vent_box/vent_box.tscn" id="2_hvfwj"]
+[ext_resource type="Script" uid="uid://uk7d08g8mvr2" path="res://addons/func_godot/src/fgd/func_godot_fgd_model_point_class.gd" id="3_cybjs"]
+
+[resource]
+script = ExtResource("3_cybjs")
+target_map_editor = 0
+models_sub_folder = ""
+scale_expression = ""
+generate_size_property = false
+generate_gd_ignore_file = false
+scene_file = ExtResource("2_hvfwj")
+apply_rotation_on_map_build = true
+classname = "deco_vent_box"
+description = ""
+func_godot_internal = false
+base_classes = Array[Resource]([ExtResource("1_hvfwj")])
+class_properties = {}
+class_property_descriptions = {}
+auto_apply_to_matching_node_properties = false
+meta_properties = {
+"color": Color(0.8, 0.8, 0.8, 1),
+"size": AABB(-24, -24, -16, 24, 24, 16),
+"studio": "\"models/vent_box.glb\""
+}
+node_class = ""
+name_property = ""

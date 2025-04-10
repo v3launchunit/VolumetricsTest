@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://cv5pm3ok03na3"]
+
+[ext_resource type="PackedScene" uid="uid://ei65dnij4l6h" path="res://objects/deco/pipes/pipe.glb" id="1_pf22f"]
+[ext_resource type="Material" uid="uid://by4h3hrepyr2o" path="res://bullets/metal_psx.tres" id="2_5l8vd"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_5l8vd"]
+radius = 0.4
+
+[node name="pipe" instance=ExtResource("1_pf22f")]
+
+[node name="Pipe" parent="." index="0"]
+transform = Transform3D(-1.56324e-14, -4.37114e-08, 1, -1, 3.57628e-07, 0, -3.57628e-07, -1, -4.37114e-08, 0, 0, 0)
+material_override = ExtResource("2_5l8vd")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." index="1"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" index="0"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
+shape = SubResource("CylinderShape3D_5l8vd")

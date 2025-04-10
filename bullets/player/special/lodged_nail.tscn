@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://r5omla7tiysx" path="res://scenes/effects/explosions/nail_explosion.tscn" id="2_663ij"]
 [ext_resource type="PackedScene" uid="uid://fn1fivb2ndvo" path="res://scenes/effects/impacts/bullet_impact_yellow.tscn" id="2_un06c"]
 [ext_resource type="PackedScene" uid="uid://bsmejtrchgpyw" path="res://scenes/effects/explosions/super_nail_explosion.tscn" id="3_jhdsa"]
-[ext_resource type="Material" uid="uid://by4h3hrepyr2o" path="res://bullets/bullet_metal.tres" id="3_wek4n"]
+[ext_resource type="Material" uid="uid://by4h3hrepyr2o" path="res://bullets/metal_psx.tres" id="3_wek4n"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_wjupl"]
 

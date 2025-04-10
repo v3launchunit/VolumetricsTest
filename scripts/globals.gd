@@ -185,8 +185,8 @@ func _init() -> void:
 	
 	# load language file
 	err = text.load("res://text/%s" % s_lang)
-	if text.load("res://text/text_%s.cfg" % s_lang):
-		Console.print_error("could not load %s (error code %s)" % [s_lang, err])
+	#if text.load("res://text/text_%s.cfg" % s_lang):
+		#Console.print_error("could not load %s (error code %s)" % [s_lang, err])
 	#assert(not err, "could not load %s (error code %s)" % [get_lang_name(s_lang), err])
 	
 	# load campaign mapper

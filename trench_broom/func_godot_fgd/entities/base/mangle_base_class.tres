@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="FuncGodotFGDBaseClass" load_steps=2 format=3 uid="uid://db62xxbcljw26"]
+[gd_resource type="Resource" script_class="FuncGodotFGDBaseClass" load_steps=2 format=3 uid="uid://cjsytym55dnyc"]
 
 [ext_resource type="Script" uid="uid://ed8h7ifqi4j1" path="res://addons/func_godot/src/fgd/func_godot_fgd_base_class.gd" id="1_pr7ly"]
 

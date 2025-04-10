@@ -1,0 +1,35 @@
+[gd_resource type="Resource" script_class="FuncGodotFGDModelPointClass" load_steps=3 format=3 uid="uid://upeofl48e3lf"]
+
+[ext_resource type="Script" uid="uid://uk7d08g8mvr2" path="res://addons/func_godot/src/fgd/func_godot_fgd_model_point_class.gd" id="1_pbq6v"]
+[ext_resource type="PackedScene" uid="uid://erys0skiq3pe" path="res://scenes/objects/lights/floodlight.tscn" id="1_ten70"]
+
+[resource]
+script = ExtResource("1_pbq6v")
+target_map_editor = 0
+models_sub_folder = ""
+scale_expression = ""
+generate_size_property = false
+generate_gd_ignore_file = false
+scene_file = ExtResource("1_ten70")
+apply_rotation_on_map_build = true
+classname = "ldeco_floodlight"
+description = ""
+func_godot_internal = false
+base_classes = Array[Resource]([])
+class_properties = {
+"killtarget": "",
+"target": ""
+}
+class_property_descriptions = {
+"killtarget": "The entity that the left-hand light faces towards.",
+"target": "The entity that the right-hand light faces towards."
+}
+auto_apply_to_matching_node_properties = false
+meta_properties = {
+"color": Color(0.8, 0.8, 0.8, 1),
+"size": AABB(-8, -8, -16, 8, 8, 16),
+"studio": "\"models/ldeco_floodlight.glb\""
+}
+node_class = ""
+name_property = ""
+metadata/_custom_type_script = "uid://uk7d08g8mvr2"

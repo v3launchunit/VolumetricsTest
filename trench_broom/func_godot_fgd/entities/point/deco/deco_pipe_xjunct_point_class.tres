@@ -1,0 +1,29 @@
+[gd_resource type="Resource" script_class="FuncGodotFGDModelPointClass" load_steps=4 format=3 uid="uid://dokius07wk81a"]
+
+[ext_resource type="Resource" uid="uid://db62xxbcljw26" path="res://trench_broom/func_godot_fgd/entities/base/angles_base_class.tres" id="1_dpjrt"]
+[ext_resource type="PackedScene" uid="uid://ctn2ayr054nk2" path="res://objects/deco/pipes/pipe_xjunct.tscn" id="2_dpjrt"]
+[ext_resource type="Script" uid="uid://uk7d08g8mvr2" path="res://addons/func_godot/src/fgd/func_godot_fgd_model_point_class.gd" id="3_musf6"]
+
+[resource]
+script = ExtResource("3_musf6")
+target_map_editor = 0
+models_sub_folder = ""
+scale_expression = ""
+generate_size_property = false
+generate_gd_ignore_file = false
+scene_file = ExtResource("2_dpjrt")
+apply_rotation_on_map_build = true
+classname = "deco_pipe_xjunct"
+description = ""
+func_godot_internal = false
+base_classes = Array[Resource]([ExtResource("1_dpjrt")])
+class_properties = {}
+class_property_descriptions = {}
+auto_apply_to_matching_node_properties = false
+meta_properties = {
+"color": Color(0.8, 0.8, 0.8, 1),
+"size": AABB(-24, -8, -24, 24, 8, 24),
+"studio": "\"models/deco_pipe_xjunct.glb\""
+}
+node_class = ""
+name_property = ""
