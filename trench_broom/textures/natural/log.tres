@@ -1,65 +1,13 @@
 [gd_resource type="ShaderMaterial" load_steps=8 format=3 uid="uid://ballsd5ipc38f"]
 
-[sub_resource type="Shader" id="Shader_r5gfk"]
-code = "// NOTE: Shader automatically converted from Godot Engine 4.4.stable's StandardMaterial3D.
-
-shader_type spatial;
-render_mode blend_mix, depth_draw_opaque, cull_back, diffuse_burley, specular_schlick_ggx;
-
-uniform vec4 albedo : source_color;
-uniform sampler2D texture_albedo : source_color, filter_nearest_mipmap, repeat_enable;
-uniform ivec2 albedo_texture_size;
-uniform float point_size : hint_range(0.1, 128.0, 0.1);
-
-uniform float roughness : hint_range(0.0, 1.0);
-uniform sampler2D texture_metallic : hint_default_white, filter_nearest, repeat_enable;
-uniform vec4 metallic_texture_channel;
-uniform sampler2D texture_roughness : hint_roughness_r, filter_nearest, repeat_enable;
-
-uniform float specular : hint_range(0.0, 1.0, 0.01);
-uniform float metallic : hint_range(0.0, 1.0, 0.01);
-
-uniform sampler2D texture_normal : hint_roughness_normal, filter_nearest, repeat_enable;
-uniform float normal_scale : hint_range(-16.0, 16.0);
-
-uniform sampler2D texture_uv_warp : hint_default_white, filter_nearest, repeat_enable;
-
-uniform vec3 uv1_scale;
-uniform vec3 uv1_offset;
-uniform vec3 uv2_scale;
-uniform vec3 uv2_offset;
-
-void vertex() {
-	UV = vec2(0.5, 0.25) * UV * uv1_scale.xy + uv1_offset.xy;
-}
-
-void fragment() {
-	float offset = texture(texture_uv_warp, UV).r;
-	vec2 base_uv = UV + vec2(0.0, offset * 0.015625);
-
-	vec4 albedo_tex = texture(texture_albedo, base_uv);
-	ALBEDO = albedo.rgb * albedo_tex.rgb;
-
-	float metallic_tex = dot(texture(texture_metallic, base_uv), metallic_texture_channel);
-	METALLIC = metallic_tex * metallic;
-	SPECULAR = specular;
-
-	vec4 roughness_texture_channel = vec4(1.0, 0.0, 0.0, 0.0);
-	float roughness_tex = dot(texture(texture_roughness, base_uv), roughness_texture_channel);
-	ROUGHNESS = roughness_tex * roughness;
-
-	// Normal Map: Enabled
-	NORMAL_MAP = texture(texture_normal, base_uv).rgb;
-	NORMAL_MAP_DEPTH = normal_scale;
-}
-"
+[ext_resource type="Shader" uid="uid://ccx8fkfp6vbxp" path="res://trench_broom/textures/wood.gdshader" id="1_a0v1s"]
 
 [sub_resource type="Gradient" id="Gradient_v5jf5"]
 interpolation_mode = 1
 offsets = PackedFloat32Array(0, 0.2, 0.5, 0.7)
 colors = PackedColorArray(0.278431, 0.172549, 0.0470588, 1, 0.341176, 0.207843, 0.0784314, 1, 0.447059, 0.298039, 0.14902, 1, 0.415686, 0.313726, 0.145098, 1)
 
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_q3vr3"]
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_0kai2"]
 frequency = 0.1
 
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_ti8ho"]
@@ -67,14 +15,14 @@ generate_mipmaps = false
 seamless = true
 seamless_blend_skirt = 1.0
 color_ramp = SubResource("Gradient_v5jf5")
-noise = SubResource("FastNoiseLite_q3vr3")
+noise = SubResource("FastNoiseLite_0kai2")
 
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_ifyxs"]
 generate_mipmaps = false
 seamless = true
 seamless_blend_skirt = 1.0
 as_normal_map = true
-noise = SubResource("FastNoiseLite_q3vr3")
+noise = SubResource("FastNoiseLite_0kai2")
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_kbtkn"]
 noise_type = 5
@@ -86,7 +34,7 @@ noise = SubResource("FastNoiseLite_kbtkn")
 
 [resource]
 render_priority = 0
-shader = SubResource("Shader_r5gfk")
+shader = ExtResource("1_a0v1s")
 shader_parameter/albedo = Color(1, 1, 1, 1)
 shader_parameter/texture_albedo = SubResource("NoiseTexture2D_ti8ho")
 shader_parameter/albedo_texture_size = Vector2i(512, 512)
@@ -97,8 +45,14 @@ shader_parameter/specular = 0.5
 shader_parameter/metallic = 0.0
 shader_parameter/texture_normal = SubResource("NoiseTexture2D_ifyxs")
 shader_parameter/normal_scale = 1.0
+shader_parameter/clearcoat = 0.0
+shader_parameter/clearcoat_roughness = 0.0
+shader_parameter/detail_normal_scale = 1.0
 shader_parameter/texture_uv_warp = SubResource("NoiseTexture2D_a0v1s")
+shader_parameter/uv_warp_dir = Vector2(0, 1)
 shader_parameter/uv1_scale = Vector3(1, 0.125, 1)
 shader_parameter/uv1_offset = Vector3(0, 0, 0)
 shader_parameter/uv2_scale = Vector3(1, 1, 1)
 shader_parameter/uv2_offset = Vector3(0, 0, 0)
+shader_parameter/uv3_scale = Vector3(1, 1, 1)
+shader_parameter/uv3_offset = Vector3(0, 0, 0)

@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://dgf0tk60a03r0"]
+
+[ext_resource type="Material" uid="uid://d2ew72egl10co" path="res://scenes/objects/furniture/wood_psx.tres" id="1_473gf"]
+[ext_resource type="ArrayMesh" uid="uid://5c4plkxitc30" path="res://models/objects/table.obj" id="2_473gf"]
+
+[node name="Table" type="MeshInstance3D"]
+layers = 2
+material_override = ExtResource("1_473gf")
+mesh = ExtResource("2_473gf")

@@ -2,10 +2,10 @@
 
 [ext_resource type="PackedScene" uid="uid://do61x5km3wthk" path="res://entities/player/player.tscn" id="1_wyjec"]
 [ext_resource type="Material" uid="uid://dqemvrb4pcd2g" path="res://trench_broom/textures/structural/concrete.tres" id="4_ljykf"]
-[ext_resource type="Material" uid="uid://t1hv3tspvh88" path="res://trench_broom/textures/furnishings/planks.tres" id="5_trqrh"]
-[ext_resource type="Material" uid="uid://bdhdwkh72dfij" path="res://materials/terrain/trench_broom_std/bricks.tres" id="6_x10m2"]
+[ext_resource type="Material" uid="uid://t1hv3tspvh88" path="res://trench_broom/textures/furnishings/planksss.tres" id="5_trqrh"]
+[ext_resource type="Material" path="res://materials/terrain/trench_broom_std/bricks.tres" id="6_x10m2"]
 [ext_resource type="Material" uid="uid://qt3bjecsm0qb" path="res://trench_broom/textures/shutter_door.tres" id="7_ycowt"]
-[ext_resource type="Material" uid="uid://cxyb8wsuh6ejk" path="res://trench_broom/textures/natural/log.tres" id="8_aypj8"]
+[ext_resource type="Material" uid="uid://ballsd5ipc38f" path="res://trench_broom/textures/natural/log.tres" id="8_aypj8"]
 [ext_resource type="Script" uid="uid://d4axjnrignooa" path="res://entities/enemies/ambush.gd" id="9_efmtb"]
 [ext_resource type="Script" uid="uid://ot7w3l0b4dsm" path="res://trench_broom/func_godot_fgd/entities/solid/area/area_trigger.gd" id="10_xupl2"]
 [ext_resource type="Texture2D" uid="uid://cu58hb7h0r68v" path="res://effects/look_up_tables/1d/1d_lut_16_color.png" id="11_bmuth"]

@@ -27,7 +27,7 @@
 [ext_resource type="PackedScene" uid="uid://bu80vkpoj8bpq" path="res://pickups/keys/keys/key_green_pickup.tscn" id="24_if7fq"]
 [ext_resource type="PackedScene" uid="uid://jwblxog7c1kl" path="res://scenes/objects/lights/torch_tb.tscn" id="25_fh3qs"]
 [ext_resource type="PackedScene" uid="uid://b2ceyvvn2j4nq" path="res://pickups/weapons/big_iron_pickup.tscn" id="26_yhcof"]
-[ext_resource type="Material" uid="uid://t1hv3tspvh88" path="res://trench_broom/textures/furnishings/planks.tres" id="27_tnw2q"]
+[ext_resource type="Material" uid="uid://t1hv3tspvh88" path="res://trench_broom/textures/furnishings/planksss.tres" id="27_tnw2q"]
 [ext_resource type="Material" uid="uid://j3w61nhxr063" path="res://trench_broom/textures/structural/metal.tres" id="28_iaxxy"]
 [ext_resource type="Script" uid="uid://bhkks8bsvt4l2" path="res://scripts/effects/env_settings_hook.gd" id="28_xast8"]
 [ext_resource type="PackedScene" uid="uid://teto5bopi0w8" path="res://scenes/objects/lights/tube_light.tscn" id="29_6qosn"]

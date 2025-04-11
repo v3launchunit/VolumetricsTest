@@ -30,6 +30,9 @@ void fragment() {
 			SCREEN_UV + fma(texture(
 					noise_tex,
 					UV + TIME * wave_speed
+			).rg, vec2(wave_scale), vec2(wave_scale * -0.5)) + fma(texture(
+					noise_tex,
+					UV - TIME * wave_speed
 			).rg, vec2(wave_scale), vec2(wave_scale * -0.5))
 	).rgb * tint;
 

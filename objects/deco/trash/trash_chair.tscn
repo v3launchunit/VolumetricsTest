@@ -1,101 +1,11 @@
-[gd_scene load_steps=8 format=3 uid="uid://c2xqycr048hgh"]
+[gd_scene load_steps=3 format=3 uid="uid://c2xqycr048hgh"]
 
+[ext_resource type="Material" uid="uid://d2ew72egl10co" path="res://scenes/objects/furniture/wood_psx.tres" id="1_0hys1"]
 [ext_resource type="ArrayMesh" uid="uid://ogv7qwoxjkgc" path="res://models/objects/chair.obj" id="2_ilr4v"]
-
-[sub_resource type="Shader" id="Shader_kldm2"]
-code = "// NOTE: Shader automatically converted from Godot Engine 4.2.1.stable.mono's StandardMaterial3D.
-
-shader_type spatial;
-render_mode blend_mix,depth_draw_opaque,cull_back,diffuse_burley,specular_schlick_ggx;
-uniform vec4 albedo : source_color;
-uniform sampler2D texture_albedo : source_color,filter_nearest,repeat_enable;
-uniform float point_size : hint_range(0,128);
-uniform float roughness : hint_range(0,1);
-uniform sampler2D texture_metallic : hint_default_white,filter_nearest,repeat_enable;
-uniform vec4 metallic_texture_channel;
-uniform sampler2D texture_roughness : hint_roughness_r,filter_nearest,repeat_enable;
-uniform float specular;
-uniform float metallic;
-uniform sampler2D texture_normal : hint_roughness_normal,filter_nearest,repeat_enable;
-uniform float normal_scale : hint_range(-16,16);
-uniform float clearcoat : hint_range(0,1);
-uniform float clearcoat_roughness : hint_range(0,1);
-uniform sampler2D texture_clearcoat : hint_default_white,filter_nearest,repeat_enable;
-uniform vec3 uv1_scale;
-uniform vec3 uv1_offset;
-uniform vec3 uv2_scale;
-uniform vec3 uv2_offset;
-
-#include \"res://shaders/includes/psx_inc.gdshaderinc\"
-
-void vertex() {
-	POSITION = map_affine(snap_vertex(PROJECTION_MATRIX * MODELVIEW_MATRIX * vec4(VERTEX, 1.0)));
-}
-
-void fragment() {
-	vec2 base_uv = UV;
-	vec4 albedo_tex = texture(texture_albedo,base_uv);
-	ALBEDO = albedo.rgb * albedo_tex.rgb;
-	float metallic_tex = dot(texture(texture_metallic,base_uv),metallic_texture_channel);
-	METALLIC = metallic_tex * metallic;
-	vec4 roughness_texture_channel = vec4(1.0,0.0,0.0,0.0);
-	float roughness_tex = dot(texture(texture_roughness,base_uv),roughness_texture_channel);
-	ROUGHNESS = roughness_tex * roughness;
-	SPECULAR = specular;
-	NORMAL_MAP = texture(texture_normal,base_uv).rgb;
-	NORMAL_MAP_DEPTH = normal_scale;
-	vec2 clearcoat_tex = texture(texture_clearcoat,base_uv).xy;
-	CLEARCOAT = clearcoat*clearcoat_tex.x;	CLEARCOAT_ROUGHNESS = clearcoat_roughness*clearcoat_tex.y;
-}
-"
-
-[sub_resource type="Gradient" id="Gradient_v5jf5"]
-interpolation_mode = 1
-offsets = PackedFloat32Array(0, 0.2, 0.5, 0.7)
-colors = PackedColorArray(0.278431, 0.172549, 0.0470588, 1, 0.341176, 0.207843, 0.0784314, 1, 0.447059, 0.298039, 0.14902, 1, 0.415686, 0.313726, 0.145098, 1)
-
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_q3vr3"]
-frequency = 0.1
-
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_h5i32"]
-width = 48
-height = 192
-generate_mipmaps = false
-seamless_blend_skirt = 1.0
-color_ramp = SubResource("Gradient_v5jf5")
-noise = SubResource("FastNoiseLite_q3vr3")
-
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_1b18h"]
-width = 48
-height = 192
-generate_mipmaps = false
-seamless_blend_skirt = 1.0
-as_normal_map = true
-bump_strength = 1.0
-noise = SubResource("FastNoiseLite_q3vr3")
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_v1de4"]
-render_priority = 0
-shader = SubResource("Shader_kldm2")
-shader_parameter/albedo = Color(1, 1, 1, 1)
-shader_parameter/texture_albedo = SubResource("NoiseTexture2D_h5i32")
-shader_parameter/point_size = 1.0
-shader_parameter/roughness = 0.75
-shader_parameter/metallic_texture_channel = Vector4(0, 0, 0, 0)
-shader_parameter/specular = 0.5
-shader_parameter/metallic = 0.0
-shader_parameter/texture_normal = SubResource("NoiseTexture2D_1b18h")
-shader_parameter/normal_scale = 1.0
-shader_parameter/clearcoat = 1.0
-shader_parameter/clearcoat_roughness = 0.25
-shader_parameter/uv1_scale = Vector3(1, 1, 1)
-shader_parameter/uv1_offset = Vector3(0, 0, 0)
-shader_parameter/uv2_scale = Vector3(1, 1, 1)
-shader_parameter/uv2_offset = Vector3(0, 0, 0)
 
 [node name="Chair" type="MeshInstance3D"]
 layers = 2
-material_override = SubResource("ShaderMaterial_v1de4")
+material_override = ExtResource("1_0hys1")
 visibility_range_end = 75.0
 visibility_range_end_margin = 10.0
 mesh = ExtResource("2_ilr4v")

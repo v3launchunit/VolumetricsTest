@@ -19,9 +19,9 @@
 [ext_resource type="Script" uid="uid://c7lhqwn4gnw3k" path="res://trench_broom/func_godot_fgd/entities/solid/area/area_hazard.gd" id="15_1b1ph"]
 [ext_resource type="Material" uid="uid://qt3bjecsm0qb" path="res://trench_broom/textures/shutter_door.tres" id="15_x00tt"]
 [ext_resource type="PackedScene" uid="uid://bowd2xtj7q4vd" path="res://scenes/objects/lights/lamp_tb.tscn" id="16_rnlh5"]
-[ext_resource type="Material" uid="uid://t1hv3tspvh88" path="res://trench_broom/textures/furnishings/planks.tres" id="17_55n51"]
+[ext_resource type="Material" uid="uid://t1hv3tspvh88" path="res://trench_broom/textures/furnishings/planksss.tres" id="17_55n51"]
 [ext_resource type="Script" uid="uid://blyitdblilgra" path="res://trench_broom/func_godot_fgd/entities/solid/func/brush_door.gd" id="18_wbqd5"]
-[ext_resource type="Material" uid="uid://cxyb8wsuh6ejk" path="res://trench_broom/textures/natural/log.tres" id="18_wrbnd"]
+[ext_resource type="Material" uid="uid://ballsd5ipc38f" path="res://trench_broom/textures/natural/log.tres" id="18_wrbnd"]
 [ext_resource type="PackedScene" uid="uid://du780rqis8eqo" path="res://pickups/weapons/boomstick_pickup.tscn" id="20_rt7gr"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_tu2vm"]

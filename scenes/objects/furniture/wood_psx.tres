@@ -1,0 +1,62 @@
+[gd_resource type="ShaderMaterial" load_steps=8 format=3 uid="uid://d2ew72egl10co"]
+
+[ext_resource type="Shader" uid="uid://tsbrjps5h1up" path="res://scenes/objects/furniture/wood_psx.gdshader" id="1_631u3"]
+
+[sub_resource type="Gradient" id="Gradient_v5jf5"]
+interpolation_mode = 1
+offsets = PackedFloat32Array(0, 0.2, 0.5, 0.7)
+colors = PackedColorArray(0.278431, 0.172549, 0.0470588, 1, 0.341176, 0.207843, 0.0784314, 1, 0.447059, 0.298039, 0.14902, 1, 0.415686, 0.313726, 0.145098, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_q3vr3"]
+frequency = 0.1
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_h5i32"]
+width = 256
+height = 256
+generate_mipmaps = false
+seamless_blend_skirt = 1.0
+color_ramp = SubResource("Gradient_v5jf5")
+noise = SubResource("FastNoiseLite_q3vr3")
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_1b18h"]
+width = 256
+height = 256
+generate_mipmaps = false
+seamless_blend_skirt = 1.0
+as_normal_map = true
+bump_strength = 1.0
+noise = SubResource("FastNoiseLite_q3vr3")
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_kbtkn"]
+noise_type = 5
+frequency = 1.0
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_il8xh"]
+width = 256
+height = 1
+noise = SubResource("FastNoiseLite_kbtkn")
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_631u3")
+shader_parameter/albedo = Color(1, 1, 1, 1)
+shader_parameter/texture_albedo = SubResource("NoiseTexture2D_h5i32")
+shader_parameter/albedo_texture_size = Vector2i(0, 0)
+shader_parameter/point_size = 1.0
+shader_parameter/roughness = 0.75
+shader_parameter/metallic_texture_channel = Vector4(0, 0, 0, 0)
+shader_parameter/specular = 0.5
+shader_parameter/metallic = 0.0
+shader_parameter/texture_normal = SubResource("NoiseTexture2D_1b18h")
+shader_parameter/normal_scale = 1.0
+shader_parameter/clearcoat = 1.0
+shader_parameter/clearcoat_roughness = 0.25
+shader_parameter/detail_normal_scale = 1.0
+shader_parameter/texture_uv_warp = SubResource("NoiseTexture2D_il8xh")
+shader_parameter/uv_warp_dir = Vector2(0, 0.75)
+shader_parameter/uv1_scale = Vector3(1, 0.25, 1)
+shader_parameter/uv1_offset = Vector3(0, 0, 0)
+shader_parameter/uv2_scale = Vector3(1, 1, 1)
+shader_parameter/uv2_offset = Vector3(0, 0, 0)
+shader_parameter/uv3_scale = Vector3(1, 1, 1)
+shader_parameter/uv3_offset = Vector3(0, 0, 0)
