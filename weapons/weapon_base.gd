@@ -142,6 +142,8 @@ func _holster() -> void:
 
 
 func _listen_for_input() -> bool:
+	if player.was_holding_something:
+		return false
 	if (
 			Input.is_action_pressed("weapon_fire_main") 
 			and manager.has_ammo(ammo_type, ammo_cost)

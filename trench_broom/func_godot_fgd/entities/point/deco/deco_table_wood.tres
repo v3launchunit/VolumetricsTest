@@ -1,0 +1,29 @@
+[gd_resource type="Resource" script_class="FuncGodotFGDModelPointClass" load_steps=3 format=3 uid="uid://dd2pkx5ck2t28"]
+
+[ext_resource type="Script" uid="uid://uk7d08g8mvr2" path="res://addons/func_godot/src/fgd/func_godot_fgd_model_point_class.gd" id="1_af1p5"]
+[ext_resource type="PackedScene" uid="uid://dvn5p4bun8kju" path="res://scenes/objects/furniture/table_wooden.tscn" id="1_dwcmx"]
+
+[resource]
+script = ExtResource("1_af1p5")
+target_map_editor = 0
+models_sub_folder = ""
+scale_expression = ""
+generate_size_property = false
+generate_gd_ignore_file = false
+scene_file = ExtResource("1_dwcmx")
+apply_rotation_on_map_build = true
+classname = "deco_table_wood"
+description = ""
+func_godot_internal = false
+base_classes = Array[Resource]([])
+class_properties = {}
+class_property_descriptions = {}
+auto_apply_to_matching_node_properties = false
+meta_properties = {
+"color": Color(0.8, 0.8, 0.8, 1),
+"size": AABB(-24, -24, -8, 8, 8, 8),
+"studio": "\"models/deco_table_wood.glb\""
+}
+node_class = ""
+name_property = ""
+metadata/_custom_type_script = "uid://uk7d08g8mvr2"

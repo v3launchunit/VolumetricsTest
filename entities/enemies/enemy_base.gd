@@ -176,6 +176,7 @@ var sight_line_sweep_dot: float = cos(sight_line_sweep_angle / 2.0)
 
 
 func _ready() -> void:
+	collision_mask = 0b0000_1101_1001_0111
 	turret_mode = properties.get("turret_mode", false)
 	
 	path_re_eval_distance_squared = (

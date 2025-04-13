@@ -86,7 +86,8 @@ class_name Player extends CharacterBody3D
 @export_storage var cam_recoil_pos: float = 0.0
 @export_storage var cam_recoil_vel: float = 0.0
 
-@export_storage var holding = null
+@export_storage var holding_something : bool = false
+@export_storage var was_holding_something : bool = false
 
 @export_storage var noclip: bool = false
 
@@ -182,7 +183,10 @@ func _process(_delta) -> void:
 		var q: PackedScene = load(Globals.C_QUICKSAVE_PATH)
 		if q != null:
 			get_tree().change_scene_to_packed(q)
-
+	
+	if not holding_something and was_holding_something and Input.is_action_just_released("weapon_fire_main"):
+		was_holding_something = false
+	
 	slam_wind_sys.visible = slamming
 	
 	#if Input.is_key_label_pressed(KEY_V):
@@ -533,9 +537,9 @@ func _fly(delta: float) -> Vector3:
 
 # TODO implement carriable object logic
 ## Called when the player picks up a carriable object. Not currently implemented.
-func _on_carriable_grabbed(what: Carriable) -> void:
+func on_carriable_grabbed(what: Carriable) -> void:
 	camera.switched_weapons.emit(-1, -1)
-	holding = what
+	holding_something = true
 
 
 func step_check(vel: Vector3) -> bool:

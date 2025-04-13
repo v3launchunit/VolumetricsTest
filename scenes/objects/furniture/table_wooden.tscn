@@ -54,4 +54,5 @@ gibs = ExtResource("4_x8yj3")
 loot = Array[PackedScene]([ExtResource("4_vddkd"), ExtResource("5_d2gdn"), ExtResource("6_sqnlv"), ExtResource("7_lavv4"), ExtResource("8_f8oif")])
 
 [node name="NavigationObstacle3D" type="NavigationObstacle3D" parent="."]
+visible = false
 radius = 2.0

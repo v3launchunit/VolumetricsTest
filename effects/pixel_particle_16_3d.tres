@@ -5,6 +5,9 @@
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_amhxg"]
 render_priority = 0
 shader = ExtResource("1_6k148")
+shader_parameter/albedo = Color(1, 1, 1, 1)
+shader_parameter/uv1_scale = Vector3(1, 1, 1)
+shader_parameter/uv1_offset = Vector3(0, 0, 0)
 
 [resource]
 material = SubResource("ShaderMaterial_amhxg")

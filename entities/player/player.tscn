@@ -331,7 +331,7 @@ bus = &"Player"
 [node name="Interact" type="RayCast3D" parent="Control/SubViewportContainer/SubViewport/PlayerSync/PlayerCam"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.5)
 target_position = Vector3(0, 0, -4)
-collision_mask = 189
+collision_mask = 3517
 hit_from_inside = true
 collide_with_areas = true
 
@@ -353,6 +353,9 @@ draw_pass_1 = SubResource("CylinderMesh_pkwoh")
 [node name="WindStreamPlayer" type="AudioStreamPlayer" parent="Control/SubViewportContainer/SubViewport/PlayerSync/PlayerCam/SlamWindSys"]
 stream = ExtResource("37_0ygxn")
 volume_db = 6.0
+
+[node name="HoldPoint" type="Marker3D" parent="Control/SubViewportContainer/SubViewport/PlayerSync/PlayerCam"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.25)
 
 [node name="WeaponsHolder" type="Node3D" parent="Control/SubViewportContainer/SubViewport/PlayerSync/PlayerCam"]
 

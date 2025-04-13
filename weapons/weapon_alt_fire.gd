@@ -80,6 +80,8 @@ func _deploy(with_safety_catch: bool = true) -> void:
 
 
 func _listen_for_input() -> bool:
+	if player.was_holding_something:
+		return false
 	if super():
 		return true
 	if (
