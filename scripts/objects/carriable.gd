@@ -72,7 +72,7 @@ func interact(body: Player) -> void:
 
 
 func _on_body_entered(body: Node3D) -> void:
-	if thrown:
+	if thrown and body is not Player:
 		thrown = false
 		if body.has_node("Status"):
 			(body.get_node("Status") as Status).damage(throw_damage)

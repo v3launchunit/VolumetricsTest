@@ -50,7 +50,7 @@
 [ext_resource type="PackedScene" uid="uid://pr3j5d4ifvrt" path="res://entities/enemies/machines/plasma_droid/plasma_droid.tscn" id="27_4cmxv"]
 [ext_resource type="PackedScene" uid="uid://d2oe770gjlkup" path="res://pickups/ammo/akm_mag_pickup.tscn" id="28_ptwd6"]
 [ext_resource type="PackedScene" uid="uid://coopugxxes4xq" path="res://pickups/ammo/grenade_pickup.tscn" id="29_2assy"]
-[ext_resource type="CompressedTexture3D" uid="uid://bswehhdmiolxu" path="res://levels/no_export/test_gardens/test_gardens.GPUParticlesCollisionSDF3D_data.exr" id="29_5ami3"]
+[ext_resource type="CompressedTexture3D" uid="uid://bswehhdmiolxu" path="res://levels/no_export/debug/test_gardens/test_gardens.GPUParticlesCollisionSDF3D_data.exr" id="29_5ami3"]
 [ext_resource type="Material" uid="uid://qt3bjecsm0qb" path="res://trench_broom/textures/shutter_door.tres" id="29_gfvab"]
 [ext_resource type="Script" uid="uid://bsndhyyfupin7" path="res://scripts/objects/tele_exit.gd" id="30_4b2a2"]
 [ext_resource type="PackedScene" uid="uid://cbo6wxdi4eryp" path="res://entities/enemies/military/pinkerton/pinkerton.tscn" id="31_gvhe0"]

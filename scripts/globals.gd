@@ -212,12 +212,13 @@ func _ready() -> void:
 
 #region console commands
 func add_console_commands() -> void:
-	Console.add_command("opensesame", open_sesame)
-	Console.add_command("closesesame", close_sesame)
+	Console.add_command("opensesame", open_sesame, [], 0, "", Console.CommandType.HIDDEN)
+	Console.add_command("closesesame", close_sesame, [], 0, "", Console.CommandType.HIDDEN)
 	Console.add_command("reload_text", reload_text, [], 0, parse_text("console", "desc.reload_text"))
-	Console.add_command("map", cmd_map, ["level key"], 1, parse_text("console", "desc.map"))
-	Console.add_command("get_fun", func(): Console.print_line("%d" % fun))#, [], 0, parse_text("console", "desc.get_fun"))
-	Console.add_command("set_fun", cmd_set_fun, ["0-1000 int value"], 1)#, parse_text("console", "desc.set_fun"))
+	Console.add_command("open_level", cmd_map, ["level key"], 1, parse_text("console", "desc.map"), Console.CommandType.CHEAT)
+	Console.add_alias("map", "open_level")
+	Console.add_command("get_fun", func(): Console.print_line("%d" % fun), [], 0, "", Console.CommandType.HIDDEN)#, [], 0, parse_text("console", "desc.get_fun"))
+	Console.add_command("set_fun", cmd_set_fun, ["0-1000 int value"], 1, "", Console.CommandType.HIDDEN)#, parse_text("console", "desc.set_fun"))
 
 
 func open_sesame() -> void:

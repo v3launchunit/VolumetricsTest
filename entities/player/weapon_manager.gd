@@ -38,6 +38,14 @@ const ZOOM_SPEED: float = 10.0
 signal switched_weapons(category: int, index: int, with_safety_catch: bool)
 
 
+func _enter_tree() -> void:
+	add_console_commands()
+
+
+func _exit_tree() -> void:
+	remove_console_commands()
+
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	for key in ammo_amounts:
@@ -287,3 +295,38 @@ func scope_changed(amount: float):
 #func on_viewmodel_anti_clip_body_exited(_body: Node3D):
 	#anti_clip_collisions -= 1
 	#print("new body exited")
+
+
+#region console commands
+
+func add_console_commands() -> void:
+	Console.add_command(
+			"get_ammo", 
+			func(s: String): Console.print_line("%f" % ammo_amounts[s]), 
+			[Globals.parse_text("console", "arg.ammo_type" % ammo_types.keys())], 
+			1, 
+			Globals.parse_text("console", "desc.get_ammo"),
+	)
+	Console.add_command(
+			"set_ammo", 
+			cmd_set_ammo, 
+			[Globals.parse_text("console", "arg.ammo_type" % ammo_types.keys()), Globals.parse_text("console", "arg.int")], 
+			2, 
+			Globals.parse_text("console", "desc.set_ammo"),
+			Console.CommandType.CHEAT,
+	)
+
+
+func remove_console_commands() -> void:
+	Console.remove_command("get_ammo")
+	Console.remove_command("set_ammo")
+
+
+func cmd_set_ammo(type: String, to: int) -> void:
+	if Globals.try_run_cheat():
+		if not ammo_amounts.has(type):
+			Console.print_error(Globals.parse_text("console", "fail.bad_ammo_type"))
+			return
+		ammo_amounts[type] = to
+
+#endregion

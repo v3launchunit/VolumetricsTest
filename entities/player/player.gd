@@ -114,6 +114,10 @@ func _enter_tree() -> void:
 	add_console_commands()
 
 
+func _exit_tree() -> void:
+	remove_console_commands()
+
+
 func _ready() -> void:
 	Globals.capture_mouse()
 
@@ -289,10 +293,6 @@ func _unhandled_input(event: InputEvent) -> void:
 		look_dir = event.relative * 0.001
 		if Globals.mouse_captured:
 			_rotate_camera(camera_zoom_sens)
-
-
-func _exit_tree() -> void:
-	remove_console_commands()
 
 
 ## Actually rotates the player [Camera3D].
@@ -555,14 +555,16 @@ func step_check(vel: Vector3) -> bool:
 
 func add_console_commands() -> void:
 	Console.add_command("reset_pos", cmd_reset_pos, [], 0, Globals.parse_text("console", "desc.reset_pos"))
-	Console.add_command("tele", cmd_tele, ["x", "y", "z"], 3, Globals.parse_text("console", "desc.tele"))
-	Console.add_command("invis", cmd_invis, ["true/false"], 0, Globals.parse_text("console", "desc.invis"))
-	Console.add_command("noclip", cmd_noclip, ["true/false"], 0, Globals.parse_text("console", "desc.noclip"))
+	Console.add_command("teleport", cmd_tele, ["x", "y", "z"], 3, Globals.parse_text("console", "desc.tele"))
+	Console.add_aliases(["tele", "tp"], "teleport")
+	Console.add_command("invis", cmd_invis, Globals.parse_text("console", "arg.bool"), 0, Globals.parse_text("console", "desc.invis"))
+	Console.add_command("noclip", cmd_noclip, Globals.parse_text("console", "arg.bool"), 0, Globals.parse_text("console", "desc.noclip"))
 
 
 func remove_console_commands() -> void:
 	Console.remove_command("reset_pos")
-	Console.remove_command("tele")
+	Console.remove_command("teleport")
+	Console.remove_aliases(["tele", "tp"])
 	Console.remove_command("invis")
 	Console.remove_command("noclip")
 

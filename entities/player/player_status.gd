@@ -29,6 +29,10 @@ func _enter_tree() -> void:
 	add_console_commands()
 
 
+func _exit_tree() -> void:
+	remove_console_commands()
+
+
 func _ready() -> void:
 	health = max_health
 	armor = max_armor / 4
@@ -36,10 +40,6 @@ func _ready() -> void:
 	for i in (ripple_distance - 1):
 		target_parent = target_parent.get_parent()
 	key_acquired.connect(_on_key_acquired)
-
-
-func _exit_tree() -> void:
-	remove_console_commands()
 	
 
 func _process(_delta: float) -> void:
@@ -151,11 +151,13 @@ func add_console_commands() -> void:
 	Console.add_command("get_health", func(): Console.print_line("%f" % health), [], 0, Globals.parse_text("console", "desc.get_health"))
 	Console.add_command("set_health", cmd_set_health, ["float value"], 1, Globals.parse_text("console", "desc.set_health"))
 	Console.add_command("get_armor", func(): Console.print_line("%f" % armor), [], 0, Globals.parse_text("console", "desc.get_armor"))
-	Console.add_command("set_armor", cmd_set_armor, ["float value"], 1, Globals.parse_text("console", "desc.set_armor"))
+	Console.add_command("set_armor", cmd_set_armor, [Globals.parse_text("console", "arg.float")], 1, Globals.parse_text("console", "desc.set_armor"))
 	Console.add_command("get_absorption", func(): Console.print_line("%f" % armor_absorption), [], 0, Globals.parse_text("console", "desc.get_absorption"))
 	Console.add_command("set_absorption", cmd_set_absorption, ["0-1 float value"], 1, Globals.parse_text("console", "desc.set_absorption"))
+	Console.add_alias("get_abs", "get_absorption")
+	Console.add_alias("set_abs", "set_absorption")
 	Console.add_command("get_berserk", func(): Console.print_line("%f" % berserk_timer), [], 0, Globals.parse_text("console", "desc.get_berserk"))
-	Console.add_command("get_berzerk", func(): Console.print_line("%f" % berserk_timer), [], 0, Globals.parse_text("console", "desc.get_berserk"))
+	Console.add_alias("get_berzerk", "get_berserk")
 	Console.add_command("get_invuln", func(): Console.print_line("%f" % invuln_timer), [], 0, Globals.parse_text("console", "desc.get_invuln"))
 	Console.add_command("get_filters", func(): Console.print_line("%f" % filters_timer), [], 0, Globals.parse_text("console", "desc.get_filters"))
 	Console.add_command("set_key", cmd_set_key, ["index of key to set (0 = red, 1 = green, 2 = blue)", "true/false"], 2, Globals.parse_text("console", "desc.set_key"))
@@ -171,8 +173,9 @@ func remove_console_commands() -> void:
 	Console.remove_command("set_armor")
 	Console.remove_command("get_absorption")
 	Console.remove_command("set_absorption")
+	Console.remove_aliases(["get_abs", "set_abs"])
 	Console.remove_command("get_berserk")
-	Console.remove_command("get_berzerk")
+	Console.remove_alias("get_berzerk")
 	Console.remove_command("get_invuln")
 	Console.remove_command("get_filters")
 	Console.remove_command("set_key")

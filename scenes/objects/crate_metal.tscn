@@ -1,5 +1,6 @@
-[gd_scene load_steps=14 format=3 uid="uid://obwsnaybs6vi"]
+[gd_scene load_steps=15 format=3 uid="uid://obwsnaybs6vi"]
 
+[ext_resource type="Script" uid="uid://bc60eq8f31x2u" path="res://scripts/objects/carriable.gd" id="1_nrdid"]
 [ext_resource type="PackedScene" uid="uid://bgj5uch3h4q3n" path="res://objects/deco/trash/trash_crate_metal.tscn" id="1_shg8j"]
 [ext_resource type="Script" uid="uid://cly1es2vyxx12" path="res://entities/status.gd" id="3_8eiwp"]
 [ext_resource type="PackedScene" uid="uid://boxs6v8ktotma" path="res://pickups/ammo/shell_box/shell_box_pickup.tscn" id="6_j7tdp"]
@@ -16,6 +17,7 @@
 [sub_resource type="BoxShape3D" id="BoxShape3D_17vxe"]
 
 [node name="Crate" type="RigidBody3D"]
+script = ExtResource("1_nrdid")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("BoxShape3D_17vxe")
