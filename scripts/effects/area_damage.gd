@@ -43,5 +43,7 @@ func _on_area_body_entered(body: Node3D) -> void:
 		body.apply_knockback(
 			knockback_force * (body.global_position - global_position).normalized(),
 			knockup_force
-	)
+		) 
+	elif body is RigidBody3D:
+		(body as RigidBody3D).apply_impulse(global_position.direction_to(body.global_position) * knockback_force + Vector3.UP * knockup_force)
 	

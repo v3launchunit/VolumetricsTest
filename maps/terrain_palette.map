@@ -445,6 +445,15 @@
 ( 512 192 16 ) ( 513 192 16 ) ( 512 192 17 ) machines/vent_fan_4x4 0 0 0 1 1
 ( 320 384 16 ) ( 320 384 17 ) ( 320 385 16 ) machines/vent_fan_4x4 0 0 0 1 1
 }
+// brush 49
+{
+( -64 128 240 ) ( -64 129 240 ) ( -64 128 241 ) __TB_empty 0 0 0 1 1
+( -64 128 240 ) ( -64 128 241 ) ( -63 128 240 ) __TB_empty 0 0 0 1 1
+( -64 128 240 ) ( -63 128 240 ) ( -64 129 240 ) __TB_empty 0 0 0 1 1
+( 192 384 272 ) ( 192 385 272 ) ( 193 384 272 ) __TB_empty 0 0 0 1 1
+( 192 384 272 ) ( 193 384 272 ) ( 192 384 273 ) __TB_empty 0 0 0 1 1
+( 192 384 272 ) ( 192 384 273 ) ( 192 385 272 ) __TB_empty 0 0 0 1 1
+}
 }
 // entity 1
 {
@@ -1356,4 +1365,59 @@
 "classname" "deco_pipe_short"
 "origin" "-416 32 8"
 "angles" "90 0 0"
+}
+// entity 61
+{
+"classname" "deco_chain"
+"origin" "56 360 296"
+}
+// entity 62
+{
+"classname" "deco_barrel"
+"origin" "-40 360 280"
+}
+// entity 63
+{
+"classname" "deco_barrel_exp"
+"origin" "-8 360 280"
+}
+// entity 64
+{
+"classname" "deco_barrel_rad"
+"origin" "24 360 280"
+}
+// entity 65
+{
+"classname" "deco_chair_wood"
+"origin" "88 360 280"
+}
+// entity 66
+{
+"classname" "deco_crate_metal"
+"origin" "120 360 280"
+}
+// entity 67
+{
+"classname" "deco_crate_wooden"
+"origin" "152 360 280"
+}
+// entity 68
+{
+"classname" "deco_exit_sign"
+"origin" "-40 328 280"
+}
+// entity 69
+{
+"classname" "deco_table_wood"
+"origin" "8 328 280"
+}
+// entity 70
+{
+"classname" "deco_vent_box"
+"origin" "72 312 288"
+}
+// entity 71
+{
+"classname" "dest_vent_cover"
+"origin" "120 328 280"
 }

@@ -7,7 +7,7 @@ extends Control
 @export var event_item: PackedScene
 ## The time, in seconds, that a screen alert (NOT an event log entry) will
 ## remain visible onscreen before being hidden.
-@export var alert_duration: float = 10.0
+@export var alert_duration: float = 3.0
 
 var current_ammo: String = "none"
 var current_alt_ammo: String = "none"

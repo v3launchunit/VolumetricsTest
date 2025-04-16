@@ -6,7 +6,8 @@
 [ext_resource type="Texture2D" uid="uid://d3qt2a3s045dt" path="res://objects/deco/barrel/barrel_normals.png" id="3_rudfx"]
 [ext_resource type="Script" uid="uid://cly1es2vyxx12" path="res://entities/status.gd" id="4_ys57n"]
 [ext_resource type="PackedScene" uid="uid://cu70msbgu2ysm" path="res://scenes/effects/damage/metal_damage_sys.tscn" id="5_fst5o"]
-[ext_resource type="Shader" uid="uid://cbo8e60sbj20l" path="res://shaders/spatial/entities/psx_ul_add.gdshader" id="5_tnrdj"]
+[ext_resource type="ArrayMesh" uid="uid://dyvqow2wbwm6l" path="res://objects/deco/barrel/barrel_drum_can.tres" id="5_jee8k"]
+[ext_resource type="Shader" uid="uid://cgfn3iqbl45r7" path="res://shaders/spatial/entities/psx_ul_add.gdshader" id="5_tnrdj"]
 [ext_resource type="PackedScene" uid="uid://dco7xp2cwuyge" path="res://scenes/effects/explosions/explosion.tscn" id="6_6rdp2"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_vbuov"]
@@ -30,11 +31,6 @@ shader_parameter/uv1_offset = Vector3(0, 0, 0)
 shader_parameter/uv2_scale = Vector3(1, 1, 1)
 shader_parameter/uv2_offset = Vector3(0, 0, 0)
 shader_parameter/is_terrain_mat = false
-
-[sub_resource type="CylinderMesh" id="CylinderMesh_o4fo5"]
-height = 1.5
-radial_segments = 8
-rings = 0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_jfmbg"]
 render_priority = 0
@@ -106,7 +102,7 @@ shape = SubResource("CylinderShape3D_vbuov")
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 layers = 2
 material_override = SubResource("ShaderMaterial_y7qtu")
-mesh = SubResource("CylinderMesh_o4fo5")
+mesh = ExtResource("5_jee8k")
 
 [node name="BurnSys" type="GPUParticles3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.75, 0)
@@ -136,10 +132,12 @@ fixed_fps = 60
 process_material = SubResource("ParticleProcessMaterial_a1827")
 draw_pass_1 = SubResource("SphereMesh_kl6md")
 
-[node name="Status" type="Node" parent="."]
+[node name="Status" type="Node" parent="." node_paths=PackedStringArray("burn_sys")]
 script = ExtResource("4_ys57n")
 max_health = 150.0
 gib_threshold = 0.0
 damage_multipliers = Array[float]([1.0, 1.0, 0.5, 0.0, 1.0])
+burn_prone = true
+burn_sys = NodePath("../BurnSys2")
 damage_sys = ExtResource("5_fst5o")
 gibs = ExtResource("6_6rdp2")

@@ -1,0 +1,23 @@
+[gd_resource type="Resource" script_class="FuncGodotFGDPointClass" load_steps=3 format=3 uid="uid://0ctb31m4vqbt"]
+
+[ext_resource type="PackedScene" uid="uid://ddmmygqs25cyj" path="res://trench_broom/func_godot_fgd/entities/point/playerspawn_dummy.tscn" id="1_2qboj"]
+[ext_resource type="Script" uid="uid://cw2atun4e3eyv" path="res://addons/func_godot/src/fgd/func_godot_fgd_point_class.gd" id="1_uvdve"]
+
+[resource]
+script = ExtResource("1_uvdve")
+scene_file = ExtResource("1_2qboj")
+apply_rotation_on_map_build = true
+classname = "playerspawn"
+description = ""
+func_godot_internal = false
+base_classes = Array[Resource]([])
+class_properties = {}
+class_property_descriptions = {}
+auto_apply_to_matching_node_properties = false
+meta_properties = {
+"color": Color(0.8, 0.8, 0.8, 1),
+"size": AABB(-8, -8, -16, 8, 8, 16)
+}
+node_class = ""
+name_property = "Player"
+metadata/_custom_type_script = "uid://cw2atun4e3eyv"

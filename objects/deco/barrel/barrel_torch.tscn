@@ -1,12 +1,13 @@
-[gd_scene load_steps=25 format=3 uid="uid://cfdvyof38yskk"]
+[gd_scene load_steps=28 format=3 uid="uid://cfdvyof38yskk"]
 
 [ext_resource type="Shader" uid="uid://bvuxceynh6rex" path="res://shaders/spatial/entities/psx_pb_aclip.gdshader" id="1_k2muc"]
 [ext_resource type="Texture2D" uid="uid://bnlohim1orpfo" path="res://objects/deco/barrel/barrel_albedo.png" id="2_mmrrk"]
 [ext_resource type="Texture2D" uid="uid://d3qt2a3s045dt" path="res://objects/deco/barrel/barrel_normals.png" id="3_rudfx"]
+[ext_resource type="ArrayMesh" uid="uid://dyvqow2wbwm6l" path="res://objects/deco/barrel/barrel_drum_can.tres" id="4_4xoyh"]
 [ext_resource type="Script" uid="uid://cly1es2vyxx12" path="res://entities/status.gd" id="4_ys57n"]
 [ext_resource type="PackedScene" uid="uid://cu70msbgu2ysm" path="res://scenes/effects/damage/metal_damage_sys.tscn" id="5_fst5o"]
 [ext_resource type="PackedScene" uid="uid://bfctj0w1fkgwy" path="res://scenes/effects/gibs/metal_shards.tscn" id="6_vr42e"]
-[ext_resource type="Shader" uid="uid://cbo8e60sbj20l" path="res://shaders/spatial/entities/psx_ul_add.gdshader" id="7_npgld"]
+[ext_resource type="Shader" uid="uid://cgfn3iqbl45r7" path="res://shaders/spatial/entities/psx_ul_add.gdshader" id="7_npgld"]
 [ext_resource type="AudioStream" uid="uid://1tg3qhvaqlgr" path="res://audio/streams/ambient/fire_crackle_ambient.mp3" id="7_yxa82"]
 [ext_resource type="Material" uid="uid://08yqplf2icxd" path="res://effects/halos/fire_halo_mat.tres" id="8_yax0c"]
 [ext_resource type="Script" uid="uid://qbss7pion7pi" path="res://scripts/effects/halo.gd" id="9_hmu4g"]
@@ -32,10 +33,27 @@ shader_parameter/uv2_scale = Vector3(1, 1, 1)
 shader_parameter/uv2_offset = Vector3(0, 0, 0)
 shader_parameter/is_terrain_mat = false
 
-[sub_resource type="CylinderMesh" id="CylinderMesh_o4fo5"]
-height = 1.5
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_4xoyh"]
+render_priority = 0
+shader = ExtResource("7_npgld")
+shader_parameter/albedo = Color(1, 1, 0, 1)
+shader_parameter/uv1_scale = Vector3(0, 0, 0)
+shader_parameter/uv1_offset = Vector3(0, 0, 0)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_r7228"]
+transparency = 1
+blend_mode = 1
+shading_mode = 0
+vertex_color_use_as_albedo = true
+albedo_color = Color(1, 1, 0, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_c5xei"]
+material = SubResource("StandardMaterial3D_r7228")
+radius = 0.425
+height = 0.15
 radial_segments = 8
-rings = 0
+rings = 3
+is_hemisphere = true
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_pwgf8"]
 render_priority = 0
@@ -102,7 +120,7 @@ shape = SubResource("CylinderShape3D_vbuov")
 [node name="Mesh" type="MeshInstance3D" parent="."]
 layers = 2
 material_override = SubResource("ShaderMaterial_dgeoh")
-mesh = SubResource("CylinderMesh_o4fo5")
+mesh = ExtResource("4_4xoyh")
 
 [node name="Status" type="Node" parent="."]
 script = ExtResource("4_ys57n")
@@ -119,6 +137,15 @@ unit_size = 32.0
 autoplay = true
 max_distance = 64.0
 doppler_tracking = 2
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.75, 0)
+layers = 8
+material_override = SubResource("ShaderMaterial_4xoyh")
+visibility_range_end = 10.0
+visibility_range_end_margin = 5.0
+mesh = SubResource("SphereMesh_c5xei")
+skeleton = NodePath("../GPUParticles3D")
 
 [node name="TorchSys" type="GPUParticles3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.75, 0)

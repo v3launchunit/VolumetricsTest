@@ -29,6 +29,7 @@ description = ""
 func_godot_internal = false
 base_classes = Array[Resource]([ExtResource("1_j4jh6")])
 class_properties = {
+"alert_locked": "",
 "closeable": 0,
 "group": "none",
 "nav_link_offset": Vector3(0, 0, 1.5),

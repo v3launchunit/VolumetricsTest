@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://r1fql2p42nhh"
-path="res://.godot/imported/vent_panel_22.png-f6352df7d15e766c11b10febd2a1feb7.ctex"
+uid="uid://66b2uf785u0a"
+path="res://.godot/imported/rock_5_albedo_2.png-3898fd239463d8c850e8cc7d023f7049.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://trench_broom/textures/machines/vent_panel/vent_panel_22.png"
-dest_files=["res://.godot/imported/vent_panel_22.png-f6352df7d15e766c11b10febd2a1feb7.ctex"]
+source_file="res://materials/terrain/_pbr/rock_5/rock_5_albedo_2.png"
+dest_files=["res://.godot/imported/rock_5_albedo_2.png-3898fd239463d8c850e8cc7d023f7049.ctex"]
 
 [params]
 

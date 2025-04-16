@@ -318,7 +318,9 @@ func interact(body: Node3D) -> void:
 		if body is Player and not func_godot_properties.get("secret", false):
 			(body as Player).hud.set_alert(Globals.parse_text(
 					"alerts", 
-					"door.locked.%s" % func_godot_properties["required_key"]
+					"door.locked.%s" % func_godot_properties["required_key"] 
+						if func_godot_properties.get("alert_locked", "") == "" 
+						else func_godot_properties["alert_locked"]
 			))
 		return
 	else:

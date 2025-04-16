@@ -66,6 +66,7 @@ enum GibMode {
 		if burn_sys != null:
 			burning = to
 			burn_sys.emitting = to
+			burn_sys.restart(true)
 #var overheal_decay_rate: float = 1 # hp/second
 
 #@onready var gibs_scene: PackedScene = load(gibs)
