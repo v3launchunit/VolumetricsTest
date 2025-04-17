@@ -1,5 +1,6 @@
-[gd_scene load_steps=10 format=3 uid="uid://dfro7scss6rvv"]
+[gd_scene load_steps=11 format=3 uid="uid://dfro7scss6rvv"]
 
+[ext_resource type="Script" uid="uid://bc60eq8f31x2u" path="res://scripts/objects/carriable.gd" id="1_1qspb"]
 [ext_resource type="Shader" uid="uid://bvuxceynh6rex" path="res://shaders/spatial/entities/psx_pb_aclip.gdshader" id="1_07mat"]
 [ext_resource type="Texture2D" uid="uid://bnlohim1orpfo" path="res://objects/deco/barrel/barrel_albedo.png" id="2_uanar"]
 [ext_resource type="Texture2D" uid="uid://d3qt2a3s045dt" path="res://objects/deco/barrel/barrel_normals.png" id="3_3vvwv"]
@@ -30,6 +31,7 @@ shader_parameter/uv2_offset = Vector3(0, 0, 0)
 shader_parameter/is_terrain_mat = false
 
 [node name="Node3D" type="RigidBody3D"]
+script = ExtResource("1_1qspb")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("CylinderShape3D_vbuov")

@@ -1,5 +1,6 @@
-[gd_scene load_steps=24 format=3 uid="uid://bbju3hnax1iol"]
+[gd_scene load_steps=25 format=3 uid="uid://bbju3hnax1iol"]
 
+[ext_resource type="Script" uid="uid://bc60eq8f31x2u" path="res://scripts/objects/carriable.gd" id="1_bvoge"]
 [ext_resource type="Shader" uid="uid://bvuxceynh6rex" path="res://shaders/spatial/entities/psx_pb_aclip.gdshader" id="1_k2muc"]
 [ext_resource type="Texture2D" uid="uid://8wabq0whedt7" path="res://objects/deco/barrel/barrel_exp_albedo.png" id="2_7521o"]
 [ext_resource type="Texture2D" uid="uid://8whq3nfvxa5q" path="res://objects/deco/barrel/barrel_rad_metallic.png" id="3_fd4uq"]
@@ -95,6 +96,7 @@ radial_segments = 4
 rings = 1
 
 [node name="Node3D" type="RigidBody3D"]
+script = ExtResource("1_bvoge")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("CylinderShape3D_vbuov")

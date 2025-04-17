@@ -21,6 +21,9 @@ extends RigidBody3D
 @export var looktarget_l: Node3D
 @export var looktarget_r: Node3D
 
+var oriented_l : bool = false
+var oriented_r : bool = false
+
 @onready var lamp_l: Node3D = $floodlight/Stand/Neck_L/Lamp_L
 @onready var lamp_r: Node3D = $floodlight/Stand/Neck_R/Lamp_R
 
@@ -58,12 +61,14 @@ func _process(delta: float) -> void:
 		looktarget_l = get_tree().get_first_node_in_group(
 				"targetname:%s" % func_godot_properties["target"]
 		) as Node3D
-	else:
+	elif looktarget_l is Node3D and not oriented_l:
 		lamp_l.look_at(looktarget_l.global_position, Vector3.UP, true)
+		oriented_l = true
 	if looktarget_r == null and func_godot_properties.get("killtarget", "") != "":
 		looktarget_r = get_tree().get_first_node_in_group(
 				"targetname:%s" % func_godot_properties["killtarget"]
 		) as Node3D
-	else:
+	elif looktarget_r is Node3D and not oriented_r:
 		lamp_r.look_at(looktarget_r.global_position, Vector3.UP, true)
+		oriented_r = true
 	
