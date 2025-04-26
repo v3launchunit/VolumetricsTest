@@ -153,6 +153,8 @@ func _process(_delta) -> void:
 			hud.set_tooltip(interact_scan.get_collider().get_tooltip())
 		else:
 			hud.tooltip.visible = false
+			if interact_scan.get_collider() is AreaDamage:
+				interact_scan.add_exception(interact_scan.get_collider())
 		
 		# Check if I should interact with anything
 		if (

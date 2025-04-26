@@ -8,7 +8,7 @@
 [ext_resource type="AudioStream" uid="uid://bfaxlqoxr3aed" path="res://audio/streams/voices/lizard/death_roar.wav" id="6_kj0b6"]
 [ext_resource type="AudioStream" uid="uid://dc1es3ux857yw" path="res://audio/streams/voices/wilhelm_scream.ogg" id="7_pkv2a"]
 [ext_resource type="PackedScene" uid="uid://pidxth8qpjjm" path="res://entities/enemies/locals/lizard/lizard.glb" id="8_4kcvq"]
-[ext_resource type="Shader" uid="uid://b8h2bq5npbupf" path="res://shaders/spatial/entities/psx_ul_mix.gdshader" id="9_8aumv"]
+[ext_resource type="Shader" uid="uid://bycruau5ish4o" path="res://shaders/spatial/entities/psx_ul_mix.gdshader" id="9_8aumv"]
 [ext_resource type="Material" uid="uid://cgrmnklrxmjec" path="res://entities/enemies/shadow_mat.tres" id="9_o7vwu"]
 [ext_resource type="AnimationLibrary" uid="uid://bre8ccbuc7fbn" path="res://entities/enemies/locals/lizard/lizard_anims.res" id="10_kynjh"]
 [ext_resource type="Script" uid="uid://cly1es2vyxx12" path="res://entities/status.gd" id="11_5mioy"]
@@ -323,30 +323,6 @@ tracks/32/keys = {
 "update": 1,
 "values": [4]
 }
-tracks/33/type = "value"
-tracks/33/imported = false
-tracks/33/enabled = true
-tracks/33/path = NodePath("lizard/Armature/Skeleton3D/JawRight/JawRight/GPUParticles3D:emitting")
-tracks/33/interp = 1
-tracks/33/loop_wrap = true
-tracks/33/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
-tracks/34/type = "value"
-tracks/34/imported = false
-tracks/34/enabled = true
-tracks/34/path = NodePath("lizard/Armature/Skeleton3D/JawLeft/JawLeft/GPUParticles3D:emitting")
-tracks/34/interp = 1
-tracks/34/loop_wrap = true
-tracks/34/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_dalwl"]
 _data = {
@@ -583,6 +559,7 @@ melee_bullet = ExtResource("2_o2com")
 species = &"lizards"
 speed = 5.0
 knockback_multiplier = 0.0
+jump_height = 0.0
 wanderer = true
 hunts_species = Array[StringName]([&"rocketeers"])
 detection_stream = SubResource("AudioStreamRandomizer_hkga1")
@@ -601,18 +578,16 @@ transform = Transform3D(-0.2, 0, 3.01992e-08, 0, 0.2, 0, -3.01992e-08, 0, -0.2, 
 
 [node name="Skeleton3D" parent="lizard/Armature" index="0"]
 bones/0/rotation = Quaternion(0.707107, 5.33851e-08, 5.33851e-08, 0.707107)
-bones/1/rotation = Quaternion(1.0677e-07, -5.0243e-15, -0.707107, 0.707107)
+bones/1/rotation = Quaternion(1.0677e-07, -7.53645e-15, -0.707107, 0.707107)
 bones/2/rotation = Quaternion(0.500011, 6.60196e-36, -3.81175e-36, 0.866019)
 bones/3/rotation = Quaternion(0.258969, 0, 0, 0.965886)
 bones/4/rotation = Quaternion(-7.71124e-36, 0, 1.29957e-28, 1)
 bones/5/rotation = Quaternion(0.194962, 0, 0, 0.980811)
 bones/6/rotation = Quaternion(-0.0649926, 0, 0, 0.997886)
-bones/7/rotation = Quaternion(0.5, 0.5, 0.5, -0.5)
-bones/8/rotation = Quaternion(0.5, 0.5, -0.5, 0.5)
+bones/8/rotation = Quaternion(-0.5, -0.5, 0.5, -0.5)
 bones/9/rotation = Quaternion(0.707107, 0, 0, 0.707107)
-bones/10/rotation = Quaternion(0.5, -0.5, -0.5, -0.5)
 bones/12/rotation = Quaternion(0, -0.707107, 0.707107, -6.11541e-09)
-bones/13/rotation = Quaternion(-2.51215e-15, -1.0677e-07, 0.707107, 0.707107)
+bones/13/rotation = Quaternion(0, -1.0677e-07, 0.707107, 0.707107)
 bones/14/rotation = Quaternion(0.500011, -1.12931e-22, 0, 0.866019)
 bones/15/rotation = Quaternion(0.258969, 0, 0, 0.965886)
 bones/16/rotation = Quaternion(7.71124e-36, 0, -1.29957e-28, 1)
@@ -625,7 +600,7 @@ bones/28/rotation = Quaternion(-0.500011, 0, 0, 0.866019)
 bones/29/rotation = Quaternion(-0.258969, 0, 0, 0.965886)
 
 [node name="Head" type="BoneAttachment3D" parent="lizard/Armature/Skeleton3D" index="0"]
-transform = Transform3D(0.96467, 0.263406, 0.00541813, 0.0731649, -0.248082, -0.965972, -0.253098, 0.932241, -0.258589, 8.6479e-08, -0.573261, 3.88616)
+transform = Transform3D(0.992468, 0.122428, 0.00421099, 0.0351217, -0.251447, -0.967234, -0.117358, 0.960097, -0.253853, 6.28986e-08, -0.590117, 3.88859)
 bone_name = "Head"
 bone_idx = 6
 
@@ -633,7 +608,7 @@ bone_idx = 6
 transform = Transform3D(1, -2.81099e-15, 0, 0, 7.54979e-08, 1, 3.44266e-21, -1, 7.54979e-08, 0, 0, 0)
 
 [node name="JawLeft" parent="lizard/Armature/Skeleton3D" index="1"]
-transform = Transform3D(0.00541813, 0.96467, 0.263406, -0.965972, 0.0731649, -0.248082, -0.258589, -0.253098, 0.932241, 0.131703, -0.697302, 4.35228)
+transform = Transform3D(0.00421099, 0.992468, 0.122428, -0.967234, 0.0351217, -0.251447, -0.253853, -0.117358, 0.960097, 0.061214, -0.71584, 4.36864)
 
 [node name="JawLeft" parent="lizard/Armature/Skeleton3D/JawLeft" index="0"]
 transform = Transform3D(1, -1.42108e-14, 0, -1.25528e-14, 1, -1.42109e-14, 0, 0, 1, 0, 0, 0)
@@ -645,6 +620,7 @@ transform = Transform3D(-5.00001, -2.98024e-07, 2.38419e-07, 1.13687e-13, -5, 2.
 visible = false
 layers = 2
 material_override = SubResource("ShaderMaterial_f60oq")
+emitting = false
 amount = 16
 lifetime = 0.25
 fixed_fps = 60
@@ -654,21 +630,21 @@ draw_pass_1 = SubResource("SphereMesh_2vp0u")
 [node name="SpawnerRight" type="Marker3D" parent="lizard/Armature/Skeleton3D/JawLeft/JawLeft/GPUParticles3D"]
 
 [node name="HornLeftBottom" parent="lizard/Armature/Skeleton3D" index="2"]
-transform = Transform3D(-0.263406, 0.00541807, -0.96467, 0.248082, -0.965972, -0.0731649, -0.93224, -0.25859, 0.253098, 1.54225, -1.32817, 4.8049)
+transform = Transform3D(-0.122428, 0.00421096, -0.992469, 0.251447, -0.967234, -0.0351217, -0.960097, -0.253853, 0.117358, 1.37059, -1.39619, 5.01297)
 
 [node name="HornLeftBottom" parent="lizard/Armature/Skeleton3D/HornLeftBottom" index="0"]
 layers = 2
 material_override = ExtResource("9_o7vwu")
 
 [node name="HornLeftTop" parent="lizard/Armature/Skeleton3D" index="3"]
-transform = Transform3D(0.00541813, 0.263406, -0.96467, -0.965972, -0.248082, -0.0731649, -0.258589, 0.932241, 0.253098, 1.53683, -0.362196, 5.06349)
+transform = Transform3D(0.00421099, 0.122428, -0.992468, -0.967234, -0.251447, -0.0351217, -0.253853, 0.960097, 0.117358, 1.36638, -0.428952, 5.26682)
 
 [node name="HornLeftTop" parent="lizard/Armature/Skeleton3D/HornLeftTop" index="0"]
 layers = 2
 material_override = ExtResource("9_o7vwu")
 
 [node name="JawRight" parent="lizard/Armature/Skeleton3D" index="4"]
-transform = Transform3D(-0.00541813, -0.96467, 0.263406, 0.965972, -0.0731649, -0.248082, 0.258589, 0.253098, 0.932241, 0.131703, -0.697302, 4.35228)
+transform = Transform3D(-0.00421099, -0.992468, 0.122428, 0.967234, -0.0351217, -0.251447, 0.253853, 0.117358, 0.960097, 0.061214, -0.71584, 4.36864)
 
 [node name="JawRight" parent="lizard/Armature/Skeleton3D/JawRight" index="0"]
 transform = Transform3D(1, 0, 0, 0, 1, 7.57849e-15, 0, 3.07846e-15, 1, 0, 0, 0)
@@ -680,6 +656,7 @@ transform = Transform3D(-5, 2.98023e-07, 0, -1.42109e-14, -5, 2.98023e-07, -2.38
 visible = false
 layers = 2
 material_override = SubResource("ShaderMaterial_sytrj")
+emitting = false
 amount = 16
 lifetime = 0.25
 fixed_fps = 60
@@ -689,14 +666,14 @@ draw_pass_1 = SubResource("SphereMesh_42m1i")
 [node name="SpawnerLeft" type="Marker3D" parent="lizard/Armature/Skeleton3D/JawRight/JawRight/GPUParticles3D"]
 
 [node name="HornRightBottom" parent="lizard/Armature/Skeleton3D" index="5"]
-transform = Transform3D(-0.263406, -0.00541813, 0.96467, 0.248082, 0.965972, 0.0731649, -0.932241, 0.258589, -0.253098, -0.772957, -1.50376, 5.41234)
+transform = Transform3D(-0.122428, -0.00421099, 0.992468, 0.251447, 0.967234, 0.0351217, -0.960097, 0.253853, -0.117358, -1.01134, -1.48048, 5.29463)
 
 [node name="HornRightBottom" parent="lizard/Armature/Skeleton3D/HornRightBottom" index="0"]
 layers = 2
 material_override = ExtResource("9_o7vwu")
 
 [node name="HornRightTop" parent="lizard/Armature/Skeleton3D" index="6"]
-transform = Transform3D(0.00541814, -0.263406, 0.96467, -0.965972, 0.248082, 0.0731649, -0.258589, -0.932241, -0.253098, -0.778375, -0.537792, 5.67093)
+transform = Transform3D(0.00421099, -0.122428, 0.992468, -0.967234, 0.251447, 0.0351217, -0.253853, -0.960097, -0.117358, -1.01555, -0.513244, 5.54848)
 
 [node name="HornRightTop" parent="lizard/Armature/Skeleton3D/HornRightTop" index="0"]
 layers = 2
@@ -718,8 +695,8 @@ collision_mask = 3
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
-"": SubResource("AnimationLibrary_dalwl"),
-"lizard_anims": ExtResource("10_kynjh")
+&"": SubResource("AnimationLibrary_dalwl"),
+&"lizard_anims": ExtResource("10_kynjh")
 }
 
 [node name="AnimationTree" type="AnimationTree" parent="."]

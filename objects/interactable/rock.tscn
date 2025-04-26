@@ -1,0 +1,79 @@
+[gd_scene load_steps=12 format=3 uid="uid://cmmmww43el7th"]
+
+[ext_resource type="Shader" uid="uid://djpltavpkhtmk" path="res://shaders/spatial/psx_pb_opaque.gdshader" id="1_1jbkq"]
+[ext_resource type="Script" uid="uid://bc60eq8f31x2u" path="res://scripts/objects/carriable.gd" id="1_bl8xb"]
+[ext_resource type="ArrayMesh" uid="uid://bssx7wfjh7rbq" path="res://models/gib.obj" id="2_7a4te"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_bl8xb"]
+rough = true
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_keorg"]
+radius = 0.25
+
+[sub_resource type="Gradient" id="Gradient_oyi6n"]
+offsets = PackedFloat32Array(0.3, 0.5, 0.7, 1)
+colors = PackedColorArray(0.5, 0.5, 0.5, 1, 0.42, 0.42, 0.42, 1, 0.35, 0.35, 0.35, 1, 0.3, 0.3, 0.3, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_1jbkq"]
+noise_type = 2
+seed = 3
+frequency = 0.125
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_7a4te"]
+width = 64
+height = 64
+generate_mipmaps = false
+seamless = true
+seamless_blend_skirt = 0.35
+color_ramp = SubResource("Gradient_oyi6n")
+noise = SubResource("FastNoiseLite_1jbkq")
+
+[sub_resource type="Gradient" id="Gradient_5y0vp"]
+interpolation_mode = 2
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_1jbkq"]
+width = 64
+height = 64
+generate_mipmaps = false
+seamless = true
+seamless_blend_skirt = 0.35
+as_normal_map = true
+bump_strength = 16.0
+color_ramp = SubResource("Gradient_5y0vp")
+noise = SubResource("FastNoiseLite_1jbkq")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_2rgbl"]
+render_priority = 0
+shader = ExtResource("1_1jbkq")
+shader_parameter/albedo_col = Color(1, 1, 1, 1)
+shader_parameter/albedo_tex = SubResource("NoiseTexture2D_7a4te")
+shader_parameter/normal_tex = SubResource("NoiseTexture2D_1jbkq")
+shader_parameter/normal_scale = 0.750001
+shader_parameter/roughness = 0.75
+shader_parameter/metallic = 0.0
+shader_parameter/specular = 0.5
+shader_parameter/metallic_channel = Vector4(1, 0, 0, 0)
+shader_parameter/uv1_scale = Vector3(1, 1, 1)
+shader_parameter/uv1_offset = Vector3(0, 0, 0)
+shader_parameter/uv2_scale = Vector3(1, 1, 1)
+shader_parameter/uv2_offset = Vector3(0, 0, 0)
+shader_parameter/is_terrain_mat = false
+
+[node name="Rock" type="RigidBody3D"]
+collision_layer = 2048
+mass = 10.0
+physics_material_override = SubResource("PhysicsMaterial_bl8xb")
+linear_damp = 1.0
+angular_damp = 1.0
+script = ExtResource("1_bl8xb")
+tooltip = "grab.rock"
+friction_damp = 1.0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_keorg")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+layers = 2
+material_override = SubResource("ShaderMaterial_2rgbl")
+mesh = ExtResource("2_7a4te")

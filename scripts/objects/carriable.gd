@@ -6,15 +6,16 @@ extends RigidBody3D
 #signal released
 
 @export var hold_max_distance_squared: float = 9.0
-@export var throw_speed: float = 20.0
+@export var throw_speed: float = 200.0
 @export var throw_damage: float = 100.0
 @export var throw_self_damage: float = 10.0
+@export var tooltip: String = "grab"
+@export_range(0.0, 100.0) var friction_damp: float = 0.0
 
 var holder : Player = null
 var hold_pos : Node3D = null
 var input_fudge : bool = false
 var thrown : bool = false
-
 
 func _ready() -> void:
 	contact_monitor = true
@@ -52,6 +53,15 @@ func _physics_process(_delta: float) -> void:
 	if hold_pos != null:
 		#apply_central_force((global_position - hold_pos.global_position))
 		global_position = global_position.lerp(hold_pos.global_position, 0.5 + _delta * 10.0)
+	else:
+		pass
+
+
+func get_tooltip() -> String:
+	if hold_pos == null:
+		return Globals.parse_text("tooltips", tooltip)
+	else:
+		return ""
 
 
 func interact(body: Player) -> void:

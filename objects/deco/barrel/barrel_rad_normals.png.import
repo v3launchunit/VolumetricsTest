@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://8whq3nfvxa5q"
-path="res://.godot/imported/barrel_rad_metallic.png-38e65ea917e63320c2799a841375d1d7.ctex"
+uid="uid://dq3d3gg6i16h1"
+path="res://.godot/imported/barrel_rad_normals.png-9492a485f6439ce8af98037946de8701.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://objects/deco/barrel/barrel_rad_metallic.png"
-dest_files=["res://.godot/imported/barrel_rad_metallic.png-38e65ea917e63320c2799a841375d1d7.ctex"]
+source_file="res://objects/deco/barrel/barrel_rad_normals.png"
+dest_files=["res://.godot/imported/barrel_rad_normals.png-9492a485f6439ce8af98037946de8701.ctex"]
 
 [params]
 
@@ -19,12 +19,12 @@ compress/mode=0
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1
-compress/normal_map=0
+compress/normal_map=1
 compress/channel_pack=0
 mipmaps/generate=false
 mipmaps/limit=-1
-roughness/mode=0
-roughness/src_normal=""
+roughness/mode=1
+roughness/src_normal="res://objects/deco/barrel/barrel_rad_normals.png"
 process/fix_alpha_border=true
 process/premult_alpha=false
 process/normal_map_invert_y=false

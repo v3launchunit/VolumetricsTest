@@ -1,3 +1,4 @@
+class_name Explosion
 extends Node3D
 
 @export_storage var anim_progress : float = 0.0

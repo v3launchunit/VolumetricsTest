@@ -1,7 +1,7 @@
 [gd_scene load_steps=12 format=3 uid="uid://n6vtkb1h7jl3"]
 
 [ext_resource type="Script" uid="uid://c6ua8e1nkwkca" path="res://objects/interactable/wooden_door/hinge_door.gd" id="1_1upee"]
-[ext_resource type="Shader" uid="uid://i8j7r3ibp7kl" path="res://shaders/spatial/psx_pb_opaque_orm_detail.gdshader" id="2_3bjal"]
+[ext_resource type="Shader" uid="uid://i8j7r3ibp7kl" path="res://shaders/spatial/psx_pb_opaque_orm_detail_mix.gdshader" id="2_3bjal"]
 [ext_resource type="ArrayMesh" uid="uid://kb2wm3eiatxq" path="res://objects/interactable/door_01/door_01.obj" id="2_e1666"]
 [ext_resource type="Texture2D" uid="uid://ceba5ehyrr38i" path="res://objects/interactable/door_01/door_01_albedo.png" id="3_046vy"]
 [ext_resource type="Texture2D" uid="uid://drt8moj7f8cji" path="res://objects/interactable/door_01/door_01_normals.png" id="4_s12wa"]

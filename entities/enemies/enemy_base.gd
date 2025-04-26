@@ -36,6 +36,8 @@ enum DetectionType {
 	RETALIATION,
 }
 
+const STUCK_TIMER_DECAY_RATE : float = 10.0
+
 @export var species: StringName
 
 @export var properties: Dictionary = {}
@@ -159,6 +161,9 @@ var gravity: float = ProjectSettings.get_setting("physics/3d/default_gravity")
 var sees_player: bool = false
 var path_re_eval_distance_squared
 var sight_line_sweep_dot: float = cos(sight_line_sweep_angle / 2.0)
+
+var stuck_timer: float = 0.0
+var prior_frame_pos := Vector3.ZERO
 
 @onready var nav_agent: NavigationAgent3D = find_child("NavigationAgent3D")
 @onready var nav_region := get_tree().current_scene.find_child(
@@ -583,6 +588,15 @@ func check_path_staleness() -> bool:
 		)
 
 
+func check_stuckness(delta: float) -> float:
+	if global_position.is_equal_approx(prior_frame_pos):
+		stuck_timer += delta
+		return stuck_timer
+	if stuck_timer > 0:
+		stuck_timer -= delta * STUCK_TIMER_DECAY_RATE
+	return 0
+
+
 func get_current_destination() -> Vector3:
 	var destination: Vector3
 	match randi_range(0, 1):
@@ -648,6 +662,9 @@ func can_see_target() -> bool:
 
 
 func should_jump() -> bool:
+	# enemies that can't jump shouldn't jump
+	if jump_height < 0.01:
+		return false
 	var space_state: PhysicsDirectSpaceState3D = get_world_3d().direct_space_state
 	var query := PhysicsShapeQueryParameters3D.new()
 	query.shape = SphereShape3D.new()
@@ -657,8 +674,11 @@ func should_jump() -> bool:
 	query.collision_mask = 1 + 2 + 16 + 128 + 256 # default layer, player, projectiles, doors, porous
 	query.exclude.append(get_rid())
 	var hit: Array[Dictionary] = space_state.intersect_shape(query)
+	query.transform.origin.y += 4.0
+	var hit2: Array[Dictionary] = space_state.intersect_shape(query)
 	#print(hit)
-	return not (hit.is_empty() or hit[0].collider in current_targets)
+	return (hit2.is_empty() or hit2[0].collider in current_targets) \
+			and not (hit.is_empty() or hit[0].collider in current_targets)
 
 
 func _begin_attack() -> void:

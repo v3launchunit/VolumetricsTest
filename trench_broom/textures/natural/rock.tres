@@ -10,8 +10,6 @@ seed = 3
 frequency = 0.035
 
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_rhr5n"]
-width = 256
-height = 256
 generate_mipmaps = false
 seamless = true
 seamless_blend_skirt = 0.35
@@ -28,8 +26,6 @@ seed = 3
 frequency = 0.035
 
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_lst83"]
-width = 256
-height = 256
 generate_mipmaps = false
 seamless = true
 seamless_blend_skirt = 0.35
@@ -43,5 +39,6 @@ albedo_texture = SubResource("NoiseTexture2D_rhr5n")
 roughness = 0.75
 normal_enabled = true
 normal_texture = SubResource("NoiseTexture2D_lst83")
+uv1_scale = Vector3(0.5, 0.5, 0.5)
 uv1_world_triplanar = true
 texture_filter = 0

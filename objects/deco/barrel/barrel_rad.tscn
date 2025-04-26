@@ -1,10 +1,11 @@
-[gd_scene load_steps=11 format=3 uid="uid://cthr827o2iho4"]
+[gd_scene load_steps=15 format=3 uid="uid://cthr827o2iho4"]
 
-[ext_resource type="Shader" uid="uid://bvuxceynh6rex" path="res://shaders/spatial/entities/psx_pb_aclip.gdshader" id="1_e48og"]
+[ext_resource type="Script" uid="uid://bc60eq8f31x2u" path="res://scripts/objects/carriable.gd" id="1_fhtc2"]
 [ext_resource type="Texture2D" uid="uid://60ymdllbjfv0" path="res://objects/deco/barrel/barrel_rad_albedo.png" id="2_0vvcw"]
-[ext_resource type="Texture2D" uid="uid://d3qt2a3s045dt" path="res://objects/deco/barrel/barrel_normals.png" id="3_bf4oi"]
-[ext_resource type="Texture2D" uid="uid://8whq3nfvxa5q" path="res://objects/deco/barrel/barrel_rad_metallic.png" id="3_fk4rc"]
+[ext_resource type="Shader" uid="uid://dc5pspuhjtxr8" path="res://shaders/spatial/psx_pb_opaque_orm_detail_mul.gdshader" id="2_fhtc2"]
+[ext_resource type="Texture2D" uid="uid://8whq3nfvxa5q" path="res://objects/deco/barrel/barrel_rad_orm.png" id="3_fk4rc"]
 [ext_resource type="Script" uid="uid://cly1es2vyxx12" path="res://entities/status.gd" id="4_3ww4c"]
+[ext_resource type="Texture2D" uid="uid://dq3d3gg6i16h1" path="res://objects/deco/barrel/barrel_rad_normals.png" id="4_fhtc2"]
 [ext_resource type="ArrayMesh" uid="uid://dyvqow2wbwm6l" path="res://objects/deco/barrel/barrel_drum_can.tres" id="5_2ks4v"]
 [ext_resource type="PackedScene" uid="uid://cu70msbgu2ysm" path="res://scenes/effects/damage/metal_damage_sys.tscn" id="5_g1p6n"]
 [ext_resource type="PackedScene" uid="uid://dco7xp2cwuyge" path="res://scenes/effects/explosions/explosion.tscn" id="7_hl8bo"]
@@ -12,19 +13,36 @@
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_vbuov"]
 height = 1.5
 
+[sub_resource type="Gradient" id="Gradient_1qspb"]
+interpolation_mode = 1
+offsets = PackedFloat32Array(0, 0.375, 0.625)
+colors = PackedColorArray(0.8, 0.8, 0.8, 1, 0.9, 0.9, 0.9, 1, 1, 1, 1, 1)
+metadata/_snap_enabled = true
+metadata/_snap_count = 8
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_sdxxk"]
+frequency = 0.236
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_fhtc2"]
+width = 64
+height = 64
+generate_mipmaps = false
+color_ramp = SubResource("Gradient_1qspb")
+noise = SubResource("FastNoiseLite_sdxxk")
+
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_1nd2t"]
 render_priority = 0
-shader = ExtResource("1_e48og")
+shader = ExtResource("2_fhtc2")
 shader_parameter/albedo_col = Color(1, 1, 1, 1)
 shader_parameter/albedo_tex = ExtResource("2_0vvcw")
-shader_parameter/alpha_clip_threshold = 0.5
-shader_parameter/normal_tex = ExtResource("3_bf4oi")
+shader_parameter/normal_tex = ExtResource("4_fhtc2")
 shader_parameter/normal_scale = 1.0
-shader_parameter/roughness = 0.5
+shader_parameter/roughness = 1.0
 shader_parameter/metallic = 1.0
 shader_parameter/specular = 0.5
-shader_parameter/metallic_tex = ExtResource("3_fk4rc")
-shader_parameter/metallic_channel = Vector4(1, 0, 0, 0)
+shader_parameter/detail = 1.0
+shader_parameter/orm_tex = ExtResource("3_fk4rc")
+shader_parameter/detail_albedo_tex = SubResource("NoiseTexture2D_fhtc2")
 shader_parameter/uv1_scale = Vector3(1, 1, 1)
 shader_parameter/uv1_offset = Vector3(0, 0, 0)
 shader_parameter/uv2_scale = Vector3(1, 1, 1)
@@ -32,6 +50,9 @@ shader_parameter/uv2_offset = Vector3(0, 0, 0)
 shader_parameter/is_terrain_mat = false
 
 [node name="Node3D" type="RigidBody3D"]
+mass = 250.0
+script = ExtResource("1_fhtc2")
+tooltip = "grab.barrel"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("CylinderShape3D_vbuov")

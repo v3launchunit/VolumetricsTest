@@ -17,6 +17,7 @@
 [sub_resource type="BoxShape3D" id="BoxShape3D_17vxe"]
 
 [node name="Crate" type="RigidBody3D"]
+mass = 30.0
 script = ExtResource("1_nrdid")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]

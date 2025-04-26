@@ -1,8 +1,8 @@
 [gd_scene load_steps=11 format=3 uid="uid://dfro7scss6rvv"]
 
 [ext_resource type="Script" uid="uid://bc60eq8f31x2u" path="res://scripts/objects/carriable.gd" id="1_1qspb"]
-[ext_resource type="Shader" uid="uid://bvuxceynh6rex" path="res://shaders/spatial/entities/psx_pb_aclip.gdshader" id="1_07mat"]
-[ext_resource type="Texture2D" uid="uid://bnlohim1orpfo" path="res://objects/deco/barrel/barrel_albedo.png" id="2_uanar"]
+[ext_resource type="Shader" uid="uid://i8j7r3ibp7kl" path="res://shaders/spatial/psx_pb_opaque_orm_detail_mix.gdshader" id="2_fmn2b"]
+[ext_resource type="Texture2D" uid="uid://jwhtudkj6481" path="res://objects/deco/barrel/barrel_noise.tres" id="3_1qspb"]
 [ext_resource type="Texture2D" uid="uid://d3qt2a3s045dt" path="res://objects/deco/barrel/barrel_normals.png" id="3_3vvwv"]
 [ext_resource type="ArrayMesh" uid="uid://dyvqow2wbwm6l" path="res://objects/deco/barrel/barrel_drum_can.tres" id="4_fmn2b"]
 [ext_resource type="Script" uid="uid://cly1es2vyxx12" path="res://entities/status.gd" id="4_ljeym"]
@@ -14,16 +14,15 @@ height = 1.5
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_dgeoh"]
 render_priority = 0
-shader = ExtResource("1_07mat")
+shader = ExtResource("2_fmn2b")
 shader_parameter/albedo_col = Color(1, 1, 1, 1)
-shader_parameter/albedo_tex = ExtResource("2_uanar")
-shader_parameter/alpha_clip_threshold = 0.5
+shader_parameter/albedo_tex = ExtResource("3_1qspb")
 shader_parameter/normal_tex = ExtResource("3_3vvwv")
 shader_parameter/normal_scale = 1.0
 shader_parameter/roughness = 0.5
 shader_parameter/metallic = 1.0
 shader_parameter/specular = 0.5
-shader_parameter/metallic_channel = Vector4(1, 0, 0, 0)
+shader_parameter/detail = 1.0
 shader_parameter/uv1_scale = Vector3(1, 1, 1)
 shader_parameter/uv1_offset = Vector3(0, 0, 0)
 shader_parameter/uv2_scale = Vector3(1, 1, 1)
@@ -31,7 +30,9 @@ shader_parameter/uv2_offset = Vector3(0, 0, 0)
 shader_parameter/is_terrain_mat = false
 
 [node name="Node3D" type="RigidBody3D"]
+mass = 22.0
 script = ExtResource("1_1qspb")
+tooltip = "grab.barrel"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("CylinderShape3D_vbuov")
