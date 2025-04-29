@@ -4,7 +4,7 @@
 [ext_resource type="AudioStream" uid="uid://cr8v5feyxtf4l" path="res://audio/streams/pickups/pickup_health.wav" id="2_4xtwu"]
 [ext_resource type="Texture2D" uid="uid://hk0k2coukjwc" path="res://effects/halos/halo_tex.tres" id="3_tesow"]
 [ext_resource type="Script" uid="uid://qbss7pion7pi" path="res://scripts/effects/halo.gd" id="4_oyojg"]
-[ext_resource type="Shader" uid="uid://cbo8e60sbj20l" path="res://shaders/spatial/entities/psx_ul_add.gdshader" id="5_2d34o"]
+[ext_resource type="Shader" uid="uid://cgfn3iqbl45r7" path="res://shaders/spatial/psx_ul_add.gdshader" id="5_2d34o"]
 [ext_resource type="Texture2D" uid="uid://cytut65otdmjb" path="res://pickups/powerups/star.png" id="6_5u5oc"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_uc2sx"]

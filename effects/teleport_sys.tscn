@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://b6og4kcs5xlt0"]
 
-[ext_resource type="Shader" uid="uid://b8h2bq5npbupf" path="res://shaders/spatial/entities/psx_ul_mix.gdshader" id="1_71ter"]
+[ext_resource type="Shader" uid="uid://bycruau5ish4o" path="res://shaders/spatial/psx_ul_mix.gdshader" id="1_71ter"]
 [ext_resource type="Material" uid="uid://rq1gll8tkr40" path="res://shaders/particles/tele_process_mat_b.tres" id="2_7u6fp"]
 [ext_resource type="AudioStream" uid="uid://dsucttfyc1d1t" path="res://audio/streams/effects/teleport.wav" id="3_0nxw1"]
 

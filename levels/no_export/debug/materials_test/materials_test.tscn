@@ -55,7 +55,7 @@
 [ext_resource type="Material" uid="uid://dvqqodfpq40yq" path="res://trench_broom/textures/machines/vent_fan_4x4.tres" id="51_0fj8j"]
 [ext_resource type="PackedScene" uid="uid://dbvvle5ea3nns" path="res://objects/deco/trash/trash_bag_mesh.tscn" id="51_d3gqq"]
 [ext_resource type="PackedScene" uid="uid://bitvyx74dtwm5" path="res://objects/deco/trash/trash_brick.tscn" id="53_fgstg"]
-[ext_resource type="Shader" uid="uid://bvuxceynh6rex" path="res://shaders/spatial/entities/psx_pb_aclip.gdshader" id="54_nf3tt"]
+[ext_resource type="Shader" uid="uid://bvuxceynh6rex" path="res://shaders/spatial/psx_pb_aclip.gdshader" id="54_nf3tt"]
 [ext_resource type="PackedScene" uid="uid://bgj5uch3h4q3n" path="res://objects/deco/trash/trash_crate_metal.tscn" id="55_8lvim"]
 [ext_resource type="Texture2D" uid="uid://cvgf42nsiic4w" path="res://objects/deco/crate_metal/crate_metal_albedo.png" id="56_3uwv7"]
 [ext_resource type="Texture2D" uid="uid://bjj6o8lwityam" path="res://objects/deco/crate_metal/crate_metal_normals.png" id="57_7ttu5"]

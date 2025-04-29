@@ -1,6 +1,6 @@
 [gd_resource type="BoxMesh" load_steps=3 format=3 uid="uid://b2jvolcdyu5ma"]
 
-[ext_resource type="Shader" uid="uid://bycruau5ish4o" path="res://shaders/spatial/entities/psx_ul_mix.gdshader" id="1_6k148"]
+[ext_resource type="Shader" uid="uid://bycruau5ish4o" path="res://shaders/spatial/psx_ul_mix.gdshader" id="1_6k148"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_amhxg"]
 render_priority = 0

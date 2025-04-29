@@ -9,7 +9,7 @@ func _ready() -> void:
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if level != null:
 		text = "{name}\n{hr}:{min}:{sec}\n{phr}:{pmin}:{psec}\n{kills}/{foes}\n{found}/{secrets}\n{scoreb},{scorem},{scorek},{score}".format({
 				"name": level.level_name, # name

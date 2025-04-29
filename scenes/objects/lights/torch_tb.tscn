@@ -1,6 +1,6 @@
 [gd_scene load_steps=30 format=3 uid="uid://jwblxog7c1kl"]
 
-[ext_resource type="Shader" uid="uid://cbo8e60sbj20l" path="res://shaders/spatial/entities/psx_ul_add.gdshader" id="1_7j6kq"]
+[ext_resource type="Shader" uid="uid://cgfn3iqbl45r7" path="res://shaders/spatial/psx_ul_add.gdshader" id="1_7j6kq"]
 [ext_resource type="AudioStream" uid="uid://1tg3qhvaqlgr" path="res://audio/streams/ambient/fire_crackle_ambient.mp3" id="1_mtuin"]
 [ext_resource type="Material" uid="uid://08yqplf2icxd" path="res://effects/halos/fire_halo_mat.tres" id="2_2j8qu"]
 [ext_resource type="Script" uid="uid://qbss7pion7pi" path="res://scripts/effects/halo.gd" id="3_h235a"]

@@ -85,6 +85,6 @@ func _on_body_entered(body: Node3D) -> void:
 	if thrown and body is not Player:
 		thrown = false
 		if body.has_node("Status"):
-			(body.get_node("Status") as Status).damage(throw_damage)
+			(body.get_node("Status") as Status).damage_typed(throw_damage, Status.DamageType.IMPACT)
 		if has_node("Status"):
-			(get_node("Status") as Status).damage(throw_self_damage)
+			(get_node("Status") as Status).damage_typed(throw_self_damage, Status.DamageType.ABSOLUTE)

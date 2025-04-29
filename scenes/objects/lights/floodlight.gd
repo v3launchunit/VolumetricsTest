@@ -56,7 +56,7 @@ func _ready() -> void:
 	pass
 
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if looktarget_l == null and func_godot_properties.get("target", "") != "":
 		looktarget_l = get_tree().get_first_node_in_group(
 				"targetname:%s" % func_godot_properties["target"]

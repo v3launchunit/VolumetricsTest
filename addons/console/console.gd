@@ -33,6 +33,7 @@ class ConsoleCommand:
 		arguments = in_arguments
 		required = in_required
 		description = in_description
+		type = in_type
 
 
 var control := Control.new()
@@ -82,6 +83,8 @@ func add_command(
 				description, 
 				type
 		)
+	else:
+		print_error("invalid arguments type!")
 
 
 func remove_command(command_name : String) -> void:

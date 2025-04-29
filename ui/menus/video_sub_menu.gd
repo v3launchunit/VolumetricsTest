@@ -137,7 +137,7 @@ func _on_volumetric_fog_check_toggled(button_pressed: bool) -> void:
 
 func _on_snap_slider_value_changed(value: float) -> void:
 	_press_sound.play()
-	Globals.s_vertex_snap = value
+	Globals.s_vertex_snap = floori(value)
 	match floori(value):
 		0:
 			snap_label.text = "Off"
@@ -181,5 +181,5 @@ func _on_palette_check_toggled(toggled_on: bool) -> void:
 	Globals.s_palette_compress_enabled = toggled_on
 
 
-func _on_depth_slider_value_changed(value: float) -> void:
+func _on_depth_slider_value_changed(_value: float) -> void:
 	pass # Replace with function body.

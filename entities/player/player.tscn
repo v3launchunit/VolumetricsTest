@@ -123,14 +123,14 @@ func _ready() -> void:
 func _on_globals_settings_changed() -> void:
 	return
 	#visible = Globals.s_palette_compress_enabled
-	material.set_shader_parameter(
-			\"palette\",
-			Globals.get_lut(Globals.s_current_palette),
-	)
-	material.set_shader_parameter(
-			\"color_depth\",
-			Globals.s_color_depth
-	)
+	#material.set_shader_parameter(
+			#\"palette\",
+			#Globals.get_lut(Globals.s_current_palette),
+	#)
+	#material.set_shader_parameter(
+			#\"color_depth\",
+			#Globals.s_color_depth
+	#)
 	#material.set_shader_parameter(
 			#\"palette_depth\",
 			#Globals.s_color_depth

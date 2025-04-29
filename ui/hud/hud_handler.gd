@@ -16,10 +16,10 @@ var last_category: int = 1
 var alert_timer: float = 0.0
 var rapid_damage_timer: float = 0.0
 
-var health_display: int = 0.0
-var armor_display: int = 0.0
-var main_ammo_display: int = 0.0
-var alt_ammo_display: int = 0.0
+var health_display: int = 0
+var armor_display: int = 0
+var main_ammo_display: int = 0
+var alt_ammo_display: int = 0
 
 @onready var player := find_parent("Player") as Player
 @onready var status := player.find_child("Status") as PlayerStatus

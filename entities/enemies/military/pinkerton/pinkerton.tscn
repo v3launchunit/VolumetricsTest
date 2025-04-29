@@ -34,7 +34,7 @@
 [ext_resource type="Texture2D" uid="uid://exkw0wktl54p" path="res://entities/enemies/military/pinkerton/pinkerton_metallic.png" id="21_tvmks"]
 [ext_resource type="Texture2D" uid="uid://blae7355fr3lo" path="res://weapons/pump_shotgun/shotgun_roughness.png" id="21_xf3tc"]
 [ext_resource type="Texture2D" uid="uid://bw7v4h5hychul" path="res://entities/enemies/military/pinkerton/pinkerton_roughness.png" id="22_758q5"]
-[ext_resource type="Shader" uid="uid://cbo8e60sbj20l" path="res://shaders/spatial/entities/psx_ul_add.gdshader" id="25_0y5u3"]
+[ext_resource type="Shader" uid="uid://cgfn3iqbl45r7" path="res://shaders/spatial/psx_ul_add.gdshader" id="25_0y5u3"]
 [ext_resource type="PackedScene" uid="uid://cqctw8dd0ar4n" path="res://scenes/effects/damage/damage_sys.tscn" id="31_7r0oy"]
 [ext_resource type="PackedScene" uid="uid://c5pbs8t6p7ogl" path="res://scenes/effects/gibs/gibs.tscn" id="32_l26si"]
 [ext_resource type="PackedScene" uid="uid://qy044barx365" path="res://entities/stair_stepper.tscn" id="37_sxmhw"]

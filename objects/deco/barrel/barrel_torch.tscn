@@ -6,7 +6,7 @@
 [ext_resource type="Script" uid="uid://cly1es2vyxx12" path="res://entities/status.gd" id="4_ys57n"]
 [ext_resource type="PackedScene" uid="uid://cu70msbgu2ysm" path="res://scenes/effects/damage/metal_damage_sys.tscn" id="5_fst5o"]
 [ext_resource type="PackedScene" uid="uid://bfctj0w1fkgwy" path="res://scenes/effects/gibs/metal_shards.tscn" id="6_vr42e"]
-[ext_resource type="Shader" uid="uid://cgfn3iqbl45r7" path="res://shaders/spatial/entities/psx_ul_add.gdshader" id="7_npgld"]
+[ext_resource type="Shader" uid="uid://cgfn3iqbl45r7" path="res://shaders/spatial/psx_ul_add.gdshader" id="7_npgld"]
 [ext_resource type="AudioStream" uid="uid://1tg3qhvaqlgr" path="res://audio/streams/ambient/fire_crackle_ambient.mp3" id="7_yxa82"]
 [ext_resource type="Material" uid="uid://08yqplf2icxd" path="res://effects/halos/fire_halo_mat.tres" id="8_yax0c"]
 [ext_resource type="Script" uid="uid://qbss7pion7pi" path="res://scripts/effects/halo.gd" id="9_hmu4g"]
@@ -22,11 +22,11 @@ metadata/_snap_enabled = true
 metadata/_snap_count = 8
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_sdxxk"]
-frequency = 0.236
+frequency = 0.118
 
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_auibb"]
-width = 64
-height = 64
+width = 128
+height = 128
 generate_mipmaps = false
 color_ramp = SubResource("Gradient_1qspb")
 noise = SubResource("FastNoiseLite_sdxxk")
@@ -128,6 +128,7 @@ proximity_fade_distance = 3.0
 distance_fade_mode = 1
 
 [node name="BarrelTorch" type="RigidBody3D"]
+mass = 30.0
 
 [node name="Shape" type="CollisionShape3D" parent="."]
 shape = SubResource("CylinderShape3D_vbuov")
@@ -160,7 +161,6 @@ material_override = SubResource("ShaderMaterial_4xoyh")
 visibility_range_end = 10.0
 visibility_range_end_margin = 5.0
 mesh = SubResource("SphereMesh_c5xei")
-skeleton = NodePath("../GPUParticles3D")
 
 [node name="TorchSys" type="GPUParticles3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.75, 0)

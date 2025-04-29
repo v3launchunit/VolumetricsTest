@@ -12,11 +12,11 @@ func _ready() -> void:
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	pass
 
 
 func _on_difficulty_slider_value_changed(value: float) -> void:
 	_press_sound.play()
-	Globals.s_difficulty = floori(value)
+	Globals.s_difficulty = floori(value) as Globals.Difficulty
 	difficulty_label.text = "%s" % Globals.s_difficulty

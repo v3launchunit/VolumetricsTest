@@ -1,7 +1,7 @@
 // NOTE: Shader automatically converted from Godot Engine 4.2.1.stable.mono's StandardMaterial3D.
 
 shader_type spatial;
-render_mode cull_back,unshaded;
+render_mode cull_back, fog_disabled, unshaded;
 uniform vec4 albedo : source_color;
 //uniform bool use_vertex_color = true;
 uniform sampler2D texture_albedo : source_color,filter_nearest,repeat_enable;

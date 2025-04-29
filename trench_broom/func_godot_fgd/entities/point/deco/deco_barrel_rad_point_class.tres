@@ -16,7 +16,7 @@ class_property_descriptions = {}
 auto_apply_to_matching_node_properties = false
 meta_properties = {
 "color": Color(0.792157, 0.792157, 0.792157, 1),
-"size": AABB(-8, -8, -8, 8, 8, 8)
+"size": AABB(-8, -8, -12, 8, 8, 12)
 }
 node_class = ""
 name_property = ""

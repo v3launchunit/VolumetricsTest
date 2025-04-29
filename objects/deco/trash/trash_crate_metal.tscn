@@ -1,6 +1,6 @@
 [gd_scene load_steps=14 format=3 uid="uid://bgj5uch3h4q3n"]
 
-[ext_resource type="Shader" uid="uid://b1vlx0ah3jbml" path="res://shaders/spatial/entities/psx_pb_aclip.gdshader" id="1_35hqc"]
+[ext_resource type="Shader" uid="uid://bvuxceynh6rex" path="res://shaders/spatial/psx_pb_aclip.gdshader" id="1_35hqc"]
 [ext_resource type="Texture2D" uid="uid://cvgf42nsiic4w" path="res://objects/deco/crate_metal/crate_metal_albedo.png" id="2_trt0r"]
 [ext_resource type="Texture2D" uid="uid://bjj6o8lwityam" path="res://objects/deco/crate_metal/crate_metal_normals.png" id="3_6ehoe"]
 [ext_resource type="Texture2D" uid="uid://nvwephov841h" path="res://objects/crate/crate_heights.png" id="4_nt5s0"]

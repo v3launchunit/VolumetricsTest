@@ -62,9 +62,9 @@ const C_HITSCAN_MIN_LENGTH: float = 0.125
 const C_PLAYER_MIN_HEIGHT: float = -1024.0
 
 ## The maximum amount of time an enemy can spend between wanderings.
-const C_MAX_WANDER_IDLE_TIME : float = 1.0 
+const C_MAX_WANDER_IDLE_TIME : float = 10.0 
 ## The maximum amount of time an enemy can spend wandering at a time.
-const C_MAX_WANDER_MOVE_TIME : float = 1.0
+const C_MAX_WANDER_MOVE_TIME : float = 5.0
 
 const C_LIZARD_HOLE_POINT := Vector3(0.0, -1000.0, 0.0)
 
@@ -500,7 +500,7 @@ func menu_click() -> bool:
 
 
 ## Unimplemented.
-func uppercase(string: String) -> String:
+func uppercase(_string: String) -> String:
 	var out: String = ""
 	
 	

@@ -539,7 +539,7 @@ func _fly(delta: float) -> Vector3:
 
 # TODO implement carriable object logic
 ## Called when the player picks up a carriable object. Not currently implemented.
-func on_carriable_grabbed(what: Carriable) -> void:
+func on_carriable_grabbed(_what: Carriable) -> void:
 	camera.switched_weapons.emit(-1, -1)
 	holding_something = true
 
@@ -556,11 +556,11 @@ func step_check(vel: Vector3) -> bool:
 #region console commands
 
 func add_console_commands() -> void:
-	Console.add_command("reset_pos", cmd_reset_pos, [], 0, Globals.parse_text("console", "desc.reset_pos"))
-	Console.add_command("teleport", cmd_tele, ["x", "y", "z"], 3, Globals.parse_text("console", "desc.tele"))
+	Console.add_command("reset_pos", cmd_reset_pos, [], 0, Globals.parse_text("console", "desc.reset_pos"), Console.CommandType.CHEAT)
+	Console.add_command("teleport", cmd_tele, ["x", "y", "z"], 3, Globals.parse_text("console", "desc.tele"), Console.CommandType.CHEAT)
 	Console.add_aliases(["tele", "tp"], "teleport")
-	Console.add_command("invis", cmd_invis, Globals.parse_text("console", "arg.bool"), 0, Globals.parse_text("console", "desc.invis"))
-	Console.add_command("noclip", cmd_noclip, Globals.parse_text("console", "arg.bool"), 0, Globals.parse_text("console", "desc.noclip"))
+	Console.add_command("invis", cmd_invis, [Globals.parse_text("console", "arg.bool")], 0, Globals.parse_text("console", "desc.invis"), Console.CommandType.CHEAT)
+	Console.add_command("noclip", cmd_noclip, [Globals.parse_text("console", "arg.bool")], 0, Globals.parse_text("console", "desc.noclip"), Console.CommandType.CHEAT)
 
 
 func remove_console_commands() -> void:

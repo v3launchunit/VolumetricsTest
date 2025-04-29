@@ -8,11 +8,11 @@ metadata/_snap_enabled = true
 metadata/_snap_count = 8
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_sdxxk"]
-frequency = 0.236
+frequency = 0.118
 
 [resource]
-width = 64
-height = 64
+width = 128
+height = 128
 generate_mipmaps = false
 color_ramp = SubResource("Gradient_1qspb")
 noise = SubResource("FastNoiseLite_sdxxk")

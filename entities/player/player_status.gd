@@ -76,7 +76,7 @@ func _physics_process(delta: float) -> void:
 			i += 1
 
 
-func damage_typed(amount: float, type: DamageType, gib_mode: GibMode = GibMode.ALLOW_GIB) -> float: # returns damage dealt, for piercers
+func damage_typed(amount: float, type: DamageType, _gib_mode: GibMode = GibMode.ALLOW_GIB) -> float: # returns damage dealt, for piercers
 	if god or invuln_timer > 0:
 		return amount # invulnerable players always stop piercers
 	elif is_dead:
@@ -98,7 +98,7 @@ func damage_typed(amount: float, type: DamageType, gib_mode: GibMode = GibMode.A
 	return amount # return value is amount of damage recieved, for piercers
 
 
-func rapid_damage_typed(amount: float, type: DamageType, delta: float, gib_mode: GibMode = GibMode.ALLOW_GIB) -> void:
+func rapid_damage_typed(amount: float, type: DamageType, delta: float, _gib_mode: GibMode = GibMode.ALLOW_GIB) -> void:
 	hud.rapid_flash(type, delta, god or invuln_timer > 0)
 	if god or invuln_timer > 0:
 		return
@@ -123,9 +123,9 @@ func kill() -> void:
 	died.emit()
 	get_parent().process_mode = Node.PROCESS_MODE_DISABLED
 	if gibs != null:
-		var exp: Node = gibs.instantiate()
-		target_parent.add_child(exp)
-		exp.reparent(get_tree().current_scene)
+		var e: Node = gibs.instantiate()
+		target_parent.add_child(e)
+		e.reparent(get_tree().current_scene)
 		#move_child(exp, 0)
 		get_parent().find_child("PlayerCam").switched_weapons.emit(-1, -1, false)
 		get_parent().find_child("PlayerCam").current = false

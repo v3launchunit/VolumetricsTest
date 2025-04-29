@@ -79,8 +79,8 @@ func _physics_process(delta: float) -> void:
 			foes_tally = Globals.intstep(foes_tally, _foes)
 			kills_tally = Globals.intstep(kills_tally, _kills)
 			kills_label.text = "{kills}/{foes}".format({
-					"kills":  "%0*d" % [mini(ceili(log(_foes)) / log(10), 1), kills_tally],
-					"foes": "%0*d" % [mini(ceili(log(_foes)) / log(10), 1), foes_tally],
+					"kills":  "%0*d" % [mini(ceili(log(_foes)) / ceili(log(10)), 1), kills_tally],
+					"foes": "%0*d" % [mini(ceili(log(_foes)) / ceili(log(10)), 1), foes_tally],
 			})
 			if (
 					(foes_tally == _foes and kills_tally == _kills) 
@@ -92,8 +92,8 @@ func _physics_process(delta: float) -> void:
 			secrets_tally = Globals.intstep(secrets_tally, _secrets)
 			found_secrets_tally = Globals.intstep(found_secrets_tally, _found_secrets)
 			secrets_label.text = "{found}/{secrets}".format({
-					"found":  "%0*d" % [mini(ceili(log(_secrets)) / log(10), 1), found_secrets_tally],
-					"secrets": "%0*d" % [mini(ceili(log(_secrets)) / log(10), 1), secrets_tally],
+					"found":  "%0*d" % [mini(ceili(log(_secrets)) / ceili(log(10)), 1), found_secrets_tally],
+					"secrets": "%0*d" % [mini(ceili(log(_secrets)) / ceili(log(10)), 1), secrets_tally],
 			})
 			if (
 					(secrets_tally == _secrets and found_secrets_tally == _found_secrets) 

@@ -11,6 +11,7 @@ enum DamageType {
 	FIRE,
 	TOXIC,
 	ELECTRIC,
+	IMPACT,
 	ABSOLUTE = -1,
 }
 
@@ -30,7 +31,7 @@ enum GibMode {
 ## Generic multiplier applied to all incoming damage.
 @export var base_damage_factor: float = 1.0
 ## [enum DamageType]-specific damage multipliers.
-@export var damage_multipliers: Array[float] = [1.0, 1.0, 1.0, 1.0, 1.0]
+@export var damage_multipliers: Array[float] = [1.0, 1.0, 1.0, 1.0, 1.0, 1.0]
 ## If set to true, any attack will ignite this node.
 @export var burn_prone: bool = false 
 ## How much damage this node should take per second of being on fire. 
@@ -63,9 +64,10 @@ enum GibMode {
 @export_storage var target_parent: Node
 @export_storage var burning: bool = false:
 	set(to):
-		if burn_sys != null:
+		if burn_sys != null and burning != to:
 			burning = to
 			burn_sys.emitting = to
+			burn_sys.visible = to
 			burn_sys.restart(true)
 #var overheal_decay_rate: float = 1 # hp/second
 
