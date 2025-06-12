@@ -46,6 +46,6 @@ mesh = ExtResource("4_fmn2b")
 script = ExtResource("4_ljeym")
 max_health = 150.0
 gib_threshold = 0.0
-damage_multipliers = Array[float]([1.0, 1.0, 0.5, 0.0, 1.0])
+damage_multipliers = Array[float]([1.0, 1.0, 0.5, 0.0, 1.0, 1.0])
 damage_sys = ExtResource("5_lcr2j")
 gibs = ExtResource("6_gv6o0")

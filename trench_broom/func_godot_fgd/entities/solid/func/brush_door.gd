@@ -77,7 +77,7 @@ func _ready() -> void:
 				#print("%s targeted %s" % [name, member.name])
 		add_to_group("targets:%s" %  func_godot_properties["target"], true)
 
-	if audio_player == null and func_godot_properties.get("open_sound", "") != "":
+	if audio_player == null and not ["", "none", "silent"].has(func_godot_properties.get("open_sound", "")) :#func_godot_properties.get("open_sound", "") != "":
 		audio_player = AudioStreamPlayer3D.new()
 		audio_player.bus = "World"
 		audio_player.doppler_tracking = AudioStreamPlayer3D.DOPPLER_TRACKING_PHYSICS_STEP
@@ -305,7 +305,7 @@ func interact(body: Node3D) -> void:
 	if (
 			Engine.is_editor_hint() 
 			or (open and not func_godot_properties["closeable"])
-			or (
+			or ( # this condition prevents interacting with the door while it's moving
 					door_state != DoorState.CLOSED 
 					and door_state != DoorState.OPEN
 			)

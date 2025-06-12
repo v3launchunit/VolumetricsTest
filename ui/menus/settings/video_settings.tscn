@@ -257,7 +257,6 @@ tooltip_text = "The vertical field of view, in degrees."
 theme = ExtResource("1_8amvi")
 min_value = 10.0
 max_value = 170.0
-step = 10.0
 value = 120.0
 
 [node name="FovLabel" type="Label" parent="FOV"]

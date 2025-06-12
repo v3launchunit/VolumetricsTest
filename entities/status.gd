@@ -104,7 +104,7 @@ func damage(amount: float, gib_mode: GibMode = GibMode.ALLOW_GIB) -> float:
 func damage_typed(amount: float, type: DamageType, gib_mode: GibMode = GibMode.ALLOW_GIB) -> float:
 	if is_dead and (type == DamageType.TOXIC or gib_mode == GibMode.BLOCK_GIB):
 		return 0 # toxic clouds shouldn't gib
-	health -= amount * base_damage_factor * (damage_multipliers[type] if type != DamageType.ABSOLUTE else 1.0)
+	health -= amount * base_damage_factor * (damage_multipliers[type] if type < damage_multipliers.size() and type != DamageType.ABSOLUTE else 1.0)
 	if type == DamageType.FIRE or burn_prone:
 		burning = true
 #	print(health)

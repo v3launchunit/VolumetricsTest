@@ -145,6 +145,7 @@ texture_filter = 0
 material = SubResource("StandardMaterial3D_4s5fk")
 
 [node name="Crate" type="RigidBody3D"]
+mass = 15.0
 script = ExtResource("1_ak0dh")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]

@@ -20,7 +20,7 @@ var next: PathNode
 func _ready() -> void:
 	if func_godot_properties.get("targetname", "") != "" and not is_in_group("targetname:%s" % func_godot_properties["targetname"]):
 		add_to_group("targetname:%s" % func_godot_properties["targetname"], true)
-	if func_godot_properties.get("target", "") != "":
+	if func_godot_properties.get("target", "") != "" and not is_in_group("targets:%s" % func_godot_properties["target"]):
 		add_to_group("targets:%s" %  func_godot_properties["target"], true)
 
 

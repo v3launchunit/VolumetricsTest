@@ -8,7 +8,7 @@ extends VBoxContainer
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	difficulty_slider.value = Globals.s_difficulty
-	difficulty_label.text = "%s" % Globals.s_difficulty
+	difficulty_label.text = "%s" % Globals.Difficulty.find_key(Globals.s_difficulty)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -17,6 +17,10 @@ func _process(_delta: float) -> void:
 
 
 func _on_difficulty_slider_value_changed(value: float) -> void:
-	_press_sound.play()
+	#_press_sound.play()
 	Globals.s_difficulty = floori(value) as Globals.Difficulty
-	difficulty_label.text = "%s" % Globals.s_difficulty
+	difficulty_label.text = "%s" % Globals.Difficulty.find_key(Globals.s_difficulty)
+
+
+func _on_difficulty_dropdown_item_selected(index: int) -> void:
+	Globals.s_difficulty = index as Globals.Difficulty

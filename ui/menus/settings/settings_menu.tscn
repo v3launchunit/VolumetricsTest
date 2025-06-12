@@ -95,7 +95,6 @@ layout_mode = 2
 focus_neighbor_left = NodePath("../Audio")
 focus_neighbor_right = NodePath("../Other")
 theme = ExtResource("1_j7o5h")
-disabled = true
 toggle_mode = true
 keep_pressed_outside = true
 button_group = SubResource("ButtonGroup_tnolh")
@@ -273,4 +272,5 @@ layout_mode = 2
 [connection signal="pressed" from="VBoxContainer/Video" to="." method="_on_video_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/Audio" to="." method="_on_audio_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/Gameplay" to="." method="_on_gameplay_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/Input" to="." method="_on_input_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/Back" to="." method="_on_back_button_pressed"]

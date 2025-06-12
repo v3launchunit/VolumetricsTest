@@ -2,7 +2,7 @@ class_name Level
 extends Node3D
 
 
-enum BoundsBehavior {
+enum OutOfBoundsBehavior {
 	KILL, ## Kills the player instantly.
 	WRAP, ## Wraps the player back above the level.
 	RESET, ## Teleports the player to the origin.
@@ -16,7 +16,7 @@ enum BoundsBehavior {
 #@export var level_bounds := AABB(-1024 * Vector3.ONE, 1024 * Vector3.ONE)
 #@export var min_height : float = -1024
 ## what to do if the player falls past [member Globals.C_PLAYER_MIN_HEIGHT]. 
-@export var bounds_behavior := BoundsBehavior.WRAP
+@export var bounds_behavior := OutOfBoundsBehavior.WRAP
 
 #@export_group("Save Data")
 ## The game version that the level was last saved on, for migration purposes.

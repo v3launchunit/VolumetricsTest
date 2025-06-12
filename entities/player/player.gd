@@ -269,16 +269,16 @@ func _physics_process_default(delta: float) -> void:
 	
 	if global_position.y < Globals.C_PLAYER_MIN_HEIGHT:
 		match (get_tree().current_scene as Level).bounds_behavior:
-			Level.BoundsBehavior.KILL:
+			Level.OutOfBoundsBehavior.KILL:
 				if status.god or status.buddha:
 					global_position = Vector3.ZERO
 					grav_vel = Vector3.ZERO
 				else:
 					status.kill()
-			Level.BoundsBehavior.WRAP:
+			Level.OutOfBoundsBehavior.WRAP:
 				global_position.y = -Globals.C_PLAYER_MIN_HEIGHT
 				grav_vel = Vector3.ZERO
-			Level.BoundsBehavior.RESET:
+			Level.OutOfBoundsBehavior.RESET:
 				global_position = Vector3.ZERO
 				grav_vel = Vector3.ZERO
 

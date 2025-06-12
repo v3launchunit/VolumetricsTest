@@ -1,11 +1,11 @@
 [gd_resource type="Resource" script_class="FuncGodotFGDPointClass" load_steps=3 format=3 uid="uid://bscktf7qb8td1"]
 
-[ext_resource type="PackedScene" uid="uid://dl7fuv4wdxtjx" path="res://pickups/ammo/shotgun_shell/shell_pickup.tscn" id="1_t68pv"]
+[ext_resource type="PackedScene" uid="uid://b8i1fe0bwht3k" path="res://pickups/armor/armor_bonus_pickup.tscn" id="1_51bs0"]
 [ext_resource type="Script" uid="uid://cw2atun4e3eyv" path="res://addons/func_godot/src/fgd/func_godot_fgd_point_class.gd" id="2_m6u2g"]
 
 [resource]
 script = ExtResource("2_m6u2g")
-scene_file = ExtResource("1_t68pv")
+scene_file = ExtResource("1_51bs0")
 apply_rotation_on_map_build = true
 classname = "armor_bonus_pickup"
 description = ""

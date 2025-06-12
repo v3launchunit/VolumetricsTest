@@ -1,5 +1,6 @@
-[gd_resource type="Resource" script_class="FuncGodotFGDSolidClass" load_steps=3 format=3 uid="uid://t348opbjlk8r"]
+[gd_resource type="Resource" script_class="FuncGodotFGDSolidClass" load_steps=4 format=3 uid="uid://t348opbjlk8r"]
 
+[ext_resource type="Resource" uid="uid://c73xdr38wm4dj" path="res://trench_broom/func_godot_fgd/entities/base/linkable_base_class.tres" id="1_crh57"]
 [ext_resource type="Script" uid="uid://bncud33hs01ck" path="res://addons/func_godot/src/fgd/func_godot_fgd_solid_class.gd" id="1_x31on"]
 [ext_resource type="Script" uid="uid://rcj0iy4gukhr" path="res://trench_broom/func_godot_fgd/entities/solid/area/area_ref_probe_aabb.gd" id="2_ypdhf"]
 
@@ -26,7 +27,7 @@ script_class = ExtResource("2_ypdhf")
 classname = "area_ref_probe_solid"
 description = ""
 func_godot_internal = false
-base_classes = Array[Resource]([])
+base_classes = Array[Resource]([ExtResource("1_crh57")])
 class_properties = {
 "blend_distance": 1.0,
 "box_project": 1,

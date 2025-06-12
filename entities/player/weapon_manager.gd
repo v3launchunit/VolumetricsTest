@@ -300,17 +300,25 @@ func scope_changed(amount: float):
 #region console commands
 
 func add_console_commands() -> void:
+	var ammo_types_names : String = "("
+	
+	for i: int in ammo_types.keys().size():
+		if i > 0:
+			ammo_types_names += ", "
+		ammo_types_names += ammo_types.keys()[i]
+	ammo_types_names += ")";
+	
 	Console.add_command(
 			"get_ammo", 
 			func(s: String): Console.print_line("%f" % ammo_amounts[s]), 
-			[Globals.parse_text("console", "arg.ammo_type" % ammo_types.keys())], 
+			[Globals.parse_text("console", "arg.ammo_type") % ammo_types_names], 
 			1, 
 			Globals.parse_text("console", "desc.get_ammo"),
 	)
 	Console.add_command(
 			"set_ammo", 
 			cmd_set_ammo, 
-			[Globals.parse_text("console", "arg.ammo_type" % ammo_types.keys()), Globals.parse_text("console", "arg.int")], 
+			[Globals.parse_text("console", "arg.ammo_type") % ammo_types_names, Globals.parse_text("console", "arg.int")], 
 			2, 
 			Globals.parse_text("console", "desc.set_ammo"),
 			Console.CommandType.CHEAT,

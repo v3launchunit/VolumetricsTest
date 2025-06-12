@@ -6,7 +6,7 @@ extends MeshInstance3D
 @export var fade_in_speed: float = 10.0
 ## The time that the halo takes to fade out is one second divided by this.
 @export var fade_out_speed: float = 2.0
-@export_flags_3d_physics var collision_mask: int = 0b0000_0000_1000_0001
+@export_flags_3d_physics var collision_mask: int = 0b0000_1100_1000_0001
 
 var player_cam: Camera3D
 var was_hit: bool

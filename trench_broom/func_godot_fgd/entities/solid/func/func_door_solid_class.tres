@@ -30,7 +30,7 @@ func_godot_internal = false
 base_classes = Array[Resource]([ExtResource("1_j4jh6")])
 class_properties = {
 "alert_locked": "",
-"closeable": 0,
+"closeable": false,
 "group": "none",
 "nav_link_offset": Vector3(0, 0, 1.5),
 "open_order": Vector3(0, 0, 0),
@@ -50,7 +50,9 @@ class_properties = {
 "tooltip_open": "close"
 }
 class_property_descriptions = {
-"required_key": ["", -1]
+"closeable": "if set, allows the door to be closed by the player after it is opened by interacting with it again.",
+"required_key": ["which key, if any, is required to open this door.", -1],
+"secret": "if set, disables tooltips and inoperability alerts."
 }
 auto_apply_to_matching_node_properties = false
 meta_properties = {

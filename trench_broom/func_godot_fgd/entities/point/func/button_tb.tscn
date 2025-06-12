@@ -1,0 +1,483 @@
+[gd_scene load_steps=36 format=3 uid="uid://cpn8xgd3dww0u"]
+
+[ext_resource type="Script" uid="uid://crl5nwjju5d11" path="res://trench_broom/func_godot_fgd/entities/point/lever_tb.gd" id="1_j2tem"]
+[ext_resource type="PackedScene" uid="uid://dhcc71k270vgk" path="res://models/objects/lever.glb" id="2_d5lyg"]
+[ext_resource type="Texture2D" uid="uid://2gj3tv6stgsr" path="res://objects/interactable/lever_01/lever_albedo.png" id="3_g7wcw"]
+[ext_resource type="Texture2D" uid="uid://crltgslfg1nou" path="res://objects/interactable/lever_01/lever_emissions.png" id="4_sa7w4"]
+[ext_resource type="Texture2D" uid="uid://c0qe7jq8ss6c4" path="res://objects/interactable/lever_01/lever_normals.png" id="5_obh7b"]
+[ext_resource type="Shader" uid="uid://bvuxceynh6rex" path="res://shaders/spatial/psx_pb_aclip.gdshader" id="6_p2346"]
+[ext_resource type="PackedScene" uid="uid://vxndg2gmajmd" path="res://objects/interactable/button_01/button_01.glb" id="7_d5lyg"]
+[ext_resource type="AudioStream" uid="uid://bmlxxe8maevqb" path="res://audio/streams/click.wav" id="7_j22kr"]
+[ext_resource type="Script" uid="uid://oqbx6pignrqi" path="res://bullets/enemy/minor_omni_light_3d.gd" id="8_1a4pt"]
+[ext_resource type="Shader" uid="uid://cmq0chj3pa7yo" path="res://shaders/spatial/psx_pb_opaque_emissive.gdshader" id="8_obh7b"]
+[ext_resource type="Texture2D" uid="uid://b7tj2qhujyomm" path="res://objects/interactable/button_01/button_01_albedo.png" id="9_obh7b"]
+[ext_resource type="Texture2D" uid="uid://cylybs3etacnu" path="res://objects/interactable/button_01/button_01_normals.png" id="10_obh7b"]
+[ext_resource type="Texture2D" uid="uid://bggx1rb37qyat" path="res://objects/interactable/button_01/button_01_emissions.png" id="10_p2346"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_f8nba"]
+
+[sub_resource type="Shader" id="Shader_i2v0y"]
+code = "// NOTE: Shader automatically converted from Godot Engine 4.3.stable's StandardMaterial3D.
+
+shader_type spatial;
+render_mode blend_mix, depth_draw_opaque, cull_back, diffuse_burley, specular_schlick_ggx;
+
+uniform vec4 albedo : source_color;
+uniform sampler2D texture_albedo : source_color, filter_nearest, repeat_enable;
+uniform float point_size : hint_range(0.1, 128.0, 0.1);
+
+uniform float roughness : hint_range(0.0, 1.0);
+uniform sampler2D texture_metallic : hint_default_white, filter_nearest, repeat_enable;
+uniform vec4 metallic_texture_channel;
+uniform sampler2D texture_roughness : hint_roughness_r, filter_nearest, repeat_enable;
+
+uniform float specular : hint_range(0.0, 1.0, 0.01);
+uniform float metallic : hint_range(0.0, 1.0, 0.01);
+
+uniform sampler2D texture_emission : source_color, hint_default_black, filter_nearest, repeat_enable;
+uniform vec4 emission : source_color = vec4(1.0);
+uniform float emission_energy : hint_range(0.0, 100.0, 0.01);
+
+uniform sampler2D texture_normal : hint_roughness_normal, filter_nearest, repeat_enable;
+uniform float normal_scale : hint_range(-16.0, 16.0);
+
+uniform vec3 uv1_scale;
+uniform vec3 uv1_offset;
+uniform vec3 uv2_scale;
+uniform vec3 uv2_offset;
+
+#include \"res://shaders/includes/psx_inc.gdshaderinc\"
+
+void vertex() {
+	UV = UV * uv1_scale.xy + uv1_offset.xy;
+	POSITION = map_affine(snap_vertex(PROJECTION_MATRIX * MODELVIEW_MATRIX * vec4(VERTEX, 1.0)));
+}
+
+void fragment() {
+	vec2 base_uv = UV;
+
+	vec4 albedo_tex = texture(texture_albedo, base_uv);
+	ALBEDO = albedo.rgb * albedo_tex.rgb;
+
+	float metallic_tex = dot(texture(texture_metallic, base_uv), metallic_texture_channel);
+	METALLIC = metallic_tex * metallic;
+	SPECULAR = specular;
+
+	vec4 roughness_texture_channel = vec4(1.0, 0.0, 0.0, 0.0);
+	float roughness_tex = dot(texture(texture_roughness, base_uv), roughness_texture_channel);
+	ROUGHNESS = roughness_tex * roughness;
+
+	// Normal Map: Enabled
+	NORMAL_MAP = texture(texture_normal, base_uv).rgb;
+	NORMAL_MAP_DEPTH = normal_scale;
+
+	// Emission: Enabled
+	vec3 emission_tex = texture(texture_emission, base_uv).rgb;
+	// Emission Operator: Add
+	EMISSION = (emission.rgb * emission_tex) * emission_energy;
+}
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_rey83"]
+resource_local_to_scene = true
+render_priority = 0
+shader = SubResource("Shader_i2v0y")
+shader_parameter/albedo = Color(0.96, 0.736, 0.576, 1)
+shader_parameter/texture_albedo = ExtResource("3_g7wcw")
+shader_parameter/point_size = 1.0
+shader_parameter/roughness = 0.75
+shader_parameter/metallic_texture_channel = Vector4(0, 0, 0, 0)
+shader_parameter/specular = 0.5
+shader_parameter/metallic = 0.0
+shader_parameter/texture_emission = ExtResource("4_sa7w4")
+shader_parameter/emission = Color(1, 0, 0, 1)
+shader_parameter/emission_energy = 5.0
+shader_parameter/texture_normal = ExtResource("5_obh7b")
+shader_parameter/normal_scale = 1.0
+shader_parameter/uv1_scale = Vector3(1, 1, 1)
+shader_parameter/uv1_offset = Vector3(0, 0, 0)
+shader_parameter/uv2_scale = Vector3(1, 1, 1)
+shader_parameter/uv2_offset = Vector3(0, 0, 0)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_8c81i"]
+render_priority = 0
+shader = ExtResource("6_p2346")
+shader_parameter/albedo_col = Color(1, 1, 1, 1)
+shader_parameter/alpha_clip_threshold = 0.5
+shader_parameter/normal_scale = 1.0
+shader_parameter/roughness = 0.25
+shader_parameter/metallic = 1.0
+shader_parameter/specular = 0.5
+shader_parameter/metallic_channel = Vector4(1, 0, 0, 0)
+shader_parameter/uv1_scale = Vector3(1, 1, 1)
+shader_parameter/uv1_offset = Vector3(0, 0, 0)
+shader_parameter/uv2_scale = Vector3(1, 1, 1)
+shader_parameter/uv2_offset = Vector3(0, 0, 0)
+shader_parameter/is_terrain_mat = false
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_p2346"]
+render_priority = 0
+shader = ExtResource("8_obh7b")
+shader_parameter/albedo = Color(0.960784, 0.737255, 0.576471, 1)
+shader_parameter/texture_albedo = ExtResource("9_obh7b")
+shader_parameter/point_size = 0.0
+shader_parameter/roughness = 0.75
+shader_parameter/metallic_texture_channel = Vector4(1, 0, 0, 0)
+shader_parameter/specular = 0.5
+shader_parameter/metallic = 0.0
+shader_parameter/texture_emission = ExtResource("10_p2346")
+shader_parameter/emission = Color(1, 0, 0, 1)
+shader_parameter/emission_energy = 5.0
+shader_parameter/texture_normal = ExtResource("10_obh7b")
+shader_parameter/normal_scale = 1.0
+shader_parameter/uv1_scale = Vector3(1, 1, 1)
+shader_parameter/uv1_offset = Vector3(0, 0, 0)
+shader_parameter/uv2_scale = Vector3(1, 1, 1)
+shader_parameter/uv2_offset = Vector3(0, 0, 0)
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_6btag"]
+animation = &"activate"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_c60cf"]
+animation = &"deactivate"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_lb3m5"]
+animation = &"off"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_gpvii"]
+animation = &"on"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_10giv"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_1rpol"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_unldo"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_dtu6b"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_6pw3e"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_72fw2"]
+states/activate/node = SubResource("AnimationNodeAnimation_6btag")
+states/activate/position = Vector2(531.667, 35.3333)
+states/deactivate/node = SubResource("AnimationNodeAnimation_c60cf")
+states/deactivate/position = Vector2(533, 168.667)
+states/off/node = SubResource("AnimationNodeAnimation_lb3m5")
+states/off/position = Vector2(396, 100.667)
+states/on/node = SubResource("AnimationNodeAnimation_gpvii")
+states/on/position = Vector2(673.334, 99.9258)
+transitions = ["Start", "off", SubResource("AnimationNodeStateMachineTransition_10giv"), "off", "activate", SubResource("AnimationNodeStateMachineTransition_1rpol"), "activate", "on", SubResource("AnimationNodeStateMachineTransition_unldo"), "on", "deactivate", SubResource("AnimationNodeStateMachineTransition_dtu6b"), "deactivate", "off", SubResource("AnimationNodeStateMachineTransition_6pw3e")]
+graph_offset = Vector2(-7, -40)
+
+[sub_resource type="Animation" id="Animation_1a4pt"]
+length = 0.001
+tracks/0/type = "position_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../button_01/Button")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 0, 0.135284, 0.05)
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../OmniLight3D:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../OmniLight3D2:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("../button_01/Base:material_override:shader_parameter/emission")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 0, 0, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_j22kr"]
+resource_name = "off"
+length = 0.25
+step = 0.01
+tracks/0/type = "position_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../button_01/Button")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 0, 0.135284, 0.05, 0.25, 1, 0, 0.135, 0.01)
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../OmniLight3D:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.15),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../OmniLight3D2:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.15),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("../button_01/Base:material_override:shader_parameter/emission")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.15),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [Color(1, 0, 0, 1), Color(0, 1, 0, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_n8ygx"]
+resource_name = "off"
+length = 0.25
+step = 0.01
+tracks/0/type = "position_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../button_01/Button")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 0, 0.135, 0.01, 0.25, 1, 0, 0.135284, 0.05)
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../OmniLight3D:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../OmniLight3D2:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("../button_01/Base:material_override:shader_parameter/emission")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [Color(0, 1, 0, 1), Color(1, 0, 0, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_p2346"]
+resource_name = "off"
+tracks/0/type = "position_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../button_01/Button")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 0, 0.135284, 0.05)
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../OmniLight3D:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../OmniLight3D2:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("../button_01/Base:material_override:shader_parameter/emission")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 0, 0, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_nu56o"]
+resource_name = "off"
+tracks/0/type = "position_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../button_01/Button")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 0, 0.135, 0.01)
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../OmniLight3D:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../OmniLight3D2:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("../button_01/Base:material_override:shader_parameter/emission")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 1, 0, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ra7wt"]
+_data = {
+&"RESET": SubResource("Animation_1a4pt"),
+&"activate": SubResource("Animation_j22kr"),
+&"deactivate": SubResource("Animation_n8ygx"),
+&"off": SubResource("Animation_p2346"),
+&"on": SubResource("Animation_nu56o")
+}
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_7mfl3"]
+random_pitch = 1.25
+streams_count = 1
+stream_0/stream = ExtResource("7_j22kr")
+
+[node name="Lever" type="Area3D"]
+collision_layer = 8
+collision_mask = 3
+script = ExtResource("1_j2tem")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_f8nba")
+
+[node name="lever" parent="." instance=ExtResource("2_d5lyg")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
+visible = false
+
+[node name="Base" parent="lever" index="0"]
+material_override = SubResource("ShaderMaterial_rey83")
+
+[node name="Switch" parent="lever" index="1"]
+transform = Transform3D(0.05, 0, 0, 0, 0.0492428, -0.0086688, 0, 0.0086688, 0.0492428, 0, 0, 0.05)
+material_override = SubResource("ShaderMaterial_8c81i")
+
+[node name="button_01" parent="." instance=ExtResource("7_d5lyg")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, 0, 0)
+
+[node name="Base" parent="button_01" index="0"]
+material_override = SubResource("ShaderMaterial_p2346")
+
+[node name="Button" parent="button_01" index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 0.25, 0, 0.135284, 0.05)
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+root_node = NodePath(".")
+tree_root = SubResource("AnimationNodeStateMachine_72fw2")
+anim_player = NodePath("../AnimationPlayer")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+root_node = NodePath("../AnimationTree")
+libraries = {
+&"": SubResource("AnimationLibrary_ra7wt")
+}
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+stream = SubResource("AudioStreamRandomizer_7mfl3")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.2, -0.075)
+light_color = Color(1, 0, 0, 1)
+shadow_enabled = true
+distance_fade_enabled = true
+script = ExtResource("8_1a4pt")
+
+[node name="OmniLight3D2" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.2, -0.075)
+visible = false
+light_color = Color(0, 1, 0, 1)
+shadow_enabled = true
+distance_fade_enabled = true
+script = ExtResource("8_1a4pt")
+
+[editable path="lever"]
+[editable path="button_01"]

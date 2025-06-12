@@ -563,6 +563,7 @@ jump_height = 0.0
 wanderer = true
 hunts_species = Array[StringName]([&"rocketeers"])
 detection_stream = SubResource("AudioStreamRandomizer_hkga1")
+player_target_offset = Vector3(0, 0, 5)
 bullet = ExtResource("5_j2o7e")
 volley = 2
 flinch_chance = 0.35
@@ -600,7 +601,7 @@ bones/28/rotation = Quaternion(-0.500011, 0, 0, 0.866019)
 bones/29/rotation = Quaternion(-0.258969, 0, 0, 0.965886)
 
 [node name="Head" type="BoneAttachment3D" parent="lizard/Armature/Skeleton3D" index="0"]
-transform = Transform3D(0.968547, 0.248776, 0.00529442, 0.069534, -0.250161, -0.965704, -0.238919, 0.935698, -0.259591, 8.43108e-08, -0.5772, 3.88554)
+transform = Transform3D(0.970159, -0.242469, 0.000938659, -0.0601503, -0.244418, -0.967803, 0.234892, 0.938866, -0.251709, 3.07203e-09, -0.646355, 3.88839)
 bone_name = "Head"
 bone_idx = 6
 
@@ -608,7 +609,7 @@ bone_idx = 6
 transform = Transform3D(1, -2.81099e-15, 0, 0, 7.54979e-08, 1, 3.44266e-21, -1, 7.54979e-08, 0, 0, 0)
 
 [node name="JawLeft" parent="lizard/Armature/Skeleton3D" index="1"]
-transform = Transform3D(0.00529442, 0.968547, 0.248776, -0.965704, 0.069534, -0.250161, -0.259591, -0.238919, 0.935698, 0.124388, -0.70228, 4.35338)
+transform = Transform3D(0.000938659, 0.970159, -0.242469, -0.967803, -0.0601503, -0.244418, -0.251709, 0.234892, 0.938866, -0.121235, -0.768564, 4.35783)
 
 [node name="JawLeft" parent="lizard/Armature/Skeleton3D/JawLeft" index="0"]
 transform = Transform3D(1, -1.42108e-14, 0, -1.25528e-14, 1, -1.42109e-14, 0, 0, 1, 0, 0, 0)
@@ -630,21 +631,21 @@ draw_pass_1 = SubResource("SphereMesh_2vp0u")
 [node name="SpawnerRight" type="Marker3D" parent="lizard/Armature/Skeleton3D/JawLeft/JawLeft/GPUParticles3D"]
 
 [node name="HornLeftBottom" parent="lizard/Armature/Skeleton3D" index="2"]
-transform = Transform3D(-0.248776, 0.00529436, -0.968547, 0.250162, -0.965704, -0.069534, -0.935697, -0.259592, 0.238919, 1.52563, -1.33934, 4.8258)
+transform = Transform3D(0.242469, 0.000938717, -0.970159, 0.244418, -0.967802, 0.0601503, -0.938865, -0.251709, -0.234892, 0.813079, -1.55684, 5.40577)
 
 [node name="HornLeftBottom" parent="lizard/Armature/Skeleton3D/HornLeftBottom" index="0"]
 layers = 2
 material_override = ExtResource("9_o7vwu")
 
 [node name="HornLeftTop" parent="lizard/Armature/Skeleton3D" index="3"]
-transform = Transform3D(0.00529442, 0.248776, -0.968547, -0.965704, -0.250161, -0.069534, -0.259591, 0.935698, 0.238919, 1.52033, -0.373641, 5.08539)
+transform = Transform3D(0.000938659, -0.242469, -0.970159, -0.967803, -0.244418, 0.0601503, -0.251709, 0.938866, -0.234892, 0.812141, -0.58904, 5.65747)
 
 [node name="HornLeftTop" parent="lizard/Armature/Skeleton3D/HornLeftTop" index="0"]
 layers = 2
 material_override = ExtResource("9_o7vwu")
 
 [node name="JawRight" parent="lizard/Armature/Skeleton3D" index="4"]
-transform = Transform3D(-0.00529442, -0.968547, 0.248776, 0.965704, -0.069534, -0.250161, 0.259591, 0.238919, 0.935698, 0.124388, -0.70228, 4.35338)
+transform = Transform3D(-0.000938659, -0.970159, -0.242469, 0.967803, 0.0601503, -0.244418, 0.251709, -0.234892, 0.938866, -0.121235, -0.768564, 4.35783)
 
 [node name="JawRight" parent="lizard/Armature/Skeleton3D/JawRight" index="0"]
 transform = Transform3D(1, 0, 0, 0, 1, 7.57849e-15, 0, 3.07846e-15, 1, 0, 0, 0)
@@ -666,14 +667,14 @@ draw_pass_1 = SubResource("SphereMesh_42m1i")
 [node name="SpawnerLeft" type="Marker3D" parent="lizard/Armature/Skeleton3D/JawRight/JawRight/GPUParticles3D"]
 
 [node name="HornRightBottom" parent="lizard/Armature/Skeleton3D" index="5"]
-transform = Transform3D(-0.248776, -0.00529442, 0.968547, 0.250161, 0.965704, 0.069534, -0.935698, 0.259591, -0.238919, -0.798884, -1.50623, 5.3992)
+transform = Transform3D(0.242469, -0.000938659, 0.970159, 0.244418, 0.967803, -0.0601503, -0.938866, 0.251709, 0.234892, -1.5153, -1.41248, 4.84203)
 
 [node name="HornRightBottom" parent="lizard/Armature/Skeleton3D/HornRightBottom" index="0"]
 layers = 2
 material_override = ExtResource("9_o7vwu")
 
 [node name="HornRightTop" parent="lizard/Armature/Skeleton3D" index="6"]
-transform = Transform3D(0.00529442, -0.248776, 0.968547, -0.965704, 0.250161, 0.069534, -0.259591, -0.935698, -0.238919, -0.804178, -0.540522, 5.6588)
+transform = Transform3D(0.00093867, 0.242469, 0.970159, -0.967803, 0.244418, -0.0601503, -0.251709, -0.938866, 0.234892, -1.51624, -0.44468, 5.09373)
 
 [node name="HornRightTop" parent="lizard/Armature/Skeleton3D/HornRightTop" index="0"]
 layers = 2

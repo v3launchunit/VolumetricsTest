@@ -3,6 +3,12 @@ extends Status
 
 signal key_acquired(key: int)
 
+enum Keys {
+	RED,
+	GREEN,
+	BLUE,
+}
+
 @export_category("PlayerStatus")
 
 @export var max_armor: float = 100
@@ -210,14 +216,22 @@ func cmd_set_absorption(to: String) -> void:
 func cmd_set_key(which: String, to: String) -> void:
 	if Globals.try_run_cheat():
 		if not which.is_valid_int():
-			Console.print_error(Globals.parse_text("console", "fail.bad_int") % "which")
-			return
+			if which.to_upper() in Keys.keys():
+				which = "%d" % Keys.get(which.to_upper())
+			else:
+				Console.print_error(Globals.parse_text("console", "fail.bad_int") % "which")
+				return
 		if which.to_int() < 0 or which.to_int() > held_keys.size():
-			Console.print_error(Globals.parse_text("console", "fail.bad_range") % "which")
+			var s := Globals.parse_text("console", "fail.bad_range")
+			Console.print_error(s % "which")
+			return
 		var to_b := Globals.get_pseudo_bool(to)
 		if to_b == -1:
-			Console.print_error(Globals.parse_text("console", "fail.bad_bool") % ["to", 0, held_keys.size()])
+			var s := Globals.parse_text("console", "fail.bad_bool")
+			Console.print_error(s % ["to", 0, held_keys.size()])
+			return
 		held_keys[which.to_int()] = (to_b == Globals.PseudoBool.TRUE)
+		hud.keys[which.to_int()].modulate = Color.WHITE if (to_b == Globals.PseudoBool.TRUE) else Color.BLACK
 
 
 func cmd_god(to: String) -> void:

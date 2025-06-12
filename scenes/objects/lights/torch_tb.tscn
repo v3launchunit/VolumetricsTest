@@ -215,7 +215,6 @@ stream = ExtResource("1_mtuin")
 unit_size = 32.0
 autoplay = true
 max_distance = 32.0
-bus = &"World"
 doppler_tracking = 2
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Torch"]

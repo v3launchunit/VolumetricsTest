@@ -815,7 +815,7 @@ func interact(body: Node3D) -> void:
 			(body as Player).hud.log_event(Globals.parse_text(
 					"events", 
 					eat_text
-			) % corpse_food_value)
+			) % ceili(corpse_food_value))
 
 
 func _on_status_injured() -> void:

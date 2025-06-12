@@ -4,7 +4,7 @@ class_name AreaHazard
 extends Area3D
 
 enum HazardType {
-	DEATH_BARRIER,
+	#DEATH_BARRIER,
 	LAVA,
 	CUSTOM = -1,
 }
@@ -44,10 +44,10 @@ func _ready() -> void:
 		if func_godot_properties.get("hazard_type", -1) != -1:
 			hazard_type = func_godot_properties["hazard_type"]
 			match hazard_type:
-				HazardType.DEATH_BARRIER:
-					dps = 10_000_000
-					player_dps_override = 10_000_000
-					damage_type = Status.DamageType.ABSOLUTE
+				#HazardType.DEATH_BARRIER:
+					#dps = 10_000_000
+					#player_dps_override = 10_000_000
+					#damage_type = Status.DamageType.ABSOLUTE
 				HazardType.LAVA:
 					dps = 20
 					player_dps_override = 20

@@ -125,7 +125,7 @@ var s_minor_shadows_mode := OmniLight3D.ShadowMode.SHADOW_CUBE
 
 ## The sensitivity multiplier applied to mouse movement with regards to the
 ## first-person camera.
-var s_camera_sensitivity: float = 12.0
+var s_camera_sensitivity: float = 9.0
 #endregion
 
 #region audio settings
