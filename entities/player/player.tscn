@@ -280,7 +280,7 @@ fov = 120.0
 near = 0.01
 far = 1000.0
 script = ExtResource("30_aegsx")
-weapons = Array[Array]([[NodePath("WeaponsHolder/Axe")], [NodePath("WeaponsHolder/PumpShotgun")], [], [], [], []])
+weapons = Array[Array]([[NodePath("WeaponsHolder/Axe")], [NodePath("WeaponsHolder/PumpShotgun")], [], [], [], [], []])
 current_category = 1
 ammo_types = {
 "akm_bullets": 200,

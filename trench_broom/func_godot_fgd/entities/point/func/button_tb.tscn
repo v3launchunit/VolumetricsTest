@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=3 uid="uid://cpn8xgd3dww0u"]
+[gd_scene load_steps=38 format=3 uid="uid://cpn8xgd3dww0u"]
 
 [ext_resource type="Script" uid="uid://crl5nwjju5d11" path="res://trench_broom/func_godot_fgd/entities/point/lever_tb.gd" id="1_j2tem"]
 [ext_resource type="PackedScene" uid="uid://dhcc71k270vgk" path="res://models/objects/lever.glb" id="2_d5lyg"]
@@ -13,6 +13,7 @@
 [ext_resource type="Texture2D" uid="uid://b7tj2qhujyomm" path="res://objects/interactable/button_01/button_01_albedo.png" id="9_obh7b"]
 [ext_resource type="Texture2D" uid="uid://cylybs3etacnu" path="res://objects/interactable/button_01/button_01_normals.png" id="10_obh7b"]
 [ext_resource type="Texture2D" uid="uid://bggx1rb37qyat" path="res://objects/interactable/button_01/button_01_emissions.png" id="10_p2346"]
+[ext_resource type="Shader" uid="uid://djpltavpkhtmk" path="res://shaders/spatial/psx_pb_opaque.gdshader" id="12_j22kr"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_f8nba"]
 
@@ -134,6 +135,21 @@ shader_parameter/uv1_scale = Vector3(1, 1, 1)
 shader_parameter/uv1_offset = Vector3(0, 0, 0)
 shader_parameter/uv2_scale = Vector3(1, 1, 1)
 shader_parameter/uv2_offset = Vector3(0, 0, 0)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_1a4pt"]
+render_priority = 0
+shader = ExtResource("12_j22kr")
+shader_parameter/albedo_col = Color(0.75, 0.575, 0.45, 1)
+shader_parameter/normal_scale = 1.0
+shader_parameter/roughness = 0.75
+shader_parameter/metallic = 0.0
+shader_parameter/specular = 0.5
+shader_parameter/metallic_channel = Vector4(1, 0, 0, 0)
+shader_parameter/uv1_scale = Vector3(1, 1, 1)
+shader_parameter/uv1_offset = Vector3(0, 0, 0)
+shader_parameter/uv2_scale = Vector3(1, 1, 1)
+shader_parameter/uv2_offset = Vector3(0, 0, 0)
+shader_parameter/is_terrain_mat = false
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_6btag"]
 animation = &"activate"
@@ -449,6 +465,7 @@ material_override = SubResource("ShaderMaterial_p2346")
 
 [node name="Button" parent="button_01" index="1"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 0.25, 0, 0.135284, 0.05)
+material_override = SubResource("ShaderMaterial_1a4pt")
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
 root_node = NodePath(".")

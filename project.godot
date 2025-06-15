@@ -24,7 +24,7 @@ buses/default_bus_layout="res://audio/default_bus_layout.tres"
 [autoload]
 
 Globals="*res://scripts/globals.gd"
-Intermission="*res://levels/no_export/intermission/intermission.tscn"
+Intermission="*res://levels/intermission/intermission.tscn"
 GameMenu="*res://ui/menus/game_menu.tscn"
 Console="*res://addons/console/console.gd"
 

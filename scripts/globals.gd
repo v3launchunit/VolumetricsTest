@@ -396,29 +396,33 @@ func save_game(to: String) -> void:
 
 #region level management
 ## Loads the level assoiciated with [param level_key], as defined within in [code]campaign.cfg[/code].
-func open_level_from_key(level_key: String) -> void:
+func open_level_from_key(level_key: String) -> Error:
 	var level := get_level_path(level_key)
 	if level == "":
 		Console.print_error(parse_text("console", "fail.bad_level") % level_key)
+		return ERR_UNCONFIGURED
 	var status := ResourceLoader.load_threaded_get_status(level)
-	if status != ResourceLoader.THREAD_LOAD_LOADED:
-		print(status)
-		if status == ResourceLoader.THREAD_LOAD_INVALID_RESOURCE:
-			open_level(load(level))
-	else:
-		open_level(ResourceLoader.load_threaded_get(level))
+	#if status != ResourceLoader.THREAD_LOAD_LOADED and status != ResourceLoader.THREAD_LOAD_IN_PROGRESS:
+		#print(status)
+	if status == ResourceLoader.THREAD_LOAD_INVALID_RESOURCE: # level has yet to be requested for loading
+		return open_level(load(level)) # just forcefully load the thing
+	elif status == ResourceLoader.THREAD_LOAD_FAILED: # level failed to load
+		return ERR_CANT_ACQUIRE_RESOURCE
+	else: # level is either loaded or in progress
+		return open_level(ResourceLoader.load_threaded_get(level)) # fetch the level once it's ready
 
 
 ## Loads the specified [PackedScene].
-func open_level(level: PackedScene) -> void:
+func open_level(level: PackedScene) -> Error:
 	#var screen_image := get_tree().root.get_texture()
-	get_tree().change_scene_to_packed(level)
+	var err : Error = get_tree().change_scene_to_packed(level)
 	#Console.print_line("loaded %s")
 	#print(get_tree().current_scene)
 	#if get_tree().current_scene is Level and (get_tree().current_scene as Level).fun != -1:
 		#fun = (get_tree().current_scene as Level).fun
 	while GameMenu._active_menus > 0:
 		GameMenu.close_top_menu()
+	return err
 
 
 ## Returns the filepath associated with [param level_key], per [code]campaign.cfg[/code].

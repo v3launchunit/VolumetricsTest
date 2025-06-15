@@ -1,15 +1,29 @@
-[gd_scene load_steps=12 format=3 uid="uid://redbealnw6dv"]
+[gd_scene load_steps=16 format=3 uid="uid://redbealnw6dv"]
 
 [ext_resource type="Theme" uid="uid://dwof7m2ye3tjh" path="res://ui/default_theme.tres" id="1_8b1d4"]
-[ext_resource type="Script" uid="uid://uxlfv7qba6ja" path="res://levels/no_export/intermission/intermission_screen.gd" id="1_j6yne"]
+[ext_resource type="Script" uid="uid://uxlfv7qba6ja" path="res://levels/intermission/intermission_screen.gd" id="1_j6yne"]
 [ext_resource type="Texture2D" uid="uid://cmq3arf61ax4f" path="res://ui/menus/menu_panel.png" id="3_uenmx"]
 [ext_resource type="AudioStream" uid="uid://cfhhlt7csg7u7" path="res://audio/streams/weapons/firing/shotgun_fire.wav" id="4_ugqxr"]
 [ext_resource type="Shader" uid="uid://co7lc7hmo67u1" path="res://shaders/canvas/screenwipe_melt.gdshader" id="5_7ipf1"]
+[ext_resource type="AudioStream" uid="uid://bmlxxe8maevqb" path="res://audio/streams/click.wav" id="5_vvlrj"]
+[ext_resource type="AudioStream" uid="uid://codrbn3r7pjqj" path="res://audio/streams/scroll.wav" id="6_j0wd7"]
 
 [sub_resource type="Gradient" id="Gradient_v0l2t"]
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_uhran"]
 gradient = SubResource("Gradient_v0l2t")
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_c4ou5"]
+random_pitch = 1.15
+random_volume_offset_db = 0.15
+streams_count = 1
+stream_0/stream = ExtResource("5_vvlrj")
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_sk4tw"]
+random_pitch = 1.15
+random_volume_offset_db = 0.15
+streams_count = 1
+stream_0/stream = ExtResource("6_j0wd7")
 
 [sub_resource type="Gradient" id="Gradient_em8xn"]
 colors = PackedColorArray(0.1, 0.1, 0.1, 1, 1, 1, 1, 1)
@@ -34,10 +48,10 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 1
 script = ExtResource("1_j6yne")
 
 [node name="TextureRect" type="TextureRect" parent="."]
-visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -109,23 +123,32 @@ grow_vertical = 2
 theme = ExtResource("1_8b1d4")
 alignment = 1
 
-[node name="TimeLabel" type="Label" parent="Tallies"]
+[node name="TimeTally" type="Label" parent="Tallies"]
 layout_mode = 2
 text = "00:00:00.000"
 horizontal_alignment = 2
 
-[node name="KillsLabel" type="Label" parent="Tallies"]
+[node name="KillsTally" type="Label" parent="Tallies"]
 layout_mode = 2
 text = "2901/3620"
 horizontal_alignment = 2
 
-[node name="SecretsLabel" type="Label" parent="Tallies"]
+[node name="SecretsTally" type="Label" parent="Tallies"]
 layout_mode = 2
 text = "29/94"
 horizontal_alignment = 2
 
-[node name="AudioStreamPlayer3D" type="AudioStreamPlayer" parent="."]
+[node name="TallyFinished" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("4_ugqxr")
+
+[node name="ButtonPress" type="AudioStreamPlayer" parent="."]
+stream = SubResource("AudioStreamRandomizer_c4ou5")
+bus = &"UI"
+
+[node name="TallyTick" type="AudioStreamPlayer" parent="."]
+stream = SubResource("AudioStreamRandomizer_sk4tw")
+max_polyphony = 8
+bus = &"UI"
 
 [node name="Label" type="Label" parent="."]
 visible = false

@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://bvnjbkqeqaujf"]
+
+[ext_resource type="Script" uid="uid://cqrqc4o6tixb2" path="res://levels/intermission/intermission.gd" id="1_hqoxs"]
+[ext_resource type="PackedScene" uid="uid://redbealnw6dv" path="res://levels/intermission/intermission_screen.tscn" id="2_353fs"]
+
+[node name="Intermission" type="Node"]
+process_mode = 4
+script = ExtResource("1_hqoxs")
+intermission_screen = ExtResource("2_353fs")

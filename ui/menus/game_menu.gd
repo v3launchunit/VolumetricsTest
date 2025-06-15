@@ -22,12 +22,12 @@ func _ready() -> void:
 	_connect_audio()
 	await get_tree().process_frame
 	get_parent().move_child(self, -1)
+	get_parent().child_entered_tree.connect(_on_root_child_entered_tree)
 	Console.console_opened.connect(open_pause_menu)
 	Console.console_closed.connect(_on_button_down)
 
 
 func _process(_delta: float) -> void:
-	
 	_save_button.disabled = get_tree().current_scene is not Level 
 	
 	if _active_menus <= 0 and not get_tree().root.has_focus():
@@ -53,6 +53,7 @@ func close_top_menu(with_sound: bool = true) -> void:
 
 
 func open_pause_menu() -> void:
+	get_parent().move_child(self, -1)
 	_press_sound.play()
 	if _active_menus >= 1:
 		return
@@ -157,6 +158,11 @@ func _on_item_selected(_index : int) -> void:
 func _on_range_value_changed(_to : float) -> void:
 	_scroll_sound.play()
 #endregion menu audio
+
+
+func _on_root_child_entered_tree() -> void:
+	await get_tree().process_frame
+	get_parent().move_child(self, -1)
 
 
 func _on_console_opened() -> void:
