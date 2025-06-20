@@ -14,7 +14,7 @@ generate_gd_ignore_file = false
 scene_file = ExtResource("2_00yg3")
 apply_rotation_on_map_build = true
 classname = "deco_pipe_tjunct"
-description = ""
+description = "a fluid pipe segment."
 func_godot_internal = false
 base_classes = Array[Resource]([ExtResource("1_00yg3")])
 class_properties = {}
@@ -22,7 +22,7 @@ class_property_descriptions = {}
 auto_apply_to_matching_node_properties = false
 meta_properties = {
 "color": Color(0.8, 0.8, 0.8, 1),
-"size": AABB(-24, -8, -16, 24, 8, 16),
+"size": AABB(-24, -24, -24, 24, 24, 24),
 "studio": "\"models/deco_pipe_tjunct.glb\""
 }
 node_class = ""

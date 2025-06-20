@@ -25,7 +25,9 @@ add_face_normal_metadata = false
 add_collision_shape_face_range_metadata = false
 script_class = ExtResource("2_ypdhf")
 classname = "area_ref_probe_solid"
-description = ""
+description = "a reflection probe.
+
+NOTE: due to how godot handles reflection probes, the brush's exact shape DOES NOT AFFECT the area influenced by the reflection probe. the ONLY thing that matters is the brush's axis-aligned bounding box (AABB)."
 func_godot_internal = false
 base_classes = Array[Resource]([ExtResource("1_crh57")])
 class_properties = {

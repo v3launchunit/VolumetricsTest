@@ -619,9 +619,10 @@ func cmd_invis(to: String) -> void:
 			var to_b := Globals.get_pseudo_bool(to)
 			if to_b == -1:
 				Console.print_error(Globals.parse_text("console", "fail.bad_bool") % to)
+				return
 			else:
 				EnemyBase.player_hidden = to_b == Globals.PseudoBool.TRUE
-			Console.print_line(Globals.parse_text("console", "invis") % ("on" if EnemyBase.player_hidden else "off"))
+		Console.print_line(Globals.parse_text("console", "invis") % ("on" if EnemyBase.player_hidden else "off"))
 
 
 func cmd_noclip(to: String) -> void:

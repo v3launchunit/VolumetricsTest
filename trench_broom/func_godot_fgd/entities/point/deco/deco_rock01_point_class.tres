@@ -13,7 +13,7 @@ generate_gd_ignore_file = false
 scene_file = ExtResource("1_c6xud")
 apply_rotation_on_map_build = true
 classname = "deco_rock01"
-description = ""
+description = "a small carriable rock."
 func_godot_internal = false
 base_classes = Array[Resource]([])
 class_properties = {}
@@ -21,7 +21,8 @@ class_property_descriptions = {}
 auto_apply_to_matching_node_properties = false
 meta_properties = {
 "color": Color(0.8, 0.8, 0.8, 1),
-"size": AABB(-4, -4, -4, 4, 4, 4)
+"size": AABB(-4, -4, -4, 4, 4, 4),
+"studio": "\"models/deco_rock01.glb\""
 }
 node_class = ""
 name_property = ""

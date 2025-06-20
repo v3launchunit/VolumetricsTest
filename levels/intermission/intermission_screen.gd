@@ -17,11 +17,12 @@ var _secrets: int = 0 ## total number of secrets in the level.
 var _found_secrets: int = 0
 var _next_level: String
 
-var time_tally: float = 0.0
-var foes_tally: int = 0
-var kills_tally: int = 0
-var secrets_tally: int = 0
-var found_secrets_tally: int = 0
+var melt_timer : float = 0.0
+var time_tally : float = 0.0
+var foes_tally : int = 0
+var kills_tally : int = 0
+var secrets_tally : int = 0
+var found_secrets_tally : int = 0
 
 var tally_phase := TallyPhase.TIME
 
@@ -40,6 +41,8 @@ var screenshot: Image
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	$ContinueHint.hide()
+	
 	_on_language_changed()
 	
 	_time = Intermission._time
@@ -52,20 +55,30 @@ func _ready() -> void:
 	screenshot = Intermission.screenshot
 	screenshot_rect.texture = ImageTexture.create_from_image(screenshot)
 	
+	melt_timer = 0.0
 	time_tally = 0.0
 	foes_tally = 0
 	kills_tally = 0
 	secrets_tally = 0
 	found_secrets_tally = 0
-	tally_phase = TallyPhase.TIME
+	tally_phase = TallyPhase.MELT
 	
 	Globals.language_changed.connect(_on_language_changed)
+	
+	tally_finished.play()
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta: float) -> void:
 	#print(tally_phase)
 	match tally_phase:
+		TallyPhase.MELT:
+			var mat := screenshot_rect.material as ShaderMaterial
+			melt_timer = move_toward(melt_timer, 1.0, delta)
+			mat.set_shader_parameter("_progress", melt_timer)
+			if melt_timer >= 1.0: #or Globals.menu_click():
+				mat.set_shader_parameter("_progress", 1.0)
+				tally_phase = TallyPhase.TIME
 		TallyPhase.TIME:
 			time_tally = lerpf(time_tally, _time, delta * 60)
 			time_label.text = "{hr}:{min}:{sec}".format({
@@ -74,6 +87,11 @@ func _physics_process(delta: float) -> void:
 					"sec": "%02.3f" % time_tally, # process seconds/milliseconds
 			})
 			if is_equal_approx(time_tally, _time) or Globals.menu_click():
+				time_label.text = "{hr}:{min}:{sec}".format({
+						"hr": "%02d" % (_time / 3600.0), # process hours
+						"min": "%02d" % (_time / 60.0), # process minutes
+						"sec": "%02.3f" % _time, # process seconds/milliseconds
+				})
 				tally_phase = TallyPhase.KILLS
 				tally_finished.play()
 			else:
@@ -86,6 +104,10 @@ func _physics_process(delta: float) -> void:
 					"foes": "%0*d" % [mini(ceili(log(_foes)) / ceili(log(10)), 1), foes_tally],
 			})
 			if (foes_tally == _foes and kills_tally == _kills) or Globals.menu_click():
+				kills_label.text = "{kills}/{foes}".format({
+						"kills":  "%0*d" % [mini(ceili(log(_foes)) / ceili(log(10)), 1), _kills],
+						"foes": "%0*d" % [mini(ceili(log(_foes)) / ceili(log(10)), 1), _foes],
+				})
 				tally_phase = TallyPhase.SECRETS
 				tally_finished.play()
 			else:
@@ -98,11 +120,16 @@ func _physics_process(delta: float) -> void:
 					"secrets": "%0*d" % [mini(ceili(log(_secrets)) / ceili(log(10)), 1), secrets_tally],
 			})
 			if (secrets_tally == _secrets and found_secrets_tally == _found_secrets) or Globals.menu_click():
+				secrets_label.text = "{found}/{secrets}".format({
+						"found":  "%0*d" % [mini(ceili(log(_secrets)) / ceili(log(10)), 1), _found_secrets],
+						"secrets": "%0*d" % [mini(ceili(log(_secrets)) / ceili(log(10)), 1), _secrets],
+				})
 				tally_phase = TallyPhase.DONE
 				tally_finished.play()
 			else:
 				tally_tick.play()
 		TallyPhase.DONE:
+			$ContinueHint.show()
 			if Input.is_action_just_pressed("ui_click"):
 				# if the next level can't be loaded, just return to the title screen
 				if Globals.open_level_from_key(_next_level) != OK: 

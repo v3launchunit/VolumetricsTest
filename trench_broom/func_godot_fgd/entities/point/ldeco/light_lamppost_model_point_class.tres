@@ -14,7 +14,7 @@ generate_gd_ignore_file = false
 scene_file = ExtResource("2_dk27h")
 apply_rotation_on_map_build = true
 classname = "ldeco_lamppost"
-description = ""
+description = "a small lamp post."
 func_godot_internal = false
 base_classes = Array[Resource]([ExtResource("1_1lpw8")])
 class_properties = {}
@@ -22,6 +22,7 @@ class_property_descriptions = {}
 auto_apply_to_matching_node_properties = false
 meta_properties = {
 "color": Color(0.8, 0.8, 0.8, 1),
+"model": "\"models/ldeco_lamppost.glb\"",
 "size": AABB(-8, -8, -8, 8, 8, 8),
 "studio": "\"models/light_lamppost.glb\""
 }

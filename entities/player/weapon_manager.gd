@@ -32,6 +32,8 @@ const ZOOM_SPEED: float = 10.0
 
 #@export var current_weapon_yaw_default: float
 
+var fullbright_active : bool = false
+
 @onready var anti_clip_box := $ViewmodelAntiClip as Area3D
 @onready var rummage_stream_player := $RummageStreamPlayer as AudioStreamPlayer
 
@@ -54,14 +56,7 @@ func _ready():
 	ammo_amounts["shells"] = 15
 	ammo_amounts["grenades"] = 3
 
-	#weapons[current_weapon].deploy
-	#switched_weapons.connect(find_child("HUD")._on_player_cam_switched_weapons)
 	switched_weapons.emit(current_category, current_index[current_category], true)
-	#current_weapon_pos = get_node(
-			#weapons[current_category][current_index[current_category]]
-	#).position.z
-	#anti_clip_box.body_entered.connect(on_viewmodel_anti_clip_body_entered)
-	#anti_clip_box.body_exited.connect(on_viewmodel_anti_clip_body_exited)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -323,11 +318,13 @@ func add_console_commands() -> void:
 			Globals.parse_text("console", "desc.set_ammo"),
 			Console.CommandType.CHEAT,
 	)
+	#Console.add_command("fullbright", cmd_fullbright, [Globals.parse_text("console", "arg.bool")], 0, Globals.parse_text("console", "desc.fullbright"), Console.CommandType.CHEAT)
 
 
 func remove_console_commands() -> void:
 	Console.remove_command("get_ammo")
 	Console.remove_command("set_ammo")
+	#Console.remove_command("fullbright")
 
 
 func cmd_set_ammo(type: String, to: int) -> void:
@@ -336,5 +333,21 @@ func cmd_set_ammo(type: String, to: int) -> void:
 			Console.print_error(Globals.parse_text("console", "fail.bad_ammo_type"))
 			return
 		ammo_amounts[type] = to
+
+
+func cmd_fullbright(to: String) -> void:
+	if Globals.try_run_cheat():
+		if to == "":
+			fullbright_active = not fullbright_active
+		else:
+			var to_b := Globals.get_pseudo_bool(to)
+			if to_b == -1:
+				Console.print_error(Globals.parse_text("console", "fail.bad_bool") % to)
+				return
+			else:
+				fullbright_active = to_b == Globals.PseudoBool.TRUE
+		Console.print_line(Globals.parse_text("console", "fullbright") % ("on" if fullbright_active else "off"))
+		environment = load("uid://d387u5xga6b7") if fullbright_active else null
+
 
 #endregion

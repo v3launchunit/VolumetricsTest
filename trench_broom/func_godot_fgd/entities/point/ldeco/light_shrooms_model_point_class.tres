@@ -14,7 +14,7 @@ generate_gd_ignore_file = false
 scene_file = ExtResource("2_ur0cp")
 apply_rotation_on_map_build = true
 classname = "ldeco_shrooms"
-description = ""
+description = "a quartet of green bioluminescent mushrooms."
 func_godot_internal = false
 base_classes = Array[Resource]([ExtResource("1_ubg0i")])
 class_properties = {}
@@ -22,7 +22,7 @@ class_property_descriptions = {}
 auto_apply_to_matching_node_properties = false
 meta_properties = {
 "color": Color(0.8, 0.8, 0.8, 1),
-"model": "\"models/l_shrooms.glb\"",
+"model": "\"models/ldeco_shrooms.glb\"",
 "size": AABB(-8, -8, -8, 8, 8, 8)
 }
 node_class = ""

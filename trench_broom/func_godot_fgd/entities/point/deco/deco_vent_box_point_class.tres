@@ -14,7 +14,7 @@ generate_gd_ignore_file = false
 scene_file = ExtResource("2_hvfwj")
 apply_rotation_on_map_build = true
 classname = "deco_vent_box"
-description = ""
+description = "a generic ventilation box."
 func_godot_internal = false
 base_classes = Array[Resource]([ExtResource("1_hvfwj")])
 class_properties = {}
@@ -23,7 +23,7 @@ auto_apply_to_matching_node_properties = false
 meta_properties = {
 "color": Color(0.8, 0.8, 0.8, 1),
 "size": AABB(-24, -24, -16, 24, 24, 16),
-"studio": "\"models/vent_box.glb\""
+"studio": "\"models/deco_vent_box.glb\""
 }
 node_class = ""
 name_property = ""

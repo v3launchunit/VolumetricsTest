@@ -6,8 +6,8 @@ extends Marker3D
 	set(to):
 		func_godot_properties = to
 		for group in get_groups():
-			if not str(group).begins_with("_"):
-				remove_from_group(group)
+			if not str(group).begins_with("_"): 
+				remove_from_group(group) # remove from all non-internal groups
 		if func_godot_properties["targetname"] != "":
 			add_to_group("targetname:%s" % func_godot_properties["targetname"], true)
 		if func_godot_properties["target"] != "":

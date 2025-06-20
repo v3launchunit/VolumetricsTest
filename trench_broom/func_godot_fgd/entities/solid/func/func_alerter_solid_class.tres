@@ -24,13 +24,15 @@ add_face_normal_metadata = false
 add_collision_shape_face_range_metadata = false
 script_class = ExtResource("2_tvjii")
 classname = "func_alerter"
-description = ""
+description = "static collidable geometry. when interacted with by the player, displays a message and does nothing else."
 func_godot_internal = false
 base_classes = Array[Resource]([])
 class_properties = {
 "alert": "chicken"
 }
-class_property_descriptions = {}
+class_property_descriptions = {
+"alert": "alert message"
+}
 auto_apply_to_matching_node_properties = false
 meta_properties = {
 "color": Color(0.8, 0.8, 0.8, 1),

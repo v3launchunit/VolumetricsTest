@@ -24,6 +24,12 @@ enum Difficulty {
 	#ENGLISH,
 #}
 
+enum LevelStatus {
+	HIDDEN,
+	REVEALED,
+	CLEARED,
+}
+
 enum PseudoBool {
 	FALSE = 0,
 	TRUE = 1,
@@ -71,7 +77,7 @@ const C_LIZARD_HOLE_POINT := Vector3(0.0, -1000.0, 0.0)
 ## The filepath that user quicksaves are stored to.
 const C_QUICKSAVE_PATH: String = "user://saves/auto/quicksave.scn"
 ## The filepath that persistent data (high scores, best times, what levels have been unlocked/cleared, etc) is stored to.
-const C_PERSISTENT_PATH: String = "user://saves/persistent.cfg"
+const C_PROGRESSION_PATH: String = "user://saves/progression.cfg"
 ## The filepath that user configuration settings are stored to.
 const C_SETTINGS_PATH: String = "user://settings.cfg"
 #endregion
@@ -165,7 +171,7 @@ var s_lang : String = "text_eng.cfg";
 var names := ConfigFile.new()
 var text := ConfigFile.new()
 var campaign := ConfigFile.new()
-var persistent := ConfigFile.new()
+var progression := ConfigFile.new()
 var fun := randi_range(0, 999)
 var cheats_enabled: bool = false
 
@@ -197,7 +203,7 @@ func _init() -> void:
 	
 	_setup_user()
 	_load_config()
-	persistent.load(C_PERSISTENT_PATH)
+	progression.load(C_PROGRESSION_PATH)
 	cheats_enabled = OS.has_feature("editor")
 
 
@@ -435,12 +441,26 @@ func get_level_path(level_key: String) -> String:
 # 2 = cleared
 ## Returns whether the specified level has been revealed yet. 
 func level_revealed(level_name: String) -> bool:
-	return persistent.get_value("progress", "%s_status" % level_name, 0) > 0
+	return progression.get_value("progress", "%s_status" % level_name, LevelStatus.HIDDEN) > LevelStatus.HIDDEN
 
 
 ## Returns whether the specified level has been cleared yet. 
 func level_cleared(level_name: String) -> bool:
-	return persistent.get_value("progress", "%s_status" % level_name, 0) > 1
+	return progression.get_value("progress", "%s_status" % level_name, LevelStatus.HIDDEN) > LevelStatus.REVEALED
+
+
+func reveal_level(level_name: String) -> void:
+	if level_name != "" and not level_revealed(level_name):
+		progression.set_value("progress", "%s_status" % level_name, LevelStatus.REVEALED)
+		progression.save(C_PROGRESSION_PATH)
+
+
+func clear_level(level_name: String) -> void:
+	if level_name != "" and not level_cleared(level_name):
+		progression.set_value("progress", "%s_status" % level_name, LevelStatus.CLEARED)
+		progression.save(C_PROGRESSION_PATH)
+
+
 #endregion
 
 

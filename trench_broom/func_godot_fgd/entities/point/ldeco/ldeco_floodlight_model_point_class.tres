@@ -13,7 +13,7 @@ generate_gd_ignore_file = false
 scene_file = ExtResource("1_ten70")
 apply_rotation_on_map_build = true
 classname = "ldeco_floodlight"
-description = ""
+description = "a two-bulb floodlight used for illuminating mines, construction areas, etc."
 func_godot_internal = false
 base_classes = Array[Resource]([])
 class_properties = {
@@ -21,8 +21,8 @@ class_properties = {
 "target": ""
 }
 class_property_descriptions = {
-"killtarget": "The entity that the left-hand light faces towards.",
-"target": "The entity that the right-hand light faces towards."
+"killtarget": "left-hand lamp target",
+"target": "right-hand lamp target"
 }
 auto_apply_to_matching_node_properties = false
 meta_properties = {

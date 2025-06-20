@@ -4,6 +4,7 @@
 {
 "mapversion" "220"
 "classname" "worldspawn"
+"_tb_layer_locked" "1"
 // brush 0
 {
 ( -144 -91.33333333333212 -16 ) ( -144 -83.33333333333334 -32 ) ( -144 48 -32 ) special/skip [ 0 -1 0 0 ] [ 0 0 -1 0 ] 0 1 1
@@ -1085,7 +1086,7 @@
 }
 // brush 117
 {
-( -256.42105263158504 -297.4736842105186 56 ) ( -261.7142857142902 -316 56 ) ( -256.42105263158504 -297.4736842105186 48 ) natural/rock [ -0.27472112789737807 -0.9615239476408232 0 0 ] [ 0 0 -1 0 ] 0 1 1
+( -256.42105263158504 -297.4736842105186 56 ) ( -261.7142857142902 -316 56 ) ( -256.42105263158504 -297.4736842105186 48 ) special/skip [ -0.27472112789737807 -0.9615239476408232 0 0 ] [ 0 0 -1 0 ] 0 1 1
 ( -256.42105263158504 -297.4736842105186 48 ) ( -261.7142857142902 -316 48 ) ( -248 -308 48 ) natural/rock_3 [ 1 0 0 0 ] [ 0 -1 0 0 ] 0 1 1
 ( -256.42105263158504 -297.4736842105186 56 ) ( -248 -308 56 ) ( -261.7142857142902 -316 56 ) natural/rock_3 [ 1 0 0 0 ] [ 0 -1 0 0 ] 0 1 1
 ( -248 -308 48 ) ( -261.7142857142902 -316 48 ) ( -248 -308 56 ) natural/rock [ -1 0 0 0 ] [ 0 0 -1 0 ] 0 1 1
@@ -1164,7 +1165,7 @@
 ( -272 -360 0 ) ( -272 -296 0 ) ( -272 -360 48 ) natural/rock [ 0 -1 0 0 ] [ 0 0 -1 0 ] 0 1 1
 ( -272 -360 48 ) ( -268 -360 48 ) ( -272 -360 0 ) special/skip [ 1 0 0 0 ] [ 0 0 -1 0 ] 0 1 1
 ( -272 -360 0 ) ( -268 -360 0 ) ( -272 -296 0 ) natural/rock [ -1 0 0 0 ] [ 0 -1 0 0 ] 0 1 1
-( -272 -296 48 ) ( -268 -296 48 ) ( -272 -360 48 ) natural/rock [ 1 0 0 0 ] [ 0 -1 0 0 ] 0 1 1
+( -272 -296 48 ) ( -268 -296 48 ) ( -272 -360 48 ) special/skip [ 1 0 0 0 ] [ 0 -1 0 0 ] 0 1 1
 ( -272 -296 0 ) ( -268 -296 0 ) ( -272 -296 48 ) special/skip [ -1 0 0 0 ] [ 0 0 -1 0 ] 0 1 1
 ( -268 -296 48 ) ( -268 -296 0 ) ( -268 -360 48 ) natural/rock [ 0 -1 0 0 ] [ 0 0 -1 0 ] 0 1 1
 }
@@ -1181,7 +1182,7 @@
 {
 ( -272 -296 48 ) ( -272 -338 48 ) ( -272 -296 0 ) special/skip [ 0 -1 0 0 ] [ 0 0 -1 0 ] 0 1 1
 ( -268 -296 0 ) ( -268 -338 0 ) ( -256 -296 0 ) special/skip [ -1 0 0 0 ] [ 0 -1 0 0 ] 0 1 1
-( -268 -296 48 ) ( -256 -296 48 ) ( -268 -338 48 ) natural/rock [ 1 0 0 0 ] [ 0 -1 0 0 ] 0 1 1
+( -268 -296 48 ) ( -256 -296 48 ) ( -268 -338 48 ) special/skip [ 1 0 0 0 ] [ 0 -1 0 0 ] 0 1 1
 ( -268 -296 0 ) ( -256 -296 0 ) ( -268 -296 48 ) special/skip [ -1 0 0 0 ] [ 0 0 -1 0 ] 0 1 1
 ( -268 -338 0 ) ( -268 -338 48 ) ( -256 -296 0 ) natural/rock [ -0.27472112789737807 -0.9615239476408232 0 0 ] [ 0 0 -1 0 ] 0 1 1
 }
@@ -1206,7 +1207,7 @@
 {
 ( -256.42105263158504 -297.47368421051857 48 ) ( -261.7142857142902 -316 48 ) ( -256.42105263158504 -297.47368421051857 0 ) special/skip [ -0.27472112789737807 -0.9615239476408232 0 0 ] [ 0 0 -1 0 ] 0 1 1
 ( -256.42105263158504 -297.47368421051857 0 ) ( -261.7142857142902 -316 0 ) ( -248 -308 0 ) natural/rock [ -1 0 0 0 ] [ 0 -1 0 0 ] 0 1 1
-( -256.42105263158504 -297.47368421051857 48 ) ( -248 -308 48 ) ( -261.7142857142902 -316 48 ) natural/rock [ 1 0 0 0 ] [ 0 -1 0 0 ] 0 1 1
+( -256.42105263158504 -297.47368421051857 48 ) ( -248 -308 48 ) ( -261.7142857142902 -316 48 ) special/skip [ 1 0 0 0 ] [ 0 -1 0 0 ] 0 1 1
 ( -248 -308 0 ) ( -261.7142857142902 -316 0 ) ( -248 -308 48 ) natural/rock [ -1 0 0 0 ] [ 0 0 -1 0 ] 0 1 1
 ( -256.42105263158504 -297.47368421051857 0 ) ( -248 -308 0 ) ( -256.42105263158504 -297.47368421051857 48 ) special/skip [ -0.316227766016838 0.9486832980505139 0 0 ] [ 0 0 -1 0 ] 0 1 1
 }
@@ -2920,13 +2921,13 @@
 }
 // entity 7
 {
-"classname" "func_path"
+"classname" "func_node"
 "origin" "-104 -48 -8"
 "targetname" "look1a"
 }
 // entity 8
 {
-"classname" "func_path"
+"classname" "func_node"
 "origin" "-40 24 16"
 "targetname" "look1b"
 }
@@ -2975,13 +2976,13 @@
 }
 // entity 16
 {
-"classname" "func_path"
+"classname" "func_node"
 "origin" "-328 -24 -72"
 "targetname" "look2b"
 }
 // entity 17
 {
-"classname" "func_path"
+"classname" "func_node"
 "origin" "-504 128 -24"
 "targetname" "look2a"
 }
@@ -3072,13 +3073,13 @@
 }
 // entity 29
 {
-"classname" "func_path"
+"classname" "func_node"
 "origin" "-248 520 -24"
 "targetname" "look3a"
 }
 // entity 30
 {
-"classname" "func_path"
+"classname" "func_node"
 "origin" "-232 184 -40"
 "targetname" "look3b"
 }
@@ -3142,6 +3143,7 @@
 "required_key" "-2"
 "targetname" "red"
 "open_pos" "0.0 5 0.0"
+"open_sound" "none"
 // brush 0
 {
 ( -296 160 40 ) ( -296 161 40 ) ( -296 160 41 ) special/skip [ 0 -1 0 0 ] [ 0 0 -1 0 ] 0 1 1
@@ -3162,7 +3164,7 @@
 }
 // entity 42
 {
-"classname" "func_path"
+"classname" "func_node"
 "origin" "-504 744 24"
 "targetname" "look4b"
 }
@@ -4829,26 +4831,31 @@
 }
 // entity 181
 {
-"classname" "func_path"
+"classname" "func_node"
 "origin" "-1408 576 -64"
 "targetname" "look5a"
 }
 // entity 182
 {
-"classname" "func_path"
+"classname" "func_node"
 "origin" "-1208 656 -48"
 "targetname" "look5b"
 }
 // entity 183
+{
+"classname" "func_node"
+"origin" "-1584 1072 -32"
+"targetname" "refprobe_origin_04"
+}
+// entity 184
 {
 "classname" "func_group"
 "_tb_type" "_tb_layer"
 "_tb_name" "Ref Probes"
 "_tb_id" "8"
 "_tb_layer_sort_index" "0"
-"_tb_layer_hidden" "1"
 }
-// entity 184
+// entity 185
 {
 "classname" "area_ref_probe_solid"
 "_tb_layer" "8"
@@ -4862,7 +4869,7 @@
 ( -912 152 48 ) ( -912 152 49 ) ( -912 153 48 ) special/probe [ 0 1 0 0 ] [ 0 0 -1 0 ] 0 1 1
 }
 }
-// entity 185
+// entity 186
 {
 "classname" "area_ref_probe_solid"
 "_tb_layer" "8"
@@ -4872,11 +4879,11 @@
 ( -1272 864 -72 ) ( -1272 864 -71 ) ( -1271 864 -72 ) special/probe [ 1 0 0 0 ] [ 0 0 -1 0 ] 0 1 1
 ( -1272 864 -96 ) ( -1271 864 -96 ) ( -1272 865 -96 ) special/probe [ -1 0 0 0 ] [ 0 -1 0 0 ] 0 1 1
 ( -824 1360 0 ) ( -824 1361 0 ) ( -823 1360 0 ) special/probe [ 1 0 0 0 ] [ 0 -1 0 0 ] 0 1 1
-( -824 1360 -40 ) ( -823 1360 -40 ) ( -824 1360 -39 ) special/probe [ -1 0 0 0 ] [ 0 0 -1 0 ] 0 1 1
+( -824 1376 -40 ) ( -823 1376 -40 ) ( -824 1376 -39 ) special/probe [ -1 0 0 0 ] [ 0 0 -1 0 ] 0 1 1
 ( -824 1360 -40 ) ( -824 1360 -39 ) ( -824 1361 -40 ) special/probe [ 0 1 0 0 ] [ 0 0 -1 0 ] 0 1 1
 }
 }
-// entity 186
+// entity 187
 {
 "classname" "area_ref_probe_solid"
 "_tb_layer" "8"
@@ -4890,7 +4897,7 @@
 ( -736 680 48 ) ( -736 680 49 ) ( -736 681 48 ) special/probe [ 0 1 0 0 ] [ 0 0 -1 0 ] 0 1 1
 }
 }
-// entity 187
+// entity 188
 {
 "classname" "area_ref_probe_solid"
 "origin_offset" "-3.5 0.0 0.0"
@@ -4906,7 +4913,7 @@
 ( 96 176 72 ) ( 96 176 73 ) ( 96 177 72 ) special/probe [ 0 1 0 0 ] [ 0 0 -1 0 ] 0 1 1
 }
 }
-// entity 188
+// entity 189
 {
 "classname" "area_ref_probe_solid"
 "origin_offset" "-3.5 0.0 0.0"
@@ -4922,17 +4929,55 @@
 ( 400 0 56 ) ( 400 0 57 ) ( 400 1 56 ) special/probe [ 0 1 0 0 ] [ 0 0 -1 0 ] 0 1 1
 }
 }
-// entity 189
+// entity 190
 {
-"classname" "func_path"
+"classname" "func_node"
 "origin" "232 -144 -32"
 "targetname" "refprobe_origin_02"
 "_tb_layer" "8"
 }
-// entity 190
+// entity 191
 {
-"classname" "func_path"
+"classname" "func_node"
 "origin" "-152 -16 8"
 "targetname" "refprobe_origin_01"
 "_tb_layer" "8"
+}
+// entity 192
+{
+"classname" "area_ref_probe_solid"
+"origin_offset" "-3.5 0.0 0.0"
+"target" "refprobe_origin_03"
+"_tb_layer" "8"
+// brush 0
+{
+( -792 -32 -24 ) ( -792 -31 -24 ) ( -792 -32 -23 ) special/probe [ 0 -1 0 0 ] [ 0 0 -1 0 ] 0 1 1
+( -592 168 -24 ) ( -592 168 -23 ) ( -591 168 -24 ) special/probe [ 1 0 0 0 ] [ 0 0 -1 0 ] 0 1 1
+( -592 -32 -136 ) ( -591 -32 -136 ) ( -592 -31 -136 ) special/probe [ -1 0 0 0 ] [ 0 -1 0 0 ] 0 1 1
+( -144 464 24 ) ( -144 465 24 ) ( -143 464 24 ) special/probe [ 1 0 0 0 ] [ 0 -1 0 0 ] 0 1 1
+( -144 544 8 ) ( -143 544 8 ) ( -144 544 9 ) special/probe [ -1 0 0 0 ] [ 0 0 -1 0 ] 0 1 1
+( -208 464 8 ) ( -208 464 9 ) ( -208 465 8 ) special/probe [ 0 1 0 0 ] [ 0 0 -1 0 ] 0 1 1
+}
+}
+// entity 193
+{
+"classname" "func_node"
+"origin" "-320 336 -16"
+"targetname" "refprobe_origin_03"
+"_tb_layer" "8"
+}
+// entity 194
+{
+"classname" "area_ref_probe_solid"
+"target" "refprobe_origin_04"
+"_tb_layer" "8"
+// brush 0
+{
+( -1704 864 -72 ) ( -1704 865 -72 ) ( -1704 864 -71 ) special/probe [ 0 -1 0 0 ] [ 0 0 -1 0 ] 0 1 1
+( -1704 864 -72 ) ( -1704 864 -71 ) ( -1703 864 -72 ) special/probe [ 1 0 0 0 ] [ 0 0 -1 0 ] 0 1 1
+( -1704 864 -96 ) ( -1703 864 -96 ) ( -1704 865 -96 ) special/probe [ -1 0 0 0 ] [ 0 -1 0 0 ] 0 1 1
+( -1256 1360 32 ) ( -1256 1361 32 ) ( -1255 1360 32 ) special/probe [ 1 0 0 0 ] [ 0 -1 0 0 ] 0 1 1
+( -1256 1376 -40 ) ( -1255 1376 -40 ) ( -1256 1376 -39 ) special/probe [ -1 0 0 0 ] [ 0 0 -1 0 ] 0 1 1
+( -1256 1360 -40 ) ( -1256 1360 -39 ) ( -1256 1361 -40 ) special/probe [ 0 1 0 0 ] [ 0 0 -1 0 ] 0 1 1
+}
 }

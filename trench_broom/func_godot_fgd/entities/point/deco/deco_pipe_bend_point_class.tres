@@ -14,7 +14,7 @@ generate_gd_ignore_file = false
 scene_file = ExtResource("2_8icv0")
 apply_rotation_on_map_build = true
 classname = "deco_pipe_bend"
-description = ""
+description = "a fluid pipe segment."
 func_godot_internal = false
 base_classes = Array[Resource]([ExtResource("1_8icv0")])
 class_properties = {}
@@ -22,8 +22,8 @@ class_property_descriptions = {}
 auto_apply_to_matching_node_properties = false
 meta_properties = {
 "color": Color(0.8, 0.8, 0.8, 1),
-"size": AABB(-16, -8, -16, 16, 8, 16),
-"studio": "\"models/pipe_bend.glb\""
+"size": AABB(-16, -16, -16, 16, 16, 16),
+"studio": "\"models/deco_pipe_bend.glb\""
 }
 node_class = ""
 name_property = ""
