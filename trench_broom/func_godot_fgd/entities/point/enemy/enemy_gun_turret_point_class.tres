@@ -25,7 +25,7 @@ auto_apply_to_matching_node_properties = false
 meta_properties = {
 "color": Color(0.8, 0.8, 0.8, 1),
 "model": "{{ mount_type == 0 -> {\"path\": \"models/enemy_gun_turret.glb\"}, mount_type == 1 -> {\"path\": \"models/enemy_gun_turret_wall.glb\"}, {\"path\": \"models/enemy_gun_turret.glb\"} }}",
-"size": AABB(-8, -8, -16, 8, 8, 8)
+"size": AABB(-12, -12, -16, 12, 12, 8)
 }
 node_class = ""
 name_property = ""

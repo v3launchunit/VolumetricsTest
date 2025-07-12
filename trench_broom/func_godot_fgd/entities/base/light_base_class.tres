@@ -11,11 +11,13 @@ base_classes = Array[Resource]([])
 class_properties = {
 "_color": Color(1, 0.67451, 0.34902, 1),
 "energy": 3.0,
+"fog_energy": 1.0,
 "range": 15.0
 }
 class_property_descriptions = {
 "_color": "the color of the light. expects 'byte' color range.",
 "energy": "the overall brightness multiplier of the light.",
+"fog_energy": "the brightness multiplier used when illuminating volumetric fog.",
 "range": "the radius of the light, in godot units (1 godot unit = 16 trenchbroom units)"
 }
 auto_apply_to_matching_node_properties = false

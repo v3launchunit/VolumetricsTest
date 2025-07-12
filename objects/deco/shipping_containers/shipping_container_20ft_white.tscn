@@ -1,5 +1,6 @@
-[gd_scene load_steps=6 format=3 uid="uid://dwm4ecje5avh5"]
+[gd_scene load_steps=7 format=3 uid="uid://dwm4ecje5avh5"]
 
+[ext_resource type="Script" uid="uid://cgkypg1q75ypr" path="res://objects/deco/shipping_containers/shipping_container_colorize.tres.gd" id="1_46pn5"]
 [ext_resource type="Shader" uid="uid://bvuxceynh6rex" path="res://shaders/spatial/psx_pb_aclip.gdshader" id="1_t6cav"]
 [ext_resource type="ArrayMesh" uid="uid://bhaqglfqhubh4" path="res://objects/deco/shipping_containers/shipping_crate_20ft.obj" id="1_ujhf7"]
 [ext_resource type="Texture2D" uid="uid://dwd7xholqdktf" path="res://materials/terrain/_pbr/shipping_container/shipping_container_normals.png" id="2_ux08i"]
@@ -8,6 +9,7 @@
 data = PackedVector3Array(-1.25, 1.3, -3, 1.25, 1.3, -3, -1.25, 1.3, 3, -1.25, 1.3, 3, 1.25, 1.3, -3, 1.25, 1.3, 3, 1.25, 1.3, 3, 1.175, 1.195, 3, -1.25, 1.3, 3, -1.25, 1.3, 3, 1.175, 1.195, 3, -1.175, 1.195, 3, -1.25, -1.3, 3, -1.25, 1.3, 3, -1.175, -1.195, 3, -1.175, -1.195, 3, -1.25, 1.3, 3, -1.175, 1.195, 3, -1.25, 1.3, 3, -1.25, -1.3, 3, -1.25, 1.3, -3, -1.25, 1.3, -3, -1.25, -1.3, 3, -1.25, -1.3, -3, 1.25, -1.3, -3, -1.25, -1.3, -3, 1.25, -1.3, 3, 1.25, -1.3, 3, -1.25, -1.3, -3, -1.25, -1.3, 3, 1.25, 1.3, -3, 1.25, -1.3, -3, 1.25, 1.3, 3, 1.25, 1.3, 3, 1.25, -1.3, -3, 1.25, -1.3, 3, 1.25, -1.3, -3, 1.25, 1.3, -3, 1.175, -1.195, -3, 1.175, -1.195, -3, 1.25, 1.3, -3, 1.175, 1.195, -3, 1.25, 1.3, -3, -1.25, 1.3, -3, 1.175, 1.195, -3, 1.175, 1.195, -3, -1.25, 1.3, -3, -1.175, 1.195, -3, -1.175, -1.195, 3, -1.175, 1.195, 3, -1.175, -1.195, -3, -1.175, -1.195, -3, -1.175, 1.195, 3, -1.175, 1.195, -3, 1.175, -1.195, 3, 1.175, -1.195, -3, 1.175, 1.195, 3, 1.175, 1.195, 3, 1.175, -1.195, -3, 1.175, 1.195, -3, -1.175, -1.195, 3, -1.175, -1.195, -3, 1.175, -1.195, 3, 1.175, -1.195, 3, -1.175, -1.195, -3, 1.175, -1.195, -3, -1.175, 1.195, 3, 1.175, 1.195, 3, -1.175, 1.195, -3, -1.175, 1.195, -3, 1.175, 1.195, 3, 1.175, 1.195, -3, 1.25, -1.3, 3, 1.175, -1.195, 3, 1.25, 1.3, 3, 1.25, 1.3, 3, 1.175, -1.195, 3, 1.175, 1.195, 3, -1.25, -1.3, 3, -1.175, -1.195, 3, 1.25, -1.3, 3, 1.25, -1.3, 3, -1.175, -1.195, 3, 1.175, -1.195, 3, -1.25, -1.3, -3, 1.25, -1.3, -3, -1.175, -1.195, -3, -1.175, -1.195, -3, 1.25, -1.3, -3, 1.175, -1.195, -3, -1.25, 1.3, -3, -1.25, -1.3, -3, -1.175, 1.195, -3, -1.175, 1.195, -3, -1.25, -1.3, -3, -1.175, -1.195, -3)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_dwofx"]
+resource_local_to_scene = true
 render_priority = 0
 shader = ExtResource("1_t6cav")
 shader_parameter/albedo_col = Color(1, 1, 1, 1)
@@ -25,6 +27,7 @@ shader_parameter/uv2_offset = Vector3(0, 0, 0)
 shader_parameter/is_terrain_mat = false
 
 [node name="ShippingContainer20ft" type="StaticBody3D"]
+script = ExtResource("1_46pn5")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("ConcavePolygonShape3D_kcxo1")

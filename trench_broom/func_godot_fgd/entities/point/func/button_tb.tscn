@@ -121,7 +121,6 @@ render_priority = 0
 shader = ExtResource("8_obh7b")
 shader_parameter/albedo = Color(0.960784, 0.737255, 0.576471, 1)
 shader_parameter/texture_albedo = ExtResource("9_obh7b")
-shader_parameter/point_size = 0.0
 shader_parameter/roughness = 0.75
 shader_parameter/metallic_texture_channel = Vector4(1, 0, 0, 0)
 shader_parameter/specular = 0.5
@@ -139,7 +138,7 @@ shader_parameter/uv2_offset = Vector3(0, 0, 0)
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_1a4pt"]
 render_priority = 0
 shader = ExtResource("12_j22kr")
-shader_parameter/albedo_col = Color(0.75, 0.575, 0.45, 1)
+shader_parameter/albedo_col = Color(0.72, 0.552, 0.432, 1)
 shader_parameter/normal_scale = 1.0
 shader_parameter/roughness = 0.75
 shader_parameter/metallic = 0.0

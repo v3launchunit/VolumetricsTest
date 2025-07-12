@@ -35,7 +35,10 @@ class_properties = {
 "nav_link_offset": Vector3(0, 0, 1.5),
 "open_order": Vector3(0, 0, 0),
 "open_pos": Vector3(0, 2.5, 0),
-"open_sound": "metal_open",
+"open_sound": {
+"metal": "metal_move",
+"stone": "stone_move"
+},
 "open_speed": 3.0,
 "required_key": {
 "Cannot be opened manually": -2,
@@ -50,9 +53,10 @@ class_properties = {
 "tooltip_open": "close"
 }
 class_property_descriptions = {
-"closeable": "if set, allows the door to be closed by the player after it is opened by interacting with it again.",
-"required_key": ["which key, if any, is required to open this door.", -1],
-"secret": "if set, disables tooltips and inoperability alerts."
+"closeable": "can be closed after opening",
+"open_sound": ["opening sound", "metal"],
+"required_key": ["required key", -1],
+"secret": "disable tooltips and inoperability alerts"
 }
 auto_apply_to_matching_node_properties = false
 meta_properties = {

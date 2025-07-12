@@ -89,6 +89,7 @@ class_name Player extends CharacterBody3D
 @export_storage var holding_something : bool = false
 @export_storage var was_holding_something : bool = false
 
+@export_storage var submerged: bool = false
 @export_storage var noclip: bool = false
 
 #var listening_for_cheats: bool = false
@@ -474,6 +475,8 @@ func _gravity(delta: float) -> Vector3:
 		else:
 			slam_decay -= delta
 		if is_on_floor():
+			grav_vel = Vector3.ZERO
+		elif is_on_ceiling() and grav_vel.length_squared() > 0.0:
 			grav_vel = Vector3.ZERO
 		else:
 			grav_vel -= Vector3.UP * (rise_grav if Input.is_action_pressed("jump") else fall_grav) * delta

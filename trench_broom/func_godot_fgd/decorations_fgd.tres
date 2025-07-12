@@ -1,15 +1,19 @@
-[gd_resource type="Resource" script_class="FuncGodotFGDFile" load_steps=11 format=3 uid="uid://cmjt0bjjtpn1o"]
+[gd_resource type="Resource" script_class="FuncGodotFGDFile" load_steps=15 format=3 uid="uid://cmjt0bjjtpn1o"]
 
 [ext_resource type="Script" uid="uid://cvytv1hjntf8j" path="res://addons/func_godot/src/fgd/func_godot_fgd_file.gd" id="1_n62s6"]
 [ext_resource type="Resource" uid="uid://beqlpnfvi2ibp" path="res://trench_broom/func_godot_fgd/entities/point/deco/deco_pipe_point_class.tres" id="1_tep8v"]
 [ext_resource type="Resource" uid="uid://b10jlu1l1cnkd" path="res://trench_broom/func_godot_fgd/entities/point/deco/deco_pipe_bend_point_class.tres" id="2_57adi"]
+[ext_resource type="Resource" uid="uid://c6xf24u8sntsw" path="res://trench_broom/func_godot_fgd/entities/point/deco/deco_pipe_long_point_class.tres" id="2_ujupc"]
 [ext_resource type="Resource" uid="uid://ba01lj3d5iogr" path="res://trench_broom/func_godot_fgd/entities/point/deco/deco_pipe_short_point_class.tres" id="3_vhgyc"]
 [ext_resource type="Resource" uid="uid://bpxm0xufjiowu" path="res://trench_broom/func_godot_fgd/entities/point/deco/deco_pipe_tjunct_point_class.tres" id="4_vhgyc"]
+[ext_resource type="Resource" uid="uid://ruvx7bquy2cp" path="res://trench_broom/func_godot_fgd/entities/point/deco/deco_pipe_bend_short_point_class.tres" id="5_a1prg"]
 [ext_resource type="Resource" uid="uid://dokius07wk81a" path="res://trench_broom/func_godot_fgd/entities/point/deco/deco_pipe_xjunct_point_class.tres" id="5_sco6a"]
 [ext_resource type="Resource" uid="uid://ci12w72twwkfk" path="res://trench_broom/func_godot_fgd/entities/point/deco/deco_vent_box_point_class.tres" id="6_sco6a"]
 [ext_resource type="Resource" uid="uid://dk0omaj676tve" path="res://trench_broom/func_godot_fgd/entities/point/deco/deco_chair_wood.tres" id="7_ww7o6"]
 [ext_resource type="Resource" uid="uid://dd2pkx5ck2t28" path="res://trench_broom/func_godot_fgd/entities/point/deco/deco_table_wood.tres" id="8_wh3cm"]
 [ext_resource type="Resource" uid="uid://cuor2ctfp6k6r" path="res://trench_broom/func_godot_fgd/entities/point/deco/deco_rock01_point_class.tres" id="9_wh3cm"]
+[ext_resource type="Resource" uid="uid://cvclkot224c31" path="res://trench_broom/func_godot_fgd/entities/point/deco/deco_chain_long_point_class.tres" id="10_vv6xk"]
+[ext_resource type="Resource" uid="uid://cbkl5p4meteaf" path="res://trench_broom/func_godot_fgd/entities/point/deco/deco_shippingcontainer_model_point_class.tres" id="11_ec5t3"]
 
 [resource]
 script = ExtResource("1_n62s6")
@@ -17,5 +21,5 @@ export_file = false
 target_map_editor = 1
 fgd_name = "Decorations"
 base_fgd_files = Array[Resource]([])
-entity_definitions = Array[Resource]([ExtResource("1_tep8v"), ExtResource("2_57adi"), ExtResource("3_vhgyc"), ExtResource("4_vhgyc"), ExtResource("5_sco6a"), ExtResource("6_sco6a"), ExtResource("7_ww7o6"), ExtResource("8_wh3cm"), ExtResource("9_wh3cm")])
+entity_definitions = Array[Resource]([ExtResource("1_tep8v"), ExtResource("3_vhgyc"), ExtResource("2_ujupc"), ExtResource("2_57adi"), ExtResource("5_a1prg"), ExtResource("4_vhgyc"), ExtResource("5_sco6a"), ExtResource("6_sco6a"), ExtResource("7_ww7o6"), ExtResource("8_wh3cm"), ExtResource("9_wh3cm"), ExtResource("10_vv6xk"), ExtResource("11_ec5t3")])
 metadata/_custom_type_script = "uid://cvytv1hjntf8j"

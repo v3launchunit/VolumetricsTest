@@ -30,6 +30,8 @@ func update_properties() -> void:
 				roundi(func_godot_properties.get("_color").z),
 		)
 	light_energy = func_godot_properties["energy"]
+	light_volumetric_fog_energy = func_godot_properties.get("fog_energy", 1.0)
+	omni_attenuation = func_godot_properties.get("falloff", 1.0)
 	light_bake_mode = BakeMode.BAKE_STATIC
 	shadow_enabled = true
 	

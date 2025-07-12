@@ -223,7 +223,7 @@ func cmd_set_key(which: String, to: String) -> void:
 				return
 		if which.to_int() < 0 or which.to_int() > held_keys.size():
 			var s := Globals.parse_text("console", "fail.bad_range")
-			Console.print_error(s % "which")
+			Console.print_error(s % ["which", 0, 2])
 			return
 		var to_b := Globals.get_pseudo_bool(to)
 		if to_b == -1:

@@ -21,7 +21,7 @@ class_property_descriptions = {}
 auto_apply_to_matching_node_properties = false
 meta_properties = {
 "color": Color(0.8, 0.8, 0.8, 1),
-"size": AABB(-24, -24, -8, 8, 8, 8),
+"size": AABB(-24, -24, -8, 24, 24, 12),
 "studio": "\"models/deco_table_wood.glb\""
 }
 node_class = ""

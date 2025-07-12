@@ -55,8 +55,14 @@ func on_triggered(by: Node3D) -> void:
 	if count <= 0:
 		interacted.emit(by)
 		if by is Player:
-			by.hud.set_alert(Globals.parse_text("alerts", func_godot_properties.get("completion_alert", "sequence.complete")))
+			by.hud.set_alert(Globals.parse_text(
+					"alerts", 
+					func_godot_properties.get("completion_alert", "sequence.complete")
+			))
 		await get_tree().process_frame
 		queue_free()
 	elif by is Player:
-		by.hud.set_alert(Globals.parse_text("alerts", func_godot_properties.get("countdown_alert", "sequence.countdown")) % count)
+		by.hud.set_alert(Globals.parse_text(
+				"alerts", 
+				func_godot_properties.get("countdown_alert", "sequence.countdown")
+		) % count)

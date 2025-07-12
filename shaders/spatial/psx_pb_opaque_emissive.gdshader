@@ -5,22 +5,22 @@ render_mode blend_mix, depth_draw_opaque, cull_back, diffuse_burley, specular_sc
 
 uniform vec4 albedo : source_color;
 uniform sampler2D texture_albedo : source_color, filter_nearest, repeat_enable;
-uniform float point_size : hint_range(0.1, 128.0, 0.1);
+//uniform float point_size : hint_range(0.1, 128.0, 0.1) = 1.0;
 
-uniform float roughness : hint_range(0.0, 1.0);
+uniform float roughness : hint_range(0.0, 1.0) = 0.75;
 uniform sampler2D texture_metallic : hint_default_white, filter_nearest, repeat_enable;
-uniform vec4 metallic_texture_channel;
+uniform vec4 metallic_texture_channel = vec4(1.0, vec3(0.0));
 uniform sampler2D texture_roughness : hint_roughness_r, filter_nearest, repeat_enable;
 
-uniform float specular : hint_range(0.0, 1.0, 0.01);
-uniform float metallic : hint_range(0.0, 1.0, 0.01);
+uniform float specular : hint_range(0.0, 1.0, 0.01) = 0.5;
+uniform float metallic : hint_range(0.0, 1.0, 0.01) = 0.0;
 
 uniform sampler2D texture_emission : source_color, hint_default_black, filter_nearest, repeat_enable;
 uniform vec4 emission : source_color = vec4(1.0);
-uniform float emission_energy : hint_range(0.0, 100.0, 0.01);
+uniform float emission_energy : hint_range(0.0, 100.0, 0.01) = 1.0;
 
 uniform sampler2D texture_normal : hint_roughness_normal, filter_nearest, repeat_enable;
-uniform float normal_scale : hint_range(-16.0, 16.0);
+uniform float normal_scale : hint_range(-16.0, 16.0) = 1.0;
 
 uniform vec3 uv1_scale;
 uniform vec3 uv1_offset;

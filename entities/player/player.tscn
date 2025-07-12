@@ -373,3 +373,7 @@ collision_mask = 389
 
 [node name="SlamWaveSpawner" type="Marker3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
+
+[node name="GPUParticlesCollisionBox3D" type="GPUParticlesCollisionBox3D" parent="."]
+layers = 2
+size = Vector3(1, 2, 1)

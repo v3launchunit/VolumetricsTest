@@ -16,7 +16,7 @@ dest_files=["res://.godot/imported/shipping_crate_20ft.obj-d9df9c0b4e7d49562e556
 [params]
 
 generate_tangents=true
-generate_lods=true
+generate_lods=false
 generate_shadow_mesh=true
 generate_lightmap_uv2=false
 generate_lightmap_uv2_texel_size=0.2

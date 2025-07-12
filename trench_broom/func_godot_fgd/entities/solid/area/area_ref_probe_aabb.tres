@@ -27,10 +27,11 @@ script_class = ExtResource("2_ypdhf")
 classname = "area_ref_probe_solid"
 description = "a reflection probe.
 
-NOTE: due to how godot handles reflection probes, the brush's exact shape DOES NOT AFFECT the area influenced by the reflection probe. the ONLY thing that matters is the brush's axis-aligned bounding box (AABB)."
+NOTE: due to how godot handles reflection probes, the brush's exact shape DOES NOT AFFECT the area influenced by the reflection probe. the ONLY thing that matters is the brush's axis-aligned bounding box (AABB) and the value of the 'angles' property."
 func_godot_internal = false
 base_classes = Array[Resource]([ExtResource("1_crh57")])
 class_properties = {
+"angles": Vector3(0, 0, 0),
 "blend_distance": 1.0,
 "box_project": 1,
 "interior": 1,

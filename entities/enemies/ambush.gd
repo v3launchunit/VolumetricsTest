@@ -1,6 +1,6 @@
 class_name AmbushPoint3D 
 extends Marker3D
-## Instantiates a scene when the player enters the set area.
+## Instantiates a scene when activated.
 
 
 enum AmbushStyle {

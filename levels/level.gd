@@ -11,10 +11,6 @@ enum OutOfBoundsBehavior {
 
 ## identifier key for this level.
 @export var level_key: String = "e1m1"
-## name for this level.
-@export var level_name: String = "LEVEL"
-#@export var level_bounds := AABB(-1024 * Vector3.ONE, 1024 * Vector3.ONE)
-#@export var min_height : float = -1024
 ## what to do if the player falls past [member Globals.C_PLAYER_MIN_HEIGHT]. 
 @export var bounds_behavior := OutOfBoundsBehavior.WRAP
 

@@ -276,7 +276,7 @@ func on_triggered(by: Node3D) -> void:
 
 func get_tooltip() -> String:
 	return (
-			"" # inoperable and/or moving
+			"" # inoperable/moving/secret
 			if (
 					func_godot_properties.get("secret", false)
 					or not openable() 
@@ -327,7 +327,8 @@ func interact(body: Node3D) -> void:
 		interacted.emit(body)
 		open = not open
 		door_state = DoorState.OPENING_0 if open else DoorState.CLOSING_0
-		audio_player.play()
+		if audio_player != null:
+			audio_player.play()
 
 
 func toggle(_body: Node3D) -> void:

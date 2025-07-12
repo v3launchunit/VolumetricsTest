@@ -23,7 +23,7 @@ auto_apply_to_matching_node_properties = false
 meta_properties = {
 "color": Color(0.8, 0.8, 0.8, 1),
 "model": "\"models/ldeco_shrooms.glb\"",
-"size": AABB(-8, -8, -8, 8, 8, 8)
+"size": AABB(-8, -8, -4, 8, 8, 8)
 }
 node_class = ""
 name_property = ""

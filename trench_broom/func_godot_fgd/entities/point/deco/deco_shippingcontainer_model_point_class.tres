@@ -1,0 +1,33 @@
+[gd_resource type="Resource" script_class="FuncGodotFGDModelPointClass" load_steps=3 format=3 uid="uid://cbkl5p4meteaf"]
+
+[ext_resource type="PackedScene" uid="uid://dwm4ecje5avh5" path="res://objects/deco/shipping_containers/shipping_container_20ft_white.tscn" id="1_8gcry"]
+[ext_resource type="Script" uid="uid://uk7d08g8mvr2" path="res://addons/func_godot/src/fgd/func_godot_fgd_model_point_class.gd" id="1_wp02f"]
+
+[resource]
+script = ExtResource("1_wp02f")
+target_map_editor = 0
+models_sub_folder = ""
+scale_expression = ""
+generate_size_property = false
+generate_gd_ignore_file = false
+scene_file = ExtResource("1_8gcry")
+apply_rotation_on_map_build = true
+classname = "deco_shippingcontainer"
+description = "a colorable shipping container prop."
+func_godot_internal = false
+base_classes = Array[Resource]([])
+class_properties = {
+"_color": Color(1, 1, 1, 1)
+}
+class_property_descriptions = {
+"_color": "container color"
+}
+auto_apply_to_matching_node_properties = false
+meta_properties = {
+"color": Color(0.8, 0.8, 0.8, 1),
+"size": AABB(-48, -48, -20, 48, 48, 20),
+"studio": "\"models/deco_shippingcontainer.glb\""
+}
+node_class = ""
+name_property = ""
+metadata/_custom_type_script = "uid://uk7d08g8mvr2"

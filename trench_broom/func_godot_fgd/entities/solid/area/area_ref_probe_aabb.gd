@@ -11,6 +11,7 @@ extends ReflectionProbe
 		if get_child(0) as MeshInstance3D:
 			size = (get_child(0) as MeshInstance3D).mesh.get_aabb().abs().size
 			get_child(0).queue_free()
+		rotation_degrees = func_godot_properties["angles"]
 		origin_offset = func_godot_properties["origin_offset"]
 		#if func_godot_properties.get("origin") != null:
 		box_projection = func_godot_properties["box_project"] != 0

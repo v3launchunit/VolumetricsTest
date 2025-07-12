@@ -1,0 +1,57 @@
+[gd_resource type="Resource" script_class="FuncGodotFGDSolidClass" load_steps=3 format=3 uid="uid://dlehdkik2u3x5"]
+
+[ext_resource type="Script" uid="uid://bncud33hs01ck" path="res://addons/func_godot/src/fgd/func_godot_fgd_solid_class.gd" id="2_6etxb"]
+[ext_resource type="Script" uid="uid://uhewmmbtoxrv" path="res://trench_broom/func_godot_fgd/entities/solid/area/area_fog_volume.gd" id="2_ipx56"]
+
+[resource]
+script = ExtResource("2_6etxb")
+spawn_type = 2
+origin_type = 0
+build_visuals = true
+use_in_baked_light = false
+shadow_casting_setting = 1
+build_occlusion = false
+render_layers = 1
+collision_shape_type = 0
+collision_layer = 1
+collision_mask = 1
+collision_priority = 1.0
+collision_shape_margin = 0.04
+add_textures_metadata = false
+add_vertex_metadata = false
+add_face_position_metadata = false
+add_face_normal_metadata = false
+add_collision_shape_face_range_metadata = false
+script_class = ExtResource("2_ipx56")
+classname = "area_fog"
+description = "a region of volumetric fog.
+
+NOTE: due to how godot handles reflection probes, the brush's exact shape DOES NOT AFFECT the area influenced by the reflection probe. the ONLY thing that matters is the brush's axis-aligned bounding box (AABB) and the value of the 'angles' property."
+func_godot_internal = false
+base_classes = Array[Resource]([])
+class_properties = {
+"_color": Color(1, 1, 1, 1),
+"_glow": Color(0, 0, 0, 1),
+"angles": Vector3(0, 0, 0),
+"density": 0.1,
+"edge_fade": 0.1,
+"height_falloff": 0.0,
+"shape": {
+"box": 3,
+"cone": 1,
+"cylinder": 2,
+"ellipsoid": 0,
+"world": 4
+},
+"size": Vector3(20, 20, 20)
+}
+class_property_descriptions = {
+"shape": ["", 3]
+}
+auto_apply_to_matching_node_properties = false
+meta_properties = {
+"color": Color(0.8, 0.8, 0.8, 1),
+"size": AABB(-8, -8, -8, 8, 8, 8)
+}
+node_class = "FogVolume"
+name_property = ""

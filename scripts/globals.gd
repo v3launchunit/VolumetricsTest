@@ -172,7 +172,7 @@ var names := ConfigFile.new()
 var text := ConfigFile.new()
 var campaign := ConfigFile.new()
 var progression := ConfigFile.new()
-var fun := randi_range(0, 999)
+var fun := randi_range(1, 1000)
 var cheats_enabled: bool = false
 
 var mouse_captured: bool = false
@@ -223,8 +223,9 @@ func add_console_commands() -> void:
 	Console.add_command("reload_text", reload_text, [], 0, parse_text("console", "desc.reload_text"))
 	Console.add_command("open_level", cmd_map, ["level key"], 1, parse_text("console", "desc.map"), Console.CommandType.CHEAT)
 	Console.add_alias("map", "open_level")
-	Console.add_command("get_fun", func(): Console.print_line("%d" % fun), [], 0, "", Console.CommandType.HIDDEN)#, [], 0, parse_text("console", "desc.get_fun"))
+	Console.add_command("get_fun", cmd_fun, [], 0, "", Console.CommandType.HIDDEN)#, [], 0, parse_text("console", "desc.get_fun"))
 	Console.add_command("set_fun", cmd_set_fun, ["0-1000 int value"], 1, "", Console.CommandType.HIDDEN)#, parse_text("console", "desc.set_fun"))
+	Console.add_command("fun", cmd_fun, ["0-1000 int value"], 0, "", Console.CommandType.HIDDEN)
 
 
 func open_sesame() -> void:
@@ -251,6 +252,21 @@ func close_sesame() -> void:
 func reload_text() -> void:
 	var err: Error = names.load("res://names.cfg")
 	assert(not err, "could not load names.cfg (error code %s)" % err)
+
+
+func cmd_fun(arg: String = "") -> void:
+	print(arg)
+	if try_run_cheat():
+		if arg == "":
+			Console.print_line("%d" % fun)
+		elif not arg.is_valid_int() :
+			Console.print_error(Globals.parse_text("console", "fail.bad_int") % "to")
+		else:
+			var to : int = arg.to_int()
+			if not to >= 0 or not to <=1000:
+				Console.print_error(Globals.parse_text("console", "fail.bad_range") % ["to", 0, 1000])
+			else:
+				fun = to
 
 
 func cmd_set_fun(to: int) -> void:

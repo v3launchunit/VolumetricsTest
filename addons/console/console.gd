@@ -49,7 +49,13 @@ var console_history := []
 var console_history_index := 0
 var was_paused_already := false
 
-## Usage: Console.add_command("command_name", <function to call>, <number of arguments or array of argument names>, <required number of arguments>, "Help description")
+## Usage: Console.add_command(
+## "command_name", 
+## <function to call>, 
+## <number of arguments or array of argument names>, 
+## <required number of arguments>, 
+## "Help description"
+## )
 func add_command(
 		command_name : String, 
 		function : Callable, 

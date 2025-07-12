@@ -12,7 +12,9 @@ classname = "light_point"
 description = ""
 func_godot_internal = false
 base_classes = Array[Resource]([ExtResource("1_q22se")])
-class_properties = {}
+class_properties = {
+"falloff": 1.0
+}
 class_property_descriptions = {}
 auto_apply_to_matching_node_properties = false
 meta_properties = {
