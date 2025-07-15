@@ -9,7 +9,7 @@ script = ExtResource("3_wqmwj")
 scene_file = ExtResource("2_quc4p")
 apply_rotation_on_map_build = true
 classname = "enemy_gun_turret"
-description = ""
+description = "a stationary gun turret."
 func_godot_internal = false
 base_classes = Array[Resource]([ExtResource("1_fjrod")])
 class_properties = {
@@ -19,7 +19,7 @@ class_properties = {
 }
 }
 class_property_descriptions = {
-"mount_type": ["", 0]
+"mount_type": ["mount style", 0]
 }
 auto_apply_to_matching_node_properties = false
 meta_properties = {

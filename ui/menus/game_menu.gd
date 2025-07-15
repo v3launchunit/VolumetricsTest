@@ -98,7 +98,7 @@ func _on_campaign_button_pressed() -> void:
 
 func _on_save_button_pressed() -> void:
 	_save_file.current_file = "%s_%s_%s.scn" % [
-			(get_tree().current_scene as Level).level_name,
+			(get_tree().current_scene as Level).level_key,
 			Time.get_date_string_from_system(), 
 			Time.get_time_string_from_system(),
 	]
@@ -116,6 +116,7 @@ func _on_load_button_pressed() -> void:
 
 
 func _on_load_file_file_selected(path: String) -> void:
+	Console.print_line("loading save at %s" % path)
 	Globals.open_level(load(path) as PackedScene)
 
 

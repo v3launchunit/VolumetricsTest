@@ -3,7 +3,7 @@
 shader_type spatial;
 render_mode blend_mix, depth_draw_opaque, cull_back, diffuse_burley, specular_schlick_ggx;
 
-uniform vec4 albedo : source_color;
+uniform vec4 albedo : source_color = vec4(1.0);
 uniform sampler2D texture_albedo : source_color, filter_nearest, repeat_enable;
 //uniform float point_size : hint_range(0.1, 128.0, 0.1) = 1.0;
 
@@ -22,9 +22,9 @@ uniform float emission_energy : hint_range(0.0, 100.0, 0.01) = 1.0;
 uniform sampler2D texture_normal : hint_roughness_normal, filter_nearest, repeat_enable;
 uniform float normal_scale : hint_range(-16.0, 16.0) = 1.0;
 
-uniform vec3 uv1_scale;
+uniform vec3 uv1_scale = vec3(1.0);
 uniform vec3 uv1_offset;
-uniform vec3 uv2_scale;
+uniform vec3 uv2_scale = vec3(1.0);
 uniform vec3 uv2_offset;
 
 #include "res://shaders/includes/psx_inc.gdshaderinc"

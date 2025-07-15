@@ -51,7 +51,7 @@
 [ext_resource type="PackedScene" uid="uid://cdmlijgutbrlm" path="res://scenes/objects/lights/lamp_green.tscn" id="45_nytt6"]
 [ext_resource type="PackedScene" uid="uid://erys0skiq3pe" path="res://scenes/objects/lights/floodlight.tscn" id="46_ytepp"]
 [ext_resource type="PackedScene" uid="uid://bu80vkpoj8bpq" path="res://pickups/keys/keys/key_green_pickup.tscn" id="48_pvo6k"]
-[ext_resource type="PackedScene" uid="uid://joq438puropu" path="res://pickups/ammo/nail_box_pickup.tscn" id="49_0q1g3"]
+[ext_resource type="PackedScene" uid="uid://joq438puropu" path="res://pickups/ammo/nail_box/nail_box_pickup.tscn" id="49_0q1g3"]
 [ext_resource type="PackedScene" uid="uid://wdnyjfhryl0i" path="res://pickups/ammo/big_iron_bullet_pickup.tscn" id="50_vcxxf"]
 [ext_resource type="PackedScene" uid="uid://dl2s16poygxvk" path="res://scenes/objects/lights/shrooms.tscn" id="51_5exuk"]
 [ext_resource type="PackedScene" uid="uid://du780rqis8eqo" path="res://pickups/weapons/boomstick_pickup.tscn" id="51_n877n"]

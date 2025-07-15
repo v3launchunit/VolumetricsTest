@@ -86,5 +86,17 @@ text = "normal"
 horizontal_alignment = 1
 uppercase = true
 
+[node name="HFlowContainer" type="HFlowContainer" parent="."]
+layout_mode = 2
+theme = ExtResource("1_cxdvy")
+alignment = 1
+
+[node name="IntruderCheck" type="CheckButton" parent="HFlowContainer"]
+layout_mode = 2
+tooltip_text = "Lose all your weapons and ammo at the start of each level."
+theme = ExtResource("1_cxdvy")
+text = "Shotgun Start Mode"
+
 [connection signal="item_selected" from="Difficulty/DifficultyDropdown" to="." method="_on_difficulty_dropdown_item_selected"]
 [connection signal="value_changed" from="Difficulty/DifficultySlider" to="." method="_on_difficulty_slider_value_changed"]
+[connection signal="toggled" from="HFlowContainer/IntruderCheck" to="." method="_on_intruder_check_toggled"]

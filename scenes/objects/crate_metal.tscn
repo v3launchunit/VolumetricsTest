@@ -12,7 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://cxe1gjgdpac7q" path="res://pickups/health/health_pack/health_pack_pickup.tscn" id="10_udsg6"]
 [ext_resource type="PackedScene" uid="uid://b3n8ejiapfh8" path="res://pickups/ammo/large_cell_pickup.tscn" id="11_gc2ou"]
 [ext_resource type="PackedScene" uid="uid://b8i1fe0bwht3k" path="res://pickups/armor/armor_bonus_pickup.tscn" id="12_l5dvr"]
-[ext_resource type="PackedScene" uid="uid://joq438puropu" path="res://pickups/ammo/nail_box_pickup.tscn" id="13_cc7wi"]
+[ext_resource type="PackedScene" uid="uid://joq438puropu" path="res://pickups/ammo/nail_box/nail_box_pickup.tscn" id="13_cc7wi"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_17vxe"]
 

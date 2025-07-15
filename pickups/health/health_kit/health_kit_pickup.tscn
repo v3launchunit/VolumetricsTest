@@ -1,0 +1,65 @@
+[gd_scene load_steps=9 format=3 uid="uid://b7auwlqxeusas"]
+
+[ext_resource type="PackedScene" uid="uid://cxe1gjgdpac7q" path="res://pickups/health/health_pack/health_pack_pickup.tscn" id="1_ai2d7"]
+[ext_resource type="Texture2D" uid="uid://hk0k2coukjwc" path="res://effects/halos/halo_tex.tres" id="2_rrbrt"]
+[ext_resource type="Shader" uid="uid://cmq0chj3pa7yo" path="res://shaders/spatial/psx_pb_opaque_emissive.gdshader" id="3_2tmem"]
+[ext_resource type="Texture2D" uid="uid://iq63cfg80od5" path="res://pickups/health/health_kit/health_kit.png" id="4_wrv48"]
+[ext_resource type="Texture2D" uid="uid://c7b26rluyrpdo" path="res://pickups/health/health_kit/health_kit_emissions.png" id="5_2mv2v"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pgdh2"]
+resource_local_to_scene = true
+render_priority = 100
+transparency = 1
+blend_mode = 1
+depth_draw_mode = 2
+no_depth_test = true
+shading_mode = 0
+disable_ambient_light = true
+disable_fog = true
+vertex_color_use_as_albedo = true
+albedo_texture = ExtResource("2_rrbrt")
+texture_filter = 1
+billboard_mode = 1
+fixed_size = true
+point_size = 64.0
+proximity_fade_distance = 3.0
+distance_fade_min_distance = 2.5
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_pgdh2"]
+render_priority = 0
+shader = ExtResource("3_2tmem")
+shader_parameter/albedo = Color(1, 1, 1, 1)
+shader_parameter/texture_albedo = ExtResource("4_wrv48")
+shader_parameter/roughness = 0.75
+shader_parameter/metallic_texture_channel = Vector4(1, 0, 0, 0)
+shader_parameter/specular = 0.5
+shader_parameter/metallic = 0.0
+shader_parameter/texture_emission = ExtResource("5_2mv2v")
+shader_parameter/emission = Color(0, 0, 0, 1)
+shader_parameter/emission_energy = 1.0
+shader_parameter/normal_scale = 1.0
+shader_parameter/uv1_scale = Vector3(1, 1, 1)
+shader_parameter/uv1_offset = Vector3(0, 0, 0)
+shader_parameter/uv2_scale = Vector3(1, 1, 1)
+shader_parameter/uv2_offset = Vector3(0, 0, 0)
+
+[sub_resource type="BoxMesh" id="BoxMesh_2tmem"]
+size = Vector3(0.25, 0.25, 0.25)
+
+[node name="HealthKitPickup" instance=ExtResource("1_ai2d7")]
+heal_amount = 10.0
+pickup_text = "+10% health"
+
+[node name="Area3D" parent="." index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+
+[node name="LensFlare" parent="Area3D" index="1"]
+material_override = SubResource("StandardMaterial3D_pgdh2")
+
+[node name="MeshInstance3D" parent="Area3D" index="2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+material_override = SubResource("ShaderMaterial_pgdh2")
+mesh = SubResource("BoxMesh_2tmem")
+
+[node name="OmniLight3D" parent="Area3D" index="3"]
+visible = false

@@ -1,0 +1,40 @@
+[gd_resource type="Resource" script_class="FuncGodotFGDFile" load_steps=30 format=3 uid="uid://7j8wkqgnad0e"]
+
+[ext_resource type="Script" uid="uid://cvytv1hjntf8j" path="res://addons/func_godot/src/fgd/func_godot_fgd_file.gd" id="1_p7px0"]
+[ext_resource type="Resource" uid="uid://bjcxa8jpi113j" path="res://trench_broom/func_godot_fgd/entities/point/pickup/ammo/ammo_akm_mag_pickup_point_class.tres" id="1_qw7sa"]
+[ext_resource type="Resource" uid="uid://c3dup5sup8gi3" path="res://trench_broom/func_godot_fgd/entities/point/pickup/ammo/ammo_big_cell_pickup_point_class.tres" id="2_rqt4c"]
+[ext_resource type="Resource" uid="uid://paamtx4yvqhf" path="res://trench_broom/func_godot_fgd/entities/point/pickup/ammo/ammo_big_iron_bullet_pickup_point_class.tres" id="3_68wnx"]
+[ext_resource type="Resource" uid="uid://byicnkcqylytq" path="res://trench_broom/func_godot_fgd/entities/point/pickup/ammo/ammo_grenade_pickup_point_class.tres" id="4_ywff8"]
+[ext_resource type="Resource" uid="uid://dlj3bp6oniqiy" path="res://trench_broom/func_godot_fgd/entities/point/pickup/ammo/ammo_nail_box_pickup_point_class.tres" id="5_nppt6"]
+[ext_resource type="Resource" uid="uid://d1g35e1i86odr" path="res://trench_broom/func_godot_fgd/entities/point/pickup/ammo/ammo_nail_pickup_point_class.tres" id="6_oervw"]
+[ext_resource type="Resource" uid="uid://bnopdsj8vffva" path="res://trench_broom/func_godot_fgd/entities/point/pickup/ammo/ammo_shell_box_pickup_point_class.tres" id="7_w5py7"]
+[ext_resource type="Resource" uid="uid://dn7pnnuph08bb" path="res://trench_broom/func_godot_fgd/entities/point/pickup/ammo/ammo_shell_pickup_point_class.tres" id="8_lkloa"]
+[ext_resource type="Resource" uid="uid://duio3qcmmscw4" path="res://trench_broom/func_godot_fgd/entities/point/pickup/ammo/ammo_small_cell_pickup_point_class.tres" id="9_ebu0c"]
+[ext_resource type="Resource" uid="uid://bscktf7qb8td1" path="res://trench_broom/func_godot_fgd/entities/point/pickup/health/armor_bonus_pickup_point_class.tres" id="10_eaq51"]
+[ext_resource type="Resource" uid="uid://c3fiq7cbst5ni" path="res://trench_broom/func_godot_fgd/entities/point/pickup/health/health_bonus_pickup_point_class.tres" id="11_d6bwc"]
+[ext_resource type="Resource" uid="uid://cmc28fyumokrl" path="res://trench_broom/func_godot_fgd/entities/point/pickup/health/health_kit_pickup_point_class.tres" id="12_f6wta"]
+[ext_resource type="Resource" uid="uid://bk1j0j6n6v4vn" path="res://trench_broom/func_godot_fgd/entities/point/pickup/health/health_pack_pickup_point_class.tres" id="13_h0uye"]
+[ext_resource type="Resource" uid="uid://dxkvr1lvvmy5s" path="res://trench_broom/func_godot_fgd/entities/point/pickup/keys/keycard_blue_point_class.tres" id="14_8bgpl"]
+[ext_resource type="Resource" uid="uid://dabmdbu5covaa" path="res://trench_broom/func_godot_fgd/entities/point/pickup/keys/keycard_green_point_class.tres" id="15_g1gqn"]
+[ext_resource type="Resource" uid="uid://gt44vvxujffe" path="res://trench_broom/func_godot_fgd/entities/point/pickup/keys/keycard_red_point_class.tres" id="16_l6iy6"]
+[ext_resource type="Resource" uid="uid://d3pkeo7awx12u" path="res://trench_broom/func_godot_fgd/entities/point/pickup/keys/key_blue_point_class.tres" id="17_o4lif"]
+[ext_resource type="Resource" uid="uid://b7qte87xbpd2" path="res://trench_broom/func_godot_fgd/entities/point/pickup/keys/key_green_point_class.tres" id="18_gdf7w"]
+[ext_resource type="Resource" uid="uid://bcigpx1t0dcfb" path="res://trench_broom/func_godot_fgd/entities/point/pickup/keys/key_red_point_class.tres" id="19_k8oq6"]
+[ext_resource type="Resource" uid="uid://iu46nk26p2jq" path="res://trench_broom/func_godot_fgd/entities/point/pickup/weapons/weapon_akm_point_class.tres" id="20_barnp"]
+[ext_resource type="Resource" uid="uid://drw0rypu1toyb" path="res://trench_broom/func_godot_fgd/entities/point/pickup/weapons/weapon_big_iron_point_class.tres" id="21_ttkq4"]
+[ext_resource type="Resource" uid="uid://bxtlsy65blbok" path="res://trench_broom/func_godot_fgd/entities/point/pickup/weapons/weapon_boomstick_point_class.tres" id="22_kx6wy"]
+[ext_resource type="Resource" uid="uid://04b1krdtyiso" path="res://trench_broom/func_godot_fgd/entities/point/pickup/weapons/weapon_crossbow_point_class.tres" id="23_5foy0"]
+[ext_resource type="Resource" uid="uid://bwn2nwoywhp1x" path="res://trench_broom/func_godot_fgd/entities/point/pickup/weapons/weapon_hunting_rifle_point_class.tres" id="24_q1pgb"]
+[ext_resource type="Resource" uid="uid://c80kocsf2po1b" path="res://trench_broom/func_godot_fgd/entities/point/pickup/weapons/weapon_mortar_point_class.tres" id="25_am5u0"]
+[ext_resource type="Resource" uid="uid://hdugvhvs83bp" path="res://trench_broom/func_godot_fgd/entities/point/pickup/weapons/weapon_nailgun_point_class.tres" id="26_jreg1"]
+[ext_resource type="Resource" uid="uid://cr2g0i0ttg2fy" path="res://trench_broom/func_godot_fgd/entities/point/pickup/weapons/weapon_plasma_cannon_point_class.tres" id="27_g4hv5"]
+[ext_resource type="Resource" uid="uid://si7alhme2ix7" path="res://trench_broom/func_godot_fgd/entities/point/pickup/weapons/weapon_rpg_point_class.tres" id="28_awy7x"]
+
+[resource]
+script = ExtResource("1_p7px0")
+export_file = false
+target_map_editor = 1
+fgd_name = "Pickups"
+base_fgd_files = Array[Resource]([])
+entity_definitions = Array[Resource]([ExtResource("1_qw7sa"), ExtResource("2_rqt4c"), ExtResource("3_68wnx"), ExtResource("4_ywff8"), ExtResource("5_nppt6"), ExtResource("6_oervw"), ExtResource("7_w5py7"), ExtResource("8_lkloa"), ExtResource("9_ebu0c"), ExtResource("10_eaq51"), ExtResource("11_d6bwc"), ExtResource("12_f6wta"), ExtResource("13_h0uye"), ExtResource("14_8bgpl"), ExtResource("15_g1gqn"), ExtResource("16_l6iy6"), ExtResource("17_o4lif"), ExtResource("18_gdf7w"), ExtResource("19_k8oq6"), ExtResource("20_barnp"), ExtResource("21_ttkq4"), ExtResource("22_kx6wy"), ExtResource("23_5foy0"), ExtResource("24_q1pgb"), ExtResource("25_am5u0"), ExtResource("26_jreg1"), ExtResource("27_g4hv5"), ExtResource("28_awy7x")])
+metadata/_custom_type_script = "uid://cvytv1hjntf8j"

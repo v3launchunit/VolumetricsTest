@@ -24,3 +24,7 @@ func _on_difficulty_slider_value_changed(value: float) -> void:
 
 func _on_difficulty_dropdown_item_selected(index: int) -> void:
 	Globals.s_difficulty = index as Globals.Difficulty
+
+
+func _on_intruder_check_toggled(toggled_on: bool) -> void:
+	Globals.s_intruder = toggled_on

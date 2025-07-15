@@ -8,16 +8,18 @@ const ZOOM_SPEED: float = 10.0
 @export var current_index: Array[int] = [0, 0, 0, 0, 0, 0, 0]
 #@export var current_weapon: int = 0
 
-@export var ammo_types: Dictionary = {
+## a dictionary of the maximum capacity for every type of ammunition.
+@export var ammo_types: Dictionary[String, int] = {
 	"shells": 50,
 	"grenades": 25,
 }
-@export var ammo_amounts: Dictionary = {
+## a dictionary of the player's actual supply of each ammo type.
+@export var ammo_amounts: Dictionary[String, int] = {
 	"shells": 15,
 	"grenades": 3,
 }
 
-@export var anti_clip_speed: float = 7.5
+#@export var anti_clip_speed: float = 7.5
 
 #@export var anti_clip_collisions: int = 0
 #@export var current_weapon_pos: float
@@ -34,7 +36,7 @@ const ZOOM_SPEED: float = 10.0
 
 var fullbright_active : bool = false
 
-@onready var anti_clip_box := $ViewmodelAntiClip as Area3D
+#@onready var anti_clip_box := $ViewmodelAntiClip as Area3D
 @onready var rummage_stream_player := $RummageStreamPlayer as AudioStreamPlayer
 
 signal switched_weapons(category: int, index: int, with_safety_catch: bool)

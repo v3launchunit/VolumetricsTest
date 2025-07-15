@@ -111,6 +111,7 @@ lock_rotation = true
 script = ExtResource("1_5ph4o")
 ammo_type = "big_iron_bullets"
 event_string = "pickup.ammo.bigiron"
+flash_color = Color(1, 1, 0, 1)
 pickup_sound = ExtResource("2_xyc48")
 pickup_text = "+1 Big Iron rounds"
 

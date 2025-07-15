@@ -168,7 +168,7 @@ pickup_text = "+20% health"
 shape = SubResource("CylinderShape3D_uc2sx")
 
 [node name="Area3D" type="Area3D" parent="."]
-transform = Transform3D(0.813742, 0, 0.581226, 0, 1, 0, -0.581226, 0, 0.813742, 0, 0.0172328, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0172328, 0)
 collision_mask = 2
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
@@ -199,5 +199,5 @@ shadow_enabled = true
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 root_node = NodePath("../Area3D")
 libraries = {
-"": SubResource("AnimationLibrary_4pudi")
+&"": SubResource("AnimationLibrary_4pudi")
 }

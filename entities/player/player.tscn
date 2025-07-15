@@ -282,7 +282,7 @@ far = 1000.0
 script = ExtResource("30_aegsx")
 weapons = Array[Array]([[NodePath("WeaponsHolder/Axe")], [NodePath("WeaponsHolder/PumpShotgun")], [], [], [], [], []])
 current_category = 1
-ammo_types = {
+ammo_types = Dictionary[String, int]({
 "akm_bullets": 200,
 "big_iron_bullets": 15,
 "cells": 100,
@@ -292,8 +292,8 @@ ammo_types = {
 "rockets": 10,
 "sawblades": 15,
 "shells": 50
-}
-ammo_amounts = {
+})
+ammo_amounts = Dictionary[String, int]({
 "akm_bullets": 0,
 "big_iron_bullets": 0,
 "cells": 0,
@@ -303,7 +303,7 @@ ammo_amounts = {
 "rockets": 0,
 "sawblades": 0,
 "shells": 15
-}
+})
 
 [node name="RummageStreamPlayer" type="AudioStreamPlayer" parent="Control/SubViewportContainer/SubViewport/PlayerSync/PlayerCam"]
 stream = SubResource("AudioStreamRandomizer_d4n5i")

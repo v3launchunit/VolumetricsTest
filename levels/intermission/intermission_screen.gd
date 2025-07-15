@@ -11,10 +11,15 @@ enum TallyPhase {
 
 
 var _time: float = 0.0
-var _foes: int = 0 ## total number of tallied foes in the level.
+## the total number of tallied foes in the level.
+var _foes: int = 0 
+## the number of tallied foes killed by the player in the level.
 var _kills: int = 0
-var _secrets: int = 0 ## total number of secrets in the level.
+## the total number of secrets in the level.
+var _secrets: int = 0 
+## the number of secrets that the player managed to find within the level.
 var _found_secrets: int = 0
+## the level to load after the intermission.
 var _next_level: String
 
 var melt_timer : float = 0.0

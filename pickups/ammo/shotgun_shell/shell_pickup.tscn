@@ -130,6 +130,7 @@ lock_rotation = true
 script = ExtResource("1_c0jw1")
 ammo_type = "shells"
 event_string = "pickup.ammo.shells"
+flash_color = Color(1, 1, 0, 1)
 pickup_sound = ExtResource("2_m87dd")
 pickup_text = "+1 shotgun shells"
 
@@ -157,5 +158,5 @@ mesh = SubResource("CylinderMesh_t85r6")
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 root_node = NodePath("../Area3D")
 libraries = {
-"": SubResource("AnimationLibrary_4pudi")
+&"": SubResource("AnimationLibrary_4pudi")
 }
