@@ -1,22 +1,19 @@
-[gd_scene load_steps=329 format=4 uid="uid://c73ftt2ccark1"]
+[gd_scene load_steps=462 format=4 uid="uid://c73ftt2ccark1"]
 
-[ext_resource type="Script" path="res://levels/level.gd" id="1_ic6nw"]
-[ext_resource type="Script" path="res://addons/qodot/src/nodes/qodot_map.gd" id="1_mal5h"]
+[ext_resource type="Script" uid="uid://bmu1uqqe8qsqm" path="res://levels/level.gd" id="1_ic6nw"]
 [ext_resource type="ArrayOccluder3D" uid="uid://boo2xih3jyhmt" path="res://levels/campaign/episode_1/e1m3_v2/e1m3_v2.occ" id="1_vtv2y"]
-[ext_resource type="Resource" path="res://addons/qodot/game_definitions/fgd/qodot_fgd.tres" id="2_byp1m"]
 [ext_resource type="CompressedTexture3D" uid="uid://b461pbyhcxcu6" path="res://levels/campaign/episode_1/e1m3_v2/e1m3_v2.GPUParticlesCollisionSDF3D_data.exr" id="2_dhvfv"]
 [ext_resource type="Material" uid="uid://boykh807if2ua" path="res://trench_broom/textures/pathways/street.tres" id="3_ys71p"]
 [ext_resource type="Material" uid="uid://qt3bjecsm0qb" path="res://trench_broom/textures/shutter_door.tres" id="6_45dyc"]
-[ext_resource type="Material" uid="uid://bdhdwkh72dfij" path="res://materials/terrain/trench_broom_std/bricks.tres" id="8_cojf1"]
+[ext_resource type="Material" path="res://materials/terrain/trench_broom_std/bricks.tres" id="8_cojf1"]
 [ext_resource type="Material" uid="uid://dqemvrb4pcd2g" path="res://trench_broom/textures/structural/concrete.tres" id="8_mgsgh"]
 [ext_resource type="PackedScene" uid="uid://do61x5km3wthk" path="res://entities/player/player.tscn" id="10_mxcux"]
-[ext_resource type="Script" path="res://addons/qodot/src/nodes/qodot_entity.gd" id="11_d6faf"]
-[ext_resource type="Material" uid="uid://c4hv23ws8v5oc" path="res://materials/terrain/trench_broom_std/bricks_brown.tres" id="12_r3gkt"]
+[ext_resource type="Material" path="res://materials/terrain/trench_broom_std/bricks_brown.tres" id="12_r3gkt"]
 [ext_resource type="Material" uid="uid://dav7s60uu67ta" path="res://trench_broom/textures/structural/concrete_smooth.tres" id="13_2mwoh"]
-[ext_resource type="Material" uid="uid://t1hv3tspvh88" path="res://trench_broom/textures/furnishings/planks.tres" id="13_6j8gf"]
+[ext_resource type="Material" uid="uid://t1hv3tspvh88" path="res://trench_broom/textures/furnishings/planksss.tres" id="13_6j8gf"]
 [ext_resource type="Texture2D" uid="uid://cu58hb7h0r68v" path="res://effects/look_up_tables/1d/1d_lut_16_color.png" id="14_bs7xi"]
 [ext_resource type="Texture2D" uid="uid://dybaimi1b3b85" path="res://effects/glow/lens_dirt/lens_dirt_0.png" id="15_3bfcm"]
-[ext_resource type="Script" path="res://scripts/effects/env_settings_hook.gd" id="16_7nrbe"]
+[ext_resource type="Script" uid="uid://bhkks8bsvt4l2" path="res://scripts/effects/env_settings_hook.gd" id="16_7nrbe"]
 [ext_resource type="Material" uid="uid://j3w61nhxr063" path="res://trench_broom/textures/structural/metal.tres" id="19_8ects"]
 [ext_resource type="Material" uid="uid://do2cbn6keg5jn" path="res://trench_broom/textures/structural/glass.tres" id="20_1t2aw"]
 [ext_resource type="Material" uid="uid://dmsb7i4alwx1b" path="res://trench_broom/textures/structural/concrete_cracked.tres" id="21_0qbmi"]
@@ -33,6 +30,12 @@ vertices = PackedVector3Array(-47.5, 0, -50.5, -47.25, 0, -64.5, -50.5, 0, -64.5
 polygons = [PackedInt32Array(3, 2, 0), PackedInt32Array(0, 2, 1), PackedInt32Array(5, 4, 6), PackedInt32Array(6, 4, 9), PackedInt32Array(6, 9, 8), PackedInt32Array(6, 8, 7), PackedInt32Array(12, 11, 10), PackedInt32Array(14, 13, 15), PackedInt32Array(15, 13, 16), PackedInt32Array(20, 19, 21), PackedInt32Array(21, 19, 27), PackedInt32Array(21, 27, 26), PackedInt32Array(21, 26, 22), PackedInt32Array(22, 26, 25), PackedInt32Array(22, 25, 23), PackedInt32Array(23, 25, 24), PackedInt32Array(24, 25, 17), PackedInt32Array(17, 25, 18), PackedInt32Array(31, 42, 32), PackedInt32Array(32, 41, 33), PackedInt32Array(33, 41, 34), PackedInt32Array(34, 41, 35), PackedInt32Array(35, 37, 36), PackedInt32Array(36, 37, 28), PackedInt32Array(28, 30, 29), PackedInt32Array(30, 28, 37), PackedInt32Array(37, 35, 38), PackedInt32Array(38, 45, 39), PackedInt32Array(39, 46, 40), PackedInt32Array(40, 46, 31), PackedInt32Array(42, 41, 32), PackedInt32Array(31, 44, 42), PackedInt32Array(41, 43, 35), PackedInt32Array(35, 43, 38), PackedInt32Array(45, 46, 39), PackedInt32Array(38, 43, 45), PackedInt32Array(46, 44, 31), PackedInt32Array(42, 43, 41), PackedInt32Array(44, 43, 42), PackedInt32Array(45, 44, 46), PackedInt32Array(43, 44, 45), PackedInt32Array(48, 47, 49), PackedInt32Array(49, 47, 51), PackedInt32Array(49, 51, 50), PackedInt32Array(54, 53, 52), PackedInt32Array(56, 55, 57), PackedInt32Array(57, 55, 58), PackedInt32Array(60, 59, 61), PackedInt32Array(61, 59, 63), PackedInt32Array(61, 63, 62), PackedInt32Array(66, 65, 64), PackedInt32Array(68, 67, 69), PackedInt32Array(69, 67, 71), PackedInt32Array(69, 71, 70), PackedInt32Array(73, 72, 74), PackedInt32Array(74, 72, 75), PackedInt32Array(75, 72, 76), PackedInt32Array(78, 77, 79), PackedInt32Array(79, 77, 80), PackedInt32Array(80, 77, 81), PackedInt32Array(81, 77, 82), PackedInt32Array(84, 83, 85), PackedInt32Array(85, 83, 86), PackedInt32Array(88, 87, 89), PackedInt32Array(89, 87, 90), PackedInt32Array(93, 92, 91), PackedInt32Array(95, 94, 96), PackedInt32Array(96, 94, 97), PackedInt32Array(102, 101, 98), PackedInt32Array(98, 101, 100), PackedInt32Array(98, 100, 99), PackedInt32Array(104, 103, 105), PackedInt32Array(105, 103, 106), PackedInt32Array(108, 107, 109), PackedInt32Array(109, 107, 110), PackedInt32Array(113, 112, 111), PackedInt32Array(114, 119, 115), PackedInt32Array(115, 119, 118), PackedInt32Array(115, 118, 116), PackedInt32Array(116, 118, 117), PackedInt32Array(120, 123, 121), PackedInt32Array(121, 123, 122), PackedInt32Array(128, 127, 130), PackedInt32Array(130, 127, 129), PackedInt32Array(129, 127, 124), PackedInt32Array(124, 127, 126), PackedInt32Array(124, 126, 125), PackedInt32Array(133, 132, 131), PackedInt32Array(136, 135, 134), PackedInt32Array(140, 139, 137), PackedInt32Array(137, 139, 138), PackedInt32Array(143, 142, 141), PackedInt32Array(145, 144, 146), PackedInt32Array(146, 144, 147), PackedInt32Array(150, 149, 148), PackedInt32Array(153, 152, 154), PackedInt32Array(154, 152, 151), PackedInt32Array(154, 151, 155), PackedInt32Array(155, 151, 156), PackedInt32Array(157, 160, 158), PackedInt32Array(158, 160, 159), PackedInt32Array(163, 162, 161), PackedInt32Array(165, 164, 166), PackedInt32Array(166, 164, 167), PackedInt32Array(171, 170, 172), PackedInt32Array(172, 170, 169), PackedInt32Array(172, 169, 168), PackedInt32Array(176, 175, 173), PackedInt32Array(173, 175, 174), PackedInt32Array(179, 178, 177), PackedInt32Array(183, 182, 180), PackedInt32Array(180, 182, 181), PackedInt32Array(185, 184, 186), PackedInt32Array(186, 184, 187), PackedInt32Array(189, 188, 190), PackedInt32Array(190, 188, 191), PackedInt32Array(193, 192, 194), PackedInt32Array(194, 192, 195), PackedInt32Array(197, 196, 198), PackedInt32Array(198, 196, 199), PackedInt32Array(201, 200, 202), PackedInt32Array(202, 200, 203), PackedInt32Array(205, 204, 206), PackedInt32Array(206, 204, 207), PackedInt32Array(211, 210, 208), PackedInt32Array(208, 210, 209), PackedInt32Array(213, 212, 214), PackedInt32Array(214, 212, 216), PackedInt32Array(214, 216, 215), PackedInt32Array(218, 217, 219), PackedInt32Array(219, 217, 220), PackedInt32Array(222, 221, 223), PackedInt32Array(223, 221, 224), PackedInt32Array(226, 225, 227), PackedInt32Array(227, 225, 229), PackedInt32Array(227, 229, 228), PackedInt32Array(231, 230, 232), PackedInt32Array(232, 230, 233), PackedInt32Array(235, 234, 236), PackedInt32Array(236, 234, 237), PackedInt32Array(239, 238, 240), PackedInt32Array(240, 238, 241), PackedInt32Array(243, 242, 244), PackedInt32Array(244, 242, 245), PackedInt32Array(247, 246, 248), PackedInt32Array(248, 246, 249), PackedInt32Array(251, 250, 252), PackedInt32Array(252, 250, 253), PackedInt32Array(255, 254, 256), PackedInt32Array(256, 254, 257), PackedInt32Array(258, 261, 262), PackedInt32Array(262, 261, 264), PackedInt32Array(262, 264, 260), PackedInt32Array(262, 260, 263), PackedInt32Array(263, 260, 259), PackedInt32Array(267, 266, 268), PackedInt32Array(268, 266, 265), PackedInt32Array(268, 265, 269), PackedInt32Array(272, 271, 270), PackedInt32Array(275, 274, 276), PackedInt32Array(276, 274, 273), PackedInt32Array(276, 273, 277), PackedInt32Array(279, 278, 280), PackedInt32Array(280, 278, 281), PackedInt32Array(283, 282, 284), PackedInt32Array(284, 282, 285), PackedInt32Array(287, 286, 288), PackedInt32Array(288, 286, 290), PackedInt32Array(288, 290, 289), PackedInt32Array(293, 292, 294), PackedInt32Array(294, 292, 291), PackedInt32Array(299, 298, 300), PackedInt32Array(300, 298, 297), PackedInt32Array(300, 297, 295), PackedInt32Array(295, 297, 296), PackedInt32Array(302, 301, 303), PackedInt32Array(303, 301, 304), PackedInt32Array(309, 308, 305), PackedInt32Array(305, 308, 307), PackedInt32Array(305, 307, 306), PackedInt32Array(311, 314, 312), PackedInt32Array(312, 314, 313), PackedInt32Array(313, 314, 310), PackedInt32Array(319, 318, 315), PackedInt32Array(315, 318, 317), PackedInt32Array(315, 317, 316), PackedInt32Array(322, 321, 323), PackedInt32Array(323, 321, 320), PackedInt32Array(326, 325, 324), PackedInt32Array(328, 327, 329), PackedInt32Array(329, 327, 330), PackedInt32Array(332, 331, 333), PackedInt32Array(333, 331, 334), PackedInt32Array(339, 338, 340), PackedInt32Array(340, 338, 337), PackedInt32Array(340, 337, 335), PackedInt32Array(335, 337, 336), PackedInt32Array(342, 341, 343), PackedInt32Array(343, 341, 344), PackedInt32Array(346, 345, 347), PackedInt32Array(347, 345, 348), PackedInt32Array(350, 349, 351), PackedInt32Array(351, 349, 352), PackedInt32Array(354, 353, 355), PackedInt32Array(355, 353, 356), PackedInt32Array(358, 357, 359), PackedInt32Array(359, 357, 360), PackedInt32Array(362, 361, 363), PackedInt32Array(363, 361, 364), PackedInt32Array(366, 365, 367), PackedInt32Array(367, 365, 368), PackedInt32Array(370, 369, 371), PackedInt32Array(371, 369, 372), PackedInt32Array(374, 373, 375), PackedInt32Array(375, 373, 376), PackedInt32Array(379, 378, 380), PackedInt32Array(380, 378, 377), PackedInt32Array(380, 377, 381), PackedInt32Array(383, 382, 384), PackedInt32Array(384, 382, 385), PackedInt32Array(387, 386, 388), PackedInt32Array(388, 386, 389), PackedInt32Array(389, 386, 390), PackedInt32Array(393, 392, 391), PackedInt32Array(397, 396, 394), PackedInt32Array(394, 396, 395), PackedInt32Array(399, 398, 400), PackedInt32Array(400, 398, 401), PackedInt32Array(402, 404, 403), PackedInt32Array(406, 405, 407), PackedInt32Array(407, 405, 408), PackedInt32Array(410, 409, 411), PackedInt32Array(411, 409, 412), PackedInt32Array(414, 413, 415), PackedInt32Array(415, 413, 416), PackedInt32Array(418, 417, 419), PackedInt32Array(419, 417, 420), PackedInt32Array(422, 421, 423), PackedInt32Array(423, 421, 424), PackedInt32Array(426, 425, 427), PackedInt32Array(427, 425, 428), PackedInt32Array(430, 429, 431), PackedInt32Array(431, 429, 432), PackedInt32Array(434, 433, 435), PackedInt32Array(435, 433, 436), PackedInt32Array(438, 437, 439), PackedInt32Array(439, 437, 440), PackedInt32Array(443, 442, 441), PackedInt32Array(444, 447, 448), PackedInt32Array(448, 447, 445), PackedInt32Array(445, 447, 446), PackedInt32Array(460, 453, 452), PackedInt32Array(453, 460, 454), PackedInt32Array(454, 459, 455), PackedInt32Array(455, 461, 456), PackedInt32Array(456, 462, 449), PackedInt32Array(449, 462, 457), PackedInt32Array(457, 462, 450), PackedInt32Array(450, 458, 451), PackedInt32Array(458, 461, 459), PackedInt32Array(459, 454, 460), PackedInt32Array(459, 461, 455), PackedInt32Array(461, 462, 456), PackedInt32Array(462, 458, 450), PackedInt32Array(458, 462, 461), PackedInt32Array(474, 476, 466), PackedInt32Array(466, 476, 463), PackedInt32Array(463, 476, 467), PackedInt32Array(467, 475, 468), PackedInt32Array(468, 475, 469), PackedInt32Array(469, 471, 470), PackedInt32Array(470, 465, 464), PackedInt32Array(465, 470, 471), PackedInt32Array(471, 469, 472), PackedInt32Array(472, 475, 473), PackedInt32Array(473, 476, 474), PackedInt32Array(476, 475, 467), PackedInt32Array(475, 472, 469), PackedInt32Array(475, 476, 473), PackedInt32Array(478, 477, 479), PackedInt32Array(479, 477, 480), PackedInt32Array(484, 483, 481), PackedInt32Array(481, 483, 482), PackedInt32Array(488, 487, 485), PackedInt32Array(485, 487, 486), PackedInt32Array(491, 499, 492), PackedInt32Array(492, 499, 498), PackedInt32Array(492, 498, 493), PackedInt32Array(493, 498, 497), PackedInt32Array(493, 497, 494), PackedInt32Array(494, 497, 496), PackedInt32Array(494, 496, 495), PackedInt32Array(495, 496, 490), PackedInt32Array(495, 490, 489), PackedInt32Array(515, 528, 505), PackedInt32Array(505, 527, 506), PackedInt32Array(506, 527, 500), PackedInt32Array(500, 527, 507), PackedInt32Array(507, 522, 508), PackedInt32Array(508, 524, 509), PackedInt32Array(509, 517, 510), PackedInt32Array(510, 502, 501), PackedInt32Array(502, 519, 511), PackedInt32Array(511, 525, 512), PackedInt32Array(512, 513, 503), PackedInt32Array(503, 513, 504), PackedInt32Array(513, 512, 514), PackedInt32Array(514, 520, 515), PackedInt32Array(528, 527, 505), PackedInt32Array(515, 516, 528), PackedInt32Array(527, 521, 507), PackedInt32Array(522, 524, 508), PackedInt32Array(507, 521, 522), PackedInt32Array(524, 518, 509), PackedInt32Array(517, 502, 510), PackedInt32Array(509, 518, 517), PackedInt32Array(519, 525, 511), PackedInt32Array(502, 517, 519), PackedInt32Array(525, 524, 512), PackedInt32Array(512, 524, 514), PackedInt32Array(520, 516, 515), PackedInt32Array(514, 524, 520), PackedInt32Array(528, 516, 527), PackedInt32Array(527, 516, 521), PackedInt32Array(522, 526, 524), PackedInt32Array(521, 523, 522), PackedInt32Array(524, 525, 518), PackedInt32Array(518, 519, 517), PackedInt32Array(519, 518, 525), PackedInt32Array(520, 523, 516), PackedInt32Array(524, 526, 520), PackedInt32Array(516, 523, 521), PackedInt32Array(522, 523, 526), PackedInt32Array(520, 526, 523), PackedInt32Array(531, 530, 529), PackedInt32Array(534, 533, 532), PackedInt32Array(538, 537, 545), PackedInt32Array(545, 537, 546), PackedInt32Array(546, 537, 536), PackedInt32Array(546, 536, 535), PackedInt32Array(546, 535, 544), PackedInt32Array(546, 544, 543), PackedInt32Array(546, 543, 547), PackedInt32Array(547, 543, 542), PackedInt32Array(547, 542, 548), PackedInt32Array(548, 542, 541), PackedInt32Array(548, 541, 540), PackedInt32Array(548, 540, 539), PackedInt32Array(549, 556, 550), PackedInt32Array(550, 556, 555), PackedInt32Array(550, 555, 557), PackedInt32Array(557, 555, 558), PackedInt32Array(558, 555, 554), PackedInt32Array(558, 554, 559), PackedInt32Array(559, 554, 553), PackedInt32Array(559, 553, 551), PackedInt32Array(551, 553, 552), PackedInt32Array(561, 560, 562), PackedInt32Array(562, 560, 563), PackedInt32Array(565, 564, 566), PackedInt32Array(566, 564, 567), PackedInt32Array(567, 564, 568), PackedInt32Array(572, 571, 569), PackedInt32Array(569, 571, 570), PackedInt32Array(575, 584, 576), PackedInt32Array(576, 584, 577), PackedInt32Array(577, 585, 578), PackedInt32Array(578, 585, 579), PackedInt32Array(579, 580, 573), PackedInt32Array(573, 580, 574), PackedInt32Array(580, 579, 581), PackedInt32Array(581, 585, 582), PackedInt32Array(582, 585, 583), PackedInt32Array(583, 584, 575), PackedInt32Array(584, 585, 577), PackedInt32Array(585, 581, 579), PackedInt32Array(585, 584, 583), PackedInt32Array(586, 589, 587), PackedInt32Array(587, 589, 588), PackedInt32Array(590, 593, 591), PackedInt32Array(591, 593, 592), PackedInt32Array(595, 594, 596), PackedInt32Array(596, 594, 597), PackedInt32Array(600, 599, 598), PackedInt32Array(603, 602, 601), PackedInt32Array(606, 605, 604), PackedInt32Array(609, 608, 607), PackedInt32Array(612, 611, 610), PackedInt32Array(614, 613, 615), PackedInt32Array(615, 613, 617), PackedInt32Array(615, 617, 616), PackedInt32Array(620, 619, 618), PackedInt32Array(623, 622, 621), PackedInt32Array(627, 626, 624), PackedInt32Array(624, 626, 625), PackedInt32Array(629, 628, 630), PackedInt32Array(630, 628, 632), PackedInt32Array(630, 632, 631), PackedInt32Array(634, 633, 635), PackedInt32Array(635, 633, 636), PackedInt32Array(638, 637, 639), PackedInt32Array(639, 637, 641), PackedInt32Array(639, 641, 640), PackedInt32Array(643, 642, 644), PackedInt32Array(644, 642, 645), PackedInt32Array(647, 646, 648), PackedInt32Array(648, 646, 649), PackedInt32Array(651, 650, 652), PackedInt32Array(652, 650, 653), PackedInt32Array(655, 654, 656), PackedInt32Array(656, 654, 657), PackedInt32Array(659, 658, 660), PackedInt32Array(660, 658, 661), PackedInt32Array(663, 662, 664), PackedInt32Array(664, 662, 665), PackedInt32Array(667, 666, 668), PackedInt32Array(668, 666, 669), PackedInt32Array(671, 670, 672), PackedInt32Array(672, 670, 673), PackedInt32Array(675, 674, 676), PackedInt32Array(676, 674, 677), PackedInt32Array(679, 678, 680), PackedInt32Array(680, 678, 681), PackedInt32Array(683, 682, 684), PackedInt32Array(684, 682, 685), PackedInt32Array(687, 686, 688), PackedInt32Array(688, 686, 689), PackedInt32Array(691, 690, 692), PackedInt32Array(692, 690, 693), PackedInt32Array(695, 694, 696), PackedInt32Array(696, 694, 697), PackedInt32Array(699, 698, 700), PackedInt32Array(700, 698, 701), PackedInt32Array(703, 702, 704), PackedInt32Array(704, 702, 705), PackedInt32Array(707, 706, 708), PackedInt32Array(708, 706, 709), PackedInt32Array(711, 710, 712), PackedInt32Array(712, 710, 713), PackedInt32Array(715, 714, 716), PackedInt32Array(716, 714, 717), PackedInt32Array(719, 718, 720), PackedInt32Array(720, 718, 722), PackedInt32Array(720, 722, 721), PackedInt32Array(724, 723, 725), PackedInt32Array(725, 723, 726), PackedInt32Array(729, 728, 727), PackedInt32Array(731, 730, 732), PackedInt32Array(732, 730, 733), PackedInt32Array(734, 738, 739), PackedInt32Array(739, 738, 740), PackedInt32Array(740, 738, 737), PackedInt32Array(740, 737, 736), PackedInt32Array(740, 736, 735), PackedInt32Array(744, 749, 745), PackedInt32Array(745, 749, 748), PackedInt32Array(745, 748, 746), PackedInt32Array(746, 748, 747), PackedInt32Array(747, 748, 743), PackedInt32Array(747, 743, 741), PackedInt32Array(741, 743, 742), PackedInt32Array(752, 751, 750), PackedInt32Array(754, 753, 755), PackedInt32Array(755, 753, 756), PackedInt32Array(765, 772, 761), PackedInt32Array(761, 769, 757), PackedInt32Array(757, 766, 758), PackedInt32Array(758, 766, 762), PackedInt32Array(762, 766, 763), PackedInt32Array(763, 767, 759), PackedInt32Array(759, 767, 760), PackedInt32Array(760, 771, 764), PackedInt32Array(764, 771, 765), PackedInt32Array(772, 769, 761), PackedInt32Array(765, 773, 772), PackedInt32Array(769, 768, 757), PackedInt32Array(757, 768, 766), PackedInt32Array(766, 767, 763), PackedInt32Array(767, 771, 760), PackedInt32Array(771, 773, 765), PackedInt32Array(772, 770, 769), PackedInt32Array(773, 770, 772), PackedInt32Array(769, 770, 768), PackedInt32Array(768, 767, 766), PackedInt32Array(767, 770, 771), PackedInt32Array(771, 770, 773), PackedInt32Array(770, 767, 768), PackedInt32Array(775, 774, 776), PackedInt32Array(776, 774, 777), PackedInt32Array(780, 779, 778), PackedInt32Array(782, 781, 783), PackedInt32Array(783, 781, 784), PackedInt32Array(784, 781, 785), PackedInt32Array(788, 787, 789), PackedInt32Array(789, 787, 786), PackedInt32Array(791, 790, 792), PackedInt32Array(792, 790, 794), PackedInt32Array(792, 794, 793), PackedInt32Array(796, 795, 797), PackedInt32Array(797, 795, 798), PackedInt32Array(800, 799, 801), PackedInt32Array(801, 799, 802), PackedInt32Array(806, 807, 803), PackedInt32Array(803, 807, 804), PackedInt32Array(804, 807, 805), PackedInt32Array(810, 809, 808), PackedInt32Array(812, 811, 816), PackedInt32Array(816, 811, 813), PackedInt32Array(813, 811, 815), PackedInt32Array(813, 815, 814), PackedInt32Array(821, 820, 822), PackedInt32Array(822, 820, 819), PackedInt32Array(822, 819, 817), PackedInt32Array(817, 819, 818), PackedInt32Array(824, 823, 825), PackedInt32Array(825, 823, 826), PackedInt32Array(829, 828, 827), PackedInt32Array(831, 830, 832), PackedInt32Array(832, 830, 833), PackedInt32Array(833, 830, 834), PackedInt32Array(836, 835, 837), PackedInt32Array(837, 835, 838), PackedInt32Array(840, 839, 841), PackedInt32Array(841, 839, 843), PackedInt32Array(841, 843, 842), PackedInt32Array(845, 844, 846), PackedInt32Array(846, 844, 847), PackedInt32Array(850, 849, 851), PackedInt32Array(851, 849, 848), PackedInt32Array(855, 856, 852), PackedInt32Array(852, 856, 853), PackedInt32Array(853, 856, 854), PackedInt32Array(859, 858, 857), PackedInt32Array(864, 863, 865), PackedInt32Array(865, 863, 862), PackedInt32Array(865, 862, 860), PackedInt32Array(860, 862, 861), PackedInt32Array(866, 869, 870), PackedInt32Array(870, 869, 873), PackedInt32Array(870, 873, 872), PackedInt32Array(870, 872, 871), PackedInt32Array(871, 872, 868), PackedInt32Array(871, 868, 867), PackedInt32Array(875, 879, 876), PackedInt32Array(876, 879, 880), PackedInt32Array(880, 879, 878), PackedInt32Array(880, 878, 881), PackedInt32Array(881, 878, 882), PackedInt32Array(882, 878, 877), PackedInt32Array(877, 878, 874), PackedInt32Array(885, 884, 886), PackedInt32Array(886, 884, 887), PackedInt32Array(887, 884, 890), PackedInt32Array(887, 890, 888), PackedInt32Array(888, 890, 889), PackedInt32Array(888, 889, 883), PackedInt32Array(894, 896, 895), PackedInt32Array(896, 907, 897), PackedInt32Array(897, 906, 898), PackedInt32Array(898, 906, 891), PackedInt32Array(891, 906, 899), PackedInt32Array(899, 906, 900), PackedInt32Array(900, 905, 901), PackedInt32Array(901, 905, 892), PackedInt32Array(892, 908, 902), PackedInt32Array(902, 908, 893), PackedInt32Array(893, 908, 903), PackedInt32Array(903, 909, 904), PackedInt32Array(904, 896, 894), PackedInt32Array(907, 906, 897), PackedInt32Array(896, 904, 907), PackedInt32Array(906, 907, 900), PackedInt32Array(900, 907, 905), PackedInt32Array(905, 908, 892), PackedInt32Array(908, 909, 903), PackedInt32Array(909, 907, 904), PackedInt32Array(907, 909, 905), PackedInt32Array(905, 909, 908), PackedInt32Array(913, 912, 910), PackedInt32Array(910, 912, 911), PackedInt32Array(915, 914, 916), PackedInt32Array(916, 914, 917), PackedInt32Array(920, 919, 918), PackedInt32Array(923, 922, 921), PackedInt32Array(925, 924, 926), PackedInt32Array(926, 924, 927), PackedInt32Array(927, 924, 928), PackedInt32Array(930, 929, 931), PackedInt32Array(931, 929, 933), PackedInt32Array(931, 933, 932), PackedInt32Array(937, 936, 934), PackedInt32Array(934, 936, 935), PackedInt32Array(941, 940, 938), PackedInt32Array(938, 940, 939), PackedInt32Array(943, 942, 944), PackedInt32Array(944, 942, 945), PackedInt32Array(951, 950, 946), PackedInt32Array(946, 950, 947), PackedInt32Array(947, 950, 948), PackedInt32Array(948, 950, 949), PackedInt32Array(953, 952, 954), PackedInt32Array(954, 952, 955), PackedInt32Array(957, 956, 958), PackedInt32Array(958, 956, 959), PackedInt32Array(961, 960, 962), PackedInt32Array(962, 960, 963), PackedInt32Array(965, 964, 966), PackedInt32Array(966, 964, 967), PackedInt32Array(970, 969, 968), PackedInt32Array(974, 973, 971), PackedInt32Array(971, 973, 972), PackedInt32Array(977, 976, 975), PackedInt32Array(980, 979, 978), PackedInt32Array(985, 990, 986), PackedInt32Array(986, 991, 981), PackedInt32Array(981, 991, 987), PackedInt32Array(987, 991, 988), PackedInt32Array(988, 983, 982), PackedInt32Array(983, 989, 984), PackedInt32Array(989, 991, 990), PackedInt32Array(990, 991, 986), PackedInt32Array(991, 989, 988), PackedInt32Array(988, 989, 983), PackedInt32Array(994, 993, 992), PackedInt32Array(995, 998, 996), PackedInt32Array(996, 998, 997), PackedInt32Array(999, 1002, 1000), PackedInt32Array(1000, 1002, 1001), PackedInt32Array(1004, 1003, 1005), PackedInt32Array(1005, 1003, 1006), PackedInt32Array(1009, 1008, 1007), PackedInt32Array(1012, 1011, 1010), PackedInt32Array(1015, 1014, 1013), PackedInt32Array(1018, 1017, 1016), PackedInt32Array(1020, 1019, 1021), PackedInt32Array(1021, 1019, 1022), PackedInt32Array(1025, 1024, 1023), PackedInt32Array(1027, 1026, 1028), PackedInt32Array(1028, 1026, 1029), PackedInt32Array(1031, 1030, 1032), PackedInt32Array(1032, 1030, 1033), PackedInt32Array(1035, 1034, 1036), PackedInt32Array(1036, 1034, 1037), PackedInt32Array(1039, 1038, 1040), PackedInt32Array(1040, 1038, 1041), PackedInt32Array(1043, 1042, 1044), PackedInt32Array(1044, 1042, 1045), PackedInt32Array(1046, 1049, 1047), PackedInt32Array(1047, 1049, 1048), PackedInt32Array(1053, 1052, 1050), PackedInt32Array(1050, 1052, 1051), PackedInt32Array(1057, 1056, 1054), PackedInt32Array(1054, 1056, 1055), PackedInt32Array(1061, 1060, 1058), PackedInt32Array(1058, 1060, 1059), PackedInt32Array(1063, 1062, 1064), PackedInt32Array(1064, 1062, 1065), PackedInt32Array(1065, 1062, 1066), PackedInt32Array(1068, 1067, 1069), PackedInt32Array(1069, 1067, 1070), PackedInt32Array(1070, 1067, 1071), PackedInt32Array(1073, 1072, 1074), PackedInt32Array(1074, 1072, 1075), PackedInt32Array(1078, 1077, 1076), PackedInt32Array(1081, 1080, 1079), PackedInt32Array(1083, 1082, 1084), PackedInt32Array(1084, 1082, 1085), PackedInt32Array(1085, 1082, 1086), PackedInt32Array(1089, 1088, 1087), PackedInt32Array(1092, 1091, 1090), PackedInt32Array(1096, 1095, 1097), PackedInt32Array(1097, 1095, 1094), PackedInt32Array(1097, 1094, 1093), PackedInt32Array(1099, 1098, 1100), PackedInt32Array(1100, 1098, 1101), PackedInt32Array(1103, 1102, 1104), PackedInt32Array(1104, 1102, 1105), PackedInt32Array(1109, 1108, 1106), PackedInt32Array(1106, 1108, 1107), PackedInt32Array(1113, 1112, 1110), PackedInt32Array(1110, 1112, 1111), PackedInt32Array(1115, 1114, 1116), PackedInt32Array(1116, 1114, 1118), PackedInt32Array(1118, 1114, 1117), PackedInt32Array(1122, 1121, 1119), PackedInt32Array(1119, 1121, 1120), PackedInt32Array(1124, 1123, 1125), PackedInt32Array(1125, 1123, 1126), PackedInt32Array(1128, 1127, 1129), PackedInt32Array(1129, 1127, 1130), PackedInt32Array(1134, 1133, 1131), PackedInt32Array(1131, 1133, 1132), PackedInt32Array(1137, 1136, 1135), PackedInt32Array(1139, 1138, 1140), PackedInt32Array(1140, 1138, 1141), PackedInt32Array(1144, 1143, 1142), PackedInt32Array(1146, 1145, 1147), PackedInt32Array(1147, 1145, 1148), PackedInt32Array(1151, 1150, 1149), PackedInt32Array(1154, 1153, 1152), PackedInt32Array(1158, 1157, 1163), PackedInt32Array(1163, 1157, 1156), PackedInt32Array(1163, 1156, 1162), PackedInt32Array(1163, 1162, 1161), PackedInt32Array(1163, 1161, 1164), PackedInt32Array(1164, 1161, 1159), PackedInt32Array(1159, 1161, 1160), PackedInt32Array(1160, 1161, 1155)]
 geometry_parsed_geometry_type = 1
 geometry_collision_mask = 4294967169
+
+[sub_resource type="Resource" id="Resource_ogdwn"]
+metadata/__load_path__ = "res://addons/qodot/src/nodes/qodot_map.gd"
+
+[sub_resource type="Resource" id="Resource_l42ro"]
+metadata/__load_path__ = "res://addons/qodot/game_definitions/fgd/qodot_fgd.tres"
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_sj7gw"]
 
@@ -234,6 +237,9 @@ points = PackedVector3Array(-7.85583, -3.91167, -3.125, -7.85583, -4.91167, -3.1
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_0wcrf"]
 points = PackedVector3Array(9.14417, -3.91167, -2.125, 9.14417, -4.91167, -3.125, 11.1442, -4.91167, -3.125, 9.14417, -3.91167, -0.125, 9.14417, -4.91167, 0.875, 11.1442, -4.91167, 0.875)
 
+[sub_resource type="Resource" id="Resource_pyxme"]
+metadata/__load_path__ = "res://addons/qodot/src/nodes/qodot_entity.gd"
+
 [sub_resource type="ArrayMesh" id="ArrayMesh_lmp32"]
 _surfaces = [{
 "aabb": AABB(-0.25, -1.25, -0.75, 0.5, 2.5, 1.5),
@@ -248,6 +254,39 @@ _surfaces = [{
 "vertex_count": 24,
 "vertex_data": PackedByteArray("AACAvgAAoD8AAEC/AACAvgAAoL8AAEC/AACAPgAAoL8AAEC/AACAPgAAoD8AAEC/AACAvgAAoD8AAEC/AACAvgAAoD8AAEA/AACAvgAAoL8AAEA/AACAvgAAoL8AAEC/AACAPgAAoL8AAEC/AACAvgAAoL8AAEC/AACAvgAAoL8AAEA/AACAPgAAoL8AAEA/AACAPgAAoD8AAEC/AACAPgAAoD8AAEA/AACAvgAAoD8AAEA/AACAvgAAoD8AAEC/AACAPgAAoD8AAEC/AACAPgAAoL8AAEC/AACAPgAAoL8AAEA/AACAPgAAoD8AAEA/AACAvgAAoD8AAEA/AACAPgAAoD8AAEA/AACAPgAAoL8AAEA/AACAvgAAoL8AAEA//////////z//////////P/////////8//////////z8AAP9//3//vwAA/3//f/+/AAD/f/9//78AAP9//3//v/9/AAD/f/8//38AAP9//z//fwAA/3//P/9/AAD/f/8//3////9//7//f////3//v/9/////f/+//3////9//7////9//3//P////3//f/8/////f/9//z////9//3//P/9//3////+//3//f////7//f/9/////v/9//3////+/")
 }]
+
+[sub_resource type="Resource" id="Resource_10dsf"]
+metadata/__load_path__ = "res://addons/qodot/src/nodes/qodot_entity.gd"
+
+[sub_resource type="Resource" id="Resource_l7oje"]
+metadata/__load_path__ = "res://addons/qodot/src/nodes/qodot_entity.gd"
+
+[sub_resource type="Resource" id="Resource_co5ij"]
+metadata/__load_path__ = "res://addons/qodot/src/nodes/qodot_entity.gd"
+
+[sub_resource type="Resource" id="Resource_hkflf"]
+metadata/__load_path__ = "res://addons/qodot/src/nodes/qodot_entity.gd"
+
+[sub_resource type="Resource" id="Resource_tdi56"]
+metadata/__load_path__ = "res://addons/qodot/src/nodes/qodot_entity.gd"
+
+[sub_resource type="Resource" id="Resource_8vwo2"]
+metadata/__load_path__ = "res://addons/qodot/src/nodes/qodot_entity.gd"
+
+[sub_resource type="Resource" id="Resource_wjhyu"]
+metadata/__load_path__ = "res://addons/qodot/src/nodes/qodot_entity.gd"
+
+[sub_resource type="Resource" id="Resource_ce3op"]
+metadata/__load_path__ = "res://addons/qodot/src/nodes/qodot_entity.gd"
+
+[sub_resource type="Resource" id="Resource_yiy8j"]
+metadata/__load_path__ = "res://addons/qodot/src/nodes/qodot_entity.gd"
+
+[sub_resource type="Resource" id="Resource_cybg7"]
+metadata/__load_path__ = "res://addons/qodot/src/nodes/qodot_entity.gd"
+
+[sub_resource type="Resource" id="Resource_2imkh"]
+metadata/__load_path__ = "res://addons/qodot/src/nodes/qodot_entity.gd"
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_qkunr"]
 _surfaces = [{
@@ -327,6 +366,39 @@ points = PackedVector3Array(3.04902, 2.41667, -1.79412, 3.04902, -2.58333, -1.79
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_ss7dw"]
 points = PackedVector3Array(2.04902, 2.41667, -1.29412, 2.04902, -2.58333, -1.29412, 3.04902, -2.58333, -1.29412, 3.04902, 2.41667, -1.29412, 2.04902, 2.41667, 9.20588, 2.04902, -2.58333, 9.20588, 3.04902, -2.58333, 9.20588, 3.04902, 2.41667, 9.20588)
 
+[sub_resource type="Resource" id="Resource_ko6nr"]
+metadata/__load_path__ = "res://addons/qodot/src/nodes/qodot_entity.gd"
+
+[sub_resource type="Resource" id="Resource_yhf5e"]
+metadata/__load_path__ = "res://addons/qodot/src/nodes/qodot_entity.gd"
+
+[sub_resource type="Resource" id="Resource_x1gk8"]
+metadata/__load_path__ = "res://addons/qodot/src/nodes/qodot_entity.gd"
+
+[sub_resource type="Resource" id="Resource_ohode"]
+metadata/__load_path__ = "res://addons/qodot/src/nodes/qodot_entity.gd"
+
+[sub_resource type="Resource" id="Resource_ox11y"]
+metadata/__load_path__ = "res://addons/qodot/src/nodes/qodot_entity.gd"
+
+[sub_resource type="Resource" id="Resource_ddrkh"]
+metadata/__load_path__ = "res://addons/qodot/src/nodes/qodot_entity.gd"
+
+[sub_resource type="Resource" id="Resource_qvel1"]
+metadata/__load_path__ = "res://addons/qodot/src/nodes/qodot_entity.gd"
+
+[sub_resource type="Resource" id="Resource_dbwbd"]
+metadata/__load_path__ = "res://addons/qodot/src/nodes/qodot_entity.gd"
+
+[sub_resource type="Resource" id="Resource_fydbk"]
+metadata/__load_path__ = "res://addons/qodot/src/nodes/qodot_entity.gd"
+
+[sub_resource type="Resource" id="Resource_2s7d5"]
+metadata/__load_path__ = "res://addons/qodot/src/nodes/qodot_entity.gd"
+
+[sub_resource type="Resource" id="Resource_n7ii3"]
+metadata/__load_path__ = "res://addons/qodot/src/nodes/qodot_entity.gd"
+
 [sub_resource type="ArrayMesh" id="ArrayMesh_qdoo7"]
 _surfaces = [{
 "aabb": AABB(-0.25, -1.5, -1, 0.5, 3, 2),
@@ -341,6 +413,12 @@ _surfaces = [{
 "vertex_count": 24,
 "vertex_data": PackedByteArray("AACAvgAAwD8AAIC/AACAvgAAwL8AAIC/AACAPgAAwL8AAIC/AACAPgAAwD8AAIC/AACAvgAAwD8AAIC/AACAvgAAwD8AAIA/AACAvgAAwL8AAIA/AACAvgAAwL8AAIC/AACAPgAAwL8AAIC/AACAvgAAwL8AAIC/AACAvgAAwL8AAIA/AACAPgAAwL8AAIA/AACAPgAAwD8AAIC/AACAPgAAwD8AAIA/AACAvgAAwD8AAIA/AACAvgAAwD8AAIC/AACAPgAAwD8AAIC/AACAPgAAwL8AAIC/AACAPgAAwL8AAIA/AACAPgAAwD8AAIA/AACAvgAAwD8AAIA/AACAPgAAwD8AAIA/AACAPgAAwL8AAIA/AACAvgAAwL8AAIA//////////z//////////P/////////8//////////z8AAP9//3//vwAA/3//f/+/AAD/f/9//78AAP9//3//v/9/AAD/f/8//38AAP9//z//fwAA/3//P/9/AAD/f/8//3////9//7//f////3//v/9/////f/+//3////9//7////9//3//P////3//f/8/////f/9//z////9//3//P/9//3////+//3//f////7//f/9/////v/9//3////+/")
 }]
+
+[sub_resource type="Resource" id="Resource_b81d1"]
+metadata/__load_path__ = "res://addons/qodot/src/nodes/qodot_entity.gd"
+
+[sub_resource type="Resource" id="Resource_2y53e"]
+metadata/__load_path__ = "res://addons/qodot/src/nodes/qodot_entity.gd"
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_adlre"]
 _surfaces = [{
@@ -411,6 +489,9 @@ points = PackedVector3Array(-10.2667, -2.01667, -7, -10.2667, -3.01667, -7, 5.73
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_qtpwi"]
 points = PackedVector3Array(5.73333, -2.01667, 0, 5.73333, -3.01667, -1, 7.73333, -3.01667, -1, 5.73333, -2.01667, 2, 5.73333, -3.01667, 3, 7.73333, -3.01667, 3)
 
+[sub_resource type="Resource" id="Resource_a6447"]
+metadata/__load_path__ = "res://addons/qodot/src/nodes/qodot_entity.gd"
+
 [sub_resource type="ArrayMesh" id="ArrayMesh_7ahdv"]
 _surfaces = [{
 "aabb": AABB(-3, -3, -0.25, 6, 6, 0.5),
@@ -444,6 +525,12 @@ _surfaces = [{
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_gyk0i"]
 points = PackedVector3Array(0, 0.625, -0.0625, -0.0625, 0.625, 0, -0.0625, -0.625, 0, 0, -0.625, -0.0625, 0.062501, -0.625, 0, 0.062501, 0.625, 0, 0, -0.625, 0.0625, 0, 0.625, 0.0625)
 
+[sub_resource type="Resource" id="Resource_3gdxk"]
+metadata/__load_path__ = "res://addons/qodot/src/nodes/qodot_entity.gd"
+
+[sub_resource type="Resource" id="Resource_2t17v"]
+metadata/__load_path__ = "res://addons/qodot/src/nodes/qodot_entity.gd"
+
 [sub_resource type="ArrayMesh" id="ArrayMesh_ws71q"]
 _surfaces = [{
 "aabb": AABB(-0.25, -1.5, -1, 0.5, 3, 2),
@@ -458,6 +545,27 @@ _surfaces = [{
 "vertex_count": 24,
 "vertex_data": PackedByteArray("AACAvgAAwD8AAIC/AACAvgAAwL8AAIC/AACAPgAAwL8AAIC/AACAPgAAwD8AAIC/AACAvgAAwD8AAIC/AACAvgAAwD8AAIA/AACAvgAAwL8AAIA/AACAvgAAwL8AAIC/AACAPgAAwL8AAIC/AACAvgAAwL8AAIC/AACAvgAAwL8AAIA/AACAPgAAwL8AAIA/AACAPgAAwD8AAIC/AACAPgAAwD8AAIA/AACAvgAAwD8AAIA/AACAvgAAwD8AAIC/AACAPgAAwD8AAIC/AACAPgAAwL8AAIC/AACAPgAAwL8AAIA/AACAPgAAwD8AAIA/AACAvgAAwD8AAIA/AACAPgAAwD8AAIA/AACAPgAAwL8AAIA/AACAvgAAwL8AAIA//////////z//////////P/////////8//////////z8AAP9//3//vwAA/3//f/+/AAD/f/9//78AAP9//3//v/9/AAD/f/8//38AAP9//z//fwAA/3//P/9/AAD/f/8//3////9//7//f////3//v/9/////f/+//3////9//7////9//3//P////3//f/8/////f/9//z////9//3//P/9//3////+//3//f////7//f/9/////v/9//3////+/")
 }]
+
+[sub_resource type="Resource" id="Resource_t5srj"]
+metadata/__load_path__ = "res://addons/qodot/src/nodes/qodot_entity.gd"
+
+[sub_resource type="Resource" id="Resource_m25rc"]
+metadata/__load_path__ = "res://addons/qodot/src/nodes/qodot_entity.gd"
+
+[sub_resource type="Resource" id="Resource_8futs"]
+metadata/__load_path__ = "res://addons/qodot/src/nodes/qodot_entity.gd"
+
+[sub_resource type="Resource" id="Resource_w5kov"]
+metadata/__load_path__ = "res://addons/qodot/src/nodes/qodot_entity.gd"
+
+[sub_resource type="Resource" id="Resource_mv3j1"]
+metadata/__load_path__ = "res://addons/qodot/src/nodes/qodot_entity.gd"
+
+[sub_resource type="Resource" id="Resource_4pf7r"]
+metadata/__load_path__ = "res://addons/qodot/src/nodes/qodot_entity.gd"
+
+[sub_resource type="Resource" id="Resource_mhust"]
+metadata/__load_path__ = "res://addons/qodot/src/nodes/qodot_entity.gd"
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_u4su3"]
 _surfaces = [{
@@ -599,6 +707,12 @@ points = PackedVector3Array(-0.5, 0.25, -5.5, -0.5, -0.25, -5.5, 0.5, -0.25, -5.
 
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_jfhex"]
 points = PackedVector3Array(-0.5, -0.75, -5.5, -0.5, -1.25, -5.5, 0.5, -1.25, -5.5, 0.5, -0.75, -5.5, -0.5, -0.75, 5.5, -0.5, -1.25, 5.5, 0.5, -1.25, 5.5, 0.5, -0.75, 5.5)
+
+[sub_resource type="Resource" id="Resource_235mp"]
+metadata/__load_path__ = "res://addons/qodot/src/nodes/qodot_entity.gd"
+
+[sub_resource type="Resource" id="Resource_emh0l"]
+metadata/__load_path__ = "res://addons/qodot/src/nodes/qodot_entity.gd"
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_w4jgw"]
 _surfaces = [{
@@ -825,6 +939,9 @@ points = PackedVector3Array(-8.94483, -6.17888, -8.1931, -8.94483, -7.17888, -8.
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_mbjft"]
 points = PackedVector3Array(-0.944828, -6.17888, -8.1931, -0.944828, -7.17888, -8.1931, 9.05517, -7.17888, -8.1931, 9.05517, -6.17888, -8.1931, -0.944828, -6.17888, -2.1931, -0.944828, -7.17888, -2.1931, 9.05517, -7.17888, -2.1931, 9.05517, -6.17888, -2.1931)
 
+[sub_resource type="Resource" id="Resource_25wru"]
+metadata/__load_path__ = "res://addons/qodot/src/nodes/qodot_entity.gd"
+
 [sub_resource type="ArrayMesh" id="ArrayMesh_y6fxy"]
 _surfaces = [{
 "aabb": AABB(-1.5, -1.5, -1.25, 2.75, 3, 2.75),
@@ -839,6 +956,87 @@ _surfaces = [{
 "vertex_count": 24,
 "vertex_data": PackedByteArray("8P9/vwAAwD8AAKC/AADAvwAAwD8AAKC/AADAvwAAwL8AAKC/8P9/vwAAwL8AAKC/8P9/vwAAwD8AAKC/8P9/vwAAwL8AAKC/+P+fPwAAwL8AAIA/+P+fPwAAwD8AAIA/AADAvwAAwL8AAKC/+P+fPwAAwL8AAMA/+P+fPwAAwL8AAIA/8P9/vwAAwL8AAKC/AADAvwAAwD8AAKC/8P9/vwAAwD8AAKC/+P+fPwAAwD8AAIA/+P+fPwAAwD8AAMA/+P+fPwAAwD8AAIA/+P+fPwAAwL8AAIA/+P+fPwAAwL8AAMA/+P+fPwAAwD8AAMA/AADAvwAAwD8AAKC/+P+fPwAAwD8AAMA/+P+fPwAAwL8AAMA/AADAvwAAwL8AAKC//////////z//////////P/////////8//////////z////+//3//P////7//f/8/////v/9//z////+//3//P/9/AAD/f/8//38AAP9//z//fwAA/3//P/9/AAD/f/8//3////9//7//f////3//v/9/////f/+//3////9//7////9//3//P////3//f/8/////f/9//z////9//3//P/8//3//f/+//z//f/9//7//P/9//3//v/8//3//f/+/")
 }]
+
+[sub_resource type="Resource" id="Resource_d5eq1"]
+metadata/__load_path__ = "res://addons/qodot/src/nodes/qodot_entity.gd"
+
+[sub_resource type="Resource" id="Resource_u47jh"]
+metadata/__load_path__ = "res://addons/qodot/src/nodes/qodot_entity.gd"
+
+[sub_resource type="Resource" id="Resource_ch1oe"]
+metadata/__load_path__ = "res://addons/qodot/src/nodes/qodot_entity.gd"
+
+[sub_resource type="Resource" id="Resource_1uvcq"]
+metadata/__load_path__ = "res://addons/qodot/src/nodes/qodot_entity.gd"
+
+[sub_resource type="Resource" id="Resource_rd8gv"]
+metadata/__load_path__ = "res://addons/qodot/src/nodes/qodot_entity.gd"
+
+[sub_resource type="Resource" id="Resource_tjcip"]
+metadata/__load_path__ = "res://addons/qodot/src/nodes/qodot_entity.gd"
+
+[sub_resource type="Resource" id="Resource_6tfwj"]
+metadata/__load_path__ = "res://addons/qodot/src/nodes/qodot_entity.gd"
+
+[sub_resource type="Resource" id="Resource_4m5xu"]
+metadata/__load_path__ = "res://addons/qodot/src/nodes/qodot_entity.gd"
+
+[sub_resource type="Resource" id="Resource_ddpp2"]
+metadata/__load_path__ = "res://addons/qodot/src/nodes/qodot_entity.gd"
+
+[sub_resource type="Resource" id="Resource_yk1d7"]
+metadata/__load_path__ = "res://addons/qodot/src/nodes/qodot_entity.gd"
+
+[sub_resource type="Resource" id="Resource_lkg18"]
+metadata/__load_path__ = "res://addons/qodot/src/nodes/qodot_entity.gd"
+
+[sub_resource type="Resource" id="Resource_1kdcm"]
+metadata/__load_path__ = "res://addons/qodot/src/nodes/qodot_entity.gd"
+
+[sub_resource type="Resource" id="Resource_86gtw"]
+metadata/__load_path__ = "res://addons/qodot/src/nodes/qodot_entity.gd"
+
+[sub_resource type="Resource" id="Resource_xwsh4"]
+metadata/__load_path__ = "res://addons/qodot/src/nodes/qodot_entity.gd"
+
+[sub_resource type="Resource" id="Resource_duago"]
+metadata/__load_path__ = "res://addons/qodot/src/nodes/qodot_entity.gd"
+
+[sub_resource type="Resource" id="Resource_dntog"]
+metadata/__load_path__ = "res://addons/qodot/src/nodes/qodot_entity.gd"
+
+[sub_resource type="Resource" id="Resource_573fd"]
+metadata/__load_path__ = "res://addons/qodot/src/nodes/qodot_entity.gd"
+
+[sub_resource type="Resource" id="Resource_b7boq"]
+metadata/__load_path__ = "res://addons/qodot/src/nodes/qodot_entity.gd"
+
+[sub_resource type="Resource" id="Resource_gvy84"]
+metadata/__load_path__ = "res://addons/qodot/src/nodes/qodot_entity.gd"
+
+[sub_resource type="Resource" id="Resource_kgw8l"]
+metadata/__load_path__ = "res://addons/qodot/src/nodes/qodot_entity.gd"
+
+[sub_resource type="Resource" id="Resource_lf1lt"]
+metadata/__load_path__ = "res://addons/qodot/src/nodes/qodot_entity.gd"
+
+[sub_resource type="Resource" id="Resource_1k30t"]
+metadata/__load_path__ = "res://addons/qodot/src/nodes/qodot_entity.gd"
+
+[sub_resource type="Resource" id="Resource_isn8i"]
+metadata/__load_path__ = "res://addons/qodot/src/nodes/qodot_entity.gd"
+
+[sub_resource type="Resource" id="Resource_l8pow"]
+metadata/__load_path__ = "res://addons/qodot/src/nodes/qodot_entity.gd"
+
+[sub_resource type="Resource" id="Resource_b6ywy"]
+metadata/__load_path__ = "res://addons/qodot/src/nodes/qodot_entity.gd"
+
+[sub_resource type="Resource" id="Resource_gyy8t"]
+metadata/__load_path__ = "res://addons/qodot/src/nodes/qodot_entity.gd"
+
+[sub_resource type="Resource" id="Resource_wvby5"]
+metadata/__load_path__ = "res://addons/qodot/src/nodes/qodot_entity.gd"
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_713fs"]
 _surfaces = [{
@@ -918,6 +1116,39 @@ points = PackedVector3Array(-1.79412, 2.41667, -5.04902, -1.79412, -2.58333, -5.
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_4vick"]
 points = PackedVector3Array(-1.29412, 2.41667, -3.04902, -1.29412, -2.58333, -3.04902, 9.20588, -2.58333, -3.04902, 9.20588, 2.41667, -3.04902, -1.29412, 2.41667, -2.04902, -1.29412, -2.58333, -2.04902, 9.20588, -2.58333, -2.04902, 9.20588, 2.41667, -2.04902)
 
+[sub_resource type="Resource" id="Resource_uvh4w"]
+metadata/__load_path__ = "res://addons/qodot/src/nodes/qodot_entity.gd"
+
+[sub_resource type="Resource" id="Resource_i3isg"]
+metadata/__load_path__ = "res://addons/qodot/src/nodes/qodot_entity.gd"
+
+[sub_resource type="Resource" id="Resource_i3141"]
+metadata/__load_path__ = "res://addons/qodot/src/nodes/qodot_entity.gd"
+
+[sub_resource type="Resource" id="Resource_qv50n"]
+metadata/__load_path__ = "res://addons/qodot/src/nodes/qodot_entity.gd"
+
+[sub_resource type="Resource" id="Resource_anong"]
+metadata/__load_path__ = "res://addons/qodot/src/nodes/qodot_entity.gd"
+
+[sub_resource type="Resource" id="Resource_e4ra5"]
+metadata/__load_path__ = "res://addons/qodot/src/nodes/qodot_entity.gd"
+
+[sub_resource type="Resource" id="Resource_3j0ib"]
+metadata/__load_path__ = "res://addons/qodot/src/nodes/qodot_entity.gd"
+
+[sub_resource type="Resource" id="Resource_1e874"]
+metadata/__load_path__ = "res://addons/qodot/src/nodes/qodot_entity.gd"
+
+[sub_resource type="Resource" id="Resource_l6qsi"]
+metadata/__load_path__ = "res://addons/qodot/src/nodes/qodot_entity.gd"
+
+[sub_resource type="Resource" id="Resource_7asag"]
+metadata/__load_path__ = "res://addons/qodot/src/nodes/qodot_entity.gd"
+
+[sub_resource type="Resource" id="Resource_3yp1x"]
+metadata/__load_path__ = "res://addons/qodot/src/nodes/qodot_entity.gd"
+
 [sub_resource type="ArrayMesh" id="ArrayMesh_mooi4"]
 _surfaces = [{
 "aabb": AABB(-1, -1.5, -0.25, 2, 3, 0.5),
@@ -932,6 +1163,12 @@ _surfaces = [{
 "vertex_count": 24,
 "vertex_data": PackedByteArray("AACAvwAAwD8AAIC+AACAvwAAwL8AAIC+AACAPwAAwL8AAIC+AACAPwAAwD8AAIC+AACAvwAAwD8AAIC+AACAvwAAwD8AAIA+AACAvwAAwL8AAIA+AACAvwAAwL8AAIC+AACAPwAAwL8AAIC+AACAvwAAwL8AAIC+AACAvwAAwL8AAIA+AACAPwAAwL8AAIA+AACAPwAAwD8AAIC+AACAPwAAwD8AAIA+AACAvwAAwD8AAIA+AACAvwAAwD8AAIC+AACAPwAAwD8AAIC+AACAPwAAwL8AAIC+AACAPwAAwL8AAIA+AACAPwAAwD8AAIA+AACAvwAAwD8AAIA+AACAPwAAwD8AAIA+AACAPwAAwL8AAIA+AACAvwAAwL8AAIA+/////////z//////////P/////////8//////////z8AAP9//3//vwAA/3//f/+/AAD/f/9//78AAP9//3//v/9/AAD/f/8//38AAP9//z//fwAA/3//P/9/AAD/f/8//3////9//7//f////3//v/9/////f/+//3////9//7////9//3//P////3//f/8/////f/9//z////9//3//P/9//3////+//3//f////7//f/9/////v/9//3////+/")
 }]
+
+[sub_resource type="Resource" id="Resource_wqjaq"]
+metadata/__load_path__ = "res://addons/qodot/src/nodes/qodot_entity.gd"
+
+[sub_resource type="Resource" id="Resource_lbq14"]
+metadata/__load_path__ = "res://addons/qodot/src/nodes/qodot_entity.gd"
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_t4e4c"]
 _surfaces = [{
@@ -1119,6 +1356,9 @@ points = PackedVector3Array(-7.20189, 0.691038, 2.34528, -7.20189, -2.80896, 2.3
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_jyip5"]
 points = PackedVector3Array(-7.20189, 0.691038, -3.15472, -7.20189, -2.80896, -3.15472, 2.79811, -2.80896, -3.15472, 2.79811, 0.691038, -3.15472, -7.20189, 0.691038, -2.65472, -7.20189, -2.80896, -2.65472, 2.79811, -2.80896, -2.65472, 2.79811, 0.691038, -2.65472)
 
+[sub_resource type="Resource" id="Resource_k826n"]
+metadata/__load_path__ = "res://addons/qodot/src/nodes/qodot_entity.gd"
+
 [sub_resource type="ArrayMesh" id="ArrayMesh_pmdkq"]
 _surfaces = [{
 "aabb": AABB(-1.25, -1.5, -1.25, 2.75, 3, 2.75),
@@ -1133,6 +1373,87 @@ _surfaces = [{
 "vertex_count": 24,
 "vertex_data": PackedByteArray("AACAPwAAwD8AAKC/AACAPwAAwL8AAKC/2P+/PwAAwL8AAKC/2P+/PwAAwD8AAKC/AACAPwAAwL8AAKC/AACAPwAAwD8AAKC/AACgvwAAwD/A/38/AACgvwAAwL/A/38/AACgvwAAwD/A/38/AACgvwAAwD/g/78/AACgvwAAwL/g/78/AACgvwAAwL/A/38/2P+/PwAAwL8AAKC/AACAPwAAwL8AAKC/AACgvwAAwL/A/38/AACgvwAAwL/g/78/2P+/PwAAwD8AAKC/AACgvwAAwD/g/78/AACgvwAAwD/A/38/AACAPwAAwD8AAKC/2P+/PwAAwD8AAKC/2P+/PwAAwL8AAKC/AACgvwAAwL/g/78/AACgvwAAwD/g/78//////////z//////////P/////////8//////////z8AAP+//3//vwAA/7//f/+/AAD/v/9//78AAP+//3//vwAA/3//f/+/AAD/f/9//78AAP9//3//vwAA/3//f/+//38AAP9//z//fwAA/3//P/9/AAD/f/8//38AAP9//z//f////3//v/9/////f/+//3////9//7//f////3//v/+//3//f/8//7//f/9//z//v/9//3//P/+//3//f/8/")
 }]
+
+[sub_resource type="Resource" id="Resource_u6o1b"]
+metadata/__load_path__ = "res://addons/qodot/src/nodes/qodot_entity.gd"
+
+[sub_resource type="Resource" id="Resource_l80y7"]
+metadata/__load_path__ = "res://addons/qodot/src/nodes/qodot_entity.gd"
+
+[sub_resource type="Resource" id="Resource_8xbnh"]
+metadata/__load_path__ = "res://addons/qodot/src/nodes/qodot_entity.gd"
+
+[sub_resource type="Resource" id="Resource_ph6xg"]
+metadata/__load_path__ = "res://addons/qodot/src/nodes/qodot_entity.gd"
+
+[sub_resource type="Resource" id="Resource_5h7i7"]
+metadata/__load_path__ = "res://addons/qodot/src/nodes/qodot_entity.gd"
+
+[sub_resource type="Resource" id="Resource_41a5h"]
+metadata/__load_path__ = "res://addons/qodot/src/nodes/qodot_entity.gd"
+
+[sub_resource type="Resource" id="Resource_fx1nq"]
+metadata/__load_path__ = "res://addons/qodot/src/nodes/qodot_entity.gd"
+
+[sub_resource type="Resource" id="Resource_ur7m6"]
+metadata/__load_path__ = "res://addons/qodot/src/nodes/qodot_entity.gd"
+
+[sub_resource type="Resource" id="Resource_0hjvc"]
+metadata/__load_path__ = "res://addons/qodot/src/nodes/qodot_entity.gd"
+
+[sub_resource type="Resource" id="Resource_eqomd"]
+metadata/__load_path__ = "res://addons/qodot/src/nodes/qodot_entity.gd"
+
+[sub_resource type="Resource" id="Resource_sjhi0"]
+metadata/__load_path__ = "res://addons/qodot/src/nodes/qodot_entity.gd"
+
+[sub_resource type="Resource" id="Resource_q0nr3"]
+metadata/__load_path__ = "res://addons/qodot/src/nodes/qodot_entity.gd"
+
+[sub_resource type="Resource" id="Resource_v2t1d"]
+metadata/__load_path__ = "res://addons/qodot/src/nodes/qodot_entity.gd"
+
+[sub_resource type="Resource" id="Resource_l0jes"]
+metadata/__load_path__ = "res://addons/qodot/src/nodes/qodot_entity.gd"
+
+[sub_resource type="Resource" id="Resource_58moi"]
+metadata/__load_path__ = "res://addons/qodot/src/nodes/qodot_entity.gd"
+
+[sub_resource type="Resource" id="Resource_85hbi"]
+metadata/__load_path__ = "res://addons/qodot/src/nodes/qodot_entity.gd"
+
+[sub_resource type="Resource" id="Resource_kvimo"]
+metadata/__load_path__ = "res://addons/qodot/src/nodes/qodot_entity.gd"
+
+[sub_resource type="Resource" id="Resource_hn3r2"]
+metadata/__load_path__ = "res://addons/qodot/src/nodes/qodot_entity.gd"
+
+[sub_resource type="Resource" id="Resource_dyr5p"]
+metadata/__load_path__ = "res://addons/qodot/src/nodes/qodot_entity.gd"
+
+[sub_resource type="Resource" id="Resource_84a62"]
+metadata/__load_path__ = "res://addons/qodot/src/nodes/qodot_entity.gd"
+
+[sub_resource type="Resource" id="Resource_s3drw"]
+metadata/__load_path__ = "res://addons/qodot/src/nodes/qodot_entity.gd"
+
+[sub_resource type="Resource" id="Resource_vnjv7"]
+metadata/__load_path__ = "res://addons/qodot/src/nodes/qodot_entity.gd"
+
+[sub_resource type="Resource" id="Resource_wky6c"]
+metadata/__load_path__ = "res://addons/qodot/src/nodes/qodot_entity.gd"
+
+[sub_resource type="Resource" id="Resource_ep7wd"]
+metadata/__load_path__ = "res://addons/qodot/src/nodes/qodot_entity.gd"
+
+[sub_resource type="Resource" id="Resource_va7mg"]
+metadata/__load_path__ = "res://addons/qodot/src/nodes/qodot_entity.gd"
+
+[sub_resource type="Resource" id="Resource_s7gtg"]
+metadata/__load_path__ = "res://addons/qodot/src/nodes/qodot_entity.gd"
+
+[sub_resource type="Resource" id="Resource_r4yme"]
+metadata/__load_path__ = "res://addons/qodot/src/nodes/qodot_entity.gd"
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_o2dxv"]
 _surfaces = [{
@@ -1320,6 +1641,9 @@ points = PackedVector3Array(-2.79811, 0.691038, 2.34528, -2.79811, -2.80896, 2.3
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_2436q"]
 points = PackedVector3Array(-2.79811, 0.691038, -3.15472, -2.79811, -2.80896, -3.15472, 7.20189, -2.80896, -3.15472, 7.20189, 0.691038, -3.15472, -2.79811, 0.691038, -2.65472, -2.79811, -2.80896, -2.65472, 7.20189, -2.80896, -2.65472, 7.20189, 0.691038, -2.65472)
 
+[sub_resource type="Resource" id="Resource_bwhxd"]
+metadata/__load_path__ = "res://addons/qodot/src/nodes/qodot_entity.gd"
+
 [sub_resource type="ArrayMesh" id="ArrayMesh_ackt6"]
 _surfaces = [{
 "aabb": AABB(-1.5, -1.5, -1.25, 2.75, 3, 2.75),
@@ -1334,6 +1658,87 @@ _surfaces = [{
 "vertex_count": 24,
 "vertex_data": PackedByteArray("IACAvwAAwD8AAKC/4P+/vwAAwD8AAKC/4P+/vwAAwL8AAKC/IACAvwAAwL8AAKC/IACAvwAAwD8AAKC/IACAvwAAwL8AAKC/AACgPwAAwL8gAIA/AACgPwAAwD8gAIA/4P+/vwAAwL8AAKC/AACgPwAAwL/g/78/AACgPwAAwL8gAIA/IACAvwAAwL8AAKC/4P+/vwAAwD8AAKC/IACAvwAAwD8AAKC/AACgPwAAwD8gAIA/AACgPwAAwD/g/78/AACgPwAAwD8gAIA/AACgPwAAwL8gAIA/AACgPwAAwL/g/78/AACgPwAAwD/g/78/4P+/vwAAwD8AAKC/AACgPwAAwD/g/78/AACgPwAAwL/g/78/4P+/vwAAwL8AAKC//////////z//////////P/////////8//////////z////+//3//P////7//f/8/////v/9//z////+//3//P/9/AAD/f/8//38AAP9//z//fwAA/3//P/9/AAD/f/8//3////9//7//f////3//v/9/////f/+//3////9//7////9//3//P////3//f/8/////f/9//z////9//3//P/8//3//f/+//z//f/9//7//P/9//3//v/8//3//f/+/")
 }]
+
+[sub_resource type="Resource" id="Resource_cdrc4"]
+metadata/__load_path__ = "res://addons/qodot/src/nodes/qodot_entity.gd"
+
+[sub_resource type="Resource" id="Resource_swxvs"]
+metadata/__load_path__ = "res://addons/qodot/src/nodes/qodot_entity.gd"
+
+[sub_resource type="Resource" id="Resource_d5ek1"]
+metadata/__load_path__ = "res://addons/qodot/src/nodes/qodot_entity.gd"
+
+[sub_resource type="Resource" id="Resource_8o7w1"]
+metadata/__load_path__ = "res://addons/qodot/src/nodes/qodot_entity.gd"
+
+[sub_resource type="Resource" id="Resource_86sqj"]
+metadata/__load_path__ = "res://addons/qodot/src/nodes/qodot_entity.gd"
+
+[sub_resource type="Resource" id="Resource_wcljk"]
+metadata/__load_path__ = "res://addons/qodot/src/nodes/qodot_entity.gd"
+
+[sub_resource type="Resource" id="Resource_si3e1"]
+metadata/__load_path__ = "res://addons/qodot/src/nodes/qodot_entity.gd"
+
+[sub_resource type="Resource" id="Resource_xuvof"]
+metadata/__load_path__ = "res://addons/qodot/src/nodes/qodot_entity.gd"
+
+[sub_resource type="Resource" id="Resource_1ynwl"]
+metadata/__load_path__ = "res://addons/qodot/src/nodes/qodot_entity.gd"
+
+[sub_resource type="Resource" id="Resource_l8int"]
+metadata/__load_path__ = "res://addons/qodot/src/nodes/qodot_entity.gd"
+
+[sub_resource type="Resource" id="Resource_tlm2s"]
+metadata/__load_path__ = "res://addons/qodot/src/nodes/qodot_entity.gd"
+
+[sub_resource type="Resource" id="Resource_ul1a0"]
+metadata/__load_path__ = "res://addons/qodot/src/nodes/qodot_entity.gd"
+
+[sub_resource type="Resource" id="Resource_vfqy2"]
+metadata/__load_path__ = "res://addons/qodot/src/nodes/qodot_entity.gd"
+
+[sub_resource type="Resource" id="Resource_1l6nl"]
+metadata/__load_path__ = "res://addons/qodot/src/nodes/qodot_entity.gd"
+
+[sub_resource type="Resource" id="Resource_pjmks"]
+metadata/__load_path__ = "res://addons/qodot/src/nodes/qodot_entity.gd"
+
+[sub_resource type="Resource" id="Resource_cuukk"]
+metadata/__load_path__ = "res://addons/qodot/src/nodes/qodot_entity.gd"
+
+[sub_resource type="Resource" id="Resource_ofem1"]
+metadata/__load_path__ = "res://addons/qodot/src/nodes/qodot_entity.gd"
+
+[sub_resource type="Resource" id="Resource_iqf03"]
+metadata/__load_path__ = "res://addons/qodot/src/nodes/qodot_entity.gd"
+
+[sub_resource type="Resource" id="Resource_n8ufx"]
+metadata/__load_path__ = "res://addons/qodot/src/nodes/qodot_entity.gd"
+
+[sub_resource type="Resource" id="Resource_mh1tm"]
+metadata/__load_path__ = "res://addons/qodot/src/nodes/qodot_entity.gd"
+
+[sub_resource type="Resource" id="Resource_ux4j3"]
+metadata/__load_path__ = "res://addons/qodot/src/nodes/qodot_entity.gd"
+
+[sub_resource type="Resource" id="Resource_v6k3v"]
+metadata/__load_path__ = "res://addons/qodot/src/nodes/qodot_entity.gd"
+
+[sub_resource type="Resource" id="Resource_inole"]
+metadata/__load_path__ = "res://addons/qodot/src/nodes/qodot_entity.gd"
+
+[sub_resource type="Resource" id="Resource_isu7v"]
+metadata/__load_path__ = "res://addons/qodot/src/nodes/qodot_entity.gd"
+
+[sub_resource type="Resource" id="Resource_d86eh"]
+metadata/__load_path__ = "res://addons/qodot/src/nodes/qodot_entity.gd"
+
+[sub_resource type="Resource" id="Resource_ei3jv"]
+metadata/__load_path__ = "res://addons/qodot/src/nodes/qodot_entity.gd"
+
+[sub_resource type="Resource" id="Resource_ec235"]
+metadata/__load_path__ = "res://addons/qodot/src/nodes/qodot_entity.gd"
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_p40re"]
 particle_flag_damping_as_friction = true
@@ -1415,9 +1820,9 @@ texture = SubResource("NoiseTexture3D_wredg")
 navigation_mesh = SubResource("NavigationMesh_gcegn")
 
 [node name="QodotMap" type="Node3D" parent="NavigationRegion3D"]
-script = ExtResource("1_mal5h")
+script = SubResource("Resource_ogdwn")
 map_file = "res://maps/e1m3_v2.map"
-entity_fgd = ExtResource("2_byp1m")
+entity_fgd = SubResource("Resource_l42ro")
 base_texture_dir = "res://materials"
 texture_file_extensions = PackedStringArray("png", "jpg", "jpeg", "bmp")
 default_material = SubResource("StandardMaterial3D_sj7gw")
@@ -1555,7 +1960,7 @@ shape = SubResource("ConvexPolygonShape3D_0wcrf")
 
 [node name="entity_2_door" type="Node3D" parent="NavigationRegion3D/QodotMap"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.5, 1.25, -2)
-script = ExtResource("11_d6faf")
+script = SubResource("Resource_pyxme")
 properties = {
 "_tb_group": "1",
 "classname": "door",
@@ -1570,7 +1975,7 @@ mesh = SubResource("ArrayMesh_lmp32")
 
 [node name="entity_3_lamp" type="Node3D" parent="NavigationRegion3D/QodotMap"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21, 9, -3)
-script = ExtResource("11_d6faf")
+script = SubResource("Resource_10dsf")
 properties = {
 "_tb_group": "1",
 "classname": "lamp",
@@ -1579,7 +1984,7 @@ properties = {
 
 [node name="entity_4_lamp" type="Node3D" parent="NavigationRegion3D/QodotMap"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16, 4.5, -1.5)
-script = ExtResource("11_d6faf")
+script = SubResource("Resource_l7oje")
 properties = {
 "_tb_group": "1",
 "classname": "lamp",
@@ -1588,7 +1993,7 @@ properties = {
 
 [node name="entity_5_bed" type="Node3D" parent="NavigationRegion3D/QodotMap"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -23.5, 5.5, -5.5)
-script = ExtResource("11_d6faf")
+script = SubResource("Resource_co5ij")
 properties = {
 "_tb_group": "1",
 "classname": "bed",
@@ -1597,7 +2002,7 @@ properties = {
 
 [node name="entity_6_table" type="Node3D" parent="NavigationRegion3D/QodotMap"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18, 5.5, -5.5)
-script = ExtResource("11_d6faf")
+script = SubResource("Resource_hkflf")
 properties = {
 "_tb_group": "1",
 "classname": "table",
@@ -1606,7 +2011,7 @@ properties = {
 
 [node name="entity_7_crate" type="Node3D" parent="NavigationRegion3D/QodotMap"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21.5, 0.5, 2.5)
-script = ExtResource("11_d6faf")
+script = SubResource("Resource_tdi56")
 properties = {
 "_tb_group": "1",
 "angle": "180",
@@ -1616,7 +2021,7 @@ properties = {
 
 [node name="entity_8_crate" type="Node3D" parent="NavigationRegion3D/QodotMap"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20.5, 0.5, 2.5)
-script = ExtResource("11_d6faf")
+script = SubResource("Resource_8vwo2")
 properties = {
 "_tb_group": "1",
 "angle": "180",
@@ -1626,7 +2031,7 @@ properties = {
 
 [node name="entity_9_crate" type="Node3D" parent="NavigationRegion3D/QodotMap"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21.5, 0.5, 1.5)
-script = ExtResource("11_d6faf")
+script = SubResource("Resource_wjhyu")
 properties = {
 "_tb_group": "1",
 "angle": "180",
@@ -1636,7 +2041,7 @@ properties = {
 
 [node name="entity_10_crate" type="Node3D" parent="NavigationRegion3D/QodotMap"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21.5, 0.5, 0.5)
-script = ExtResource("11_d6faf")
+script = SubResource("Resource_ce3op")
 properties = {
 "_tb_group": "1",
 "angle": "180",
@@ -1646,7 +2051,7 @@ properties = {
 
 [node name="entity_11_crate" type="Node3D" parent="NavigationRegion3D/QodotMap"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21.5, 1.5, 2)
-script = ExtResource("11_d6faf")
+script = SubResource("Resource_yiy8j")
 properties = {
 "_tb_group": "1",
 "angle": "180",
@@ -1656,7 +2061,7 @@ properties = {
 
 [node name="entity_12_crate" type="Node3D" parent="NavigationRegion3D/QodotMap"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20.25, 0.5, 1.5)
-script = ExtResource("11_d6faf")
+script = SubResource("Resource_cybg7")
 properties = {
 "_tb_group": "1",
 "angle": "180",
@@ -1666,7 +2071,7 @@ properties = {
 
 [node name="entity_13_crate" type="Node3D" parent="NavigationRegion3D/QodotMap"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18, 0.5, 2)
-script = ExtResource("11_d6faf")
+script = SubResource("Resource_2imkh")
 properties = {
 "_tb_group": "1",
 "angle": "210",
@@ -1733,7 +2138,7 @@ shape = SubResource("ConvexPolygonShape3D_ss7dw")
 
 [node name="entity_15_chair" type="Node3D" parent="NavigationRegion3D/QodotMap"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.25, 0.5, 1.5)
-script = ExtResource("11_d6faf")
+script = SubResource("Resource_ko6nr")
 properties = {
 "_tb_group": "2",
 "angle": "0",
@@ -1743,7 +2148,7 @@ properties = {
 
 [node name="entity_16_chair" type="Node3D" parent="NavigationRegion3D/QodotMap"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.75, 0.5, 1.5)
-script = ExtResource("11_d6faf")
+script = SubResource("Resource_yhf5e")
 properties = {
 "_tb_group": "2",
 "angle": "0",
@@ -1753,7 +2158,7 @@ properties = {
 
 [node name="entity_17_lamp" type="Node3D" parent="NavigationRegion3D/QodotMap"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17, 5, -10)
-script = ExtResource("11_d6faf")
+script = SubResource("Resource_x1gk8")
 properties = {
 "_tb_group": "2",
 "classname": "lamp",
@@ -1762,7 +2167,7 @@ properties = {
 
 [node name="entity_18_table" type="Node3D" parent="NavigationRegion3D/QodotMap"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.5, 0.5, -0.5)
-script = ExtResource("11_d6faf")
+script = SubResource("Resource_ohode")
 properties = {
 "_tb_group": "2",
 "angle": "90",
@@ -1772,7 +2177,7 @@ properties = {
 
 [node name="entity_19_chair" type="Node3D" parent="NavigationRegion3D/QodotMap"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11, 0.5, -0.5)
-script = ExtResource("11_d6faf")
+script = SubResource("Resource_ox11y")
 properties = {
 "_tb_group": "2",
 "angle": "270",
@@ -1782,7 +2187,7 @@ properties = {
 
 [node name="entity_20_chair" type="Node3D" parent="NavigationRegion3D/QodotMap"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16, 0.5, -0.5)
-script = ExtResource("11_d6faf")
+script = SubResource("Resource_ddrkh")
 properties = {
 "_tb_group": "2",
 "angle": "90",
@@ -1792,7 +2197,7 @@ properties = {
 
 [node name="entity_21_chair" type="Node3D" parent="NavigationRegion3D/QodotMap"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19.5, 0.5, -7)
-script = ExtResource("11_d6faf")
+script = SubResource("Resource_qvel1")
 properties = {
 "_tb_group": "2",
 "angle": "180",
@@ -1802,7 +2207,7 @@ properties = {
 
 [node name="entity_22_chair" type="Node3D" parent="NavigationRegion3D/QodotMap"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 24.5, 0.5, -7)
-script = ExtResource("11_d6faf")
+script = SubResource("Resource_dbwbd")
 properties = {
 "_tb_group": "2",
 "angle": "180",
@@ -1812,7 +2217,7 @@ properties = {
 
 [node name="entity_23_lamp" type="Node3D" parent="NavigationRegion3D/QodotMap"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22, 5, -4.5)
-script = ExtResource("11_d6faf")
+script = SubResource("Resource_fydbk")
 properties = {
 "_tb_group": "2",
 "classname": "lamp",
@@ -1821,7 +2226,7 @@ properties = {
 
 [node name="entity_24_lamp" type="Node3D" parent="NavigationRegion3D/QodotMap"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.5, 5, -1.5)
-script = ExtResource("11_d6faf")
+script = SubResource("Resource_2s7d5")
 properties = {
 "_tb_group": "2",
 "classname": "lamp",
@@ -1830,7 +2235,7 @@ properties = {
 
 [node name="entity_25_door" type="Node3D" parent="NavigationRegion3D/QodotMap"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.5, 1.5, -10)
-script = ExtResource("11_d6faf")
+script = SubResource("Resource_n7ii3")
 properties = {
 "_tb_group": "2",
 "classname": "door",
@@ -1845,7 +2250,7 @@ mesh = SubResource("ArrayMesh_qdoo7")
 
 [node name="entity_26_bed" type="Node3D" parent="NavigationRegion3D/QodotMap"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20.5, 0.5, -2.5)
-script = ExtResource("11_d6faf")
+script = SubResource("Resource_b81d1")
 properties = {
 "_tb_group": "2",
 "angle": "180",
@@ -1855,7 +2260,7 @@ properties = {
 
 [node name="entity_27_bed" type="Node3D" parent="NavigationRegion3D/QodotMap"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 23.5, 0.5, -2.5)
-script = ExtResource("11_d6faf")
+script = SubResource("Resource_2y53e")
 properties = {
 "_tb_group": "2",
 "angle": "180",
@@ -1901,7 +2306,7 @@ shape = SubResource("ConvexPolygonShape3D_qtpwi")
 
 [node name="entity_29_door" type="Node3D" parent="NavigationRegion3D/QodotMap"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20, 3, -26.5)
-script = ExtResource("11_d6faf")
+script = SubResource("Resource_a6447")
 properties = {
 "_tb_group": "5",
 "classname": "door",
@@ -1924,7 +2329,7 @@ shape = SubResource("ConvexPolygonShape3D_gyk0i")
 
 [node name="entity_31_lamp" type="Node3D" parent="NavigationRegion3D/QodotMap"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16, 4, -19)
-script = ExtResource("11_d6faf")
+script = SubResource("Resource_3gdxk")
 properties = {
 "_tb_group": "7",
 "classname": "lamp",
@@ -1933,7 +2338,7 @@ properties = {
 
 [node name="entity_32_door" type="Node3D" parent="NavigationRegion3D/QodotMap"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.5, 1.5, -19)
-script = ExtResource("11_d6faf")
+script = SubResource("Resource_2t17v")
 properties = {
 "_tb_group": "5",
 "classname": "door",
@@ -1947,7 +2352,7 @@ mesh = SubResource("ArrayMesh_ws71q")
 
 [node name="entity_33_crate" type="Node3D" parent="NavigationRegion3D/QodotMap"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.5, 0.5, -25)
-script = ExtResource("11_d6faf")
+script = SubResource("Resource_t5srj")
 properties = {
 "_tb_group": "5",
 "classname": "crate",
@@ -1956,7 +2361,7 @@ properties = {
 
 [node name="entity_34_crate" type="Node3D" parent="NavigationRegion3D/QodotMap"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.875, 0.5, -24.125)
-script = ExtResource("11_d6faf")
+script = SubResource("Resource_m25rc")
 properties = {
 "_tb_group": "5",
 "classname": "crate",
@@ -1965,7 +2370,7 @@ properties = {
 
 [node name="entity_35_table" type="Node3D" parent="NavigationRegion3D/QodotMap"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12, 0.5, -13.9375)
-script = ExtResource("11_d6faf")
+script = SubResource("Resource_8futs")
 properties = {
 "_tb_group": "5",
 "angle": "90",
@@ -1975,7 +2380,7 @@ properties = {
 
 [node name="entity_36_crate" type="Node3D" parent="NavigationRegion3D/QodotMap"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.125, 0.5, -25.375)
-script = ExtResource("11_d6faf")
+script = SubResource("Resource_w5kov")
 properties = {
 "_tb_group": "5",
 "classname": "crate",
@@ -1984,7 +2389,7 @@ properties = {
 
 [node name="entity_37_crate" type="Node3D" parent="NavigationRegion3D/QodotMap"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.625, 0.5, -25.375)
-script = ExtResource("11_d6faf")
+script = SubResource("Resource_mv3j1")
 properties = {
 "_tb_group": "5",
 "classname": "crate",
@@ -1993,7 +2398,7 @@ properties = {
 
 [node name="entity_38_crate" type="Node3D" parent="NavigationRegion3D/QodotMap"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 1.5, -25.5)
-script = ExtResource("11_d6faf")
+script = SubResource("Resource_4pf7r")
 properties = {
 "_tb_group": "5",
 "classname": "crate",
@@ -2002,7 +2407,7 @@ properties = {
 
 [node name="entity_39_crate" type="Node3D" parent="NavigationRegion3D/QodotMap"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.625, 0.5, -23.75)
-script = ExtResource("11_d6faf")
+script = SubResource("Resource_mhust")
 properties = {
 "_tb_group": "5",
 "classname": "crate",
@@ -2101,7 +2506,7 @@ shape = SubResource("ConvexPolygonShape3D_jfhex")
 
 [node name="entity_43_lamp" type="Node3D" parent="NavigationRegion3D/QodotMap"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 36.5, 5, -4)
-script = ExtResource("11_d6faf")
+script = SubResource("Resource_235mp")
 properties = {
 "_tb_group": "6",
 "classname": "lamp",
@@ -2110,7 +2515,7 @@ properties = {
 
 [node name="entity_44_lamp" type="Node3D" parent="NavigationRegion3D/QodotMap"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 28.5, 5, -9)
-script = ExtResource("11_d6faf")
+script = SubResource("Resource_emh0l")
 properties = {
 "_tb_group": "6",
 "classname": "lamp",
@@ -2299,7 +2704,7 @@ shape = SubResource("ConvexPolygonShape3D_mbjft")
 
 [node name="entity_46_door" type="Node3D" parent="NavigationRegion3D/QodotMap"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.75, 1.5, -30.75)
-script = ExtResource("11_d6faf")
+script = SubResource("Resource_25wru")
 properties = {
 "_tb_group": "8",
 "classname": "door",
@@ -2313,7 +2718,7 @@ mesh = SubResource("ArrayMesh_y6fxy")
 
 [node name="entity_47_lamp" type="Node3D" parent="NavigationRegion3D/QodotMap"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17, 11.5, -33)
-script = ExtResource("11_d6faf")
+script = SubResource("Resource_d5eq1")
 properties = {
 "_tb_group": "8",
 "classname": "lamp",
@@ -2322,7 +2727,7 @@ properties = {
 
 [node name="entity_48_lamp" type="Node3D" parent="NavigationRegion3D/QodotMap"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17, 7.5, -33)
-script = ExtResource("11_d6faf")
+script = SubResource("Resource_u47jh")
 properties = {
 "_tb_group": "8",
 "classname": "lamp",
@@ -2331,7 +2736,7 @@ properties = {
 
 [node name="entity_49_lamp" type="Node3D" parent="NavigationRegion3D/QodotMap"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17, 3.5, -33)
-script = ExtResource("11_d6faf")
+script = SubResource("Resource_ch1oe")
 properties = {
 "_tb_group": "8",
 "classname": "lamp",
@@ -2340,7 +2745,7 @@ properties = {
 
 [node name="entity_50_lamp" type="Node3D" parent="NavigationRegion3D/QodotMap"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17, 7.5, -39)
-script = ExtResource("11_d6faf")
+script = SubResource("Resource_1uvcq")
 properties = {
 "_tb_group": "8",
 "classname": "lamp",
@@ -2349,7 +2754,7 @@ properties = {
 
 [node name="entity_51_lamp" type="Node3D" parent="NavigationRegion3D/QodotMap"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22.5, 7.5, -39)
-script = ExtResource("11_d6faf")
+script = SubResource("Resource_rd8gv")
 properties = {
 "_tb_group": "8",
 "classname": "lamp",
@@ -2358,7 +2763,7 @@ properties = {
 
 [node name="entity_52_lamp" type="Node3D" parent="NavigationRegion3D/QodotMap"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.5, 7.5, -39)
-script = ExtResource("11_d6faf")
+script = SubResource("Resource_tjcip")
 properties = {
 "_tb_group": "8",
 "classname": "lamp",
@@ -2367,7 +2772,7 @@ properties = {
 
 [node name="entity_53_lamp" type="Node3D" parent="NavigationRegion3D/QodotMap"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17, 11.5, -39)
-script = ExtResource("11_d6faf")
+script = SubResource("Resource_6tfwj")
 properties = {
 "_tb_group": "8",
 "classname": "lamp",
@@ -2376,7 +2781,7 @@ properties = {
 
 [node name="entity_54_lamp" type="Node3D" parent="NavigationRegion3D/QodotMap"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.5, 11.5, -39)
-script = ExtResource("11_d6faf")
+script = SubResource("Resource_4m5xu")
 properties = {
 "_tb_group": "8",
 "classname": "lamp",
@@ -2385,7 +2790,7 @@ properties = {
 
 [node name="entity_55_lamp" type="Node3D" parent="NavigationRegion3D/QodotMap"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22.5, 11.5, -39)
-script = ExtResource("11_d6faf")
+script = SubResource("Resource_ddpp2")
 properties = {
 "_tb_group": "8",
 "classname": "lamp",
@@ -2394,7 +2799,7 @@ properties = {
 
 [node name="entity_56_chair" type="Node3D" parent="NavigationRegion3D/QodotMap"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13, 8.5, -36)
-script = ExtResource("11_d6faf")
+script = SubResource("Resource_yk1d7")
 properties = {
 "_tb_group": "8",
 "angle": "90",
@@ -2404,7 +2809,7 @@ properties = {
 
 [node name="entity_57_chair" type="Node3D" parent="NavigationRegion3D/QodotMap"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13, 8.5, -37.5)
-script = ExtResource("11_d6faf")
+script = SubResource("Resource_lkg18")
 properties = {
 "_tb_group": "8",
 "angle": "90",
@@ -2414,7 +2819,7 @@ properties = {
 
 [node name="entity_58_chair" type="Node3D" parent="NavigationRegion3D/QodotMap"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18.5, 8.5, -37.5)
-script = ExtResource("11_d6faf")
+script = SubResource("Resource_1kdcm")
 properties = {
 "_tb_group": "8",
 "angle": "90",
@@ -2424,7 +2829,7 @@ properties = {
 
 [node name="entity_59_chair" type="Node3D" parent="NavigationRegion3D/QodotMap"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18.5, 8.5, -36)
-script = ExtResource("11_d6faf")
+script = SubResource("Resource_86gtw")
 properties = {
 "_tb_group": "8",
 "angle": "90",
@@ -2434,7 +2839,7 @@ properties = {
 
 [node name="entity_60_chair" type="Node3D" parent="NavigationRegion3D/QodotMap"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 24, 8.5, -37.5)
-script = ExtResource("11_d6faf")
+script = SubResource("Resource_xwsh4")
 properties = {
 "_tb_group": "8",
 "angle": "90",
@@ -2444,7 +2849,7 @@ properties = {
 
 [node name="entity_61_chair" type="Node3D" parent="NavigationRegion3D/QodotMap"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 24, 8.5, -36)
-script = ExtResource("11_d6faf")
+script = SubResource("Resource_duago")
 properties = {
 "_tb_group": "8",
 "angle": "90",
@@ -2454,7 +2859,7 @@ properties = {
 
 [node name="entity_62_chair" type="Node3D" parent="NavigationRegion3D/QodotMap"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 24, 4.5, -37.5)
-script = ExtResource("11_d6faf")
+script = SubResource("Resource_dntog")
 properties = {
 "_tb_group": "8",
 "angle": "90",
@@ -2464,7 +2869,7 @@ properties = {
 
 [node name="entity_63_chair" type="Node3D" parent="NavigationRegion3D/QodotMap"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 24, 4.5, -36)
-script = ExtResource("11_d6faf")
+script = SubResource("Resource_573fd")
 properties = {
 "_tb_group": "8",
 "angle": "90",
@@ -2474,7 +2879,7 @@ properties = {
 
 [node name="entity_64_chair" type="Node3D" parent="NavigationRegion3D/QodotMap"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18.5, 4.5, -37.5)
-script = ExtResource("11_d6faf")
+script = SubResource("Resource_b7boq")
 properties = {
 "_tb_group": "8",
 "angle": "90",
@@ -2484,7 +2889,7 @@ properties = {
 
 [node name="entity_65_chair" type="Node3D" parent="NavigationRegion3D/QodotMap"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18.5, 4.5, -36)
-script = ExtResource("11_d6faf")
+script = SubResource("Resource_gvy84")
 properties = {
 "_tb_group": "8",
 "angle": "90",
@@ -2494,7 +2899,7 @@ properties = {
 
 [node name="entity_66_chair" type="Node3D" parent="NavigationRegion3D/QodotMap"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13, 4.5, -36)
-script = ExtResource("11_d6faf")
+script = SubResource("Resource_kgw8l")
 properties = {
 "_tb_group": "8",
 "angle": "90",
@@ -2504,7 +2909,7 @@ properties = {
 
 [node name="entity_67_chair" type="Node3D" parent="NavigationRegion3D/QodotMap"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13, 4.5, -37.5)
-script = ExtResource("11_d6faf")
+script = SubResource("Resource_lf1lt")
 properties = {
 "_tb_group": "8",
 "angle": "90",
@@ -2514,7 +2919,7 @@ properties = {
 
 [node name="entity_68_bed" type="Node3D" parent="NavigationRegion3D/QodotMap"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.5, 4.5, -41)
-script = ExtResource("11_d6faf")
+script = SubResource("Resource_1k30t")
 properties = {
 "_tb_group": "8",
 "classname": "bed",
@@ -2523,7 +2928,7 @@ properties = {
 
 [node name="entity_69_bed" type="Node3D" parent="NavigationRegion3D/QodotMap"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16, 4.5, -41)
-script = ExtResource("11_d6faf")
+script = SubResource("Resource_isn8i")
 properties = {
 "_tb_group": "8",
 "classname": "bed",
@@ -2532,7 +2937,7 @@ properties = {
 
 [node name="entity_70_bed" type="Node3D" parent="NavigationRegion3D/QodotMap"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21.5, 4.5, -41)
-script = ExtResource("11_d6faf")
+script = SubResource("Resource_l8pow")
 properties = {
 "_tb_group": "8",
 "classname": "bed",
@@ -2541,7 +2946,7 @@ properties = {
 
 [node name="entity_71_bed" type="Node3D" parent="NavigationRegion3D/QodotMap"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21.5, 8.5, -41)
-script = ExtResource("11_d6faf")
+script = SubResource("Resource_b6ywy")
 properties = {
 "_tb_group": "8",
 "classname": "bed",
@@ -2550,7 +2955,7 @@ properties = {
 
 [node name="entity_72_bed" type="Node3D" parent="NavigationRegion3D/QodotMap"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16, 8.5, -41)
-script = ExtResource("11_d6faf")
+script = SubResource("Resource_gyy8t")
 properties = {
 "_tb_group": "8",
 "classname": "bed",
@@ -2559,7 +2964,7 @@ properties = {
 
 [node name="entity_73_bed" type="Node3D" parent="NavigationRegion3D/QodotMap"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.5, 8.5, -41)
-script = ExtResource("11_d6faf")
+script = SubResource("Resource_wvby5")
 properties = {
 "_tb_group": "8",
 "classname": "bed",
@@ -2625,7 +3030,7 @@ shape = SubResource("ConvexPolygonShape3D_4vick")
 
 [node name="entity_75_chair" type="Node3D" parent="NavigationRegion3D/QodotMap"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 40.5, 0.5, -35.25)
-script = ExtResource("11_d6faf")
+script = SubResource("Resource_uvh4w")
 properties = {
 "_tb_group": "9",
 "angle": "90",
@@ -2635,7 +3040,7 @@ properties = {
 
 [node name="entity_76_chair" type="Node3D" parent="NavigationRegion3D/QodotMap"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 40.5, 0.5, -33.75)
-script = ExtResource("11_d6faf")
+script = SubResource("Resource_i3isg")
 properties = {
 "_tb_group": "9",
 "angle": "90",
@@ -2645,7 +3050,7 @@ properties = {
 
 [node name="entity_77_lamp" type="Node3D" parent="NavigationRegion3D/QodotMap"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 29, 5, -38)
-script = ExtResource("11_d6faf")
+script = SubResource("Resource_i3141")
 properties = {
 "_tb_group": "9",
 "angle": "90",
@@ -2655,7 +3060,7 @@ properties = {
 
 [node name="entity_78_table" type="Node3D" parent="NavigationRegion3D/QodotMap"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 38.5, 0.5, -34.5)
-script = ExtResource("11_d6faf")
+script = SubResource("Resource_qv50n")
 properties = {
 "_tb_group": "9",
 "angle": "180",
@@ -2665,7 +3070,7 @@ properties = {
 
 [node name="entity_79_chair" type="Node3D" parent="NavigationRegion3D/QodotMap"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 38.5, 0.5, -32)
-script = ExtResource("11_d6faf")
+script = SubResource("Resource_anong")
 properties = {
 "_tb_group": "9",
 "angle": "0",
@@ -2675,7 +3080,7 @@ properties = {
 
 [node name="entity_80_chair" type="Node3D" parent="NavigationRegion3D/QodotMap"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 38.5, 0.5, -37)
-script = ExtResource("11_d6faf")
+script = SubResource("Resource_e4ra5")
 properties = {
 "_tb_group": "9",
 "angle": "180",
@@ -2685,7 +3090,7 @@ properties = {
 
 [node name="entity_81_chair" type="Node3D" parent="NavigationRegion3D/QodotMap"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 32, 0.5, -40.5)
-script = ExtResource("11_d6faf")
+script = SubResource("Resource_3j0ib")
 properties = {
 "_tb_group": "9",
 "angle": "270",
@@ -2695,7 +3100,7 @@ properties = {
 
 [node name="entity_82_chair" type="Node3D" parent="NavigationRegion3D/QodotMap"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 32, 0.5, -45.5)
-script = ExtResource("11_d6faf")
+script = SubResource("Resource_1e874")
 properties = {
 "_tb_group": "9",
 "angle": "270",
@@ -2705,7 +3110,7 @@ properties = {
 
 [node name="entity_83_lamp" type="Node3D" parent="NavigationRegion3D/QodotMap"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 34.5, 5, -43)
-script = ExtResource("11_d6faf")
+script = SubResource("Resource_l6qsi")
 properties = {
 "_tb_group": "9",
 "angle": "90",
@@ -2715,7 +3120,7 @@ properties = {
 
 [node name="entity_84_lamp" type="Node3D" parent="NavigationRegion3D/QodotMap"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 37.5, 5, -34.5)
-script = ExtResource("11_d6faf")
+script = SubResource("Resource_7asag")
 properties = {
 "_tb_group": "9",
 "angle": "90",
@@ -2725,7 +3130,7 @@ properties = {
 
 [node name="entity_85_door" type="Node3D" parent="NavigationRegion3D/QodotMap"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 29, 1.5, -29.5)
-script = ExtResource("11_d6faf")
+script = SubResource("Resource_3yp1x")
 properties = {
 "_tb_group": "9",
 "classname": "door",
@@ -2740,7 +3145,7 @@ mesh = SubResource("ArrayMesh_mooi4")
 
 [node name="entity_86_bed" type="Node3D" parent="NavigationRegion3D/QodotMap"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 36.5, 0.5, -41.5)
-script = ExtResource("11_d6faf")
+script = SubResource("Resource_wqjaq")
 properties = {
 "_tb_group": "9",
 "angle": "270",
@@ -2750,7 +3155,7 @@ properties = {
 
 [node name="entity_87_bed" type="Node3D" parent="NavigationRegion3D/QodotMap"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 36.5, 0.5, -44.5)
-script = ExtResource("11_d6faf")
+script = SubResource("Resource_lbq14")
 properties = {
 "_tb_group": "9",
 "angle": "270",
@@ -2925,7 +3330,7 @@ shape = SubResource("ConvexPolygonShape3D_jyip5")
 
 [node name="entity_89_door" type="Node3D" parent="NavigationRegion3D/QodotMap"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.75, 1.5, -47.75)
-script = ExtResource("11_d6faf")
+script = SubResource("Resource_k826n")
 properties = {
 "_tb_group": "10",
 "classname": "door",
@@ -2939,7 +3344,7 @@ mesh = SubResource("ArrayMesh_pmdkq")
 
 [node name="entity_90_lamp" type="Node3D" parent="NavigationRegion3D/QodotMap"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13, 11.5, -55)
-script = ExtResource("11_d6faf")
+script = SubResource("Resource_u6o1b")
 properties = {
 "_tb_group": "10",
 "angle": "90",
@@ -2949,7 +3354,7 @@ properties = {
 
 [node name="entity_91_lamp" type="Node3D" parent="NavigationRegion3D/QodotMap"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13, 7.5, -55)
-script = ExtResource("11_d6faf")
+script = SubResource("Resource_l80y7")
 properties = {
 "_tb_group": "10",
 "angle": "90",
@@ -2959,7 +3364,7 @@ properties = {
 
 [node name="entity_92_lamp" type="Node3D" parent="NavigationRegion3D/QodotMap"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13, 3.5, -55)
-script = ExtResource("11_d6faf")
+script = SubResource("Resource_8xbnh")
 properties = {
 "_tb_group": "10",
 "angle": "90",
@@ -2969,7 +3374,7 @@ properties = {
 
 [node name="entity_93_lamp" type="Node3D" parent="NavigationRegion3D/QodotMap"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19, 7.5, -55)
-script = ExtResource("11_d6faf")
+script = SubResource("Resource_ph6xg")
 properties = {
 "_tb_group": "10",
 "angle": "90",
@@ -2979,7 +3384,7 @@ properties = {
 
 [node name="entity_94_lamp" type="Node3D" parent="NavigationRegion3D/QodotMap"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19, 7.5, -60.5)
-script = ExtResource("11_d6faf")
+script = SubResource("Resource_5h7i7")
 properties = {
 "_tb_group": "10",
 "angle": "90",
@@ -2989,7 +3394,7 @@ properties = {
 
 [node name="entity_95_lamp" type="Node3D" parent="NavigationRegion3D/QodotMap"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19, 7.5, -49.5)
-script = ExtResource("11_d6faf")
+script = SubResource("Resource_41a5h")
 properties = {
 "_tb_group": "10",
 "angle": "90",
@@ -2999,7 +3404,7 @@ properties = {
 
 [node name="entity_96_lamp" type="Node3D" parent="NavigationRegion3D/QodotMap"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19, 11.5, -55)
-script = ExtResource("11_d6faf")
+script = SubResource("Resource_fx1nq")
 properties = {
 "_tb_group": "10",
 "angle": "90",
@@ -3009,7 +3414,7 @@ properties = {
 
 [node name="entity_97_lamp" type="Node3D" parent="NavigationRegion3D/QodotMap"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19, 11.5, -49.5)
-script = ExtResource("11_d6faf")
+script = SubResource("Resource_ur7m6")
 properties = {
 "_tb_group": "10",
 "angle": "90",
@@ -3019,7 +3424,7 @@ properties = {
 
 [node name="entity_98_lamp" type="Node3D" parent="NavigationRegion3D/QodotMap"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19, 11.5, -60.5)
-script = ExtResource("11_d6faf")
+script = SubResource("Resource_0hjvc")
 properties = {
 "_tb_group": "10",
 "angle": "90",
@@ -3029,7 +3434,7 @@ properties = {
 
 [node name="entity_99_chair" type="Node3D" parent="NavigationRegion3D/QodotMap"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16, 8.5, -51)
-script = ExtResource("11_d6faf")
+script = SubResource("Resource_eqomd")
 properties = {
 "_tb_group": "10",
 "angle": "180",
@@ -3039,7 +3444,7 @@ properties = {
 
 [node name="entity_100_chair" type="Node3D" parent="NavigationRegion3D/QodotMap"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17.5, 8.5, -51)
-script = ExtResource("11_d6faf")
+script = SubResource("Resource_sjhi0")
 properties = {
 "_tb_group": "10",
 "angle": "180",
@@ -3049,7 +3454,7 @@ properties = {
 
 [node name="entity_101_chair" type="Node3D" parent="NavigationRegion3D/QodotMap"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17.5, 8.5, -56.5)
-script = ExtResource("11_d6faf")
+script = SubResource("Resource_q0nr3")
 properties = {
 "_tb_group": "10",
 "angle": "180",
@@ -3059,7 +3464,7 @@ properties = {
 
 [node name="entity_102_chair" type="Node3D" parent="NavigationRegion3D/QodotMap"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16, 8.5, -56.5)
-script = ExtResource("11_d6faf")
+script = SubResource("Resource_v2t1d")
 properties = {
 "_tb_group": "10",
 "angle": "180",
@@ -3069,7 +3474,7 @@ properties = {
 
 [node name="entity_103_chair" type="Node3D" parent="NavigationRegion3D/QodotMap"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17.5, 8.5, -62)
-script = ExtResource("11_d6faf")
+script = SubResource("Resource_l0jes")
 properties = {
 "_tb_group": "10",
 "angle": "180",
@@ -3079,7 +3484,7 @@ properties = {
 
 [node name="entity_104_chair" type="Node3D" parent="NavigationRegion3D/QodotMap"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16, 8.5, -62)
-script = ExtResource("11_d6faf")
+script = SubResource("Resource_58moi")
 properties = {
 "_tb_group": "10",
 "angle": "180",
@@ -3089,7 +3494,7 @@ properties = {
 
 [node name="entity_105_chair" type="Node3D" parent="NavigationRegion3D/QodotMap"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17.5, 4.5, -62)
-script = ExtResource("11_d6faf")
+script = SubResource("Resource_85hbi")
 properties = {
 "_tb_group": "10",
 "angle": "180",
@@ -3099,7 +3504,7 @@ properties = {
 
 [node name="entity_106_chair" type="Node3D" parent="NavigationRegion3D/QodotMap"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16, 4.5, -62)
-script = ExtResource("11_d6faf")
+script = SubResource("Resource_kvimo")
 properties = {
 "_tb_group": "10",
 "angle": "180",
@@ -3109,7 +3514,7 @@ properties = {
 
 [node name="entity_107_chair" type="Node3D" parent="NavigationRegion3D/QodotMap"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17.5, 4.5, -56.5)
-script = ExtResource("11_d6faf")
+script = SubResource("Resource_hn3r2")
 properties = {
 "_tb_group": "10",
 "angle": "180",
@@ -3119,7 +3524,7 @@ properties = {
 
 [node name="entity_108_chair" type="Node3D" parent="NavigationRegion3D/QodotMap"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16, 4.5, -56.5)
-script = ExtResource("11_d6faf")
+script = SubResource("Resource_dyr5p")
 properties = {
 "_tb_group": "10",
 "angle": "180",
@@ -3129,7 +3534,7 @@ properties = {
 
 [node name="entity_109_chair" type="Node3D" parent="NavigationRegion3D/QodotMap"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16, 4.5, -51)
-script = ExtResource("11_d6faf")
+script = SubResource("Resource_84a62")
 properties = {
 "_tb_group": "10",
 "angle": "180",
@@ -3139,7 +3544,7 @@ properties = {
 
 [node name="entity_110_chair" type="Node3D" parent="NavigationRegion3D/QodotMap"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17.5, 4.5, -51)
-script = ExtResource("11_d6faf")
+script = SubResource("Resource_s3drw")
 properties = {
 "_tb_group": "10",
 "angle": "180",
@@ -3149,7 +3554,7 @@ properties = {
 
 [node name="entity_111_bed" type="Node3D" parent="NavigationRegion3D/QodotMap"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21, 4.5, -48.5)
-script = ExtResource("11_d6faf")
+script = SubResource("Resource_vnjv7")
 properties = {
 "_tb_group": "10",
 "angle": "90",
@@ -3159,7 +3564,7 @@ properties = {
 
 [node name="entity_112_bed" type="Node3D" parent="NavigationRegion3D/QodotMap"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21, 4.5, -54)
-script = ExtResource("11_d6faf")
+script = SubResource("Resource_wky6c")
 properties = {
 "_tb_group": "10",
 "angle": "90",
@@ -3169,7 +3574,7 @@ properties = {
 
 [node name="entity_113_bed" type="Node3D" parent="NavigationRegion3D/QodotMap"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21, 4.5, -59.5)
-script = ExtResource("11_d6faf")
+script = SubResource("Resource_ep7wd")
 properties = {
 "_tb_group": "10",
 "angle": "90",
@@ -3179,7 +3584,7 @@ properties = {
 
 [node name="entity_114_bed" type="Node3D" parent="NavigationRegion3D/QodotMap"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21, 8.5, -59.5)
-script = ExtResource("11_d6faf")
+script = SubResource("Resource_va7mg")
 properties = {
 "_tb_group": "10",
 "angle": "90",
@@ -3189,7 +3594,7 @@ properties = {
 
 [node name="entity_115_bed" type="Node3D" parent="NavigationRegion3D/QodotMap"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21, 8.5, -54)
-script = ExtResource("11_d6faf")
+script = SubResource("Resource_s7gtg")
 properties = {
 "_tb_group": "10",
 "angle": "90",
@@ -3199,7 +3604,7 @@ properties = {
 
 [node name="entity_116_bed" type="Node3D" parent="NavigationRegion3D/QodotMap"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21, 8.5, -48.5)
-script = ExtResource("11_d6faf")
+script = SubResource("Resource_r4yme")
 properties = {
 "_tb_group": "10",
 "angle": "90",
@@ -3374,7 +3779,7 @@ shape = SubResource("ConvexPolygonShape3D_2436q")
 
 [node name="entity_118_door" type="Node3D" parent="NavigationRegion3D/QodotMap"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -45.25, 1.5, -47.75)
-script = ExtResource("11_d6faf")
+script = SubResource("Resource_bwhxd")
 properties = {
 "_tb_group": "11",
 "classname": "door",
@@ -3388,7 +3793,7 @@ mesh = SubResource("ArrayMesh_ackt6")
 
 [node name="entity_119_lamp" type="Node3D" parent="NavigationRegion3D/QodotMap"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -43, 11.5, -55)
-script = ExtResource("11_d6faf")
+script = SubResource("Resource_cdrc4")
 properties = {
 "_tb_group": "11",
 "angle": "270",
@@ -3398,7 +3803,7 @@ properties = {
 
 [node name="entity_120_lamp" type="Node3D" parent="NavigationRegion3D/QodotMap"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -43, 7.5, -55)
-script = ExtResource("11_d6faf")
+script = SubResource("Resource_swxvs")
 properties = {
 "_tb_group": "11",
 "angle": "270",
@@ -3408,7 +3813,7 @@ properties = {
 
 [node name="entity_121_lamp" type="Node3D" parent="NavigationRegion3D/QodotMap"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -43, 3.5, -55)
-script = ExtResource("11_d6faf")
+script = SubResource("Resource_d5ek1")
 properties = {
 "_tb_group": "11",
 "angle": "270",
@@ -3418,7 +3823,7 @@ properties = {
 
 [node name="entity_122_lamp" type="Node3D" parent="NavigationRegion3D/QodotMap"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -37, 7.5, -55)
-script = ExtResource("11_d6faf")
+script = SubResource("Resource_8o7w1")
 properties = {
 "_tb_group": "11",
 "angle": "270",
@@ -3428,7 +3833,7 @@ properties = {
 
 [node name="entity_123_lamp" type="Node3D" parent="NavigationRegion3D/QodotMap"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -37, 7.5, -60.5)
-script = ExtResource("11_d6faf")
+script = SubResource("Resource_86sqj")
 properties = {
 "_tb_group": "11",
 "angle": "270",
@@ -3438,7 +3843,7 @@ properties = {
 
 [node name="entity_124_lamp" type="Node3D" parent="NavigationRegion3D/QodotMap"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -37, 7.5, -49.5)
-script = ExtResource("11_d6faf")
+script = SubResource("Resource_wcljk")
 properties = {
 "_tb_group": "11",
 "angle": "270",
@@ -3448,7 +3853,7 @@ properties = {
 
 [node name="entity_125_lamp" type="Node3D" parent="NavigationRegion3D/QodotMap"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -37, 11.5, -55)
-script = ExtResource("11_d6faf")
+script = SubResource("Resource_si3e1")
 properties = {
 "_tb_group": "11",
 "angle": "270",
@@ -3458,7 +3863,7 @@ properties = {
 
 [node name="entity_126_lamp" type="Node3D" parent="NavigationRegion3D/QodotMap"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -37, 11.5, -49.5)
-script = ExtResource("11_d6faf")
+script = SubResource("Resource_xuvof")
 properties = {
 "_tb_group": "11",
 "angle": "270",
@@ -3468,7 +3873,7 @@ properties = {
 
 [node name="entity_127_lamp" type="Node3D" parent="NavigationRegion3D/QodotMap"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -37, 11.5, -60.5)
-script = ExtResource("11_d6faf")
+script = SubResource("Resource_1ynwl")
 properties = {
 "_tb_group": "11",
 "angle": "270",
@@ -3478,7 +3883,7 @@ properties = {
 
 [node name="entity_128_chair" type="Node3D" parent="NavigationRegion3D/QodotMap"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -40, 8.5, -51)
-script = ExtResource("11_d6faf")
+script = SubResource("Resource_l8int")
 properties = {
 "_tb_group": "11",
 "angle": "180",
@@ -3488,7 +3893,7 @@ properties = {
 
 [node name="entity_129_chair" type="Node3D" parent="NavigationRegion3D/QodotMap"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -38.5, 8.5, -51)
-script = ExtResource("11_d6faf")
+script = SubResource("Resource_tlm2s")
 properties = {
 "_tb_group": "11",
 "angle": "180",
@@ -3498,7 +3903,7 @@ properties = {
 
 [node name="entity_130_chair" type="Node3D" parent="NavigationRegion3D/QodotMap"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -38.5, 8.5, -56.5)
-script = ExtResource("11_d6faf")
+script = SubResource("Resource_ul1a0")
 properties = {
 "_tb_group": "11",
 "angle": "180",
@@ -3508,7 +3913,7 @@ properties = {
 
 [node name="entity_131_chair" type="Node3D" parent="NavigationRegion3D/QodotMap"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -40, 8.5, -56.5)
-script = ExtResource("11_d6faf")
+script = SubResource("Resource_vfqy2")
 properties = {
 "_tb_group": "11",
 "angle": "180",
@@ -3518,7 +3923,7 @@ properties = {
 
 [node name="entity_132_chair" type="Node3D" parent="NavigationRegion3D/QodotMap"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -38.5, 8.5, -62)
-script = ExtResource("11_d6faf")
+script = SubResource("Resource_1l6nl")
 properties = {
 "_tb_group": "11",
 "angle": "180",
@@ -3528,7 +3933,7 @@ properties = {
 
 [node name="entity_133_chair" type="Node3D" parent="NavigationRegion3D/QodotMap"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -40, 8.5, -62)
-script = ExtResource("11_d6faf")
+script = SubResource("Resource_pjmks")
 properties = {
 "_tb_group": "11",
 "angle": "180",
@@ -3538,7 +3943,7 @@ properties = {
 
 [node name="entity_134_chair" type="Node3D" parent="NavigationRegion3D/QodotMap"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -38.5, 4.5, -62)
-script = ExtResource("11_d6faf")
+script = SubResource("Resource_cuukk")
 properties = {
 "_tb_group": "11",
 "angle": "180",
@@ -3548,7 +3953,7 @@ properties = {
 
 [node name="entity_135_chair" type="Node3D" parent="NavigationRegion3D/QodotMap"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -40, 4.5, -62)
-script = ExtResource("11_d6faf")
+script = SubResource("Resource_ofem1")
 properties = {
 "_tb_group": "11",
 "angle": "180",
@@ -3558,7 +3963,7 @@ properties = {
 
 [node name="entity_136_chair" type="Node3D" parent="NavigationRegion3D/QodotMap"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -38.5, 4.5, -56.5)
-script = ExtResource("11_d6faf")
+script = SubResource("Resource_iqf03")
 properties = {
 "_tb_group": "11",
 "angle": "180",
@@ -3568,7 +3973,7 @@ properties = {
 
 [node name="entity_137_chair" type="Node3D" parent="NavigationRegion3D/QodotMap"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -40, 4.5, -56.5)
-script = ExtResource("11_d6faf")
+script = SubResource("Resource_n8ufx")
 properties = {
 "_tb_group": "11",
 "angle": "180",
@@ -3578,7 +3983,7 @@ properties = {
 
 [node name="entity_138_chair" type="Node3D" parent="NavigationRegion3D/QodotMap"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -40, 4.5, -51)
-script = ExtResource("11_d6faf")
+script = SubResource("Resource_mh1tm")
 properties = {
 "_tb_group": "11",
 "angle": "180",
@@ -3588,7 +3993,7 @@ properties = {
 
 [node name="entity_139_chair" type="Node3D" parent="NavigationRegion3D/QodotMap"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -38.5, 4.5, -51)
-script = ExtResource("11_d6faf")
+script = SubResource("Resource_ux4j3")
 properties = {
 "_tb_group": "11",
 "angle": "180",
@@ -3598,7 +4003,7 @@ properties = {
 
 [node name="entity_140_bed" type="Node3D" parent="NavigationRegion3D/QodotMap"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -35, 4.5, -48.5)
-script = ExtResource("11_d6faf")
+script = SubResource("Resource_v6k3v")
 properties = {
 "_tb_group": "11",
 "angle": "270",
@@ -3608,7 +4013,7 @@ properties = {
 
 [node name="entity_141_bed" type="Node3D" parent="NavigationRegion3D/QodotMap"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -35, 4.5, -54)
-script = ExtResource("11_d6faf")
+script = SubResource("Resource_inole")
 properties = {
 "_tb_group": "11",
 "angle": "270",
@@ -3618,7 +4023,7 @@ properties = {
 
 [node name="entity_142_bed" type="Node3D" parent="NavigationRegion3D/QodotMap"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -35, 4.5, -59.5)
-script = ExtResource("11_d6faf")
+script = SubResource("Resource_isu7v")
 properties = {
 "_tb_group": "11",
 "angle": "270",
@@ -3628,7 +4033,7 @@ properties = {
 
 [node name="entity_143_bed" type="Node3D" parent="NavigationRegion3D/QodotMap"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -35, 8.5, -59.5)
-script = ExtResource("11_d6faf")
+script = SubResource("Resource_d86eh")
 properties = {
 "_tb_group": "11",
 "angle": "270",
@@ -3638,7 +4043,7 @@ properties = {
 
 [node name="entity_144_bed" type="Node3D" parent="NavigationRegion3D/QodotMap"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -35, 8.5, -54)
-script = ExtResource("11_d6faf")
+script = SubResource("Resource_ei3jv")
 properties = {
 "_tb_group": "11",
 "angle": "270",
@@ -3648,7 +4053,7 @@ properties = {
 
 [node name="entity_145_bed" type="Node3D" parent="NavigationRegion3D/QodotMap"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -35, 8.5, -48.5)
-script = ExtResource("11_d6faf")
+script = SubResource("Resource_ec235")
 properties = {
 "_tb_group": "11",
 "angle": "270",

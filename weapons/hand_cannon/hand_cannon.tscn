@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://dqh2gybvemj2n" path="res://weapons/hand_cannon/flare_gun.glb" id="1_osgs8"]
 [ext_resource type="PackedScene" uid="uid://fda5n2lb20ne" path="res://weapons/hand_cannon/pepperbox.glb" id="2_6xdil"]
 [ext_resource type="AnimationLibrary" uid="uid://cnk3oj5koucge" path="res://weapons/flare_gun_anims.res" id="2_dl6vv"]
-[ext_resource type="Script" path="res://weapons/weapon_base.gd" id="2_g0fb6"]
+[ext_resource type="Script" uid="uid://c022da054b2ky" path="res://weapons/weapon_base.gd" id="2_g0fb6"]
 [ext_resource type="AnimationLibrary" uid="uid://btn2oi1jc70ej" path="res://weapons/pepperbox_anims.res" id="4_wqt0h"]
 
 [sub_resource type="Shader" id="Shader_r0ybk"]
@@ -99,9 +99,11 @@ shader = SubResource("Shader_r0ybk")
 shader_parameter/albedo = Color(1, 0.25098, 0, 1)
 shader_parameter/point_size = 1.0
 shader_parameter/roughness = 1.0
-shader_parameter/metallic_texture_channel = null
+shader_parameter/metallic_texture_channel = Vector4(0, 0, 0, 0)
+shader_parameter/texture_roughness = SubResource("NoiseTexture2D_fgj70")
 shader_parameter/specular = 0.5
 shader_parameter/metallic = 0.0
+shader_parameter/texture_normal = SubResource("NoiseTexture2D_ykf88")
 shader_parameter/normal_scale = 1.0
 shader_parameter/clearcoat = 1.0
 shader_parameter/clearcoat_roughness = 0.25
@@ -109,8 +111,6 @@ shader_parameter/uv1_scale = Vector3(1, 1, 1)
 shader_parameter/uv1_offset = Vector3(0, 0, 0)
 shader_parameter/uv2_scale = Vector3(1, 1, 1)
 shader_parameter/uv2_offset = Vector3(0, 0, 0)
-shader_parameter/texture_roughness = SubResource("NoiseTexture2D_fgj70")
-shader_parameter/texture_normal = SubResource("NoiseTexture2D_ykf88")
 
 [sub_resource type="Animation" id="Animation_okvq7"]
 length = 0.001
@@ -124,7 +124,7 @@ tracks/0/keys = PackedFloat32Array(0, 1, -0.15, 0, 0)
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_lilr7"]
 _data = {
-"RESET": SubResource("Animation_okvq7")
+&"RESET": SubResource("Animation_okvq7")
 }
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_grof3"]
@@ -255,7 +255,7 @@ tracks/0/keys = PackedFloat32Array(0, 1, 0.15, 0, -0.1)
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ibj5y"]
 _data = {
-"RESET": SubResource("Animation_8h8bp")
+&"RESET": SubResource("Animation_8h8bp")
 }
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_rrtoy"]

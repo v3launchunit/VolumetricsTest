@@ -1,7 +1,7 @@
 [gd_scene load_steps=44 format=3 uid="uid://crvf6qiekfqex"]
 
 [ext_resource type="ArrayMesh" uid="uid://cjx7th4qqdgak" path="res://weapons/boomstick/boomstick.obj" id="1_7e58d"]
-[ext_resource type="Script" path="res://weapons/weapon_alt_fire.gd" id="2_nf3wy"]
+[ext_resource type="Script" uid="uid://0ub7uw1al088" path="res://weapons/weapon_alt_fire.gd" id="2_nf3wy"]
 [ext_resource type="ArrayMesh" uid="uid://crk83yrjbvbg6" path="res://weapons/muzzle_flash.obj" id="3_ac8cs"]
 [ext_resource type="Texture2D" uid="uid://b84lximnqxpsk" path="res://weapons/boomstick/boomstick_metallic.png" id="3_d1ne8"]
 [ext_resource type="Texture2D" uid="uid://bbbk8k7whvl1m" path="res://weapons/boomstick/boomstick_detail_mask.png" id="3_gtom8"]
@@ -12,7 +12,7 @@
 [ext_resource type="Texture2D" uid="uid://iboxykf07oin" path="res://weapons/boomstick/boomstick_stock_roughness.png" id="7_q40ik"]
 [ext_resource type="PackedScene" uid="uid://byrs4y4a0drln" path="res://bullets/player/hitscan/boomstick_bullet.tscn" id="9_h281q"]
 [ext_resource type="PackedScene" uid="uid://8e2mh2q14v3k" path="res://bullets/player/projectile/harpoon.tscn" id="9_jcufi"]
-[ext_resource type="Script" path="res://weapons/alert_area.gd" id="10_khxxt"]
+[ext_resource type="Script" uid="uid://cm4w83326cpew" path="res://weapons/alert_area.gd" id="10_khxxt"]
 [ext_resource type="Material" uid="uid://dq3a5fxspauox" path="res://weapons/muzzle_flash_yellow_vm.tres" id="10_lwo5p"]
 [ext_resource type="Texture2D" uid="uid://dbnasmfycrfat" path="res://pickups/ammo/shotgun_shell/shotgun_shell.png" id="12_546ee"]
 [ext_resource type="Texture2D" uid="uid://cxhsqnpu78e2q" path="res://pickups/ammo/shotgun_shell/shotgun_shell_metallic.png" id="13_6782y"]
@@ -115,21 +115,21 @@ shader = SubResource("Shader_u07m6")
 shader_parameter/albedo = Color(0.501961, 0.501961, 0.501961, 1)
 shader_parameter/point_size = 1.0
 shader_parameter/roughness = 1.0
+shader_parameter/texture_metallic = ExtResource("3_d1ne8")
 shader_parameter/metallic_texture_channel = Vector4(1, 0, 0, 0)
+shader_parameter/texture_roughness = ExtResource("4_vilpv")
 shader_parameter/specular = 0.5
 shader_parameter/metallic = 1.0
 shader_parameter/clearcoat = 1.0
 shader_parameter/clearcoat_roughness = 0.25
-shader_parameter/uv1_scale = Vector3(1, 1, 1)
-shader_parameter/uv1_offset = Vector3(0, 0, 0)
-shader_parameter/uv2_scale = Vector3(1, 1, 1)
-shader_parameter/uv2_offset = Vector3(0, 0, 0)
-shader_parameter/texture_metallic = ExtResource("3_d1ne8")
-shader_parameter/texture_roughness = ExtResource("4_vilpv")
 shader_parameter/texture_clearcoat = ExtResource("3_gtom8")
 shader_parameter/texture_detail_albedo = SubResource("NoiseTexture2D_fagd6")
 shader_parameter/texture_detail_normal = SubResource("NoiseTexture2D_7duje")
 shader_parameter/texture_detail_mask = ExtResource("3_gtom8")
+shader_parameter/uv1_scale = Vector3(1, 1, 1)
+shader_parameter/uv1_offset = Vector3(0, 0, 0)
+shader_parameter/uv2_scale = Vector3(1, 1, 1)
+shader_parameter/uv2_offset = Vector3(0, 0, 0)
 
 [sub_resource type="Shader" id="Shader_h63q6"]
 code = "// NOTE: Shader automatically converted from Godot Engine 4.1.1.stable.mono's StandardMaterial3D.
@@ -221,21 +221,21 @@ shader = SubResource("Shader_h63q6")
 shader_parameter/albedo = Color(0.501961, 0.501961, 0.501961, 1)
 shader_parameter/point_size = 1.0
 shader_parameter/roughness = 1.0
+shader_parameter/texture_metallic = ExtResource("6_sagf4")
 shader_parameter/metallic_texture_channel = Vector4(1, 0, 0, 0)
+shader_parameter/texture_roughness = ExtResource("7_q40ik")
 shader_parameter/specular = 0.5
 shader_parameter/metallic = 1.0
 shader_parameter/clearcoat = 1.0
 shader_parameter/clearcoat_roughness = 0.25
-shader_parameter/uv1_scale = Vector3(1, 1, 1)
-shader_parameter/uv1_offset = Vector3(0, 0, 0)
-shader_parameter/uv2_scale = Vector3(1, 1, 1)
-shader_parameter/uv2_offset = Vector3(0, 0, 0)
-shader_parameter/texture_metallic = ExtResource("6_sagf4")
-shader_parameter/texture_roughness = ExtResource("7_q40ik")
 shader_parameter/texture_clearcoat = ExtResource("5_e71qv")
 shader_parameter/texture_detail_albedo = SubResource("NoiseTexture2D_vqneo")
 shader_parameter/texture_detail_normal = SubResource("NoiseTexture2D_rp7ad")
 shader_parameter/texture_detail_mask = ExtResource("5_e71qv")
+shader_parameter/uv1_scale = Vector3(1, 1, 1)
+shader_parameter/uv1_offset = Vector3(0, 0, 0)
+shader_parameter/uv2_scale = Vector3(1, 1, 1)
+shader_parameter/uv2_offset = Vector3(0, 0, 0)
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_l85rr"]
 animation = &"boomstick_anims/boomstick_fire"
@@ -297,7 +297,7 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_udr0n"]
 _data = {
-"RESET": SubResource("Animation_khffd")
+&"RESET": SubResource("Animation_khffd")
 }
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_44bvg"]
@@ -366,18 +366,18 @@ void fragment() {
 render_priority = 0
 shader = SubResource("Shader_27opq")
 shader_parameter/albedo = Color(1, 1, 1, 1)
+shader_parameter/texture_albedo = ExtResource("12_546ee")
 shader_parameter/point_size = 1.0
 shader_parameter/roughness = 1.0
+shader_parameter/texture_metallic = ExtResource("13_6782y")
 shader_parameter/metallic_texture_channel = Vector4(1, 0, 0, 0)
+shader_parameter/texture_roughness = ExtResource("14_d028w")
 shader_parameter/specular = 0.5
 shader_parameter/metallic = 1.0
 shader_parameter/uv1_scale = Vector3(1, 1, 1)
 shader_parameter/uv1_offset = Vector3(0, 0, 0)
 shader_parameter/uv2_scale = Vector3(1, 1, 1)
 shader_parameter/uv2_offset = Vector3(0, 0, 0)
-shader_parameter/texture_albedo = ExtResource("12_546ee")
-shader_parameter/texture_metallic = ExtResource("13_6782y")
-shader_parameter/texture_roughness = ExtResource("14_d028w")
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_h4yg7"]
 material = SubResource("ShaderMaterial_p5qju")

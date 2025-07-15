@@ -1,9 +1,9 @@
 [gd_scene load_steps=30 format=3 uid="uid://jwblxog7c1kl"]
 
-[ext_resource type="Shader" path="res://shaders/spatial/psx_ul_add.gdshader" id="1_7j6kq"]
+[ext_resource type="Shader" uid="uid://cgfn3iqbl45r7" path="res://shaders/spatial/psx_ul_add.gdshader" id="1_7j6kq"]
 [ext_resource type="AudioStream" uid="uid://1tg3qhvaqlgr" path="res://audio/streams/ambient/fire_crackle_ambient.mp3" id="1_mtuin"]
 [ext_resource type="Material" uid="uid://08yqplf2icxd" path="res://effects/halos/fire_halo_mat.tres" id="2_2j8qu"]
-[ext_resource type="Script" path="res://scripts/effects/halo.gd" id="3_h235a"]
+[ext_resource type="Script" uid="uid://qbss7pion7pi" path="res://scripts/effects/halo.gd" id="3_h235a"]
 
 [sub_resource type="Shader" id="Shader_51k51"]
 code = "// NOTE: Shader automatically converted from Godot Engine 4.2.1.stable.mono's StandardMaterial3D.
@@ -78,18 +78,18 @@ noise = SubResource("FastNoiseLite_q3vr3")
 render_priority = 0
 shader = SubResource("Shader_51k51")
 shader_parameter/albedo = Color(1, 1, 1, 1)
+shader_parameter/texture_albedo = SubResource("NoiseTexture2D_ti8ho")
 shader_parameter/point_size = 1.0
 shader_parameter/roughness = 0.75
-shader_parameter/metallic_texture_channel = null
+shader_parameter/metallic_texture_channel = Vector4(0, 0, 0, 0)
 shader_parameter/specular = 0.5
 shader_parameter/metallic = 0.0
+shader_parameter/texture_normal = SubResource("NoiseTexture2D_ifyxs")
 shader_parameter/normal_scale = 1.0
 shader_parameter/uv1_scale = Vector3(0.125, 0.125, 0.125)
 shader_parameter/uv1_offset = Vector3(0, 0, 0)
 shader_parameter/uv2_scale = Vector3(1, 1, 1)
 shader_parameter/uv2_offset = Vector3(0, 0, 0)
-shader_parameter/texture_albedo = SubResource("NoiseTexture2D_ti8ho")
-shader_parameter/texture_normal = SubResource("NoiseTexture2D_ifyxs")
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_3s1hl"]
 top_radius = 0.05
@@ -103,8 +103,8 @@ cap_bottom = false
 render_priority = 0
 shader = ExtResource("1_7j6kq")
 shader_parameter/albedo = Color(1, 1, 0, 1)
-shader_parameter/uv1_scale = null
-shader_parameter/uv1_offset = null
+shader_parameter/uv1_scale = Vector3(0, 0, 0)
+shader_parameter/uv1_offset = Vector3(0, 0, 0)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_r7228"]
 transparency = 1
@@ -215,7 +215,6 @@ stream = ExtResource("1_mtuin")
 unit_size = 32.0
 autoplay = true
 max_distance = 32.0
-bus = &"World"
 doppler_tracking = 2
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Torch"]
@@ -257,6 +256,7 @@ draw_pass_1 = SubResource("PointMesh_bm88g")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.375, 0)
 layers = 2
 light_color = Color(1, 0.501961, 0, 1)
+light_energy = 2.0
 light_bake_mode = 1
 shadow_enabled = true
 distance_fade_enabled = true

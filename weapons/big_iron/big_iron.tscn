@@ -2,13 +2,13 @@
 
 [ext_resource type="ArrayMesh" uid="uid://vfuqffuqwocv" path="res://weapons/big_iron/big_iron.obj" id="1_ampqd"]
 [ext_resource type="Material" uid="uid://nv0jkcw45ofc" path="res://weapons/weapon_metal_vm.tres" id="2_nkeud"]
-[ext_resource type="Script" path="res://weapons/weapon_base.gd" id="2_o12ys"]
+[ext_resource type="Script" uid="uid://c022da054b2ky" path="res://weapons/weapon_base.gd" id="2_o12ys"]
 [ext_resource type="Material" uid="uid://hi03f7cjksp1" path="res://weapons/big_iron/big_iron_mat_1.tres" id="3_0ircs"]
 [ext_resource type="ArrayMesh" uid="uid://bblg4t73miejx" path="res://weapons/muzzle_flash_alt.obj" id="3_7l0wc"]
-[ext_resource type="Script" path="res://weapons/scope.gd" id="4_p5y4d"]
+[ext_resource type="Script" uid="uid://lc15mf5d6qv7" path="res://weapons/scope.gd" id="4_p5y4d"]
 [ext_resource type="PackedScene" uid="uid://cehwd234g5us7" path="res://bullets/player/hitscan/big_iron_bullet.tscn" id="6_lqm6f"]
 [ext_resource type="Material" uid="uid://dq3a5fxspauox" path="res://weapons/muzzle_flash_yellow_vm.tres" id="7_vw85u"]
-[ext_resource type="Script" path="res://weapons/alert_area.gd" id="8_ibv0x"]
+[ext_resource type="Script" uid="uid://cm4w83326cpew" path="res://weapons/alert_area.gd" id="8_ibv0x"]
 [ext_resource type="AudioStream" uid="uid://cs34y7mvho53h" path="res://audio/streams/weapons/firing/boomstick_fire.wav" id="9_i8lc1"]
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_32yj2"]
@@ -192,10 +192,10 @@ tracks/1/keys = PackedFloat32Array(0, 1, 0, 0, 0, 1)
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_c7bdy"]
 _data = {
-"RESET": SubResource("Animation_4yi83"),
-"big_iron_deploy": SubResource("Animation_y0xky"),
-"big_iron_fire": SubResource("Animation_7x05r"),
-"big_iron_idle": SubResource("Animation_3l6t5")
+&"RESET": SubResource("Animation_4yi83"),
+&"big_iron_deploy": SubResource("Animation_y0xky"),
+&"big_iron_fire": SubResource("Animation_7x05r"),
+&"big_iron_idle": SubResource("Animation_3l6t5")
 }
 
 [node name="BigIron" type="Node3D"]

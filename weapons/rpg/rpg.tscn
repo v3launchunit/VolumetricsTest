@@ -1,8 +1,8 @@
 [gd_scene load_steps=28 format=3 uid="uid://bs3eibrb48t0m"]
 
 [ext_resource type="PackedScene" uid="uid://babited41kti5" path="res://weapons/rpg/rpg.glb" id="1_70x0w"]
-[ext_resource type="Script" path="res://weapons/rpg/weapon_rpg.gd" id="2_535cm"]
-[ext_resource type="Script" path="res://weapons/alert_area.gd" id="2_v1et6"]
+[ext_resource type="Script" uid="uid://bjqbfjaykf76s" path="res://weapons/rpg/weapon_rpg.gd" id="2_535cm"]
+[ext_resource type="Script" uid="uid://cm4w83326cpew" path="res://weapons/alert_area.gd" id="2_v1et6"]
 [ext_resource type="AnimationLibrary" uid="uid://c1poci1it3ds0" path="res://weapons/rpg/rpg_anims.res" id="3_ktpeh"]
 [ext_resource type="PackedScene" uid="uid://c356m28y5sg6h" path="res://bullets/player/projectile/rockets/mini_rocket.tscn" id="3_yt74d"]
 [ext_resource type="Material" uid="uid://digscwwl48m5g" path="res://weapons/rpg/rocket_mat_vm.tres" id="4_0tpv3"]
@@ -105,7 +105,7 @@ tracks/1/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_g633s"]
 _data = {
-"RESET": SubResource("Animation_subme")
+&"RESET": SubResource("Animation_subme")
 }
 
 [node name="RPG" type="Node3D"]

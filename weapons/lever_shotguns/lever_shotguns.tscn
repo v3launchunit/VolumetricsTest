@@ -1,6 +1,6 @@
 [gd_scene load_steps=10 format=3 uid="uid://bpmahfi65ka5j"]
 
-[ext_resource type="Script" path="res://weapons/weapon_dual_wield.gd" id="1_hohpo"]
+[ext_resource type="Script" uid="uid://xqa4yqfakv0c" path="res://weapons/weapon_dual_wield.gd" id="1_hohpo"]
 [ext_resource type="PackedScene" uid="uid://c8byur5x2vfip" path="res://bullets/player/hitscan/lever_shotgun_slug.tscn" id="2_fbw0e"]
 [ext_resource type="PackedScene" uid="uid://5ta546kfi5yj" path="res://weapons/lever_shogtun/lever_shotgun.glb" id="2_pxtkk"]
 [ext_resource type="Material" uid="uid://nv0jkcw45ofc" path="res://weapons/weapon_metal_vm.tres" id="3_ibg5p"]

@@ -1,14 +1,14 @@
 [gd_scene load_steps=10 format=3 uid="uid://djugodjmvvg4v"]
 
-[ext_resource type="Shader" path="res://shaders/spatial/psx_ul_add.gdshader" id="1_htqtd"]
-[ext_resource type="Script" path="res://bullets/enemy/minor_omni_light_3d.gd" id="2_kivw5"]
+[ext_resource type="Shader" uid="uid://cgfn3iqbl45r7" path="res://shaders/spatial/psx_ul_add.gdshader" id="1_htqtd"]
+[ext_resource type="Script" uid="uid://oqbx6pignrqi" path="res://bullets/enemy/minor_omni_light_3d.gd" id="2_kivw5"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_sdmur"]
 render_priority = 0
 shader = ExtResource("1_htqtd")
 shader_parameter/albedo = Color(1, 1, 1, 1)
-shader_parameter/uv1_scale = null
-shader_parameter/uv1_offset = null
+shader_parameter/uv1_scale = Vector3(0, 0, 0)
+shader_parameter/uv1_offset = Vector3(0, 0, 0)
 
 [sub_resource type="Gradient" id="Gradient_i0eix"]
 colors = PackedColorArray(1, 0, 0, 1, 1, 1, 0, 1)

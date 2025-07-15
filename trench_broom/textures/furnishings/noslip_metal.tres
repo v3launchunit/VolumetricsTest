@@ -1,0 +1,11 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://udb1bb4ydxxi"]
+
+[ext_resource type="Texture2D" uid="uid://d3xi2y34kr0p0" path="res://materials/terrain/custom_hand/key_metal/key_metal_normals_32.png" id="1_qfvkb"]
+
+[resource]
+metallic = 1.0
+roughness = 0.25
+normal_enabled = true
+normal_texture = ExtResource("1_qfvkb")
+uv1_scale = Vector3(0.125, 0.125, 0.125)
+texture_filter = 2

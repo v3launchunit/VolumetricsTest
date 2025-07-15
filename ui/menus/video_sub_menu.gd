@@ -29,7 +29,7 @@ extends VBoxContainer
 @onready var depth_slider: HSlider = find_child("DepthSlider")
 @onready var depth_label: Label = find_child("DepthLabel")
 
-@onready var _press_sound: AudioStreamPlayer = get_node("/root/GameMenu/ButtonPress")
+#@onready var _press_sound: AudioStreamPlayer = get_node("/root/GameMenu/ButtonPress")
 
 
 func _ready() -> void:
@@ -68,7 +68,7 @@ func _ready() -> void:
 
 
 func _on_resolution_apply_button_pressed() -> void:
-	_press_sound.play()
+	#_press_sound.play()
 	if not res_x.text.is_valid_int():
 		res_x.text = ProjectSettings.get_setting("display/window/size/viewport_width")
 		return
@@ -82,7 +82,7 @@ func _on_resolution_apply_button_pressed() -> void:
 
 
 func _on_scale_slider_value_changed(value: float) -> void:
-	_press_sound.play()
+	#_press_sound.play()
 	Globals.s_stretch_scale = floori(value)
 	scale_label.text = "%sx" % value
 
@@ -92,7 +92,7 @@ func _on_scale_slider_value_changed(value: float) -> void:
 
 
 func _on_ui_scale_slider_value_changed(value: float) -> void:
-	_press_sound.play()
+	#_press_sound.play()
 	ProjectSettings.set_setting("display/window/stretch/scale", value)
 	Globals.s_ui_scale = value
 	ui_scale_label.text = "%sx" % value
@@ -104,13 +104,13 @@ func _on_ui_scale_slider_drag_ended(value_changed: bool) -> void:
 
 
 func _on_crosshair_size_slider_value_changed(value: float) -> void:
-	_press_sound.play()
+	#_press_sound.play()
 	Globals.s_crosshair_size = value
 	crosshair_size_label.text = "%sx" % value
 
 
 func _on_fov_slider_value_changed(value: float) -> void:
-	_press_sound.play()
+	#_press_sound.play()
 	Globals.s_fov_desired = value
 	fov_label.text = "%s" % value
 
@@ -136,8 +136,8 @@ func _on_volumetric_fog_check_toggled(button_pressed: bool) -> void:
 
 
 func _on_snap_slider_value_changed(value: float) -> void:
-	_press_sound.play()
-	Globals.s_vertex_snap = value
+	#_press_sound.play()
+	Globals.s_vertex_snap = floori(value)
 	match floori(value):
 		0:
 			snap_label.text = "Off"
@@ -170,16 +170,16 @@ func _on_snap_slider_value_changed(value: float) -> void:
 
 
 func _on_affine_warp_check_toggled(toggled_on: bool) -> void:
-	_press_sound.play()
+	#_press_sound.play()
 	Globals.s_affine_warp = toggled_on
 	ProjectSettings.set_setting("affine_warp", toggled_on)
 	RenderingServer.global_shader_parameter_set("affine_warp", toggled_on)
 
 
 func _on_palette_check_toggled(toggled_on: bool) -> void:
-	_press_sound.play()
+	#_press_sound.play()
 	Globals.s_palette_compress_enabled = toggled_on
 
 
-func _on_depth_slider_value_changed(value: float) -> void:
+func _on_depth_slider_value_changed(_value: float) -> void:
 	pass # Replace with function body.

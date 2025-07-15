@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="FuncGodotFGDSolidClass" load_steps=3 format=3 uid="uid://v6mto6vmkotg"]
 
-[ext_resource type="Script" path="res://addons/func_godot/src/fgd/func_godot_fgd_solid_class.gd" id="1_5mjt6"]
-[ext_resource type="Script" path="res://trench_broom/func_godot_fgd/entities/solid/area/alerter.gd" id="2_tvjii"]
+[ext_resource type="Script" uid="uid://bncud33hs01ck" path="res://addons/func_godot/src/fgd/func_godot_fgd_solid_class.gd" id="1_5mjt6"]
+[ext_resource type="Script" uid="uid://crswgw8sbi411" path="res://trench_broom/func_godot_fgd/entities/solid/area/alerter.gd" id="2_tvjii"]
 
 [resource]
 script = ExtResource("1_5mjt6")
@@ -17,15 +17,23 @@ collision_layer = 1
 collision_mask = 2
 collision_priority = 1.0
 collision_shape_margin = 0.04
+add_textures_metadata = false
+add_vertex_metadata = false
+add_face_position_metadata = false
+add_face_normal_metadata = false
+add_collision_shape_face_range_metadata = false
 script_class = ExtResource("2_tvjii")
 classname = "func_alerter"
-description = ""
+description = "static collidable geometry. when interacted with by the player, displays a message and does nothing else."
 func_godot_internal = false
 base_classes = Array[Resource]([])
 class_properties = {
 "alert": "chicken"
 }
-class_property_descriptions = {}
+class_property_descriptions = {
+"alert": "alert message"
+}
+auto_apply_to_matching_node_properties = false
 meta_properties = {
 "color": Color(0.8, 0.8, 0.8, 1),
 "size": AABB(-8, -8, -8, 8, 8, 8)

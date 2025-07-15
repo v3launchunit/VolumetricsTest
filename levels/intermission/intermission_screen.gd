@@ -11,17 +11,23 @@ enum TallyPhase {
 
 
 var _time: float = 0.0
-var _foes: int = 0 ## total number of tallied foes in the level.
+## the total number of tallied foes in the level.
+var _foes: int = 0 
+## the number of tallied foes killed by the player in the level.
 var _kills: int = 0
-var _secrets: int = 0 ## total number of secrets in the level.
+## the total number of secrets in the level.
+var _secrets: int = 0 
+## the number of secrets that the player managed to find within the level.
 var _found_secrets: int = 0
+## the level to load after the intermission.
 var _next_level: String
 
-var time_tally: float = 0.0
-var foes_tally: int = 0
-var kills_tally: int = 0
-var secrets_tally: int = 0
-var found_secrets_tally: int = 0
+var melt_timer : float = 0.0
+var time_tally : float = 0.0
+var foes_tally : int = 0
+var kills_tally : int = 0
+var secrets_tally : int = 0
+var found_secrets_tally : int = 0
 
 var tally_phase := TallyPhase.TIME
 
@@ -30,15 +36,18 @@ var tally_lock: bool = false
 var screenshot: Image
 
 
-@onready var time_label := find_child("TimeLabel") as Label
-@onready var kills_label := find_child("KillsLabel") as Label
-@onready var secrets_label := find_child("SecretsLabel") as Label
-@onready var stream_player := $AudioStreamPlayer3D as AudioStreamPlayer
+@onready var time_label := find_child("TimeTally") as Label
+@onready var kills_label := find_child("KillsTally") as Label
+@onready var secrets_label := find_child("SecretsTally") as Label
+@onready var tally_tick := $TallyTick as AudioStreamPlayer
+@onready var tally_finished := $TallyFinished as AudioStreamPlayer
 @onready var screenshot_rect := $TextureRect as TextureRect
 
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	$ContinueHint.hide()
+	
 	_on_language_changed()
 	
 	_time = Intermission._time
@@ -48,23 +57,33 @@ func _ready() -> void:
 	_found_secrets = Intermission._found_secrets
 	_next_level = Intermission._next_level
 	
+	screenshot = Intermission.screenshot
+	screenshot_rect.texture = ImageTexture.create_from_image(screenshot)
+	
+	melt_timer = 0.0
 	time_tally = 0.0
 	foes_tally = 0
 	kills_tally = 0
 	secrets_tally = 0
 	found_secrets_tally = 0
-	tally_phase = TallyPhase.TIME
-	
-	screenshot = Intermission.screenshot
-	screenshot_rect.texture = ImageTexture.create_from_image(screenshot)
+	tally_phase = TallyPhase.MELT
 	
 	Globals.language_changed.connect(_on_language_changed)
+	
+	tally_finished.play()
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta: float) -> void:
-	print(tally_phase)
+	#print(tally_phase)
 	match tally_phase:
+		TallyPhase.MELT:
+			var mat := screenshot_rect.material as ShaderMaterial
+			melt_timer = move_toward(melt_timer, 1.0, delta)
+			mat.set_shader_parameter("_progress", melt_timer)
+			if melt_timer >= 1.0: #or Globals.menu_click():
+				mat.set_shader_parameter("_progress", 1.0)
+				tally_phase = TallyPhase.TIME
 		TallyPhase.TIME:
 			time_tally = lerpf(time_tally, _time, delta * 60)
 			time_label.text = "{hr}:{min}:{sec}".format({
@@ -72,38 +91,54 @@ func _physics_process(delta: float) -> void:
 					"min": "%02d" % (time_tally / 60.0), # process minutes
 					"sec": "%02.3f" % time_tally, # process seconds/milliseconds
 			})
-			if abs(time_tally - _time) < 0.001 or Globals.menu_click():
+			if is_equal_approx(time_tally, _time) or Globals.menu_click():
+				time_label.text = "{hr}:{min}:{sec}".format({
+						"hr": "%02d" % (_time / 3600.0), # process hours
+						"min": "%02d" % (_time / 60.0), # process minutes
+						"sec": "%02.3f" % _time, # process seconds/milliseconds
+				})
 				tally_phase = TallyPhase.KILLS
-				stream_player.play()
+				tally_finished.play()
+			else:
+				tally_tick.play()
 		TallyPhase.KILLS:
 			foes_tally = Globals.intstep(foes_tally, _foes)
 			kills_tally = Globals.intstep(kills_tally, _kills)
 			kills_label.text = "{kills}/{foes}".format({
-					"kills":  "%0*d" % [mini(ceili(log(_foes)) / log(10), 1), kills_tally],
-					"foes": "%0*d" % [mini(ceili(log(_foes)) / log(10), 1), foes_tally],
+					"kills":  "%0*d" % [mini(ceili(log(_foes)) / ceili(log(10)), 1), kills_tally],
+					"foes": "%0*d" % [mini(ceili(log(_foes)) / ceili(log(10)), 1), foes_tally],
 			})
-			if (
-					(foes_tally == _foes and kills_tally == _kills) 
-					or Input.is_action_just_pressed("weapon_fire_main")
-			):
+			if (foes_tally == _foes and kills_tally == _kills) or Globals.menu_click():
+				kills_label.text = "{kills}/{foes}".format({
+						"kills":  "%0*d" % [mini(ceili(log(_foes)) / ceili(log(10)), 1), _kills],
+						"foes": "%0*d" % [mini(ceili(log(_foes)) / ceili(log(10)), 1), _foes],
+				})
 				tally_phase = TallyPhase.SECRETS
-				stream_player.play()
+				tally_finished.play()
+			else:
+				tally_tick.play()
 		TallyPhase.SECRETS:
 			secrets_tally = Globals.intstep(secrets_tally, _secrets)
 			found_secrets_tally = Globals.intstep(found_secrets_tally, _found_secrets)
 			secrets_label.text = "{found}/{secrets}".format({
-					"found":  "%0*d" % [mini(ceili(log(_secrets)) / log(10), 1), found_secrets_tally],
-					"secrets": "%0*d" % [mini(ceili(log(_secrets)) / log(10), 1), secrets_tally],
+					"found":  "%0*d" % [mini(ceili(log(_secrets)) / ceili(log(10)), 1), found_secrets_tally],
+					"secrets": "%0*d" % [mini(ceili(log(_secrets)) / ceili(log(10)), 1), secrets_tally],
 			})
-			if (
-					(secrets_tally == _secrets and found_secrets_tally == _found_secrets) 
-					or Input.is_action_just_pressed("weapon_fire_main")
-			):
+			if (secrets_tally == _secrets and found_secrets_tally == _found_secrets) or Globals.menu_click():
+				secrets_label.text = "{found}/{secrets}".format({
+						"found":  "%0*d" % [mini(ceili(log(_secrets)) / ceili(log(10)), 1), _found_secrets],
+						"secrets": "%0*d" % [mini(ceili(log(_secrets)) / ceili(log(10)), 1), _secrets],
+				})
 				tally_phase = TallyPhase.DONE
-				stream_player.play()
+				tally_finished.play()
+			else:
+				tally_tick.play()
 		TallyPhase.DONE:
-			if Input.is_action_just_pressed("weapon_fire_main"):
-				Globals.open_level_from_key(_next_level)
+			$ContinueHint.show()
+			if Input.is_action_just_pressed("ui_click"):
+				# if the next level can't be loaded, just return to the title screen
+				if Globals.open_level_from_key(_next_level) != OK: 
+					get_tree().change_scene_to_file("res://levels/title_screen.tscn")
 
 
 func _on_language_changed() -> void:

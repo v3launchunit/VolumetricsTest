@@ -1,13 +1,13 @@
 [gd_scene load_steps=20 format=3 uid="uid://cxe1gjgdpac7q"]
 
-[ext_resource type="Script" path="res://scripts/pickups/health_pickup.gd" id="1_ykcg1"]
+[ext_resource type="Script" uid="uid://c5fw3v01gendn" path="res://pickups/health_pickup.gd" id="1_ykcg1"]
 [ext_resource type="AudioStream" uid="uid://cr8v5feyxtf4l" path="res://audio/streams/pickups/pickup_health.wav" id="2_1y7vh"]
 [ext_resource type="Texture2D" uid="uid://kqlvg0qggfjq" path="res://pickups/health/health_pack/health_pack.png" id="3_1cnl6"]
 [ext_resource type="Texture2D" uid="uid://hk0k2coukjwc" path="res://effects/halos/halo_tex.tres" id="3_bygk2"]
 [ext_resource type="Material" uid="uid://b78l63b32udy2" path="res://effects/halos/halo_mat.tres" id="3_wu50x"]
 [ext_resource type="Texture2D" uid="uid://ct7ds556f38rr" path="res://pickups/health/health_pack/health_pack_emissions.png" id="4_q78tt"]
 [ext_resource type="Texture2D" uid="uid://blyf0pk53kvke" path="res://pickups/health/health_pack/health_pack_heights.png" id="5_8s5is"]
-[ext_resource type="Script" path="res://scripts/effects/halo.gd" id="5_lr513"]
+[ext_resource type="Script" uid="uid://qbss7pion7pi" path="res://scripts/effects/halo.gd" id="5_lr513"]
 [ext_resource type="Texture2D" uid="uid://dqwnbv51w47yp" path="res://pickups/health/health_pack/health_pack_normals.png" id="6_06up3"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_uc2sx"]
@@ -96,14 +96,18 @@ void fragment() {
 render_priority = 0
 shader = SubResource("Shader_eqn2i")
 shader_parameter/albedo = Color(1, 1, 1, 1)
+shader_parameter/texture_albedo = ExtResource("3_1cnl6")
 shader_parameter/point_size = 1.0
 shader_parameter/roughness = 0.75
-shader_parameter/metallic_texture_channel = null
+shader_parameter/metallic_texture_channel = Vector4(0, 0, 0, 0)
 shader_parameter/specular = 0.5
 shader_parameter/metallic = 0.0
+shader_parameter/texture_emission = ExtResource("4_q78tt")
 shader_parameter/emission = Color(0, 0, 0, 1)
 shader_parameter/emission_energy = 1.0
+shader_parameter/texture_normal = ExtResource("6_06up3")
 shader_parameter/normal_scale = 1.0
+shader_parameter/texture_heightmap = ExtResource("5_8s5is")
 shader_parameter/heightmap_scale = 3.0
 shader_parameter/heightmap_min_layers = 8
 shader_parameter/heightmap_max_layers = 32
@@ -112,10 +116,6 @@ shader_parameter/uv1_scale = Vector3(1, 1, 1)
 shader_parameter/uv1_offset = Vector3(0, 0, 0)
 shader_parameter/uv2_scale = Vector3(1, 1, 1)
 shader_parameter/uv2_offset = Vector3(0, 0, 0)
-shader_parameter/texture_albedo = ExtResource("3_1cnl6")
-shader_parameter/texture_emission = ExtResource("4_q78tt")
-shader_parameter/texture_normal = ExtResource("6_06up3")
-shader_parameter/texture_heightmap = ExtResource("5_8s5is")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_w3n1t"]
 albedo_texture = ExtResource("3_1cnl6")
@@ -154,7 +154,7 @@ tracks/1/keys = PackedFloat32Array(0, 1, 0, 0, 0, 2.5, 1, 0, 0.05, 0, 5, 1, 0, 0
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_4pudi"]
 _data = {
-"anim": SubResource("Animation_wivti")
+&"anim": SubResource("Animation_wivti")
 }
 
 [node name="HealthPackPickup" type="RigidBody3D"]
@@ -168,7 +168,7 @@ pickup_text = "+20% health"
 shape = SubResource("CylinderShape3D_uc2sx")
 
 [node name="Area3D" type="Area3D" parent="."]
-transform = Transform3D(0.813742, 0, 0.581226, 0, 1, 0, -0.581226, 0, 0.813742, 0, 0.0172328, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0172328, 0)
 collision_mask = 2
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
@@ -199,5 +199,5 @@ shadow_enabled = true
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 root_node = NodePath("../Area3D")
 libraries = {
-"": SubResource("AnimationLibrary_4pudi")
+&"": SubResource("AnimationLibrary_4pudi")
 }

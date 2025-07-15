@@ -1,13 +1,13 @@
 [gd_scene load_steps=26 format=3 uid="uid://doj0aysg6oqh2"]
 
-[ext_resource type="Script" path="res://bullets/bullet.gd" id="1_ymvu6"]
+[ext_resource type="Script" uid="uid://v2g043uyqdfa" path="res://bullets/bullet.gd" id="1_ymvu6"]
 [ext_resource type="PackedScene" uid="uid://fn1fivb2ndvo" path="res://scenes/effects/impacts/bullet_impact_yellow.tscn" id="2_rlntx"]
-[ext_resource type="Script" path="res://bullets/bullet_trail.gd" id="3_c45im"]
+[ext_resource type="Script" uid="uid://dqsxgbvhlqnq" path="res://bullets/bullet_trail.gd" id="3_c45im"]
 [ext_resource type="AudioStream" uid="uid://bhhnxh2cjbiuq" path="res://audio/streams/ambient/fire_ball_ambient.wav" id="3_ghwt3"]
-[ext_resource type="Script" path="res://scripts/effects/lifetime.gd" id="4_hhht4"]
+[ext_resource type="Script" uid="uid://b5h7xnsiqnyy7" path="res://scripts/effects/lifetime.gd" id="4_hhht4"]
 [ext_resource type="Material" uid="uid://b78l63b32udy2" path="res://effects/halos/halo_mat.tres" id="4_p5pbv"]
-[ext_resource type="Script" path="res://bullets/enemy/minor_omni_light_3d.gd" id="5_ix47d"]
-[ext_resource type="Script" path="res://scripts/effects/halo.gd" id="5_qgig2"]
+[ext_resource type="Script" uid="uid://oqbx6pignrqi" path="res://bullets/enemy/minor_omni_light_3d.gd" id="5_ix47d"]
+[ext_resource type="Script" uid="uid://qbss7pion7pi" path="res://scripts/effects/halo.gd" id="5_qgig2"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_6fgvk"]
 radius = 0.25
@@ -64,7 +64,7 @@ shader = SubResource("Shader_dgvug")
 shader_parameter/albedo = Color(1, 0.501961, 0, 1)
 shader_parameter/point_size = 1.0
 shader_parameter/roughness = 1.0
-shader_parameter/metallic_texture_channel = null
+shader_parameter/metallic_texture_channel = Vector4(0, 0, 0, 0)
 shader_parameter/specular = 0.5
 shader_parameter/metallic = 0.0
 shader_parameter/uv1_scale = Vector3(1, 1, 1)
@@ -140,7 +140,7 @@ shader = SubResource("Shader_errlx")
 shader_parameter/albedo = Color(1, 1, 1, 1)
 shader_parameter/point_size = 1.0
 shader_parameter/roughness = 1.0
-shader_parameter/metallic_texture_channel = null
+shader_parameter/metallic_texture_channel = Vector4(0, 0, 0, 0)
 shader_parameter/specular = 0.5
 shader_parameter/metallic = 0.0
 shader_parameter/uv1_scale = Vector3(1, 1, 1)

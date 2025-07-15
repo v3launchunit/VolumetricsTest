@@ -1,18 +1,26 @@
-[gd_scene load_steps=9 format=3 uid="uid://cyh67pqghsn3n"]
+[gd_scene load_steps=12 format=3 uid="uid://cyh67pqghsn3n"]
 
 [ext_resource type="Theme" uid="uid://dwof7m2ye3tjh" path="res://ui/default_theme.tres" id="1_4kk41"]
-[ext_resource type="Script" path="res://ui/menus/game_menu.gd" id="1_fh5b1"]
+[ext_resource type="Script" uid="uid://dg3kbj0h8u6tg" path="res://ui/menus/game_menu.gd" id="1_fh5b1"]
 [ext_resource type="Texture2D" uid="uid://cmq3arf61ax4f" path="res://ui/menus/menu_panel.png" id="1_yt0u8"]
 [ext_resource type="PackedScene" uid="uid://ccwu3rknnn1jt" path="res://ui/menus/settings/settings_menu.tscn" id="4_l61q4"]
 [ext_resource type="Texture2D" uid="uid://bn5awurm538ar" path="res://ui/x.png" id="4_snd5f"]
 [ext_resource type="PackedScene" uid="uid://c58frru7780pf" path="res://ui/menus/level_select_menu.tscn" id="5_cbdtm"]
+[ext_resource type="PackedScene" uid="uid://carxs406l6dra" path="res://ui/menus/save_load_menu.tscn" id="6_7yrfh"]
 [ext_resource type="AudioStream" uid="uid://bmlxxe8maevqb" path="res://audio/streams/click.wav" id="6_ts66u"]
+[ext_resource type="AudioStream" uid="uid://codrbn3r7pjqj" path="res://audio/streams/scroll.wav" id="9_hpqfg"]
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_31jvl"]
 random_pitch = 1.15
 random_volume_offset_db = 0.15
 streams_count = 1
 stream_0/stream = ExtResource("6_ts66u")
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_tjhbk"]
+random_pitch = 1.15
+random_volume_offset_db = 0.15
+streams_count = 1
+stream_0/stream = ExtResource("9_hpqfg")
 
 [node name="Menu" type="Control"]
 process_mode = 3
@@ -84,9 +92,39 @@ text = "CAMPAIGN"
 layout_mode = 2
 focus_neighbor_left = NodePath("../Campaign")
 theme = ExtResource("1_4kk41")
-disabled = true
 keep_pressed_outside = true
-text = "SAVE/LOAD"
+text = "SAVE"
+
+[node name="SaveFile" type="FileDialog" parent="VBoxContainer/Save"]
+auto_translate_mode = 1
+title = "SAVE GAME"
+initial_position = 2
+theme = ExtResource("1_4kk41")
+cancel_button_text = "CANCEL"
+mode_overrides_title = false
+access = 1
+root_subfolder = "saves/user"
+filters = PackedStringArray("*.scn,*.tscn;SAVE FILES")
+
+[node name="Load" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+focus_neighbor_left = NodePath("../Campaign")
+theme = ExtResource("1_4kk41")
+keep_pressed_outside = true
+text = "LOAD"
+
+[node name="LoadFile" type="FileDialog" parent="VBoxContainer/Load"]
+auto_translate_mode = 1
+title = "LOAD GAME"
+initial_position = 2
+theme = ExtResource("1_4kk41")
+ok_button_text = "Open"
+cancel_button_text = "CANCEL"
+mode_overrides_title = false
+file_mode = 0
+access = 1
+root_subfolder = "saves"
+filters = PackedStringArray("*.scn,*.tscn;SAVE FILES")
 
 [node name="Settings" type="Button" parent="VBoxContainer"]
 layout_mode = 2
@@ -96,12 +134,9 @@ theme = ExtResource("1_4kk41")
 keep_pressed_outside = true
 text = "SETTINGS"
 
-[node name="Spacer" type="Control" parent="VBoxContainer"]
-custom_minimum_size = Vector2(0, 16)
-layout_mode = 2
-
 [node name="Quit" type="Button" parent="VBoxContainer"]
 layout_mode = 2
+size_flags_vertical = 8
 focus_neighbor_left = NodePath("../Settings")
 focus_neighbor_top = NodePath("../Settings")
 focus_neighbor_right = NodePath("../Campaign")
@@ -111,9 +146,9 @@ focus_previous = NodePath("../Settings")
 theme = ExtResource("1_4kk41")
 theme_override_colors/font_hover_pressed_color = Color(0.501961, 0, 0, 1)
 theme_override_colors/font_hover_color = Color(1, 0, 0, 1)
-theme_override_colors/font_pressed_color = Color(0.501961, 0, 0, 1)
-theme_override_colors/font_focus_color = Color(1, 0, 0, 1)
 theme_override_colors/font_color = Color(0.74902, 0.376471, 0.376471, 1)
+theme_override_colors/font_focus_color = Color(1, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0.501961, 0, 0, 1)
 keep_pressed_outside = true
 text = "QUIT"
 
@@ -158,17 +193,30 @@ patch_margin_bottom = 8
 visible = false
 layout_mode = 1
 
+[node name="SaveLoad" parent="." instance=ExtResource("6_7yrfh")]
+visible = false
+layout_mode = 1
+
 [node name="Settings" parent="." instance=ExtResource("4_l61q4")]
 visible = false
 layout_mode = 1
 
 [node name="ButtonPress" type="AudioStreamPlayer" parent="."]
 stream = SubResource("AudioStreamRandomizer_31jvl")
+bus = &"UI"
+
+[node name="ScrollWheelMove" type="AudioStreamPlayer" parent="."]
+stream = SubResource("AudioStreamRandomizer_tjhbk")
+max_polyphony = 8
+bus = &"UI"
 
 [connection signal="menu_closed" from="." to="LevelSelect" method="_on_menu_closed"]
 [connection signal="menu_closed" from="." to="Settings" method="_on_menu_closed"]
 [connection signal="pressed" from="VBoxContainer/Campaign" to="." method="_on_campaign_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/Save" to="." method="_on_save_button_pressed"]
+[connection signal="file_selected" from="VBoxContainer/Save/SaveFile" to="." method="_on_save_file_file_selected"]
+[connection signal="pressed" from="VBoxContainer/Load" to="." method="_on_load_button_pressed"]
+[connection signal="file_selected" from="VBoxContainer/Load/LoadFile" to="." method="_on_load_file_file_selected"]
 [connection signal="button_down" from="VBoxContainer/Settings" to="." method="_on_button_down"]
 [connection signal="pressed" from="VBoxContainer/Settings" to="." method="_on_settings_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/Quit" to="." method="_on_quit_button_pressed"]

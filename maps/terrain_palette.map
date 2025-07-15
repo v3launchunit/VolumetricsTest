@@ -3,203 +3,1421 @@
 // entity 0
 {
 "classname" "worldspawn"
-"_tb_textures" "textures/special;textures/terrain/trench_broom"
+"_tb_textures" "textures;textures/furnishings;textures/liquids;textures/machines;textures/machines/vent_panel;textures/metallic;textures/natural;textures/pathways;textures/special;textures/structural"
 // brush 0
 {
-( -64 -224 64 ) ( -64 -223 64 ) ( -64 -224 65 ) special/clip 0 0 0 1 1
-( 64 -352 32 ) ( 63 -352 32 ) ( 64 -352 33 ) special/clip 0 0 0 1 1
-( 64 -352 -16 ) ( 64 -351 -16 ) ( 63 -352 -16 ) special/clip 0 0 0 1 1
-( -64 -224 16 ) ( -65 -224 16 ) ( -64 -223 16 ) special/clip 0 0 0 1 1
-( -64 -224 64 ) ( -64 -224 65 ) ( -65 -224 64 ) special/clip 0 0 0 1 1
-( 64 -352 32 ) ( 64 -352 33 ) ( 64 -351 32 ) special/clip 0 0 0 1 1
+( -64 -704 64 ) ( -64 -703 64 ) ( -64 -704 65 ) natural/dirt 0 0 0 1 1
+( 64 -832 32 ) ( 63 -832 32 ) ( 64 -832 33 ) natural/dirt 0 0 0 1 1
+( 64 -832 -16 ) ( 64 -831 -16 ) ( 63 -832 -16 ) natural/dirt 0 0 0 1 1
+( -64 -704 16 ) ( -65 -704 16 ) ( -64 -703 16 ) natural/dirt 0 0 0 1 1
+( -64 -704 64 ) ( -64 -704 65 ) ( -65 -704 64 ) natural/dirt 0 0 0 1 1
+( 64 -832 32 ) ( 64 -832 33 ) ( 64 -831 32 ) natural/dirt 0 0 0 1 1
 }
 // brush 1
 {
-( -64 -32 64 ) ( -64 -31 64 ) ( -64 -32 65 ) special/skip 0 0 0 1 1
-( 64 -160 32 ) ( 63 -160 32 ) ( 64 -160 33 ) special/skip 0 0 0 1 1
-( 64 -160 -16 ) ( 64 -159 -16 ) ( 63 -160 -16 ) special/skip 0 0 0 1 1
-( -64 -32 16 ) ( -65 -32 16 ) ( -64 -31 16 ) special/skip 0 0 0 1 1
-( -64 -32 64 ) ( -64 -32 65 ) ( -65 -32 64 ) special/skip 0 0 0 1 1
-( 64 -160 32 ) ( 64 -160 33 ) ( 64 -159 32 ) special/skip 0 0 0 1 1
+( -64 -512 64 ) ( -64 -511 64 ) ( -64 -512 65 ) metallic/bulk_metal 0 0 0 1 1
+( 64 -640 32 ) ( 63 -640 32 ) ( 64 -640 33 ) metallic/bulk_metal 0 0 0 1 1
+( 64 -640 -16 ) ( 64 -639 -16 ) ( 63 -640 -16 ) metallic/bulk_metal 0 0 0 1 1
+( -64 -512 16 ) ( -65 -512 16 ) ( -64 -511 16 ) metallic/bulk_metal 0 0 0 1 1
+( -64 -512 64 ) ( -64 -512 65 ) ( -65 -512 64 ) metallic/bulk_metal 0 0 0 1 1
+( 64 -640 32 ) ( 64 -640 33 ) ( 64 -639 32 ) metallic/bulk_metal 0 0 0 1 1
 }
 // brush 2
 {
-( -64 160 64 ) ( -64 161 64 ) ( -64 160 65 ) terrain/trench_broom/big_cobble_stone 0 0 0 1 1
-( 64 32 32 ) ( 63 32 32 ) ( 64 32 33 ) terrain/trench_broom/big_cobble_stone 0 0 0 1 1
-( 64 32 -16 ) ( 64 33 -16 ) ( 63 32 -16 ) terrain/trench_broom/big_cobble_stone 0 0 0 1 1
-( -64 160 16 ) ( -65 160 16 ) ( -64 161 16 ) terrain/trench_broom/big_cobble_stone 0 0 0 1 1
-( -64 160 64 ) ( -64 160 65 ) ( -65 160 64 ) terrain/trench_broom/big_cobble_stone 0 0 0 1 1
-( 64 32 32 ) ( 64 32 33 ) ( 64 33 32 ) terrain/trench_broom/big_cobble_stone 0 0 0 1 1
+( -64 -320 64 ) ( -64 -319 64 ) ( -64 -320 65 ) liquids/lava 0 0 0 1 1
+( 64 -448 32 ) ( 63 -448 32 ) ( 64 -448 33 ) liquids/lava 0 0 0 1 1
+( 64 -448 -16 ) ( 64 -447 -16 ) ( 63 -448 -16 ) liquids/lava 0 0 0 1 1
+( -64 -320 16 ) ( -65 -320 16 ) ( -64 -319 16 ) liquids/lava 0 0 0 1 1
+( -64 -320 64 ) ( -64 -320 65 ) ( -65 -320 64 ) liquids/lava 0 0 0 1 1
+( 64 -448 32 ) ( 64 -448 33 ) ( 64 -447 32 ) liquids/lava 0 0 0 1 1
 }
 // brush 3
 {
-( -64 352 64 ) ( -64 353 64 ) ( -64 352 65 ) terrain/trench_broom/bricks 0 0 0 1 1
-( 64 224 32 ) ( 63 224 32 ) ( 64 224 33 ) terrain/trench_broom/bricks 0 0 0 1 1
-( 64 224 -16 ) ( 64 225 -16 ) ( 63 224 -16 ) terrain/trench_broom/bricks 0 0 0 1 1
-( -64 352 16 ) ( -65 352 16 ) ( -64 353 16 ) terrain/trench_broom/bricks 0 0 0 1 1
-( -64 352 64 ) ( -64 352 65 ) ( -65 352 64 ) terrain/trench_broom/bricks 0 0 0 1 1
-( 64 224 32 ) ( 64 224 33 ) ( 64 225 32 ) terrain/trench_broom/bricks 0 0 0 1 1
+( -64 -128 64 ) ( -64 -127 64 ) ( -64 -128 65 ) furnishings/checker_board 0 0 0 1 1
+( 64 -256 32 ) ( 63 -256 32 ) ( 64 -256 33 ) furnishings/checker_board 0 0 0 1 1
+( 64 -256 -16 ) ( 64 -255 -16 ) ( 63 -256 -16 ) furnishings/checker_board 0 0 0 1 1
+( -64 -128 16 ) ( -65 -128 16 ) ( -64 -127 16 ) furnishings/checker_board 0 0 0 1 1
+( -64 -128 64 ) ( -64 -128 65 ) ( -65 -128 64 ) furnishings/checker_board 0 0 0 1 1
+( 64 -256 32 ) ( 64 -256 33 ) ( 64 -255 32 ) furnishings/checker_board 0 0 0 1 1
 }
 // brush 4
 {
-( 128 -224 64 ) ( 128 -223 64 ) ( 128 -224 65 ) terrain/trench_broom/bricks_brown 0 0 0 1 1
-( 256 -352 32 ) ( 255 -352 32 ) ( 256 -352 33 ) terrain/trench_broom/bricks_brown 0 0 0 1 1
-( 256 -352 -16 ) ( 256 -351 -16 ) ( 255 -352 -16 ) terrain/trench_broom/bricks_brown 0 0 0 1 1
-( 128 -224 16 ) ( 127 -224 16 ) ( 128 -223 16 ) terrain/trench_broom/bricks_brown 0 0 0 1 1
-( 128 -224 64 ) ( 128 -224 65 ) ( 127 -224 64 ) terrain/trench_broom/bricks_brown 0 0 0 1 1
-( 256 -352 32 ) ( 256 -352 33 ) ( 256 -351 32 ) terrain/trench_broom/bricks_brown 0 0 0 1 1
+( 128 -704 64 ) ( 128 -703 64 ) ( 128 -704 65 ) natural/log 0 0 0 1 1
+( 256 -832 32 ) ( 255 -832 32 ) ( 256 -832 33 ) natural/log 0 0 0 1 1
+( 256 -832 -16 ) ( 256 -831 -16 ) ( 255 -832 -16 ) natural/log 0 0 0 1 1
+( 128 -704 16 ) ( 127 -704 16 ) ( 128 -703 16 ) natural/log 0 0 0 1 1
+( 128 -704 64 ) ( 128 -704 65 ) ( 127 -704 64 ) natural/log 0 0 0 1 1
+( 256 -832 32 ) ( 256 -832 33 ) ( 256 -831 32 ) natural/log 0 0 0 1 1
 }
 // brush 5
 {
-( 128 -32 64 ) ( 128 -31 64 ) ( 128 -32 65 ) terrain/trench_broom/bricks_stone 0 0 0 1 1
-( 256 -160 32 ) ( 255 -160 32 ) ( 256 -160 33 ) terrain/trench_broom/bricks_stone 0 0 0 1 1
-( 256 -160 -16 ) ( 256 -159 -16 ) ( 255 -160 -16 ) terrain/trench_broom/bricks_stone 0 0 0 1 1
-( 128 -32 16 ) ( 127 -32 16 ) ( 128 -31 16 ) terrain/trench_broom/bricks_stone 0 0 0 1 1
-( 128 -32 64 ) ( 128 -32 65 ) ( 127 -32 64 ) terrain/trench_broom/bricks_stone 0 0 0 1 1
-( 256 -160 32 ) ( 256 -160 33 ) ( 256 -159 32 ) terrain/trench_broom/bricks_stone 0 0 0 1 1
+( 128 -512 64 ) ( 128 -511 64 ) ( 128 -512 65 ) metallic/metal 0 0 0 1 1
+( 256 -640 32 ) ( 255 -640 32 ) ( 256 -640 33 ) metallic/metal 0 0 0 1 1
+( 256 -640 -16 ) ( 256 -639 -16 ) ( 255 -640 -16 ) metallic/metal 0 0 0 1 1
+( 128 -512 16 ) ( 127 -512 16 ) ( 128 -511 16 ) metallic/metal 0 0 0 1 1
+( 128 -512 64 ) ( 128 -512 65 ) ( 127 -512 64 ) metallic/metal 0 0 0 1 1
+( 256 -640 32 ) ( 256 -640 33 ) ( 256 -639 32 ) metallic/metal 0 0 0 1 1
 }
 // brush 6
 {
-( 128 160 64 ) ( 128 161 64 ) ( 128 160 65 ) terrain/trench_broom/checker_board 0 0 0 1 1
-( 256 32 32 ) ( 255 32 32 ) ( 256 32 33 ) terrain/trench_broom/checker_board 0 0 0 1 1
-( 256 32 -16 ) ( 256 33 -16 ) ( 255 32 -16 ) terrain/trench_broom/checker_board 0 0 0 1 1
-( 128 160 16 ) ( 127 160 16 ) ( 128 161 16 ) terrain/trench_broom/checker_board 0 0 0 1 1
-( 128 160 64 ) ( 128 160 65 ) ( 127 160 64 ) terrain/trench_broom/checker_board 0 0 0 1 1
-( 256 32 32 ) ( 256 32 33 ) ( 256 33 32 ) terrain/trench_broom/checker_board 0 0 0 1 1
+( 128 -320 64 ) ( 128 -319 64 ) ( 128 -320 65 ) liquids/lava_metal 0 0 0 1 1
+( 256 -448 32 ) ( 255 -448 32 ) ( 256 -448 33 ) liquids/lava_metal 0 0 0 1 1
+( 256 -448 -16 ) ( 256 -447 -16 ) ( 255 -448 -16 ) liquids/lava_metal 0 0 0 1 1
+( 128 -320 16 ) ( 127 -320 16 ) ( 128 -319 16 ) liquids/lava_metal 0 0 0 1 1
+( 128 -320 64 ) ( 128 -320 65 ) ( 127 -320 64 ) liquids/lava_metal 0 0 0 1 1
+( 256 -448 32 ) ( 256 -448 33 ) ( 256 -447 32 ) liquids/lava_metal 0 0 0 1 1
 }
 // brush 7
 {
-( 128 352 64 ) ( 128 353 64 ) ( 128 352 65 ) terrain/trench_broom/concrete 0 0 0 1 1
-( 256 224 32 ) ( 255 224 32 ) ( 256 224 33 ) terrain/trench_broom/concrete 0 0 0 1 1
-( 256 224 -16 ) ( 256 225 -16 ) ( 255 224 -16 ) terrain/trench_broom/concrete 0 0 0 1 1
-( 128 352 16 ) ( 127 352 16 ) ( 128 353 16 ) terrain/trench_broom/concrete 0 0 0 1 1
-( 128 352 64 ) ( 128 352 65 ) ( 127 352 64 ) terrain/trench_broom/concrete 0 0 0 1 1
-( 256 224 32 ) ( 256 224 33 ) ( 256 225 32 ) terrain/trench_broom/concrete 0 0 0 1 1
+( 128 -128 64 ) ( 128 -127 64 ) ( 128 -128 65 ) furnishings/drop_ceiling 0 0 0 1 1
+( 256 -256 32 ) ( 255 -256 32 ) ( 256 -256 33 ) furnishings/drop_ceiling 0 0 0 1 1
+( 256 -256 -16 ) ( 256 -255 -16 ) ( 255 -256 -16 ) furnishings/drop_ceiling 0 0 0 1 1
+( 128 -128 16 ) ( 127 -128 16 ) ( 128 -127 16 ) furnishings/drop_ceiling 0 0 0 1 1
+( 128 -128 64 ) ( 128 -128 65 ) ( 127 -128 64 ) furnishings/drop_ceiling 0 0 0 1 1
+( 256 -256 32 ) ( 256 -256 33 ) ( 256 -255 32 ) furnishings/drop_ceiling 0 0 0 1 1
 }
 // brush 8
 {
-( 320 352 64 ) ( 320 353 64 ) ( 320 352 65 ) terrain/trench_broom/key_metal_blue 0 0 0 1 1
-( 448 224 32 ) ( 447 224 32 ) ( 448 224 33 ) terrain/trench_broom/key_metal_blue 0 0 0 1 1
-( 448 224 -16 ) ( 448 225 -16 ) ( 447 224 -16 ) terrain/trench_broom/key_metal_blue 0 0 0 1 1
-( 320 352 16 ) ( 319 352 16 ) ( 320 353 16 ) terrain/trench_broom/key_metal_blue 0 0 0 1 1
-( 320 352 64 ) ( 320 352 65 ) ( 319 352 64 ) terrain/trench_broom/key_metal_blue 0 0 0 1 1
-( 448 224 32 ) ( 448 224 33 ) ( 448 225 32 ) terrain/trench_broom/key_metal_blue 0 0 0 1 1
+( 320 -128 64 ) ( 320 -127 64 ) ( 320 -128 65 ) furnishings/drywall 0 0 0 1 1
+( 448 -256 32 ) ( 447 -256 32 ) ( 448 -256 33 ) furnishings/drywall 0 0 0 1 1
+( 448 -256 -16 ) ( 448 -255 -16 ) ( 447 -256 -16 ) furnishings/drywall 0 0 0 1 1
+( 320 -128 16 ) ( 319 -128 16 ) ( 320 -127 16 ) furnishings/drywall 0 0 0 1 1
+( 320 -128 64 ) ( 320 -128 65 ) ( 319 -128 64 ) furnishings/drywall 0 0 0 1 1
+( 448 -256 32 ) ( 448 -256 33 ) ( 448 -255 32 ) furnishings/drywall 0 0 0 1 1
 }
 // brush 9
 {
-( 320 -224 64 ) ( 320 -223 64 ) ( 320 -224 65 ) terrain/trench_broom/dirt 0 0 0 1 1
-( 448 -352 32 ) ( 447 -352 32 ) ( 448 -352 33 ) terrain/trench_broom/dirt 0 0 0 1 1
-( 448 -352 -16 ) ( 448 -351 -16 ) ( 447 -352 -16 ) terrain/trench_broom/dirt 0 0 0 1 1
-( 320 -224 16 ) ( 319 -224 16 ) ( 320 -223 16 ) terrain/trench_broom/dirt 0 0 0 1 1
-( 320 -224 64 ) ( 320 -224 65 ) ( 319 -224 64 ) terrain/trench_broom/dirt 0 0 0 1 1
-( 448 -352 32 ) ( 448 -352 33 ) ( 448 -351 32 ) terrain/trench_broom/dirt 0 0 0 1 1
+( 320 -704 64 ) ( 320 -703 64 ) ( 320 -704 65 ) natural/log_end 0 0 0 1 1
+( 448 -832 32 ) ( 447 -832 32 ) ( 448 -832 33 ) natural/log_end 0 0 0 1 1
+( 448 -832 -16 ) ( 448 -831 -16 ) ( 447 -832 -16 ) natural/log_end 0 0 0 1 1
+( 320 -704 16 ) ( 319 -704 16 ) ( 320 -703 16 ) natural/log_end 0 0 0 1 1
+( 320 -704 64 ) ( 320 -704 65 ) ( 319 -704 64 ) natural/log_end 0 0 0 1 1
+( 448 -832 32 ) ( 448 -832 33 ) ( 448 -831 32 ) natural/log_end 0 0 0 1 1
 }
 // brush 10
 {
-( 320 -32 64 ) ( 320 -31 64 ) ( 320 -32 65 ) terrain/trench_broom/drywall 0 0 0 1 1
-( 448 -160 32 ) ( 447 -160 32 ) ( 448 -160 33 ) terrain/trench_broom/drywall 0 0 0 1 1
-( 448 -160 -16 ) ( 448 -159 -16 ) ( 447 -160 -16 ) terrain/trench_broom/drywall 0 0 0 1 1
-( 320 -32 16 ) ( 319 -32 16 ) ( 320 -31 16 ) terrain/trench_broom/drywall 0 0 0 1 1
-( 320 -32 64 ) ( 320 -32 65 ) ( 319 -32 64 ) terrain/trench_broom/drywall 0 0 0 1 1
-( 448 -160 32 ) ( 448 -160 33 ) ( 448 -159 32 ) terrain/trench_broom/drywall 0 0 0 1 1
+( 320 -512 64 ) ( 320 -511 64 ) ( 320 -512 65 ) metallic/metal_bars 0 0 0 1 1
+( 448 -640 32 ) ( 447 -640 32 ) ( 448 -640 33 ) metallic/metal_bars 0 0 0 1 1
+( 448 -640 -16 ) ( 448 -639 -16 ) ( 447 -640 -16 ) metallic/metal_bars 0 0 0 1 1
+( 320 -512 16 ) ( 319 -512 16 ) ( 320 -511 16 ) metallic/metal_bars 0 0 0 1 1
+( 320 -512 64 ) ( 320 -512 65 ) ( 319 -512 64 ) metallic/metal_bars 0 0 0 1 1
+( 448 -640 32 ) ( 448 -640 33 ) ( 448 -639 32 ) metallic/metal_bars 0 0 0 1 1
 }
 // brush 11
 {
-( 320 160 64 ) ( 320 161 64 ) ( 320 160 65 ) terrain/trench_broom/glass 0 0 0 1 1
-( 448 32 32 ) ( 447 32 32 ) ( 448 32 33 ) terrain/trench_broom/glass 0 0 0 1 1
-( 448 32 -16 ) ( 448 33 -16 ) ( 447 32 -16 ) terrain/trench_broom/glass 0 0 0 1 1
-( 320 160 16 ) ( 319 160 16 ) ( 320 161 16 ) terrain/trench_broom/glass 0 0 0 1 1
-( 320 160 64 ) ( 320 160 65 ) ( 319 160 64 ) terrain/trench_broom/glass 0 0 0 1 1
-( 448 32 32 ) ( 448 32 33 ) ( 448 33 32 ) terrain/trench_broom/glass 0 0 0 1 1
+( 320 -320 64 ) ( 320 -319 64 ) ( 320 -320 65 ) liquids/lavafall 0 0 0 1 1
+( 448 -448 32 ) ( 447 -448 32 ) ( 448 -448 33 ) liquids/lavafall 0 0 0 1 1
+( 448 -448 -16 ) ( 448 -447 -16 ) ( 447 -448 -16 ) liquids/lavafall 0 0 0 1 1
+( 320 -320 16 ) ( 319 -320 16 ) ( 320 -319 16 ) liquids/lavafall 0 0 0 1 1
+( 320 -320 64 ) ( 320 -320 65 ) ( 319 -320 64 ) liquids/lavafall 0 0 0 1 1
+( 448 -448 32 ) ( 448 -448 33 ) ( 448 -447 32 ) liquids/lavafall 0 0 0 1 1
 }
 // brush 12
 {
-( 512 352 64 ) ( 512 353 64 ) ( 512 352 65 ) terrain/trench_broom/lava_flowing 0 0 0 1 1
-( 640 224 32 ) ( 639 224 32 ) ( 640 224 33 ) terrain/trench_broom/lava_flowing 0 0 0 1 1
-( 640 224 -16 ) ( 640 225 -16 ) ( 639 224 -16 ) terrain/trench_broom/lava_flowing 0 0 0 1 1
-( 512 352 16 ) ( 511 352 16 ) ( 512 353 16 ) terrain/trench_broom/lava_flowing 0 0 0 1 1
-( 512 352 64 ) ( 512 352 65 ) ( 511 352 64 ) terrain/trench_broom/lava_flowing 0 0 0 1 1
-( 640 224 32 ) ( 640 224 33 ) ( 640 225 32 ) terrain/trench_broom/lava_flowing 0 0 0 1 1
+( 512 -128 64 ) ( 512 -127 64 ) ( 512 -128 65 ) furnishings/noslip_metal 0 0 0 1 1
+( 640 -256 32 ) ( 639 -256 32 ) ( 640 -256 33 ) furnishings/noslip_metal 0 0 0 1 1
+( 640 -256 -16 ) ( 640 -255 -16 ) ( 639 -256 -16 ) furnishings/noslip_metal 0 0 0 1 1
+( 512 -128 16 ) ( 511 -128 16 ) ( 512 -127 16 ) furnishings/noslip_metal 0 0 0 1 1
+( 512 -128 64 ) ( 512 -128 65 ) ( 511 -128 64 ) furnishings/noslip_metal 0 0 0 1 1
+( 640 -256 32 ) ( 640 -256 33 ) ( 640 -255 32 ) furnishings/noslip_metal 0 0 0 1 1
 }
 // brush 13
 {
-( 512 -224 64 ) ( 512 -223 64 ) ( 512 -224 65 ) terrain/trench_broom/key_metal_green 0 0 0 1 1
-( 640 -352 32 ) ( 639 -352 32 ) ( 640 -352 33 ) terrain/trench_broom/key_metal_green 0 0 0 1 1
-( 640 -352 -16 ) ( 640 -351 -16 ) ( 639 -352 -16 ) terrain/trench_broom/key_metal_green 0 0 0 1 1
-( 512 -224 16 ) ( 511 -224 16 ) ( 512 -223 16 ) terrain/trench_broom/key_metal_green 0 0 0 1 1
-( 512 -224 64 ) ( 512 -224 65 ) ( 511 -224 64 ) terrain/trench_broom/key_metal_green 0 0 0 1 1
-( 640 -352 32 ) ( 640 -352 33 ) ( 640 -351 32 ) terrain/trench_broom/key_metal_green 0 0 0 1 1
+( 512 -704 64 ) ( 512 -703 64 ) ( 512 -704 65 ) natural/rock 0 0 0 1 1
+( 640 -832 32 ) ( 639 -832 32 ) ( 640 -832 33 ) natural/rock 0 0 0 1 1
+( 640 -832 -16 ) ( 640 -831 -16 ) ( 639 -832 -16 ) natural/rock 0 0 0 1 1
+( 512 -704 16 ) ( 511 -704 16 ) ( 512 -703 16 ) natural/rock 0 0 0 1 1
+( 512 -704 64 ) ( 512 -704 65 ) ( 511 -704 64 ) natural/rock 0 0 0 1 1
+( 640 -832 32 ) ( 640 -832 33 ) ( 640 -831 32 ) natural/rock 0 0 0 1 1
 }
 // brush 14
 {
-( 512 -32 64 ) ( 512 -31 64 ) ( 512 -32 65 ) terrain/trench_broom/key_metal_red 0 0 0 1 1
-( 640 -160 32 ) ( 639 -160 32 ) ( 640 -160 33 ) terrain/trench_broom/key_metal_red 0 0 0 1 1
-( 640 -160 -16 ) ( 640 -159 -16 ) ( 639 -160 -16 ) terrain/trench_broom/key_metal_red 0 0 0 1 1
-( 512 -32 16 ) ( 511 -32 16 ) ( 512 -31 16 ) terrain/trench_broom/key_metal_red 0 0 0 1 1
-( 512 -32 64 ) ( 512 -32 65 ) ( 511 -32 64 ) terrain/trench_broom/key_metal_red 0 0 0 1 1
-( 640 -160 32 ) ( 640 -160 33 ) ( 640 -159 32 ) terrain/trench_broom/key_metal_red 0 0 0 1 1
+( 512 -512 64 ) ( 512 -511 64 ) ( 512 -512 65 ) metallic/metal_grate 0 0 0 1 1
+( 640 -640 32 ) ( 639 -640 32 ) ( 640 -640 33 ) metallic/metal_grate 0 0 0 1 1
+( 640 -640 -16 ) ( 640 -639 -16 ) ( 639 -640 -16 ) metallic/metal_grate 0 0 0 1 1
+( 512 -512 16 ) ( 511 -512 16 ) ( 512 -511 16 ) metallic/metal_grate 0 0 0 1 1
+( 512 -512 64 ) ( 512 -512 65 ) ( 511 -512 64 ) metallic/metal_grate 0 0 0 1 1
+( 640 -640 32 ) ( 640 -640 33 ) ( 640 -639 32 ) metallic/metal_grate 0 0 0 1 1
 }
 // brush 15
 {
-( 512 160 64 ) ( 512 161 64 ) ( 512 160 65 ) terrain/trench_broom/lava 0 0 0 1 1
-( 640 32 32 ) ( 639 32 32 ) ( 640 32 33 ) terrain/trench_broom/lava 0 0 0 1 1
-( 640 32 -16 ) ( 640 33 -16 ) ( 639 32 -16 ) terrain/trench_broom/lava 0 0 0 1 1
-( 512 160 16 ) ( 511 160 16 ) ( 512 161 16 ) terrain/trench_broom/lava 0 0 0 1 1
-( 512 160 64 ) ( 512 160 65 ) ( 511 160 64 ) terrain/trench_broom/lava 0 0 0 1 1
-( 640 32 32 ) ( 640 32 33 ) ( 640 33 32 ) terrain/trench_broom/lava 0 0 0 1 1
+( 512 -320 64 ) ( 512 -319 64 ) ( 512 -320 65 ) liquids/lavafall_metal 0 0 0 1 1
+( 640 -448 32 ) ( 639 -448 32 ) ( 640 -448 33 ) liquids/lavafall_metal 0 0 0 1 1
+( 640 -448 -16 ) ( 640 -447 -16 ) ( 639 -448 -16 ) liquids/lavafall_metal 0 0 0 1 1
+( 512 -320 16 ) ( 511 -320 16 ) ( 512 -319 16 ) liquids/lavafall_metal 0 0 0 1 1
+( 512 -320 64 ) ( 512 -320 65 ) ( 511 -320 64 ) liquids/lavafall_metal 0 0 0 1 1
+( 640 -448 32 ) ( 640 -448 33 ) ( 640 -447 32 ) liquids/lavafall_metal 0 0 0 1 1
 }
 // brush 16
 {
-( 704 -224 64 ) ( 704 -223 64 ) ( 704 -224 65 ) terrain/trench_broom/log 0 0 0 1 1
-( 832 -352 32 ) ( 831 -352 32 ) ( 832 -352 33 ) terrain/trench_broom/log 0 0 0 1 1
-( 832 -352 -16 ) ( 832 -351 -16 ) ( 831 -352 -16 ) terrain/trench_broom/log 0 0 0 1 1
-( 704 -224 16 ) ( 703 -224 16 ) ( 704 -223 16 ) terrain/trench_broom/log 0 0 0 1 1
-( 704 -224 64 ) ( 704 -224 65 ) ( 703 -224 64 ) terrain/trench_broom/log 0 0 0 1 1
-( 832 -352 32 ) ( 832 -352 33 ) ( 832 -351 32 ) terrain/trench_broom/log 0 0 0 1 1
+( 704 -704 64 ) ( 704 -703 64 ) ( 704 -704 65 ) natural/rock_2 0 0 0 1 1
+( 832 -832 32 ) ( 831 -832 32 ) ( 832 -832 33 ) natural/rock_2 0 0 0 1 1
+( 832 -832 -16 ) ( 832 -831 -16 ) ( 831 -832 -16 ) natural/rock_2 0 0 0 1 1
+( 704 -704 16 ) ( 703 -704 16 ) ( 704 -703 16 ) natural/rock_2 0 0 0 1 1
+( 704 -704 64 ) ( 704 -704 65 ) ( 703 -704 64 ) natural/rock_2 0 0 0 1 1
+( 832 -832 32 ) ( 832 -832 33 ) ( 832 -831 32 ) natural/rock_2 0 0 0 1 1
 }
 // brush 17
 {
-( 704 -32 64 ) ( 704 -31 64 ) ( 704 -32 65 ) terrain/trench_broom/log_end 0 0 0 1 1
-( 832 -160 32 ) ( 831 -160 32 ) ( 832 -160 33 ) terrain/trench_broom/log_end 0 0 0 1 1
-( 832 -160 -16 ) ( 832 -159 -16 ) ( 831 -160 -16 ) terrain/trench_broom/log_end 0 0 0 1 1
-( 704 -32 16 ) ( 703 -32 16 ) ( 704 -31 16 ) terrain/trench_broom/log_end 0 0 0 1 1
-( 704 -32 64 ) ( 704 -32 65 ) ( 703 -32 64 ) terrain/trench_broom/log_end 0 0 0 1 1
-( 832 -160 32 ) ( 832 -160 33 ) ( 832 -159 32 ) terrain/trench_broom/log_end 0 0 0 1 1
+( 704 -512 64 ) ( 704 -511 64 ) ( 704 -512 65 ) metallic/metal_panel 0 0 0 1 1
+( 832 -640 32 ) ( 831 -640 32 ) ( 832 -640 33 ) metallic/metal_panel 0 0 0 1 1
+( 832 -640 -16 ) ( 832 -639 -16 ) ( 831 -640 -16 ) metallic/metal_panel 0 0 0 1 1
+( 704 -512 16 ) ( 703 -512 16 ) ( 704 -511 16 ) metallic/metal_panel 0 0 0 1 1
+( 704 -512 64 ) ( 704 -512 65 ) ( 703 -512 64 ) metallic/metal_panel 0 0 0 1 1
+( 832 -640 32 ) ( 832 -640 33 ) ( 832 -639 32 ) metallic/metal_panel 0 0 0 1 1
 }
 // brush 18
 {
-( 704 160 64 ) ( 704 161 64 ) ( 704 160 65 ) terrain/trench_broom/metal 0 0 0 1 1
-( 832 32 32 ) ( 831 32 32 ) ( 832 32 33 ) terrain/trench_broom/metal 0 0 0 1 1
-( 832 32 -16 ) ( 832 33 -16 ) ( 831 32 -16 ) terrain/trench_broom/metal 0 0 0 1 1
-( 704 160 16 ) ( 703 160 16 ) ( 704 161 16 ) terrain/trench_broom/metal 0 0 0 1 1
-( 704 160 64 ) ( 704 160 65 ) ( 703 160 64 ) terrain/trench_broom/metal 0 0 0 1 1
-( 832 32 32 ) ( 832 32 33 ) ( 832 33 32 ) terrain/trench_broom/metal 0 0 0 1 1
+( 704 -128 64 ) ( 704 -127 64 ) ( 704 -128 65 ) furnishings/planks 0 0 0 1 1
+( 832 -256 32 ) ( 831 -256 32 ) ( 832 -256 33 ) furnishings/planks 0 0 0 1 1
+( 832 -256 -16 ) ( 832 -255 -16 ) ( 831 -256 -16 ) furnishings/planks 0 0 0 1 1
+( 704 -128 16 ) ( 703 -128 16 ) ( 704 -127 16 ) furnishings/planks 0 0 0 1 1
+( 704 -128 64 ) ( 704 -128 65 ) ( 703 -128 64 ) furnishings/planks 0 0 0 1 1
+( 832 -256 32 ) ( 832 -256 33 ) ( 832 -255 32 ) furnishings/planks 0 0 0 1 1
 }
 // brush 19
 {
-( 704 352 64 ) ( 704 353 64 ) ( 704 352 65 ) terrain/trench_broom/planks 0 0 0 1 1
-( 832 224 32 ) ( 831 224 32 ) ( 832 224 33 ) terrain/trench_broom/planks 0 0 0 1 1
-( 832 224 -16 ) ( 832 225 -16 ) ( 831 224 -16 ) terrain/trench_broom/planks 0 0 0 1 1
-( 704 352 16 ) ( 703 352 16 ) ( 704 353 16 ) terrain/trench_broom/planks 0 0 0 1 1
-( 704 352 64 ) ( 704 352 65 ) ( 703 352 64 ) terrain/trench_broom/planks 0 0 0 1 1
-( 832 224 32 ) ( 832 224 33 ) ( 832 225 32 ) terrain/trench_broom/planks 0 0 0 1 1
+( 896 -704 64 ) ( 896 -703 64 ) ( 896 -704 65 ) natural/rock_3 0 0 0 1 1
+( 1024 -832 32 ) ( 1023 -832 32 ) ( 1024 -832 33 ) natural/rock_3 0 0 0 1 1
+( 1024 -832 -16 ) ( 1024 -831 -16 ) ( 1023 -832 -16 ) natural/rock_3 0 0 0 1 1
+( 896 -704 16 ) ( 895 -704 16 ) ( 896 -703 16 ) natural/rock_3 0 0 0 1 1
+( 896 -704 64 ) ( 896 -704 65 ) ( 895 -704 64 ) natural/rock_3 0 0 0 1 1
+( 1024 -832 32 ) ( 1024 -832 33 ) ( 1024 -831 32 ) natural/rock_3 0 0 0 1 1
 }
 // brush 20
 {
-( 896 -224 64 ) ( 896 -223 64 ) ( 896 -224 65 ) terrain/trench_broom/rock 0 0 0 1 1
-( 1024 -352 32 ) ( 1023 -352 32 ) ( 1024 -352 33 ) terrain/trench_broom/rock 0 0 0 1 1
-( 1024 -352 -16 ) ( 1024 -351 -16 ) ( 1023 -352 -16 ) terrain/trench_broom/rock 0 0 0 1 1
-( 896 -224 16 ) ( 895 -224 16 ) ( 896 -223 16 ) terrain/trench_broom/rock 0 0 0 1 1
-( 896 -224 64 ) ( 896 -224 65 ) ( 895 -224 64 ) terrain/trench_broom/rock 0 0 0 1 1
-( 1024 -352 32 ) ( 1024 -352 33 ) ( 1024 -351 32 ) terrain/trench_broom/rock 0 0 0 1 1
+( 896 -512 64 ) ( 896 -511 64 ) ( 896 -512 65 ) metallic/noslip_metal 0 0 0 1 1
+( 1024 -640 32 ) ( 1023 -640 32 ) ( 1024 -640 33 ) metallic/noslip_metal 0 0 0 1 1
+( 1024 -640 -16 ) ( 1024 -639 -16 ) ( 1023 -640 -16 ) metallic/noslip_metal 0 0 0 1 1
+( 896 -512 16 ) ( 895 -512 16 ) ( 896 -511 16 ) metallic/noslip_metal 0 0 0 1 1
+( 896 -512 64 ) ( 896 -512 65 ) ( 895 -512 64 ) metallic/noslip_metal 0 0 0 1 1
+( 1024 -640 32 ) ( 1024 -640 33 ) ( 1024 -639 32 ) metallic/noslip_metal 0 0 0 1 1
 }
 // brush 21
 {
-( 896 -32 64 ) ( 896 -31 64 ) ( 896 -32 65 ) terrain/trench_broom/shutter_door 0 0 0 1 1
-( 1024 -160 32 ) ( 1023 -160 32 ) ( 1024 -160 33 ) terrain/trench_broom/shutter_door 0 0 0 1 1
-( 1024 -160 -16 ) ( 1024 -159 -16 ) ( 1023 -160 -16 ) terrain/trench_broom/shutter_door 0 0 0 1 1
-( 896 -32 16 ) ( 895 -32 16 ) ( 896 -31 16 ) terrain/trench_broom/shutter_door 0 0 0 1 1
-( 896 -32 64 ) ( 896 -32 65 ) ( 895 -32 64 ) terrain/trench_broom/shutter_door 0 0 0 1 1
-( 1024 -160 32 ) ( 1024 -160 33 ) ( 1024 -159 32 ) terrain/trench_broom/shutter_door 0 0 0 1 1
+( 1088 -512 64 ) ( 1088 -511 64 ) ( 1088 -512 65 ) metallic/rusty_metal 0 0 0 1 1
+( 1216 -640 32 ) ( 1215 -640 32 ) ( 1216 -640 33 ) metallic/rusty_metal 0 0 0 1 1
+( 1216 -640 -16 ) ( 1216 -639 -16 ) ( 1215 -640 -16 ) metallic/rusty_metal 0 0 0 1 1
+( 1088 -512 16 ) ( 1087 -512 16 ) ( 1088 -511 16 ) metallic/rusty_metal 0 0 0 1 1
+( 1088 -512 64 ) ( 1088 -512 65 ) ( 1087 -512 64 ) metallic/rusty_metal 0 0 0 1 1
+( 1216 -640 32 ) ( 1216 -640 33 ) ( 1216 -639 32 ) metallic/rusty_metal 0 0 0 1 1
 }
+// brush 22
+{
+( 1280 -512 64 ) ( 1280 -511 64 ) ( 1280 -512 65 ) metallic/vent_metal 0 0 0 1 1
+( 1408 -640 32 ) ( 1407 -640 32 ) ( 1408 -640 33 ) metallic/vent_metal 0 0 0 1 1
+( 1408 -640 -16 ) ( 1408 -639 -16 ) ( 1407 -640 -16 ) metallic/vent_metal 0 0 0 1 1
+( 1280 -512 16 ) ( 1279 -512 16 ) ( 1280 -511 16 ) metallic/vent_metal 0 0 0 1 1
+( 1280 -512 64 ) ( 1280 -512 65 ) ( 1279 -512 64 ) metallic/vent_metal 0 0 0 1 1
+( 1408 -640 32 ) ( 1408 -640 33 ) ( 1408 -639 32 ) metallic/vent_metal 0 0 0 1 1
+}
+// brush 23
+{
+( 1088 -704 64 ) ( 1088 -703 64 ) ( 1088 -704 65 ) natural/rock_4 0 0 0 1 1
+( 1216 -832 32 ) ( 1215 -832 32 ) ( 1216 -832 33 ) natural/rock_4 0 0 0 1 1
+( 1216 -832 -16 ) ( 1216 -831 -16 ) ( 1215 -832 -16 ) natural/rock_4 0 0 0 1 1
+( 1088 -704 16 ) ( 1087 -704 16 ) ( 1088 -703 16 ) natural/rock_4 0 0 0 1 1
+( 1088 -704 64 ) ( 1088 -704 65 ) ( 1087 -704 64 ) natural/rock_4 0 0 0 1 1
+( 1216 -832 32 ) ( 1216 -832 33 ) ( 1216 -831 32 ) natural/rock_4 0 0 0 1 1
+}
+// brush 24
+{
+( -64 -896 64 ) ( -64 -895 64 ) ( -64 -896 65 ) pathways/asphalt 0 0 0 1 1
+( 64 -1024 32 ) ( 63 -1024 32 ) ( 64 -1024 33 ) pathways/asphalt 0 0 0 1 1
+( 64 -1024 -16 ) ( 64 -1023 -16 ) ( 63 -1024 -16 ) pathways/asphalt 0 0 0 1 1
+( -64 -896 16 ) ( -65 -896 16 ) ( -64 -895 16 ) pathways/asphalt 0 0 0 1 1
+( -64 -896 64 ) ( -64 -896 65 ) ( -65 -896 64 ) pathways/asphalt 0 0 0 1 1
+( 64 -1024 32 ) ( 64 -1024 33 ) ( 64 -1023 32 ) pathways/asphalt 0 0 0 1 1
+}
+// brush 25
+{
+( 128 -896 64 ) ( 128 -895 64 ) ( 128 -896 65 ) pathways/big_cobble_stone 0 0 0 1 1
+( 256 -1024 32 ) ( 255 -1024 32 ) ( 256 -1024 33 ) pathways/big_cobble_stone 0 0 0 1 1
+( 256 -1024 -16 ) ( 256 -1023 -16 ) ( 255 -1024 -16 ) pathways/big_cobble_stone 0 0 0 1 1
+( 128 -896 16 ) ( 127 -896 16 ) ( 128 -895 16 ) pathways/big_cobble_stone 0 0 0 1 1
+( 128 -896 64 ) ( 128 -896 65 ) ( 127 -896 64 ) pathways/big_cobble_stone 0 0 0 1 1
+( 256 -1024 32 ) ( 256 -1024 33 ) ( 256 -1023 32 ) pathways/big_cobble_stone 0 0 0 1 1
+}
+// brush 26
+{
+( -64 -1088 64 ) ( -64 -1087 64 ) ( -64 -1088 65 ) special/clip 0 0 0 1 1
+( 64 -1216 32 ) ( 63 -1216 32 ) ( 64 -1216 33 ) special/clip 0 0 0 1 1
+( 64 -1216 -16 ) ( 64 -1215 -16 ) ( 63 -1216 -16 ) special/clip 0 0 0 1 1
+( -64 -1088 16 ) ( -65 -1088 16 ) ( -64 -1087 16 ) special/clip 0 0 0 1 1
+( -64 -1088 64 ) ( -64 -1088 65 ) ( -65 -1088 64 ) special/clip 0 0 0 1 1
+( 64 -1216 32 ) ( 64 -1216 33 ) ( 64 -1215 32 ) special/clip 0 0 0 1 1
+}
+// brush 27
+{
+( 128 -1088 64 ) ( 128 -1087 64 ) ( 128 -1088 65 ) special/fireblu 0 0 0 1 1
+( 256 -1216 32 ) ( 255 -1216 32 ) ( 256 -1216 33 ) special/fireblu 0 0 0 1 1
+( 256 -1216 -16 ) ( 256 -1215 -16 ) ( 255 -1216 -16 ) special/fireblu 0 0 0 1 1
+( 128 -1088 16 ) ( 127 -1088 16 ) ( 128 -1087 16 ) special/fireblu 0 0 0 1 1
+( 128 -1088 64 ) ( 128 -1088 65 ) ( 127 -1088 64 ) special/fireblu 0 0 0 1 1
+( 256 -1216 32 ) ( 256 -1216 33 ) ( 256 -1215 32 ) special/fireblu 0 0 0 1 1
+}
+// brush 28
+{
+( 320 -1088 64 ) ( 320 -1087 64 ) ( 320 -1088 65 ) special/skip 0 0 0 1 1
+( 448 -1216 32 ) ( 447 -1216 32 ) ( 448 -1216 33 ) special/skip 0 0 0 1 1
+( 448 -1216 -16 ) ( 448 -1215 -16 ) ( 447 -1216 -16 ) special/skip 0 0 0 1 1
+( 320 -1088 16 ) ( 319 -1088 16 ) ( 320 -1087 16 ) special/skip 0 0 0 1 1
+( 320 -1088 64 ) ( 320 -1088 65 ) ( 319 -1088 64 ) special/skip 0 0 0 1 1
+( 448 -1216 32 ) ( 448 -1216 33 ) ( 448 -1215 32 ) special/skip 0 0 0 1 1
+}
+// brush 29
+{
+( 512 -1088 64 ) ( 512 -1087 64 ) ( 512 -1088 65 ) special/void 0 0 0 1 1
+( 640 -1216 32 ) ( 639 -1216 32 ) ( 640 -1216 33 ) special/void 0 0 0 1 1
+( 640 -1216 -16 ) ( 640 -1215 -16 ) ( 639 -1216 -16 ) special/void 0 0 0 1 1
+( 512 -1088 16 ) ( 511 -1088 16 ) ( 512 -1087 16 ) special/void 0 0 0 1 1
+( 512 -1088 64 ) ( 512 -1088 65 ) ( 511 -1088 64 ) special/void 0 0 0 1 1
+( 640 -1216 32 ) ( 640 -1216 33 ) ( 640 -1215 32 ) special/void 0 0 0 1 1
+}
+// brush 30
+{
+( 704 -1088 64 ) ( 704 -1087 64 ) ( 704 -1088 65 ) special/voidfog 0 0 0 1 1
+( 832 -1216 32 ) ( 831 -1216 32 ) ( 832 -1216 33 ) special/voidfog 0 0 0 1 1
+( 832 -1216 -16 ) ( 832 -1215 -16 ) ( 831 -1216 -16 ) special/voidfog 0 0 0 1 1
+( 704 -1088 16 ) ( 703 -1088 16 ) ( 704 -1087 16 ) special/voidfog 0 0 0 1 1
+( 704 -1088 64 ) ( 704 -1088 65 ) ( 703 -1088 64 ) special/voidfog 0 0 0 1 1
+( 832 -1216 32 ) ( 832 -1216 33 ) ( 832 -1215 32 ) special/voidfog 0 0 0 1 1
+}
+// brush 31
+{
+( 896 -1088 64 ) ( 896 -1087 64 ) ( 896 -1088 65 ) special/wall_crack_16 0 0 0 1 1
+( 1024 -1216 32 ) ( 1023 -1216 32 ) ( 1024 -1216 33 ) special/wall_crack_16 0 0 0 1 1
+( 1024 -1216 -16 ) ( 1024 -1215 -16 ) ( 1023 -1216 -16 ) special/wall_crack_16 0 0 0 1 1
+( 896 -1088 16 ) ( 895 -1088 16 ) ( 896 -1087 16 ) special/wall_crack_16 0 0 0 1 1
+( 896 -1088 64 ) ( 896 -1088 65 ) ( 895 -1088 64 ) special/wall_crack_16 0 0 0 1 1
+( 1024 -1216 32 ) ( 1024 -1216 33 ) ( 1024 -1215 32 ) special/wall_crack_16 0 0 0 1 1
+}
+// brush 32
+{
+( 1088 -1088 64 ) ( 1088 -1087 64 ) ( 1088 -1088 65 ) special/wall_crack_32 0 0 0 1 1
+( 1216 -1216 32 ) ( 1215 -1216 32 ) ( 1216 -1216 33 ) special/wall_crack_32 0 0 0 1 1
+( 1216 -1216 -16 ) ( 1216 -1215 -16 ) ( 1215 -1216 -16 ) special/wall_crack_32 0 0 0 1 1
+( 1088 -1088 16 ) ( 1087 -1088 16 ) ( 1088 -1087 16 ) special/wall_crack_32 0 0 0 1 1
+( 1088 -1088 64 ) ( 1088 -1088 65 ) ( 1087 -1088 64 ) special/wall_crack_32 0 0 0 1 1
+( 1216 -1216 32 ) ( 1216 -1216 33 ) ( 1216 -1215 32 ) special/wall_crack_32 0 0 0 1 1
+}
+// brush 33
+{
+( 1280 -1280 64 ) ( 1280 -1279 64 ) ( 1280 -1280 65 ) structural/concrete_smooth_steps 0 0 0 1 1
+( 1408 -1408 32 ) ( 1407 -1408 32 ) ( 1408 -1408 33 ) structural/concrete_smooth_steps 0 0 0 1 1
+( 1408 -1408 -16 ) ( 1408 -1407 -16 ) ( 1407 -1408 -16 ) structural/concrete_smooth_steps 0 0 0 1 1
+( 1280 -1280 16 ) ( 1279 -1280 16 ) ( 1280 -1279 16 ) structural/concrete_smooth_steps 0 0 0 1 1
+( 1280 -1280 64 ) ( 1280 -1280 65 ) ( 1279 -1280 64 ) structural/concrete_smooth_steps 0 0 0 1 1
+( 1408 -1408 32 ) ( 1408 -1408 33 ) ( 1408 -1407 32 ) structural/concrete_smooth_steps 0 0 0 1 1
+}
+// brush 34
+{
+( -64 -1280 64 ) ( -64 -1279 64 ) ( -64 -1280 65 ) structural/bricks_clay 0 0 0 1 1
+( 64 -1408 32 ) ( 63 -1408 32 ) ( 64 -1408 33 ) structural/bricks_clay 0 0 0 1 1
+( 64 -1408 -16 ) ( 64 -1407 -16 ) ( 63 -1408 -16 ) structural/bricks_clay 0 0 0 1 1
+( -64 -1280 16 ) ( -65 -1280 16 ) ( -64 -1279 16 ) structural/bricks_clay 0 0 0 1 1
+( -64 -1280 64 ) ( -64 -1280 65 ) ( -65 -1280 64 ) structural/bricks_clay 0 0 0 1 1
+( 64 -1408 32 ) ( 64 -1408 33 ) ( 64 -1407 32 ) structural/bricks_clay 0 0 0 1 1
+}
+// brush 35
+{
+( 128 -1280 64 ) ( 128 -1279 64 ) ( 128 -1280 65 ) structural/bricks_stone 0 0 0 1 1
+( 256 -1408 32 ) ( 255 -1408 32 ) ( 256 -1408 33 ) structural/bricks_stone 0 0 0 1 1
+( 256 -1408 -16 ) ( 256 -1407 -16 ) ( 255 -1408 -16 ) structural/bricks_stone 0 0 0 1 1
+( 128 -1280 16 ) ( 127 -1280 16 ) ( 128 -1279 16 ) structural/bricks_stone 0 0 0 1 1
+( 128 -1280 64 ) ( 128 -1280 65 ) ( 127 -1280 64 ) structural/bricks_stone 0 0 0 1 1
+( 256 -1408 32 ) ( 256 -1408 33 ) ( 256 -1407 32 ) structural/bricks_stone 0 0 0 1 1
+}
+// brush 36
+{
+( 320 -1280 64 ) ( 320 -1279 64 ) ( 320 -1280 65 ) structural/bricks_stone_nomortar 0 0 0 1 1
+( 448 -1408 32 ) ( 447 -1408 32 ) ( 448 -1408 33 ) structural/bricks_stone_nomortar 0 0 0 1 1
+( 448 -1408 -16 ) ( 448 -1407 -16 ) ( 447 -1408 -16 ) structural/bricks_stone_nomortar 0 0 0 1 1
+( 320 -1280 16 ) ( 319 -1280 16 ) ( 320 -1279 16 ) structural/bricks_stone_nomortar 0 0 0 1 1
+( 320 -1280 64 ) ( 320 -1280 65 ) ( 319 -1280 64 ) structural/bricks_stone_nomortar 0 0 0 1 1
+( 448 -1408 32 ) ( 448 -1408 33 ) ( 448 -1407 32 ) structural/bricks_stone_nomortar 0 0 0 1 1
+}
+// brush 37
+{
+( 512 -1280 64 ) ( 512 -1279 64 ) ( 512 -1280 65 ) structural/concrete 0 0 0 1 1
+( 640 -1408 32 ) ( 639 -1408 32 ) ( 640 -1408 33 ) structural/concrete 0 0 0 1 1
+( 640 -1408 -16 ) ( 640 -1407 -16 ) ( 639 -1408 -16 ) structural/concrete 0 0 0 1 1
+( 512 -1280 16 ) ( 511 -1280 16 ) ( 512 -1279 16 ) structural/concrete 0 0 0 1 1
+( 512 -1280 64 ) ( 512 -1280 65 ) ( 511 -1280 64 ) structural/concrete 0 0 0 1 1
+( 640 -1408 32 ) ( 640 -1408 33 ) ( 640 -1407 32 ) structural/concrete 0 0 0 1 1
+}
+// brush 38
+{
+( 704 -1280 64 ) ( 704 -1279 64 ) ( 704 -1280 65 ) structural/concrete_beams 0 0 0 1 1
+( 832 -1408 32 ) ( 831 -1408 32 ) ( 832 -1408 33 ) structural/concrete_beams 0 0 0 1 1
+( 832 -1408 -16 ) ( 832 -1407 -16 ) ( 831 -1408 -16 ) structural/concrete_beams 0 0 0 1 1
+( 704 -1280 16 ) ( 703 -1280 16 ) ( 704 -1279 16 ) structural/concrete_beams 0 0 0 1 1
+( 704 -1280 64 ) ( 704 -1280 65 ) ( 703 -1280 64 ) structural/concrete_beams 0 0 0 1 1
+( 832 -1408 32 ) ( 832 -1408 33 ) ( 832 -1407 32 ) structural/concrete_beams 0 0 0 1 1
+}
+// brush 39
+{
+( 896 -1280 64 ) ( 896 -1279 64 ) ( 896 -1280 65 ) structural/concrete_cracked 0 0 0 1 1
+( 1024 -1408 32 ) ( 1023 -1408 32 ) ( 1024 -1408 33 ) structural/concrete_cracked 0 0 0 1 1
+( 1024 -1408 -16 ) ( 1024 -1407 -16 ) ( 1023 -1408 -16 ) structural/concrete_cracked 0 0 0 1 1
+( 896 -1280 16 ) ( 895 -1280 16 ) ( 896 -1279 16 ) structural/concrete_cracked 0 0 0 1 1
+( 896 -1280 64 ) ( 896 -1280 65 ) ( 895 -1280 64 ) structural/concrete_cracked 0 0 0 1 1
+( 1024 -1408 32 ) ( 1024 -1408 33 ) ( 1024 -1407 32 ) structural/concrete_cracked 0 0 0 1 1
+}
+// brush 40
+{
+( 1088 -1280 64 ) ( 1088 -1279 64 ) ( 1088 -1280 65 ) structural/concrete_smooth 0 0 0 1 1
+( 1216 -1408 32 ) ( 1215 -1408 32 ) ( 1216 -1408 33 ) structural/concrete_smooth 0 0 0 1 1
+( 1216 -1408 -16 ) ( 1216 -1407 -16 ) ( 1215 -1408 -16 ) structural/concrete_smooth 0 0 0 1 1
+( 1088 -1280 16 ) ( 1087 -1280 16 ) ( 1088 -1279 16 ) structural/concrete_smooth 0 0 0 1 1
+( 1088 -1280 64 ) ( 1088 -1280 65 ) ( 1087 -1280 64 ) structural/concrete_smooth 0 0 0 1 1
+( 1216 -1408 32 ) ( 1216 -1408 33 ) ( 1216 -1407 32 ) structural/concrete_smooth 0 0 0 1 1
+}
+// brush 41
+{
+( 1472 -1280 64 ) ( 1472 -1279 64 ) ( 1472 -1280 65 ) structural/glass 0 0 0 1 1
+( 1600 -1408 32 ) ( 1599 -1408 32 ) ( 1600 -1408 33 ) structural/glass 0 0 0 1 1
+( 1600 -1408 -16 ) ( 1600 -1407 -16 ) ( 1599 -1408 -16 ) structural/glass 0 0 0 1 1
+( 1472 -1280 16 ) ( 1471 -1280 16 ) ( 1472 -1279 16 ) structural/glass 0 0 0 1 1
+( 1472 -1280 64 ) ( 1472 -1280 65 ) ( 1471 -1280 64 ) structural/glass 0 0 0 1 1
+( 1600 -1408 32 ) ( 1600 -1408 33 ) ( 1600 -1407 32 ) structural/glass 0 0 0 1 1
+}
+// brush 42
+{
+( 1280 -704 64 ) ( 1280 -703 64 ) ( 1280 -704 65 ) natural/rock_5 0 0 0 1 1
+( 1408 -832 32 ) ( 1407 -832 32 ) ( 1408 -832 33 ) natural/rock_5 0 0 0 1 1
+( 1408 -832 -16 ) ( 1408 -831 -16 ) ( 1407 -832 -16 ) natural/rock_5 0 0 0 1 1
+( 1280 -704 16 ) ( 1279 -704 16 ) ( 1280 -703 16 ) natural/rock_5 0 0 0 1 1
+( 1280 -704 64 ) ( 1280 -704 65 ) ( 1279 -704 64 ) natural/rock_5 0 0 0 1 1
+( 1408 -832 32 ) ( 1408 -832 33 ) ( 1408 -831 32 ) natural/rock_5 0 0 0 1 1
+}
+// brush 43
+{
+( 512 64 64 ) ( 512 65 64 ) ( 512 64 65 ) shutter_door 0 0 0 1 1
+( 640 -64 32 ) ( 639 -64 32 ) ( 640 -64 33 ) shutter_door 0 0 0 1 1
+( 640 -64 -16 ) ( 640 -63 -16 ) ( 639 -64 -16 ) shutter_door 0 0 0 1 1
+( 512 64 16 ) ( 511 64 16 ) ( 512 65 16 ) shutter_door 0 0 0 1 1
+( 512 64 64 ) ( 512 64 65 ) ( 511 64 64 ) shutter_door 0 0 0 1 1
+( 640 -64 32 ) ( 640 -64 33 ) ( 640 -63 32 ) shutter_door 0 0 0 1 1
+}
+// brush 44
+{
+( 320 64 64 ) ( 320 65 64 ) ( 320 64 65 ) key_metal_red 0 0 0 1 1
+( 448 -64 32 ) ( 447 -64 32 ) ( 448 -64 33 ) key_metal_red 0 0 0 1 1
+( 448 -64 -16 ) ( 448 -63 -16 ) ( 447 -64 -16 ) key_metal_red 0 0 0 1 1
+( 320 64 16 ) ( 319 64 16 ) ( 320 65 16 ) key_metal_red 0 0 0 1 1
+( 320 64 64 ) ( 320 64 65 ) ( 319 64 64 ) key_metal_red 0 0 0 1 1
+( 448 -64 32 ) ( 448 -64 33 ) ( 448 -63 32 ) key_metal_red 0 0 0 1 1
+}
+// brush 45
+{
+( 128 64 64 ) ( 128 65 64 ) ( 128 64 65 ) key_metal_green 0 0 0 1 1
+( 256 -64 32 ) ( 255 -64 32 ) ( 256 -64 33 ) key_metal_green 0 0 0 1 1
+( 256 -64 -16 ) ( 256 -63 -16 ) ( 255 -64 -16 ) key_metal_green 0 0 0 1 1
+( 128 64 16 ) ( 127 64 16 ) ( 128 65 16 ) key_metal_green 0 0 0 1 1
+( 128 64 64 ) ( 128 64 65 ) ( 127 64 64 ) key_metal_green 0 0 0 1 1
+( 256 -64 32 ) ( 256 -64 33 ) ( 256 -63 32 ) key_metal_green 0 0 0 1 1
+}
+// brush 46
+{
+( -64 64 64 ) ( -64 65 64 ) ( -64 64 65 ) key_metal_blue 0 0 0 1 1
+( 64 -64 32 ) ( 63 -64 32 ) ( 64 -64 33 ) key_metal_blue 0 0 0 1 1
+( 64 -64 -16 ) ( 64 -63 -16 ) ( 63 -64 -16 ) key_metal_blue 0 0 0 1 1
+( -64 64 16 ) ( -65 64 16 ) ( -64 65 16 ) key_metal_blue 0 0 0 1 1
+( -64 64 64 ) ( -64 64 65 ) ( -65 64 64 ) key_metal_blue 0 0 0 1 1
+( 64 -64 32 ) ( 64 -64 33 ) ( 64 -63 32 ) key_metal_blue 0 0 0 1 1
+}
+// brush 47
+{
+( -64 128 -16 ) ( -64 129 -16 ) ( -64 128 -15 ) machines/random_machines 0 0 0 1 1
+( -64 128 -16 ) ( -64 128 -15 ) ( -63 128 -16 ) machines/random_machines 0 0 0 1 1
+( -64 128 -16 ) ( -63 128 -16 ) ( -64 129 -16 ) machines/random_machines 0 0 0 1 1
+( 192 384 16 ) ( 192 385 16 ) ( 193 384 16 ) machines/random_machines 0 0 0 1 1
+( 192 384 16 ) ( 193 384 16 ) ( 192 384 17 ) machines/random_machines 0 0 0 1 1
+( 192 384 16 ) ( 192 384 17 ) ( 192 385 16 ) machines/random_machines 0 0 0 1 1
+}
+// brush 48
+{
+( 256 128 -16 ) ( 256 129 -16 ) ( 256 128 -15 ) machines/vent_fan_4x4 0 0 0 1 1
+( 256 128 -16 ) ( 256 128 -15 ) ( 257 128 -16 ) machines/vent_fan_4x4 0 0 0 1 1
+( 256 128 -16 ) ( 257 128 -16 ) ( 256 129 -16 ) machines/vent_fan_4x4 0 0 0 1 1
+( 512 384 16 ) ( 512 385 16 ) ( 513 384 16 ) machines/vent_fan_4x4 0 0 0 1 1
+( 512 192 16 ) ( 513 192 16 ) ( 512 192 17 ) machines/vent_fan_4x4 0 0 0 1 1
+( 320 384 16 ) ( 320 384 17 ) ( 320 385 16 ) machines/vent_fan_4x4 0 0 0 1 1
+}
+// brush 49
+{
+( -64 128 240 ) ( -64 129 240 ) ( -64 128 241 ) __TB_empty 0 0 0 1 1
+( -64 128 240 ) ( -64 128 241 ) ( -63 128 240 ) __TB_empty 0 0 0 1 1
+( -64 128 240 ) ( -63 128 240 ) ( -64 129 240 ) __TB_empty 0 0 0 1 1
+( 192 384 272 ) ( 192 385 272 ) ( 193 384 272 ) __TB_empty 0 0 0 1 1
+( 192 384 272 ) ( 193 384 272 ) ( 192 384 273 ) __TB_empty 0 0 0 1 1
+( 192 384 272 ) ( 192 384 273 ) ( 192 385 272 ) __TB_empty 0 0 0 1 1
+}
+}
+// entity 1
+{
+"classname" "deco_trash_spawner"
+"prop_density" "1.5"
+// brush 0
+{
+( 896 -128 64 ) ( 896 -127 64 ) ( 896 -128 65 ) furnishings/trash 0 0 0 1 1
+( 1024 -256 32 ) ( 1023 -256 32 ) ( 1024 -256 33 ) furnishings/trash 0 0 0 1 1
+( 1024 -256 -16 ) ( 1024 -255 -16 ) ( 1023 -256 -16 ) furnishings/trash 0 0 0 1 1
+( 896 -128 16 ) ( 895 -128 16 ) ( 896 -127 16 ) furnishings/trash 0 0 0 1 1
+( 896 -128 64 ) ( 896 -128 65 ) ( 895 -128 64 ) furnishings/trash 0 0 0 1 1
+( 1024 -256 32 ) ( 1024 -256 33 ) ( 1024 -255 32 ) furnishings/trash 0 0 0 1 1
+}
+}
+// entity 2
+{
+"classname" "func_group"
+"_tb_type" "_tb_group"
+"_tb_name" "roompalette"
+"_tb_id" "5"
+"_tb_linked_group_id" "{5c6a1bb2-83b2-4c0f-bf99-be653ba00384}"
+// brush 0
+{
+( -320 -64 64 ) ( -320 -63 64 ) ( -320 -64 65 ) furnishings/drop_ceiling 0 0 0 1 1
+( -320 -64 64 ) ( -320 -64 65 ) ( -319 -64 64 ) furnishings/drop_ceiling 0 0 0 1 1
+( -320 -64 64 ) ( -319 -64 64 ) ( -320 -63 64 ) furnishings/drop_ceiling 0 0 0 1 1
+( -192 64 72 ) ( -192 65 72 ) ( -191 64 72 ) furnishings/drop_ceiling 0 0 0 1 1
+( -192 64 80 ) ( -191 64 80 ) ( -192 64 81 ) furnishings/drop_ceiling 0 0 0 1 1
+( -192 64 80 ) ( -192 64 81 ) ( -192 65 80 ) furnishings/drop_ceiling 0 0 0 1 1
+}
+// brush 1
+{
+( -200 48 16 ) ( -200 -64 16 ) ( -200 -64 0 ) furnishings/drywall 0 0 0 1 1
+( -192 64 0 ) ( -192 64 16 ) ( -208 48 16 ) furnishings/drywall 0 0 0 1 1
+( -208 -64 16 ) ( -192 -64 16 ) ( -192 -64 0 ) furnishings/drywall 0 0 0 1 1
+( -192 -64 0 ) ( -192 64 0 ) ( -208 48 0 ) furnishings/drywall 0 0 0 1 1
+( -208 48 64 ) ( -192 64 64 ) ( -192 -64 64 ) furnishings/drywall 0 0 0 1 1
+( -192 -64 16 ) ( -192 64 16 ) ( -192 64 0 ) furnishings/drywall 0 0 0 1 1
+}
+// brush 2
+{
+( -320 64 16 ) ( -320 48 16 ) ( -320 48 0 ) furnishings/drywall 0 0 0 1 1
+( -320 56 16 ) ( -208 56 16 ) ( -208 56 0 ) furnishings/drywall 0 0 0 1 1
+( -208 48 0 ) ( -192 64 0 ) ( -320 64 0 ) furnishings/drywall 0 0 0 1 1
+( -320 64 64 ) ( -192 64 64 ) ( -208 48 64 ) furnishings/drywall 0 0 0 1 1
+( -192 64 0 ) ( -192 64 16 ) ( -320 64 16 ) furnishings/drywall 0 0 0 1 1
+( -208 48 16 ) ( -192 64 16 ) ( -192 64 0 ) furnishings/drywall 0 0 0 1 1
+}
+// brush 3
+{
+( -320 64 64 ) ( -320 65 64 ) ( -320 64 65 ) furnishings/checker_board 0 0 0 1 1
+( -192 -64 32 ) ( -193 -64 32 ) ( -192 -64 33 ) furnishings/checker_board 0 0 0 1 1
+( -192 -64 -8 ) ( -192 -63 -8 ) ( -193 -64 -8 ) furnishings/checker_board 0 0 0 1 1
+( -320 64 0 ) ( -321 64 0 ) ( -320 65 0 ) furnishings/checker_board 0 0 0 1 1
+( -320 64 64 ) ( -320 64 65 ) ( -321 64 64 ) furnishings/checker_board 0 0 0 1 1
+( -192 -64 32 ) ( -192 -64 33 ) ( -192 -63 32 ) furnishings/checker_board 0 0 0 1 1
+}
+}
+// entity 3
+{
+"classname" "ldeco_lamppost"
+"origin" "-216 40 8"
+"_tb_group" "5"
+}
+// entity 4
+{
+"classname" "area_ref_probe_solid"
+"_tb_group" "5"
+// brush 0
+{
+( -328 -72 -16 ) ( -328 -71 -16 ) ( -328 -72 -15 ) special/probe 0 0 0 1 1
+( -328 -72 -16 ) ( -328 -72 -15 ) ( -327 -72 -16 ) special/probe 0 0 0 1 1
+( -328 -72 -16 ) ( -327 -72 -16 ) ( -328 -71 -16 ) special/probe 0 0 0 1 1
+( -320 -64 80 ) ( -320 -63 80 ) ( -319 -64 80 ) special/probe 0 0 0 1 1
+( -320 72 -8 ) ( -319 72 -8 ) ( -320 72 -7 ) special/probe 0 0 0 1 1
+( -184 -64 -8 ) ( -184 -64 -7 ) ( -184 -63 -8 ) special/probe 0 0 0 1 1
+}
+}
+// entity 5
+{
+"classname" "func_group"
+"_tb_type" "_tb_group"
+"_tb_name" "roompalette"
+"_tb_id" "6"
+"_tb_linked_group_id" "{ab75ca45-b622-482e-884a-3c22465ee2a1}"
+"_tb_transformation" "1 0 0 -192 0 1 0 0 0 0 1 0 0 0 0 1"
+// brush 0
+{
+( -512 -64 64 ) ( -512 -63 64 ) ( -512 -64 65 ) structural/concrete 0 0 0 1 1
+( -512 -64 64 ) ( -512 -64 65 ) ( -511 -64 64 ) structural/concrete 0 0 0 1 1
+( -512 -64 64 ) ( -511 -64 64 ) ( -512 -63 64 ) structural/concrete 0 0 0 1 1
+( -384 64 72 ) ( -384 65 72 ) ( -383 64 72 ) structural/concrete 0 0 0 1 1
+( -384 64 80 ) ( -383 64 80 ) ( -384 64 81 ) structural/concrete 0 0 0 1 1
+( -384 64 80 ) ( -384 64 81 ) ( -384 65 80 ) structural/concrete 0 0 0 1 1
+}
+// brush 1
+{
+( -392 48 16 ) ( -392 -64 16 ) ( -392 -64 0 ) furnishings/drywall 0 0 0 1 1
+( -384 64 0 ) ( -384 64 16 ) ( -400 48 16 ) furnishings/drywall 0 0 0 1 1
+( -400 -64 16 ) ( -384 -64 16 ) ( -384 -64 0 ) furnishings/drywall 0 0 0 1 1
+( -384 -64 0 ) ( -384 64 0 ) ( -400 48 0 ) furnishings/drywall 0 0 0 1 1
+( -400 48 64 ) ( -384 64 64 ) ( -384 -64 64 ) furnishings/drywall 0 0 0 1 1
+( -384 -64 16 ) ( -384 64 16 ) ( -384 64 0 ) furnishings/drywall 0 0 0 1 1
+}
+// brush 2
+{
+( -512 64 16 ) ( -512 48 16 ) ( -512 48 0 ) furnishings/drywall 0 0 0 1 1
+( -512 56 16 ) ( -400 56 16 ) ( -400 56 0 ) furnishings/drywall 0 0 0 1 1
+( -400 48 0 ) ( -384 64 0 ) ( -512 64 0 ) furnishings/drywall 0 0 0 1 1
+( -512 64 64 ) ( -384 64 64 ) ( -400 48 64 ) furnishings/drywall 0 0 0 1 1
+( -384 64 0 ) ( -384 64 16 ) ( -512 64 16 ) furnishings/drywall 0 0 0 1 1
+( -400 48 16 ) ( -384 64 16 ) ( -384 64 0 ) furnishings/drywall 0 0 0 1 1
+}
+// brush 3
+{
+( -512 64 64 ) ( -512 65 64 ) ( -512 64 65 ) furnishings/checker_board 0 0 0 1 1
+( -384 -64 32 ) ( -385 -64 32 ) ( -384 -64 33 ) furnishings/checker_board 0 0 0 1 1
+( -384 -64 -8 ) ( -384 -63 -8 ) ( -385 -64 -8 ) furnishings/checker_board 0 0 0 1 1
+( -512 64 0 ) ( -513 64 0 ) ( -512 65 0 ) furnishings/checker_board 0 0 0 1 1
+( -512 64 64 ) ( -512 64 65 ) ( -513 64 64 ) furnishings/checker_board 0 0 0 1 1
+( -384 -64 32 ) ( -384 -64 33 ) ( -384 -63 32 ) furnishings/checker_board 0 0 0 1 1
+}
+}
+// entity 6
+{
+"classname" "ldeco_tube"
+"origin" "-448 0 64"
+"_tb_group" "6"
+}
+// entity 7
+{
+"classname" "area_ref_probe_solid"
+"_tb_group" "6"
+// brush 0
+{
+( -520 -72 -16 ) ( -520 -71 -16 ) ( -520 -72 -15 ) special/probe 0 0 0 1 1
+( -520 -72 -16 ) ( -520 -72 -15 ) ( -519 -72 -16 ) special/probe 0 0 0 1 1
+( -520 -72 -16 ) ( -519 -72 -16 ) ( -520 -71 -16 ) special/probe 0 0 0 1 1
+( -512 -64 80 ) ( -512 -63 80 ) ( -511 -64 80 ) special/probe 0 0 0 1 1
+( -512 72 -8 ) ( -511 72 -8 ) ( -512 72 -7 ) special/probe 0 0 0 1 1
+( -376 -64 -8 ) ( -376 -64 -7 ) ( -376 -63 -8 ) special/probe 0 0 0 1 1
+}
+}
+// entity 8
+{
+"classname" "func_group"
+"_tb_type" "_tb_group"
+"_tb_name" "roompalette"
+"_tb_id" "7"
+"_tb_linked_group_id" "{bda1bf46-5628-4d1c-bcf3-0050bf13bea3}"
+"_tb_transformation" "1 0 0 -384 0 1 0 0 0 0 1 0 0 0 0 1"
+// brush 0
+{
+( -704 -64 64 ) ( -704 -63 64 ) ( -704 -64 65 ) furnishings/drop_ceiling 0 0 0 1 1
+( -704 -64 64 ) ( -704 -64 65 ) ( -703 -64 64 ) furnishings/drop_ceiling 0 0 0 1 1
+( -704 -64 64 ) ( -703 -64 64 ) ( -704 -63 64 ) furnishings/drop_ceiling 0 0 0 1 1
+( -576 64 72 ) ( -576 65 72 ) ( -575 64 72 ) furnishings/drop_ceiling 0 0 0 1 1
+( -576 64 80 ) ( -575 64 80 ) ( -576 64 81 ) furnishings/drop_ceiling 0 0 0 1 1
+( -576 64 80 ) ( -576 64 81 ) ( -576 65 80 ) furnishings/drop_ceiling 0 0 0 1 1
+}
+// brush 1
+{
+( -584 48 16 ) ( -584 -64 16 ) ( -584 -64 0 ) furnishings/drywall 0 0 0 1 1
+( -576 64 0 ) ( -576 64 16 ) ( -592 48 16 ) furnishings/drywall 0 0 0 1 1
+( -592 -64 16 ) ( -576 -64 16 ) ( -576 -64 0 ) furnishings/drywall 0 0 0 1 1
+( -576 -64 0 ) ( -576 64 0 ) ( -592 48 0 ) furnishings/drywall 0 0 0 1 1
+( -592 48 64 ) ( -576 64 64 ) ( -576 -64 64 ) furnishings/drywall 0 0 0 1 1
+( -576 -64 16 ) ( -576 64 16 ) ( -576 64 0 ) furnishings/drywall 0 0 0 1 1
+}
+// brush 2
+{
+( -704 64 16 ) ( -704 48 16 ) ( -704 48 0 ) furnishings/drywall 0 0 0 1 1
+( -704 56 16 ) ( -592 56 16 ) ( -592 56 0 ) furnishings/drywall 0 0 0 1 1
+( -592 48 0 ) ( -576 64 0 ) ( -704 64 0 ) furnishings/drywall 0 0 0 1 1
+( -704 64 64 ) ( -576 64 64 ) ( -592 48 64 ) furnishings/drywall 0 0 0 1 1
+( -576 64 0 ) ( -576 64 16 ) ( -704 64 16 ) furnishings/drywall 0 0 0 1 1
+( -592 48 16 ) ( -576 64 16 ) ( -576 64 0 ) furnishings/drywall 0 0 0 1 1
+}
+// brush 3
+{
+( -704 64 64 ) ( -704 65 64 ) ( -704 64 65 ) furnishings/checker_board 0 0 0 1 1
+( -576 -64 32 ) ( -577 -64 32 ) ( -576 -64 33 ) furnishings/checker_board 0 0 0 1 1
+( -576 -64 -8 ) ( -576 -63 -8 ) ( -577 -64 -8 ) furnishings/checker_board 0 0 0 1 1
+( -704 64 0 ) ( -705 64 0 ) ( -704 65 0 ) furnishings/checker_board 0 0 0 1 1
+( -704 64 64 ) ( -704 64 65 ) ( -705 64 64 ) furnishings/checker_board 0 0 0 1 1
+( -576 -64 32 ) ( -576 -64 33 ) ( -576 -63 32 ) furnishings/checker_board 0 0 0 1 1
+}
+}
+// entity 9
+{
+"classname" "ldeco_lamppost"
+"origin" "-600 40 8"
+"_tb_group" "7"
+}
+// entity 10
+{
+"classname" "ldeco_tube"
+"origin" "-640 0 64"
+"_tb_group" "7"
+}
+// entity 11
+{
+"classname" "area_ref_probe_solid"
+"_tb_group" "7"
+// brush 0
+{
+( -712 -72 -16 ) ( -712 -71 -16 ) ( -712 -72 -15 ) special/probe 0 0 0 1 1
+( -712 -72 -16 ) ( -712 -72 -15 ) ( -711 -72 -16 ) special/probe 0 0 0 1 1
+( -712 -72 -16 ) ( -711 -72 -16 ) ( -712 -71 -16 ) special/probe 0 0 0 1 1
+( -704 -64 80 ) ( -704 -63 80 ) ( -703 -64 80 ) special/probe 0 0 0 1 1
+( -704 72 -8 ) ( -703 72 -8 ) ( -704 72 -7 ) special/probe 0 0 0 1 1
+( -568 -64 -8 ) ( -568 -64 -7 ) ( -568 -63 -8 ) special/probe 0 0 0 1 1
+}
+}
+// entity 12
+{
+"classname" "func_group"
+"_tb_type" "_tb_group"
+"_tb_name" "roompalette"
+"_tb_id" "9"
+"_tb_linked_group_id" "{1854657a-f998-4a92-85e1-070278247752}"
+"_tb_transformation" "1 0 0 0 0 1 0 -192 0 0 1 0 0 0 0 1"
+// brush 0
+{
+( -320 -256 64 ) ( -320 -255 64 ) ( -320 -256 65 ) structural/concrete 0 0 0 1 1
+( -320 -256 64 ) ( -320 -256 65 ) ( -319 -256 64 ) structural/concrete 0 0 0 1 1
+( -320 -256 64 ) ( -319 -256 64 ) ( -320 -255 64 ) structural/concrete 0 0 0 1 1
+( -192 -128 72 ) ( -192 -127 72 ) ( -191 -128 72 ) structural/concrete 0 0 0 1 1
+( -192 -128 80 ) ( -191 -128 80 ) ( -192 -128 81 ) structural/concrete 0 0 0 1 1
+( -192 -128 80 ) ( -192 -128 81 ) ( -192 -127 80 ) structural/concrete 0 0 0 1 1
+}
+// brush 1
+{
+( -200 -144 16 ) ( -200 -256 16 ) ( -200 -256 0 ) structural/bricks_clay 0 0 0 1 1
+( -192 -128 0 ) ( -192 -128 16 ) ( -208 -144 16 ) structural/bricks_clay 0 0 0 1 1
+( -208 -256 16 ) ( -192 -256 16 ) ( -192 -256 0 ) structural/bricks_clay 0 0 0 1 1
+( -192 -256 0 ) ( -192 -128 0 ) ( -208 -144 0 ) structural/bricks_clay 0 0 0 1 1
+( -208 -144 64 ) ( -192 -128 64 ) ( -192 -256 64 ) structural/bricks_clay 0 0 0 1 1
+( -192 -256 16 ) ( -192 -128 16 ) ( -192 -128 0 ) structural/bricks_clay 0 0 0 1 1
+}
+// brush 2
+{
+( -320 -128 16 ) ( -320 -144 16 ) ( -320 -144 0 ) structural/bricks_clay 0 0 0 1 1
+( -320 -136 16 ) ( -208 -136 16 ) ( -208 -136 0 ) structural/bricks_clay 0 0 0 1 1
+( -208 -144 0 ) ( -192 -128 0 ) ( -320 -128 0 ) structural/bricks_clay 0 0 0 1 1
+( -320 -128 64 ) ( -192 -128 64 ) ( -208 -144 64 ) structural/bricks_clay 0 0 0 1 1
+( -192 -128 0 ) ( -192 -128 16 ) ( -320 -128 16 ) structural/bricks_clay 0 0 0 1 1
+( -208 -144 16 ) ( -192 -128 16 ) ( -192 -128 0 ) structural/bricks_clay 0 0 0 1 1
+}
+// brush 3
+{
+( -320 -128 64 ) ( -320 -127 64 ) ( -320 -128 65 ) structural/concrete 0 0 0 1 1
+( -192 -256 32 ) ( -193 -256 32 ) ( -192 -256 33 ) structural/concrete 0 0 0 1 1
+( -192 -256 -8 ) ( -192 -255 -8 ) ( -193 -256 -8 ) structural/concrete 0 0 0 1 1
+( -320 -128 0 ) ( -321 -128 0 ) ( -320 -127 0 ) structural/concrete 0 0 0 1 1
+( -320 -128 64 ) ( -320 -128 65 ) ( -321 -128 64 ) structural/concrete 0 0 0 1 1
+( -192 -256 32 ) ( -192 -256 33 ) ( -192 -255 32 ) structural/concrete 0 0 0 1 1
+}
+}
+// entity 13
+{
+"classname" "light_lamp"
+"origin" "-256 -192 64"
+"_tb_group" "9"
+}
+// entity 14
+{
+"classname" "deco_pipe_bend"
+"origin" "-216 -152 32"
+"_tb_group" "9"
+}
+// entity 15
+{
+"classname" "deco_pipe_short"
+"origin" "-224 -152 8"
+"angles" "90 0 0"
+"_tb_group" "9"
+}
+// entity 16
+{
+"classname" "deco_pipe_bend"
+"origin" "-208 -192 8"
+"angles" "0 90 0"
+"_tb_group" "9"
+}
+// entity 17
+{
+"classname" "deco_pipe"
+"origin" "-208 -160 16"
+"angles" "0 90 0"
+"_tb_group" "9"
+}
+// entity 18
+{
+"classname" "deco_pipe_short"
+"origin" "-208 -136 16"
+"angles" "0 90 0"
+"_tb_group" "9"
+}
+// entity 19
+{
+"classname" "area_ref_probe_solid"
+"_tb_group" "9"
+// brush 0
+{
+( -328 -264 -16 ) ( -328 -263 -16 ) ( -328 -264 -15 ) special/probe 0 0 0 1 1
+( -328 -264 -16 ) ( -328 -264 -15 ) ( -327 -264 -16 ) special/probe 0 0 0 1 1
+( -328 -264 -16 ) ( -327 -264 -16 ) ( -328 -263 -16 ) special/probe 0 0 0 1 1
+( -320 -256 80 ) ( -320 -255 80 ) ( -319 -256 80 ) special/probe 0 0 0 1 1
+( -320 -120 -8 ) ( -319 -120 -8 ) ( -320 -120 -7 ) special/probe 0 0 0 1 1
+( -184 -256 -8 ) ( -184 -256 -7 ) ( -184 -255 -8 ) special/probe 0 0 0 1 1
+}
+}
+// entity 20
+{
+"classname" "func_group"
+"_tb_type" "_tb_group"
+"_tb_name" "roompalette"
+"_tb_id" "11"
+"_tb_linked_group_id" "{571498f2-7dda-4b63-896f-7a13c7b7d0a9}"
+"_tb_transformation" "1 0 0 0 0 1 0 -384 0 0 1 0 0 0 0 1"
+// brush 0
+{
+( -320 -448 -8 ) ( -320 -447 -8 ) ( -320 -448 -7 ) natural/rock_5 0 0 0 1 1
+( -320 -448 -8 ) ( -320 -448 -7 ) ( -319 -448 -8 ) natural/rock_5 0 0 0 1 1
+( -320 -448 -8 ) ( -319 -448 -8 ) ( -320 -447 -8 ) natural/rock_5 0 0 0 1 1
+( -192 -320 0 ) ( -192 -319 0 ) ( -191 -320 0 ) natural/rock_5 0 0 0 1 1
+( -192 -320 8 ) ( -191 -320 8 ) ( -192 -320 9 ) natural/rock_5 0 0 0 1 1
+( -192 -320 8 ) ( -192 -320 9 ) ( -192 -319 8 ) natural/rock_5 0 0 0 1 1
+}
+// brush 1
+{
+( -200 -336 16 ) ( -200 -448 16 ) ( -200 -448 0 ) natural/rock 0 0 0 1 1
+( -192 -320 0 ) ( -192 -320 16 ) ( -208 -336 16 ) natural/rock 0 0 0 1 1
+( -208 -448 16 ) ( -192 -448 16 ) ( -192 -448 0 ) natural/rock 0 0 0 1 1
+( -192 -448 0 ) ( -192 -320 0 ) ( -208 -336 0 ) natural/rock 0 0 0 1 1
+( -208 -336 64 ) ( -192 -320 64 ) ( -192 -448 64 ) natural/rock 0 0 0 1 1
+( -192 -448 16 ) ( -192 -320 16 ) ( -192 -320 0 ) natural/rock 0 0 0 1 1
+}
+// brush 2
+{
+( -320 -320 16 ) ( -320 -336 16 ) ( -320 -336 0 ) natural/rock 0 0 0 1 1
+( -320 -328 16 ) ( -208 -328 16 ) ( -208 -328 0 ) natural/rock 0 0 0 1 1
+( -208 -336 0 ) ( -192 -320 0 ) ( -320 -320 0 ) natural/rock 0 0 0 1 1
+( -320 -320 64 ) ( -192 -320 64 ) ( -208 -336 64 ) natural/rock 0 0 0 1 1
+( -192 -320 0 ) ( -192 -320 16 ) ( -320 -320 16 ) natural/rock 0 0 0 1 1
+( -208 -336 16 ) ( -192 -320 16 ) ( -192 -320 0 ) natural/rock 0 0 0 1 1
+}
+// brush 3
+{
+( -320 -320 136 ) ( -320 -319 136 ) ( -320 -320 137 ) natural/dirt 0 0 0 1 1
+( -192 -448 104 ) ( -193 -448 104 ) ( -192 -448 105 ) natural/dirt 0 0 0 1 1
+( -192 -448 64 ) ( -192 -447 64 ) ( -193 -448 64 ) natural/dirt 0 0 0 1 1
+( -320 -320 72 ) ( -321 -320 72 ) ( -320 -319 72 ) natural/dirt 0 0 0 1 1
+( -320 -320 136 ) ( -320 -320 137 ) ( -321 -320 136 ) natural/dirt 0 0 0 1 1
+( -192 -448 104 ) ( -192 -448 105 ) ( -192 -447 104 ) natural/dirt 0 0 0 1 1
+}
+}
+// entity 21
+{
+"classname" "ldeco_shrooms"
+"origin" "-224 -360 4"
+"_tb_group" "11"
+}
+// entity 22
+{
+"classname" "area_ref_probe_solid"
+"_tb_group" "11"
+// brush 0
+{
+( -328 -456 -16 ) ( -328 -455 -16 ) ( -328 -456 -15 ) special/probe 0 0 0 1 1
+( -328 -456 -16 ) ( -328 -456 -15 ) ( -327 -456 -16 ) special/probe 0 0 0 1 1
+( -328 -456 -16 ) ( -327 -456 -16 ) ( -328 -455 -16 ) special/probe 0 0 0 1 1
+( -320 -448 80 ) ( -320 -447 80 ) ( -319 -448 80 ) special/probe 0 0 0 1 1
+( -320 -312 -8 ) ( -319 -312 -8 ) ( -320 -312 -7 ) special/probe 0 0 0 1 1
+( -184 -448 -8 ) ( -184 -448 -7 ) ( -184 -447 -8 ) special/probe 0 0 0 1 1
+}
+}
+// entity 23
+{
+"classname" "func_group"
+"_tb_type" "_tb_group"
+"_tb_name" "roompalette"
+"_tb_id" "12"
+"_tb_linked_group_id" "{930219cd-1fca-48e6-abba-c52477992c2e}"
+"_tb_transformation" "1 0 0 0 0 1 0 -576 0 0 1 0 0 0 0 1"
+// brush 0
+{
+( -320 -640 -8 ) ( -320 -639 -8 ) ( -320 -640 -7 ) natural/rock_5 0 0 0 1 1
+( -320 -640 -8 ) ( -320 -640 -7 ) ( -319 -640 -8 ) natural/rock_5 0 0 0 1 1
+( -320 -640 -8 ) ( -319 -640 -8 ) ( -320 -639 -8 ) natural/rock_5 0 0 0 1 1
+( -192 -512 0 ) ( -192 -511 0 ) ( -191 -512 0 ) natural/rock_5 0 0 0 1 1
+( -192 -512 8 ) ( -191 -512 8 ) ( -192 -512 9 ) natural/rock_5 0 0 0 1 1
+( -192 -512 8 ) ( -192 -512 9 ) ( -192 -511 8 ) natural/rock_5 0 0 0 1 1
+}
+// brush 1
+{
+( -200 -528 16 ) ( -200 -640 16 ) ( -200 -640 0 ) structural/bricks_stone_nomortar 0 0 0 1 1
+( -192 -512 0 ) ( -192 -512 16 ) ( -208 -528 16 ) structural/bricks_stone_nomortar 0 0 0 1 1
+( -208 -640 16 ) ( -192 -640 16 ) ( -192 -640 0 ) structural/bricks_stone_nomortar 0 0 0 1 1
+( -192 -640 0 ) ( -192 -512 0 ) ( -208 -528 0 ) structural/bricks_stone_nomortar 0 0 0 1 1
+( -208 -528 64 ) ( -192 -512 64 ) ( -192 -640 64 ) structural/bricks_stone_nomortar 0 0 0 1 1
+( -192 -640 16 ) ( -192 -512 16 ) ( -192 -512 0 ) structural/bricks_stone_nomortar 0 0 0 1 1
+}
+// brush 2
+{
+( -320 -512 16 ) ( -320 -528 16 ) ( -320 -528 0 ) structural/bricks_stone_nomortar 0 0 0 1 1
+( -320 -520 16 ) ( -208 -520 16 ) ( -208 -520 0 ) structural/bricks_stone_nomortar 0 0 0 1 1
+( -208 -528 0 ) ( -192 -512 0 ) ( -320 -512 0 ) structural/bricks_stone_nomortar 0 0 0 1 1
+( -320 -512 64 ) ( -192 -512 64 ) ( -208 -528 64 ) structural/bricks_stone_nomortar 0 0 0 1 1
+( -192 -512 0 ) ( -192 -512 16 ) ( -320 -512 16 ) structural/bricks_stone_nomortar 0 0 0 1 1
+( -208 -528 16 ) ( -192 -512 16 ) ( -192 -512 0 ) structural/bricks_stone_nomortar 0 0 0 1 1
+}
+// brush 3
+{
+( -320 -512 136 ) ( -320 -511 136 ) ( -320 -512 137 ) natural/rock 0 0 0 1 1
+( -192 -640 104 ) ( -193 -640 104 ) ( -192 -640 105 ) natural/rock 0 0 0 1 1
+( -192 -640 64 ) ( -192 -639 64 ) ( -193 -640 64 ) natural/rock 0 0 0 1 1
+( -320 -512 72 ) ( -321 -512 72 ) ( -320 -511 72 ) natural/rock 0 0 0 1 1
+( -320 -512 136 ) ( -320 -512 137 ) ( -321 -512 136 ) natural/rock 0 0 0 1 1
+( -192 -640 104 ) ( -192 -640 105 ) ( -192 -639 104 ) natural/rock 0 0 0 1 1
+}
+}
+// entity 24
+{
+"classname" "ldeco_torch"
+"origin" "-202 -560 32"
+"angles" "-45 0 0"
+"_tb_group" "12"
+}
+// entity 25
+{
+"classname" "area_ref_probe_solid"
+"_tb_group" "12"
+// brush 0
+{
+( -328 -648 -16 ) ( -328 -647 -16 ) ( -328 -648 -15 ) special/probe 0 0 0 1 1
+( -328 -648 -16 ) ( -328 -648 -15 ) ( -327 -648 -16 ) special/probe 0 0 0 1 1
+( -328 -648 -16 ) ( -327 -648 -16 ) ( -328 -647 -16 ) special/probe 0 0 0 1 1
+( -320 -640 80 ) ( -320 -639 80 ) ( -319 -640 80 ) special/probe 0 0 0 1 1
+( -320 -504 -8 ) ( -319 -504 -8 ) ( -320 -504 -7 ) special/probe 0 0 0 1 1
+( -184 -640 -8 ) ( -184 -640 -7 ) ( -184 -639 -8 ) special/probe 0 0 0 1 1
+}
+}
+// entity 26
+{
+"classname" "deco_chain"
+"origin" "-288 -608 72"
+"_tb_group" "12"
+}
+// entity 27
+{
+"classname" "deco_chain"
+"origin" "-288 -576 56"
+"_tb_group" "12"
+}
+// entity 28
+{
+"classname" "func_group"
+"_tb_type" "_tb_group"
+"_tb_name" "roompalette"
+"_tb_id" "13"
+"_tb_linked_group_id" "{3a33f427-5bcf-4f4f-9901-3b1641d98f8d}"
+"_tb_transformation" "1 0 0 -192 0 1 0 -192 0 0 1 0 0 0 0 1"
+// brush 0
+{
+( -512 -256 64 ) ( -512 -255 64 ) ( -512 -256 65 ) metallic/bulk_metal 0 0 0 1 1
+( -512 -256 64 ) ( -512 -256 65 ) ( -511 -256 64 ) metallic/bulk_metal 0 0 0 1 1
+( -512 -256 64 ) ( -511 -256 64 ) ( -512 -255 64 ) metallic/bulk_metal 0 0 0 1 1
+( -384 -128 72 ) ( -384 -127 72 ) ( -383 -128 72 ) metallic/bulk_metal 0 0 0 1 1
+( -384 -128 80 ) ( -383 -128 80 ) ( -384 -128 81 ) metallic/bulk_metal 0 0 0 1 1
+( -384 -128 80 ) ( -384 -128 81 ) ( -384 -127 80 ) metallic/bulk_metal 0 0 0 1 1
+}
+// brush 1
+{
+( -392 -144 16 ) ( -392 -256 16 ) ( -392 -256 0 ) structural/concrete_beams 0 0 0 1 1
+( -384 -128 0 ) ( -384 -128 16 ) ( -400 -144 16 ) structural/concrete_beams 0 0 0 1 1
+( -400 -256 16 ) ( -384 -256 16 ) ( -384 -256 0 ) structural/concrete_beams 0 0 0 1 1
+( -384 -256 0 ) ( -384 -128 0 ) ( -400 -144 0 ) structural/concrete_beams 0 0 0 1 1
+( -400 -144 64 ) ( -384 -128 64 ) ( -384 -256 64 ) structural/concrete_beams 0 0 0 1 1
+( -384 -256 16 ) ( -384 -128 16 ) ( -384 -128 0 ) structural/concrete_beams 0 0 0 1 1
+}
+// brush 2
+{
+( -512 -128 16 ) ( -512 -144 16 ) ( -512 -144 0 ) structural/concrete_beams 0 0 0 1 1
+( -512 -136 16 ) ( -400 -136 16 ) ( -400 -136 0 ) structural/concrete_beams 0 0 0 1 1
+( -400 -144 0 ) ( -384 -128 0 ) ( -512 -128 0 ) structural/concrete_beams 0 0 0 1 1
+( -512 -128 64 ) ( -384 -128 64 ) ( -400 -144 64 ) structural/concrete_beams 0 0 0 1 1
+( -384 -128 0 ) ( -384 -128 16 ) ( -512 -128 16 ) structural/concrete_beams 0 0 0 1 1
+( -400 -144 16 ) ( -384 -128 16 ) ( -384 -128 0 ) structural/concrete_beams 0 0 0 1 1
+}
+// brush 3
+{
+( -512 -128 64 ) ( -512 -127 64 ) ( -512 -128 65 ) furnishings/noslip_metal 0 0 0 1 1
+( -384 -256 32 ) ( -385 -256 32 ) ( -384 -256 33 ) furnishings/noslip_metal 0 0 0 1 1
+( -384 -256 -8 ) ( -384 -255 -8 ) ( -385 -256 -8 ) furnishings/noslip_metal 0 0 0 1 1
+( -512 -128 0 ) ( -513 -128 0 ) ( -512 -127 0 ) furnishings/noslip_metal 0 0 0 1 1
+( -512 -128 64 ) ( -512 -128 65 ) ( -513 -128 64 ) furnishings/noslip_metal 0 0 0 1 1
+( -384 -256 32 ) ( -384 -256 33 ) ( -384 -255 32 ) furnishings/noslip_metal 0 0 0 1 1
+}
+}
+// entity 29
+{
+"classname" "light_lamp"
+"origin" "-448 -192 64"
+"_tb_group" "13"
+}
+// entity 30
+{
+"classname" "deco_vent_box"
+"origin" "-416 -136 16"
+"angles" "0 -90 0"
+"_tb_group" "13"
+}
+// entity 31
+{
+"classname" "deco_pipe_bend"
+"origin" "-442 -144 16"
+"angles" "0 0 0"
+"_tb_group" "13"
+}
+// entity 32
+{
+"classname" "deco_pipe"
+"origin" "-400 -144 48"
+"angles" "-90 0 90"
+"_tb_group" "13"
+}
+// entity 33
+{
+"classname" "deco_pipe_bend"
+"origin" "-420 -136 48"
+"angles" "0 90 0"
+"_tb_group" "13"
+}
+// entity 34
+{
+"classname" "area_ref_probe_solid"
+"_tb_group" "13"
+// brush 0
+{
+( -520 -264 -16 ) ( -520 -263 -16 ) ( -520 -264 -15 ) special/probe 0 0 0 1 1
+( -520 -264 -16 ) ( -520 -264 -15 ) ( -519 -264 -16 ) special/probe 0 0 0 1 1
+( -520 -264 -16 ) ( -519 -264 -16 ) ( -520 -263 -16 ) special/probe 0 0 0 1 1
+( -512 -256 80 ) ( -512 -255 80 ) ( -511 -256 80 ) special/probe 0 0 0 1 1
+( -512 -120 -8 ) ( -511 -120 -8 ) ( -512 -120 -7 ) special/probe 0 0 0 1 1
+( -376 -256 -8 ) ( -376 -256 -7 ) ( -376 -255 -8 ) special/probe 0 0 0 1 1
+}
+}
+// entity 35
+{
+"classname" "func_group"
+"_tb_type" "_tb_group"
+"_tb_name" "roompalette"
+"_tb_id" "14"
+"_tb_linked_group_id" "{10d4f7b7-a108-4a4b-b9d9-1119f66dbd56}"
+"_tb_transformation" "1 0 0 -384 0 1 0 -384 0 0 1 0 0 0 0 1"
+// brush 0
+{
+( -704 -448 64 ) ( -704 -447 64 ) ( -704 -448 65 ) natural/dirt 0 0 0 1 1
+( -704 -448 64 ) ( -704 -448 65 ) ( -703 -448 64 ) natural/dirt 0 0 0 1 1
+( -704 -448 64 ) ( -703 -448 64 ) ( -704 -447 64 ) natural/dirt 0 0 0 1 1
+( -576 -320 72 ) ( -576 -319 72 ) ( -575 -320 72 ) natural/dirt 0 0 0 1 1
+( -576 -320 80 ) ( -575 -320 80 ) ( -576 -320 81 ) natural/dirt 0 0 0 1 1
+( -576 -320 80 ) ( -576 -320 81 ) ( -576 -319 80 ) natural/dirt 0 0 0 1 1
+}
+// brush 1
+{
+( -584 -336 16 ) ( -584 -448 16 ) ( -584 -448 0 ) natural/log 0 0 0 1 1
+( -576 -320 0 ) ( -576 -320 16 ) ( -592 -336 16 ) natural/log 0 0 0 1 1
+( -592 -448 16 ) ( -576 -448 16 ) ( -576 -448 0 ) natural/log 0 0 0 1 1
+( -576 -448 0 ) ( -576 -320 0 ) ( -592 -336 0 ) natural/log 0 0 0 1 1
+( -592 -336 64 ) ( -576 -320 64 ) ( -576 -448 64 ) natural/log 0 0 0 1 1
+( -576 -448 16 ) ( -576 -320 16 ) ( -576 -320 0 ) natural/log 0 0 0 1 1
+}
+// brush 2
+{
+( -704 -320 16 ) ( -704 -336 16 ) ( -704 -336 0 ) natural/log 0 0 0 1 1
+( -704 -328 16 ) ( -592 -328 16 ) ( -592 -328 0 ) natural/log 0 0 0 1 1
+( -592 -336 0 ) ( -576 -320 0 ) ( -704 -320 0 ) natural/log 0 0 0 1 1
+( -704 -320 64 ) ( -576 -320 64 ) ( -592 -336 64 ) natural/log 0 0 0 1 1
+( -576 -320 0 ) ( -576 -320 16 ) ( -704 -320 16 ) natural/log 0 0 0 1 1
+( -592 -336 16 ) ( -576 -320 16 ) ( -576 -320 0 ) natural/log 0 0 0 1 1
+}
+// brush 3
+{
+( -704 -320 64 ) ( -704 -319 64 ) ( -704 -320 65 ) natural/rock_5 0 0 0 1 1
+( -576 -448 32 ) ( -577 -448 32 ) ( -576 -448 33 ) natural/rock_5 0 0 0 1 1
+( -576 -448 -8 ) ( -576 -447 -8 ) ( -577 -448 -8 ) natural/rock_5 0 0 0 1 1
+( -704 -320 0 ) ( -705 -320 0 ) ( -704 -319 0 ) natural/rock_5 0 0 0 1 1
+( -704 -320 64 ) ( -704 -320 65 ) ( -705 -320 64 ) natural/rock_5 0 0 0 1 1
+( -576 -448 32 ) ( -576 -448 33 ) ( -576 -447 32 ) natural/rock_5 0 0 0 1 1
+}
+}
+// entity 36
+{
+"classname" "light_lamp"
+"origin" "-640 -384 64"
+"_tb_group" "14"
+}
+// entity 37
+{
+"classname" "area_ref_probe_solid"
+"_tb_group" "14"
+// brush 0
+{
+( -712 -456 -16 ) ( -712 -455 -16 ) ( -712 -456 -15 ) special/probe 0 0 0 1 1
+( -712 -456 -16 ) ( -712 -456 -15 ) ( -711 -456 -16 ) special/probe 0 0 0 1 1
+( -712 -456 -16 ) ( -711 -456 -16 ) ( -712 -455 -16 ) special/probe 0 0 0 1 1
+( -704 -448 80 ) ( -704 -447 80 ) ( -703 -448 80 ) special/probe 0 0 0 1 1
+( -704 -312 -8 ) ( -703 -312 -8 ) ( -704 -312 -7 ) special/probe 0 0 0 1 1
+( -568 -448 -8 ) ( -568 -448 -7 ) ( -568 -447 -8 ) special/probe 0 0 0 1 1
+}
+}
+// entity 38
+{
+"classname" "func_group"
+"_tb_type" "_tb_group"
+"_tb_name" "roompalette"
+"_tb_id" "15"
+"_tb_linked_group_id" "{f30bf710-ff6c-4691-a81f-5c55fed253f6}"
+"_tb_transformation" "1 0 0 -384 0 1 0 -184 0 0 1 0 0 0 0 1"
+// brush 0
+{
+( -704 -248 64 ) ( -704 -247 64 ) ( -704 -248 65 ) metallic/bulk_metal 0 0 0 1 1
+( -704 -248 64 ) ( -704 -248 65 ) ( -703 -248 64 ) metallic/bulk_metal 0 0 0 1 1
+( -704 -248 64 ) ( -703 -248 64 ) ( -704 -247 64 ) metallic/bulk_metal 0 0 0 1 1
+( -576 -120 72 ) ( -576 -119 72 ) ( -575 -120 72 ) metallic/bulk_metal 0 0 0 1 1
+( -576 -120 80 ) ( -575 -120 80 ) ( -576 -120 81 ) metallic/bulk_metal 0 0 0 1 1
+( -576 -120 80 ) ( -576 -120 81 ) ( -576 -119 80 ) metallic/bulk_metal 0 0 0 1 1
+}
+// brush 1
+{
+( -584 -136 16 ) ( -584 -248 16 ) ( -584 -248 0 ) structural/concrete_beams 0 0 0 1 1
+( -576 -120 0 ) ( -576 -120 16 ) ( -592 -136 16 ) structural/concrete_beams 0 0 0 1 1
+( -592 -248 16 ) ( -576 -248 16 ) ( -576 -248 0 ) structural/concrete_beams 0 0 0 1 1
+( -576 -248 0 ) ( -576 -120 0 ) ( -592 -136 0 ) structural/concrete_beams 0 0 0 1 1
+( -592 -136 64 ) ( -576 -120 64 ) ( -576 -248 64 ) structural/concrete_beams 0 0 0 1 1
+( -576 -248 16 ) ( -576 -120 16 ) ( -576 -120 0 ) structural/concrete_beams 0 0 0 1 1
+}
+// brush 2
+{
+( -704 -120 16 ) ( -704 -136 16 ) ( -704 -136 0 ) structural/concrete_beams 0 0 0 1 1
+( -704 -128 16 ) ( -592 -128 16 ) ( -592 -128 0 ) structural/concrete_beams 0 0 0 1 1
+( -592 -136 0 ) ( -576 -120 0 ) ( -704 -120 0 ) structural/concrete_beams 0 0 0 1 1
+( -704 -120 64 ) ( -576 -120 64 ) ( -592 -136 64 ) structural/concrete_beams 0 0 0 1 1
+( -576 -120 0 ) ( -576 -120 16 ) ( -704 -120 16 ) structural/concrete_beams 0 0 0 1 1
+( -592 -136 16 ) ( -576 -120 16 ) ( -576 -120 0 ) structural/concrete_beams 0 0 0 1 1
+}
+// brush 3
+{
+( -704 -120 64 ) ( -704 -119 64 ) ( -704 -120 65 ) furnishings/noslip_metal 0 0 0 1 1
+( -576 -248 32 ) ( -577 -248 32 ) ( -576 -248 33 ) furnishings/noslip_metal 0 0 0 1 1
+( -576 -248 -8 ) ( -576 -247 -8 ) ( -577 -248 -8 ) furnishings/noslip_metal 0 0 0 1 1
+( -704 -120 0 ) ( -705 -120 0 ) ( -704 -119 0 ) furnishings/noslip_metal 0 0 0 1 1
+( -704 -120 64 ) ( -704 -120 65 ) ( -705 -120 64 ) furnishings/noslip_metal 0 0 0 1 1
+( -576 -248 32 ) ( -576 -248 33 ) ( -576 -247 32 ) furnishings/noslip_metal 0 0 0 1 1
+}
+}
+// entity 39
+{
+"classname" "deco_vent_box"
+"origin" "-608 -128 16"
+"angles" "0 -90 0"
+"_tb_group" "15"
+}
+// entity 40
+{
+"classname" "deco_pipe_bend"
+"origin" "-634 -136 16"
+"angles" "0 0 0"
+"_tb_group" "15"
+}
+// entity 41
+{
+"classname" "deco_pipe"
+"origin" "-592 -136 48"
+"angles" "-90 0 90"
+"_tb_group" "15"
+}
+// entity 42
+{
+"classname" "deco_pipe_bend"
+"origin" "-612 -128 48"
+"angles" "0 90 0"
+"_tb_group" "15"
+}
+// entity 43
+{
+"classname" "area_ref_probe_solid"
+"_tb_group" "15"
+// brush 0
+{
+( -712 -256 -16 ) ( -712 -255 -16 ) ( -712 -256 -15 ) special/probe 0 0 0 1 1
+( -712 -256 -16 ) ( -712 -256 -15 ) ( -711 -256 -16 ) special/probe 0 0 0 1 1
+( -712 -256 -16 ) ( -711 -256 -16 ) ( -712 -255 -16 ) special/probe 0 0 0 1 1
+( -704 -248 80 ) ( -704 -247 80 ) ( -703 -248 80 ) special/probe 0 0 0 1 1
+( -704 -112 -8 ) ( -703 -112 -8 ) ( -704 -112 -7 ) special/probe 0 0 0 1 1
+( -568 -248 -8 ) ( -568 -248 -7 ) ( -568 -247 -8 ) special/probe 0 0 0 1 1
+}
+}
+// entity 44
+{
+"classname" "ldeco_lamppost"
+"origin" "-628 -140 40"
+"_tb_group" "15"
+}
+// entity 45
+{
+"classname" "func_group"
+"_tb_type" "_tb_group"
+"_tb_name" "roompalette"
+"_tb_id" "16"
+"_tb_linked_group_id" "{9c02ac66-a710-43f1-89d7-89fc0bd1c1b7}"
+"_tb_transformation" "1 0 0 -192 0 1 0 -384 0 0 1 0 0 0 0 1"
+// brush 0
+{
+( -512 -448 -8 ) ( -512 -447 -8 ) ( -512 -448 -7 ) natural/rock_5 0 0 0 1 1
+( -512 -448 -8 ) ( -512 -448 -7 ) ( -511 -448 -8 ) natural/rock_5 0 0 0 1 1
+( -512 -448 -8 ) ( -511 -448 -8 ) ( -512 -447 -8 ) natural/rock_5 0 0 0 1 1
+( -384 -320 0 ) ( -384 -319 0 ) ( -383 -320 0 ) natural/rock_5 0 0 0 1 1
+( -384 -320 8 ) ( -383 -320 8 ) ( -384 -320 9 ) natural/rock_5 0 0 0 1 1
+( -384 -320 8 ) ( -384 -320 9 ) ( -384 -319 8 ) natural/rock_5 0 0 0 1 1
+}
+// brush 1
+{
+( -392 -336 16 ) ( -392 -448 16 ) ( -392 -448 0 ) natural/rock 0 0 0 1 1
+( -384 -320 0 ) ( -384 -320 16 ) ( -400 -336 16 ) natural/rock 0 0 0 1 1
+( -400 -448 16 ) ( -384 -448 16 ) ( -384 -448 0 ) natural/rock 0 0 0 1 1
+( -384 -448 0 ) ( -384 -320 0 ) ( -400 -336 0 ) natural/rock 0 0 0 1 1
+( -400 -336 64 ) ( -384 -320 64 ) ( -384 -448 64 ) natural/rock 0 0 0 1 1
+( -384 -448 16 ) ( -384 -320 16 ) ( -384 -320 0 ) natural/rock 0 0 0 1 1
+}
+// brush 2
+{
+( -512 -320 16 ) ( -512 -336 16 ) ( -512 -336 0 ) natural/rock 0 0 0 1 1
+( -512 -328 16 ) ( -400 -328 16 ) ( -400 -328 0 ) natural/rock 0 0 0 1 1
+( -400 -336 0 ) ( -384 -320 0 ) ( -512 -320 0 ) natural/rock 0 0 0 1 1
+( -512 -320 64 ) ( -384 -320 64 ) ( -400 -336 64 ) natural/rock 0 0 0 1 1
+( -384 -320 0 ) ( -384 -320 16 ) ( -512 -320 16 ) natural/rock 0 0 0 1 1
+( -400 -336 16 ) ( -384 -320 16 ) ( -384 -320 0 ) natural/rock 0 0 0 1 1
+}
+// brush 3
+{
+( -512 -320 136 ) ( -512 -319 136 ) ( -512 -320 137 ) natural/dirt 0 0 0 1 1
+( -384 -448 104 ) ( -385 -448 104 ) ( -384 -448 105 ) natural/dirt 0 0 0 1 1
+( -384 -448 64 ) ( -384 -447 64 ) ( -385 -448 64 ) natural/dirt 0 0 0 1 1
+( -512 -320 72 ) ( -513 -320 72 ) ( -512 -319 72 ) natural/dirt 0 0 0 1 1
+( -512 -320 136 ) ( -512 -320 137 ) ( -513 -320 136 ) natural/dirt 0 0 0 1 1
+( -384 -448 104 ) ( -384 -448 105 ) ( -384 -447 104 ) natural/dirt 0 0 0 1 1
+}
+}
+// entity 46
+{
+"classname" "area_ref_probe_solid"
+"_tb_group" "16"
+// brush 0
+{
+( -520 -456 -16 ) ( -520 -455 -16 ) ( -520 -456 -15 ) special/probe 0 0 0 1 1
+( -520 -456 -16 ) ( -520 -456 -15 ) ( -519 -456 -16 ) special/probe 0 0 0 1 1
+( -520 -456 -16 ) ( -519 -456 -16 ) ( -520 -455 -16 ) special/probe 0 0 0 1 1
+( -512 -448 80 ) ( -512 -447 80 ) ( -511 -448 80 ) special/probe 0 0 0 1 1
+( -512 -312 -8 ) ( -511 -312 -8 ) ( -512 -312 -7 ) special/probe 0 0 0 1 1
+( -376 -448 -8 ) ( -376 -448 -7 ) ( -376 -447 -8 ) special/probe 0 0 0 1 1
+}
+}
+// entity 47
+{
+"classname" "func_path"
+"origin" "-408 -392 56"
+"targetname" "looka"
+"_tb_group" "16"
+}
+// entity 48
+{
+"classname" "func_path"
+"origin" "-456 -360 8"
+"targetname" "lookb"
+"_tb_group" "16"
+}
+// entity 49
+{
+"classname" "ldeco_floodlight"
+"origin" "-408 -344 16"
+"angle" "232.5"
+"killtarget" "looka"
+"target" "lookb"
+"_tb_group" "16"
+}
+// entity 50
+{
+"classname" "func_detail"
+// brush 0
+{
+( 704 -320 64 ) ( 704 -319 64 ) ( 704 -320 65 ) liquids/water 0 0 0 1 1
+( 832 -448 32 ) ( 831 -448 32 ) ( 832 -448 33 ) liquids/water 0 0 0 1 1
+( 832 -448 -16 ) ( 832 -447 -16 ) ( 831 -448 -16 ) liquids/water 0 0 0 1 1
+( 704 -320 16 ) ( 703 -320 16 ) ( 704 -319 16 ) liquids/water 0 0 0 1 1
+( 704 -320 64 ) ( 704 -320 65 ) ( 703 -320 64 ) liquids/water 0 0 0 1 1
+( 832 -448 32 ) ( 832 -448 33 ) ( 832 -447 32 ) liquids/water 0 0 0 1 1
+}
+}
+// entity 51
+{
+"classname" "func_group"
+"_tb_type" "_tb_group"
+"_tb_name" "roompalette"
+"_tb_id" "17"
+"_tb_linked_group_id" "{e75fa545-3651-492c-9312-8aaa8aed11c6}"
+"_tb_transformation" "1 0 0 -576 0 1 0 0 0 0 1 0 0 0 0 1"
+// brush 0
+{
+( -896 -64 64 ) ( -896 -63 64 ) ( -896 -64 65 ) furnishings/drywall 0 0 0 1 1
+( -896 -64 64 ) ( -896 -64 65 ) ( -895 -64 64 ) furnishings/drywall 0 0 0 1 1
+( -896 -64 64 ) ( -895 -64 64 ) ( -896 -63 64 ) furnishings/drywall 0 0 0 1 1
+( -768 64 72 ) ( -768 65 72 ) ( -767 64 72 ) furnishings/drywall 0 0 0 1 1
+( -768 64 80 ) ( -767 64 80 ) ( -768 64 81 ) furnishings/drywall 0 0 0 1 1
+( -768 64 80 ) ( -768 64 81 ) ( -768 65 80 ) furnishings/drywall 0 0 0 1 1
+}
+// brush 1
+{
+( -776 48 16 ) ( -776 -64 16 ) ( -776 -64 0 ) furnishings/drywall 0 0 0 1 1
+( -768 64 0 ) ( -768 64 16 ) ( -784 48 16 ) furnishings/drywall 0 0 0 1 1
+( -784 -64 16 ) ( -768 -64 16 ) ( -768 -64 0 ) furnishings/drywall 0 0 0 1 1
+( -768 -64 0 ) ( -768 64 0 ) ( -784 48 0 ) furnishings/drywall 0 0 0 1 1
+( -784 48 64 ) ( -768 64 64 ) ( -768 -64 64 ) furnishings/drywall 0 0 0 1 1
+( -768 -64 16 ) ( -768 64 16 ) ( -768 64 0 ) furnishings/drywall 0 0 0 1 1
+}
+// brush 2
+{
+( -896 64 16 ) ( -896 48 16 ) ( -896 48 0 ) furnishings/drywall 0 0 0 1 1
+( -896 56 16 ) ( -784 56 16 ) ( -784 56 0 ) furnishings/drywall 0 0 0 1 1
+( -784 48 0 ) ( -768 64 0 ) ( -896 64 0 ) furnishings/drywall 0 0 0 1 1
+( -896 64 64 ) ( -768 64 64 ) ( -784 48 64 ) furnishings/drywall 0 0 0 1 1
+( -768 64 0 ) ( -768 64 16 ) ( -896 64 16 ) furnishings/drywall 0 0 0 1 1
+( -784 48 16 ) ( -768 64 16 ) ( -768 64 0 ) furnishings/drywall 0 0 0 1 1
+}
+// brush 3
+{
+( -896 64 64 ) ( -896 65 64 ) ( -896 64 65 ) furnishings/planks 0 0 0 1 1
+( -768 -64 32 ) ( -769 -64 32 ) ( -768 -64 33 ) furnishings/planks 0 0 0 1 1
+( -768 -64 -8 ) ( -768 -63 -8 ) ( -769 -64 -8 ) furnishings/planks 0 0 0 1 1
+( -896 64 0 ) ( -897 64 0 ) ( -896 65 0 ) furnishings/planks 0 0 0 1 1
+( -896 64 64 ) ( -896 64 65 ) ( -897 64 64 ) furnishings/planks 0 0 0 1 1
+( -768 -64 32 ) ( -768 -64 33 ) ( -768 -63 32 ) furnishings/planks 0 0 0 1 1
+}
+}
+// entity 52
+{
+"classname" "ldeco_tube"
+"origin" "-832 0 64"
+"_tb_group" "17"
+}
+// entity 53
+{
+"classname" "area_ref_probe_solid"
+"_tb_group" "17"
+// brush 0
+{
+( -904 -72 -16 ) ( -904 -71 -16 ) ( -904 -72 -15 ) special/probe 0 0 0 1 1
+( -904 -72 -16 ) ( -904 -72 -15 ) ( -903 -72 -16 ) special/probe 0 0 0 1 1
+( -904 -72 -16 ) ( -903 -72 -16 ) ( -904 -71 -16 ) special/probe 0 0 0 1 1
+( -896 -64 80 ) ( -896 -63 80 ) ( -895 -64 80 ) special/probe 0 0 0 1 1
+( -896 72 -8 ) ( -895 72 -8 ) ( -896 72 -7 ) special/probe 0 0 0 1 1
+( -760 -64 -8 ) ( -760 -64 -7 ) ( -760 -63 -8 ) special/probe 0 0 0 1 1
+}
+}
+// entity 54
+{
+"classname" "deco_table_wood"
+"origin" "-800 40 8"
+"_tb_group" "17"
+}
+// entity 55
+{
+"classname" "deco_chair_wood"
+"origin" "-790 24 8"
+"angle" "90"
+"_tb_group" "17"
+}
+// entity 56
+{
+"classname" "deco_chair_wood"
+"origin" "-810 26 8"
+"angle" "90"
+"_tb_group" "17"
+}
+// entity 57
+{
+"classname" "deco_table_wood"
+"origin" "-216 -32 8"
+"angle" "90"
+}
+// entity 58
+{
+"classname" "deco_pipe_bend"
+"origin" "-408 -8 40"
+"angles" "0 0 90"
+}
+// entity 59
+{
+"classname" "deco_pipe_tjunct"
+"origin" "-416 32 32"
+"angles" "0 90 0"
+}
+// entity 60
+{
+"classname" "deco_pipe_short"
+"origin" "-416 32 8"
+"angles" "90 0 0"
+}
+// entity 61
+{
+"classname" "deco_chain"
+"origin" "56 360 296"
+}
+// entity 62
+{
+"classname" "deco_barrel"
+"origin" "-40 360 280"
+}
+// entity 63
+{
+"classname" "deco_barrel_exp"
+"origin" "-8 360 280"
+}
+// entity 64
+{
+"classname" "deco_barrel_rad"
+"origin" "24 360 280"
+}
+// entity 65
+{
+"classname" "deco_chair_wood"
+"origin" "88 360 280"
+}
+// entity 66
+{
+"classname" "deco_crate_metal"
+"origin" "120 360 280"
+}
+// entity 67
+{
+"classname" "deco_crate_wooden"
+"origin" "152 360 280"
+}
+// entity 68
+{
+"classname" "deco_exit_sign"
+"origin" "-40 328 280"
+}
+// entity 69
+{
+"classname" "deco_table_wood"
+"origin" "8 328 280"
+}
+// entity 70
+{
+"classname" "deco_vent_box"
+"origin" "72 312 288"
+}
+// entity 71
+{
+"classname" "dest_vent_cover"
+"origin" "120 328 280"
 }

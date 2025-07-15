@@ -1,9 +1,9 @@
 [gd_scene load_steps=22 format=3 uid="uid://bvoee6rh57674"]
 
-[ext_resource type="Script" path="res://trench_broom/func_godot_fgd/entities/point/light/lamp_tb.gd" id="1_t6cch"]
+[ext_resource type="Script" uid="uid://bfo3tcmtay6yf" path="res://trench_broom/func_godot_fgd/entities/point/light/lamp_tb.gd" id="1_t6cch"]
 [ext_resource type="Material" uid="uid://c42r6gnwbsttx" path="res://effects/halos/fancy_halo.tres" id="2_3ftqv"]
 [ext_resource type="Texture2D" uid="uid://hk0k2coukjwc" path="res://effects/halos/halo_tex.tres" id="3_h5mmw"]
-[ext_resource type="Script" path="res://scripts/effects/halo.gd" id="4_27x0a"]
+[ext_resource type="Script" uid="uid://qbss7pion7pi" path="res://scripts/effects/halo.gd" id="4_27x0a"]
 
 [sub_resource type="Shader" id="Shader_143fe"]
 code = "// NOTE: Shader automatically converted from Godot Engine 4.2.1.stable.mono's StandardMaterial3D.
@@ -54,7 +54,7 @@ render_priority = 0
 shader = SubResource("Shader_143fe")
 shader_parameter/point_size = 1.0
 shader_parameter/roughness = 1.0
-shader_parameter/metallic_texture_channel = null
+shader_parameter/metallic_texture_channel = Vector4(0, 0, 0, 0)
 shader_parameter/specular = 0.5
 shader_parameter/metallic = 0.0
 shader_parameter/uv1_scale = Vector3(1, 1, 1)
@@ -177,8 +177,8 @@ tracks/1/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_rjy61"]
 _data = {
-"off": SubResource("Animation_el7do"),
-"on": SubResource("Animation_fv30p")
+&"off": SubResource("Animation_el7do"),
+&"on": SubResource("Animation_fv30p")
 }
 
 [node name="Lamp" type="MeshInstance3D"]

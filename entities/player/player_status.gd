@@ -3,6 +3,12 @@ extends Status
 
 signal key_acquired(key: int)
 
+enum Keys {
+	RED,
+	GREEN,
+	BLUE,
+}
+
 @export_category("PlayerStatus")
 
 @export var max_armor: float = 100
@@ -29,6 +35,10 @@ func _enter_tree() -> void:
 	add_console_commands()
 
 
+func _exit_tree() -> void:
+	remove_console_commands()
+
+
 func _ready() -> void:
 	health = max_health
 	armor = max_armor / 4
@@ -36,10 +46,6 @@ func _ready() -> void:
 	for i in (ripple_distance - 1):
 		target_parent = target_parent.get_parent()
 	key_acquired.connect(_on_key_acquired)
-
-
-func _exit_tree() -> void:
-	remove_console_commands()
 	
 
 func _process(_delta: float) -> void:
@@ -76,7 +82,11 @@ func _physics_process(delta: float) -> void:
 			i += 1
 
 
-func damage_typed(amount: float, type: DamageType, gib_mode: GibMode = GibMode.ALLOW_GIB) -> float: # returns damage dealt, for piercers
+func _get_absorption() -> float:
+	return max_armor / (armor + max_armor)
+
+
+func damage_typed(amount: float, type: DamageType, _gib_mode: GibMode = GibMode.ALLOW_GIB) -> float: # returns damage dealt, for piercers
 	if god or invuln_timer > 0:
 		return amount # invulnerable players always stop piercers
 	elif is_dead:
@@ -86,28 +96,34 @@ func damage_typed(amount: float, type: DamageType, gib_mode: GibMode = GibMode.A
 		stream_player.stream = injury_stream
 		stream_player.play()
 	var damage_factor: float = damage_multipliers[type] if type != DamageType.ABSOLUTE else 1.0
-	health -= amount * base_damage_factor * damage_factor * (1 - armor_absorption)
-	#print(amount * base_damage_factor * damage_factor * (1 - armor_absorption))
-	armor  -= amount * base_damage_factor * damage_factor * armor_absorption
-	if armor < 0:
-		health += armor # armor will be negative
-		armor = 0
+	if armor > 0:
+		health -= amount * base_damage_factor * damage_factor * _get_absorption()#(1 - armor_absorption)
+		#print(amount * base_damage_factor * damage_factor * (1 - armor_absorption))
+		armor  -= amount * base_damage_factor * damage_factor * (1.0 - _get_absorption())#armor_absorption
+		if armor < 0:
+			health += armor # armor will be negative
+			armor = 0
+	else:
+		health -= amount * base_damage_factor * damage_factor
 	if health <= 0:
 		kill()
 		return amount + health # health will be negative
 	return amount # return value is amount of damage recieved, for piercers
 
 
-func rapid_damage_typed(amount: float, type: DamageType, delta: float, gib_mode: GibMode = GibMode.ALLOW_GIB) -> void:
+func rapid_damage_typed(amount: float, type: DamageType, delta: float, _gib_mode: GibMode = GibMode.ALLOW_GIB) -> void:
 	hud.rapid_flash(type, delta, god or invuln_timer > 0)
 	if god or invuln_timer > 0:
 		return
 	var damage_factor: float = damage_multipliers[type] if type != DamageType.ABSOLUTE else 1.0
-	health -= amount * delta * base_damage_factor * damage_factor * (1 - armor_absorption)
-	armor  -= amount * delta * base_damage_factor * damage_factor * armor_absorption
-	if armor <= 0:
-		health += armor # armor will be negative
-		armor = 0
+	if armor > 0:
+		health -= amount * delta * base_damage_factor * damage_factor * _get_absorption()#(1 - armor_absorption)
+		armor -= amount * delta * base_damage_factor * damage_factor * (1.0 - _get_absorption())#armor_absorption
+		if armor <= 0:
+			health += armor # armor will be negative
+			armor = 0
+	else:
+		health -= amount * base_damage_factor * damage_factor
 	if health <= 0:
 		kill()
 
@@ -123,9 +139,9 @@ func kill() -> void:
 	died.emit()
 	get_parent().process_mode = Node.PROCESS_MODE_DISABLED
 	if gibs != null:
-		var exp: Node = gibs.instantiate()
-		target_parent.add_child(exp)
-		exp.reparent(get_tree().current_scene)
+		var e: Node = gibs.instantiate()
+		target_parent.add_child(e)
+		e.reparent(get_tree().current_scene)
 		#move_child(exp, 0)
 		get_parent().find_child("PlayerCam").switched_weapons.emit(-1, -1, false)
 		get_parent().find_child("PlayerCam").current = false
@@ -151,11 +167,13 @@ func add_console_commands() -> void:
 	Console.add_command("get_health", func(): Console.print_line("%f" % health), [], 0, Globals.parse_text("console", "desc.get_health"))
 	Console.add_command("set_health", cmd_set_health, ["float value"], 1, Globals.parse_text("console", "desc.set_health"))
 	Console.add_command("get_armor", func(): Console.print_line("%f" % armor), [], 0, Globals.parse_text("console", "desc.get_armor"))
-	Console.add_command("set_armor", cmd_set_armor, ["float value"], 1, Globals.parse_text("console", "desc.set_armor"))
+	Console.add_command("set_armor", cmd_set_armor, [Globals.parse_text("console", "arg.float")], 1, Globals.parse_text("console", "desc.set_armor"))
 	Console.add_command("get_absorption", func(): Console.print_line("%f" % armor_absorption), [], 0, Globals.parse_text("console", "desc.get_absorption"))
 	Console.add_command("set_absorption", cmd_set_absorption, ["0-1 float value"], 1, Globals.parse_text("console", "desc.set_absorption"))
+	Console.add_alias("get_abs", "get_absorption")
+	Console.add_alias("set_abs", "set_absorption")
 	Console.add_command("get_berserk", func(): Console.print_line("%f" % berserk_timer), [], 0, Globals.parse_text("console", "desc.get_berserk"))
-	Console.add_command("get_berzerk", func(): Console.print_line("%f" % berserk_timer), [], 0, Globals.parse_text("console", "desc.get_berserk"))
+	Console.add_alias("get_berzerk", "get_berserk")
 	Console.add_command("get_invuln", func(): Console.print_line("%f" % invuln_timer), [], 0, Globals.parse_text("console", "desc.get_invuln"))
 	Console.add_command("get_filters", func(): Console.print_line("%f" % filters_timer), [], 0, Globals.parse_text("console", "desc.get_filters"))
 	Console.add_command("set_key", cmd_set_key, ["index of key to set (0 = red, 1 = green, 2 = blue)", "true/false"], 2, Globals.parse_text("console", "desc.set_key"))
@@ -171,8 +189,9 @@ func remove_console_commands() -> void:
 	Console.remove_command("set_armor")
 	Console.remove_command("get_absorption")
 	Console.remove_command("set_absorption")
+	Console.remove_aliases(["get_abs", "set_abs"])
 	Console.remove_command("get_berserk")
-	Console.remove_command("get_berzerk")
+	Console.remove_alias("get_berzerk")
 	Console.remove_command("get_invuln")
 	Console.remove_command("get_filters")
 	Console.remove_command("set_key")
@@ -207,14 +226,22 @@ func cmd_set_absorption(to: String) -> void:
 func cmd_set_key(which: String, to: String) -> void:
 	if Globals.try_run_cheat():
 		if not which.is_valid_int():
-			Console.print_error(Globals.parse_text("console", "fail.bad_int") % "which")
-			return
+			if which.to_upper() in Keys.keys():
+				which = "%d" % Keys.get(which.to_upper())
+			else:
+				Console.print_error(Globals.parse_text("console", "fail.bad_int") % "which")
+				return
 		if which.to_int() < 0 or which.to_int() > held_keys.size():
-			Console.print_error(Globals.parse_text("console", "fail.bad_range") % "which")
+			var s := Globals.parse_text("console", "fail.bad_range")
+			Console.print_error(s % ["which", 0, 2])
+			return
 		var to_b := Globals.get_pseudo_bool(to)
 		if to_b == -1:
-			Console.print_error(Globals.parse_text("console", "fail.bad_bool") % ["to", 0, held_keys.size()])
+			var s := Globals.parse_text("console", "fail.bad_bool")
+			Console.print_error(s % ["to", 0, held_keys.size()])
+			return
 		held_keys[which.to_int()] = (to_b == Globals.PseudoBool.TRUE)
+		hud.keys[which.to_int()].modulate = Color.WHITE if (to_b == Globals.PseudoBool.TRUE) else Color.BLACK
 
 
 func cmd_god(to: String) -> void:

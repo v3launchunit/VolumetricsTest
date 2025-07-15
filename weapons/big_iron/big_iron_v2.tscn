@@ -1,13 +1,13 @@
 [gd_scene load_steps=21 format=3 uid="uid://fxxwu2mibeyh"]
 
-[ext_resource type="Script" path="res://weapons/weapon_base.gd" id="1_ht0mu"]
+[ext_resource type="Script" uid="uid://c022da054b2ky" path="res://weapons/weapon_base.gd" id="1_ht0mu"]
 [ext_resource type="PackedScene" uid="uid://cjiaga01gs475" path="res://weapons/big_iron/big_iron.glb" id="2_7qdfo"]
 [ext_resource type="PackedScene" uid="uid://cehwd234g5us7" path="res://bullets/player/hitscan/big_iron_bullet.tscn" id="2_ue8mb"]
 [ext_resource type="Material" uid="uid://hi03f7cjksp1" path="res://weapons/big_iron/big_iron_mat_1.tres" id="3_alq1o"]
 [ext_resource type="Material" uid="uid://nv0jkcw45ofc" path="res://weapons/weapon_metal_vm.tres" id="4_3drvs"]
 [ext_resource type="Material" uid="uid://dq3a5fxspauox" path="res://weapons/muzzle_flash_yellow_vm.tres" id="5_67vob"]
 [ext_resource type="ArrayMesh" uid="uid://bblg4t73miejx" path="res://weapons/muzzle_flash_alt.obj" id="6_w6n8t"]
-[ext_resource type="Script" path="res://weapons/scope.gd" id="8_dvcyr"]
+[ext_resource type="Script" uid="uid://lc15mf5d6qv7" path="res://weapons/scope.gd" id="8_dvcyr"]
 [ext_resource type="AnimationLibrary" uid="uid://c6dybiqj5wrrj" path="res://weapons/big_iron/big_iron_anims_v2.res" id="8_isp10"]
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_q4fkd"]
@@ -67,7 +67,7 @@ tracks/1/keys = PackedFloat32Array(0, 1, 0, 0, 0, 1)
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_mwri3"]
 _data = {
-"RESET": SubResource("Animation_2ereb")
+&"RESET": SubResource("Animation_2ereb")
 }
 
 [node name="BigIron" type="Node3D"]

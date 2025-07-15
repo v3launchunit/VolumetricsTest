@@ -1,0 +1,35 @@
+[gd_resource type="ShaderMaterial" load_steps=9 format=3 uid="uid://g47dexyjnwmb"]
+
+[ext_resource type="Shader" uid="uid://bchtstu46cqgg" path="res://trench_broom/textures/natural/rock_5.gdshader" id="1_s4oy1"]
+[ext_resource type="Texture2D" uid="uid://s6p74w0wa0fa" path="res://materials/terrain/_pbr/rock_5/rock_5_albedo_1.png" id="2_pixx7"]
+[ext_resource type="Texture2D" uid="uid://66b2uf785u0a" path="res://materials/terrain/_pbr/rock_5/rock_5_albedo_2.png" id="3_4aj8o"]
+[ext_resource type="Texture2D" uid="uid://dk0e5duopytx0" path="res://materials/terrain/_pbr/rock_5/rock_5_normals_2.png" id="4_cioic"]
+
+[sub_resource type="Gradient" id="Gradient_pixx7"]
+colors = PackedColorArray(0.75, 0.75, 0.75, 1, 1, 1, 1, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_4aj8o"]
+seed = 2365
+frequency = 0.0755
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_cioic"]
+seamless = true
+color_ramp = SubResource("Gradient_pixx7")
+noise = SubResource("FastNoiseLite_4aj8o")
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_cfqvr"]
+invert = true
+seamless = true
+as_normal_map = true
+bump_strength = 4.0
+noise = SubResource("FastNoiseLite_4aj8o")
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_s4oy1")
+shader_parameter/albedo = Color(0.65, 0.52975, 0.455, 1)
+shader_parameter/texture_albedo_01 = ExtResource("2_pixx7")
+shader_parameter/texture_albedo_02 = ExtResource("3_4aj8o")
+shader_parameter/texture_albedo_03 = SubResource("NoiseTexture2D_cioic")
+shader_parameter/texture_normal_02 = ExtResource("4_cioic")
+shader_parameter/texture_normal_03 = SubResource("NoiseTexture2D_cfqvr")

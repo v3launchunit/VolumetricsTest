@@ -1,10 +1,10 @@
 [gd_scene load_steps=19 format=3 uid="uid://6y6betnqls6v"]
 
-[ext_resource type="Script" path="res://scripts/objects/button.gd" id="1_ontwd"]
-[ext_resource type="Texture2D" uid="uid://d3wuvxtbtrcmt" path="res://objects/interactable/switch/switch_emissions.png" id="2_3rqj4"]
-[ext_resource type="Texture2D" uid="uid://ctkgcwgvds31w" path="res://objects/interactable/switch/switch_albedo.png" id="2_f3gil"]
-[ext_resource type="Texture2D" uid="uid://bl05v3whjtq0x" path="res://objects/interactable/switch/switch_normals_off.png" id="3_hf8vt"]
-[ext_resource type="Texture2D" uid="uid://dc36hghow3p3f" path="res://objects/interactable/switch/switch_normals_on.png" id="4_ghrk3"]
+[ext_resource type="Script" uid="uid://dyrnoptop886" path="res://scripts/objects/button.gd" id="1_ontwd"]
+[ext_resource type="Texture2D" uid="uid://d3wuvxtbtrcmt" path="res://objects/interactable/switch_01/switch_emissions.png" id="2_3rqj4"]
+[ext_resource type="Texture2D" uid="uid://ctkgcwgvds31w" path="res://objects/interactable/switch_01/switch_albedo.png" id="2_f3gil"]
+[ext_resource type="Texture2D" uid="uid://bl05v3whjtq0x" path="res://objects/interactable/switch_01/switch_normals_off.png" id="3_hf8vt"]
+[ext_resource type="Texture2D" uid="uid://dc36hghow3p3f" path="res://objects/interactable/switch_01/switch_normals_on.png" id="4_ghrk3"]
 [ext_resource type="AudioStream" uid="uid://bmlxxe8maevqb" path="res://audio/streams/click.wav" id="5_i6kn2"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_f8nba"]
@@ -132,8 +132,8 @@ tracks/2/use_blend = true
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_yomfv"]
 _data = {
-"off": SubResource("Animation_xuaj8"),
-"on": SubResource("Animation_c2x2o")
+&"off": SubResource("Animation_xuaj8"),
+&"on": SubResource("Animation_c2x2o")
 }
 
 [node name="Switch" type="Area3D" node_paths=PackedStringArray("targets")]

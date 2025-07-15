@@ -36,6 +36,8 @@ enum DetectionType {
 	RETALIATION,
 }
 
+const STUCK_TIMER_DECAY_RATE : float = 10.0
+
 @export var species: StringName
 
 @export var properties: Dictionary = {}
@@ -114,33 +116,33 @@ enum DetectionType {
 @export var current_targets: Array[PhysicsBody3D]
 @export_subgroup("Nightmare")
 ## Alternate bullet used by this enemy in NIGHTMARE mode. Defaults to [member bullet].
-@export var nightmare_bullet: PackedScene
+@export var nightmare_bullet : PackedScene
 
 @export_group("Damage")
 ## The percent chance that this enemy will flinch and stop moving per incoming
 ## damage instance (NOT health lost).
-@export_range(0.0, 1.0, 0.001) var flinch_chance: float = 0.1
+@export_range(0.0, 1.0, 0.001) var flinch_chance : float = 0.1
 ## The amount of time after a flinch is triggered before this enemy can begin
 ## moving again.
-@export_range(0.0, 10.0, 0.01, "or_greater") var flinch_time: float = 1.0
+@export_range(0.0, 10.0, 0.01, "or_greater") var flinch_time : float = 1.0
 ## How likely this enemy is to induce fleeing.
-@export_range(0.0, 1.0, 0.01) var flee_chance: float = 0.0
+@export_range(0.0, 1.0, 0.01) var flee_chance : float = 0.0
 ## The sound that plays when this enemy dies.
-@export var death_stream: AudioStream
-@export var edible: bool = true
-@export var eat_tooltip: String = "eat.corpse"
-@export var corpse_food_value: float = 10.0
-@export var eat_text: String = "pickup.health.gen"
+@export var death_stream : AudioStream
+@export var edible : bool = true
+@export var eat_tooltip : String = "eat.corpse"
+@export var corpse_food_value : float = 10.0
+@export var eat_text : String = "pickup.health.gen"
 @export var eat_flash_color := Color.GREEN
 
 #@export_group("Save Data")
-@export_storage var current_state: State = State.AMBUSHING
-@export_storage var current_destination: Vector3
-@export_storage var current_dest_score: float
+@export_storage var current_state := State.AMBUSHING
+@export_storage var current_destination : Vector3
+@export_storage var current_dest_score : float
 
-@export_storage var patrol_next_node: PathNode
+@export_storage var patrol_next_node : PathNode
 
-@export_storage var wander_idling: bool = false
+@export_storage var wander_idling : bool = false
 @export_storage var wander_idle_timer: float = 0.0
 @export_storage var wander_dir: float = 0.0
 
@@ -160,27 +162,31 @@ var sees_player: bool = false
 var path_re_eval_distance_squared
 var sight_line_sweep_dot: float = cos(sight_line_sweep_angle / 2.0)
 
-@onready var nav_agent: NavigationAgent3D = find_child("NavigationAgent3D")
+var stuck_timer: float = 0.0
+var prior_frame_pos := Vector3.ZERO
+var jump_cooldown : float = 0.0
+
+@onready var nav_agent := find_child("NavigationAgent3D") as NavigationAgent3D
 @onready var nav_region := get_tree().current_scene.find_child(
-		"NavigationRegion3D") as NavigationRegion3D
-@onready var sight_line: RayCast3D = find_child("SightLine")
-@onready var status: Status = find_child("Status")
+	"NavigationRegion3D") as NavigationRegion3D
+@onready var sight_line := find_child("SightLine") as RayCast3D
+@onready var status := find_child("Status") as Status
 
 @onready var spawner: Node3D = find_child("Spawner")
-@onready var state_machine: AnimationNodeStateMachinePlayback = $AnimationTree.get(
-		"parameters/playback")
-@onready var attack_range_squared = attack_range * attack_range
-@onready var melee_range_squared = melee_range * melee_range
-@onready var audio_player: AudioStreamPlayer3D = find_child("AudioStreamPlayer3D")
+@onready var state_machine := $AnimationTree.get("parameters/playback") as AnimationNodeStateMachinePlayback
+@onready var attack_range_squared : float = attack_range * attack_range
+@onready var melee_range_squared : float = melee_range * melee_range
+@onready var audio_player := find_child("AudioStreamPlayer3D") as AudioStreamPlayer3D
 @onready var jump_cast := find_child("JumpCast") as ShapeCast3D
 
 
 func _ready() -> void:
+	collision_mask = 0b0000_1101_1001_0111
 	turret_mode = properties.get("turret_mode", false)
 	
 	path_re_eval_distance_squared = (
-			$NavigationAgent3D.target_desired_distance
-			* $NavigationAgent3D.target_desired_distance
+		$NavigationAgent3D.target_desired_distance
+		* $NavigationAgent3D.target_desired_distance
 	)
 	
 	if "detect_mode" in properties and properties["detect_mode"] > 0:
@@ -267,9 +273,9 @@ func _physics_process(delta: float) -> void:
 		State.AMBUSHING:
 			if state_timer >= wake_up_time:
 				change_state(
-						State.IDLE 
-						if current_targets.is_empty()
-						else State.PURSUING
+					State.IDLE
+					if current_targets.is_empty()
+					else State.PURSUING
 				)
 				if not current_targets.is_empty():
 					detect_target(current_targets[-1], DetectionType.RETALIATION)
@@ -413,7 +419,7 @@ func _patrol(delta) -> void:
 		nav_agent.target_position = patrol_next_node.global_position
 	
 	var next_pos: Vector3 = nav_agent.get_next_path_position()
-	if is_on_floor() and should_jump():
+	if is_on_floor() and should_jump(delta):
 		_do_jump()
 	sight_line.look_at(next_pos)
 	global_rotation.y = lerp_angle(
@@ -482,7 +488,9 @@ func _scan(_delta) -> void:
 		return
 	
 	# can't see target from behind
-	if global_basis.z.normalized().dot((global_position - target.global_position).normalized()) < sight_line_sweep_dot:
+	if global_basis.z.normalized().dot(
+			(global_position - target.global_position).normalized()
+	) < sight_line_sweep_dot:
 		return
 	var space_state := get_world_3d().direct_space_state
 	var query := PhysicsRayQueryParameters3D.create(
@@ -546,7 +554,7 @@ func _pursue(delta) -> void:
 		# Casually approach target
 		var next_pos: Vector3 = nav_agent.get_next_path_position()
 		if is_on_floor():
-			if should_jump():
+			if should_jump(delta):
 				_do_jump()
 			sight_line.look_at(next_pos)
 			global_rotation.y = lerp_angle(
@@ -578,6 +586,15 @@ func check_path_staleness() -> bool:
 			and nav_agent.target_position.distance_squared_to(
 					current_destination) > path_re_eval_distance_squared
 		)
+
+
+func check_stuckness(delta: float) -> float:
+	if global_position.is_equal_approx(prior_frame_pos):
+		stuck_timer += delta
+		return stuck_timer
+	if stuck_timer > 0:
+		stuck_timer -= delta * STUCK_TIMER_DECAY_RATE
+	return 0
 
 
 func get_current_destination() -> Vector3:
@@ -644,7 +661,14 @@ func can_see_target() -> bool:
 	return not hit.is_empty() and hit.collider == current_targets[-1]
 
 
-func should_jump() -> bool:
+func should_jump(delta: float) -> bool:
+	if jump_cooldown > 0:
+		if is_on_floor():
+			jump_cooldown -= delta
+		return false
+	# enemies that can't jump shouldn't jump
+	if jump_height < 0.01:
+		return false
 	var space_state: PhysicsDirectSpaceState3D = get_world_3d().direct_space_state
 	var query := PhysicsShapeQueryParameters3D.new()
 	query.shape = SphereShape3D.new()
@@ -654,8 +678,11 @@ func should_jump() -> bool:
 	query.collision_mask = 1 + 2 + 16 + 128 + 256 # default layer, player, projectiles, doors, porous
 	query.exclude.append(get_rid())
 	var hit: Array[Dictionary] = space_state.intersect_shape(query)
+	query.transform.origin.y += 4.0
+	var hit2: Array[Dictionary] = space_state.intersect_shape(query)
 	#print(hit)
-	return not (hit.is_empty() or hit[0].collider in current_targets)
+	return (hit2.is_empty() or hit2[0].collider in current_targets) \
+			and not (hit.is_empty() or hit[0].collider in current_targets)
 
 
 func _begin_attack() -> void:
@@ -724,6 +751,7 @@ func _flee(delta) -> void:
 func _do_jump() -> void:
 	#state_machine.travel("jumping", true)
 	if is_on_floor():
+		jump_cooldown = 1.0
 		jumping = true
 
 
@@ -792,7 +820,7 @@ func interact(body: Node3D) -> void:
 			(body as Player).hud.log_event(Globals.parse_text(
 					"events", 
 					eat_text
-			) % corpse_food_value)
+			) % ceili(corpse_food_value))
 
 
 func _on_status_injured() -> void:

@@ -1,22 +1,3 @@
-[gd_resource type="Resource" script_class="QodotFGDPointClass" load_steps=4 format=3 uid="uid://clthu8ys2m5fs"]
-
-[ext_resource type="Resource" uid="uid://bec0kis72kbyx" path="res://entities/enemies/enemy_base_class.tres" id="1_6ax3k"]
-[ext_resource type="PackedScene" uid="uid://dmgxmmtshe4dh" path="res://entities/enemies/locals/eyeball/eyeball.tscn" id="2_nuhnp"]
-[ext_resource type="Script" path="res://addons/qodot/src/resources/game-definitions/fgd/qodot_fgd_point_class.gd" id="3_e6bmq"]
+[gd_resource type="Resource" format=3 uid="uid://clthu8ys2m5fs"]
 
 [resource]
-script = ExtResource("3_e6bmq")
-scene_file = ExtResource("2_nuhnp")
-apply_rotation_on_map_build = true
-classname = "enemy_eyeball"
-description = ""
-qodot_internal = false
-base_classes = Array[Resource]([ExtResource("1_6ax3k")])
-class_properties = {}
-class_property_descriptions = {}
-meta_properties = {
-"color": Color(0.8, 0.8, 0.8, 1),
-"size": AABB(-8, -8, -8, 8, 8, 8)
-}
-node_class = ""
-transient_node = false

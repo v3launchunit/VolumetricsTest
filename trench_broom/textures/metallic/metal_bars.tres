@@ -1,0 +1,8 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://ca7sitwcqwej"]
+
+[ext_resource type="Texture2D" uid="uid://dghenalr4vvgc" path="res://trench_broom/textures/metallic/metal_bars.png" id="1_vibkg"]
+
+[resource]
+albedo_texture = ExtResource("1_vibkg")
+metallic_specular = 0.0
+texture_filter = 2

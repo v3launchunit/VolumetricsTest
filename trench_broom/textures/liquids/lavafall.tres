@@ -1,6 +1,6 @@
 [gd_resource type="ShaderMaterial" load_steps=12 format=3 uid="uid://misrsst07hxq"]
 
-[ext_resource type="Shader" path="res://trench_broom/textures/liquids/fluid.gdshader" id="1_xc3kn"]
+[ext_resource type="Shader" uid="uid://bb304xcqkcfqp" path="res://trench_broom/textures/liquids/fluid.gdshader" id="1_xc3kn"]
 
 [sub_resource type="Gradient" id="Gradient_cpigb"]
 interpolation_mode = 1
@@ -78,11 +78,15 @@ noise = SubResource("FastNoiseLite_yg72i")
 render_priority = 0
 shader = ExtResource("1_xc3kn")
 shader_parameter/albedo = Color(1, 1, 1, 1)
+shader_parameter/texture_albedo = SubResource("NoiseTexture2D_4oi8b")
+shader_parameter/texture_emission_mask = SubResource("NoiseTexture2D_a1gs8")
+shader_parameter/texture_emission = SubResource("NoiseTexture2D_kgpkh")
 shader_parameter/point_size = 1.0
 shader_parameter/roughness = 1.0
-shader_parameter/metallic_texture_channel = null
+shader_parameter/metallic_texture_channel = Vector4(0, 0, 0, 0)
 shader_parameter/specular = 0.5
 shader_parameter/metallic = 0.0
+shader_parameter/texture_normal = SubResource("NoiseTexture2D_sm15b")
 shader_parameter/normal_scale = 2.0
 shader_parameter/uv1_scale = Vector3(1, 1, 1)
 shader_parameter/uv1_offset = Vector3(0, 0, 0)
@@ -91,9 +95,5 @@ shader_parameter/uv2_offset = Vector3(0, 0, 0)
 shader_parameter/scroll_speed = 0.1
 shader_parameter/flowing = true
 shader_parameter/flow_speed = -0.25
-shader_parameter/intensity = 1.0
-shader_parameter/texture_albedo = SubResource("NoiseTexture2D_4oi8b")
-shader_parameter/texture_emission_mask = SubResource("NoiseTexture2D_a1gs8")
-shader_parameter/texture_emission = SubResource("NoiseTexture2D_kgpkh")
-shader_parameter/texture_normal = SubResource("NoiseTexture2D_sm15b")
 shader_parameter/texture_displacement = SubResource("NoiseTexture2D_58wdo")
+shader_parameter/intensity = 1.0

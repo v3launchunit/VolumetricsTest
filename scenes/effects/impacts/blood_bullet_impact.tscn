@@ -1,6 +1,6 @@
 [gd_scene load_steps=8 format=3 uid="uid://bth7t7bnwn01s"]
 
-[ext_resource type="Script" path="res://scripts/effects/particle_lifetime.gd" id="1_yi5yf"]
+[ext_resource type="Script" uid="uid://b6bektmpvs3xa" path="res://scripts/effects/particle_lifetime.gd" id="1_yi5yf"]
 
 [sub_resource type="Gradient" id="Gradient_yybpk"]
 offsets = PackedFloat32Array(0.8, 0.9)

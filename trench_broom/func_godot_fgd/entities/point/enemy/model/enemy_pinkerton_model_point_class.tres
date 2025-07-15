@@ -2,7 +2,7 @@
 
 [ext_resource type="Resource" uid="uid://bec0kis72kbyx" path="res://entities/enemies/enemy_base_class.tres" id="1_0quaq"]
 [ext_resource type="PackedScene" uid="uid://cbo6wxdi4eryp" path="res://entities/enemies/military/pinkerton/pinkerton.tscn" id="2_n2fyh"]
-[ext_resource type="Script" path="res://addons/func_godot/src/fgd/func_godot_fgd_model_point_class.gd" id="3_4xwgt"]
+[ext_resource type="Script" uid="uid://uk7d08g8mvr2" path="res://addons/func_godot/src/fgd/func_godot_fgd_model_point_class.gd" id="3_4xwgt"]
 
 [resource]
 script = ExtResource("3_4xwgt")
@@ -19,6 +19,7 @@ func_godot_internal = false
 base_classes = Array[Resource]([ExtResource("1_0quaq")])
 class_properties = {}
 class_property_descriptions = {}
+auto_apply_to_matching_node_properties = false
 meta_properties = {
 "color": Color(0.8, 0.8, 0.8, 1),
 "size": AABB(-8, -8, -16, 8, 8, 16)

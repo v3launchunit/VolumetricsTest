@@ -1,9 +1,9 @@
 [gd_resource type="StandardMaterial3D" load_steps=7 format=3 uid="uid://cj1r6jgxrihlc"]
 
-[ext_resource type="Texture2D" uid="uid://ddnx6ltesmaw2" path="res://trench_broom/textures/terrain/custom_hand/cobble_stone/big_cobble_stone_albedo.png" id="1_jk26w"]
-[ext_resource type="Texture2D" uid="uid://cplbltlro8yii" path="res://trench_broom/textures/terrain/custom_hand/cobble_stone/big_cobble_stone_pre_detail_mask.png" id="2_8lqss"]
-[ext_resource type="Texture2D" uid="uid://csomg66kxecyn" path="res://trench_broom/textures/terrain/custom_hand/cobble_stone/big_cobble_stone_normals_smooth.png" id="3_ps3j4"]
-[ext_resource type="Texture2D" uid="uid://dxbesqb8wiess" path="res://trench_broom/textures/terrain/custom_hand/cobble_stone/big_cobble_stone_roughness.png" id="4_qw4gd"]
+[ext_resource type="Texture2D" uid="uid://ddnx6ltesmaw2" path="res://materials/terrain/custom_hand/cobble_stone/big_cobble_stone_albedo.png" id="1_ecans"]
+[ext_resource type="Texture2D" uid="uid://cplbltlro8yii" path="res://materials/terrain/custom_hand/cobble_stone/big_cobble_stone_pre_detail_mask.png" id="2_1eldf"]
+[ext_resource type="Texture2D" uid="uid://csomg66kxecyn" path="res://materials/terrain/custom_hand/cobble_stone/big_cobble_stone_normals_smooth.png" id="3_fol3g"]
+[ext_resource type="Texture2D" uid="uid://dxbesqb8wiess" path="res://materials/terrain/custom_hand/cobble_stone/big_cobble_stone_roughness.png" id="4_r5568"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_druab"]
 noise_type = 2
@@ -21,12 +21,12 @@ noise = SubResource("FastNoiseLite_druab")
 
 [resource]
 albedo_color = Color(0.75, 0.75, 0.75, 1)
-albedo_texture = ExtResource("1_jk26w")
-roughness_texture = ExtResource("4_qw4gd")
+albedo_texture = ExtResource("1_ecans")
+roughness_texture = ExtResource("4_r5568")
 normal_enabled = true
-normal_texture = ExtResource("3_ps3j4")
-detail_mask = ExtResource("2_8lqss")
-detail_albedo = ExtResource("1_jk26w")
+normal_texture = ExtResource("3_fol3g")
+detail_mask = ExtResource("2_1eldf")
+detail_albedo = ExtResource("1_ecans")
 detail_normal = SubResource("NoiseTexture2D_fy11u")
 uv1_world_triplanar = true
 texture_filter = 0

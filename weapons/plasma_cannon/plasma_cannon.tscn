@@ -2,10 +2,10 @@
 
 [ext_resource type="ArrayMesh" uid="uid://ceibhbi3vm1n0" path="res://weapons/plasma_cannon/plasma_cannon.obj" id="1_rqd6x"]
 [ext_resource type="Material" uid="uid://bqaqpwu7ya4e1" path="res://weapons/crossbow/crossbow_mat_1.tres" id="1_xwh1k"]
-[ext_resource type="Script" path="res://weapons/weapon_alt_fire.gd" id="2_ehb67"]
+[ext_resource type="Script" uid="uid://0ub7uw1al088" path="res://weapons/weapon_alt_fire.gd" id="2_ehb67"]
 [ext_resource type="ArrayMesh" uid="uid://bq2ld7p1te64i" path="res://weapons/plasma_cannon/muzzle_flash_plasma.obj" id="3_8rdg8"]
 [ext_resource type="PackedScene" uid="uid://cowh82u84k27w" path="res://bullets/player/projectile/plasma/plasma_rocket.tscn" id="3_d0hrl"]
-[ext_resource type="Script" path="res://weapons/alert_area.gd" id="4_0bwio"]
+[ext_resource type="Script" uid="uid://cm4w83326cpew" path="res://weapons/alert_area.gd" id="4_0bwio"]
 [ext_resource type="AnimationLibrary" uid="uid://c3tiox0a0fs23" path="res://weapons/plasma_cannon/plasma_cannon_anims.res" id="4_bijp4"]
 [ext_resource type="PackedScene" uid="uid://ddrh730si0u6x" path="res://bullets/player/projectile/plasma/plasma_bullet.tscn" id="4_swy3p"]
 [ext_resource type="Material" uid="uid://brwrc6gopu51x" path="res://weapons/plasma_cannon/muzzle_flash_plasma.tres" id="7_ln5p4"]
@@ -69,7 +69,7 @@ shader = SubResource("Shader_7cvsv")
 shader_parameter/albedo = Color(1, 0, 2, 1)
 shader_parameter/point_size = 1.0
 shader_parameter/roughness = 1.0
-shader_parameter/metallic_texture_channel = null
+shader_parameter/metallic_texture_channel = Vector4(0, 0, 0, 0)
 shader_parameter/specular = 0.5
 shader_parameter/metallic = 0.0
 shader_parameter/uv1_scale = Vector3(1, 1, 1)
@@ -192,7 +192,7 @@ tracks/2/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_2hect"]
 _data = {
-"RESET": SubResource("Animation_2r1p7")
+&"RESET": SubResource("Animation_2r1p7")
 }
 
 [node name="PlasmaCannon" type="Node3D"]

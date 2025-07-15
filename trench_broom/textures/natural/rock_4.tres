@@ -1,0 +1,13 @@
+[gd_resource type="StandardMaterial3D" load_steps=3 format=3 uid="uid://bu5gjv0d5gvbf"]
+
+[ext_resource type="Texture2D" uid="uid://6jksq8ug6rhv" path="res://materials/terrain/_pbr/cliffstone/cliffstone_albedo_seamless_b.png" id="1_78bfw"]
+[ext_resource type="Texture2D" uid="uid://koiu5ar81prp" path="res://materials/terrain/_pbr/cliffstone/cliffstone_normals_seamless_b.png" id="2_xqx7b"]
+
+[resource]
+albedo_color = Color(0.74978, 0.74978, 0.74978, 1)
+albedo_texture = ExtResource("1_78bfw")
+roughness = 0.75
+normal_enabled = true
+normal_texture = ExtResource("2_xqx7b")
+uv1_world_triplanar = true
+texture_filter = 0

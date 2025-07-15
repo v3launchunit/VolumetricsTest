@@ -2,7 +2,7 @@
 
 [ext_resource type="Resource" uid="uid://63fs8fd3x07r" path="res://trench_broom/func_godot_fgd/entities/base/enemy_base_class.tres" id="1_wswxf"]
 [ext_resource type="PackedScene" uid="uid://cm53n4on4fdr6" path="res://entities/enemies/locals/lizard/lizard.tscn" id="2_w46y3"]
-[ext_resource type="Script" path="res://addons/func_godot/src/fgd/func_godot_fgd_point_class.gd" id="3_kimct"]
+[ext_resource type="Script" uid="uid://cw2atun4e3eyv" path="res://addons/func_godot/src/fgd/func_godot_fgd_point_class.gd" id="3_kimct"]
 
 [resource]
 script = ExtResource("3_kimct")

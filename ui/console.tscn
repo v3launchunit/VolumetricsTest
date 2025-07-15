@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://cemr67fddi6p3"]
 
-[ext_resource type="Script" path="res://addons/console/console.gd" id="1_b5cqs"]
+[ext_resource type="Script" uid="uid://q1vms38ab3m7" path="res://addons/console/console.gd" id="1_b5cqs"]
 [ext_resource type="Theme" uid="uid://dwof7m2ye3tjh" path="res://ui/default_theme.tres" id="2_ekhkm"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_q1pfd"]

@@ -1,0 +1,12 @@
+OS:	Ubuntu 24.04.2 LTS
+Qt:	5.15.3
+GL_VENDOR:	Intel
+GL_RENDERER:	Mesa Intel(R) Graphics (MTL)
+GL_VERSION:	4.6 (Compatibility Profile) Mesa 24.2.8-1ubuntu1~24.04.1
+TrenchBroom Version:	2024.2
+TrenchBroom Build:	v2024.2 Release Linux-ubuntu-22.04
+Reason:	/home/runner/work/TrenchBroom/TrenchBroom/common/src/ui/ExtrudeTool.cpp:366: Condition '!m_dragging' failed: may not be called during a drag
+Stack trace:
+[0x7fffc05aab70]
+[0x7fffc05aac80]
+

@@ -1,8 +1,9 @@
-[gd_scene load_steps=23 format=3 uid="uid://bxdu412yk2ut8"]
+[gd_scene load_steps=24 format=3 uid="uid://bxdu412yk2ut8"]
 
 [ext_resource type="Texture2D" uid="uid://nvwephov841h" path="res://objects/crate/crate_heights.png" id="1_63qee"]
+[ext_resource type="Script" uid="uid://bc60eq8f31x2u" path="res://scripts/objects/carriable.gd" id="1_ak0dh"]
 [ext_resource type="Texture2D" uid="uid://bs7borhko72ul" path="res://objects/crate/crate_normals.png" id="2_8fvc1"]
-[ext_resource type="Script" path="res://entities/status.gd" id="2_ov4oo"]
+[ext_resource type="Script" uid="uid://cly1es2vyxx12" path="res://entities/status.gd" id="2_ov4oo"]
 [ext_resource type="PackedScene" uid="uid://cgot11wwdrtbh" path="res://scenes/effects/damage/wood_damage_sys.tscn" id="4_2ugle"]
 [ext_resource type="PackedScene" uid="uid://bynbdpv50o6q2" path="res://scenes/effects/gibs/wood_shards.tscn" id="5_r4u8i"]
 [ext_resource type="PackedScene" uid="uid://d2oe770gjlkup" path="res://pickups/ammo/akm_mag_pickup.tscn" id="6_5g75f"]
@@ -105,12 +106,18 @@ gradient = SubResource("Gradient_3jaum")
 render_priority = 0
 shader = SubResource("Shader_5k6ed")
 shader_parameter/albedo = Color(1, 1, 1, 1)
+shader_parameter/texture_albedo = SubResource("NoiseTexture2D_da70s")
 shader_parameter/point_size = 1.0
 shader_parameter/roughness = 0.75
-shader_parameter/metallic_texture_channel = null
+shader_parameter/metallic_texture_channel = Vector4(0, 0, 0, 0)
 shader_parameter/specular = 0.5
 shader_parameter/metallic = 0.0
+shader_parameter/texture_normal = ExtResource("2_8fvc1")
 shader_parameter/normal_scale = 1.0
+shader_parameter/texture_detail_albedo = SubResource("GradientTexture2D_urdv3")
+shader_parameter/texture_detail_normal = ExtResource("2_8fvc1")
+shader_parameter/texture_detail_mask = ExtResource("1_63qee")
+shader_parameter/texture_heightmap = ExtResource("1_63qee")
 shader_parameter/heightmap_scale = 3.25
 shader_parameter/heightmap_min_layers = 8
 shader_parameter/heightmap_max_layers = 32
@@ -119,12 +126,6 @@ shader_parameter/uv1_scale = Vector3(1, 1, 1)
 shader_parameter/uv1_offset = Vector3(0, 0, 0)
 shader_parameter/uv2_scale = Vector3(1, 1, 1)
 shader_parameter/uv2_offset = Vector3(0, 0, 0)
-shader_parameter/texture_albedo = SubResource("NoiseTexture2D_da70s")
-shader_parameter/texture_normal = ExtResource("2_8fvc1")
-shader_parameter/texture_detail_albedo = SubResource("GradientTexture2D_urdv3")
-shader_parameter/texture_detail_normal = ExtResource("2_8fvc1")
-shader_parameter/texture_detail_mask = ExtResource("1_63qee")
-shader_parameter/texture_heightmap = ExtResource("1_63qee")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4s5fk"]
 albedo_texture = SubResource("NoiseTexture2D_da70s")
@@ -144,6 +145,8 @@ texture_filter = 0
 material = SubResource("StandardMaterial3D_4s5fk")
 
 [node name="Crate" type="RigidBody3D"]
+mass = 15.0
+script = ExtResource("1_ak0dh")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("BoxShape3D_17vxe")

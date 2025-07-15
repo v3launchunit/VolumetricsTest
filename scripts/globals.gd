@@ -20,8 +20,14 @@ enum Difficulty {
 	NIGHTMARE,
 }
 
-enum Lang {
-	ENGLISH,
+#enum Lang {
+	#ENGLISH,
+#}
+
+enum LevelStatus {
+	HIDDEN,
+	REVEALED,
+	CLEARED,
 }
 
 enum PseudoBool {
@@ -62,16 +68,16 @@ const C_HITSCAN_MIN_LENGTH: float = 0.125
 const C_PLAYER_MIN_HEIGHT: float = -1024.0
 
 ## The maximum amount of time an enemy can spend between wanderings.
-const C_MAX_WANDER_IDLE_TIME : float = 1.0 
+const C_MAX_WANDER_IDLE_TIME : float = 10.0 
 ## The maximum amount of time an enemy can spend wandering at a time.
-const C_MAX_WANDER_MOVE_TIME : float = 1.0
+const C_MAX_WANDER_MOVE_TIME : float = 5.0
 
 const C_LIZARD_HOLE_POINT := Vector3(0.0, -1000.0, 0.0)
 
 ## The filepath that user quicksaves are stored to.
 const C_QUICKSAVE_PATH: String = "user://saves/auto/quicksave.scn"
 ## The filepath that persistent data (high scores, best times, what levels have been unlocked/cleared, etc) is stored to.
-const C_PERSISTENT_PATH: String = "user://saves/persistent.cfg"
+const C_PROGRESSION_PATH: String = "user://saves/progression.cfg"
 ## The filepath that user configuration settings are stored to.
 const C_SETTINGS_PATH: String = "user://settings.cfg"
 #endregion
@@ -111,6 +117,10 @@ var s_glow_enabled: bool = false
 var s_cross_glow_enabled: bool = true
 ## Toggles volumetric fog.
 var s_volumetric_fog_enabled: bool = true
+var s_brightness: float = 1.0
+var s_contrast: float = 1.0
+var s_saturation: float = 1.0
+
 var s_palette_compress_enabled: bool = false
 var s_color_depth: float = 16
 var s_current_palette: String = "neutral"
@@ -121,7 +131,7 @@ var s_minor_shadows_mode := OmniLight3D.ShadowMode.SHADOW_CUBE
 
 ## The sensitivity multiplier applied to mouse movement with regards to the
 ## first-person camera.
-var s_camera_sensitivity: float = 12.0
+var s_camera_sensitivity: float = 9.0
 #endregion
 
 #region audio settings
@@ -146,7 +156,9 @@ var s_toggle_crouch: bool = false
 #endregion
 
 #region Accessibility settings
-var s_lang := Lang.ENGLISH
+var langs: Dictionary[String, String]
+## The game's current language.
+var s_lang : String = "text_eng.cfg";
 #endregion
 #endregion
 
@@ -159,8 +171,8 @@ var s_lang := Lang.ENGLISH
 var names := ConfigFile.new()
 var text := ConfigFile.new()
 var campaign := ConfigFile.new()
-var persistent := ConfigFile.new()
-var fun := randi_range(0, 999)
+var progression := ConfigFile.new()
+var fun := randi_range(1, 1000)
 var cheats_enabled: bool = false
 
 var mouse_captured: bool = false
@@ -170,21 +182,28 @@ var mouse_captured: bool = false
 func _init() -> void:
 	var err: Error = OK
 	process_mode = Node.PROCESS_MODE_ALWAYS
+	
+	# load enemy names mapper
 	err = names.load("res://names.cfg")
 	assert(not err, "could not load names.cfg (error code %s)" % err)
 	#if names.load("res://names.cfg"):
 		#printerr("could not load names.cfg")
-	err = text.load("res://text/text_%s.cfg" % get_lang_name(s_lang))
-	assert(not err, "could not load text_%s.cfg (error code %s)" % [get_lang_name(s_lang), err])
-	#if text.load("res://text/text_%s.cfg" % get_lang_name(s_lang)):
-		#printerr("could not load text_%s.cfg")
+	
+	# load language file
+	err = text.load("res://text/%s" % s_lang)
+	#if text.load("res://text/text_%s.cfg" % s_lang):
+		#Console.print_error("could not load %s (error code %s)" % [s_lang, err])
+	#assert(not err, "could not load %s (error code %s)" % [get_lang_name(s_lang), err])
+	
+	# load campaign mapper
 	err = campaign.load("res://campaign.cfg")
 	assert(not err, "could not load campaign.cfg (error code %s)" % err)
 	#if campaign.load("res://campaign.cfg"):
 		#printerr("could not load campaign.cfg")
+	
 	_setup_user()
 	_load_config()
-	persistent.load(C_PERSISTENT_PATH)
+	progression.load(C_PROGRESSION_PATH)
 	cheats_enabled = OS.has_feature("editor")
 
 
@@ -199,12 +218,14 @@ func _ready() -> void:
 
 #region console commands
 func add_console_commands() -> void:
-	Console.add_command("opensesame", open_sesame)
-	Console.add_command("closesesame", close_sesame)
+	Console.add_command("opensesame", open_sesame, [], 0, "", Console.CommandType.HIDDEN)
+	Console.add_command("closesesame", close_sesame, [], 0, "", Console.CommandType.HIDDEN)
 	Console.add_command("reload_text", reload_text, [], 0, parse_text("console", "desc.reload_text"))
-	Console.add_command("map", cmd_map, ["level key"], 1, parse_text("console", "desc.map"))
-	Console.add_command("get_fun", func(): Console.print_line("%d" % fun))#, [], 0, parse_text("console", "desc.get_fun"))
-	Console.add_command("set_fun", cmd_set_fun, ["0-1000 int value"], 1)#, parse_text("console", "desc.set_fun"))
+	Console.add_command("open_level", cmd_map, ["level key"], 1, parse_text("console", "desc.map"), Console.CommandType.CHEAT)
+	Console.add_alias("map", "open_level")
+	Console.add_command("get_fun", cmd_fun, [], 0, "", Console.CommandType.HIDDEN)#, [], 0, parse_text("console", "desc.get_fun"))
+	Console.add_command("set_fun", cmd_set_fun, ["0-1000 int value"], 1, "", Console.CommandType.HIDDEN)#, parse_text("console", "desc.set_fun"))
+	Console.add_command("fun", cmd_fun, ["0-1000 int value"], 0, "", Console.CommandType.HIDDEN)
 
 
 func open_sesame() -> void:
@@ -233,6 +254,21 @@ func reload_text() -> void:
 	assert(not err, "could not load names.cfg (error code %s)" % err)
 
 
+func cmd_fun(arg: String = "") -> void:
+	print(arg)
+	if try_run_cheat():
+		if arg == "":
+			Console.print_line("%d" % fun)
+		elif not arg.is_valid_int() :
+			Console.print_error(Globals.parse_text("console", "fail.bad_int") % "to")
+		else:
+			var to : int = arg.to_int()
+			if not to >= 0 or not to <=1000:
+				Console.print_error(Globals.parse_text("console", "fail.bad_range") % ["to", 0, 1000])
+			else:
+				fun = to
+
+
 func cmd_set_fun(to: int) -> void:
 	if try_run_cheat():
 		fun = to
@@ -250,12 +286,21 @@ func cmd_map(level_key: String) -> void:
 	#Engine.time_scale = smoothstep(Engine.time_scale, 1.0, delta / Engine.time_scale)
 
 
-func get_lang_name(lang: Lang) -> String:
-	match lang:
-		Lang.ENGLISH:
-			return "eng"
-		_:
-			return "eng"
+func load_languages() -> void:
+	var config := ConfigFile.new()
+	for item: String in ResourceLoader.list_directory("res://text"):
+		config.load("res://text/%s" % item)
+		if not langs.get(config.get_value("meta", "name")):
+			langs.set(config.get_value("meta", "name"), item)
+
+
+func get_lang_name(lang: String) -> String:
+	return langs.get(lang, "text_eng.cfg")
+	#match lang:
+		#Lang.ENGLISH:
+			#return "eng"
+		#_:
+			#return "eng"
 
 
 ## Reads the current configuration settings from disq and loads them into memory.
@@ -350,6 +395,7 @@ func release_mouse() -> void:
 
 
 ## Saves the level.
+# TODO rework this system to actually work properly.
 func save_game(to: String) -> void:
 	var scene := PackedScene.new()
 	var world = get_tree().current_scene
@@ -358,36 +404,47 @@ func save_game(to: String) -> void:
 	for node: Node in get_all_children(world):
 		if node.has_method("pre_save"):
 			node.pre_save()
-			await node.ready_to_save
-		node.owner = world
+			if node.has_signal("ready_to_save"):
+				await node.ready_to_save
+		if node.has_method("save"):
+			node.save()
+		if node.owner == null:
+			node.owner = world
+		#node.scene_file_path = ""
+		#set_editable_instance(node, true)
 	scene.pack(world)
-	push_error(ResourceSaver.save(scene, to))
+	assert(ResourceSaver.save(scene, to) == OK)
 
 
 #region level management
 ## Loads the level assoiciated with [param level_key], as defined within in [code]campaign.cfg[/code].
-func open_level_from_key(level_key: String) -> void:
+func open_level_from_key(level_key: String) -> Error:
 	var level := get_level_path(level_key)
 	if level == "":
 		Console.print_error(parse_text("console", "fail.bad_level") % level_key)
+		return ERR_UNCONFIGURED
 	var status := ResourceLoader.load_threaded_get_status(level)
-	if status != ResourceLoader.THREAD_LOAD_LOADED:
-		print(status)
-		if status == ResourceLoader.THREAD_LOAD_INVALID_RESOURCE:
-			open_level(load(level))
-	else:
-		open_level(ResourceLoader.load_threaded_get(level))
+	#if status != ResourceLoader.THREAD_LOAD_LOADED and status != ResourceLoader.THREAD_LOAD_IN_PROGRESS:
+		#print(status)
+	if status == ResourceLoader.THREAD_LOAD_INVALID_RESOURCE: # level has yet to be requested for loading
+		return open_level(load(level)) # just forcefully load the thing
+	elif status == ResourceLoader.THREAD_LOAD_FAILED: # level failed to load
+		return ERR_CANT_ACQUIRE_RESOURCE
+	else: # level is either loaded or in progress
+		return open_level(ResourceLoader.load_threaded_get(level)) # fetch the level once it's ready
 
 
 ## Loads the specified [PackedScene].
-func open_level(level: PackedScene) -> void:
+func open_level(level: PackedScene) -> Error:
 	#var screen_image := get_tree().root.get_texture()
-	get_tree().change_scene_to_packed(level)
+	var err : Error = get_tree().change_scene_to_packed(level)
+	#Console.print_line("loaded %s")
 	#print(get_tree().current_scene)
 	#if get_tree().current_scene is Level and (get_tree().current_scene as Level).fun != -1:
 		#fun = (get_tree().current_scene as Level).fun
 	while GameMenu._active_menus > 0:
 		GameMenu.close_top_menu()
+	return err
 
 
 ## Returns the filepath associated with [param level_key], per [code]campaign.cfg[/code].
@@ -400,12 +457,26 @@ func get_level_path(level_key: String) -> String:
 # 2 = cleared
 ## Returns whether the specified level has been revealed yet. 
 func level_revealed(level_name: String) -> bool:
-	return persistent.get_value("progress", "%s_status" % level_name, 0) > 0
+	return progression.get_value("progress", "%s_status" % level_name, LevelStatus.HIDDEN) > LevelStatus.HIDDEN
 
 
 ## Returns whether the specified level has been cleared yet. 
 func level_cleared(level_name: String) -> bool:
-	return persistent.get_value("progress", "%s_status" % level_name, 0) > 1
+	return progression.get_value("progress", "%s_status" % level_name, LevelStatus.HIDDEN) > LevelStatus.REVEALED
+
+
+func reveal_level(level_name: String) -> void:
+	if level_name != "" and not level_revealed(level_name):
+		progression.set_value("progress", "%s_status" % level_name, LevelStatus.REVEALED)
+		progression.save(C_PROGRESSION_PATH)
+
+
+func clear_level(level_name: String) -> void:
+	if level_name != "" and not level_cleared(level_name):
+		progression.set_value("progress", "%s_status" % level_name, LevelStatus.CLEARED)
+		progression.save(C_PROGRESSION_PATH)
+
+
 #endregion
 
 
@@ -425,7 +496,7 @@ func parse_text(section: String, key: String) -> String:
 	#print(text.get_value(section, key))
 	var out := text.get_value(section, key, "MISSING: %s/%s" % [section, key]) as String
 	if out.begins_with("MISSING: "):
-		Console.print_error("language key %s/%s does not correspond to a valid text_%s.cfg entry!" % [section, key, get_lang_name(s_lang)])
+		Console.print_error("language key %s/%s does not correspond to a valid %s entry!" % [section, key, get_lang_name(s_lang)])
 	return out
 
 
@@ -469,7 +540,7 @@ func menu_click() -> bool:
 
 
 ## Unimplemented.
-func uppercase(string: String) -> String:
+func uppercase(_string: String) -> String:
 	var out: String = ""
 	
 	

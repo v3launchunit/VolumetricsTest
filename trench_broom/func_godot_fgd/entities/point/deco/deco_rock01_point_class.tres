@@ -1,0 +1,29 @@
+[gd_resource type="Resource" script_class="FuncGodotFGDModelPointClass" load_steps=3 format=3 uid="uid://cuor2ctfp6k6r"]
+
+[ext_resource type="PackedScene" uid="uid://cmmmww43el7th" path="res://objects/interactable/rock.tscn" id="1_c6xud"]
+[ext_resource type="Script" uid="uid://uk7d08g8mvr2" path="res://addons/func_godot/src/fgd/func_godot_fgd_model_point_class.gd" id="2_w7m5c"]
+
+[resource]
+script = ExtResource("2_w7m5c")
+target_map_editor = 0
+models_sub_folder = ""
+scale_expression = ""
+generate_size_property = false
+generate_gd_ignore_file = false
+scene_file = ExtResource("1_c6xud")
+apply_rotation_on_map_build = true
+classname = "deco_rock01"
+description = "a small carriable rock."
+func_godot_internal = false
+base_classes = Array[Resource]([])
+class_properties = {}
+class_property_descriptions = {}
+auto_apply_to_matching_node_properties = false
+meta_properties = {
+"color": Color(0.8, 0.8, 0.8, 1),
+"size": AABB(-4, -4, -4, 4, 4, 4),
+"studio": "\"models/deco_rock01.glb\""
+}
+node_class = ""
+name_property = ""
+metadata/_custom_type_script = "uid://uk7d08g8mvr2"

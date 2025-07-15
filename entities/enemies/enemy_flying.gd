@@ -3,6 +3,7 @@ extends EnemyBase
 @export_category("EnemyFlying")
 
 @export var target_min_distance: float = 5.0
+@export var attack_recoil: float = 2.5
 
 @onready var floor_line: RayCast3D = find_child("FloorLine")
 
@@ -17,7 +18,11 @@ func _scan(delta) -> void:
 		#detect_target(sight_line.get_collider())
 		#change_state(State.PURSUING)
 	walk_vel = walk_vel.move_toward(Vector3.ZERO, acceleration * delta)
-	nav_agent.set_velocity(walk_vel)
+	if nav_agent.avoidance_enabled:
+		nav_agent.set_velocity(walk_vel)
+	else:
+		velocity += walk_vel
+		move_and_slide()
 
 
 func _pursue(delta) -> void:
@@ -75,7 +80,11 @@ func _attack(delta) -> void:
 
 	look_at(current_targets[-1].global_position)
 	walk_vel = walk_vel.move_toward(Vector3.ZERO, acceleration * delta)
-	nav_agent.set_velocity(walk_vel)
+	if nav_agent.avoidance_enabled:
+		nav_agent.set_velocity(walk_vel)
+	else:
+		velocity += walk_vel
+		move_and_slide()
 	if state_timer >= attack_delay:
 		do_attack()
 

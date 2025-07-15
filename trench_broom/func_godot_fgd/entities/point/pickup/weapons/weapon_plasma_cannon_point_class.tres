@@ -2,7 +2,7 @@
 
 [ext_resource type="Resource" uid="uid://cd8apv15m4feu" path="res://trench_broom/func_godot_fgd/entities/base/pickup_base_class.tres" id="1_ec20y"]
 [ext_resource type="PackedScene" uid="uid://b2q7xucggusys" path="res://pickups/weapons/plasma_cannon_pickup.tscn" id="2_8bvcr"]
-[ext_resource type="Script" path="res://addons/func_godot/src/fgd/func_godot_fgd_point_class.gd" id="3_woglm"]
+[ext_resource type="Script" uid="uid://cw2atun4e3eyv" path="res://addons/func_godot/src/fgd/func_godot_fgd_point_class.gd" id="3_woglm"]
 
 [resource]
 script = ExtResource("3_woglm")

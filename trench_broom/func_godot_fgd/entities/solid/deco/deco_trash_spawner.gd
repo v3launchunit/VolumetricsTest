@@ -11,7 +11,10 @@ const TRASH_LIST : Array[String] = [
 		"res://objects/deco/trash/trash_brick.tscn",
 		"res://scenes/objects/crate_metal.tscn",
 		"res://objects/deco/trash/trash_chair.tscn",
+		"res://objects/deco/trash/trash_floodlight_frame.tscn",
 ]
+
+const TRASH_PREFIX : String = "TrashProp"
 
 ## The layermask used during normal behavior.
 const DEFAULT_LAYERS : int = 0b0000_0000_0000_0000_0000_0000_0000_0001
@@ -31,6 +34,9 @@ const PROP_SPAWN_LAYERS : int = 0b1000_0000_0000_0000_0000_0000_0000_0000
 		collision_layer = DEFAULT_LAYERS
 
 
+@export_storage var trash_spawned := false
+
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	pass
@@ -45,9 +51,20 @@ func _process(delta: float) -> void:
 ## Generates the various trash props. If [param editor] is set, then runtime generation
 ## will be blocked.
 func spawn_trash_props(editor: bool = true) -> void:
+	if not trash_spawned:
+		regenerate_trash_props(editor)
+
+
+func regenerate_trash_props(editor: bool = true) -> void:
 	if editor and not Engine.is_editor_hint():
 		collision_layer = DEFAULT_LAYERS
 		return
+	
+	trash_spawned = true
+	
+	for n: Node in get_children():
+		if n.name.begins_with(TRASH_PREFIX):
+			n.queue_free()
 	
 	if func_godot_properties.get("seed", "") != "":
 		seed(hash(func_godot_properties["seed"]))
@@ -80,6 +97,7 @@ func spawn_trash_props(editor: bool = true) -> void:
 			continue
 		
 		var node := (load(pool.pick_random()) as PackedScene).instantiate() as Node3D
+		node.name = "%s%d" % [TRASH_PREFIX, i]
 		add_child(node)
 		node.set_owner(get_tree().edited_scene_root)
 		node.global_position = pos

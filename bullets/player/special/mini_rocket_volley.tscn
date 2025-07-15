@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://tlrvdvva8pj7"]
 
 [ext_resource type="PackedScene" uid="uid://c356m28y5sg6h" path="res://bullets/player/projectile/rockets/mini_rocket.tscn" id="1_agav0"]
-[ext_resource type="Script" path="res://scripts/self_destructor.gd" id="1_xx2aq"]
+[ext_resource type="Script" uid="uid://dqkxi4qttx424" path="res://scripts/self_destructor.gd" id="1_xx2aq"]
 
 [node name="Node3D" type="Node3D"]
 script = ExtResource("1_xx2aq")

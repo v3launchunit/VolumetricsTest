@@ -2,7 +2,7 @@
 
 [ext_resource type="Material" uid="uid://c42r6gnwbsttx" path="res://effects/halos/fancy_halo.tres" id="1_tg5by"]
 [ext_resource type="Texture2D" uid="uid://hk0k2coukjwc" path="res://effects/halos/halo_tex.tres" id="2_v2qg2"]
-[ext_resource type="Script" path="res://scripts/effects/halo.gd" id="3_s1nd8"]
+[ext_resource type="Script" uid="uid://qbss7pion7pi" path="res://scripts/effects/halo.gd" id="3_s1nd8"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bq0ji"]
 shading_mode = 0
@@ -125,8 +125,8 @@ tracks/1/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_rjy61"]
 _data = {
-"off": SubResource("Animation_el7do"),
-"on": SubResource("Animation_fv30p")
+&"off": SubResource("Animation_el7do"),
+&"on": SubResource("Animation_fv30p")
 }
 
 [node name="TubeLight" type="Node3D"]

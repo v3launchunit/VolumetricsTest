@@ -1,11 +1,11 @@
 [gd_scene load_steps=94 format=3 uid="uid://cm53n4on4fdr6"]
 
-[ext_resource type="Script" path="res://entities/enemies/locals/lizard/enemy_lizard.gd" id="1_bhi88"]
+[ext_resource type="Script" uid="uid://e0mfhosbxmht" path="res://entities/enemies/locals/lizard/enemy_lizard.gd" id="1_bhi88"]
 [ext_resource type="PackedScene" uid="uid://pidxth8qpjjm" path="res://entities/enemies/locals/lizard/lizard.glb" id="1_y8366"]
 [ext_resource type="PackedScene" uid="uid://dj8yo2whvp2w7" path="res://bullets/enemy/enemy_melee_scan.tscn" id="2_cmvbm"]
 [ext_resource type="AudioStream" uid="uid://dccli7qg88gwt" path="res://audio/streams/voices/lizard/detect_roar.wav" id="2_saxi0"]
 [ext_resource type="AudioStream" uid="uid://o3hie6osd6lv" path="res://audio/streams/voices/lizard/detect_roar_2.wav" id="3_88yk7"]
-[ext_resource type="Script" path="res://entities/status.gd" id="3_lfy8e"]
+[ext_resource type="Script" uid="uid://cly1es2vyxx12" path="res://entities/status.gd" id="3_lfy8e"]
 [ext_resource type="AnimationLibrary" uid="uid://bre8ccbuc7fbn" path="res://entities/enemies/locals/lizard/lizard_anims.res" id="3_to7gb"]
 [ext_resource type="PackedScene" uid="uid://bnsepaqu7j4p4" path="res://pickups/health/health_bonus_pickup.tscn" id="4_ltgog"]
 [ext_resource type="PackedScene" uid="uid://cqctw8dd0ar4n" path="res://scenes/effects/damage/damage_sys.tscn" id="4_mhmdq"]
@@ -13,9 +13,9 @@
 [ext_resource type="AudioStream" uid="uid://dc1es3ux857yw" path="res://audio/streams/voices/wilhelm_scream.ogg" id="5_4ak67"]
 [ext_resource type="PackedScene" uid="uid://bosuaqplx64vr" path="res://bullets/enemy/enemy_bullet_blood.tscn" id="5_535y2"]
 [ext_resource type="PackedScene" uid="uid://b8i1fe0bwht3k" path="res://pickups/armor/armor_bonus_pickup.tscn" id="5_igm48"]
-[ext_resource type="Shader" path="res://shaders/spatial/psx_ul_mix.gdshader" id="9_0mr8g"]
+[ext_resource type="Shader" uid="uid://bycruau5ish4o" path="res://shaders/spatial/psx_ul_mix.gdshader" id="9_0mr8g"]
 [ext_resource type="PackedScene" uid="uid://c5pbs8t6p7ogl" path="res://scenes/effects/gibs/gibs.tscn" id="11_p5oxo"]
-[ext_resource type="Script" path="res://entities/stair_stepper.gd" id="15_csdjx"]
+[ext_resource type="Script" uid="uid://d2b0n45s0c5y7" path="res://entities/stair_stepper.gd" id="15_csdjx"]
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_hkga1"]
 random_pitch = 1.25
@@ -102,19 +102,19 @@ shader_parameter/roughness = 0.25
 shader_parameter/metallic_texture_channel = Vector4(1, 0, 0, 0)
 shader_parameter/specular = 0.5
 shader_parameter/metallic = 1.0
+shader_parameter/texture_normal = SubResource("NoiseTexture2D_1ywp7")
 shader_parameter/normal_scale = 1.0
 shader_parameter/uv1_scale = Vector3(1, 1, 1)
 shader_parameter/uv1_offset = Vector3(0, 0, 0)
 shader_parameter/uv2_scale = Vector3(1, 1, 1)
 shader_parameter/uv2_offset = Vector3(0, 0, 0)
-shader_parameter/texture_normal = SubResource("NoiseTexture2D_1ywp7")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_f60oq"]
 render_priority = 0
 shader = ExtResource("9_0mr8g")
 shader_parameter/albedo = Color(1, 0, 0, 1)
-shader_parameter/uv1_scale = null
-shader_parameter/uv1_offset = null
+shader_parameter/uv1_scale = Vector3(0, 0, 0)
+shader_parameter/uv1_offset = Vector3(0, 0, 0)
 
 [sub_resource type="Gradient" id="Gradient_mj6ne"]
 colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
@@ -143,8 +143,8 @@ rings = 3
 render_priority = 0
 shader = ExtResource("9_0mr8g")
 shader_parameter/albedo = Color(1, 0, 0, 1)
-shader_parameter/uv1_scale = null
-shader_parameter/uv1_offset = null
+shader_parameter/uv1_scale = Vector3(0, 0, 0)
+shader_parameter/uv1_offset = Vector3(0, 0, 0)
 
 [sub_resource type="SphereMesh" id="SphereMesh_42m1i"]
 material = SubResource("StandardMaterial3D_niape")
@@ -222,18 +222,18 @@ noise = SubResource("FastNoiseLite_lq8pl")
 render_priority = 0
 shader = SubResource("Shader_hyf2c")
 shader_parameter/albedo = Color(0.752941, 0.501961, 0.752941, 1)
+shader_parameter/texture_albedo = SubResource("NoiseTexture2D_vk4du")
 shader_parameter/point_size = 1.0
 shader_parameter/roughness = 1.0
-shader_parameter/metallic_texture_channel = null
+shader_parameter/metallic_texture_channel = Vector4(0, 0, 0, 0)
 shader_parameter/specular = 0.5
 shader_parameter/metallic = 0.0
+shader_parameter/texture_normal = SubResource("NoiseTexture2D_tdvix")
 shader_parameter/normal_scale = 1.0
 shader_parameter/uv1_scale = Vector3(1, 1, 1)
 shader_parameter/uv1_offset = Vector3(0, 0, 0)
 shader_parameter/uv2_scale = Vector3(1, 1, 1)
 shader_parameter/uv2_offset = Vector3(0, 0, 0)
-shader_parameter/texture_albedo = SubResource("NoiseTexture2D_vk4du")
-shader_parameter/texture_normal = SubResource("NoiseTexture2D_tdvix")
 
 [sub_resource type="Animation" id="Animation_j4qs2"]
 length = 0.001
@@ -473,34 +473,10 @@ tracks/32/keys = {
 "update": 1,
 "values": [4]
 }
-tracks/33/type = "value"
-tracks/33/imported = false
-tracks/33/enabled = true
-tracks/33/path = NodePath("lizard/Armature/Skeleton3D/JawRight/JawRight/GPUParticles3D:emitting")
-tracks/33/interp = 1
-tracks/33/loop_wrap = true
-tracks/33/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
-tracks/34/type = "value"
-tracks/34/imported = false
-tracks/34/enabled = true
-tracks/34/path = NodePath("lizard/Armature/Skeleton3D/JawLeft/JawLeft/GPUParticles3D:emitting")
-tracks/34/interp = 1
-tracks/34/loop_wrap = true
-tracks/34/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_dalwl"]
 _data = {
-"RESET": SubResource("Animation_j4qs2")
+&"RESET": SubResource("Animation_j4qs2")
 }
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_116pp"]
@@ -733,6 +709,7 @@ melee_bullet = ExtResource("2_cmvbm")
 species = &"lizards"
 speed = 5.0
 knockback_multiplier = 0.0
+jump_height = 0.0
 wanderer = true
 hunts_species = Array[StringName]([&"rocketeers"])
 detection_stream = SubResource("AudioStreamRandomizer_hkga1")
@@ -751,18 +728,16 @@ transform = Transform3D(-0.2, 0, 3.01992e-08, 0, 0.2, 0, -3.01992e-08, 0, -0.2, 
 
 [node name="Skeleton3D" parent="lizard/Armature" index="0"]
 bones/0/rotation = Quaternion(0.707107, 5.33851e-08, 5.33851e-08, 0.707107)
-bones/1/rotation = Quaternion(1.0677e-07, -5.0243e-15, -0.707107, 0.707107)
+bones/1/rotation = Quaternion(1.0677e-07, -7.53645e-15, -0.707107, 0.707107)
 bones/2/rotation = Quaternion(0.500011, 6.60196e-36, -3.81175e-36, 0.866019)
 bones/3/rotation = Quaternion(0.258969, 0, 0, 0.965886)
 bones/4/rotation = Quaternion(-7.71124e-36, 0, 1.29957e-28, 1)
 bones/5/rotation = Quaternion(0.194962, 0, 0, 0.980811)
 bones/6/rotation = Quaternion(-0.0649926, 0, 0, 0.997886)
-bones/7/rotation = Quaternion(0.5, 0.5, 0.5, -0.5)
-bones/8/rotation = Quaternion(0.5, 0.5, -0.5, 0.5)
+bones/8/rotation = Quaternion(-0.5, -0.5, 0.5, -0.5)
 bones/9/rotation = Quaternion(0.707107, 0, 0, 0.707107)
-bones/10/rotation = Quaternion(0.5, -0.5, -0.5, -0.5)
 bones/12/rotation = Quaternion(0, -0.707107, 0.707107, -6.11541e-09)
-bones/13/rotation = Quaternion(-2.51215e-15, -1.0677e-07, 0.707107, 0.707107)
+bones/13/rotation = Quaternion(0, -1.0677e-07, 0.707107, 0.707107)
 bones/14/rotation = Quaternion(0.500011, -1.12931e-22, 0, 0.866019)
 bones/15/rotation = Quaternion(0.258969, 0, 0, 0.965886)
 bones/16/rotation = Quaternion(7.71124e-36, 0, -1.29957e-28, 1)
@@ -775,7 +750,7 @@ bones/28/rotation = Quaternion(-0.500011, 0, 0, 0.866019)
 bones/29/rotation = Quaternion(-0.258969, 0, 0, 0.965886)
 
 [node name="Head" type="BoneAttachment3D" parent="lizard/Armature/Skeleton3D" index="0"]
-transform = Transform3D(0.966268, -0.257539, 0.000798856, -0.0634886, -0.241208, -0.968394, 0.249592, 0.935677, -0.249422, 4.88192e-10, -0.645546, 3.88965)
+transform = Transform3D(0.989493, -0.144569, 0.00183755, -0.0351001, -0.252531, -0.966952, 0.140255, 0.956728, -0.254952, 1.96694e-08, -0.635074, 3.88696)
 bone_name = "Head"
 bone_idx = 6
 
@@ -783,14 +758,14 @@ bone_idx = 6
 transform = Transform3D(1, -2.81099e-15, 0, 0, 7.54979e-08, 1, 3.44266e-21, -1, 7.54979e-08, 0, 0, 0)
 
 [node name="JawLeft" parent="lizard/Armature/Skeleton3D" index="1"]
-transform = Transform3D(0.000798856, 0.966268, -0.257539, -0.968394, -0.0634886, -0.241208, -0.249422, 0.249592, 0.935677, -0.12877, -0.76615, 4.35749)
+transform = Transform3D(0.00183755, 0.989493, -0.144569, -0.966952, -0.0351001, -0.252531, -0.254952, 0.140255, 0.956728, -0.0722844, -0.761339, 4.36532)
 
 [node name="JawLeft" parent="lizard/Armature/Skeleton3D/JawLeft" index="0"]
 transform = Transform3D(1, -1.42108e-14, 0, -1.25528e-14, 1, -1.42109e-14, 0, 0, 1, 0, 0, 0)
 layers = 2
 material_override = SubResource("ShaderMaterial_2qi5o")
 
-[node name="GPUParticles3D" type="GPUParticles3D" parent="lizard/Armature/Skeleton3D/JawLeft/JawLeft" index="0"]
+[node name="LeftEye" type="GPUParticles3D" parent="lizard/Armature/Skeleton3D/JawLeft/JawLeft" index="0"]
 transform = Transform3D(-5.00001, -2.98024e-07, 2.38419e-07, 1.13687e-13, -5, 2.98023e-07, -2.38419e-07, -5.68434e-14, 5, 1.78814e-07, 1, 2.125)
 layers = 2
 material_override = SubResource("ShaderMaterial_f60oq")
@@ -800,31 +775,31 @@ fixed_fps = 60
 process_material = SubResource("ParticleProcessMaterial_8mx7e")
 draw_pass_1 = SubResource("SphereMesh_2vp0u")
 
-[node name="SpawnerRight" type="Marker3D" parent="lizard/Armature/Skeleton3D/JawLeft/JawLeft/GPUParticles3D"]
+[node name="SpawnerRight" type="Marker3D" parent="lizard/Armature/Skeleton3D/JawLeft/JawLeft/LeftEye"]
 
 [node name="HornLeftBottom" parent="lizard/Armature/Skeleton3D" index="2"]
-transform = Transform3D(0.257539, 0.000798917, -0.966268, 0.241208, -0.968394, 0.0634886, -0.935677, -0.249423, -0.249592, 0.786489, -1.55568, 5.42118)
+transform = Transform3D(0.144569, 0.00183758, -0.989493, 0.252532, -0.966952, 0.0351001, -0.956728, -0.254953, -0.140255, 0.978686, -1.52684, 5.31504)
 
 [node name="HornLeftBottom" parent="lizard/Armature/Skeleton3D/HornLeftBottom" index="0"]
 layers = 2
 material_override = SubResource("ShaderMaterial_2qi5o")
 
 [node name="HornLeftTop" parent="lizard/Armature/Skeleton3D" index="3"]
-transform = Transform3D(0.000798856, -0.257539, -0.966268, -0.968394, -0.241208, 0.0634886, -0.249422, 0.935677, -0.249592, 0.78569, -0.587287, 5.6706)
+transform = Transform3D(0.00183755, -0.144569, -0.989493, -0.966952, -0.252531, 0.0351001, -0.254952, 0.956728, -0.140255, 0.976848, -0.559888, 5.56999)
 
 [node name="HornLeftTop" parent="lizard/Armature/Skeleton3D/HornLeftTop" index="0"]
 layers = 2
 material_override = SubResource("ShaderMaterial_2qi5o")
 
 [node name="JawRight" parent="lizard/Armature/Skeleton3D" index="4"]
-transform = Transform3D(-0.000798856, -0.966268, -0.257539, 0.968394, 0.0634886, -0.241208, 0.249422, -0.249592, 0.935677, -0.12877, -0.76615, 4.35749)
+transform = Transform3D(-0.00183755, -0.989493, -0.144569, 0.966952, 0.0351001, -0.252531, 0.254952, -0.140255, 0.956728, -0.0722844, -0.761339, 4.36532)
 
 [node name="JawRight" parent="lizard/Armature/Skeleton3D/JawRight" index="0"]
 transform = Transform3D(1, 0, 0, 0, 1, 7.57849e-15, 0, 3.07846e-15, 1, 0, 0, 0)
 layers = 2
 material_override = SubResource("ShaderMaterial_2qi5o")
 
-[node name="GPUParticles3D" type="GPUParticles3D" parent="lizard/Armature/Skeleton3D/JawRight/JawRight" index="0"]
+[node name="RightEye" type="GPUParticles3D" parent="lizard/Armature/Skeleton3D/JawRight/JawRight" index="0"]
 transform = Transform3D(-5, 2.98023e-07, 0, -1.42109e-14, -5, 2.98023e-07, -2.38419e-07, -5.68434e-14, 5, -1.78814e-07, 1, 2.125)
 layers = 2
 material_override = SubResource("ShaderMaterial_sytrj")
@@ -834,17 +809,17 @@ fixed_fps = 60
 process_material = SubResource("ParticleProcessMaterial_8mx7e")
 draw_pass_1 = SubResource("SphereMesh_42m1i")
 
-[node name="SpawnerLeft" type="Marker3D" parent="lizard/Armature/Skeleton3D/JawRight/JawRight/GPUParticles3D"]
+[node name="SpawnerLeft" type="Marker3D" parent="lizard/Armature/Skeleton3D/JawRight/JawRight/RightEye"]
 
 [node name="HornRightBottom" parent="lizard/Armature/Skeleton3D" index="5"]
-transform = Transform3D(0.257539, -0.000798856, 0.966268, 0.241208, 0.968394, -0.0634886, -0.935677, 0.249422, 0.249592, -1.53255, -1.40331, 4.82216)
+transform = Transform3D(0.144569, -0.00183755, 0.989493, 0.252531, 0.966952, -0.0351001, -0.956728, 0.254952, 0.140255, -1.3961, -1.4426, 4.97843)
 
 [node name="HornRightBottom" parent="lizard/Armature/Skeleton3D/HornRightBottom" index="0"]
 layers = 2
 material_override = SubResource("ShaderMaterial_2qi5o")
 
 [node name="HornRightTop" parent="lizard/Armature/Skeleton3D" index="6"]
-transform = Transform3D(0.000798866, 0.257539, 0.966268, -0.968394, 0.241208, -0.0634886, -0.249422, -0.935677, 0.249592, -1.53335, -0.434914, 5.07158)
+transform = Transform3D(0.00183756, 0.144569, 0.989493, -0.966952, 0.252531, -0.0351001, -0.254952, -0.956728, 0.140255, -1.39794, -0.475648, 5.23338)
 
 [node name="HornRightTop" parent="lizard/Armature/Skeleton3D/HornRightTop" index="0"]
 layers = 2
@@ -866,8 +841,8 @@ collision_mask = 3
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
-"": SubResource("AnimationLibrary_dalwl"),
-"lizard_anims": ExtResource("3_to7gb")
+&"": SubResource("AnimationLibrary_dalwl"),
+&"lizard_anims": ExtResource("3_to7gb")
 }
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
@@ -903,5 +878,10 @@ target_position = Vector3(0, 0, 0)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, -0.25)
 shape = SubResource("BoxShape3D_slipb")
 target_position = Vector3(0, 0, 0)
+
+[node name="GPUParticlesCollisionBox3D" type="GPUParticlesCollisionBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.15, -0.2)
+layers = 2
+size = Vector3(0.75, 0.75, 2.5)
 
 [editable path="lizard"]

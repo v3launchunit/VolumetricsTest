@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://dw3bo3v1dv272"]
 
 [ext_resource type="Theme" uid="uid://dwof7m2ye3tjh" path="res://ui/default_theme.tres" id="1_8amvi"]
-[ext_resource type="Script" path="res://ui/menus/video_sub_menu.gd" id="2_ob35w"]
+[ext_resource type="Script" uid="uid://bd4ijku07li0d" path="res://ui/menus/video_sub_menu.gd" id="2_ob35w"]
 
 [node name="Video" type="VBoxContainer"]
 process_priority = 2
@@ -257,7 +257,6 @@ tooltip_text = "The vertical field of view, in degrees."
 theme = ExtResource("1_8amvi")
 min_value = 10.0
 max_value = 170.0
-step = 10.0
 value = 120.0
 
 [node name="FovLabel" type="Label" parent="FOV"]
@@ -350,8 +349,7 @@ layout_mode = 2
 tooltip_text = "Toggles the procedural halos created 
 by the \"glow\" post-processing effect."
 theme = ExtResource("1_8amvi")
-button_pressed = true
-text = "Bilinear Bloom"
+text = "Standard Bloom"
 
 [node name="CBloomCheck" type="CheckButton" parent="Effects"]
 layout_mode = 2
@@ -371,11 +369,11 @@ button_pressed = true
 text = "Volumetric Fog"
 
 [node name="PaletteCheck" type="CheckButton" parent="Effects"]
+visible = false
 layout_mode = 2
 size_flags_vertical = 4
-tooltip_text = "Toggles volumetric fog."
+tooltip_text = "Toggles a quantized color shader meant to simulate the restricted palettes of older games."
 theme = ExtResource("1_8amvi")
-button_pressed = true
 text = "Retro Palette"
 
 [node name="Palette" type="HFlowContainer" parent="."]

@@ -8,16 +8,18 @@ const ZOOM_SPEED: float = 10.0
 @export var current_index: Array[int] = [0, 0, 0, 0, 0, 0, 0]
 #@export var current_weapon: int = 0
 
-@export var ammo_types: Dictionary = {
+## a dictionary of the maximum capacity for every type of ammunition.
+@export var ammo_types: Dictionary[String, int] = {
 	"shells": 50,
 	"grenades": 25,
 }
-@export var ammo_amounts: Dictionary = {
+## a dictionary of the player's actual supply of each ammo type.
+@export var ammo_amounts: Dictionary[String, int] = {
 	"shells": 15,
 	"grenades": 3,
 }
 
-@export var anti_clip_speed: float = 7.5
+#@export var anti_clip_speed: float = 7.5
 
 #@export var anti_clip_collisions: int = 0
 #@export var current_weapon_pos: float
@@ -32,10 +34,20 @@ const ZOOM_SPEED: float = 10.0
 
 #@export var current_weapon_yaw_default: float
 
-@onready var anti_clip_box := $ViewmodelAntiClip as Area3D
+var fullbright_active : bool = false
+
+#@onready var anti_clip_box := $ViewmodelAntiClip as Area3D
 @onready var rummage_stream_player := $RummageStreamPlayer as AudioStreamPlayer
 
 signal switched_weapons(category: int, index: int, with_safety_catch: bool)
+
+
+func _enter_tree() -> void:
+	add_console_commands()
+
+
+func _exit_tree() -> void:
+	remove_console_commands()
 
 
 # Called when the node enters the scene tree for the first time.
@@ -46,14 +58,7 @@ func _ready():
 	ammo_amounts["shells"] = 15
 	ammo_amounts["grenades"] = 3
 
-	#weapons[current_weapon].deploy
-	#switched_weapons.connect(find_child("HUD")._on_player_cam_switched_weapons)
 	switched_weapons.emit(current_category, current_index[current_category], true)
-	#current_weapon_pos = get_node(
-			#weapons[current_category][current_index[current_category]]
-	#).position.z
-	#anti_clip_box.body_entered.connect(on_viewmodel_anti_clip_body_entered)
-	#anti_clip_box.body_exited.connect(on_viewmodel_anti_clip_body_exited)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -287,3 +292,64 @@ func scope_changed(amount: float):
 #func on_viewmodel_anti_clip_body_exited(_body: Node3D):
 	#anti_clip_collisions -= 1
 	#print("new body exited")
+
+
+#region console commands
+
+func add_console_commands() -> void:
+	var ammo_types_names : String = "("
+	
+	for i: int in ammo_types.keys().size():
+		if i > 0:
+			ammo_types_names += ", "
+		ammo_types_names += ammo_types.keys()[i]
+	ammo_types_names += ")";
+	
+	Console.add_command(
+			"get_ammo", 
+			func(s: String): Console.print_line("%f" % ammo_amounts[s]), 
+			[Globals.parse_text("console", "arg.ammo_type") % ammo_types_names], 
+			1, 
+			Globals.parse_text("console", "desc.get_ammo"),
+	)
+	Console.add_command(
+			"set_ammo", 
+			cmd_set_ammo, 
+			[Globals.parse_text("console", "arg.ammo_type") % ammo_types_names, Globals.parse_text("console", "arg.int")], 
+			2, 
+			Globals.parse_text("console", "desc.set_ammo"),
+			Console.CommandType.CHEAT,
+	)
+	#Console.add_command("fullbright", cmd_fullbright, [Globals.parse_text("console", "arg.bool")], 0, Globals.parse_text("console", "desc.fullbright"), Console.CommandType.CHEAT)
+
+
+func remove_console_commands() -> void:
+	Console.remove_command("get_ammo")
+	Console.remove_command("set_ammo")
+	#Console.remove_command("fullbright")
+
+
+func cmd_set_ammo(type: String, to: int) -> void:
+	if Globals.try_run_cheat():
+		if not ammo_amounts.has(type):
+			Console.print_error(Globals.parse_text("console", "fail.bad_ammo_type"))
+			return
+		ammo_amounts[type] = to
+
+
+func cmd_fullbright(to: String) -> void:
+	if Globals.try_run_cheat():
+		if to == "":
+			fullbright_active = not fullbright_active
+		else:
+			var to_b := Globals.get_pseudo_bool(to)
+			if to_b == -1:
+				Console.print_error(Globals.parse_text("console", "fail.bad_bool") % to)
+				return
+			else:
+				fullbright_active = to_b == Globals.PseudoBool.TRUE
+		Console.print_line(Globals.parse_text("console", "fullbright") % ("on" if fullbright_active else "off"))
+		environment = load("uid://d387u5xga6b7") if fullbright_active else null
+
+
+#endregion

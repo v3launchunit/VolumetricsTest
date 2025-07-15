@@ -1,0 +1,8 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://bne6hd7by37t3"]
+
+[ext_resource type="Texture2D" uid="uid://b063ga36cmr6g" path="res://trench_broom/textures/special/fog.png" id="1_hluy6"]
+
+[resource]
+albedo_texture = ExtResource("1_hluy6")
+metallic_specular = 0.0
+texture_filter = 2

@@ -1,19 +1,19 @@
 [gd_scene load_steps=65 format=4 uid="uid://dqugqrrqpxdih"]
 
-[ext_resource type="Script" path="res://entities/enemies/machines/gun_turret/turret.gd" id="1_1bh2h"]
-[ext_resource type="Script" path="res://entities/enemies/machines/enemy_turret.gd" id="1_q2b2k"]
-[ext_resource type="Shader" path="res://shaders/spatial/psx_ul_mix.gdshader" id="2_lb20c"]
+[ext_resource type="Script" uid="uid://cxefwakuqdmxl" path="res://entities/enemies/machines/gun_turret/turret.gd" id="1_1bh2h"]
+[ext_resource type="Script" uid="uid://cjtxjt7ph0iv2" path="res://entities/enemies/machines/enemy_turret.gd" id="1_q2b2k"]
+[ext_resource type="Shader" uid="uid://bycruau5ish4o" path="res://shaders/spatial/psx_ul_mix.gdshader" id="2_lb20c"]
 [ext_resource type="ArrayMesh" uid="uid://fre32431n5p6" path="res://entities/enemies/machines/gun_turret/gun_turret_base_wall.obj" id="2_mk3gm"]
 [ext_resource type="Material" uid="uid://krobnjd1cbwe" path="res://entities/enemies/machines/metal_gray_psx.tres" id="2_qskly"]
-[ext_resource type="Script" path="res://entities/enemies/attack_pattern.gd" id="2_t2vl5"]
+[ext_resource type="Script" uid="uid://shmvkrxxebgs" path="res://entities/enemies/attack_pattern.gd" id="2_t2vl5"]
 [ext_resource type="PackedScene" uid="uid://blrtnnu61g5s" path="res://bullets/enemy/enemy_bullet_gen.tscn" id="3_bdfa1"]
 [ext_resource type="Material" uid="uid://b78l63b32udy2" path="res://effects/halos/halo_mat.tres" id="3_h4w1p"]
 [ext_resource type="Material" uid="uid://4uvuq34871pc" path="res://entities/enemies/machines/metal_white_psx.tres" id="3_lhv5t"]
 [ext_resource type="Texture2D" uid="uid://hk0k2coukjwc" path="res://effects/halos/halo_tex.tres" id="4_wmb78"]
-[ext_resource type="Script" path="res://scripts/effects/halo.gd" id="5_xtdky"]
+[ext_resource type="Script" uid="uid://qbss7pion7pi" path="res://scripts/effects/halo.gd" id="5_xtdky"]
 [ext_resource type="PackedScene" uid="uid://lcqg0bmf3q1s" path="res://bullets/enemy/enemy_hitscan_gen.tscn" id="6_fq8l1"]
-[ext_resource type="Shader" path="res://shaders/spatial/psx_ul_add.gdshader" id="8_j4d2d"]
-[ext_resource type="Script" path="res://entities/status.gd" id="9_bbmqx"]
+[ext_resource type="Shader" uid="uid://cgfn3iqbl45r7" path="res://shaders/spatial/psx_ul_add.gdshader" id="8_j4d2d"]
+[ext_resource type="Script" uid="uid://cly1es2vyxx12" path="res://entities/status.gd" id="9_bbmqx"]
 [ext_resource type="ArrayMesh" uid="uid://bblg4t73miejx" path="res://weapons/muzzle_flash_alt.obj" id="9_shv2h"]
 [ext_resource type="AudioStream" uid="uid://byrul8xkkilkx" path="res://audio/streams/weapons/firing/akm_fire.wav" id="10_ywp5d"]
 [ext_resource type="Texture2D" uid="uid://bl16elmv2mvgs" path="res://entities/enemies/machines/gun_turret/gun_turret_muzzle_albedo.png" id="11_x4apt"]
@@ -137,8 +137,8 @@ resource_local_to_scene = true
 render_priority = 0
 shader = ExtResource("2_lb20c")
 shader_parameter/albedo = Color(0, 1, 0, 1)
-shader_parameter/uv1_scale = null
-shader_parameter/uv1_offset = null
+shader_parameter/uv1_scale = Vector3(0, 0, 0)
+shader_parameter/uv1_offset = Vector3(0, 0, 0)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_f847i"]
 
@@ -263,18 +263,18 @@ void fragment() {
 render_priority = 0
 shader = SubResource("Shader_q8nw2")
 shader_parameter/albedo = Color(1, 1, 1, 1)
+shader_parameter/texture_albedo = ExtResource("11_x4apt")
 shader_parameter/point_size = 1.0
 shader_parameter/roughness = 1.0
+shader_parameter/texture_metallic = ExtResource("11_x4apt")
 shader_parameter/metallic_texture_channel = Vector4(1, 0, 0, 0)
+shader_parameter/texture_roughness = ExtResource("12_c4i2h")
 shader_parameter/specular = 0.5
 shader_parameter/metallic = 1.0
 shader_parameter/uv1_scale = Vector3(1, 1, 1)
 shader_parameter/uv1_offset = Vector3(0, 0, 0)
 shader_parameter/uv2_scale = Vector3(1, 1, 1)
 shader_parameter/uv2_offset = Vector3(0, 0, 0)
-shader_parameter/texture_albedo = ExtResource("11_x4apt")
-shader_parameter/texture_metallic = ExtResource("11_x4apt")
-shader_parameter/texture_roughness = ExtResource("12_c4i2h")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ses7p"]
 
@@ -427,7 +427,7 @@ tracks/5/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_0xu6m"]
 _data = {
-"RESET": SubResource("Animation_atjju")
+&"RESET": SubResource("Animation_atjju")
 }
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_8fmqa"]
@@ -574,9 +574,9 @@ tracks/2/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_rgut7"]
 _data = {
-"gun_turret_fire": SubResource("Animation_1oows"),
-"gun_turret_idle": SubResource("Animation_t2hp7"),
-"gun_turret_track": SubResource("Animation_wflid")
+&"gun_turret_fire": SubResource("Animation_1oows"),
+&"gun_turret_idle": SubResource("Animation_t2hp7"),
+&"gun_turret_track": SubResource("Animation_wflid")
 }
 
 [node name="GunTurret" type="Node3D"]

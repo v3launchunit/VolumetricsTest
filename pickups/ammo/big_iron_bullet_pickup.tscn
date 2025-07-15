@@ -1,6 +1,6 @@
 [gd_scene load_steps=13 format=3 uid="uid://wdnyjfhryl0i"]
 
-[ext_resource type="Script" path="res://scripts/pickups/ammo_pickup.gd" id="1_5ph4o"]
+[ext_resource type="Script" uid="uid://bft3wkpl5bv8p" path="res://pickups/ammo_pickup.gd" id="1_5ph4o"]
 [ext_resource type="ArrayMesh" uid="uid://cqf6v4gaperkn" path="res://bullets/bullet.obj" id="2_4fb7d"]
 [ext_resource type="AudioStream" uid="uid://g7unocdbdokw" path="res://audio/streams/pickups/pickup_ammo.wav" id="2_xyc48"]
 [ext_resource type="Texture2D" uid="uid://hk0k2coukjwc" path="res://effects/halos/halo_tex.tres" id="3_4nkv6"]
@@ -102,7 +102,7 @@ tracks/1/keys = PackedFloat32Array(0, 1, 0, 0, 0, 2.5, 1, 0, 0.05, 0, 5, 1, 0, 0
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_4pudi"]
 _data = {
-"anim": SubResource("Animation_wivti")
+&"anim": SubResource("Animation_wivti")
 }
 
 [node name="BigIronBulletPickup" type="RigidBody3D"]
@@ -111,6 +111,7 @@ lock_rotation = true
 script = ExtResource("1_5ph4o")
 ammo_type = "big_iron_bullets"
 event_string = "pickup.ammo.bigiron"
+flash_color = Color(1, 1, 0, 1)
 pickup_sound = ExtResource("2_xyc48")
 pickup_text = "+1 Big Iron rounds"
 
@@ -138,5 +139,5 @@ surface_material_override/0 = SubResource("ShaderMaterial_71r75")
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 root_node = NodePath("../Area3D")
 libraries = {
-"": SubResource("AnimationLibrary_4pudi")
+&"": SubResource("AnimationLibrary_4pudi")
 }

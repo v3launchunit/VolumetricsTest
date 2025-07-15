@@ -6,22 +6,22 @@ class_name Player extends CharacterBody3D
 
 @export_group("Movement")
 ## The player's base movement speed.
-@export_range(0.0, 35.0, 0.1, "or_greater") var speed: float = 10.0
+@export_range(0.0, 35.0, 0.1, "or_greater") var speed: float = 15.0
 ## The rate at which the player accelerates from standing still to moving at
 ## full speed.
-@export_range(0.0, 100.0, 0.1, "or_greater") var acceleration: float = 100.0
+@export_range(0.0, 100.0, 0.1, "or_greater") var acceleration: float = 50.0
 ## The absolute fastest that the player can travel in each direction.
-@export var max_speed := Vector3(100.0, 100.0, 100.0)
+@export var max_speed := Vector3(1000.0, 10000.0, 1000.0)
 ## The rate at which the velocity imparted by sliding "decays" towards zero.
-@export_range(0.0, 100.0, 0.1, "or_greater") var slide_drag: float = 10.0
+@export_range(0.0, 100.0, 0.1, "or_greater") var slide_drag: float = 25.0
 ## Ditto for knockback.
 @export_range(0.0, 100.0, 0.1, "or_greater") var knockback_drag: float = 10.0
 ## Self-explanatory.
-@export_range(0.1, 3.0, 0.1, "or_greater") var jump_height: float = 1
+@export_range(0.1, 3.0, 0.1, "or_greater") var jump_height: float = 2.0
 @export_range(1, 10, 1, "or_greater") var max_jumps: int = 1
 @export_range(0.0, 100.0, 0.1, "or_greater") var rise_grav: float = 9.8
-@export_range(0.0, 100.0, 0.1, "or_greater") var fall_grav: float = 9.8
-@export_range(0.0, 100.0, 0.1, "or_greater") var slam_speed: float = 100.0
+@export_range(0.0, 100.0, 0.1, "or_greater") var fall_grav: float = 19.6
+@export_range(0.0, 100.0, 0.1, "or_greater") var slam_speed: float = 50.0
 @export var slam_wave_scene: PackedScene
 
 @export_group("Camera")
@@ -40,8 +40,9 @@ class_name Player extends CharacterBody3D
 ## camera's transform position and vertical offset) corresponds to the player's
 ## current falling speed, multiplied by this.
 @export_range(0.0, 1.0, 0.001) var jump_sway: float = 0.01
-@export_range(0.0, 1.0, 0.001) var strafe_sway: float = 0.025
+@export_range(0.0, 1.0, 0.001) var strafe_sway: float = 0.05
 @export_range(-1.0, 1.0, 0.01) var look_drag: float = 0.25
+@export_range(0.0, 16.0, 0.05) var _cam_recoil_accel: float = 3.0
 
 @export_group("Sounds")
 ## The audio stream that plays when the player attempts to interact with an
@@ -85,8 +86,10 @@ class_name Player extends CharacterBody3D
 @export_storage var cam_recoil_pos: float = 0.0
 @export_storage var cam_recoil_vel: float = 0.0
 
-@export_storage var holding = null
+@export_storage var holding_something : bool = false
+@export_storage var was_holding_something : bool = false
 
+@export_storage var submerged: bool = false
 @export_storage var noclip: bool = false
 
 #var listening_for_cheats: bool = false
@@ -104,11 +107,16 @@ var crouch_speed: float = 15.0
 @onready var floor_snap_cast := $FloorSnapCast as RayCast3D
 @onready var stream_player := $AudioStreamPlayer as AudioStreamPlayer
 @onready var slam_wind_sys := find_child("SlamWindSys") as GPUParticles3D
+@onready var slam_wave_spawner := find_child("SlamWaveSpawner") as Marker3D
 @onready var hud := find_child("HUD") as HudHandler
 
 
 func _enter_tree() -> void:
 	add_console_commands()
+
+
+func _exit_tree() -> void:
+	remove_console_commands()
 
 
 func _ready() -> void:
@@ -146,6 +154,8 @@ func _process(_delta) -> void:
 			hud.set_tooltip(interact_scan.get_collider().get_tooltip())
 		else:
 			hud.tooltip.visible = false
+			if interact_scan.get_collider() is AreaDamage:
+				interact_scan.add_exception(interact_scan.get_collider())
 		
 		# Check if I should interact with anything
 		if (
@@ -180,7 +190,10 @@ func _process(_delta) -> void:
 		var q: PackedScene = load(Globals.C_QUICKSAVE_PATH)
 		if q != null:
 			get_tree().change_scene_to_packed(q)
-
+	
+	if not holding_something and was_holding_something and Input.is_action_just_released("weapon_fire_main"):
+		was_holding_something = false
+	
 	slam_wind_sys.visible = slamming
 	
 	#if Input.is_key_label_pressed(KEY_V):
@@ -225,6 +238,8 @@ func _physics_process_default(delta: float) -> void:
 			+ _knockback(delta)
 	)
 	
+	_animate_camera(delta)
+	
 	# Handle joypad look
 	if Globals.mouse_captured: 
 		_handle_joypad_camera_rotation(delta)
@@ -236,13 +251,6 @@ func _physics_process_default(delta: float) -> void:
 	camera_sync.global_transform = global_transform
 	# handle y offset
 	camera_sync.position.y += cam_y_offset
-	cam_y_offset = lerpf(cam_y_offset, 0.0, delta * crouch_speed)
-	# handle pitch recoil
-	if is_equal_approx(cam_recoil_vel, 0.0):
-		cam_recoil_pos = lerpf(cam_recoil_pos, 0.0, delta * 3)
-	else:
-		cam_recoil_pos += cam_recoil_vel * delta
-	cam_recoil_vel = move_toward(cam_recoil_vel, 0.0, delta * 3)
 	camera_sync.rotation.x = cam_recoil_pos
 
 	velocity = velocity.clamp(-max_speed, max_speed)
@@ -253,24 +261,25 @@ func _physics_process_default(delta: float) -> void:
 		if slope_test:
 			var step_pos := global_transform
 			step_pos.origin.y += 0.5
-			var step_test: bool = test_move(step_pos, velocity * delta)
+			var step_test: bool = test_move(global_transform, Vector3.UP * 0.5) or test_move(step_pos, velocity * delta)
 			if not step_test:
 				position.y += 0.5
+				cam_y_offset -= 0.5
 	
 	move_and_slide()
 	
 	if global_position.y < Globals.C_PLAYER_MIN_HEIGHT:
 		match (get_tree().current_scene as Level).bounds_behavior:
-			Level.BoundsBehavior.KILL:
+			Level.OutOfBoundsBehavior.KILL:
 				if status.god or status.buddha:
 					global_position = Vector3.ZERO
 					grav_vel = Vector3.ZERO
 				else:
 					status.kill()
-			Level.BoundsBehavior.WRAP:
+			Level.OutOfBoundsBehavior.WRAP:
 				global_position.y = -Globals.C_PLAYER_MIN_HEIGHT
 				grav_vel = Vector3.ZERO
-			Level.BoundsBehavior.RESET:
+			Level.OutOfBoundsBehavior.RESET:
 				global_position = Vector3.ZERO
 				grav_vel = Vector3.ZERO
 
@@ -287,10 +296,6 @@ func _unhandled_input(event: InputEvent) -> void:
 		look_dir = event.relative * 0.001
 		if Globals.mouse_captured:
 			_rotate_camera(camera_zoom_sens)
-
-
-func _exit_tree() -> void:
-	remove_console_commands()
 
 
 ## Actually rotates the player [Camera3D].
@@ -317,8 +322,64 @@ func _handle_joypad_camera_rotation(delta: float, sens_mod: float = 1.0) -> void
 		look_dir = Vector2.ZERO
 
 
+func _animate_camera(delta: float) -> void:
+	# Roll camera while strafing
+	camera.rotation.z = move_toward(
+			camera.rotation.z,
+			move_dir.x * -roll_intensity,
+			delta * roll_speed
+	)
+	
+	if move_dir.length() <= Globals.C_EPSILON:
+		sway_timer = PI/2 #smoothstep(sway_timer, PI/2, delta)
+	else:
+		sway_timer += delta
+	
+	# Handle camera & weapon sway/jump lag
+	camera.position = Vector3(
+			(
+					move_dir.length() 
+					* sway_height 
+					* cos(sway_speed * sway_timer) 
+					- move_dir.x 
+					* strafe_sway
+			),
+			(
+					0.5 
+					+ move_dir.length() 
+					* sway_height 
+					/ 3 
+					* sin(2 * sway_speed * sway_timer)
+			),
+			0,
+	) if is_on_floor() else Vector3(
+			0,
+			0.5 - clampf((grav_vel.y) * jump_sway, -0.1, 0.1),
+			0,
+	)
+	# Manipulating the offsets like this makes it look like the weapon is
+	# moving relative to the camera without having to actually move the weapon
+	camera.h_offset = move_dir.x * strafe_sway
+	camera.v_offset = (
+			move_dir.length() * -sway_height / 6 * sin(10 * sway_timer)
+	) if is_on_floor() else clampf(
+			(grav_vel.y) * jump_sway,
+			-0.1,
+			0.1
+	)
+	
+	cam_y_offset = lerpf(cam_y_offset, 0.0, delta * crouch_speed)
+	
+	# handle pitch recoil
+	if is_equal_approx(cam_recoil_vel, 0.0):
+		cam_recoil_pos = lerpf(cam_recoil_pos, 0.0, delta * _cam_recoil_accel)
+	else:
+		cam_recoil_pos += cam_recoil_vel * delta
+	cam_recoil_vel = move_toward(cam_recoil_vel, 0.0, delta * _cam_recoil_accel)
+
+
 func apply_knockback(amount: Vector3, knockup: float = 0) -> void:
-	if amount.y < 0 or knockup > Globals.C_EPSILON:
+	if amount.y > Globals.C_EPSILON or knockup > Globals.C_EPSILON:
 		#jump_vel = Vector3.ZERO
 		grav_vel = Vector3.UP * knockup
 		jumping = false
@@ -371,50 +432,6 @@ func _walk(delta: float) -> Vector3:
 			walk_vel = walk_vel.move_toward(walk_dir * move_dir.length(), acceleration * delta)
 	else:
 		walk_vel = walk_vel.move_toward(walk_dir * speed * move_dir.length(), acceleration * delta)
-	
-	# Roll camera while strafing
-	camera.rotation.z = move_toward(
-			camera.rotation.z,
-			move_dir.x * -roll_intensity,
-			delta * roll_speed
-	)
-	
-	if move_dir.length() <= Globals.C_EPSILON:
-		sway_timer = PI/2 #smoothstep(sway_timer, PI/2, delta)
-	else:
-		sway_timer += delta
-	# Handle camera & weapon sway/jump lag
-	camera.position = Vector3(
-			(
-					move_dir.length() 
-					* sway_height 
-					* cos(sway_speed * sway_timer) 
-					- move_dir.x 
-					* strafe_sway
-			),
-			(
-					0.5 
-					+ move_dir.length() 
-					* sway_height 
-					/ 3 
-					* sin(2 * sway_speed * sway_timer)
-			),
-			0,
-	) if is_on_floor() else Vector3(
-			0,
-			0.5 - clampf((grav_vel.y) * jump_sway, -0.1, 0.1),
-			0,
-	)
-	# Manipulating the offsets like this makes it look like the weapon is
-	# moving relative to the camera without having to actually move the weapon
-	camera.h_offset = move_dir.x * strafe_sway
-	camera.v_offset = (
-			move_dir.length() * -sway_height / 6 * sin(10 * sway_timer)
-	) if is_on_floor() else clampf(
-			(grav_vel.y) * jump_sway,
-			-0.1,
-			0.1
-	)
 	return walk_vel
 
 
@@ -433,7 +450,7 @@ func _gravity(delta: float) -> Vector3:
 			slamming = false
 			slam_decay = 1.0
 			var slam_wave := slam_wave_scene.instantiate()
-			add_child(slam_wave)
+			slam_wave_spawner.add_child(slam_wave)
 			slam_wave.reparent(get_tree().current_scene)
 			# this feels really dirty but i can't think of a better way to do it
 			# that doesn't require sacrificing performance to find_child()
@@ -458,6 +475,8 @@ func _gravity(delta: float) -> Vector3:
 		else:
 			slam_decay -= delta
 		if is_on_floor():
+			grav_vel = Vector3.ZERO
+		elif is_on_ceiling() and grav_vel.length_squared() > 0.0:
 			grav_vel = Vector3.ZERO
 		else:
 			grav_vel -= Vector3.UP * (rise_grav if Input.is_action_pressed("jump") else fall_grav) * delta
@@ -511,6 +530,10 @@ func _fly(delta: float) -> Vector3:
 	var fly_input: float = Input.get_axis("crouch", "jump")
 	var forward: Vector3 = camera.global_basis * Vector3(move_input.x, fly_input, move_input.y)
 	var walk_dir := forward.normalized()
+	grav_vel = Vector3.ZERO
+	camera.position = Vector3(0.0, 0.5, 0.0)
+	camera.h_offset = 0.0
+	camera.v_offset = 0.0
 	walk_vel = walk_vel.move_toward(walk_dir * speed, acceleration * delta)
 	return walk_vel
 
@@ -519,15 +542,15 @@ func _fly(delta: float) -> Vector3:
 
 # TODO implement carriable object logic
 ## Called when the player picks up a carriable object. Not currently implemented.
-func _on_carriable_grabbed(what: Carriable) -> void:
+func on_carriable_grabbed(_what: Carriable) -> void:
 	camera.switched_weapons.emit(-1, -1)
-	holding = what
+	holding_something = true
 
 
-func step_check(velocity: Vector3) -> bool:
+func step_check(vel: Vector3) -> bool:
 	#var test_transform := Transform3D(global_transform)
 	
-	if test_move(global_transform, velocity) and not test_move(global_transform, velocity + 0.5 * Vector3.UP):
+	if test_move(global_transform, vel) and not test_move(global_transform, vel + 0.5 * Vector3.UP):
 		pass
 	
 	return false
@@ -536,15 +559,17 @@ func step_check(velocity: Vector3) -> bool:
 #region console commands
 
 func add_console_commands() -> void:
-	Console.add_command("reset_pos", cmd_reset_pos, [], 0, Globals.parse_text("console", "desc.reset_pos"))
-	Console.add_command("tele", cmd_tele, ["x", "y", "z"], 3, Globals.parse_text("console", "desc.tele"))
-	Console.add_command("invis", cmd_invis, ["true/false"], 0, Globals.parse_text("console", "desc.invis"))
-	Console.add_command("noclip", cmd_noclip, ["true/false"], 0, Globals.parse_text("console", "desc.noclip"))
+	Console.add_command("reset_pos", cmd_reset_pos, [], 0, Globals.parse_text("console", "desc.reset_pos"), Console.CommandType.CHEAT)
+	Console.add_command("teleport", cmd_tele, ["x", "y", "z"], 3, Globals.parse_text("console", "desc.tele"), Console.CommandType.CHEAT)
+	Console.add_aliases(["tele", "tp"], "teleport")
+	Console.add_command("invis", cmd_invis, [Globals.parse_text("console", "arg.bool")], 0, Globals.parse_text("console", "desc.invis"), Console.CommandType.CHEAT)
+	Console.add_command("noclip", cmd_noclip, [Globals.parse_text("console", "arg.bool")], 0, Globals.parse_text("console", "desc.noclip"), Console.CommandType.CHEAT)
 
 
 func remove_console_commands() -> void:
 	Console.remove_command("reset_pos")
-	Console.remove_command("tele")
+	Console.remove_command("teleport")
+	Console.remove_aliases(["tele", "tp"])
 	Console.remove_command("invis")
 	Console.remove_command("noclip")
 
@@ -597,9 +622,10 @@ func cmd_invis(to: String) -> void:
 			var to_b := Globals.get_pseudo_bool(to)
 			if to_b == -1:
 				Console.print_error(Globals.parse_text("console", "fail.bad_bool") % to)
+				return
 			else:
 				EnemyBase.player_hidden = to_b == Globals.PseudoBool.TRUE
-			Console.print_line(Globals.parse_text("console", "invis") % ("on" if EnemyBase.player_hidden else "off"))
+		Console.print_line(Globals.parse_text("console", "invis") % ("on" if EnemyBase.player_hidden else "off"))
 
 
 func cmd_noclip(to: String) -> void:

@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="FuncGodotFGDPointClass" load_steps=3 format=3 uid="uid://bk1j0j6n6v4vn"]
 
 [ext_resource type="PackedScene" uid="uid://cxe1gjgdpac7q" path="res://pickups/health/health_pack/health_pack_pickup.tscn" id="1_c7xwp"]
-[ext_resource type="Script" path="res://addons/func_godot/src/fgd/func_godot_fgd_point_class.gd" id="2_wi84d"]
+[ext_resource type="Script" uid="uid://cw2atun4e3eyv" path="res://addons/func_godot/src/fgd/func_godot_fgd_point_class.gd" id="2_wi84d"]
 
 [resource]
 script = ExtResource("2_wi84d")
@@ -13,6 +13,7 @@ func_godot_internal = false
 base_classes = Array[Resource]([])
 class_properties = {}
 class_property_descriptions = {}
+auto_apply_to_matching_node_properties = false
 meta_properties = {
 "color": Color(0.8, 0.8, 0.8, 1),
 "size": AABB(-8, -8, -8, 8, 8, 8)

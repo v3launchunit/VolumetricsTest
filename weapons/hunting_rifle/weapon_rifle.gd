@@ -52,6 +52,8 @@ func _process(delta) -> void:
 
 
 func _listen_for_input() -> bool:
+	if player.holding != null:
+		return false
 	if super():
 		return true
 	if Input.is_action_pressed("weapon_fire_alt"):

@@ -1,21 +1,22 @@
 [gd_resource type="Resource" script_class="FuncGodotFGDPointClass" load_steps=3 format=3 uid="uid://dwwh3p8krnbos"]
 
 [ext_resource type="PackedScene" uid="uid://cfdvyof38yskk" path="res://objects/deco/barrel/barrel_torch.tscn" id="1_3mtbo"]
-[ext_resource type="Script" path="res://addons/func_godot/src/fgd/func_godot_fgd_point_class.gd" id="2_xynsn"]
+[ext_resource type="Script" uid="uid://cw2atun4e3eyv" path="res://addons/func_godot/src/fgd/func_godot_fgd_point_class.gd" id="2_xynsn"]
 
 [resource]
 script = ExtResource("2_xynsn")
 scene_file = ExtResource("1_3mtbo")
 apply_rotation_on_map_build = true
-classname = "light_barrel"
+classname = "ldeco_barrel"
 description = ""
 func_godot_internal = false
 base_classes = Array[Resource]([])
 class_properties = {}
 class_property_descriptions = {}
+auto_apply_to_matching_node_properties = false
 meta_properties = {
 "color": Color(0.792157, 0.792157, 0.792157, 1),
-"size": AABB(-8, -8, -8, 8, 8, 8)
+"size": AABB(-8, -8, -12, 8, 8, 12)
 }
 node_class = ""
 name_property = ""

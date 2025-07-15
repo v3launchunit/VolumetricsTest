@@ -1,6 +1,6 @@
 [gd_scene load_steps=25 format=3 uid="uid://b2ceyvvn2j4nq"]
 
-[ext_resource type="Script" path="res://scripts/pickups/weapon_pickup.gd" id="1_iysxo"]
+[ext_resource type="Script" uid="uid://yrdtgm5mut51" path="res://pickups/weapon_pickup.gd" id="1_iysxo"]
 [ext_resource type="PackedScene" uid="uid://bfxuay7qxu7lj" path="res://weapons/big_iron/big_iron.tscn" id="2_4dbr2"]
 [ext_resource type="AudioStream" uid="uid://dxscywpf2ven0" path="res://audio/streams/pickups/pickup_weapon.wav" id="2_yykfy"]
 [ext_resource type="Material" uid="uid://b78l63b32udy2" path="res://effects/halos/halo_mat.tres" id="3_4ae8u"]
@@ -8,7 +8,7 @@
 [ext_resource type="ArrayMesh" uid="uid://vfuqffuqwocv" path="res://weapons/big_iron/big_iron.obj" id="3_kw7kd"]
 [ext_resource type="Texture2D" uid="uid://c23vayn4doala" path="res://weapons/big_iron/big_iron_detail_mask.png" id="4_0sada"]
 [ext_resource type="Texture2D" uid="uid://ss8r0up4rgsx" path="res://weapons/big_iron/big_iron_metallic.png" id="5_eeshc"]
-[ext_resource type="Script" path="res://scripts/effects/halo.gd" id="5_whtei"]
+[ext_resource type="Script" uid="uid://qbss7pion7pi" path="res://scripts/effects/halo.gd" id="5_whtei"]
 [ext_resource type="Texture2D" uid="uid://br5tgbkka8rp7" path="res://weapons/big_iron/big_iron_roughness.png" id="6_m57bb"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_uc2sx"]
@@ -172,21 +172,21 @@ shader = SubResource("Shader_23r47")
 shader_parameter/albedo = Color(0.501961, 0.501961, 0.501961, 1)
 shader_parameter/point_size = 1.0
 shader_parameter/roughness = 1.0
+shader_parameter/texture_metallic = ExtResource("5_eeshc")
 shader_parameter/metallic_texture_channel = Vector4(1, 0, 0, 0)
+shader_parameter/texture_roughness = ExtResource("6_m57bb")
 shader_parameter/specular = 0.5
 shader_parameter/metallic = 1.0
 shader_parameter/clearcoat = 1.0
 shader_parameter/clearcoat_roughness = 0.25
-shader_parameter/uv1_scale = Vector3(1, 1, 1)
-shader_parameter/uv1_offset = Vector3(0, 0, 0)
-shader_parameter/uv2_scale = Vector3(1, 1, 1)
-shader_parameter/uv2_offset = Vector3(0, 0, 0)
-shader_parameter/texture_metallic = ExtResource("5_eeshc")
-shader_parameter/texture_roughness = ExtResource("6_m57bb")
 shader_parameter/texture_clearcoat = ExtResource("4_0sada")
 shader_parameter/texture_detail_albedo = SubResource("NoiseTexture2D_p0187")
 shader_parameter/texture_detail_normal = SubResource("NoiseTexture2D_1wj7s")
 shader_parameter/texture_detail_mask = ExtResource("4_0sada")
+shader_parameter/uv1_scale = Vector3(1, 1, 1)
+shader_parameter/uv1_offset = Vector3(0, 0, 0)
+shader_parameter/uv2_scale = Vector3(1, 1, 1)
+shader_parameter/uv2_offset = Vector3(0, 0, 0)
 
 [sub_resource type="Animation" id="Animation_wivti"]
 resource_name = "anim"
@@ -209,7 +209,7 @@ tracks/1/keys = PackedFloat32Array(0, 1, 0, 0, 0, 2.5, 1, 0, 0.05, 0, 5, 1, 0, 0
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_4pudi"]
 _data = {
-"anim": SubResource("Animation_wivti")
+&"anim": SubResource("Animation_wivti")
 }
 
 [node name="BigIronPickup" type="RigidBody3D"]

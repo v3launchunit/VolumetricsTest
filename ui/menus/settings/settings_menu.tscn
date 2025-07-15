@@ -1,7 +1,7 @@
 [gd_scene load_steps=11 format=3 uid="uid://ccwu3rknnn1jt"]
 
 [ext_resource type="Theme" uid="uid://dwof7m2ye3tjh" path="res://ui/default_theme.tres" id="1_j7o5h"]
-[ext_resource type="Script" path="res://ui/menus/settings_menu.gd" id="2_bebmm"]
+[ext_resource type="Script" uid="uid://bo411f0plff16" path="res://ui/menus/settings_menu.gd" id="2_bebmm"]
 [ext_resource type="Texture2D" uid="uid://cmq3arf61ax4f" path="res://ui/menus/menu_panel.png" id="3_0p6n8"]
 [ext_resource type="PackedScene" uid="uid://dw3bo3v1dv272" path="res://ui/menus/settings/video_settings.tscn" id="4_o7c2t"]
 [ext_resource type="PackedScene" uid="uid://1shniliqahvt" path="res://ui/menus/settings/audio_settings.tscn" id="5_jiu8m"]
@@ -95,7 +95,6 @@ layout_mode = 2
 focus_neighbor_left = NodePath("../Audio")
 focus_neighbor_right = NodePath("../Other")
 theme = ExtResource("1_j7o5h")
-disabled = true
 toggle_mode = true
 keep_pressed_outside = true
 button_group = SubResource("ButtonGroup_tnolh")
@@ -207,6 +206,8 @@ offset_right = -16.0
 offset_bottom = -15.0
 grow_horizontal = 2
 grow_vertical = 2
+follow_focus = true
+vertical_scroll_mode = 2
 
 [node name="Gameplay" parent="SettingsPanel/GameplayScroll" instance=ExtResource("6_q7uba")]
 layout_mode = 2
@@ -224,6 +225,8 @@ offset_right = -16.0
 offset_bottom = -15.0
 grow_horizontal = 2
 grow_vertical = 2
+follow_focus = true
+horizontal_scroll_mode = 2
 
 [node name="Input" parent="SettingsPanel/InputScroll" instance=ExtResource("7_c282q")]
 layout_mode = 2
@@ -241,6 +244,8 @@ offset_right = -16.0
 offset_bottom = -15.0
 grow_horizontal = 2
 grow_vertical = 2
+follow_focus = true
+vertical_scroll_mode = 2
 
 [node name="Accessibility" parent="SettingsPanel/AccessibilityScroll" instance=ExtResource("8_e5s2f")]
 layout_mode = 2
@@ -258,6 +263,8 @@ offset_right = -16.0
 offset_bottom = -15.0
 grow_horizontal = 2
 grow_vertical = 2
+follow_focus = true
+horizontal_scroll_mode = 2
 
 [node name="Other" parent="SettingsPanel/OtherScroll" instance=ExtResource("9_nyk5b")]
 layout_mode = 2
@@ -265,4 +272,5 @@ layout_mode = 2
 [connection signal="pressed" from="VBoxContainer/Video" to="." method="_on_video_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/Audio" to="." method="_on_audio_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/Gameplay" to="." method="_on_gameplay_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/Input" to="." method="_on_input_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/Back" to="." method="_on_back_button_pressed"]

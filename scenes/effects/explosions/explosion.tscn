@@ -1,13 +1,13 @@
 [gd_scene load_steps=42 format=3 uid="uid://dco7xp2cwuyge"]
 
-[ext_resource type="Script" path="res://scripts/effects/lifetime.gd" id="1_eyiwv"]
-[ext_resource type="Script" path="res://scripts/auto_play.gd" id="2_w10mg"]
-[ext_resource type="Script" path="res://scripts/effects/area_damage.gd" id="3_6neht"]
+[ext_resource type="Script" uid="uid://it17y5hskb07" path="res://scenes/effects/explosions/explosion_saver.gd" id="1_5ljrq"]
+[ext_resource type="Script" uid="uid://b5h7xnsiqnyy7" path="res://scripts/effects/lifetime.gd" id="1_eyiwv"]
+[ext_resource type="Script" uid="uid://iq4n1kv8ucdv" path="res://scripts/effects/area_damage.gd" id="3_6neht"]
 [ext_resource type="Texture2D" uid="uid://djg6ch15ainnw" path="res://effects/radial_n.png" id="3_kqyqy"]
 [ext_resource type="ArrayMesh" uid="uid://cx13p5fo0cmf6" path="res://models/effects/octagon_quad.obj" id="3_nm51l"]
 [ext_resource type="AudioStream" uid="uid://tv57kig5mcoh" path="res://audio/streams/effects/kaboom.wav" id="4_evxji"]
 [ext_resource type="AudioStream" uid="uid://b4em0t5e3pb8a" path="res://audio/streams/effects/vine_boom.mp3" id="5_8svvk"]
-[ext_resource type="Shader" path="res://shaders/canvas/canvas_shockwave.gdshader" id="7_wpe3s"]
+[ext_resource type="Shader" uid="uid://thnorbwmx6am" path="res://shaders/canvas/canvas_shockwave.gdshader" id="7_wpe3s"]
 
 [sub_resource type="Gradient" id="Gradient_6b6sv"]
 interpolation_mode = 2
@@ -33,9 +33,7 @@ color_ramp = SubResource("GradientTexture1D_oraxr")
 hue_variation_max = 0.17
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_y4mvg"]
-transparency = 3
-alpha_hash_scale = 1.0
-alpha_antialiasing_mode = 0
+transparency = 1
 blend_mode = 1
 shading_mode = 0
 vertex_color_use_as_albedo = true
@@ -97,6 +95,7 @@ radius = 0.031
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3anle"]
 resource_local_to_scene = true
 transparency = 1
+blend_mode = 1
 shading_mode = 0
 albedo_color = Color(1, 1, 0, 1)
 
@@ -269,7 +268,7 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0, 0.6, 10),
 "transitions": PackedFloat32Array(0.25, 1.75, 1),
 "update": 0,
-"values": [Vector3(0, 0, 0), Vector3(5, 5, 5), Vector3(15, 15, 15)]
+"values": [Vector3(0.01, 0.01, 0.01), Vector3(5, 5, 5), Vector3(15, 15, 15)]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -289,7 +288,7 @@ tracks/3/enabled = true
 tracks/3/path = NodePath("Fireball")
 tracks/3/interp = 1
 tracks/3/loop_wrap = false
-tracks/3/keys = PackedFloat32Array(0, 1, 0, 0, 0, 0.3, 1, 10, 10, 10)
+tracks/3/keys = PackedFloat32Array(0, 1, 0.01, 0.01, 0.01, 0.3, 1, 10, 10, 10)
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
@@ -356,7 +355,7 @@ tracks/9/enabled = true
 tracks/9/path = NodePath("Blastwave")
 tracks/9/interp = 1
 tracks/9/loop_wrap = false
-tracks/9/keys = PackedFloat32Array(0, 1, 0, 0, 0, 0.3, 1, 30, 30, 30)
+tracks/9/keys = PackedFloat32Array(0, 1, 0.01, 0.01, 0.01, 0.3, 1, 30, 30, 30)
 tracks/10/type = "value"
 tracks/10/imported = false
 tracks/10/enabled = true
@@ -384,8 +383,8 @@ tracks/11/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_7h3vl"]
 _data = {
-"RESET": SubResource("Animation_3e3i5"),
-"anim": SubResource("Animation_l41wm")
+&"RESET": SubResource("Animation_3e3i5"),
+&"anim": SubResource("Animation_l41wm")
 }
 
 [sub_resource type="Gradient" id="Gradient_f5tuf"]
@@ -402,6 +401,7 @@ fill_to = Vector2(1, 0.5)
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rl26o"]
 resource_local_to_scene = true
 transparency = 1
+blend_mode = 1
 cull_mode = 2
 shading_mode = 0
 albedo_color = Color(1, 1, 0, 1)
@@ -474,6 +474,7 @@ shader_parameter/width = 0.04
 shader_parameter/feather = 0.135
 
 [node name="Explosion" type="Node3D"]
+script = ExtResource("1_5ljrq")
 
 [node name="OmniLight3D" type="OmniLight3D" parent="."]
 layers = 2
@@ -514,7 +515,7 @@ process_material = SubResource("ParticleProcessMaterial_t1l36")
 draw_pass_1 = SubResource("TubeTrailMesh_0yp4d")
 
 [node name="Fireball" type="MeshInstance3D" parent="."]
-transform = Transform3D(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+transform = Transform3D(0.00999999, 0, 0, 0, 0.00999999, 0, 0, 0, 0.00999999, 0, 0, 0)
 layers = 2
 material_override = SubResource("StandardMaterial3D_3anle")
 mesh = SubResource("SphereMesh_cpldg")
@@ -527,12 +528,12 @@ material = SubResource("FogMaterial_hi1pk")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
-"": SubResource("AnimationLibrary_7h3vl")
+&"": SubResource("AnimationLibrary_7h3vl")
 }
-script = ExtResource("2_w10mg")
+autoplay = "anim"
 
 [node name="Blastwave" type="MeshInstance3D" parent="."]
-transform = Transform3D(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+transform = Transform3D(0.00999999, 0, 0, 0, 0.00999999, 0, 0, 0, 0.00999999, 0, 0, 0)
 material_override = SubResource("StandardMaterial3D_rl26o")
 mesh = ExtResource("3_nm51l")
 skeleton = NodePath("../AnimationPlayer")
@@ -550,6 +551,7 @@ script = ExtResource("3_6neht")
 damage = 60.0
 damage_type = 1
 knockback_force = 5.0
+knockup_force = 2.5
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
 shape = SubResource("SphereShape3D_er5bi")
@@ -560,7 +562,8 @@ script = ExtResource("3_6neht")
 damage = 60.0
 player_damage_override = 0.0
 damage_type = 1
-knockback_force = 2.5
+knockback_force = 5.0
+knockup_force = 2.5
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D2"]
 shape = SubResource("SphereShape3D_n73ay")

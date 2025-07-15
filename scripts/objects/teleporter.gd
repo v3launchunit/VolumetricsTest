@@ -38,18 +38,18 @@ func _ready() -> void:
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if nav_link == null and not func_godot_properties.is_empty():
 		nav_link = NavigationLink3D.new()
 		add_child(nav_link)
 		nav_link.set_owner(owner)
 		nav_link.position.y -= 0.5
-		var dest := get_tree().get_first_node_in_group("targetname:%s" % func_godot_properties["target"]) as Marker3D
-		if dest == null:
+		var d := get_tree().get_first_node_in_group("targetname:%s" % func_godot_properties["target"]) as Marker3D
+		if d == null:
 			print("destination could not be found")
 			return
-		print(dest)
-		nav_link.set_global_end_position(dest.global_position)
+		print(d)
+		nav_link.set_global_end_position(d.global_position)
 		nav_link.end_position.y -= 0.5
 		configured = true
 		#set_destination(dest.global_position)

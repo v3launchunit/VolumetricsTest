@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://c1sfpro0f1415"]
 
-[ext_resource type="Script" path="res://bullets/hitscan.gd" id="1_k8w1m"]
+[ext_resource type="Script" uid="uid://ca6apcdudja0v" path="res://bullets/hitscan.gd" id="1_k8w1m"]
 [ext_resource type="PackedScene" uid="uid://dco7xp2cwuyge" path="res://scenes/effects/explosions/explosion.tscn" id="2_43elg"]
 [ext_resource type="Material" uid="uid://c42ota7m3l3e4" path="res://bullets/hitscan_mat.tres" id="2_qfoms"]
 [ext_resource type="ArrayMesh" uid="uid://cfjlieto7r0xy" path="res://bullets/hitscan_bullet.obj" id="3_mt38n"]

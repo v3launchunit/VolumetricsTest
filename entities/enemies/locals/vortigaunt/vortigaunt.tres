@@ -1,22 +1,3 @@
-[gd_resource type="Resource" script_class="QodotFGDPointClass" load_steps=4 format=3 uid="uid://brcfv7amkpov1"]
-
-[ext_resource type="PackedScene" uid="uid://bonaseme7rn5f" path="res://entities/enemies/locals/vortigaunt/vortigaunt.tscn" id="1_0j2cb"]
-[ext_resource type="Resource" uid="uid://bec0kis72kbyx" path="res://entities/enemies/enemy_base_class.tres" id="1_1isfd"]
-[ext_resource type="Script" path="res://addons/qodot/src/resources/game-definitions/fgd/qodot_fgd_point_class.gd" id="2_kgqse"]
+[gd_resource type="Resource" format=3 uid="uid://brcfv7amkpov1"]
 
 [resource]
-script = ExtResource("2_kgqse")
-scene_file = ExtResource("1_0j2cb")
-apply_rotation_on_map_build = true
-classname = "enemy_vortigaunt"
-description = ""
-qodot_internal = false
-base_classes = Array[Resource]([ExtResource("1_1isfd")])
-class_properties = {}
-class_property_descriptions = {}
-meta_properties = {
-"color": Color(0.8, 0.8, 0.8, 1),
-"size": AABB(-8, -8, -8, 8, 8, 8)
-}
-node_class = ""
-transient_node = false

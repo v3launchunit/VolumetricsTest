@@ -4,8 +4,8 @@
 class_name FuncGodotMapSettings
 extends Resource
 
-## Ratio between map editor units and Godot units. FuncGodot will divide brush coordinates by this number when building. This does not affect entity properties unless scripted to do so.
 var scale_factor: float = 0.03125
+## Ratio between map editor units and Godot units. FuncGodot will divide brush coordinates by this number when building. This does not affect entity properties unless scripted to do so.
 @export var inverse_scale_factor: float = 32.0 :
 	set(value):
 		inverse_scale_factor = value

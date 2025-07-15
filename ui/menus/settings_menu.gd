@@ -11,8 +11,8 @@ enum SubMenus {
 
 var current_sub_menu: SubMenus = SubMenus.VIDEO
 
-@onready var _press_sound: AudioStreamPlayer = get_parent().get_node(
-		^"ButtonPress") as AudioStreamPlayer
+#@onready var _press_sound: AudioStreamPlayer = get_parent().get_node(
+		#^"ButtonPress") as AudioStreamPlayer
 
 
 func _on_video_button_pressed() -> void:

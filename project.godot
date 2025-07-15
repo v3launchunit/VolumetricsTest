@@ -12,9 +12,9 @@ config_version=5
 
 config/name="VolumetricsTest"
 config/version="0.1.0.0"
-config/tags=PackedStringArray("3d", "fps")
+config/tags=PackedStringArray("3d", "fps", "mine")
 run/main_scene="res://levels/title_screen.tscn"
-config/features=PackedStringArray("4.3", "Forward Plus")
+config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="res://icon.svg"
 
 [audio]
@@ -26,7 +26,6 @@ buses/default_bus_layout="res://audio/default_bus_layout.tres"
 Globals="*res://scripts/globals.gd"
 Intermission="*res://levels/intermission/intermission.tscn"
 GameMenu="*res://ui/menus/game_menu.tscn"
-Screenwipe="res://levels/intermission/screenwipe.tscn"
 Console="*res://addons/console/console.gd"
 
 [display]
@@ -44,7 +43,6 @@ project/assembly_name="VolumetricsTest"
 
 [editor]
 
-export/convert_text_resources_to_binary=false
 version_control/plugin_name="GitPlugin"
 version_control/autoload_on_startup=true
 
@@ -85,7 +83,23 @@ theme/default_font_antialiasing=0
 [importer_defaults]
 
 texture={
-"detect_3d/compress_to": 0
+"compress/channel_pack": 0,
+"compress/hdr_compression": 1,
+"compress/high_quality": false,
+"compress/lossy_quality": 0.7,
+"compress/mode": 0,
+"compress/normal_map": 0,
+"detect_3d/compress_to": 0,
+"mipmaps/generate": false,
+"mipmaps/limit": -1,
+"process/fix_alpha_border": true,
+"process/hdr_as_srgb": false,
+"process/hdr_clamp_exposure": false,
+"process/normal_map_invert_y": false,
+"process/premult_alpha": false,
+"process/size_limit": 0,
+"roughness/mode": 0,
+"roughness/src_normal": ""
 }
 
 [input]
@@ -295,10 +309,11 @@ weapon_flourish={
 3d_physics/layer_9="Porous"
 3d_physics/layer_10="Nails"
 3d_physics/layer_11="NavIgnore"
+3d_physics/layer_12="carriable"
 
 [physics]
 
-3d/physics_engine="JoltPhysics3D"
+3d/physics_engine="Jolt Physics"
 
 [rendering]
 
@@ -310,13 +325,15 @@ global_illumination/gi/use_half_resolution=true
 shading/overrides/force_lambert_over_burley=true
 textures/default_filters/use_nearest_mipmap_filter=true
 textures/default_filters/anisotropic_filtering_level=0
+viewport/hdr_2d=true
 anti_aliasing/screen_space_roughness_limiter/enabled=false
 scaling_3d/fsr_sharpness=0.2
-textures/decals/filter=2
-textures/light_projectors/filter=2
+textures/decals/filter=0
+textures/light_projectors/filter=0
 environment/glow/upscale_mode=0
 global_illumination/sdfgi/frames_to_update_lights=4
-viewport/hdr_2d=true
+environment/volumetric_fog/volume_depth=32
+environment/volumetric_fog/use_filter=0
 occlusion_culling/use_occlusion_culling=true
 environment/defaults/default_environment="res://levels/default_environment.tres"
 reflections/main_scene="res://scenes/levels/e1m5_v1.tscn"

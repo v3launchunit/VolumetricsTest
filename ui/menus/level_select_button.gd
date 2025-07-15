@@ -9,7 +9,7 @@ extends Button
 var level_path: String = ""
 var _scene: PackedScene
 
-@onready var _press_sound: AudioStreamPlayer = GameMenu.get_node(^"ButtonPress")
+#@onready var _press_sound: AudioStreamPlayer = GameMenu.get_node(^"ButtonPress")
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:

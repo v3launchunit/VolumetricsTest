@@ -22,4 +22,6 @@ func interact(with: Node3D) -> void:
 	var secrets := level.secrets
 	var found_secrets := level.found_secrets
 	
+	Globals.clear_level(level.level_key)
+	Globals.reveal_level(func_godot_properties["next"])
 	Intermission.run_intermission(with, time, foes, kills, secrets, found_secrets, func_godot_properties["next"])

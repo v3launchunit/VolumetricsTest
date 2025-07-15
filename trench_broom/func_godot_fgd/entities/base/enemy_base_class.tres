@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="FuncGodotFGDBaseClass" load_steps=3 format=3 uid="uid://63fs8fd3x07r"]
 
 [ext_resource type="Resource" uid="uid://c7qufnbpsf2fx" path="res://trench_broom/func_godot_fgd/entities/base/fun_entity_base_class.tres" id="1_a58gd"]
-[ext_resource type="Script" path="res://addons/func_godot/src/fgd/func_godot_fgd_base_class.gd" id="1_ghqv0"]
+[ext_resource type="Script" uid="uid://ed8h7ifqi4j1" path="res://addons/func_godot/src/fgd/func_godot_fgd_base_class.gd" id="1_ghqv0"]
 
 [resource]
 script = ExtResource("1_ghqv0")
@@ -10,6 +10,7 @@ description = ""
 func_godot_internal = false
 base_classes = Array[Resource]([ExtResource("1_a58gd")])
 class_properties = {
+"angles": Vector3(0, 0, 0),
 "corpse": false,
 "detect_mode": {
 "Sight: default, Sound: default": 0,

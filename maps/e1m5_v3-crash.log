@@ -1,0 +1,220 @@
+Renderer info: Mesa Intel(R) Graphics (MTL) version 4.6 (Compatibility Profile) Mesa 24.2.8-1ubuntu1~24.04.1 from Intel
+Depth buffer bits: 24
+Multisampling enabled
+Adding file system path "/tmp/.mount_TrenchpLAbCT/usr/bin/../share/TrenchBroom/defaults/assets"
+Adding file system path "/home/v/Desktop/VolumetricsTest/trench_broom/."
+Loading document from /home/v/Desktop/VolumetricsTest/maps/e1m5_v3.map
+Found 0 shaders
+Found multiple model properties (at line 448, column 101)
+Found multiple model properties (at line 454, column 99)
+Loaded entity definition file FuncGodot.fgd
+Found 0 shaders
+Loaded "/home/v/Desktop/VolumetricsTest/maps/e1m5_v3.map" in 33ms
+No diffuse textures found for material 0 of model 'models/ldeco_shrooms.glb', loading fallback texture
+No diffuse textures found for material 0 of model 'models/ldeco_torch.glb', loading fallback texture
+No diffuse textures found for material 0 of model 'models/enemy_gun_turret_wall.glb', loading fallback texture
+No diffuse textures found for material 0 of model 'models/deco_pipe.glb', loading fallback texture
+No diffuse textures found for material 0 of model 'models/deco_pipe_bend.glb', loading fallback texture
+No diffuse textures found for material 0 of model 'models/enemy_canary.glb', loading fallback texture
+No diffuse textures found for material 0 of model 'models/enemy_gun_turret_wall.glb', loading fallback texture
+No diffuse textures found for material 0 of model 'models/ldeco_shrooms.glb', loading fallback texture
+No diffuse textures found for material 0 of model 'models/ldeco_shrooms.glb', loading fallback texture
+No diffuse textures found for material 1 of model 'models/enemy_canary.glb', loading fallback texture
+No diffuse textures found for material 0 of model 'models/enemy_gun_turret_wall.glb', loading fallback texture
+No diffuse textures found for material 1 of model 'models/enemy_pinkerton.glb', loading fallback texture
+No diffuse textures found for material 2 of model 'models/ldeco_torch.glb', loading fallback texture
+No diffuse textures found for material 0 of model 'models/enemy_gun_turret_wall.glb', loading fallback texture
+No diffuse textures found for material 1 of model 'models/enemy_canary.glb', loading fallback texture
+No diffuse textures found for material 0 of model 'models/ldeco_shrooms.glb', loading fallback texture
+No diffuse textures found for material 0 of model 'models/enemy_gun_turret_wall.glb', loading fallback texture
+No diffuse textures found for material 1 of model 'models/enemy_canary.glb', loading fallback texture
+No diffuse textures found for material 1 of model 'models/enemy_pinkerton.glb', loading fallback texture
+No diffuse textures found for material 0 of model 'models/enemy_gun_turret_wall.glb', loading fallback texture
+No diffuse textures found for material 1 of model 'models/enemy_canary.glb', loading fallback texture
+No diffuse textures found for material 1 of model 'models/enemy_canary.glb', loading fallback texture
+No diffuse textures found for material 1 of model 'models/enemy_pinkerton.glb', loading fallback texture
+No diffuse textures found for material 1 of model 'models/enemy_pinkerton.glb', loading fallback texture
+Saved "/home/v/Desktop/VolumetricsTest/maps/e1m5_v3.map" in 110ms
+No diffuse textures found for material 0 of model 'models/deco_vent_box.glb', loading fallback texture
+No diffuse textures found for material 0 of model 'models/deco_chair_wood.glb', loading fallback texture
+No diffuse textures found for material 0 of model 'models/deco_pipe_short.glb', loading fallback texture
+No diffuse textures found for material 0 of model 'models/deco_table_wood.glb', loading fallback texture
+No diffuse textures found for material 0 of model 'models/light_lamppost.glb', loading fallback texture
+No diffuse textures found for material 0 of model 'models/deco_chain.glb', loading fallback texture
+No diffuse textures found for material 0 of model 'models/deco_rock01.glb', loading fallback texture
+No diffuse textures found for material 0 of model 'models/deco_pipe_xjunct.glb', loading fallback texture
+No diffuse textures found for material 0 of model 'models/light_torch.glb', loading fallback texture
+No diffuse textures found for material 0 of model 'models/deco_pipe_tjunct.glb', loading fallback texture
+No diffuse textures found for material 0 of model 'models/deco_chain.glb', loading fallback texture
+No diffuse textures found for material 2 of model 'models/light_torch.glb', loading fallback texture
+No diffuse textures found for material 1 of model 'models/ldeco_floodlight.glb', loading fallback texture
+No diffuse textures found for material 1 of model 'models/ldeco_streetlamp.glb', loading fallback texture
+No diffuse textures found for material 1 of model 'models/light_streetlamp.glb', loading fallback texture
+No diffuse textures found for material 0 of model 'models/deco_chain.glb', loading fallback texture
+No diffuse textures found for material 2 of model 'models/light_lamppost.glb', loading fallback texture
+No diffuse textures found for material 1 of model 'models/ldeco_streetlamp.glb', loading fallback texture
+No diffuse textures found for material 2 of model 'models/ldeco_floodlight.glb', loading fallback texture
+No diffuse textures found for material 0 of model 'models/deco_chain.glb', loading fallback texture
+No diffuse textures found for material 1 of model 'models/light_streetlamp.glb', loading fallback texture
+No diffuse textures found for material 0 of model 'models/light_lamppost.glb', loading fallback texture
+No diffuse textures found for material 2 of model 'models/ldeco_streetlamp.glb', loading fallback texture
+No diffuse textures found for material 2 of model 'models/light_streetlamp.glb', loading fallback texture
+No diffuse textures found for material 1 of model 'models/ldeco_streetlamp.glb', loading fallback texture
+No diffuse textures found for material 1 of model 'models/light_streetlamp.glb', loading fallback texture
+No diffuse textures found for material 1 of model 'models/ldeco_floodlight.glb', loading fallback texture
+No diffuse textures found for material 2 of model 'models/ldeco_floodlight.glb', loading fallback texture
+No diffuse textures found for material 2 of model 'models/ldeco_floodlight.glb', loading fallback texture
+No diffuse textures found for material 2 of model 'models/ldeco_floodlight.glb', loading fallback texture
+No diffuse textures found for material 0 of model 'models/func_button.glb', loading fallback texture
+No diffuse textures found for material 0 of model 'models/enemy_gun_turret.glb', loading fallback texture
+No diffuse textures found for material 0 of model 'models/enemy_plasma_droid.glb', loading fallback texture
+No diffuse textures found for material 0 of model 'models/enemy_gun_turret.glb', loading fallback texture
+No diffuse textures found for material 0 of model 'models/enemy_plasma_droid.glb', loading fallback texture
+No diffuse textures found for material 0 of model 'models/enemy_eyeball.glb', loading fallback texture
+No diffuse textures found for material 0 of model 'models/enemy_lizard.glb', loading fallback texture
+No diffuse textures found for material 0 of model 'models/light_shrooms.glb', loading fallback texture
+No diffuse textures found for material 0 of model 'models/func_button.glb', loading fallback texture
+No diffuse textures found for material 0 of model 'models/enemy_plasma_droid.glb', loading fallback texture
+No diffuse textures found for material 1 of model 'models/enemy_lizard.glb', loading fallback texture
+No diffuse textures found for material 0 of model 'models/enemy_gun_turret.glb', loading fallback texture
+No diffuse textures found for material 2 of model 'models/enemy_soldier.glb', loading fallback texture
+No diffuse textures found for material 0 of model 'models/enemy_eyeball.glb', loading fallback texture
+No diffuse textures found for material 0 of model 'models/light_shrooms.glb', loading fallback texture
+No diffuse textures found for material 1 of model 'models/enemy_rocketeer.glb', loading fallback texture
+No diffuse textures found for material 1 of model 'models/enemy_lizard.glb', loading fallback texture
+No diffuse textures found for material 2 of model 'models/enemy_soldier.glb', loading fallback texture
+No diffuse textures found for material 0 of model 'models/enemy_plasma_droid.glb', loading fallback texture
+No diffuse textures found for material 1 of model 'models/enemy_lizard.glb', loading fallback texture
+No diffuse textures found for material 0 of model 'models/enemy_eyeball.glb', loading fallback texture
+No diffuse textures found for material 2 of model 'models/enemy_soldier.glb', loading fallback texture
+No diffuse textures found for material 0 of model 'models/light_shrooms.glb', loading fallback texture
+No diffuse textures found for material 0 of model 'models/enemy_gun_turret.glb', loading fallback texture
+No diffuse textures found for material 1 of model 'models/enemy_rocketeer.glb', loading fallback texture
+No diffuse textures found for material 1 of model 'models/enemy_lizard.glb', loading fallback texture
+No diffuse textures found for material 0 of model 'models/enemy_plasma_droid.glb', loading fallback texture
+No diffuse textures found for material 2 of model 'models/enemy_soldier.glb', loading fallback texture
+No diffuse textures found for material 0 of model 'models/enemy_eyeball.glb', loading fallback texture
+No diffuse textures found for material 1 of model 'models/enemy_lizard.glb', loading fallback texture
+No diffuse textures found for material 1 of model 'models/enemy_soldier.glb', loading fallback texture
+No diffuse textures found for material 0 of model 'models/enemy_plasma_droid.glb', loading fallback texture
+No diffuse textures found for material 1 of model 'models/enemy_rocketeer.glb', loading fallback texture
+No diffuse textures found for material 1 of model 'models/enemy_lizard.glb', loading fallback texture
+No diffuse textures found for material 0 of model 'models/light_shrooms.glb', loading fallback texture
+No diffuse textures found for material 0 of model 'models/enemy_gun_turret.glb', loading fallback texture
+No diffuse textures found for material 1 of model 'models/enemy_soldier.glb', loading fallback texture
+No diffuse textures found for material 0 of model 'models/enemy_plasma_droid.glb', loading fallback texture
+No diffuse textures found for material 0 of model 'models/enemy_eyeball.glb', loading fallback texture
+No diffuse textures found for material 2 of model 'models/enemy_soldier.glb', loading fallback texture
+No diffuse textures found for material 0 of model 'models/enemy_plasma_droid.glb', loading fallback texture
+No diffuse textures found for material 0 of model 'models/enemy_plasma_droid.glb', loading fallback texture
+No diffuse textures found for material 0 of model 'models/enemy_eyeball.glb', loading fallback texture
+No diffuse textures found for material 0 of model 'models/enemy_gun_turret.glb', loading fallback texture
+No diffuse textures found for material 0 of model 'models/enemy_plasma_droid.glb', loading fallback texture
+No diffuse textures found for material 0 of model 'models/enemy_plasma_droid.glb', loading fallback texture
+Saved "/home/v/Desktop/VolumetricsTest/maps/e1m5_v3.map" in 11ms
+Saved "/home/v/Desktop/VolumetricsTest/maps/e1m5_v3.map" in 11ms
+Saved "/home/v/Desktop/VolumetricsTest/maps/e1m5_v3.map" in 11ms
+Could not resize brush: Brush is empty
+Saved "/home/v/Desktop/VolumetricsTest/maps/e1m5_v3.map" in 11ms
+Saved "/home/v/Desktop/VolumetricsTest/maps/e1m5_v3.map" in 10ms
+Created autosave backup at "/home/v/Desktop/VolumetricsTest/maps/autosave/e1m5_v3.9.map"
+Saved "/home/v/Desktop/VolumetricsTest/maps/e1m5_v3.map" in 4ms
+Created autosave backup at "/home/v/Desktop/VolumetricsTest/maps/autosave/e1m5_v3.10.map"
+Saved "/home/v/Desktop/VolumetricsTest/maps/e1m5_v3.map" in 11ms
+Saved "/home/v/Desktop/VolumetricsTest/maps/e1m5_v3.map" in 10ms
+Saved "/home/v/Desktop/VolumetricsTest/maps/e1m5_v3.map" in 11ms
+Saved "/home/v/Desktop/VolumetricsTest/maps/e1m5_v3.map" in 10ms
+Saved "/home/v/Desktop/VolumetricsTest/maps/e1m5_v3.map" in 11ms
+Created autosave backup at "/home/v/Desktop/VolumetricsTest/maps/autosave/e1m5_v3.11.map"
+Saved "/home/v/Desktop/VolumetricsTest/maps/e1m5_v3.map" in 11ms
+Saved "/home/v/Desktop/VolumetricsTest/maps/e1m5_v3.map" in 11ms
+Saved "/home/v/Desktop/VolumetricsTest/maps/e1m5_v3.map" in 11ms
+Saved "/home/v/Desktop/VolumetricsTest/maps/e1m5_v3.map" in 11ms
+Reloading entity definitions
+Found multiple model properties (at line 448, column 101)
+Found multiple model properties (at line 454, column 99)
+Loaded entity definition file FuncGodot.fgd
+No diffuse textures found for material 0 of model 'models/ldeco_torch.glb', loading fallback texture
+No diffuse textures found for material 0 of model 'models/deco_pipe.glb', loading fallback texture
+No diffuse textures found for material 0 of model 'models/enemy_gun_turret_wall.glb', loading fallback texture
+No diffuse textures found for material 0 of model 'models/ldeco_shrooms.glb', loading fallback texture
+No diffuse textures found for material 0 of model 'models/deco_pipe_bend.glb', loading fallback texture
+No diffuse textures found for material 0 of model 'models/enemy_canary.glb', loading fallback texture
+No diffuse textures found for material 0 of model 'models/enemy_gun_turret_wall.glb', loading fallback texture
+No diffuse textures found for material 0 of model 'models/ldeco_shrooms.glb', loading fallback texture
+No diffuse textures found for material 2 of model 'models/ldeco_torch.glb', loading fallback texture
+No diffuse textures found for material 1 of model 'models/enemy_pinkerton.glb', loading fallback texture
+No diffuse textures found for material 1 of model 'models/enemy_canary.glb', loading fallback texture
+No diffuse textures found for material 0 of model 'models/ldeco_shrooms.glb', loading fallback texture
+No diffuse textures found for material 0 of model 'models/enemy_gun_turret_wall.glb', loading fallback texture
+No diffuse textures found for material 1 of model 'models/enemy_canary.glb', loading fallback texture
+No diffuse textures found for material 1 of model 'models/enemy_pinkerton.glb', loading fallback texture
+No diffuse textures found for material 0 of model 'models/ldeco_shrooms.glb', loading fallback texture
+No diffuse textures found for material 0 of model 'models/enemy_gun_turret_wall.glb', loading fallback texture
+No diffuse textures found for material 1 of model 'models/enemy_canary.glb', loading fallback texture
+No diffuse textures found for material 1 of model 'models/enemy_pinkerton.glb', loading fallback texture
+No diffuse textures found for material 0 of model 'models/enemy_gun_turret_wall.glb', loading fallback texture
+No diffuse textures found for material 1 of model 'models/enemy_canary.glb', loading fallback texture
+No diffuse textures found for material 1 of model 'models/enemy_pinkerton.glb', loading fallback texture
+No diffuse textures found for material 0 of model 'models/enemy_gun_turret_wall.glb', loading fallback texture
+No diffuse textures found for material 1 of model 'models/enemy_canary.glb', loading fallback texture
+Reloading entity definitions
+Found multiple model properties (at line 448, column 101)
+Found multiple model properties (at line 454, column 99)
+Loaded entity definition file FuncGodot.fgd
+No diffuse textures found for material 0 of model 'models/deco_pipe.glb', loading fallback texture
+No diffuse textures found for material 0 of model 'models/ldeco_torch.glb', loading fallback texture
+No diffuse textures found for material 0 of model 'models/enemy_gun_turret_wall.glb', loading fallback texture
+No diffuse textures found for material 0 of model 'models/ldeco_shrooms.glb', loading fallback texture
+No diffuse textures found for material 0 of model 'models/deco_pipe_bend.glb', loading fallback texture
+No diffuse textures found for material 0 of model 'models/enemy_canary.glb', loading fallback texture
+No diffuse textures found for material 0 of model 'models/enemy_gun_turret_wall.glb', loading fallback texture
+No diffuse textures found for material 0 of model 'models/ldeco_shrooms.glb', loading fallback texture
+No diffuse textures found for material 1 of model 'models/enemy_pinkerton.glb', loading fallback texture
+No diffuse textures found for material 2 of model 'models/ldeco_torch.glb', loading fallback texture
+No diffuse textures found for material 1 of model 'models/enemy_canary.glb', loading fallback texture
+No diffuse textures found for material 0 of model 'models/enemy_gun_turret_wall.glb', loading fallback texture
+No diffuse textures found for material 0 of model 'models/ldeco_shrooms.glb', loading fallback texture
+No diffuse textures found for material 1 of model 'models/enemy_pinkerton.glb', loading fallback texture
+No diffuse textures found for material 1 of model 'models/enemy_canary.glb', loading fallback texture
+No diffuse textures found for material 0 of model 'models/enemy_gun_turret_wall.glb', loading fallback texture
+No diffuse textures found for material 1 of model 'models/enemy_pinkerton.glb', loading fallback texture
+No diffuse textures found for material 0 of model 'models/ldeco_shrooms.glb', loading fallback texture
+No diffuse textures found for material 1 of model 'models/enemy_canary.glb', loading fallback texture
+No diffuse textures found for material 1 of model 'models/enemy_pinkerton.glb', loading fallback texture
+No diffuse textures found for material 0 of model 'models/enemy_gun_turret_wall.glb', loading fallback texture
+No diffuse textures found for material 1 of model 'models/enemy_canary.glb', loading fallback texture
+No diffuse textures found for material 0 of model 'models/enemy_gun_turret_wall.glb', loading fallback texture
+No diffuse textures found for material 1 of model 'models/enemy_canary.glb', loading fallback texture
+Reloading material collections
+Found 0 shaders
+Saved "/home/v/Desktop/VolumetricsTest/maps/e1m5_v3.map" in 10ms
+Could not update brushes: Error{msg: Brush is incomplete}
+Saved "/home/v/Desktop/VolumetricsTest/maps/e1m5_v3.map" in 12ms
+Saved "/home/v/Desktop/VolumetricsTest/maps/e1m5_v3.map" in 3ms
+Saved "/home/v/Desktop/VolumetricsTest/maps/e1m5_v3.map" in 10ms
+Saved "/home/v/Desktop/VolumetricsTest/maps/e1m5_v3.map" in 12ms
+updateProposedDragHandles called during a drag
+updateProposedDragHandles called during a drag
+updateProposedDragHandles called during a drag
+updateProposedDragHandles called during a drag
+updateProposedDragHandles called during a drag
+updateProposedDragHandles called during a drag
+updateProposedDragHandles called during a drag
+updateProposedDragHandles called during a drag
+updateProposedDragHandles called during a drag
+updateProposedDragHandles called during a drag
+updateProposedDragHandles called during a drag
+updateProposedDragHandles called during a drag
+updateProposedDragHandles called during a drag
+updateProposedDragHandles called during a drag
+updateProposedDragHandles called during a drag
+updateProposedDragHandles called during a drag
+updateProposedDragHandles called during a drag
+updateProposedDragHandles called during a drag
+updateProposedDragHandles called during a drag
+updateProposedDragHandles called during a drag
+updateProposedDragHandles called during a drag
+updateProposedDragHandles called during a drag
+updateProposedDragHandles called during a drag
+updateProposedDragHandles called during a drag

@@ -1,13 +1,13 @@
 [gd_resource type="ShaderMaterial" load_steps=9 format=3 uid="uid://bqvg2s1888yrr"]
 
 [ext_resource type="Shader" path="res://trench_broom/textures/structural/bricks.gdshader" id="1_hnkwa"]
-[ext_resource type="Texture2D" uid="uid://oxfcan2qq6jw" path="res://trench_broom/textures/_pbr/bricks_stone/bricks_stone_nomortar_detail_mask.png" id="2_jq46j"]
-[ext_resource type="Texture2D" uid="uid://cqo0bevj86war" path="res://trench_broom/textures/_pbr/bricks_stone/bricks_stone_detail_normals.tres" id="3_raavu"]
-[ext_resource type="Texture2D" uid="uid://bnjon6ehccyhy" path="res://trench_broom/textures/_pbr/shared/bricks_flux_noise.tres" id="4_dy0og"]
-[ext_resource type="Texture2D" uid="uid://d0fc86a1rkyne" path="res://trench_broom/textures/_pbr/bricks_stone/bricks_stone_nomortar_flux_map.png" id="4_lqnfw"]
-[ext_resource type="Texture2D" uid="uid://bn0gr0myn4wd6" path="res://trench_broom/textures/_pbr/bricks_stone/bricks_stone_flux_palette.tres" id="6_5inqi"]
-[ext_resource type="Texture2D" uid="uid://cdfomaysjn06h" path="res://trench_broom/textures/_pbr/bricks_stone/bricks_stone_nomortar_albedo.png" id="7_s3y23"]
-[ext_resource type="Texture2D" uid="uid://dwuql4otrmvqk" path="res://trench_broom/textures/_pbr/bricks_stone/bricks_stone_nomortar_normals.png" id="8_a632f"]
+[ext_resource type="Texture2D" uid="uid://oxfcan2qq6jw" path="res://materials/terrain/_pbr/bricks_stone/bricks_stone_nomortar_detail_mask.png" id="2_jq46j"]
+[ext_resource type="Texture2D" uid="uid://cqo0bevj86war" path="res://materials/terrain/_pbr/bricks_stone/bricks_stone_detail_normals.tres" id="3_raavu"]
+[ext_resource type="Texture2D" uid="uid://bnjon6ehccyhy" path="res://materials/terrain/_pbr/shared/bricks_flux_noise.tres" id="4_dy0og"]
+[ext_resource type="Texture2D" uid="uid://d0fc86a1rkyne" path="res://materials/terrain/_pbr/bricks_stone/bricks_stone_nomortar_flux_map.png" id="4_lqnfw"]
+[ext_resource type="Texture2D" uid="uid://bn0gr0myn4wd6" path="res://materials/terrain/_pbr/bricks_stone/bricks_stone_flux_palette.tres" id="6_5inqi"]
+[ext_resource type="Texture2D" uid="uid://cdfomaysjn06h" path="res://materials/terrain/_pbr/bricks_stone/bricks_stone_nomortar_albedo.png" id="7_s3y23"]
+[ext_resource type="Texture2D" uid="uid://dwuql4otrmvqk" path="res://materials/terrain/_pbr/bricks_stone/bricks_stone_nomortar_normals.png" id="8_a632f"]
 
 [resource]
 render_priority = 0

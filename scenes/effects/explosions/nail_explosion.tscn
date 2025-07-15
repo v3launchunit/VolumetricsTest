@@ -1,8 +1,8 @@
 [gd_scene load_steps=24 format=3 uid="uid://r5omla7tiysx"]
 
-[ext_resource type="Script" path="res://scripts/effects/lifetime.gd" id="1_si2i4"]
-[ext_resource type="Script" path="res://scripts/auto_play.gd" id="2_5aj6f"]
-[ext_resource type="Script" path="res://scripts/effects/area_damage.gd" id="3_qqn2f"]
+[ext_resource type="Script" uid="uid://b5h7xnsiqnyy7" path="res://scripts/effects/lifetime.gd" id="1_si2i4"]
+[ext_resource type="Script" uid="uid://b7g82w2xxwd0u" path="res://scripts/auto_play.gd" id="2_5aj6f"]
+[ext_resource type="Script" uid="uid://iq4n1kv8ucdv" path="res://scripts/effects/area_damage.gd" id="3_qqn2f"]
 [ext_resource type="AudioStream" uid="uid://tv57kig5mcoh" path="res://audio/streams/effects/kaboom.wav" id="4_7qabn"]
 [ext_resource type="AudioStream" uid="uid://b4em0t5e3pb8a" path="res://audio/streams/effects/vine_boom.mp3" id="5_6utla"]
 
@@ -172,7 +172,7 @@ tracks/1/enabled = true
 tracks/1/path = NodePath("Fireball")
 tracks/1/interp = 1
 tracks/1/loop_wrap = false
-tracks/1/keys = PackedFloat32Array(0, 1, 0, 0, 0, 0.3, 1, 5, 5, 5)
+tracks/1/keys = PackedFloat32Array(0, 1, 0.01, 0.01, 0.01, 0.3, 1, 5, 5, 5)
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
@@ -224,8 +224,8 @@ tracks/5/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_0kjjc"]
 _data = {
-"RESET": SubResource("Animation_3e3i5"),
-"anim": SubResource("Animation_l41wm")
+&"RESET": SubResource("Animation_3e3i5"),
+&"anim": SubResource("Animation_l41wm")
 }
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_er5bi"]
@@ -282,7 +282,7 @@ skeleton = NodePath("../AnimationPlayer")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
-"": SubResource("AnimationLibrary_0kjjc")
+&"": SubResource("AnimationLibrary_0kjjc")
 }
 script = ExtResource("2_5aj6f")
 

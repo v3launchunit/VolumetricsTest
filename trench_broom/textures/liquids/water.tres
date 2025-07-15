@@ -1,6 +1,6 @@
 [gd_resource type="ShaderMaterial" load_steps=4 format=3 uid="uid://biw3k00jqqq3l"]
 
-[ext_resource type="Shader" path="res://trench_broom/textures/liquids/water.gdshader" id="1_0f424"]
+[ext_resource type="Shader" uid="uid://dppx8fma3ll1g" path="res://trench_broom/textures/liquids/water.gdshader" id="1_0f424"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_kwhfw"]
 frequency = 0.05

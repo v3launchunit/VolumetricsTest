@@ -1,0 +1,1430 @@
+[gd_scene load_steps=162 format=4 uid="uid://ddybwy4hdo2q3"]
+
+[ext_resource type="Script" uid="uid://bmu1uqqe8qsqm" path="res://levels/level.gd" id="1_lifds"]
+[ext_resource type="PackedScene" uid="uid://do61x5km3wthk" path="res://entities/player/player.tscn" id="1_npqeh"]
+[ext_resource type="Texture2D" uid="uid://cu58hb7h0r68v" path="res://effects/look_up_tables/1d/1d_lut_16_color.png" id="2_6e4xq"]
+[ext_resource type="Texture2D" uid="uid://dybaimi1b3b85" path="res://effects/glow/lens_dirt/lens_dirt_0.png" id="3_in5hi"]
+[ext_resource type="Shader" uid="uid://bx1vhyqxmy2l3" path="res://shaders/skybox/overcast.gdshader" id="4_0mynj"]
+[ext_resource type="Script" uid="uid://bhkks8bsvt4l2" path="res://scripts/effects/env_settings_hook.gd" id="5_ivhkg"]
+[ext_resource type="ArrayOccluder3D" uid="uid://de24am4sbu2ce" path="res://levels/no_export/debug/test_level/test_level.occ" id="6_1knku"]
+[ext_resource type="CompressedTexture3D" uid="uid://cbk1h1yxquuv1" path="res://levels/no_export/debug/test_level/test_level.GPUParticlesCollisionSDF3D_data.exr" id="7_qp8ah"]
+[ext_resource type="Texture2D" uid="uid://c8k3lo0nolynw" path="res://materials/terrain/trench_broom_2/bricks.png" id="8_u4pqh"]
+[ext_resource type="Texture2D" uid="uid://cwfs3yd67cdxg" path="res://materials/terrain/custom_hand/bricks/bricks_heights.png" id="9_nniwt"]
+[ext_resource type="Texture2D" uid="uid://d0airnxbjud3t" path="res://materials/terrain/custom_hand/bricks/bricks_normals.png" id="10_nve4p"]
+[ext_resource type="Material" uid="uid://j3w61nhxr063" path="res://trench_broom/textures/structural/metal.tres" id="11_guo1l"]
+[ext_resource type="Material" uid="uid://qt3bjecsm0qb" path="res://trench_broom/textures/shutter_door.tres" id="16_pn470"]
+[ext_resource type="PackedScene" uid="uid://cxy7g2dkotnvh" path="res://pickups/weapons/grenade_launcher_pickup.tscn" id="24_toi0m"]
+[ext_resource type="PackedScene" uid="uid://c0kvfvxi487l1" path="res://scenes/objects/lights/street_lamp.tscn" id="25_wbmk3"]
+[ext_resource type="PackedScene" uid="uid://bxdu412yk2ut8" path="res://scenes/objects/crate_wooden.tscn" id="27_oqcrq"]
+[ext_resource type="PackedScene" uid="uid://dl7fuv4wdxtjx" path="res://pickups/ammo/shotgun_shell/shell_pickup.tscn" id="28_globp"]
+[ext_resource type="PackedScene" uid="uid://lt47oncbceb2" path="res://pickups/weapons/akm_pickup.tscn" id="29_rd0bs"]
+[ext_resource type="PackedScene" uid="uid://b2q7xucggusys" path="res://pickups/weapons/plasma_cannon_pickup.tscn" id="30_ons33"]
+[ext_resource type="PackedScene" uid="uid://du780rqis8eqo" path="res://pickups/weapons/boomstick_pickup.tscn" id="31_hkdgm"]
+[ext_resource type="PackedScene" uid="uid://b2ceyvvn2j4nq" path="res://pickups/weapons/big_iron_pickup.tscn" id="32_culoa"]
+[ext_resource type="PackedScene" uid="uid://ce2yor24rivr3" path="res://pickups/weapons/nailgun_pickup.tscn" id="33_j5qjm"]
+[ext_resource type="PackedScene" uid="uid://dakry3wmqjckc" path="res://pickups/weapons/crossbow_pickup.tscn" id="34_jl723"]
+[ext_resource type="PackedScene" uid="uid://dxyhvyy821swt" path="res://pickups/weapons/hunting_rifle_pickup.tscn" id="35_u0dbq"]
+[ext_resource type="Script" uid="uid://blyitdblilgra" path="res://trench_broom/func_godot_fgd/entities/solid/func/brush_door.gd" id="36_ba20l"]
+[ext_resource type="PackedScene" uid="uid://df20em4dv0q37" path="res://pickups/weapons/rpg_pickup.tscn" id="36_v5hyr"]
+[ext_resource type="Script" uid="uid://bbkdp6jli1dpe" path="res://trench_broom/func_godot_fgd/entities/solid/func/level_exit.gd" id="37_vcbyu"]
+[ext_resource type="PackedScene" uid="uid://dqugqrrqpxdih" path="res://entities/enemies/machines/gun_turret/gun_turret.tscn" id="37_w2aui"]
+[ext_resource type="Script" uid="uid://21cqeu52nt12" path="res://addons/func_godot/src/map/func_godot_map.gd" id="38_cabet"]
+[ext_resource type="Shader" uid="uid://cer135qfxd6fl" path="res://shaders/spatial/depth_test.gdshader" id="39_34bav"]
+[ext_resource type="Material" uid="uid://cgrmnklrxmjec" path="res://entities/enemies/shadow_mat.tres" id="39_a4eva"]
+[ext_resource type="Resource" uid="uid://bkhxcqsquw1yg" path="res://addons/func_godot/func_godot_default_map_settings.tres" id="39_gspvf"]
+[ext_resource type="Shader" uid="uid://bdyqub3wokw88" path="res://shaders/spatial/iridescent_psx.gdshader" id="39_vgoen"]
+[ext_resource type="Shader" uid="uid://bh63aeoimg3jo" path="res://shaders/spatial/psx_test.gdshader" id="40_8dl3b"]
+[ext_resource type="Texture2D" uid="uid://cyg2snr1w5xw5" path="res://addons/func_godot/textures/default_texture.png" id="40_rt55l"]
+[ext_resource type="Shader" uid="uid://bk6kwgdgnhu1d" path="res://shaders/spatial/tv_static.gdshader" id="40_w0giw"]
+[ext_resource type="Shader" uid="uid://dvper36k2f82x" path="res://shaders/portal.gdshader" id="41_0lrjq"]
+[ext_resource type="PackedScene" uid="uid://7e6nf0ho2ltr" path="res://scenes/objects/teleporter.tscn" id="41_dkm3o"]
+[ext_resource type="Material" uid="uid://biw3k00jqqq3l" path="res://trench_broom/textures/liquids/water.tres" id="42_m623u"]
+[ext_resource type="PackedScene" uid="uid://13po7ktlg4ba" path="res://entities/enemies/military/soldier/soldier.tscn" id="46_mht45"]
+[ext_resource type="Script" uid="uid://c7lhqwn4gnw3k" path="res://trench_broom/func_godot_fgd/entities/solid/area/area_hazard.gd" id="57_iagox"]
+[ext_resource type="PackedScene" uid="uid://bfqcephq1sfd3" path="res://entities/neutral/mystery_man/mystery_man.tscn" id="62_kax4q"]
+
+[sub_resource type="Gradient" id="Gradient_m4bx2"]
+offsets = PackedFloat32Array(0.25, 1)
+colors = PackedColorArray(0.0666667, 0.0666667, 0.0666667, 0, 0.25, 0.25, 0.25, 1)
+metadata/_snap_enabled = true
+metadata/_snap_count = 8
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_wgug2"]
+noise_type = 2
+frequency = 0.025
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_43ter"]
+width = 1024
+invert = true
+seamless = true
+color_ramp = SubResource("Gradient_m4bx2")
+noise = SubResource("FastNoiseLite_wgug2")
+
+[sub_resource type="Gradient" id="Gradient_1tu58"]
+interpolation_mode = 2
+offsets = PackedFloat32Array(0, 0.5, 1)
+colors = PackedColorArray(0.0666667, 0.0666667, 0.0666667, 1, 0.25, 0.25, 0.25, 0.25098, 0.5, 0.5, 0.5, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_1fgyn"]
+gradient = SubResource("Gradient_1tu58")
+width = 1024
+height = 512
+fill_from = Vector2(0.5, 0.5625)
+fill_to = Vector2(0.5, 0.4375)
+metadata/_snap_enabled = true
+metadata/_snap_count = 16
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_2pp38"]
+shader = ExtResource("4_0mynj")
+shader_parameter/sky_cubemap_color = Color(0.25098, 0.25098, 0.25098, 1)
+shader_parameter/sky_tex = SubResource("NoiseTexture2D_43ter")
+shader_parameter/cloud_tex_a = SubResource("NoiseTexture2D_43ter")
+shader_parameter/horizon_tex = SubResource("GradientTexture2D_1fgyn")
+shader_parameter/scroll_speed = 0.005
+
+[sub_resource type="Sky" id="Sky_ccsn7"]
+sky_material = SubResource("ShaderMaterial_2pp38")
+
+[sub_resource type="Environment" id="Environment_6h202"]
+background_mode = 2
+sky = SubResource("Sky_ccsn7")
+glow_blend_mode = 0
+glow_map = ExtResource("3_in5hi")
+volumetric_fog_enabled = true
+volumetric_fog_density = 0.0
+volumetric_fog_ambient_inject = 0.25
+volumetric_fog_temporal_reprojection_enabled = false
+adjustment_color_correction = ExtResource("2_6e4xq")
+
+[sub_resource type="NavigationMesh" id="NavigationMesh_ecv47"]
+vertices = PackedVector3Array(-8.5, 0, -20.75, -6.25, 0, -21, -6.25, 0, -24.5, -24.5, 0, -24.5, -24.5, 0, -14, -8.5, 0, -14, 6.5, 0, -21, 6.5, 0, -24.5, 8.75, 0, -20.75, 24.5, 0, -24.5, 8.75, 0, -13.75, 24.5, 0, -13.5, -7.5, 2, -20, -7.5, 2, -13, 7.5, 2, -13, 7.5, 2, -20, -7.25, 0, -19.75, -7.25, 0, -13, 7.5, 0, -13, 7.5, 0, -19.75, -8.25, 0, 1, -8, 0, -11.75, -8.5, 0, -12, -10, 0, 1.25, -24.5, 0, 5, -10, 0, 5, 8.75, 0, -12.25, 8.25, 0, -11.75, 4.5, 0, 6.75, 4.75, 0, 7.5, 24.5, 0, 7.5, 4, 0, -11.75, 4, 0, 6.75, -12, 19, -12, -12, 19, 12, 12, 19, 12, 12, 19, -12, -7.75, 0, 6.5, 3.25, 0, 7.25, -7.75, 0, 1.25, -10, 0, 7, -9, 0, 7.25, -24.5, 0, 24.5, -9, 0, 24.5, 3.25, 0, 8, -8.25, 0, 7.25, 4, 0, 24.5, 4, 0, 8.25, 4.5, 0, 8.25, 24.5, 0, 24.5)
+polygons = [PackedInt32Array(1, 0, 2), PackedInt32Array(2, 0, 3), PackedInt32Array(5, 4, 0), PackedInt32Array(0, 4, 3), PackedInt32Array(2, 7, 1), PackedInt32Array(1, 7, 6), PackedInt32Array(6, 7, 8), PackedInt32Array(8, 7, 9), PackedInt32Array(10, 8, 11), PackedInt32Array(11, 8, 9), PackedInt32Array(15, 14, 12), PackedInt32Array(12, 14, 13), PackedInt32Array(19, 18, 16), PackedInt32Array(16, 18, 17), PackedInt32Array(21, 20, 22), PackedInt32Array(22, 20, 23), PackedInt32Array(22, 23, 5), PackedInt32Array(5, 23, 4), PackedInt32Array(4, 23, 24), PackedInt32Array(23, 25, 24), PackedInt32Array(26, 10, 11), PackedInt32Array(26, 11, 27), PackedInt32Array(27, 11, 30), PackedInt32Array(27, 30, 28), PackedInt32Array(28, 30, 29), PackedInt32Array(32, 31, 28), PackedInt32Array(28, 31, 27), PackedInt32Array(36, 35, 33), PackedInt32Array(33, 35, 34), PackedInt32Array(38, 37, 32), PackedInt32Array(32, 37, 39), PackedInt32Array(20, 21, 39), PackedInt32Array(39, 21, 31), PackedInt32Array(39, 31, 32), PackedInt32Array(24, 25, 40), PackedInt32Array(40, 41, 24), PackedInt32Array(24, 41, 43), PackedInt32Array(24, 43, 42), PackedInt32Array(38, 44, 37), PackedInt32Array(37, 44, 45), PackedInt32Array(45, 44, 41), PackedInt32Array(41, 44, 47), PackedInt32Array(41, 47, 46), PackedInt32Array(41, 46, 43), PackedInt32Array(46, 47, 48), PackedInt32Array(48, 29, 46), PackedInt32Array(46, 29, 30), PackedInt32Array(46, 30, 49)]
+geometry_parsed_geometry_type = 1
+geometry_collision_mask = 4294901761
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_y437j"]
+size = Vector3(50, 1, 50)
+
+[sub_resource type="BoxMesh" id="BoxMesh_ufs5o"]
+size = Vector3(25, 1, 25)
+
+[sub_resource type="Shader" id="Shader_wvlbm"]
+code = "// NOTE: Shader automatically converted from Godot Engine 4.1.1.stable.mono's StandardMaterial3D.
+
+shader_type spatial;
+render_mode blend_mix,depth_draw_opaque,cull_back,diffuse_burley,specular_schlick_ggx;
+uniform vec4 albedo : source_color;
+uniform sampler2D texture_albedo : source_color,filter_nearest,repeat_enable;
+uniform float point_size : hint_range(0,128);
+uniform float roughness : hint_range(0,1);
+uniform sampler2D texture_metallic : hint_default_white,filter_nearest,repeat_enable;
+uniform vec4 metallic_texture_channel;
+uniform sampler2D texture_roughness : hint_roughness_r,filter_nearest,repeat_enable;
+uniform float specular;
+uniform float metallic;
+uniform sampler2D texture_normal : hint_roughness_normal,filter_nearest,repeat_enable;
+uniform float normal_scale : hint_range(-16,16);
+uniform sampler2D texture_heightmap : hint_default_black,filter_linear,repeat_enable;
+uniform float heightmap_scale;
+uniform int heightmap_min_layers;
+uniform int heightmap_max_layers;
+uniform vec2 heightmap_flip;
+uniform vec3 uv1_scale;
+uniform vec3 uv1_offset;
+uniform vec3 uv2_scale;
+uniform vec3 uv2_offset;
+
+
+void vertex() {
+	UV=UV*uv1_scale.xy+uv1_offset.xy;
+}
+
+
+
+
+
+
+void fragment() {
+	vec2 base_uv = UV;
+	{
+		vec3 view_dir = normalize(normalize(-VERTEX + EYE_OFFSET) * mat3(TANGENT * heightmap_flip.x, -BINORMAL * heightmap_flip.y, NORMAL));
+		float depth = 1.0 - texture(texture_heightmap, base_uv).r;
+		vec2 ofs = base_uv - view_dir.xy * depth * heightmap_scale * 0.01;
+		base_uv=ofs;
+	}
+	vec4 albedo_tex = texture(texture_albedo,base_uv);
+	ALBEDO = albedo.rgb * albedo_tex.rgb;
+	float metallic_tex = dot(texture(texture_metallic,base_uv),metallic_texture_channel);
+	METALLIC = metallic_tex * metallic;
+	vec4 roughness_texture_channel = vec4(1.0,0.0,0.0,0.0);
+	float roughness_tex = dot(texture(texture_roughness,base_uv),roughness_texture_channel);
+	ROUGHNESS = roughness_tex * roughness;
+	SPECULAR = specular;
+	NORMAL_MAP = texture(texture_normal,base_uv).rgb;
+	NORMAL_MAP_DEPTH = normal_scale;
+}
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_lk5t3"]
+render_priority = 0
+shader = SubResource("Shader_wvlbm")
+shader_parameter/albedo = Color(1, 1, 1, 1)
+shader_parameter/texture_albedo = ExtResource("8_u4pqh")
+shader_parameter/point_size = 1.0
+shader_parameter/roughness = 0.75
+shader_parameter/metallic_texture_channel = Vector4(0, 0, 0, 0)
+shader_parameter/specular = 0.5
+shader_parameter/metallic = 0.0
+shader_parameter/texture_normal = ExtResource("10_nve4p")
+shader_parameter/normal_scale = 1.0
+shader_parameter/texture_heightmap = ExtResource("9_nniwt")
+shader_parameter/heightmap_scale = 1.0
+shader_parameter/heightmap_min_layers = 8
+shader_parameter/heightmap_max_layers = 32
+shader_parameter/heightmap_flip = Vector2(1, 1)
+shader_parameter/uv1_scale = Vector3(6.25, 6.25, 6.25)
+shader_parameter/uv1_offset = Vector3(0, 0, 0)
+shader_parameter/uv2_scale = Vector3(1, 1, 1)
+shader_parameter/uv2_offset = Vector3(0, 0, 0)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_pjpoy"]
+size = Vector3(25, 1, 25)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ei4gk"]
+albedo_texture = ExtResource("8_u4pqh")
+roughness = 0.75
+normal_enabled = true
+normal_texture = ExtResource("10_nve4p")
+heightmap_enabled = true
+heightmap_scale = 1.0
+heightmap_texture = ExtResource("9_nniwt")
+uv1_scale = Vector3(6.25, 6.25, 6.25)
+uv1_world_triplanar = true
+texture_filter = 0
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_w58hg"]
+size = Vector3(1, 10, 5)
+
+[sub_resource type="BoxMesh" id="BoxMesh_mywcg"]
+size = Vector3(1, 10, 5)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ys4py"]
+size = Vector3(5, 0.45, 5)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_7qtod"]
+noise_type = 3
+
+[sub_resource type="NoiseTexture3D" id="NoiseTexture3D_duq1f"]
+noise = SubResource("FastNoiseLite_7qtod")
+
+[sub_resource type="FogMaterial" id="FogMaterial_ybp2o"]
+albedo = Color(0.823529, 0.0392157, 0.0627451, 1)
+density_texture = SubResource("NoiseTexture3D_duq1f")
+
+[sub_resource type="Gradient" id="Gradient_ega40"]
+interpolation_mode = 2
+offsets = PackedFloat32Array(0.5, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_cj6j5"]
+
+[sub_resource type="NoiseTexture3D" id="NoiseTexture3D_f8v7f"]
+width = 128
+height = 16
+depth = 128
+color_ramp = SubResource("Gradient_ega40")
+noise = SubResource("FastNoiseLite_cj6j5")
+
+[sub_resource type="FogMaterial" id="FogMaterial_fwf4j"]
+density_texture = SubResource("NoiseTexture3D_f8v7f")
+
+[sub_resource type="FogMaterial" id="FogMaterial_swvkd"]
+height_falloff = 5.0
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_a6dyf"]
+frequency = 0.1
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_1oli5"]
+width = 64
+height = 16
+as_normal_map = true
+noise = SubResource("FastNoiseLite_a6dyf")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5sopx"]
+albedo_color = Color(1, 1, 1, 0)
+roughness = 0.0
+normal_enabled = true
+normal_texture = SubResource("NoiseTexture2D_1oli5")
+refraction_enabled = true
+use_particle_trails = true
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_rt1fo"]
+emission_shape = 3
+emission_box_extents = Vector3(25, 0, 50)
+direction = Vector3(0, -1, 0)
+spread = 5.0
+initial_velocity_min = 100.0
+initial_velocity_max = 100.0
+collision_mode = 1
+collision_friction = 1.0
+collision_bounce = 0.0
+
+[sub_resource type="TubeTrailMesh" id="TubeTrailMesh_k0d6r"]
+radius = 0.063
+radial_steps = 6
+
+[sub_resource type="Gradient" id="Gradient_uom44"]
+colors = PackedColorArray(1, 1, 1, 1, 0.5, 0.5, 0.5, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_y65j1"]
+gradient = SubResource("Gradient_uom44")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_v4bqh"]
+direction = Vector3(0, 1, 0)
+initial_velocity_min = 0.5
+initial_velocity_max = 1.0
+gravity = Vector3(0, 0, 0)
+color = Color(0.74902, 0.74902, 0.74902, 0.25098)
+color_ramp = SubResource("GradientTexture1D_y65j1")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dyxhy"]
+transparency = 3
+alpha_hash_scale = 1.0
+alpha_antialiasing_mode = 0
+vertex_color_use_as_albedo = true
+
+[sub_resource type="SphereMesh" id="SphereMesh_g714l"]
+material = SubResource("StandardMaterial3D_dyxhy")
+radius = 0.25
+height = 0.5
+radial_segments = 8
+rings = 3
+
+[sub_resource type="Gradient" id="Gradient_1u3j0"]
+interpolation_mode = 2
+colors = PackedColorArray(1, 1, 0, 0.501961, 1, 0, 0, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_ol472"]
+gradient = SubResource("Gradient_1u3j0")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_eqhva"]
+direction = Vector3(0, 1, 0)
+initial_velocity_min = 0.5
+initial_velocity_max = 1.0
+gravity = Vector3(0, 0, 0)
+color_ramp = SubResource("GradientTexture1D_ol472")
+
+[sub_resource type="Gradient" id="Gradient_2ubtp"]
+interpolation_mode = 2
+offsets = PackedFloat32Array(0, 0.5, 1)
+colors = PackedColorArray(1, 0, 0, 1, 1, 1, 0, 0.501961, 1, 1, 0, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_wqu4k"]
+gradient = SubResource("Gradient_2ubtp")
+width = 16
+height = 16
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(1, 0.5)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rhj3h"]
+transparency = 1
+blend_mode = 1
+shading_mode = 0
+vertex_color_use_as_albedo = true
+albedo_texture = SubResource("GradientTexture2D_wqu4k")
+billboard_mode = 1
+
+[sub_resource type="QuadMesh" id="QuadMesh_n5fmy"]
+material = SubResource("StandardMaterial3D_rhj3h")
+
+[sub_resource type="Gradient" id="Gradient_0n68d"]
+interpolation_mode = 1
+offsets = PackedFloat32Array(0, 0.3, 0.6, 0.9)
+colors = PackedColorArray(0, 0, 0, 0, 0, 1, 0, 1, 0, 0.752941, 0, 1, 0, 0.501961, 0, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_4oyr3"]
+frequency = 0.1
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_56xf6"]
+width = 128
+height = 128
+seamless = true
+seamless_blend_skirt = 0.25
+color_ramp = SubResource("Gradient_0n68d")
+noise = SubResource("FastNoiseLite_4oyr3")
+
+[sub_resource type="Gradient" id="Gradient_bp8ef"]
+interpolation_mode = 1
+offsets = PackedFloat32Array(0, 0.2, 0.5, 0.8)
+colors = PackedColorArray(0, 0, 0, 0, 0, 1, 0, 1, 0, 0.752941, 0, 1, 0, 0.501961, 0, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_jfewy"]
+frequency = 0.1
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_i317r"]
+width = 128
+height = 128
+seamless = true
+seamless_blend_skirt = 0.25
+color_ramp = SubResource("Gradient_bp8ef")
+noise = SubResource("FastNoiseLite_jfewy")
+
+[sub_resource type="Gradient" id="Gradient_l81fm"]
+interpolation_mode = 1
+offsets = PackedFloat32Array(0, 0.1, 0.4, 0.7)
+colors = PackedColorArray(0, 0, 0, 0, 0, 1, 0, 1, 0, 0.752941, 0, 1, 0, 0.501961, 0, 1)
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_oryu8"]
+width = 128
+height = 128
+seamless = true
+seamless_blend_skirt = 0.25
+color_ramp = SubResource("Gradient_l81fm")
+noise = SubResource("FastNoiseLite_jfewy")
+
+[sub_resource type="Gradient" id="Gradient_vel1t"]
+interpolation_mode = 1
+offsets = PackedFloat32Array(0, 0.3, 0.6, 1)
+colors = PackedColorArray(0, 1, 0, 1, 0, 0.752941, 0, 1, 0, 0.501961, 0, 1, 0, 0, 0, 1)
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_u335l"]
+width = 128
+height = 128
+seamless = true
+seamless_blend_skirt = 0.25
+color_ramp = SubResource("Gradient_vel1t")
+noise = SubResource("FastNoiseLite_jfewy")
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_n0au5"]
+width = 128
+height = 128
+seamless = true
+seamless_blend_skirt = 0.25
+as_normal_map = true
+noise = SubResource("FastNoiseLite_jfewy")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_j63y5"]
+albedo_texture = SubResource("NoiseTexture2D_u335l")
+roughness = 0.75
+normal_enabled = true
+normal_texture = SubResource("NoiseTexture2D_n0au5")
+texture_filter = 0
+grow = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_aqlr5"]
+next_pass = SubResource("StandardMaterial3D_j63y5")
+transparency = 2
+alpha_scissor_threshold = 0.5
+alpha_antialiasing_mode = 0
+albedo_texture = SubResource("NoiseTexture2D_oryu8")
+roughness = 0.75
+normal_enabled = true
+normal_texture = SubResource("NoiseTexture2D_n0au5")
+texture_filter = 0
+grow = true
+grow_amount = 0.025
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_x0so4"]
+next_pass = SubResource("StandardMaterial3D_aqlr5")
+transparency = 2
+alpha_scissor_threshold = 0.5
+alpha_antialiasing_mode = 0
+albedo_texture = SubResource("NoiseTexture2D_i317r")
+roughness = 0.75
+normal_enabled = true
+normal_texture = SubResource("NoiseTexture2D_n0au5")
+texture_filter = 0
+grow = true
+grow_amount = 0.05
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ii3s5"]
+next_pass = SubResource("StandardMaterial3D_x0so4")
+transparency = 2
+alpha_scissor_threshold = 0.5
+alpha_antialiasing_mode = 0
+albedo_texture = SubResource("NoiseTexture2D_56xf6")
+roughness = 0.75
+normal_enabled = true
+normal_texture = SubResource("NoiseTexture2D_n0au5")
+texture_filter = 0
+grow = true
+grow_amount = 0.075
+
+[sub_resource type="BoxMesh" id="BoxMesh_whbis"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_4y1om"]
+render_priority = 0
+shader = ExtResource("39_34bav")
+
+[sub_resource type="BoxMesh" id="BoxMesh_mfm58"]
+size = Vector3(-5, 10, 20)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_tuhld"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_jor0j"]
+noise = SubResource("FastNoiseLite_tuhld")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_5abgc"]
+render_priority = 0
+shader = ExtResource("40_8dl3b")
+shader_parameter/albedo = SubResource("NoiseTexture2D_jor0j")
+shader_parameter/affine_mapping = true
+shader_parameter/alpha_scissor = 0.5
+shader_parameter/jitter = 0.25
+shader_parameter/resolution = Vector2i(683, 384)
+
+[sub_resource type="BoxMesh" id="BoxMesh_l4wb7"]
+
+[sub_resource type="Gradient" id="Gradient_tykyu"]
+colors = PackedColorArray(1, 1, 0, 1, 1, 0, 0, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_aub0g"]
+gradient = SubResource("Gradient_tykyu")
+width = 16
+height = 16
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(1, 0.5)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ti0rx"]
+transparency = 1
+blend_mode = 1
+shading_mode = 0
+vertex_color_use_as_albedo = true
+albedo_texture = SubResource("GradientTexture2D_aub0g")
+texture_filter = 1
+billboard_mode = 3
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+proximity_fade_enabled = true
+
+[sub_resource type="Gradient" id="Gradient_ki8r3"]
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_awc0b"]
+gradient = SubResource("Gradient_ki8r3")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_minwl"]
+direction = Vector3(0, 1, 0)
+spread = 15.0
+initial_velocity_min = 1.0
+initial_velocity_max = 1.0
+gravity = Vector3(0, 0, 0)
+color_ramp = SubResource("GradientTexture1D_awc0b")
+
+[sub_resource type="QuadMesh" id="QuadMesh_m2e73"]
+
+[sub_resource type="Shader" id="Shader_aaxox"]
+code = "// NOTE: Shader automatically converted from Godot Engine 4.2.1.stable.mono's StandardMaterial3D.
+
+shader_type spatial;
+render_mode blend_mix,depth_draw_always,cull_disabled,diffuse_burley,specular_schlick_ggx;
+uniform vec4 albedo : source_color;
+uniform sampler2D texture_albedo : source_color,filter_nearest_mipmap,repeat_enable;
+uniform float point_size : hint_range(0,128);
+uniform float roughness : hint_range(0,1);
+uniform sampler2D texture_metallic : hint_default_white,filter_nearest_mipmap,repeat_enable;
+uniform vec4 metallic_texture_channel;
+uniform sampler2D texture_roughness : hint_roughness_r,filter_nearest_mipmap,repeat_enable;
+uniform float specular;
+uniform float metallic;
+uniform sampler2D texture_refraction : filter_nearest_mipmap,repeat_enable;
+uniform float refraction : hint_range(-16,16);
+uniform vec4 refraction_texture_channel;
+uniform sampler2D screen_texture : hint_screen_texture, repeat_disable, filter_linear_mipmap;uniform sampler2D texture_normal : hint_roughness_normal,filter_nearest_mipmap,repeat_enable;
+uniform float normal_scale : hint_range(-16,16);
+uniform vec3 uv1_scale;
+uniform vec3 uv1_offset;
+uniform vec3 uv2_scale;
+uniform vec3 uv2_offset;
+uniform float scroll_speed;
+
+void vertex() {
+	UV=UV*uv1_scale.xy+uv1_offset.xy;
+}
+
+void fragment() {
+	vec2 base_uv = UV;
+	vec2 uv_a = vec2(
+			base_uv.x + TIME * (scroll_speed - 0.05),
+			base_uv.y + TIME * scroll_speed
+	);
+	vec2 uv_b = vec2(
+			base_uv.x + TIME * (scroll_speed + 0.1),
+			base_uv.y - TIME * scroll_speed + 0.1
+	);
+	vec2 uv_c = vec2(
+			base_uv.x - TIME * (scroll_speed + 0.05),
+			base_uv.y + TIME * scroll_speed + 0.2
+	);
+	vec2 uv_d = vec2(
+			base_uv.x - TIME * (scroll_speed - 0.1),
+			base_uv.y - TIME * scroll_speed + 0.3
+	);
+	//vec4 albedo_tex = texture(texture_albedo,base_uv);
+	vec4 albedo_tex_a = texture(texture_albedo, uv_a);
+	vec4 albedo_tex_b = texture(texture_albedo, uv_b);
+	vec4 albedo_tex_c = texture(texture_albedo, uv_c);
+	vec4 albedo_tex_d = texture(texture_albedo, uv_d);
+	ALBEDO = albedo.rgb * (
+			albedo_tex_a.rgb
+			+ albedo_tex_b.rgb
+			+ albedo_tex_c.rgb
+			+ albedo_tex_c.rgb
+	);
+	float metallic_tex = dot(texture(texture_metallic,base_uv),metallic_texture_channel);
+	METALLIC = metallic_tex * metallic;
+	vec4 roughness_texture_channel = vec4(1.0,0.0,0.0,0.0);
+	float roughness_tex = dot(texture(texture_roughness,base_uv),roughness_texture_channel);
+	ROUGHNESS = roughness_tex * roughness;
+	SPECULAR = specular;
+	NORMAL_MAP = (
+			texture(texture_normal,uv_a).rgb
+			+ texture(texture_normal,uv_b).rgb
+			+ texture(texture_normal,uv_c).rgb
+			+ texture(texture_normal,uv_d).rgb
+	) * 0.25;
+	NORMAL_MAP_DEPTH = normal_scale;
+	vec3 unpacked_normal = NORMAL_MAP;
+	unpacked_normal.xy = unpacked_normal.xy * 2.0 - 1.0;
+	unpacked_normal.z = sqrt(max(0.0, 1.0 - dot(unpacked_normal.xy, unpacked_normal.xy)));
+	vec3 ref_normal = normalize( mix(NORMAL,TANGENT * unpacked_normal.x + BINORMAL * unpacked_normal.y + NORMAL * unpacked_normal.z,NORMAL_MAP_DEPTH) );
+	vec2 ref_ofs = SCREEN_UV - ref_normal.xy * dot(texture(texture_refraction,base_uv),refraction_texture_channel) * refraction;
+	float ref_amount = 1.0 - albedo.a * (
+			albedo_tex_a.a
+			+ albedo_tex_c.a
+			+ albedo_tex_c.a
+			+ albedo_tex_b.a
+	);
+	EMISSION += (
+			textureLod(screen_texture, ref_ofs, ROUGHNESS * 8.0).rgb
+			//+ textureLod(screen_texture, ref_ofs, ROUGHNESS * 8.0).rgb
+	) * ref_amount * EXPOSURE;
+	ALBEDO *= 1.0 - ref_amount;
+	ALPHA = 1.0;
+}
+"
+
+[sub_resource type="Gradient" id="Gradient_liq8f"]
+interpolation_mode = 2
+offsets = PackedFloat32Array(0, 0.5, 0.8)
+colors = PackedColorArray(0.501961, 0.752941, 1, 0.12549, 0.501961, 0.752941, 1, 0.12549, 1, 1, 1, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_a0kw2"]
+noise_type = 2
+frequency = 0.025
+fractal_lacunarity = 2.17
+fractal_gain = 0.65
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_8trxb"]
+width = 128
+height = 128
+seamless = true
+seamless_blend_skirt = 0.25
+color_ramp = SubResource("Gradient_liq8f")
+noise = SubResource("FastNoiseLite_a0kw2")
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_jieqa"]
+width = 128
+height = 128
+seamless = true
+seamless_blend_skirt = 0.25
+as_normal_map = true
+noise = SubResource("FastNoiseLite_a0kw2")
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_l8jn8"]
+noise_type = 3
+frequency = 0.1
+fractal_octaves = 1
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_ru8s6"]
+width = 128
+height = 128
+noise = SubResource("FastNoiseLite_l8jn8")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_degdy"]
+render_priority = 0
+shader = SubResource("Shader_aaxox")
+shader_parameter/albedo = Color(0.25098, 0.25098, 0.25098, 1)
+shader_parameter/texture_albedo = SubResource("NoiseTexture2D_8trxb")
+shader_parameter/point_size = 1.0
+shader_parameter/roughness = 0.1
+shader_parameter/metallic_texture_channel = Vector4(0, 0, 0, 0)
+shader_parameter/specular = 0.5
+shader_parameter/metallic = 0.0
+shader_parameter/texture_refraction = SubResource("NoiseTexture2D_ru8s6")
+shader_parameter/refraction = 0.05
+shader_parameter/refraction_texture_channel = Vector4(0, 0, 0, 0)
+shader_parameter/texture_normal = SubResource("NoiseTexture2D_jieqa")
+shader_parameter/normal_scale = 1.0
+shader_parameter/uv1_scale = Vector3(3, 2, 2)
+shader_parameter/uv1_offset = Vector3(0, 0, 0)
+shader_parameter/uv2_scale = Vector3(1, 1, 1)
+shader_parameter/uv2_offset = Vector3(0, 0, 0)
+shader_parameter/scroll_speed = 0.125
+
+[sub_resource type="BoxMesh" id="BoxMesh_e4nf1"]
+size = Vector3(8, 8, 8)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_i8meh"]
+transparency = 1
+cull_mode = 2
+albedo_texture = SubResource("NoiseTexture2D_8trxb")
+roughness = 0.1
+normal_enabled = true
+normal_texture = SubResource("NoiseTexture2D_jieqa")
+refraction_enabled = true
+refraction_texture = SubResource("NoiseTexture2D_ru8s6")
+refraction_texture_channel = 2
+uv1_scale = Vector3(3, 2, 2)
+texture_filter = 2
+
+[sub_resource type="FogMaterial" id="FogMaterial_lmlt3"]
+albedo = Color(0, 1, 0, 1)
+
+[sub_resource type="Shader" id="Shader_07ks1"]
+code = "// NOTE: Shader automatically converted from Godot Engine 4.2.1.stable.mono's StandardMaterial3D.
+
+shader_type spatial;
+render_mode blend_mul,depth_draw_never,cull_back,diffuse_burley,specular_schlick_ggx,unshaded;
+uniform vec4 albedo : source_color;
+uniform sampler2D texture_albedo : source_color,filter_linear_mipmap,repeat_enable;
+uniform float alpha_hash_scale;
+uniform float point_size : hint_range(0,128);
+uniform float roughness : hint_range(0,1);
+uniform sampler2D texture_metallic : hint_default_white,filter_linear_mipmap,repeat_enable;
+uniform vec4 metallic_texture_channel;
+uniform sampler2D texture_roughness : hint_roughness_r,filter_linear_mipmap,repeat_enable;
+uniform float specular;
+uniform float metallic;
+uniform vec3 uv1_scale;
+uniform vec3 uv1_offset;
+uniform vec3 uv2_scale;
+uniform vec3 uv2_offset;
+
+#include \"res://shaders/includes/psx_inc.gdshaderinc\"
+
+void vertex() {
+	UV=UV*uv1_scale.xy+uv1_offset.xy;
+	POSITION = map_affine(snap_vertex(PROJECTION_MATRIX * MODELVIEW_MATRIX * vec4(VERTEX, 1.0)));
+}
+
+void fragment() {
+	vec2 base_uv = UV;
+	vec4 albedo_tex = texture(texture_albedo,base_uv);
+	albedo_tex *= COLOR;
+	ALBEDO = albedo.rgb * albedo_tex.rgb;
+	float metallic_tex = dot(texture(texture_metallic,base_uv),metallic_texture_channel);
+	METALLIC = metallic_tex * metallic;
+	vec4 roughness_texture_channel = vec4(1.0,0.0,0.0,0.0);
+	float roughness_tex = dot(texture(texture_roughness,base_uv),roughness_texture_channel);
+	ROUGHNESS = roughness_tex * roughness;
+	SPECULAR = specular;
+	ALPHA *= albedo.a * albedo_tex.a;
+	ALPHA_HASH_SCALE = alpha_hash_scale;
+}
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_a7jyt"]
+render_priority = 0
+shader = SubResource("Shader_07ks1")
+shader_parameter/albedo = Color(0.752941, 1, 0.501961, 1)
+shader_parameter/alpha_hash_scale = 1.0
+shader_parameter/point_size = 1.0
+shader_parameter/roughness = 1.0
+shader_parameter/metallic_texture_channel = Vector4(0, 0, 0, 0)
+shader_parameter/specular = 0.5
+shader_parameter/metallic = 0.0
+shader_parameter/uv1_scale = Vector3(1, 1, 1)
+shader_parameter/uv1_offset = Vector3(0, 0, 0)
+shader_parameter/uv2_scale = Vector3(1, 1, 1)
+shader_parameter/uv2_offset = Vector3(0, 0, 0)
+
+[sub_resource type="Curve" id="Curve_4pci3"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.2, 1), 0.0, 0.0, 0, 0, Vector2(0.8, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="CurveTexture" id="CurveTexture_rj4o3"]
+curve = SubResource("Curve_4pci3")
+
+[sub_resource type="Curve" id="Curve_pos2j"]
+_limits = [-2.0, 2.0, 0.0, 1.0]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_6su4i"]
+curve = SubResource("Curve_pos2j")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_uep71"]
+emission_shape = 1
+emission_sphere_radius = 3.0
+direction = Vector3(0, -1, 0)
+spread = 90.0
+initial_velocity_max = 1.0
+orbit_velocity_min = -0.01
+orbit_velocity_max = 0.01
+orbit_velocity_curve = SubResource("CurveTexture_6su4i")
+radial_velocity_min = -0.05
+radial_velocity_max = 0.05
+gravity = Vector3(0, 0, 0)
+alpha_curve = SubResource("CurveTexture_rj4o3")
+collision_mode = 1
+collision_friction = 0.0
+collision_bounce = 0.0
+
+[sub_resource type="BoxMesh" id="BoxMesh_2tjt0"]
+size = Vector3(0.0625, 0.0625, 0.0625)
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_fndb3"]
+radius = 2.5
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6p13o"]
+albedo_texture = ExtResource("40_rt55l")
+metallic_specular = 0.0
+texture_filter = 2
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_l2dxl"]
+_surfaces = [{
+"aabb": AABB(-4, -1, -8, 26, 6, 31),
+"attribute_data": PackedByteArray("AACAPwAAgL4AAIA/AACAPgAAsMAAAIA+AACwwAAAgL4AAADAAACAvgAAuEAAAIC+AAC4QAAAgD4AAADAAACAPgAAAEAAALDAAAAAQAAAgD8AALjAAACAPwAAuMAAALDAAAAAwAAAsMAAALhAAACwwAAAuEAAAIA/AAAAwAAAgD8AAABAAACAvgAAAEAAAIA+AAC4wAAAgD4AALjAAACAvgAAgL8AAIC+AACwQAAAgL4AALBAAACAPgAAgL8AAIA+AAAAvwAAoL8AAAC/AACAvgAAQL8AAIC+AABAvwAAoL8AAABAAACgvwAAgEAAAKC/AACAQAAAgL4AAABAAACAvgAAAMAAAEC/AAAAwAAAAL8AAIDAAAAAvwAAgMAAAEC/AAAAQAAAQL8AAIBAAABAvwAAgEAAAAC/AAAAQAAAAL8AAADAAACgvwAAAMAAAIC+AACAwAAAgL4AAIDAAACgvwAAAD8AAKC/AABAPwAAoL8AAEA/AACAvgAAAD8AAIC+AAAAvwAAoL8AAAC/AACAvgAAMMAAAIC+AAAwwAAAoL8AAHBAAACgvwAAgEAAAKC/AACAQAAAgL4AAHBAAACAvgAAcMAAADDAAABwwAAAAL8AAIDAAAAAvwAAgMAAADDAAABwQAAAMMAAAIBAAAAwwAAAgEAAAAC/AABwQAAAAL8AAHDAAACgvwAAcMAAAIC+AACAwAAAgL4AAIDAAACgvwAAAD8AAKC/AAAwQAAAoL8AADBAAACAvgAAAD8AAIC+"),
+"format": 34359742487,
+"index_count": 108,
+"index_data": PackedByteArray("AAABAAIAAAACAAMABAAFAAYABAAGAAcACAAJAAoACAAKAAsADAANAA4ADAAOAA8AEAARABIAEAASABMAFAAVABYAFAAWABcAGAAZABoAGAAaABsAHAAdAB4AHAAeAB8AIAAhACIAIAAiACMAJAAlACYAJAAmACcAKAApACoAKAAqACsALAAtAC4ALAAuAC8AMAAxADIAMAAyADMANAA1ADYANAA2ADcAOAA5ADoAOAA6ADsAPAA9AD4APAA+AD8AQABBAEIAQABCAEMARABFAEYARABGAEcA"),
+"material": SubResource("StandardMaterial3D_6p13o"),
+"name": "__TB_empty",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 72,
+"vertex_data": PackedByteArray("AACAwAAAgD8AAADBAACAwAAAgL8AAADBAACwQQAAgL8AAADBAACwQQAAgD8AAADBAACAwAAAgD8AAADBAACAwAAAgD8AALhBAACAwAAAgL8AALhBAACAwAAAgL8AAADBAACwQQAAgL8AAADBAACAwAAAgL8AAADBAACAwAAAgL8AALhBAACwQQAAgL8AALhBAACwQQAAgD8AAADBAACwQQAAgD8AALhBAACAwAAAgD8AALhBAACAwAAAgD8AAADBAACwQQAAgD8AAADBAACwQQAAgL8AAADBAACwQQAAgL8AALhBAACwQQAAgD8AALhBAACAwAAAgD8AALhBAACwQQAAgD8AALhBAACwQQAAgL8AALhBAACAwAAAgL8AALhBAAAAQAAAoEAAAABBAAAAQAAAgD8AAABBAABAQAAAgD8AAABBAABAQAAAoEAAAABBAAAAQAAAoEAAAABBAAAAQAAAoEAAAIBBAAAAQAAAgD8AAIBBAAAAQAAAgD8AAABBAABAQAAAgD8AAABBAAAAQAAAgD8AAABBAAAAQAAAgD8AAIBBAABAQAAAgD8AAIBBAABAQAAAoEAAAABBAABAQAAAoEAAAIBBAAAAQAAAoEAAAIBBAAAAQAAAoEAAAABBAABAQAAAoEAAAABBAABAQAAAgD8AAABBAABAQAAAgD8AAIBBAABAQAAAoEAAAIBBAAAAQAAAoEAAAIBBAABAQAAAoEAAAIBBAABAQAAAgD8AAIBBAAAAQAAAgD8AAIBBAABAQAAAoEAAAHBBAABAQAAAgD8AAHBBAABAQQAAgD8AAHBBAABAQQAAoEAAAHBBAABAQAAAoEAAAHBBAABAQAAAoEAAAIBBAABAQAAAgD8AAIBBAABAQAAAgD8AAHBBAABAQQAAgD8AAHBBAABAQAAAgD8AAHBBAABAQAAAgD8AAIBBAABAQQAAgD8AAIBBAABAQQAAoEAAAHBBAABAQQAAoEAAAIBBAABAQAAAoEAAAIBBAABAQAAAoEAAAHBBAABAQQAAoEAAAHBBAABAQQAAgD8AAHBBAABAQQAAgD8AAIBBAABAQQAAoEAAAIBBAABAQAAAoEAAAIBBAABAQQAAoEAAAIBBAABAQQAAgD8AAIBBAABAQAAAgD8AAIBB/////wAA/7//////AAD/v/////8AAP+//////wAA/78AAP9//3//vwAA/3//f/+/AAD/f/9//78AAP9//3//v/9/AAD//////38AAP//////fwAA//////9/AAD//////3////9//7//f////3//v/9/////f/+//3////9//7////9//////////3//////////f/////////9///////9//3////+//3//f////7//f/9/////v/9//3////+//////wAA/7//////AAD/v/////8AAP+//////wAA/78AAP9//3//vwAA/3//f/+/AAD/f/9//78AAP9//3//v/9/AAD//////38AAP//////fwAA//////9/AAD//////3////9//7//f////3//v/9/////f/+//3////9//7////9//////////3//////////f/////////9///////9//3////+//3//f////7//f/9/////v/9//3////+//////wAA/7//////AAD/v/////8AAP+//////wAA/78AAP9//3//vwAA/3//f/+/AAD/f/9//78AAP9//3//v/9/AAD//////38AAP//////fwAA//////9/AAD//////3////9//7//f////3//v/9/////f/+//3////9//7////9//////////3//////////f/////////9///////9//3////+//3//f////7//f/9/////v/9//3////+/")
+}]
+
+[sub_resource type="ArrayOccluder3D" id="ArrayOccluder3D_0gjgi"]
+vertices = PackedVector3Array(-4, 1, -8, -4, -1, -8, 22, -1, -8, 22, 1, -8, -4, 1, -8, -4, 1, 23, -4, -1, 23, -4, -1, -8, 22, -1, -8, -4, -1, -8, -4, -1, 23, 22, -1, 23, 22, 1, -8, 22, 1, 23, -4, 1, 23, -4, 1, -8, 22, 1, -8, 22, -1, -8, 22, -1, 23, 22, 1, 23, -4, 1, 23, 22, 1, 23, 22, -1, 23, -4, -1, 23, 2, 5, 8, 2, 1, 8, 3, 1, 8, 3, 5, 8, 2, 5, 8, 2, 5, 16, 2, 1, 16, 2, 1, 8, 3, 1, 8, 2, 1, 8, 2, 1, 16, 3, 1, 16, 3, 5, 8, 3, 5, 16, 2, 5, 16, 2, 5, 8, 3, 5, 8, 3, 1, 8, 3, 1, 16, 3, 5, 16, 2, 5, 16, 3, 5, 16, 3, 1, 16, 2, 1, 16, 3, 5, 15, 3, 1, 15, 12, 1, 15, 12, 5, 15, 3, 5, 15, 3, 5, 16, 3, 1, 16, 3, 1, 15, 12, 1, 15, 3, 1, 15, 3, 1, 16, 12, 1, 16, 12, 5, 15, 12, 5, 16, 3, 5, 16, 3, 5, 15, 12, 5, 15, 12, 1, 15, 12, 1, 16, 12, 5, 16, 3, 5, 16, 12, 5, 16, 12, 1, 16, 3, 1, 16)
+indices = PackedInt32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 2, 0, 2, 3, 4, 5, 6, 4, 6, 7, 8, 9, 10, 8, 10, 11, 12, 13, 14, 12, 14, 15, 16, 17, 18, 16, 18, 19, 20, 21, 22, 20, 22, 23, 24, 25, 26, 24, 26, 27, 28, 29, 30, 28, 30, 31, 32, 33, 34, 32, 34, 35, 36, 37, 38, 36, 38, 39, 40, 41, 42, 40, 42, 43, 44, 45, 46, 44, 46, 47, 48, 49, 50, 48, 50, 51, 52, 53, 54, 52, 54, 55, 56, 57, 58, 56, 58, 59, 60, 61, 62, 60, 62, 63, 64, 65, 66, 64, 66, 67, 68, 69, 70, 68, 70, 71)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_td4ea"]
+points = PackedVector3Array(-4, 1, -8, -4, -1, -8, 22, -1, -8, 22, 1, -8, -4, 1, 23, -4, -1, 23, 22, -1, 23, 22, 1, 23)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_2chtk"]
+points = PackedVector3Array(2, 5, 8, 2, 1, 8, 3, 1, 8, 3, 5, 8, 2, 5, 16, 2, 1, 16, 3, 1, 16, 3, 5, 16)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_xgmy1"]
+points = PackedVector3Array(3, 5, 15, 3, 1, 15, 12, 1, 15, 12, 5, 15, 3, 5, 16, 3, 1, 16, 12, 1, 16, 12, 5, 16)
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_7ddy6"]
+_surfaces = [{
+"aabb": AABB(-0.5, -2, -2, 1, 4, 4),
+"attribute_data": PackedByteArray("AACAvgAAIL8AAIC+AAAAvgAAwL4AAAC+AADAvgAAIL8AAGC/AAAgvwAAwL4AACC/AADAvgAAAL4AAGC/AAAAvgAAYD8AAMC+AABgPwAAgL4AAMA+AACAvgAAwD4AAMC+AABgvwAAwL4AAMC+AADAvgAAwL4AAIC+AABgvwAAgL4AAGA/AAAgvwAAYD8AAAC+AADAPgAAAL4AAMA+AAAgvwAAgD4AACC/AADAPgAAIL8AAMA+AAAAvgAAgD4AAAC+"),
+"format": 34359742487,
+"index_count": 36,
+"index_data": PackedByteArray("AAABAAIAAAACAAMABAAFAAYABAAGAAcACAAJAAoACAAKAAsADAANAA4ADAAOAA8AEAARABIAEAASABMAFAAVABYAFAAWABcA"),
+"material": ExtResource("16_pn470"),
+"name": "shutter_door",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 24,
+"vertex_data": PackedByteArray("AAAAvwAAAEAAAADAAAAAvwAAAMAAAADAAAAAPwAAAMAAAADAAAAAPwAAAEAAAADAAAAAvwAAAEAAAADAAAAAvwAAAEAAAABAAAAAvwAAAMAAAABAAAAAvwAAAMAAAADAAAAAPwAAAMAAAADAAAAAvwAAAMAAAADAAAAAvwAAAMAAAABAAAAAPwAAAMAAAABAAAAAPwAAAEAAAADAAAAAPwAAAEAAAABAAAAAvwAAAEAAAABAAAAAvwAAAEAAAADAAAAAPwAAAEAAAADAAAAAPwAAAMAAAADAAAAAPwAAAMAAAABAAAAAPwAAAEAAAABAAAAAvwAAAEAAAABAAAAAPwAAAEAAAABAAAAAPwAAAMAAAABAAAAAvwAAAMAAAABA/////wAA/7//////AAD/v/////8AAP+//////wAA/78AAP9//3//vwAA/3//f/+/AAD/f/9//78AAP9//3//v/9/AAD//////38AAP//////fwAA//////9/AAD//////3////9//7//f////3//v/9/////f/+//3////9//7////9//////////3//////////f/////////9///////9//3////+//3//f////7//f/9/////v/9//3////+/")
+}]
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_txbbl"]
+points = PackedVector3Array(-0.5, 2, -2, -0.5, -2, -2, 0.5, -2, -2, 0.5, 2, -2, -0.5, 2, 2, -0.5, -2, 2, 0.5, -2, 2, 0.5, 2, 2)
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_71x6k"]
+_surfaces = [{
+"aabb": AABB(-0.5, -2, -2, 1, 4, 4),
+"attribute_data": PackedByteArray("AACAvgAAIL8AAIC+AAAAvgAAwL4AAAC+AADAvgAAIL8AAIC+AAAgvwAAgD4AACC/AACAPgAAAL4AAIC+AAAAvgAAgD4AAMC+AACAPgAAgL4AAIC+AACAvgAAgL4AAMC+AACAvgAAwL4AAIA+AADAvgAAgD4AAIC+AACAvgAAgL4AAIA+AAAgvwAAgD4AAAC+AACAvgAAAL4AAIC+AAAgvwAAgD4AACC/AADAPgAAIL8AAMA+AAAAvgAAgD4AAAC+"),
+"format": 34359742487,
+"index_count": 36,
+"index_data": PackedByteArray("AAABAAIAAAACAAMABAAFAAYABAAGAAcACAAJAAoACAAKAAsADAANAA4ADAAOAA8AEAARABIAEAASABMAFAAVABYAFAAWABcA"),
+"material": ExtResource("16_pn470"),
+"name": "shutter_door",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 24,
+"vertex_data": PackedByteArray("AAAAvwAAAEAAAADAAAAAvwAAAMAAAADAAAAAPwAAAMAAAADAAAAAPwAAAEAAAADAAAAAvwAAAEAAAADAAAAAvwAAAEAAAABAAAAAvwAAAMAAAABAAAAAvwAAAMAAAADAAAAAPwAAAMAAAADAAAAAvwAAAMAAAADAAAAAvwAAAMAAAABAAAAAPwAAAMAAAABAAAAAPwAAAEAAAADAAAAAPwAAAEAAAABAAAAAvwAAAEAAAABAAAAAvwAAAEAAAADAAAAAPwAAAEAAAADAAAAAPwAAAMAAAADAAAAAPwAAAMAAAABAAAAAPwAAAEAAAABAAAAAvwAAAEAAAABAAAAAPwAAAEAAAABAAAAAPwAAAMAAAABAAAAAvwAAAMAAAABA/////wAA/7//////AAD/v/////8AAP+//////wAA/78AAP9//3//vwAA/3//f/+/AAD/f/9//78AAP9//3//v/9/AAD//////38AAP//////fwAA//////9/AAD//////3////9//7//f////3//v/9/////f/+//3////9//7////9//////////3//////////f/////////9///////9//3////+//3//f////7//f/9/////v/9//3////+/")
+}]
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_58fq5"]
+points = PackedVector3Array(-0.5, 2, -2, -0.5, -2, -2, 0.5, -2, -2, 0.5, 2, -2, -0.5, 2, 2, -0.5, -2, 2, 0.5, -2, 2, 0.5, 2, 2)
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_y00u3"]
+_surfaces = [{
+"aabb": AABB(-0.5, -2, -2, 1, 4, 4),
+"attribute_data": PackedByteArray("AACAvgAAIL8AAIC+AAAAvgAAwL4AAAC+AADAvgAAIL8AAMA+AAAgvwAAYD8AACC/AABgPwAAAL4AAMA+AAAAvgAAwL4AAMC+AADAvgAAgL4AAGC/AACAvgAAYL8AAMC+AADAPgAAwL4AAGA/AADAvgAAYD8AAIC+AADAPgAAgL4AAMC+AAAgvwAAwL4AAAC+AABgvwAAAL4AAGC/AAAgvwAAgD4AACC/AADAPgAAIL8AAMA+AAAAvgAAgD4AAAC+"),
+"format": 34359742487,
+"index_count": 36,
+"index_data": PackedByteArray("AAABAAIAAAACAAMABAAFAAYABAAGAAcACAAJAAoACAAKAAsADAANAA4ADAAOAA8AEAARABIAEAASABMAFAAVABYAFAAWABcA"),
+"material": ExtResource("16_pn470"),
+"name": "shutter_door",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 24,
+"vertex_data": PackedByteArray("AAAAvwAAAEAAAADAAAAAvwAAAMAAAADAAAAAPwAAAMAAAADAAAAAPwAAAEAAAADAAAAAvwAAAEAAAADAAAAAvwAAAEAAAABAAAAAvwAAAMAAAABAAAAAvwAAAMAAAADAAAAAPwAAAMAAAADAAAAAvwAAAMAAAADAAAAAvwAAAMAAAABAAAAAPwAAAMAAAABAAAAAPwAAAEAAAADAAAAAPwAAAEAAAABAAAAAvwAAAEAAAABAAAAAvwAAAEAAAADAAAAAPwAAAEAAAADAAAAAPwAAAMAAAADAAAAAPwAAAMAAAABAAAAAPwAAAEAAAABAAAAAvwAAAEAAAABAAAAAPwAAAEAAAABAAAAAPwAAAMAAAABAAAAAvwAAAMAAAABA/////wAA/7//////AAD/v/////8AAP+//////wAA/78AAP9//3//vwAA/3//f/+/AAD/f/9//78AAP9//3//v/9/AAD//////38AAP//////fwAA//////9/AAD//////3////9//7//f////3//v/9/////f/+//3////9//7////9//////////3//////////f/////////9///////9//3////+//3//f////7//f/9/////v/9//3////+/")
+}]
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_spmds"]
+points = PackedVector3Array(-0.5, 2, -2, -0.5, -2, -2, 0.5, -2, -2, 0.5, 2, -2, -0.5, 2, 2, -0.5, -2, 2, 0.5, -2, 2, 0.5, 2, 2)
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_xpdor"]
+_surfaces = [{
+"aabb": AABB(-2, -2, -0.5, 4, 4, 1),
+"attribute_data": PackedByteArray("AADwvwAAIL8AAPC/AAAAvgAAGMAAAAC+AAAYwAAAIL8AAPA/AAAgvwAAAEAAACC/AAAAQAAAAL4AAPA/AAAAvgAA8L8AABjAAADwvwAA8L8AAADAAADwvwAAAMAAABjAAADwPwAAGMAAAABAAAAYwAAAAEAAAPC/AADwPwAA8L8AAPC/AAAgvwAA8L8AAAC+AAAAwAAAAL4AAADAAAAgvwAA8D8AACC/AAAYQAAAIL8AABhAAAAAvgAA8D8AAAC+"),
+"format": 34359742487,
+"index_count": 36,
+"index_data": PackedByteArray("AAABAAIAAAACAAMABAAFAAYABAAGAAcACAAJAAoACAAKAAsADAANAA4ADAAOAA8AEAARABIAEAASABMAFAAVABYAFAAWABcA"),
+"material": ExtResource("16_pn470"),
+"name": "shutter_door",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 24,
+"vertex_data": PackedByteArray("AAAAwAAAAEAAAAC/AAAAwAAAAMAAAAC/AAAAQAAAAMAAAAC/AAAAQAAAAEAAAAC/AAAAwAAAAEAAAAC/AAAAwAAAAEAAAAA/AAAAwAAAAMAAAAA/AAAAwAAAAMAAAAC/AAAAQAAAAMAAAAC/AAAAwAAAAMAAAAC/AAAAwAAAAMAAAAA/AAAAQAAAAMAAAAA/AAAAQAAAAEAAAAC/AAAAQAAAAEAAAAA/AAAAwAAAAEAAAAA/AAAAwAAAAEAAAAC/AAAAQAAAAEAAAAC/AAAAQAAAAMAAAAC/AAAAQAAAAMAAAAA/AAAAQAAAAEAAAAA/AAAAwAAAAEAAAAA/AAAAQAAAAEAAAAA/AAAAQAAAAMAAAAA/AAAAwAAAAMAAAAA//////wAA/7//////AAD/v/////8AAP+//////wAA/78AAP9//3//vwAA/3//f/+/AAD/f/9//78AAP9//3//v/9/AAD//////38AAP//////fwAA//////9/AAD//////3////9//7//f////3//v/9/////f/+//3////9//7////9//////////3//////////f/////////9///////9//3////+//3//f////7//f/9/////v/9//3////+/")
+}]
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_tod26"]
+points = PackedVector3Array(-2, 2, -0.5, -2, -2, -0.5, 2, -2, -0.5, 2, 2, -0.5, -2, 2, 0.5, -2, -2, 0.5, 2, -2, 0.5, 2, 2, 0.5)
+
+[sub_resource type="Gradient" id="Gradient_judde"]
+offsets = PackedFloat32Array(0, 0.25, 0.5, 0.75, 1)
+colors = PackedColorArray(1, 0, 0, 1, 1, 1, 0, 1, 0, 1, 0, 1, 0, 1, 1, 1, 0, 0, 1, 1)
+metadata/_snap_enabled = true
+metadata/_snap_count = 12
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_0a1a2"]
+gradient = SubResource("Gradient_judde")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_xufc5"]
+render_priority = 0
+shader = ExtResource("39_vgoen")
+shader_parameter/roughness = 0.0
+shader_parameter/rainbow = SubResource("GradientTexture1D_0a1a2")
+
+[sub_resource type="BoxMesh" id="BoxMesh_h44b6"]
+
+[sub_resource type="Gradient" id="Gradient_cismr"]
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_2pwd8"]
+gradient = SubResource("Gradient_cismr")
+width = 6
+height = 8
+fill = 2
+fill_to = Vector2(1, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_yeiyk"]
+shading_mode = 0
+albedo_texture = SubResource("GradientTexture2D_2pwd8")
+texture_filter = 0
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_dgj7v"]
+noise_type = 5
+frequency = 1.0
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_rdsxl"]
+noise = SubResource("FastNoiseLite_dgj7v")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_cyedf"]
+render_priority = 0
+shader = ExtResource("40_w0giw")
+shader_parameter/noise = SubResource("NoiseTexture2D_rdsxl")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_kyheb"]
+viewport_path = NodePath("Portal/SubViewport")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_fh8g7"]
+resource_local_to_scene = true
+render_priority = 0
+shader = ExtResource("41_0lrjq")
+shader_parameter/tex = SubResource("ViewportTexture_kyheb")
+
+[sub_resource type="QuadMesh" id="QuadMesh_j663w"]
+size = Vector2(2, 3)
+
+[node name="Node3D" type="Node3D"]
+script = ExtResource("1_lifds")
+level_name = "TEST LEVEL"
+
+[node name="Player" parent="." instance=ExtResource("1_npqeh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_6h202")
+script = ExtResource("5_ivhkg")
+
+[node name="OccluderInstance3D" type="OccluderInstance3D" parent="."]
+occluder = ExtResource("6_1knku")
+bake_mask = 4294967289
+
+[node name="ParticleCollider" type="GPUParticlesCollisionSDF3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 12, -16)
+size = Vector3(50, 32, 100)
+resolution = 3
+bake_mask = 4293918721
+texture = ExtResource("7_qp8ah")
+
+[node name="NavMesh" type="NavigationRegion3D" parent="ParticleCollider"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -12, 16)
+navigation_mesh = SubResource("NavigationMesh_ecv47")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="ParticleCollider/NavMesh"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ParticleCollider/NavMesh/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
+shape = SubResource("BoxShape3D_y437j")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="ParticleCollider/NavMesh/StaticBody3D/CollisionShape3D"]
+mesh = SubResource("BoxMesh_ufs5o")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("ShaderMaterial_lk5t3")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="ParticleCollider/NavMesh/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 18, 0)
+shape = SubResource("BoxShape3D_pjpoy")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="ParticleCollider/NavMesh/StaticBody3D/CollisionShape3D2"]
+mesh = SubResource("BoxMesh_ufs5o")
+skeleton = NodePath("../../CollisionShape3D/MeshInstance3D")
+surface_material_override/0 = SubResource("StandardMaterial3D_ei4gk")
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="ParticleCollider/NavMesh/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9, 2.5, 4)
+shape = SubResource("BoxShape3D_w58hg")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="ParticleCollider/NavMesh/StaticBody3D/CollisionShape3D3"]
+mesh = SubResource("BoxMesh_mywcg")
+skeleton = NodePath("../../CollisionShape3D/MeshInstance3D")
+surface_material_override/0 = ExtResource("11_guo1l")
+
+[node name="GPUParticlesCollisionBox3D" type="GPUParticlesCollisionBox3D" parent="ParticleCollider/NavMesh/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
+size = Vector3(50, 1, 50)
+
+[node name="CollisionShape3D4" type="CollisionShape3D" parent="ParticleCollider/NavMesh/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, -0.25, 0)
+shape = SubResource("BoxShape3D_ys4py")
+
+[node name="StreetLamp" parent="ParticleCollider/NavMesh" instance=ExtResource("25_wbmk3")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 4, -0.5, 7.5)
+
+[node name="Things" type="Node3D" parent="."]
+
+[node name="Rendering" type="Node" parent="Things"]
+
+[node name="Lights" type="Node" parent="Things/Rendering"]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Things/Rendering/Lights"]
+transform = Transform3D(-0.707107, -0.664463, 0.241845, 0, 0.34202, 0.939693, -0.707107, 0.664463, -0.241845, 0, 3, 0)
+shadow_enabled = true
+shadow_bias = 0.5
+shadow_normal_bias = 5.345
+
+[node name="OmniLight3D" type="OmniLight3D" parent="Things/Rendering/Lights"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 2, 7)
+light_color = Color(1, 0.501961, 0, 1)
+light_energy = 8.0
+shadow_enabled = true
+distance_fade_enabled = true
+omni_range = 8.0
+
+[node name="Probes" type="Node" parent="Things/Rendering"]
+
+[node name="ReflectionProbe" type="ReflectionProbe" parent="Things/Rendering/Probes"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 10, 0)
+size = Vector3(30, 25, 30)
+origin_offset = Vector3(0, -5, 0)
+box_projection = true
+enable_shadows = true
+cull_mask = 7
+
+[node name="ReflectionProbe2" type="ReflectionProbe" parent="Things/Rendering/Probes"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5, 3, -15)
+size = Vector3(25, 12, 10)
+box_projection = true
+enable_shadows = true
+cull_mask = 7
+
+[node name="ReflectionProbe4" type="ReflectionProbe" parent="Things/Rendering/Probes"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 5, -27)
+size = Vector3(25, 12, 15)
+box_projection = true
+enable_shadows = true
+cull_mask = 7
+
+[node name="ReflectionProbe5" type="ReflectionProbe" parent="Things/Rendering/Probes"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 21, 0)
+size = Vector3(30, 6, 30)
+box_projection = true
+enable_shadows = true
+cull_mask = 7
+
+[node name="Fogs" type="Node" parent="Things/Rendering"]
+
+[node name="FogVolume" type="FogVolume" parent="Things/Rendering/Fogs"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 1, 10)
+size = Vector3(5, 5, 5)
+material = SubResource("FogMaterial_ybp2o")
+
+[node name="FogVolume3" type="FogVolume" parent="Things/Rendering/Fogs"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, 0)
+visible = false
+size = Vector3(64, 8, 64)
+material = SubResource("FogMaterial_fwf4j")
+
+[node name="FogVolume4" type="FogVolume" parent="Things/Rendering/Fogs"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6, 0)
+visible = false
+shape = 4
+material = SubResource("FogMaterial_swvkd")
+
+[node name="Objects" type="Node" parent="Things"]
+
+[node name="Crate" parent="Things/Objects" instance=ExtResource("27_oqcrq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9, 2.23517e-08, 0)
+
+[node name="Crate2" parent="Things/Objects" instance=ExtResource("27_oqcrq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.5, 1, 0)
+
+[node name="Crate5" parent="Things/Objects" instance=ExtResource("27_oqcrq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.7, 1, -1)
+
+[node name="Crate7" parent="Things/Objects" instance=ExtResource("27_oqcrq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.3, 2, -0.7)
+
+[node name="Crate3" parent="Things/Objects" instance=ExtResource("27_oqcrq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9, 0, -1.5)
+
+[node name="Crate4" parent="Things/Objects" instance=ExtResource("27_oqcrq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 0, 0.2)
+
+[node name="Crate8" parent="Things/Objects" instance=ExtResource("27_oqcrq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 0, 1.2)
+
+[node name="Crate9" parent="Things/Objects" instance=ExtResource("27_oqcrq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.6, 0, 1)
+
+[node name="Crate10" parent="Things/Objects" instance=ExtResource("27_oqcrq")]
+transform = Transform3D(0.707107, 0.707107, 0, -0.707107, 0.707107, 0, 0, 0, 1, 9.27071, 1.35355, 1)
+
+[node name="Crate6" parent="Things/Objects" instance=ExtResource("27_oqcrq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.1, 0, -2.2)
+
+[node name="Pickups" type="Node" parent="Things"]
+
+[node name="ShellPickup" parent="Things/Pickups" instance=ExtResource("28_globp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 0, 3)
+
+[node name="ShellPickup2" parent="Things/Pickups" instance=ExtResource("28_globp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -9)
+
+[node name="AkmPickup" parent="Things/Pickups" instance=ExtResource("29_rd0bs")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, 0, -8)
+
+[node name="AkmPickup3" parent="Things/Pickups" instance=ExtResource("29_rd0bs")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11, 0, -10)
+
+[node name="AkmPickup4" parent="Things/Pickups" instance=ExtResource("29_rd0bs")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11, 0, -5)
+
+[node name="AkmPickup5" parent="Things/Pickups" instance=ExtResource("29_rd0bs")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11, 0, 0)
+
+[node name="AkmPickup6" parent="Things/Pickups" instance=ExtResource("29_rd0bs")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11, 0, 5)
+
+[node name="AkmPickup7" parent="Things/Pickups" instance=ExtResource("29_rd0bs")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11, 0, 10)
+
+[node name="PlasmaCannonPickup" parent="Things/Pickups" instance=ExtResource("30_ons33")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11, 0, -8)
+
+[node name="BoomstickPickup" parent="Things/Pickups" instance=ExtResource("31_hkdgm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9, 0, -10)
+
+[node name="BigIronPickup" parent="Things/Pickups" instance=ExtResource("32_culoa")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, 0, -6)
+
+[node name="NailgunPickup" parent="Things/Pickups" instance=ExtResource("33_j5qjm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.5, 0, -5)
+
+[node name="CrossbowPickup" parent="Things/Pickups" instance=ExtResource("34_jl723")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, 0, -3)
+
+[node name="HuntingRiflePickup" parent="Things/Pickups" instance=ExtResource("35_u0dbq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.5, 0, -6)
+
+[node name="RPGPickup" parent="Things/Pickups" instance=ExtResource("36_v5hyr")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.2887, 2.98023e-08, -7.2825)
+starting_alt_ammo = 0
+
+[node name="GrenadeLauncherPickup" parent="Things/Pickups" instance=ExtResource("24_toi0m")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11, 0, -11.5)
+
+[node name="Particles" type="Node" parent="Things"]
+
+[node name="Colliders" type="Node" parent="Things/Particles"]
+
+[node name="RainSys3" type="GPUParticles3D" parent="Things/Particles"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 50, -20)
+visible = false
+sorting_use_aabb_center = false
+material_override = SubResource("StandardMaterial3D_5sopx")
+custom_aabb = AABB(-20, -50, -20, 40, 55, 40)
+amount = 512
+collision_base_size = 1.0
+visibility_aabb = AABB(-20, -50, -20, 40, 55, 40)
+trail_enabled = true
+trail_lifetime = 0.1
+process_material = SubResource("ParticleProcessMaterial_rt1fo")
+draw_pass_1 = SubResource("TubeTrailMesh_k0d6r")
+
+[node name="SmokeSys" type="GPUParticles3D" parent="Things/Particles"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.5, 0, -11.5)
+visible = false
+amount = 60
+fixed_fps = 60
+process_material = SubResource("ParticleProcessMaterial_v4bqh")
+draw_pass_1 = SubResource("SphereMesh_g714l")
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="Things/Particles"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, -4)
+visible = false
+process_material = SubResource("ParticleProcessMaterial_eqhva")
+draw_pass_1 = SubResource("QuadMesh_n5fmy")
+
+[node name="GrassShellTest" type="MeshInstance3D" parent="Things"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, 1, 5)
+visible = false
+material_override = SubResource("StandardMaterial3D_ii3s5")
+mesh = SubResource("BoxMesh_whbis")
+skeleton = NodePath("../..")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Things"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 3, 3)
+visible = false
+material_override = SubResource("ShaderMaterial_4y1om")
+mesh = SubResource("BoxMesh_mfm58")
+skeleton = NodePath("../..")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="Things"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.96499, 2, 3.94706)
+visible = false
+material_override = SubResource("ShaderMaterial_5abgc")
+mesh = SubResource("BoxMesh_l4wb7")
+skeleton = NodePath("../..")
+
+[node name="Teleporter" parent="Things" instance=ExtResource("41_dkm3o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, -4)
+
+[node name="Destination" parent="Things/Teleporter" index="5"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0, -3)
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="Things"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 3)
+visible = false
+material_override = SubResource("StandardMaterial3D_ti0rx")
+amount = 32
+process_material = SubResource("ParticleProcessMaterial_minwl")
+draw_pass_1 = SubResource("QuadMesh_m2e73")
+
+[node name="Water" type="MeshInstance3D" parent="Things"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20, 0, -12.5)
+visible = false
+material_override = SubResource("ShaderMaterial_degdy")
+mesh = SubResource("BoxMesh_e4nf1")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_i8meh")
+
+[node name="Water2" type="MeshInstance3D" parent="Things"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20, 0, -12.5)
+visible = false
+material_override = ExtResource("42_m623u")
+mesh = SubResource("BoxMesh_e4nf1")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_i8meh")
+
+[node name="GasCloud" type="FogVolume" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.25, 1, -10.5)
+layers = 2
+size = Vector3(5, 5, 5)
+shape = 0
+material = SubResource("FogMaterial_lmlt3")
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="GasCloud"]
+material_override = SubResource("ShaderMaterial_a7jyt")
+amount = 256
+lifetime = 5.0
+randomness = 1.0
+draw_order = 3
+process_material = SubResource("ParticleProcessMaterial_uep71")
+draw_pass_1 = SubResource("BoxMesh_2tjt0")
+
+[node name="AreaHazard" type="Area3D" parent="GasCloud"]
+collision_mask = 6
+script = ExtResource("57_iagox")
+dps = 5.0
+player_dps_override = 5.0
+damage_type = 3
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="GasCloud/AreaHazard"]
+shape = SubResource("SphereShape3D_fndb3")
+
+[node name="MysteryMan" parent="." instance=ExtResource("62_kax4q")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0.5, -3)
+
+[node name="EnemyAttackPattern" parent="." instance=ExtResource("46_mht45")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.5, 0.5, 3)
+
+[node name="FuncGodotMap" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17.75, 0, 0)
+script = ExtResource("38_cabet")
+local_map_file = "res://levels/debug/test_level/colortest.map"
+map_settings = ExtResource("39_gspvf")
+
+[node name="entity_0_worldspawn" type="StaticBody3D" parent="FuncGodotMap"]
+collision_mask = 0
+
+[node name="entity_0_mesh_instance" type="MeshInstance3D" parent="FuncGodotMap/entity_0_worldspawn"]
+mesh = SubResource("ArrayMesh_l2dxl")
+
+[node name="entity_0_occluder_instance" type="OccluderInstance3D" parent="FuncGodotMap/entity_0_worldspawn"]
+occluder = SubResource("ArrayOccluder3D_0gjgi")
+
+[node name="entity_0_brush_0_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn"]
+shape = SubResource("ConvexPolygonShape3D_td4ea")
+
+[node name="entity_0_brush_1_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn"]
+shape = SubResource("ConvexPolygonShape3D_2chtk")
+
+[node name="entity_0_brush_2_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn"]
+shape = SubResource("ConvexPolygonShape3D_xgmy1")
+
+[node name="entity_1_func_door" type="AnimatableBody3D" parent="FuncGodotMap"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5, 3, -5)
+collision_layer = 128
+script = ExtResource("36_ba20l")
+
+[node name="entity_1_mesh_instance" type="MeshInstance3D" parent="FuncGodotMap/entity_1_func_door"]
+layers = 2
+mesh = SubResource("ArrayMesh_7ddy6")
+
+[node name="entity_1_brush_0_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_1_func_door"]
+shape = SubResource("ConvexPolygonShape3D_txbbl")
+
+[node name="entity_2_func_door" type="AnimatableBody3D" parent="FuncGodotMap"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5, 3, 0)
+collision_layer = 128
+script = ExtResource("36_ba20l")
+
+[node name="entity_2_mesh_instance" type="MeshInstance3D" parent="FuncGodotMap/entity_2_func_door"]
+layers = 2
+mesh = SubResource("ArrayMesh_71x6k")
+
+[node name="entity_2_brush_0_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_2_func_door"]
+shape = SubResource("ConvexPolygonShape3D_58fq5")
+
+[node name="entity_3_func_door" type="AnimatableBody3D" parent="FuncGodotMap"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5, 3, 5)
+collision_layer = 128
+script = ExtResource("36_ba20l")
+
+[node name="entity_3_mesh_instance" type="MeshInstance3D" parent="FuncGodotMap/entity_3_func_door"]
+layers = 2
+mesh = SubResource("ArrayMesh_y00u3")
+
+[node name="entity_3_brush_0_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_3_func_door"]
+shape = SubResource("ConvexPolygonShape3D_spmds")
+
+[node name="entity_4_enemy_gun_turret" parent="FuncGodotMap" instance=ExtResource("37_w2aui")]
+transform = Transform3D(1, 0, 1.74846e-07, 0, 1, 0, -1.74846e-07, 0, 1, 6.5, 2, 11.5)
+func_godot_properties = {
+"angle": "180",
+"classname": "enemy_gun_turret",
+"corpse": false,
+"detect_mode": 0,
+"fun_expression": "0 <= x <= 1000",
+"mount_type": 0,
+"origin": "184 104 32",
+"tripwire_group": "none"
+}
+
+[node name="entity_5_enemy_gun_turret" parent="FuncGodotMap" instance=ExtResource("37_w2aui")]
+transform = Transform3D(1, 0, 1.74846e-07, 0, 1, 0, -1.74846e-07, 0, 1, 9.5, 2, 11.5)
+func_godot_properties = {
+"angle": "180",
+"classname": "enemy_gun_turret",
+"corpse": false,
+"detect_mode": 0,
+"fun_expression": "0 <= x <= 1000",
+"mount_type": 0,
+"origin": "184 152 32",
+"tripwire_group": "none"
+}
+
+[node name="entity_6_enemy_gun_turret" parent="FuncGodotMap" instance=ExtResource("37_w2aui")]
+transform = Transform3D(1, 0, 1.74846e-07, 0, 1, 0, -1.74846e-07, 0, 1, 12.5, 2, 11.5)
+func_godot_properties = {
+"angle": "180",
+"classname": "enemy_gun_turret",
+"corpse": false,
+"detect_mode": 0,
+"fun_expression": "0 <= x <= 1000",
+"mount_type": 0,
+"origin": "184 200 32",
+"tripwire_group": "none"
+}
+
+[node name="entity_7_func_level_exit" type="StaticBody3D" parent="FuncGodotMap"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18, 3, 15.5)
+script = ExtResource("37_vcbyu")
+func_godot_properties = {
+"classname": "func_level_exit",
+"next": "e1m3",
+"tooltip": "exit"
+}
+
+[node name="entity_7_mesh_instance" type="MeshInstance3D" parent="FuncGodotMap/entity_7_func_level_exit"]
+mesh = SubResource("ArrayMesh_xpdor")
+
+[node name="entity_7_brush_0_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_7_func_level_exit"]
+shape = SubResource("ConvexPolygonShape3D_tod26")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 4)
+material_override = SubResource("ShaderMaterial_xufc5")
+mesh = SubResource("BoxMesh_h44b6")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 1, 4)
+material_override = SubResource("StandardMaterial3D_yeiyk")
+mesh = SubResource("BoxMesh_h44b6")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 1, 4)
+material_override = ExtResource("39_a4eva")
+mesh = SubResource("BoxMesh_h44b6")
+
+[node name="MeshInstance3D4" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 1, 4)
+material_override = SubResource("ShaderMaterial_cyedf")
+mesh = SubResource("BoxMesh_h44b6")
+
+[node name="Portal" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 1, -8)
+visible = false
+material_override = SubResource("ShaderMaterial_fh8g7")
+mesh = SubResource("QuadMesh_j663w")
+
+[node name="SubViewport" type="SubViewport" parent="Portal"]
+size = Vector2i(960, 360)
+
+[node name="PortalCam" type="Camera3D" parent="Portal/SubViewport"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 1, -3.5)
+
+[node name="PortalExit" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 1, -8)
+visible = false
+material_override = SubResource("ShaderMaterial_fh8g7")
+mesh = SubResource("QuadMesh_j663w")
+
+[node name="PortalCam" type="Camera3D" parent="PortalExit"]
+
+[editable path="Things/Teleporter"]

@@ -1,6 +1,6 @@
 [gd_scene load_steps=15 format=3 uid="uid://w752n64gaa3f"]
 
-[ext_resource type="Script" path="res://scripts/objects/button.gd" id="1_rgctt"]
+[ext_resource type="Script" uid="uid://dyrnoptop886" path="res://scripts/objects/button.gd" id="1_rgctt"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_f8nba"]
 
@@ -61,8 +61,8 @@ tracks/0/keys = PackedFloat32Array(0, 1, 0, 0, -0.2)
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_yomfv"]
 _data = {
-"off": SubResource("Animation_xuaj8"),
-"on": SubResource("Animation_c2x2o")
+&"off": SubResource("Animation_xuaj8"),
+&"on": SubResource("Animation_c2x2o")
 }
 
 [node name="Button" type="Area3D" node_paths=PackedStringArray("targets")]

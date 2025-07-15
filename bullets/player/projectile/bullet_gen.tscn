@@ -1,11 +1,11 @@
 [gd_scene load_steps=14 format=3 uid="uid://b4m3n1ffkk00l"]
 
-[ext_resource type="Script" path="res://bullets/bullet.gd" id="1_j72ds"]
-[ext_resource type="Script" path="res://bullets/bullet_trail.gd" id="2_jmmva"]
+[ext_resource type="Script" uid="uid://v2g043uyqdfa" path="res://bullets/bullet.gd" id="1_j72ds"]
+[ext_resource type="Script" uid="uid://dqsxgbvhlqnq" path="res://bullets/bullet_trail.gd" id="2_jmmva"]
 [ext_resource type="ArrayMesh" uid="uid://cqf6v4gaperkn" path="res://bullets/bullet.obj" id="2_m6y8l"]
 [ext_resource type="PackedScene" uid="uid://fn1fivb2ndvo" path="res://scenes/effects/impacts/bullet_impact_yellow.tscn" id="2_v8rhl"]
 [ext_resource type="AudioStream" uid="uid://crtqyq64m3wm1" path="res://audio/streams/ambient/bullet_ambient.wav" id="4_ldvif"]
-[ext_resource type="Script" path="res://bullets/enemy/minor_omni_light_3d.gd" id="6_qw28e"]
+[ext_resource type="Script" uid="uid://oqbx6pignrqi" path="res://bullets/enemy/minor_omni_light_3d.gd" id="6_qw28e"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_h48e4"]
 size = Vector3(0.05, 0.05, 2)

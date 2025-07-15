@@ -1,9 +1,9 @@
 [gd_scene load_steps=40 format=3 uid="uid://ctgdbydttjqwq"]
 
-[ext_resource type="Script" path="res://scripts/effects/lifetime.gd" id="1_6sl8e"]
-[ext_resource type="Script" path="res://scripts/auto_play.gd" id="2_etkcd"]
+[ext_resource type="Script" uid="uid://b5h7xnsiqnyy7" path="res://scripts/effects/lifetime.gd" id="1_6sl8e"]
+[ext_resource type="Script" uid="uid://b7g82w2xxwd0u" path="res://scripts/auto_play.gd" id="2_etkcd"]
 [ext_resource type="ArrayMesh" uid="uid://cx13p5fo0cmf6" path="res://models/effects/octagon_quad.obj" id="2_qmcat"]
-[ext_resource type="Script" path="res://scripts/effects/area_damage.gd" id="3_e2vgx"]
+[ext_resource type="Script" uid="uid://iq4n1kv8ucdv" path="res://scripts/effects/area_damage.gd" id="3_e2vgx"]
 [ext_resource type="Texture2D" uid="uid://djg6ch15ainnw" path="res://effects/radial_n.png" id="3_vhjgo"]
 [ext_resource type="AudioStream" uid="uid://tv57kig5mcoh" path="res://audio/streams/effects/kaboom.wav" id="4_22yul"]
 [ext_resource type="AudioStream" uid="uid://b4em0t5e3pb8a" path="res://audio/streams/effects/vine_boom.mp3" id="5_vgmmu"]
@@ -33,9 +33,7 @@ hue_variation_min = 0.17
 hue_variation_max = 0.17
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4yncm"]
-transparency = 3
-alpha_hash_scale = 1.0
-alpha_antialiasing_mode = 0
+transparency = 1
 blend_mode = 1
 shading_mode = 0
 vertex_color_use_as_albedo = true
@@ -291,7 +289,7 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0, 0.6, 10),
 "transitions": PackedFloat32Array(0.25, 1.75, 1),
 "update": 0,
-"values": [Vector3(0, 0, 0), Vector3(5, 5, 5), Vector3(15, 15, 15)]
+"values": [Vector3(0.01, 0.01, 0.01), Vector3(5, 5, 5), Vector3(15, 15, 15)]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -311,7 +309,7 @@ tracks/3/enabled = true
 tracks/3/path = NodePath("AnimationPlayer/Fireball")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
-tracks/3/keys = PackedFloat32Array(0, 1, 0, 0, 0, 0.3, 1, 10, 10, 10)
+tracks/3/keys = PackedFloat32Array(0, 1, 0.01, 0.01, 0.01, 0.3, 1, 10, 10, 10)
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
@@ -394,7 +392,7 @@ tracks/10/keys = {
 "times": PackedFloat32Array(0, 0.3),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector3(0, 0, 0), Vector3(30, 30, 30)]
+"values": [Vector3(0.01, 0.01, 0.01), Vector3(30, 30, 30)]
 }
 tracks/11/type = "value"
 tracks/11/imported = false
@@ -435,12 +433,13 @@ tracks/13/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_7h3vl"]
 _data = {
-"RESET": SubResource("Animation_3e3i5"),
-"anim": SubResource("Animation_1qm5a")
+&"RESET": SubResource("Animation_3e3i5"),
+&"anim": SubResource("Animation_1qm5a")
 }
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3anle"]
 transparency = 1
+blend_mode = 1
 shading_mode = 0
 albedo_color = Color(1, 1, 0, 1)
 
@@ -466,6 +465,7 @@ fill_to = Vector2(1, 0.5)
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_g5x4e"]
 resource_local_to_scene = true
 transparency = 1
+blend_mode = 1
 cull_mode = 2
 shading_mode = 0
 albedo_color = Color(1, 0, 0, 0)
@@ -559,13 +559,13 @@ draw_pass_1 = SubResource("TubeTrailMesh_deilp")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
-"": SubResource("AnimationLibrary_7h3vl")
+&"": SubResource("AnimationLibrary_7h3vl")
 }
 script = ExtResource("2_etkcd")
 animated_materials = [NodePath("Fireball"), NodePath("FogVolume")]
 
 [node name="Fireball" type="MeshInstance3D" parent="AnimationPlayer"]
-transform = Transform3D(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+transform = Transform3D(0.00999999, 0, 0, 0, 0.00999999, 0, 0, 0, 0.00999999, 0, 0, 0)
 layers = 2
 mesh = SubResource("SphereMesh_cpldg")
 

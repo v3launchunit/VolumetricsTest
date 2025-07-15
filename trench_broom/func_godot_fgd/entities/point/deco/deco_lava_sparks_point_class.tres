@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="FuncGodotFGDPointClass" load_steps=3 format=3 uid="uid://dieso02d657go"]
 
-[ext_resource type="Script" path="res://addons/func_godot/src/fgd/func_godot_fgd_point_class.gd" id="1_e3856"]
+[ext_resource type="Script" uid="uid://cw2atun4e3eyv" path="res://addons/func_godot/src/fgd/func_godot_fgd_point_class.gd" id="1_e3856"]
 [ext_resource type="PackedScene" uid="uid://djugodjmvvg4v" path="res://objects/deco/hazards/lava_deco.tscn" id="1_gwd46"]
 
 [resource]

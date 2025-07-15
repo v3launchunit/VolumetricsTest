@@ -161,7 +161,6 @@ collision_layer = 256
 
 [node name="ChainMesh" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.25, 0)
-visibility_parent = NodePath("../ChainQuad_NW_SE")
 layers = 8
 material_override = SubResource("ShaderMaterial_cg7ux")
 mesh = SubResource("ArrayMesh_fnwk7")

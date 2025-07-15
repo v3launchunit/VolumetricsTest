@@ -1,0 +1,14 @@
+[gd_resource type="BoxMesh" load_steps=3 format=3 uid="uid://b2jvolcdyu5ma"]
+
+[ext_resource type="Shader" uid="uid://bycruau5ish4o" path="res://shaders/spatial/psx_ul_mix.gdshader" id="1_6k148"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_amhxg"]
+render_priority = 0
+shader = ExtResource("1_6k148")
+shader_parameter/albedo = Color(1, 1, 1, 1)
+shader_parameter/uv1_scale = Vector3(1, 1, 1)
+shader_parameter/uv1_offset = Vector3(0, 0, 0)
+
+[resource]
+material = SubResource("ShaderMaterial_amhxg")
+size = Vector3(0.063, 0.063, 0.063)

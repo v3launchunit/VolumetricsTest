@@ -1,14 +1,14 @@
 [gd_scene load_steps=29 format=3 uid="uid://cp3asxmnm2wuy"]
 
-[ext_resource type="Script" path="res://bullets/player/projectile/mortar_grenade.gd" id="1_o821v"]
+[ext_resource type="Script" uid="uid://ciq0m3xt0lgce" path="res://bullets/player/projectile/mortar_grenade.gd" id="1_o821v"]
 [ext_resource type="PackedScene" uid="uid://dco7xp2cwuyge" path="res://scenes/effects/explosions/explosion.tscn" id="2_ivelt"]
 [ext_resource type="Material" uid="uid://krobnjd1cbwe" path="res://entities/enemies/machines/metal_gray_psx.tres" id="3_g7s2j"]
-[ext_resource type="Shader" path="res://shaders/spatial/psx_ul_mix.gdshader" id="3_xr7yj"]
-[ext_resource type="Script" path="res://bullets/bullet_trail.gd" id="4_qvyba"]
-[ext_resource type="Script" path="res://bullets/enemy/minor_omni_light_3d.gd" id="5_vapyw"]
+[ext_resource type="Shader" uid="uid://bycruau5ish4o" path="res://shaders/spatial/psx_ul_mix.gdshader" id="3_xr7yj"]
+[ext_resource type="Script" uid="uid://dqsxgbvhlqnq" path="res://bullets/bullet_trail.gd" id="4_qvyba"]
+[ext_resource type="Script" uid="uid://oqbx6pignrqi" path="res://bullets/enemy/minor_omni_light_3d.gd" id="5_vapyw"]
 [ext_resource type="Material" uid="uid://b78l63b32udy2" path="res://effects/halos/halo_mat.tres" id="6_0567t"]
-[ext_resource type="Script" path="res://scripts/effects/halo.gd" id="7_tyybs"]
-[ext_resource type="Script" path="res://scripts/effects/lifetime.gd" id="8_l2lfr"]
+[ext_resource type="Script" uid="uid://qbss7pion7pi" path="res://scripts/effects/halo.gd" id="7_tyybs"]
+[ext_resource type="Script" uid="uid://b5h7xnsiqnyy7" path="res://scripts/effects/lifetime.gd" id="8_l2lfr"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_ebcna"]
 bounce = 0.1
@@ -89,7 +89,7 @@ shader = SubResource("Shader_errlx")
 shader_parameter/albedo = Color(1, 1, 1, 1)
 shader_parameter/point_size = 1.0
 shader_parameter/roughness = 1.0
-shader_parameter/metallic_texture_channel = null
+shader_parameter/metallic_texture_channel = Vector4(0, 0, 0, 0)
 shader_parameter/specular = 0.5
 shader_parameter/metallic = 0.0
 shader_parameter/uv1_scale = Vector3(1, 1, 1)

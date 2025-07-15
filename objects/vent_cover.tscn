@@ -1,9 +1,9 @@
 [gd_scene load_steps=9 format=3 uid="uid://cx7440mdew586"]
 
-[ext_resource type="Shader" path="res://shaders/spatial/psx_pb_aclip.gdshader" id="1_e3msk"]
-[ext_resource type="Texture2D" uid="uid://dyastc7xeg5gh" path="res://trench_broom/textures/_pbr/vent_panel/vent_panel_destructable_albedo.png" id="2_0tyxj"]
-[ext_resource type="Texture2D" uid="uid://c7mr77fvkkfuy" path="res://trench_broom/textures/_pbr/vent_panel/vent_panel_destructable_normals.png" id="3_esh3n"]
-[ext_resource type="Script" path="res://entities/status.gd" id="4_m1nng"]
+[ext_resource type="Shader" uid="uid://bvuxceynh6rex" path="res://shaders/spatial/psx_pb_aclip.gdshader" id="1_e3msk"]
+[ext_resource type="Texture2D" uid="uid://dyastc7xeg5gh" path="res://materials/terrain/_pbr/vent_panel/vent_panel_destructable_albedo.png" id="2_0tyxj"]
+[ext_resource type="Texture2D" uid="uid://c7mr77fvkkfuy" path="res://materials/terrain/_pbr/vent_panel/vent_panel_destructable_normals.png" id="3_esh3n"]
+[ext_resource type="Script" uid="uid://cly1es2vyxx12" path="res://entities/status.gd" id="4_m1nng"]
 [ext_resource type="PackedScene" uid="uid://bfctj0w1fkgwy" path="res://scenes/effects/gibs/metal_shards.tscn" id="5_2v1gw"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_0p63t"]
@@ -14,7 +14,9 @@
 render_priority = 0
 shader = ExtResource("1_e3msk")
 shader_parameter/albedo_col = Color(1, 1, 1, 1)
+shader_parameter/albedo_tex = ExtResource("2_0tyxj")
 shader_parameter/alpha_clip_threshold = 0.5
+shader_parameter/normal_tex = ExtResource("3_esh3n")
 shader_parameter/normal_scale = 1.0
 shader_parameter/roughness = 0.75
 shader_parameter/metallic = 1.0
@@ -25,8 +27,6 @@ shader_parameter/uv1_offset = Vector3(0, 0, 0)
 shader_parameter/uv2_scale = Vector3(1, 1, 1)
 shader_parameter/uv2_offset = Vector3(0, 0, 0)
 shader_parameter/is_terrain_mat = false
-shader_parameter/albedo_tex = ExtResource("2_0tyxj")
-shader_parameter/normal_tex = ExtResource("3_esh3n")
 
 [node name="StaticBody3D" type="StaticBody3D"]
 

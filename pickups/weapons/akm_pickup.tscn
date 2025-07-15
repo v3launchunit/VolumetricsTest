@@ -1,13 +1,13 @@
 [gd_scene load_steps=25 format=3 uid="uid://lt47oncbceb2"]
 
-[ext_resource type="Script" path="res://scripts/pickups/weapon_pickup.gd" id="1_bxpsa"]
+[ext_resource type="Script" uid="uid://yrdtgm5mut51" path="res://pickups/weapon_pickup.gd" id="1_bxpsa"]
 [ext_resource type="AudioStream" uid="uid://dxscywpf2ven0" path="res://audio/streams/pickups/pickup_weapon.wav" id="2_dmkcn"]
 [ext_resource type="ArrayMesh" uid="uid://53jffpg6vhkj" path="res://weapons/akm/akm.obj" id="2_l81mn"]
 [ext_resource type="PackedScene" uid="uid://xpo774l18flk" path="res://weapons/akm/akm.tscn" id="2_xvbkw"]
 [ext_resource type="Texture2D" uid="uid://hk0k2coukjwc" path="res://effects/halos/halo_tex.tres" id="3_q1kpb"]
 [ext_resource type="Material" uid="uid://b78l63b32udy2" path="res://effects/halos/halo_mat.tres" id="3_x05hk"]
 [ext_resource type="Texture2D" uid="uid://broweqdhl5i4r" path="res://weapons/akm/akm_detail_mask.png" id="4_txauj"]
-[ext_resource type="Script" path="res://scripts/effects/halo.gd" id="5_l718t"]
+[ext_resource type="Script" uid="uid://qbss7pion7pi" path="res://scripts/effects/halo.gd" id="5_l718t"]
 [ext_resource type="Texture2D" uid="uid://bav8pkl55om5n" path="res://weapons/akm/akm_metallic.png" id="5_nmgn0"]
 [ext_resource type="Texture2D" uid="uid://dre07gr8t1lp2" path="res://weapons/akm/akm_roughness.png" id="6_yvhjn"]
 
@@ -119,21 +119,21 @@ shader = SubResource("Shader_u7wyi")
 shader_parameter/albedo = Color(0.3, 0.3, 0.3, 1)
 shader_parameter/point_size = 1.0
 shader_parameter/roughness = 1.0
+shader_parameter/texture_metallic = ExtResource("5_nmgn0")
 shader_parameter/metallic_texture_channel = Vector4(1, 0, 0, 0)
+shader_parameter/texture_roughness = ExtResource("6_yvhjn")
 shader_parameter/specular = 0.5
 shader_parameter/metallic = 1.0
 shader_parameter/clearcoat = 1.0
 shader_parameter/clearcoat_roughness = 0.25
-shader_parameter/uv1_scale = Vector3(1, 1, 1)
-shader_parameter/uv1_offset = Vector3(0, 0, 0)
-shader_parameter/uv2_scale = Vector3(1, 1, 1)
-shader_parameter/uv2_offset = Vector3(0, 0, 0)
-shader_parameter/texture_metallic = ExtResource("5_nmgn0")
-shader_parameter/texture_roughness = ExtResource("6_yvhjn")
 shader_parameter/texture_clearcoat = ExtResource("4_txauj")
 shader_parameter/texture_detail_albedo = SubResource("NoiseTexture2D_dyb1y")
 shader_parameter/texture_detail_normal = SubResource("NoiseTexture2D_dbe1r")
 shader_parameter/texture_detail_mask = ExtResource("4_txauj")
+shader_parameter/uv1_scale = Vector3(1, 1, 1)
+shader_parameter/uv1_offset = Vector3(0, 0, 0)
+shader_parameter/uv2_scale = Vector3(1, 1, 1)
+shader_parameter/uv2_offset = Vector3(0, 0, 0)
 
 [sub_resource type="Shader" id="Shader_snc4y"]
 code = "// NOTE: Shader automatically converted from Godot Engine 4.2.1.stable.mono's StandardMaterial3D.
@@ -209,7 +209,7 @@ tracks/1/keys = PackedFloat32Array(0, 1, 0, 0, 0, 2.5, 1, 0, 0.05, 0, 5, 1, 0, 0
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_4pudi"]
 _data = {
-"anim": SubResource("Animation_wivti")
+&"anim": SubResource("Animation_wivti")
 }
 
 [node name="AkmPickup" type="RigidBody3D"]

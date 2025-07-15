@@ -1,13 +1,13 @@
 [gd_scene load_steps=23 format=3 uid="uid://cprbuapjccc8b"]
 
 [ext_resource type="PackedScene" uid="uid://b4rf5i4ramo71" path="res://weapons/nailgun/nailgun.glb" id="1_e18ie"]
-[ext_resource type="Script" path="res://weapons/weapon_double_barrel.gd" id="2_3wn8a"]
+[ext_resource type="Script" uid="uid://cg48mfyeopfar" path="res://weapons/weapon_double_barrel.gd" id="2_3wn8a"]
 [ext_resource type="AnimationLibrary" uid="uid://clbhlm2virvf0" path="res://weapons/nailgun/nailgun_anims.res" id="3_8tsnk"]
 [ext_resource type="ArrayMesh" uid="uid://crk83yrjbvbg6" path="res://weapons/muzzle_flash.obj" id="3_kb333"]
 [ext_resource type="PackedScene" uid="uid://dhplxq8nkqau3" path="res://bullets/player/projectile/nail.tscn" id="3_v6ia4"]
 [ext_resource type="Material" uid="uid://nv0jkcw45ofc" path="res://weapons/weapon_metal_vm.tres" id="4_r4di6"]
 [ext_resource type="Material" uid="uid://dq3a5fxspauox" path="res://weapons/muzzle_flash_yellow_vm.tres" id="4_tc63f"]
-[ext_resource type="Script" path="res://weapons/alert_area.gd" id="4_xgkgl"]
+[ext_resource type="Script" uid="uid://cm4w83326cpew" path="res://weapons/alert_area.gd" id="4_xgkgl"]
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_pa5f1"]
 animation = &"nailgun_anims/nailgun_fire_right"
@@ -176,7 +176,7 @@ tracks/9/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_df57y"]
 _data = {
-"RESET": SubResource("Animation_2afvw")
+&"RESET": SubResource("Animation_2afvw")
 }
 
 [node name="Nailgun" type="Node3D"]

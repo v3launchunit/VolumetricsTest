@@ -1,7 +1,7 @@
 [gd_scene load_steps=26 format=3 uid="uid://c5pbs8t6p7ogl"]
 
 [ext_resource type="ArrayMesh" uid="uid://bssx7wfjh7rbq" path="res://models/gib.obj" id="1_v6f6j"]
-[ext_resource type="Script" path="res://scripts/effects/particle_lifetime.gd" id="2_08tqy"]
+[ext_resource type="Script" uid="uid://b6bektmpvs3xa" path="res://scripts/effects/particle_lifetime.gd" id="2_08tqy"]
 [ext_resource type="AudioStream" uid="uid://cf47ey2v3phbu" path="res://audio/streams/effects/mutilation.wav" id="3_ir11u"]
 
 [sub_resource type="Shader" id="Shader_nt862"]
@@ -79,19 +79,19 @@ noise = SubResource("FastNoiseLite_4pqdw")
 render_priority = 0
 shader = SubResource("Shader_nt862")
 shader_parameter/albedo = Color(1, 1, 1, 1)
+shader_parameter/texture_albedo = SubResource("NoiseTexture2D_0j46b")
 shader_parameter/alpha_hash_scale = 1.0
 shader_parameter/point_size = 1.0
 shader_parameter/roughness = 0.5
-shader_parameter/metallic_texture_channel = null
+shader_parameter/metallic_texture_channel = Vector4(0, 0, 0, 0)
 shader_parameter/specular = 0.5
 shader_parameter/metallic = 0.0
+shader_parameter/texture_normal = SubResource("NoiseTexture2D_ju8tl")
 shader_parameter/normal_scale = 2.0
 shader_parameter/uv1_scale = Vector3(1, 1, 1)
 shader_parameter/uv1_offset = Vector3(0, 0, 0)
 shader_parameter/uv2_scale = Vector3(1, 1, 1)
 shader_parameter/uv2_offset = Vector3(0, 0, 0)
-shader_parameter/texture_albedo = SubResource("NoiseTexture2D_0j46b")
-shader_parameter/texture_normal = SubResource("NoiseTexture2D_ju8tl")
 
 [sub_resource type="Gradient" id="Gradient_1m3vq"]
 offsets = PackedFloat32Array(0.8, 0.9)
@@ -160,7 +160,7 @@ shader = SubResource("Shader_40uw1")
 shader_parameter/albedo = Color(1, 0, 0, 1)
 shader_parameter/point_size = 1.0
 shader_parameter/roughness = 1.0
-shader_parameter/metallic_texture_channel = null
+shader_parameter/metallic_texture_channel = Vector4(0, 0, 0, 0)
 shader_parameter/specular = 0.5
 shader_parameter/metallic = 0.0
 shader_parameter/uv1_scale = Vector3(1, 1, 1)
@@ -253,8 +253,8 @@ tracks/1/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_523pv"]
 _data = {
-"RESET": SubResource("Animation_4766l"),
-"anim": SubResource("Animation_gltkd")
+&"RESET": SubResource("Animation_4766l"),
+&"anim": SubResource("Animation_gltkd")
 }
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_awnvj"]

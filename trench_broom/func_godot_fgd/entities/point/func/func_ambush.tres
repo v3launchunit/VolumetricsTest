@@ -1,8 +1,8 @@
 [gd_resource type="Resource" script_class="FuncGodotFGDPointClass" load_steps=4 format=3 uid="uid://bf664nqpwmxu2"]
 
 [ext_resource type="Resource" uid="uid://c73xdr38wm4dj" path="res://trench_broom/func_godot_fgd/entities/base/linkable_base_class.tres" id="1_qtxkr"]
-[ext_resource type="Script" path="res://addons/func_godot/src/fgd/func_godot_fgd_point_class.gd" id="1_um0dl"]
-[ext_resource type="Script" path="res://entities/enemies/ambush.gd" id="2_g8hne"]
+[ext_resource type="Script" uid="uid://cw2atun4e3eyv" path="res://addons/func_godot/src/fgd/func_godot_fgd_point_class.gd" id="1_um0dl"]
+[ext_resource type="Script" uid="uid://d4axjnrignooa" path="res://entities/enemies/ambush.gd" id="2_g8hne"]
 
 [resource]
 script = ExtResource("1_um0dl")
@@ -41,7 +41,7 @@ auto_apply_to_matching_node_properties = false
 meta_properties = {
 "color": Color(0.8, 0.8, 0.8, 1),
 "model": "{{ ambusher == \"camo lizard\" -> {\"path\": \"models/enemy_lizard.glb\"}, ambusher == \"canary\" -> {\"path\": \"models/enemy_canary.glb\"}, ambusher == \"enforcer\" -> {\"path\": \"models/enemy_enforcer.glb\"}, ambusher == \"eyeball\" -> {\"path\": \"models/enemy_eyeball.glb\"}, ambusher == \"lizard\" -> {\"path\": \"models/enemy_lizard.glb\"}, ambusher == \"pinkerton\" -> {\"path\": \"models/enemy_pinkerton.glb\"}, ambusher == \"plasma_droid\" -> {\"path\": \"models/enemy_plasma_droid.glb\"}, ambusher == \"rocketeer\" -> {\"path\": \"models/enemy_rocketeer.glb\"}, ambusher == \"eepy_lizard\" -> {\"path\": \"models/enemy_lizard.glb\"}, ambusher == \"soldier\" -> {\"path\": \"models/enemy_soldier.glb\"}, {\"path\": \"models/enemy_pinkerton.glb\"} }}",
-"size": AABB(-8, -8, -8, 8, 8, 8)
+"size": AABB(-8, -8, -16, 8, 8, 16)
 }
 node_class = "Marker3D"
 name_property = ""

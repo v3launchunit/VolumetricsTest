@@ -1,7 +1,8 @@
-[gd_scene load_steps=14 format=3 uid="uid://obwsnaybs6vi"]
+[gd_scene load_steps=15 format=3 uid="uid://obwsnaybs6vi"]
 
+[ext_resource type="Script" uid="uid://bc60eq8f31x2u" path="res://scripts/objects/carriable.gd" id="1_nrdid"]
 [ext_resource type="PackedScene" uid="uid://bgj5uch3h4q3n" path="res://objects/deco/trash/trash_crate_metal.tscn" id="1_shg8j"]
-[ext_resource type="Script" path="res://entities/status.gd" id="3_8eiwp"]
+[ext_resource type="Script" uid="uid://cly1es2vyxx12" path="res://entities/status.gd" id="3_8eiwp"]
 [ext_resource type="PackedScene" uid="uid://boxs6v8ktotma" path="res://pickups/ammo/shell_box/shell_box_pickup.tscn" id="6_j7tdp"]
 [ext_resource type="PackedScene" uid="uid://cu70msbgu2ysm" path="res://scenes/effects/damage/metal_damage_sys.tscn" id="7_2yq6e"]
 [ext_resource type="PackedScene" uid="uid://d2oe770gjlkup" path="res://pickups/ammo/akm_mag_pickup.tscn" id="7_7ahh6"]
@@ -11,11 +12,13 @@
 [ext_resource type="PackedScene" uid="uid://cxe1gjgdpac7q" path="res://pickups/health/health_pack/health_pack_pickup.tscn" id="10_udsg6"]
 [ext_resource type="PackedScene" uid="uid://b3n8ejiapfh8" path="res://pickups/ammo/large_cell_pickup.tscn" id="11_gc2ou"]
 [ext_resource type="PackedScene" uid="uid://b8i1fe0bwht3k" path="res://pickups/armor/armor_bonus_pickup.tscn" id="12_l5dvr"]
-[ext_resource type="PackedScene" uid="uid://joq438puropu" path="res://pickups/ammo/nail_box_pickup.tscn" id="13_cc7wi"]
+[ext_resource type="PackedScene" uid="uid://joq438puropu" path="res://pickups/ammo/nail_box/nail_box_pickup.tscn" id="13_cc7wi"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_17vxe"]
 
 [node name="Crate" type="RigidBody3D"]
+mass = 30.0
+script = ExtResource("1_nrdid")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("BoxShape3D_17vxe")

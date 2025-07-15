@@ -1,8 +1,8 @@
 [gd_resource type="Resource" script_class="FuncGodotFGDModelPointClass" load_steps=4 format=3 uid="uid://bes3v1qr5gokj"]
 
-[ext_resource type="Resource" uid="uid://db62xxbcljw26" path="res://trench_broom/func_godot_fgd/entities/base/mangle_base_class.tres" id="1_tlp1v"]
+[ext_resource type="Resource" uid="uid://db62xxbcljw26" path="res://trench_broom/func_godot_fgd/entities/base/angles_base_class.tres" id="1_ubg0i"]
 [ext_resource type="PackedScene" uid="uid://dl2s16poygxvk" path="res://scenes/objects/lights/shrooms.tscn" id="2_ur0cp"]
-[ext_resource type="Script" path="res://addons/func_godot/src/fgd/func_godot_fgd_model_point_class.gd" id="3_gyplh"]
+[ext_resource type="Script" uid="uid://uk7d08g8mvr2" path="res://addons/func_godot/src/fgd/func_godot_fgd_model_point_class.gd" id="3_gyplh"]
 
 [resource]
 script = ExtResource("3_gyplh")
@@ -14,16 +14,16 @@ generate_gd_ignore_file = false
 scene_file = ExtResource("2_ur0cp")
 apply_rotation_on_map_build = true
 classname = "ldeco_shrooms"
-description = ""
+description = "a quartet of green bioluminescent mushrooms."
 func_godot_internal = false
-base_classes = Array[Resource]([ExtResource("1_tlp1v")])
+base_classes = Array[Resource]([ExtResource("1_ubg0i")])
 class_properties = {}
 class_property_descriptions = {}
 auto_apply_to_matching_node_properties = false
 meta_properties = {
 "color": Color(0.8, 0.8, 0.8, 1),
-"model": "\"models/l_shrooms.glb\"",
-"size": AABB(-8, -8, -8, 8, 8, 8)
+"model": "\"models/ldeco_shrooms.glb\"",
+"size": AABB(-8, -8, -4, 8, 8, 8)
 }
 node_class = ""
 name_property = ""

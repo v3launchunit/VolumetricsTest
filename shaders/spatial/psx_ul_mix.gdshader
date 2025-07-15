@@ -2,10 +2,10 @@
 
 shader_type spatial;
 render_mode blend_mix,cull_back,unshaded;
-uniform vec4 albedo : source_color;
+uniform vec4 albedo : source_color = vec4(1.0);
 //uniform bool use_vertex_color = true;
 uniform sampler2D texture_albedo : source_color,filter_nearest,repeat_enable;
-uniform vec3 uv1_scale;
+uniform vec3 uv1_scale = vec3(1.0);
 uniform vec3 uv1_offset;
 
 #include "res://shaders/includes/psx_inc.gdshaderinc"
@@ -17,8 +17,7 @@ void vertex() {
 
 void fragment() {
 	vec2 base_uv = UV;
-	vec4 albedo_tex = texture(texture_albedo,base_uv);
-	albedo_tex *= COLOR;
-	ALBEDO = albedo.rgb * albedo_tex.rgb;
-	ALPHA *= albedo.a * albedo_tex.a;
+	vec4 albedo_tex = texture(texture_albedo, base_uv);
+	ALBEDO = albedo.rgb * albedo_tex.rgb * COLOR.rgb;
+	ALPHA *= albedo.a * albedo_tex.a * COLOR.a;
 }

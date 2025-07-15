@@ -1,6 +1,6 @@
 [gd_scene load_steps=22 format=3 uid="uid://d62xcu27rha1"]
 
-[ext_resource type="Script" path="res://scripts/pickups/key_pickup.gd" id="1_cmqee"]
+[ext_resource type="Script" uid="uid://bdli2c62lkugm" path="res://pickups/key_pickup.gd" id="1_cmqee"]
 [ext_resource type="AudioStream" uid="uid://df7acgg7nqtsa" path="res://audio/streams/pickups/pickup_key.wav" id="2_v0jph"]
 [ext_resource type="ArrayMesh" uid="uid://bt5wg6uc7tqsy" path="res://pickups/keys/keys/key.obj" id="3_58kqm"]
 [ext_resource type="Texture2D" uid="uid://hk0k2coukjwc" path="res://effects/halos/halo_tex.tres" id="3_kuvxs"]
@@ -8,7 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://bn6desny3w35f" path="res://pickups/keys/keys/key_metallic.png" id="5_nxt40"]
 [ext_resource type="Texture2D" uid="uid://cyf32xnmb5ck7" path="res://pickups/keys/keys/key_roughness.png" id="6_8xwq2"]
 [ext_resource type="Material" uid="uid://b78l63b32udy2" path="res://effects/halos/halo_mat.tres" id="7_7r1bv"]
-[ext_resource type="Script" path="res://scripts/effects/halo.gd" id="9_ynkch"]
+[ext_resource type="Script" uid="uid://qbss7pion7pi" path="res://scripts/effects/halo.gd" id="9_ynkch"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_uc2sx"]
 height = 1.0
@@ -95,18 +95,18 @@ shader = SubResource("Shader_71no0")
 shader_parameter/albedo = Color(1, 1, 1, 1)
 shader_parameter/point_size = 1.0
 shader_parameter/roughness = 1.0
+shader_parameter/texture_metallic = ExtResource("5_nxt40")
 shader_parameter/metallic_texture_channel = Vector4(1, 0, 0, 0)
+shader_parameter/texture_roughness = ExtResource("6_8xwq2")
 shader_parameter/specular = 0.5
 shader_parameter/metallic = 1.0
+shader_parameter/texture_detail_albedo = SubResource("NoiseTexture2D_v0cjl")
+shader_parameter/texture_detail_normal = SubResource("NoiseTexture2D_ol7k3")
+shader_parameter/texture_detail_mask = ExtResource("4_w06bj")
 shader_parameter/uv1_scale = Vector3(1, 1, 1)
 shader_parameter/uv1_offset = Vector3(0, 0, 0)
 shader_parameter/uv2_scale = Vector3(1, 1, 1)
 shader_parameter/uv2_offset = Vector3(0, 0, 0)
-shader_parameter/texture_metallic = ExtResource("5_nxt40")
-shader_parameter/texture_roughness = ExtResource("6_8xwq2")
-shader_parameter/texture_detail_albedo = SubResource("NoiseTexture2D_v0cjl")
-shader_parameter/texture_detail_normal = SubResource("NoiseTexture2D_ol7k3")
-shader_parameter/texture_detail_mask = ExtResource("4_w06bj")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_yrs74"]
 transparency = 1
@@ -145,7 +145,7 @@ tracks/1/keys = PackedFloat32Array(0, 1, 0, 0, 0, 2.5, 1, 0, 0.05, 0, 5, 1, 0, 0
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_4pudi"]
 _data = {
-"anim": SubResource("Animation_wivti")
+&"anim": SubResource("Animation_wivti")
 }
 
 [node name="RedKeyPickup" type="RigidBody3D"]

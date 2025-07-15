@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://bs7borhko72ul" path="res://objects/crate/crate_normals.png" id="1_3va2u"]
 [ext_resource type="Texture2D" uid="uid://crih0rgk10al6" path="res://weapons/pump_shotgun/shotgun_detail_mask.png" id="1_cgk4d"]
-[ext_resource type="Script" path="res://scripts/effects/particle_lifetime.gd" id="2_l7om6"]
+[ext_resource type="Script" uid="uid://b6bektmpvs3xa" path="res://scripts/effects/particle_lifetime.gd" id="2_l7om6"]
 [ext_resource type="AudioStream" uid="uid://bvod4pgw3o7os" path="res://audio/streams/effects/wood/wood_break_1.wav" id="3_ca32t"]
 [ext_resource type="AudioStream" uid="uid://hcvsifamuwje" path="res://audio/streams/effects/wood/wood_break_2.wav" id="4_ln1x5"]
 [ext_resource type="AudioStream" uid="uid://chog3ntosnfie" path="res://audio/streams/effects/wood/wood_break_3.wav" id="5_e51v5"]
@@ -86,21 +86,21 @@ noise = SubResource("FastNoiseLite_q3vr3")
 render_priority = 0
 shader = SubResource("Shader_kldm2")
 shader_parameter/albedo = Color(1, 1, 1, 1)
+shader_parameter/texture_albedo = SubResource("NoiseTexture2D_h5i32")
 shader_parameter/point_size = 1.0
 shader_parameter/roughness = 0.75
-shader_parameter/metallic_texture_channel = null
+shader_parameter/metallic_texture_channel = Vector4(0, 0, 0, 0)
 shader_parameter/specular = 0.5
 shader_parameter/metallic = 0.0
+shader_parameter/texture_normal = SubResource("NoiseTexture2D_1b18h")
 shader_parameter/normal_scale = 1.0
 shader_parameter/clearcoat = 1.0
 shader_parameter/clearcoat_roughness = 0.25
+shader_parameter/texture_clearcoat = ExtResource("1_cgk4d")
 shader_parameter/uv1_scale = Vector3(1, 1, 1)
 shader_parameter/uv1_offset = Vector3(0, 0, 0)
 shader_parameter/uv2_scale = Vector3(1, 1, 1)
 shader_parameter/uv2_offset = Vector3(0, 0, 0)
-shader_parameter/texture_albedo = SubResource("NoiseTexture2D_h5i32")
-shader_parameter/texture_normal = SubResource("NoiseTexture2D_1b18h")
-shader_parameter/texture_clearcoat = ExtResource("1_cgk4d")
 
 [sub_resource type="Gradient" id="Gradient_qqwon"]
 offsets = PackedFloat32Array(0.9, 1)
@@ -141,17 +141,11 @@ size = Vector3(0.125, 1, 0.25)
 random_pitch = 1.15
 streams_count = 6
 stream_0/stream = ExtResource("3_ca32t")
-stream_0/weight = 1.0
 stream_1/stream = ExtResource("4_ln1x5")
-stream_1/weight = 1.0
 stream_2/stream = ExtResource("5_e51v5")
-stream_2/weight = 1.0
 stream_3/stream = ExtResource("6_1xtja")
-stream_3/weight = 1.0
 stream_4/stream = ExtResource("7_uhqgb")
-stream_4/weight = 1.0
 stream_5/stream = ExtResource("8_rvu0h")
-stream_5/weight = 1.0
 
 [node name="WoodShards" type="GPUParticles3D"]
 layers = 2

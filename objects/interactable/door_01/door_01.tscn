@@ -1,0 +1,61 @@
+[gd_scene load_steps=12 format=3 uid="uid://n6vtkb1h7jl3"]
+
+[ext_resource type="Script" uid="uid://c6ua8e1nkwkca" path="res://objects/interactable/wooden_door/hinge_door.gd" id="1_1upee"]
+[ext_resource type="Shader" uid="uid://i8j7r3ibp7kl" path="res://shaders/spatial/psx_pb_opaque_orm_detail_mix.gdshader" id="2_3bjal"]
+[ext_resource type="ArrayMesh" uid="uid://kb2wm3eiatxq" path="res://objects/interactable/door_01/door_01.obj" id="2_e1666"]
+[ext_resource type="Texture2D" uid="uid://ceba5ehyrr38i" path="res://objects/interactable/door_01/door_01_albedo.png" id="3_046vy"]
+[ext_resource type="Texture2D" uid="uid://drt8moj7f8cji" path="res://objects/interactable/door_01/door_01_normals.png" id="4_s12wa"]
+[ext_resource type="Texture2D" uid="uid://b4nppw8dqeuan" path="res://objects/interactable/door_01/door_01_orm.png" id="4_vdlyi"]
+
+[sub_resource type="Gradient" id="Gradient_3bjal"]
+interpolation_mode = 1
+offsets = PackedFloat32Array(0, 0.2, 0.5, 0.7)
+colors = PackedColorArray(0.278431, 0.172549, 0.0470588, 1, 0.341176, 0.207843, 0.0784314, 1, 0.447059, 0.298039, 0.14902, 1, 0.415686, 0.313726, 0.145098, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_s12wa"]
+frequency = 0.087
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_sksjp"]
+width = 96
+height = 48
+generate_mipmaps = false
+seamless = true
+seamless_blend_skirt = 0.25
+color_ramp = SubResource("Gradient_3bjal")
+noise = SubResource("FastNoiseLite_s12wa")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_vdlyi"]
+render_priority = 0
+shader = ExtResource("2_3bjal")
+shader_parameter/albedo_col = Color(1, 1, 1, 1)
+shader_parameter/albedo_tex = ExtResource("3_046vy")
+shader_parameter/normal_tex = ExtResource("4_s12wa")
+shader_parameter/normal_scale = 1.0
+shader_parameter/roughness = 0.75
+shader_parameter/metallic = 1.0
+shader_parameter/specular = 0.5
+shader_parameter/detail = 0.4
+shader_parameter/orm_tex = ExtResource("4_vdlyi")
+shader_parameter/detail_albedo_tex = SubResource("NoiseTexture2D_sksjp")
+shader_parameter/uv1_scale = Vector3(1, 1, 1)
+shader_parameter/uv1_offset = Vector3(0, 0, 0)
+shader_parameter/uv2_scale = Vector3(1, 1, 1)
+shader_parameter/uv2_offset = Vector3(0, 0, 0)
+shader_parameter/is_terrain_mat = false
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_046vy"]
+size = Vector3(1.25, 2.25, 0.25)
+
+[node name="Door01" type="AnimatableBody3D"]
+script = ExtResource("1_1upee")
+
+[node name="Door" type="MeshInstance3D" parent="."]
+material_override = SubResource("ShaderMaterial_vdlyi")
+mesh = ExtResource("2_e1666")
+
+[node name="Knob" type="MeshInstance3D" parent="Door"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 1.125, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.625, 1.125, -0.125)
+shape = SubResource("BoxShape3D_046vy")

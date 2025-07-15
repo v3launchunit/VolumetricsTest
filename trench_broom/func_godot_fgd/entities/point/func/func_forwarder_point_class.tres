@@ -1,8 +1,8 @@
 [gd_resource type="Resource" script_class="FuncGodotFGDPointClass" load_steps=4 format=3 uid="uid://bphhsxme2s0w5"]
 
 [ext_resource type="Resource" uid="uid://c73xdr38wm4dj" path="res://trench_broom/func_godot_fgd/entities/base/linkable_base_class.tres" id="1_hrakq"]
-[ext_resource type="Script" path="res://addons/func_godot/src/fgd/func_godot_fgd_point_class.gd" id="2_8irgt"]
-[ext_resource type="Script" path="res://trench_broom/func_godot_fgd/entities/point/func/forwarder.gd" id="3_mnlax"]
+[ext_resource type="Script" uid="uid://cw2atun4e3eyv" path="res://addons/func_godot/src/fgd/func_godot_fgd_point_class.gd" id="2_8irgt"]
+[ext_resource type="Script" uid="uid://decsm1jhqxtw" path="res://trench_broom/func_godot_fgd/entities/point/func/forwarder.gd" id="3_mnlax"]
 
 [resource]
 script = ExtResource("2_8irgt")

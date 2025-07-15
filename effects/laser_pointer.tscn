@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://pumfiphogvph"]
 
-[ext_resource type="Script" path="res://scripts/effects/laser_pointer.gd" id="1_og41w"]
+[ext_resource type="Script" uid="uid://djkx4ivub54yi" path="res://scripts/effects/laser_pointer.gd" id="1_og41w"]
 [ext_resource type="ArrayMesh" uid="uid://cfjlieto7r0xy" path="res://bullets/hitscan_bullet.obj" id="2_jup6q"]
 
 [sub_resource type="Shader" id="Shader_rskfx"]
@@ -56,16 +56,16 @@ metadata/_snap_count = 8
 render_priority = 0
 shader = SubResource("Shader_rskfx")
 shader_parameter/albedo = Color(1, 0, 0, 1)
+shader_parameter/texture_albedo = SubResource("GradientTexture2D_ewjuj")
 shader_parameter/point_size = 1.0
 shader_parameter/roughness = 1.0
-shader_parameter/metallic_texture_channel = null
+shader_parameter/metallic_texture_channel = Vector4(0, 0, 0, 0)
 shader_parameter/specular = 0.5
 shader_parameter/metallic = 0.0
 shader_parameter/uv1_scale = Vector3(1, 1, 1)
 shader_parameter/uv1_offset = Vector3(0, 0, 0)
 shader_parameter/uv2_scale = Vector3(1, 1, 1)
 shader_parameter/uv2_offset = Vector3(0, 0, 0)
-shader_parameter/texture_albedo = SubResource("GradientTexture2D_ewjuj")
 
 [node name="LaserPointer" type="Node3D"]
 script = ExtResource("1_og41w")

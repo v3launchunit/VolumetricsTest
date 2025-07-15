@@ -69,6 +69,7 @@ func _ready() -> void:
 				member.interacted.connect(on_triggered)
 				#print("%s got targeted by %s" % [name, member.name])
 		add_to_group("targetname:%s" % func_godot_properties["targetname"], true)
+	
 	if func_godot_properties["target"] != "":
 		for member in get_tree().get_nodes_in_group("targetname:%s" % func_godot_properties["target"]):
 			if member.has_method("on_triggered"):
@@ -76,7 +77,7 @@ func _ready() -> void:
 				#print("%s targeted %s" % [name, member.name])
 		add_to_group("targets:%s" %  func_godot_properties["target"], true)
 
-	if audio_player == null and func_godot_properties.get("open_sound", "") != "":
+	if audio_player == null and not ["", "none", "silent"].has(func_godot_properties.get("open_sound", "")) :#func_godot_properties.get("open_sound", "") != "":
 		audio_player = AudioStreamPlayer3D.new()
 		audio_player.bus = "World"
 		audio_player.doppler_tracking = AudioStreamPlayer3D.DOPPLER_TRACKING_PHYSICS_STEP
@@ -275,7 +276,7 @@ func on_triggered(by: Node3D) -> void:
 
 func get_tooltip() -> String:
 	return (
-			"" # inoperable and/or moving
+			"" # inoperable/moving/secret
 			if (
 					func_godot_properties.get("secret", false)
 					or not openable() 
@@ -304,7 +305,7 @@ func interact(body: Node3D) -> void:
 	if (
 			Engine.is_editor_hint() 
 			or (open and not func_godot_properties["closeable"])
-			or (
+			or ( # this condition prevents interacting with the door while it's moving
 					door_state != DoorState.CLOSED 
 					and door_state != DoorState.OPEN
 			)
@@ -317,14 +318,17 @@ func interact(body: Node3D) -> void:
 		if body is Player and not func_godot_properties.get("secret", false):
 			(body as Player).hud.set_alert(Globals.parse_text(
 					"alerts", 
-					"door.locked.%s" % func_godot_properties["required_key"]
+					"door.locked.%s" % func_godot_properties["required_key"] 
+						if func_godot_properties.get("alert_locked", "") == "" 
+						else func_godot_properties["alert_locked"]
 			))
 		return
 	else:
 		interacted.emit(body)
 		open = not open
 		door_state = DoorState.OPENING_0 if open else DoorState.CLOSING_0
-		audio_player.play()
+		if audio_player != null:
+			audio_player.play()
 
 
 func toggle(_body: Node3D) -> void:

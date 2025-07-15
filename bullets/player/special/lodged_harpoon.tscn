@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://svl1jl5atn0o"]
 
-[ext_resource type="Script" path="res://bullets/player/special/lodged_harpoon.gd" id="1_61u1e"]
-[ext_resource type="Material" uid="uid://by4h3hrepyr2o" path="res://bullets/bullet_metal.tres" id="3_rwv3b"]
+[ext_resource type="Script" uid="uid://dl2kcv6tdcvrt" path="res://bullets/player/special/lodged_harpoon.gd" id="1_61u1e"]
+[ext_resource type="Material" uid="uid://by4h3hrepyr2o" path="res://bullets/metal_psx.tres" id="3_rwv3b"]
 [ext_resource type="ArrayMesh" uid="uid://d13ytgdp3744o" path="res://models/harpoon.obj" id="4_ma0ok"]
 [ext_resource type="PackedScene" uid="uid://fn1fivb2ndvo" path="res://scenes/effects/impacts/bullet_impact_yellow.tscn" id="5_u4dnk"]
 

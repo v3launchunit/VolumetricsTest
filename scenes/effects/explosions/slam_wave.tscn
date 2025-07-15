@@ -1,9 +1,9 @@
 [gd_scene load_steps=15 format=3 uid="uid://cnhiimq1hl1lc"]
 
-[ext_resource type="Script" path="res://scripts/effects/area_damage.gd" id="1_h5c1g"]
+[ext_resource type="Script" uid="uid://iq4n1kv8ucdv" path="res://scripts/effects/area_damage.gd" id="1_h5c1g"]
 [ext_resource type="ArrayMesh" uid="uid://cx13p5fo0cmf6" path="res://models/effects/octagon_quad.obj" id="2_up7jf"]
-[ext_resource type="Script" path="res://scripts/effects/lifetime.gd" id="2_xvxap"]
-[ext_resource type="Script" path="res://scripts/auto_play.gd" id="3_430du"]
+[ext_resource type="Script" uid="uid://b5h7xnsiqnyy7" path="res://scripts/effects/lifetime.gd" id="2_xvxap"]
+[ext_resource type="Script" uid="uid://b7g82w2xxwd0u" path="res://scripts/auto_play.gd" id="3_430du"]
 [ext_resource type="AudioStream" uid="uid://cnkffwaw5gt4l" path="res://audio/streams/effects/impact/ground_slam_impact.wav" id="5_8eqll"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_wm1a5"]
@@ -90,8 +90,8 @@ tracks/1/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_fpctx"]
 _data = {
-"RESET": SubResource("Animation_1c6dn"),
-"anim": SubResource("Animation_jwqeg")
+&"RESET": SubResource("Animation_1c6dn"),
+&"anim": SubResource("Animation_jwqeg")
 }
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_dg5wi"]
@@ -135,7 +135,7 @@ skeleton = NodePath("../AnimationPlayer")
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 root_node = NodePath("../SlamWave")
 libraries = {
-"": SubResource("AnimationLibrary_fpctx")
+&"": SubResource("AnimationLibrary_fpctx")
 }
 script = ExtResource("3_430du")
 

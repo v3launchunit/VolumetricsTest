@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://dmiwibswbh0cn"]
 
 [ext_resource type="Theme" uid="uid://dwof7m2ye3tjh" path="res://ui/default_theme.tres" id="1_cxdvy"]
-[ext_resource type="Script" path="res://ui/menus/gameplay_sub_menu.gd" id="2_lu5u0"]
+[ext_resource type="Script" uid="uid://d0k86m3voai6v" path="res://ui/menus/gameplay_sub_menu.gd" id="2_lu5u0"]
 
 [node name="Gameplay" type="VBoxContainer"]
 offset_right = 162.0
@@ -12,7 +12,7 @@ theme = ExtResource("1_cxdvy")
 script = ExtResource("2_lu5u0")
 
 [node name="Difficulty" type="Control" parent="."]
-custom_minimum_size = Vector2(0, 68)
+custom_minimum_size = Vector2(0, 56)
 layout_mode = 2
 theme = ExtResource("1_cxdvy")
 
@@ -24,11 +24,37 @@ offset_right = -4.0
 offset_bottom = 26.0
 grow_horizontal = 2
 theme = ExtResource("1_cxdvy")
-text = "Crosshair Size"
+text = "Difficulty"
 horizontal_alignment = 1
 uppercase = true
 
+[node name="DifficultyDropdown" type="OptionButton" parent="Difficulty"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 8.0
+offset_top = -32.0
+offset_right = -8.0
+grow_horizontal = 2
+grow_vertical = 0
+selected = 1
+item_count = 5
+popup/item_0/text = "EASY"
+popup/item_0/id = 0
+popup/item_1/text = "NORMAL"
+popup/item_1/id = 1
+popup/item_2/text = "HARD"
+popup/item_2/id = 2
+popup/item_3/id = 4
+popup/item_3/separator = true
+popup/item_4/text = "NIGHTMARE"
+popup/item_4/id = 3
+popup/item_4/disabled = true
+
 [node name="DifficultySlider" type="HSlider" parent="Difficulty"]
+visible = false
 layout_mode = 1
 anchors_preset = 14
 anchor_top = 0.5
@@ -45,6 +71,7 @@ max_value = 2.0
 value = 1.0
 
 [node name="DifficultyLabel" type="Label" parent="Difficulty"]
+visible = false
 layout_mode = 1
 anchors_preset = 12
 anchor_top = 1.0
@@ -55,8 +82,21 @@ offset_right = -4.0
 grow_horizontal = 2
 grow_vertical = 0
 theme = ExtResource("1_cxdvy")
-text = "1x"
+text = "normal"
 horizontal_alignment = 1
 uppercase = true
 
+[node name="HFlowContainer" type="HFlowContainer" parent="."]
+layout_mode = 2
+theme = ExtResource("1_cxdvy")
+alignment = 1
+
+[node name="IntruderCheck" type="CheckButton" parent="HFlowContainer"]
+layout_mode = 2
+tooltip_text = "Lose all your weapons and ammo at the start of each level."
+theme = ExtResource("1_cxdvy")
+text = "Shotgun Start Mode"
+
+[connection signal="item_selected" from="Difficulty/DifficultyDropdown" to="." method="_on_difficulty_dropdown_item_selected"]
 [connection signal="value_changed" from="Difficulty/DifficultySlider" to="." method="_on_difficulty_slider_value_changed"]
+[connection signal="toggled" from="HFlowContainer/IntruderCheck" to="." method="_on_intruder_check_toggled"]
