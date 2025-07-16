@@ -6,7 +6,10 @@ extends StaticBody3D
 
 
 func _func_godot_build_complete() -> void:
-	($MeshInstance3D.material_override as ShaderMaterial).set_shader_parameter("albedo_col", func_godot_properties["_color"])
+	var c := func_godot_properties["_color"] as Color
+	if c.is_equal_approx(Color.BLACK):
+		c = Color.from_hsv(randf(), sqrt(randf()), 1.0)
+	($MeshInstance3D.material_override as ShaderMaterial).set_shader_parameter("albedo_col", c)
 
 
 # Called when the node enters the scene tree for the first time.
