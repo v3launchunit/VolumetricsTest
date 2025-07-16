@@ -55,12 +55,13 @@ const STUCK_TIMER_DECAY_RATE : float = 10.0
 @export_range(0, 1, 0.001, "or_greater") var knockback_multiplier: float = 1.0
 ## The rate at which the velocity imparted by knockback "decays" towards zero.
 @export var knockback_drag: float = 10.0
-## Self-explanatory.
+## the initial velocity with which the enemy leaves the ground when jumping.
 @export_range(0.0, 3.0, 0.1, "or_greater") var jump_height: float = 2.5
 #@export var target_pos_offset: Vector3 = Vector3.ZERO
 @export var wanderer: bool = false
 
 @export_group("Detection")
+## if disabled, this enemy will not attack the player unless the player attacks them first.
 @export var hunts_player: bool = true
 @export var hunts_species: Array[StringName] = []
 ## If enabled, prevents sight-based detection.
@@ -74,11 +75,9 @@ const STUCK_TIMER_DECAY_RATE : float = 10.0
 @export var wake_up_time: float = 3.0
 ## The "field of view" of this enemy - essentially, how far away from its
 ## current orientation it can spot the player while idle.
-@export_range(0, 360, 1, "radians") var sight_line_sweep_angle: float = (2 * PI) / 3
-## The speed with which this enemy scans for targets, expressed as the number
-## of full sweeps that occur every PI seconds.
-@export_range(0, 10, 0.1, "or_greater") var sight_line_sweep_speed: float = 3
-#@export var enemies: Array[String] = ["Player"]
+@export_range(0.0, 360.0, 1.0, "radians") var sight_line_sweep_angle : float = (2 * PI) / 3
+## the maximum distance from which the enemy can see the player.
+@export_range(0.0, 256.0, 0.1) var sight_range : float = 64
 ## The sound that plays when this enemy first detects a target while idle.
 @export var detection_stream: AudioStream
 
@@ -471,20 +470,24 @@ func _wander(delta) -> void:
 
 
 func _scan(_delta) -> void:
+	# can't see if blind, don't check every frame
 	if blind or randi_range(0, 5) != 0:
 		return
-	#sight_line.rotation.y = sin(
-			#state_timer * sight_line_sweep_speed
-			#+ randf() / sight_line_sweep_angle * 2
-	#) * sight_line_sweep_angle / 2
+	
 	#var target_pool: Array[Node] = []
 	#if hunts_player:
 		#target_pool.append(get_tree().get_first_node_in_group("players"))
 	#for prey in hunts_species:
 		#target_pool.append_array(get_tree().get_nodes_in_group(prey))
+	
+	# make sure target exists
 	var target: Node3D = get_tree().get_first_node_in_group("players") as Node3D
 	if player_hidden or target == null:
 		#print("no player")
+		return
+	
+	# can't see target from outside sight range
+	if global_position.distance_squared_to(target.global_position) > sight_range * sight_range:
 		return
 	
 	# can't see target from behind
@@ -501,7 +504,6 @@ func _scan(_delta) -> void:
 	# don't target yourself dumbass
 	query.exclude = [get_rid()]
 	var hit: Dictionary = space_state.intersect_ray(query)
-	#print(hit)
 	if (hit and hit["collider"] == target):
 		detect_target(target, DetectionType.SIGHT)
 		change_state(State.PURSUING)
@@ -530,7 +532,7 @@ func _pursue(delta) -> void:
 	if not check_target_validity(): # Make sure I actually have a target first
 		#change_state(State.IDLE) # Can't pursue a target that doesn't exist
 		return
-
+	
 	if turret_mode:
 		if is_on_floor():
 			sight_line.look_at(current_targets[-1].global_position)
@@ -567,7 +569,7 @@ func _pursue(delta) -> void:
 			nav_agent.set_velocity(walk_vel)
 		else:
 			velocity += walk_vel
-
+	
 	# Decide if it's time to attack my target
 	if check_attack_readiness():
 		_begin_attack()
