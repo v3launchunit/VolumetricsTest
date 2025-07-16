@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="TrashList" load_steps=3 format=3 uid="uid://c3trkwjwjl5o7"]
+
+[ext_resource type="Script" uid="uid://b23hnqmm8tkfw" path="res://objects/deco/trash/res_trash_list.gd" id="1_vcbce"]
+[ext_resource type="Script" uid="uid://ddqh3572qer7" path="res://objects/deco/trash/res_trash_prop.gd" id="2_8goj5"]
+
+[resource]
+script = ExtResource("1_vcbce")
+base_lists = Array[ExtResource("1_vcbce")]([])
+props = Array[ExtResource("2_8goj5")]([])
+metadata/_custom_type_script = "uid://b23hnqmm8tkfw"
