@@ -4265,6 +4265,7 @@
 {
 "classname" "deco_shippingcontainer"
 "origin" "-840 1272 316"
+"_color" "255 255 255"
 }
 // entity 262
 {
