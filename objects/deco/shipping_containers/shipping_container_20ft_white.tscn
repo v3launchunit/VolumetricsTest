@@ -28,6 +28,9 @@ shader_parameter/is_terrain_mat = false
 
 [node name="ShippingContainer20ft" type="StaticBody3D"]
 script = ExtResource("1_46pn5")
+func_godot_properties = {
+"_color": Color(0, 0, 0, 1)
+}
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("ConcavePolygonShape3D_kcxo1")
