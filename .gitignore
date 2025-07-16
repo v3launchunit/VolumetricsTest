@@ -1,6 +1,9 @@
-# Godot 4+ specific ignores
+# godot 4+ specific ignores
 .godot/
 
-# Custom ignores
+# visual studio code ignores
+.vscode/
+
+# custom ignores
 maps/autosave
 git_credentials.txt
