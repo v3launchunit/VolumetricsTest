@@ -5,7 +5,7 @@
 [ext_resource type="Shader" uid="uid://bycruau5ish4o" path="res://shaders/spatial/psx_ul_mix.gdshader" id="2_lb20c"]
 [ext_resource type="ArrayMesh" uid="uid://fre32431n5p6" path="res://entities/enemies/machines/gun_turret/gun_turret_base_wall.obj" id="2_mk3gm"]
 [ext_resource type="Material" uid="uid://krobnjd1cbwe" path="res://entities/enemies/machines/metal_gray_psx.tres" id="2_qskly"]
-[ext_resource type="Script" uid="uid://shmvkrxxebgs" path="res://entities/enemies/attack_pattern.gd" id="2_t2vl5"]
+[ext_resource type="Script" uid="uid://shmvkrxxebgs" path="res://entities/enemies/res_attack_pattern.gd" id="2_t2vl5"]
 [ext_resource type="PackedScene" uid="uid://blrtnnu61g5s" path="res://bullets/enemy/enemy_bullet_gen.tscn" id="3_bdfa1"]
 [ext_resource type="Material" uid="uid://b78l63b32udy2" path="res://effects/halos/halo_mat.tres" id="3_h4w1p"]
 [ext_resource type="Material" uid="uid://4uvuq34871pc" path="res://entities/enemies/machines/metal_white_psx.tres" id="3_lhv5t"]

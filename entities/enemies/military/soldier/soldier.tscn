@@ -1,7 +1,7 @@
 [gd_scene load_steps=71 format=3 uid="uid://13po7ktlg4ba"]
 
 [ext_resource type="Script" uid="uid://dtlsbvucy16cj" path="res://entities/enemies/enemy_attack_pattern.gd" id="1_hocf7"]
-[ext_resource type="Script" uid="uid://shmvkrxxebgs" path="res://entities/enemies/attack_pattern.gd" id="2_2bhwk"]
+[ext_resource type="Script" uid="uid://shmvkrxxebgs" path="res://entities/enemies/res_attack_pattern.gd" id="2_2bhwk"]
 [ext_resource type="PackedScene" uid="uid://b7nab3x7ubi16" path="res://models/entities/soldier.glb" id="2_b42bk"]
 [ext_resource type="Script" uid="uid://cly1es2vyxx12" path="res://entities/status.gd" id="3_1l8qx"]
 [ext_resource type="PackedScene" uid="uid://blrtnnu61g5s" path="res://bullets/enemy/enemy_bullet_gen.tscn" id="3_7t4uc"]

@@ -6,7 +6,7 @@
 [ext_resource type="AudioStream" uid="uid://duaykpmpnx0s2" path="res://audio/streams/effects/falling_pipe.wav" id="2_cqd0j"]
 [ext_resource type="AudioStream" uid="uid://ccvyploa5k7uu" path="res://audio/streams/voices/plasma_droid/plasma_droid_detect.wav" id="2_duui2"]
 [ext_resource type="ArrayMesh" uid="uid://ceibhbi3vm1n0" path="res://weapons/plasma_cannon/plasma_cannon.obj" id="2_scks3"]
-[ext_resource type="Script" uid="uid://shmvkrxxebgs" path="res://entities/enemies/attack_pattern.gd" id="3_3f3op"]
+[ext_resource type="Script" uid="uid://shmvkrxxebgs" path="res://entities/enemies/res_attack_pattern.gd" id="3_3f3op"]
 [ext_resource type="Material" uid="uid://b78l63b32udy2" path="res://effects/halos/halo_mat.tres" id="3_54erg"]
 [ext_resource type="PackedScene" uid="uid://fd8mwvba35jo" path="res://bullets/enemy/plasma/enemy_plasma_rocket.tscn" id="3_avpih"]
 [ext_resource type="PackedScene" uid="uid://cu70msbgu2ysm" path="res://scenes/effects/damage/metal_damage_sys.tscn" id="3_bt5p4"]

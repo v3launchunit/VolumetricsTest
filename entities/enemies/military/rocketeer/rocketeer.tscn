@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://dtlsbvucy16cj" path="res://entities/enemies/enemy_attack_pattern.gd" id="1_amqno"]
 [ext_resource type="PackedScene" uid="uid://dtybrk353o1i5" path="res://bullets/enemy/rockets/enemy_fast_rocket.tscn" id="2_tab8w"]
-[ext_resource type="Script" uid="uid://shmvkrxxebgs" path="res://entities/enemies/attack_pattern.gd" id="2_tv63j"]
+[ext_resource type="Script" uid="uid://shmvkrxxebgs" path="res://entities/enemies/res_attack_pattern.gd" id="2_tv63j"]
 [ext_resource type="PackedScene" uid="uid://d3ab78gmit1mf" path="res://entities/enemies/military/rocketeer/rocketeer.glb" id="2_x8iq8"]
 [ext_resource type="Script" uid="uid://cly1es2vyxx12" path="res://entities/status.gd" id="3_0r7lt"]
 [ext_resource type="PackedScene" uid="uid://2virpprjewql" path="res://bullets/enemy/rockets/enemy_homing_rocket.tscn" id="4_1g82w"]
