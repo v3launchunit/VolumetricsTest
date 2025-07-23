@@ -7025,6 +7025,30 @@
 }
 // entity 578
 {
+"classname" "deco_chair_wood"
+"origin" "-2156 2280 312"
+"angle" "285"
+}
+// entity 579
+{
+"classname" "deco_chair_wood"
+"origin" "-2132 2280 312"
+"angle" "270"
+}
+// entity 580
+{
+"classname" "deco_chair_wood"
+"origin" "-1942 2286 312"
+"angle" "270"
+}
+// entity 581
+{
+"classname" "deco_chair_wood"
+"origin" "-1963 2280 312"
+"angle" "255"
+}
+// entity 582
+{
 "classname" "func_group"
 "_tb_type" "_tb_layer"
 "_tb_name" "Reflection Probes"
@@ -7032,7 +7056,7 @@
 "_tb_layer_sort_index" "0"
 "_tb_layer_hidden" "1"
 }
-// entity 579
+// entity 583
 {
 "classname" "area_ref_probe_solid"
 "_tb_layer" "20"
@@ -7046,7 +7070,7 @@
 ( -200 232 104 ) ( -200 232 105 ) ( -200 233 104 ) special/probe [ 0 1 0 0 ] [ 0 0 -1 0 ] 0 1 1
 }
 }
-// entity 580
+// entity 584
 {
 "classname" "area_ref_probe_solid"
 "angles" "0 -30 0"
@@ -7061,7 +7085,7 @@
 ( 121.2820323027554 160.91789367798953 232 ) ( 121.2820323027554 160.91789367798953 233 ) ( 121.7820323027554 161.78391908177394 232 ) special/probe [ 0 1 0 0 ] [ 0 0 -1 0 ] 0 1 1
 }
 }
-// entity 581
+// entity 585
 {
 "classname" "area_ref_probe_solid"
 "interior" "0"
@@ -7076,7 +7100,7 @@
 ( 1104 888 104 ) ( 1104 888 105 ) ( 1104 889 104 ) special/probe [ 0 1 0 0 ] [ 0 0 -1 0 ] 0 1 1
 }
 }
-// entity 582
+// entity 586
 {
 "classname" "area_ref_probe_solid"
 "_tb_layer" "20"
@@ -7090,7 +7114,7 @@
 ( 608 2616 280 ) ( 608 2616 281 ) ( 608 2617 280 ) special/probe [ 0 1 0 0 ] [ 0 0 -1 0 ] 0 1 1
 }
 }
-// entity 583
+// entity 587
 {
 "classname" "area_ref_probe_solid"
 "_tb_layer" "20"
@@ -7104,7 +7128,7 @@
 ( 528 488 352 ) ( 528 488 353 ) ( 528 489 352 ) special/probe [ 0 1 0 0 ] [ 0 0 -1 0 ] 0 1 1
 }
 }
-// entity 584
+// entity 588
 {
 "classname" "area_ref_probe_solid"
 "interior" "0"
@@ -7119,7 +7143,7 @@
 ( -1072 1080 104 ) ( -1072 1080 105 ) ( -1072 1081 104 ) special/probe [ 0 1 0 0 ] [ 0 0 -1 0 ] 0 1 1
 }
 }
-// entity 585
+// entity 589
 {
 "classname" "area_ref_probe_solid"
 "_tb_layer" "20"
@@ -7133,7 +7157,7 @@
 ( -1312 808 288 ) ( -1312 808 289 ) ( -1312 809 288 ) special/probe [ 0 1 0 0 ] [ 0 0 -1 0 ] 0 1 1
 }
 }
-// entity 586
+// entity 590
 {
 "classname" "area_ref_probe_solid"
 "interior" "0"
@@ -7148,7 +7172,7 @@
 ( -1888 1336 104 ) ( -1888 1336 105 ) ( -1888 1337 104 ) special/probe [ 0 1 0 0 ] [ 0 0 -1 0 ] 0 1 1
 }
 }
-// entity 587
+// entity 591
 {
 "classname" "func_group"
 "_tb_type" "_tb_layer"
@@ -7157,7 +7181,7 @@
 "_tb_layer_sort_index" "1"
 "_tb_layer_hidden" "1"
 }
-// entity 588
+// entity 592
 {
 "classname" "area_fog"
 "_tb_layer" "97"
