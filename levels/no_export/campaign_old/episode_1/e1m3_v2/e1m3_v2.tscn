@@ -1,8 +1,8 @@
 [gd_scene load_steps=462 format=4 uid="uid://c73ftt2ccark1"]
 
 [ext_resource type="Script" uid="uid://bmu1uqqe8qsqm" path="res://levels/level.gd" id="1_ic6nw"]
-[ext_resource type="ArrayOccluder3D" uid="uid://boo2xih3jyhmt" path="res://levels/campaign/episode_1/e1m3_v2/e1m3_v2.occ" id="1_vtv2y"]
-[ext_resource type="CompressedTexture3D" uid="uid://b461pbyhcxcu6" path="res://levels/campaign/episode_1/e1m3_v2/e1m3_v2.GPUParticlesCollisionSDF3D_data.exr" id="2_dhvfv"]
+[ext_resource type="ArrayOccluder3D" uid="uid://boo2xih3jyhmt" path="res://levels/no_export/campaign_old/episode_1/e1m3_v2/e1m3_v2.occ" id="1_vtv2y"]
+[ext_resource type="CompressedTexture3D" uid="uid://b461pbyhcxcu6" path="res://levels/no_export/campaign_old/episode_1/e1m3_v2/e1m3_v2.GPUParticlesCollisionSDF3D_data.exr" id="2_dhvfv"]
 [ext_resource type="Material" uid="uid://boykh807if2ua" path="res://trench_broom/textures/pathways/street.tres" id="3_ys71p"]
 [ext_resource type="Material" uid="uid://qt3bjecsm0qb" path="res://trench_broom/textures/shutter_door.tres" id="6_45dyc"]
 [ext_resource type="Material" path="res://materials/terrain/trench_broom_std/bricks.tres" id="8_cojf1"]

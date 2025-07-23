@@ -31,7 +31,7 @@
 [ext_resource type="PackedScene" uid="uid://d62xcu27rha1" path="res://pickups/keys/keys/key_red_pickup.tscn" id="20_340k6"]
 [ext_resource type="PackedScene" uid="uid://cxe1gjgdpac7q" path="res://pickups/health/health_pack/health_pack_pickup.tscn" id="21_6f7fo"]
 [ext_resource type="Script" uid="uid://blyitdblilgra" path="res://trench_broom/func_godot_fgd/entities/solid/func/brush_door.gd" id="22_32c3f"]
-[ext_resource type="CompressedTexture3D" uid="uid://clfk3a7xr3wox" path="res://levels/campaign/episode_1/e1m3_v3/e1m3.GPUParticlesCollisionSDF3D_data.exr" id="24_32h5v"]
+[ext_resource type="CompressedTexture3D" uid="uid://clfk3a7xr3wox" path="res://levels/no_export/campaign_old/episode_1/e1m3_v3/e1m3.GPUParticlesCollisionSDF3D_data.exr" id="24_32h5v"]
 [ext_resource type="Material" uid="uid://bpiuncp6wk4t2" path="res://trench_broom/textures/key_metal_red.tres" id="24_mnxk2"]
 [ext_resource type="PackedScene" uid="uid://d2oe770gjlkup" path="res://pickups/ammo/akm_mag_pickup.tscn" id="25_340k6"]
 [ext_resource type="PackedScene" uid="uid://coe0vc85neefj" path="res://entities/enemies/locals/canary/canary.tscn" id="26_hplet"]

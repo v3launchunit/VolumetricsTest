@@ -3,15 +3,15 @@
 importer="2d_array_texture"
 type="CompressedTexture2DArray"
 uid="uid://crqku4d3us0cj"
-path="res://.godot/imported/e1m6_v1.exr-4888d5102276c4dc871269c867404819.ctexarray"
+path="res://.godot/imported/e1m6_v1.exr-0e6bf92d29984e5e50ec8bcbff0d1ff2.ctexarray"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://levels/campaign/episode_1/e1m6_v1/e1m6_v1.exr"
-dest_files=["res://.godot/imported/e1m6_v1.exr-4888d5102276c4dc871269c867404819.ctexarray"]
+source_file="res://levels/no_export/campaign_old/episode_1/e1m6_v1/e1m6_v1.exr"
+dest_files=["res://.godot/imported/e1m6_v1.exr-0e6bf92d29984e5e50ec8bcbff0d1ff2.ctexarray"]
 
 [params]
 

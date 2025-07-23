@@ -10,7 +10,7 @@
 [ext_resource type="Material" uid="uid://dqemvrb4pcd2g" path="res://trench_broom/textures/structural/concrete.tres" id="7_o3xlh"]
 [ext_resource type="Material" uid="uid://b35jmadc7ijlh" path="res://trench_broom/textures/liquids/lava_flowing.tres" id="8_py1e4"]
 [ext_resource type="PackedScene" uid="uid://dxyhvyy821swt" path="res://pickups/weapons/hunting_rifle_pickup.tscn" id="8_qk1yp"]
-[ext_resource type="ArrayOccluder3D" uid="uid://bkvfjuayfhpuw" path="res://levels/campaign/episode_2/underhang_v01/underhang_v01.occ" id="8_rucs7"]
+[ext_resource type="ArrayOccluder3D" uid="uid://bkvfjuayfhpuw" path="res://levels/no_export/campaign_old/episode_2/underhang_v01/underhang_v01.occ" id="8_rucs7"]
 [ext_resource type="PackedScene" uid="uid://do61x5km3wthk" path="res://entities/player/player.tscn" id="9_hp1lh"]
 [ext_resource type="PackedScene" uid="uid://cbo6wxdi4eryp" path="res://entities/enemies/military/pinkerton/pinkerton.tscn" id="9_pmr22"]
 [ext_resource type="PackedScene" uid="uid://dmgxmmtshe4dh" path="res://entities/enemies/locals/eyeball/eyeball.tscn" id="10_6eny4"]
