@@ -17,7 +17,8 @@ description = "a colorable shipping container prop."
 func_godot_internal = false
 base_classes = Array[Resource]([])
 class_properties = {
-"_color": Color(0, 0, 0, 1)
+"_color": Color(0, 0, 0, 1),
+"closed": true
 }
 class_property_descriptions = {
 "_color": "container color"

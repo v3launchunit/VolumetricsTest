@@ -1,0 +1,8 @@
+[gd_resource type="ORMMaterial3D" load_steps=2 format=3 uid="uid://c1wabeyxqso0l"]
+
+[ext_resource type="Texture2D" uid="uid://daja0il2t3ic2" path="res://materials/terrain/mesh_metal_normal.png" id="3"]
+
+[resource]
+normal_enabled = true
+normal_texture = ExtResource("3")
+texture_filter = 0

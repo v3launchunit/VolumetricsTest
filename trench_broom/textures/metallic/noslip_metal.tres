@@ -1,7 +1,7 @@
 [gd_resource type="StandardMaterial3D" load_steps=8 format=3 uid="uid://unchqv84lubl"]
 
 [ext_resource type="Texture2D" uid="uid://b7espdqm65jrg" path="res://materials/terrain/custom_hand/key_metal/key_metal_heights.png" id="1_lay5u"]
-[ext_resource type="Texture2D" uid="uid://d3xi2y34kr0p0" path="res://materials/terrain/custom_hand/key_metal/key_metal_normals_32.png" id="2_mkefi"]
+[ext_resource type="Texture2D" uid="uid://daja0il2t3ic2" path="res://materials/terrain/mesh_metal_normal.png" id="2_02mmf"]
 [ext_resource type="Texture2D" uid="uid://drbdr4yyvy7as" path="res://materials/terrain/custom_hand/metal/metal_roughness.tres" id="3_yfi57"]
 
 [sub_resource type="Gradient" id="Gradient_28hxv"]
@@ -28,7 +28,7 @@ metallic = 1.0
 roughness_texture = ExtResource("3_yfi57")
 emission = Color(0.12549, 0, 0, 1)
 normal_enabled = true
-normal_texture = ExtResource("2_mkefi")
+normal_texture = ExtResource("2_02mmf")
 heightmap_scale = 1.0
 heightmap_texture = ExtResource("1_lay5u")
 detail_mask = SubResource("GradientTexture1D_yvyda")

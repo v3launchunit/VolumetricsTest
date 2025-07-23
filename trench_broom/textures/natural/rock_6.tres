@@ -1,4 +1,4 @@
-[gd_resource type="ORMMaterial3D" load_steps=3 format=3 uid="uid://chuyfrj2hmvbn"]
+[gd_resource type="ORMMaterial3D" load_steps=3 format=3 uid="uid://c67gl5hkuw5oi"]
 
 [ext_resource type="Texture2D" uid="uid://bwrrerbbkj4hl" path="res://trench_broom/textures/natural/rock_6_albedo.png" id="1"]
 [ext_resource type="Texture2D" uid="uid://cmak5a6djkhpv" path="res://trench_broom/textures/natural/rock_6_normal.png" id="3"]

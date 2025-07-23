@@ -1,0 +1,10 @@
+[gd_resource type="ORMMaterial3D" load_steps=3 format=3 uid="uid://ckp3sxmaxf2rs"]
+
+[ext_resource type="Texture2D" uid="uid://bw14vk8l2ym32" path="res://trench_broom/textures/structural/bricks_stone_03.png" id="1"]
+[ext_resource type="Texture2D" uid="uid://dfgmhcw14vj18" path="res://materials/terrain/stonebricks_03_normal.png" id="2_ib5ua"]
+
+[resource]
+albedo_texture = ExtResource("1")
+normal_enabled = true
+normal_texture = ExtResource("2_ib5ua")
+texture_filter = 0

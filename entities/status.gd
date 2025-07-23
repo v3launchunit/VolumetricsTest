@@ -1,17 +1,28 @@
-class_name Status extends Node
+class_name Status 
+extends Node
 
 
 ## Emitted whenever this node takes damage.
 signal injured(source: Node3D)
+## Emitted when this node dies.
 signal died
 
 enum DamageType {
+	## Generic damage cause.
 	GENERIC,
+	## Damage type used by explosions.
 	EXPLOSION,
+	## Damage type used by "fire" weapons/hazards, such as flamethrowers or 
+	## lava pits. Ignites certain enemies and objects, causing damage over time.
 	FIRE,
+	## Damage type used by "toxic" weapons/hazards, such as pollution. 
+	## Cannot gib enemies or apply post-mortem damage.
 	TOXIC,
+	## Damage type used by "electric" weapons, such as the Crossbow.
 	ELECTRIC,
+	## Damage type from being hit by a thrown physics object.
 	IMPACT,
+	## "Absolute" damage type. Ignores resistances and vulnerabilities.
 	ABSOLUTE = -1,
 }
 
@@ -58,10 +69,13 @@ enum GibMode {
 @export_range(0, 10, 1, "or_greater", "or_less") var score: int = 0
 
 #@export_group("Save Data")
+## This node's current health.
 @export_storage var health: float
+## Whether this node is currently dead.
 @export_storage var is_dead: bool = false
 ## Which node to free when reduced to gibs.
 @export_storage var target_parent: Node
+## Whether this node is currently "on fire".
 @export_storage var burning: bool = false:
 	set(to):
 		if burn_sys != null and burning != to:
@@ -94,13 +108,14 @@ func _physics_process(delta: float) -> void:
 #			health = max_health
 
 
-## tbh i don't have any idea why i made this a separate function instead of just having 
-## damage type default to generic.
+## tbh i don't have any idea why i made this a separate function instead of just 
+## having damage type default to generic.
 func damage(amount: float, gib_mode: GibMode = GibMode.ALLOW_GIB) -> float:
 	return damage_typed(amount, DamageType.GENERIC, gib_mode)
 
 
-## Applies damage to this node. Returns the amount of damage actually recieved, for piercers.
+## Applies damage to this node. 
+## Returns the amount of damage actually recieved, for piercers.
 func damage_typed(amount: float, type: DamageType, gib_mode: GibMode = GibMode.ALLOW_GIB) -> float:
 	if is_dead and (type == DamageType.TOXIC or gib_mode == GibMode.BLOCK_GIB):
 		return 0 # toxic clouds shouldn't gib

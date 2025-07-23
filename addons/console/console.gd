@@ -60,7 +60,7 @@ func add_command(
 		command_name : String, 
 		function : Callable, 
 		arguments = [], 
-		required: int = 0, 
+		required : int = 0, 
 		description : String = "",
 		type := CommandType.NORMAL,
 ) -> void:
@@ -97,19 +97,23 @@ func remove_command(command_name : String) -> void:
 	console_commands.erase(command_name)
 
 
+## Create a single alias for the specified command.
 func add_alias(command_alias: String, alias_of: String) -> void:
 	console_aliases.set(command_alias, alias_of)
 
 
+## Create a set of aliases for the specified command.
 func add_aliases(command_aliases: Array[String], alias_of: String) -> void:
 	for command_alias in command_aliases:
 		console_aliases.set(command_alias, alias_of)
 
 
+## Remove a single command alias.
 func remove_alias(command_alias : String) -> void:
 	console_commands.erase(command_alias)
 
 
+## Remove a group of command aliases.
 func remove_aliases(command_aliases: Array[String]) -> void:
 	for command_alias in command_aliases:
 		console_aliases.erase(command_alias)
@@ -148,6 +152,7 @@ func _enter_tree() -> void:
 	line_edit.anchor_right = 1.0
 	line_edit.anchor_bottom = 0.5
 	line_edit.placeholder_text = "enter \"help\" for instructions"
+	line_edit.caret_blink = true
 	control.add_child(line_edit)
 	line_edit.text_submitted.connect(on_text_entered)
 	line_edit.text_changed.connect(on_line_edit_text_changed)
@@ -457,19 +462,27 @@ func delete_history() -> void:
 
 
 func help() -> void:
-	rich_label.append_text("	BUILT-IN COMMANDS:
-		[color=light_green]calc[/color]: Calculates a given expresion
-		[color=light_green]clear[/color]: Clears the registry view
-		[color=light_green]commands[/color]: Shows a reduced list of all the currently registered commands
-		[color=light_green]commands_list[/color]: Shows a detailed list of all the currently registered commands
-		[color=light_green]delete_hystory[/color]: Deletes the commands history
-		[color=light_green]quit[/color]: Quits the game
-	CONTROLS:
+	rich_label.append_text("	AVALIABLE COMMANDS:\n")
+	commands_list("		", false)
+	rich_label.append_text("	CONTROLS:
 		[color=light_blue]Up[/color] and [color=light_blue]Down[/color] arrow keys to navigate commands history
 		[color=light_blue]PageUp[/color] and [color=light_blue]PageDown[/color] to scroll registry
 		[[color=light_blue]Ctr[/color] + [color=light_blue]~[/color]] to change console size between half screen and full screen
 		[color=light_blue]~[/color] or [color=light_blue]Esc[/color] key to close the console
 		[color=light_blue]Tab[/color] key to autocomplete, [color=light_blue]Tab[/color] again to cycle between matching suggestions\n\n")
+	#rich_label.append_text("	BUILT-IN COMMANDS:
+		#[color=light_green]calc[/color]: Calculates a given expresion
+		#[color=light_green]clear[/color]: Clears the registry view
+		#[color=light_green]commands[/color]: Shows a reduced list of all the currently registered commands
+		#[color=light_green]commands_list[/color]: Shows a detailed list of all the currently registered commands
+		#[color=light_green]delete_hystory[/color]: Deletes the commands history
+		#[color=light_green]exit, quit[/color]: Quits the game
+	#CONTROLS:
+		#[color=light_blue]Up[/color] and [color=light_blue]Down[/color] arrow keys to navigate commands history
+		#[color=light_blue]PageUp[/color] and [color=light_blue]PageDown[/color] to scroll registry
+		#[[color=light_blue]Ctr[/color] + [color=light_blue]~[/color]] to change console size between half screen and full screen
+		#[color=light_blue]~[/color] or [color=light_blue]Esc[/color] key to close the console
+		#[color=light_blue]Tab[/color] key to autocomplete, [color=light_blue]Tab[/color] again to cycle between matching suggestions\n\n")
 
 
 func calculate(command : String) -> void:
@@ -501,11 +514,11 @@ func commands() -> void:
 			continue
 		commands.append(str(command))
 	commands.sort()
-	rich_label.append_text("``	")
+	rich_label.append_text("	")
 	rich_label.append_text(str(commands) + "\n\n")
 
 
-func commands_list() -> void:
+func commands_list(indent := "	", double_newline : bool = true) -> void:
 	var commands := []
 	for command in console_commands:
 		# only list commands that the player can actually use and aren't flagged as hidden
@@ -542,8 +555,15 @@ func commands_list() -> void:
 				arguments_string += " [color=cornflower_blue]<" + console_commands[command].arguments[i] + ">[/color]"
 			else:
 				arguments_string += " <" + console_commands[command].arguments[i] + ">"
-		rich_label.append_text("	[color=light_green]%s%s[/color][color=gray]%s[/color]: %s\n" % [command, aliases_string, arguments_string, description])
-	rich_label.append_text("\n")
+		rich_label.append_text("%s[color=light_green]%s%s[/color][color=gray]%s[/color]: %s\n" % [
+				indent, 
+				command, 
+				aliases_string, 
+				arguments_string, 
+				description
+		])
+	if double_newline:
+		rich_label.append_text("\n")
 
 
 func add_input_history(text : String) -> void:

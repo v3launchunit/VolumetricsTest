@@ -1,3 +1,4 @@
+#class_name GlobalsScript
 extends Node
 
 ## general scene-independent values and functions.
@@ -76,7 +77,8 @@ const C_LIZARD_HOLE_POINT := Vector3(0.0, -1000.0, 0.0)
 
 ## The filepath that user quicksaves are stored to.
 const C_QUICKSAVE_PATH: String = "user://saves/auto/quicksave.scn"
-## The filepath that persistent data (high scores, best times, what levels have been unlocked/cleared, etc) is stored to.
+## The filepath that persistent data (high scores, best times, what levels have
+## been unlocked/cleared, etc) is stored to.
 const C_PROGRESSION_PATH: String = "user://saves/progression.cfg"
 ## The filepath that user configuration settings are stored to.
 const C_SETTINGS_PATH: String = "user://settings.cfg"
@@ -101,32 +103,42 @@ var s_crosshair_size: float = 1.0
 
 ## The base vertical Field of View for the player's camera.
 var s_fov_desired: float = 120
-## Ditto. but for viewmodels (high fov causes viewmodels to look stretched out
-## and generally ugly).
+## The base vertical Field of View for the player's weapon viewmodels. 
+## (high fov causes viewmodels to look stretched out and generally ugly).
 var s_viewmodel_fov: float = 90
 
-var s_vertex_snap: int = 2
-var s_affine_warp: bool = true
+## The intensity of the PS1-style vertex snapping applied to certain objects.
+var s_vertex_snap : int = 2
+## Whether to apply PS1-style perspective-incorrect texture rendering.
+var s_affine_warp : bool = true
 
 ## Toggles the mesh-based halos present on light sources and important objects.
-var s_flares_enabled: bool = true
+var s_flares_enabled : bool = true
 ## Toggles the procedural halos created by the "glow" post-processing effect.
-var s_glow_enabled: bool = false
+var s_glow_enabled : bool = false
 ## Toggles a procedural cross-shaped lens flare post-processing effect. I worked
 ## very hard on it.
-var s_cross_glow_enabled: bool = true
+var s_cross_glow_enabled : bool = true
 ## Toggles volumetric fog.
-var s_volumetric_fog_enabled: bool = true
-var s_brightness: float = 1.0
-var s_contrast: float = 1.0
-var s_saturation: float = 1.0
+var s_volumetric_fog_enabled : bool = true
+## Self-explanatory.
+var s_brightness : float = 1.0
+## Self-explanatory.
+var s_contrast : float = 1.0
+## Self-explanatory.
+var s_saturation : float = 1.0
+## Similar to brightness, but preserves the brightness values of black and white.
+var s_gamma : float = 1.0
 
 var s_palette_compress_enabled: bool = false
 var s_color_depth: float = 16
 var s_current_palette: String = "neutral"
 
+## whether to enable "minor" light sources.
 var s_minor_lights : bool = true
+## whether to let "minor" objects cast shadows.
 var s_minor_shadows : bool = false
+## the shadow mode for "minor" objects.
 var s_minor_shadows_mode := OmniLight3D.ShadowMode.SHADOW_CUBE
 
 ## The sensitivity multiplier applied to mouse movement with regards to the
@@ -149,13 +161,14 @@ var s_difficulty := Difficulty.NORMAL
 ## Nightmare mode is handled separately because it affects gameplay differently
 ## from the regular difficulty slider.
 var s_nightmare: bool = false
-## Whether the player gets to keep their weapons and ammo between levels.
+## Whether the player loses their weapons and ammo between levels.
 var s_intruder: bool = true
 ## Whether crouching is a toggle or a hold.
 var s_toggle_crouch: bool = false
 #endregion
 
 #region Accessibility settings
+## All loaded languages and their associated text files.
 var langs: Dictionary[String, String]
 ## The game's current language.
 var s_lang : String = "text_eng.cfg";
@@ -168,13 +181,22 @@ var s_lang : String = "text_eng.cfg";
 # ---------------------------------- OTHER ----------------------------------- #
 # ---------------------------------------------------------------------------- #
 
+## The [ConfigFile] used to associate names with filepaths.
 var names := ConfigFile.new()
+## The [ConfigFile] used to store text strings for the currently selected language.
 var text := ConfigFile.new()
+## The [ConfigFile] used to associated [PackedScene]s with campaign levels.
 var campaign := ConfigFile.new()
+## The [ConfigFile] used to store level-independent save data, such as high
+## scores and campaign progress.
 var progression := ConfigFile.new()
+## functional universe number or whatever the hell it means in undertale. 
+## rolled on startup, affects various things.
 var fun := randi_range(1, 1000)
+## whether the player is able to use [Console] commands categorized as "cheats".
 var cheats_enabled: bool = false
 
+## Whether the mouse is currently being captured by the program.
 var mouse_captured: bool = false
 #endregion
 
@@ -226,11 +248,17 @@ func add_console_commands() -> void:
 	Console.add_command("get_fun", cmd_fun, [], 0, "", Console.CommandType.HIDDEN)#, [], 0, parse_text("console", "desc.get_fun"))
 	Console.add_command("set_fun", cmd_set_fun, ["0-1000 int value"], 1, "", Console.CommandType.HIDDEN)#, parse_text("console", "desc.set_fun"))
 	Console.add_command("fun", cmd_fun, ["0-1000 int value"], 0, "", Console.CommandType.HIDDEN)
+	Console.add_command("saves", func(): OS.shell_show_in_file_manager(ProjectSettings.globalize_path("user://saves/user"), true), [], 0, parse_text("console", "desc.saves"), Console.CommandType.NORMAL)
+	
 
 
 func open_sesame() -> void:
 	if s_nightmare:
 		Console.print_line(parse_text("console", "fail.blocked.nightmare"))
+		OS.alert(
+				parse_text("console", strip_bbcode("fail.blocked.nightmare")), 
+				parse_text("console", "fail.blocked.nightmare.alert_title")
+		)
 		return
 	elif cheats_enabled:
 		Console.print_blocked(parse_text("console", "fail.blocked.redundant.opensesame"))
@@ -401,6 +429,7 @@ func save_game(to: String) -> void:
 	var world = get_tree().current_scene
 	if world is Level:
 		(world as Level).loaded_from_savegame = true
+	#var save_data := SaveData.new()
 	for node: Node in get_all_children(world):
 		if node.has_method("pre_save"):
 			node.pre_save()
@@ -410,8 +439,12 @@ func save_game(to: String) -> void:
 			node.save()
 		if node.owner == null:
 			node.owner = world
+		#save_data.save_node(node)
 		#node.scene_file_path = ""
 		#set_editable_instance(node, true)
+	#save_data.name = "SaveData"
+	#world.add_child(save_data)
+	#save_data.owner = world
 	scene.pack(world)
 	assert(ResourceSaver.save(scene, to) == OK)
 
@@ -442,6 +475,10 @@ func open_level(level: PackedScene) -> Error:
 	#print(get_tree().current_scene)
 	#if get_tree().current_scene is Level and (get_tree().current_scene as Level).fun != -1:
 		#fun = (get_tree().current_scene as Level).fun
+	#var world := get_tree().current_scene
+	#if world.has_node("SaveData"):
+		#(world.get_node("SaveData") as SaveData).load_all()
+		#world.get_node("SaveData").queue_free()
 	while GameMenu._active_menus > 0:
 		GameMenu.close_top_menu()
 	return err
@@ -480,7 +517,7 @@ func clear_level(level_name: String) -> void:
 #endregion
 
 
-## Returns the filepath for the specified entry in [code]names.cfg[/code].
+## Returns the file path for the specified entry in [code]names.cfg[/code].
 func parse_names(section: String, key: String) -> Variant:
 	if section.ends_with("_paths") or section.ends_with("_aliases"):
 		return names.get_value(section, key)
@@ -537,6 +574,13 @@ func get_all_children(node) -> Array:
 ## after a death or progressing from an intermission. 
 func menu_click() -> bool:
 	return Input.is_action_just_pressed("ui_click") or Input.is_action_just_pressed("interact")
+
+
+## Returns [param from] with all BBCode tags removed.
+func strip_bbcode(from : String) -> String:
+	var regex = RegEx.new()
+	regex.compile("\\[.*?\\]")
+	return regex.sub(from, "", true)
 
 
 ## Unimplemented.

@@ -185,11 +185,13 @@ func _process(_delta) -> void:
 
 	if Input.is_action_just_pressed("quick_save"):
 		Globals.save_game(Globals.C_QUICKSAVE_PATH)
+		hud.log_event(Globals.parse_text("events", "save.f6"))
 
 	if Input.is_action_just_pressed("quick_load"):
 		var q: PackedScene = load(Globals.C_QUICKSAVE_PATH)
 		if q != null:
-			get_tree().change_scene_to_packed(q)
+			#get_tree().change_scene_to_packed(q)
+			Globals.open_level(q)
 	
 	if not holding_something and was_holding_something and Input.is_action_just_released("weapon_fire_main"):
 		was_holding_something = false
