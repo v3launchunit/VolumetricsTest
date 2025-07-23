@@ -1,4 +1,5 @@
-class_name AttackPattern extends Resource
+class_name AttackPattern 
+extends Resource
 
 @export_range(0.0, 100.0, 0.001) var weight: float = 1.0
 
