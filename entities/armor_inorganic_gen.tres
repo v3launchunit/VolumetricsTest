@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="ArmorClass" load_steps=2 format=3 uid="uid://d2wo5hxhshbtu"]
+
+[ext_resource type="Script" uid="uid://dn27hekt1nwlj" path="res://entities/res_armor_class.gd" id="1_mmm2n"]
+
+[resource]
+script = ExtResource("1_mmm2n")
+generic = 1.0
+explosion = 1.0
+fire = 0.0
+toxic = 0.0
+electric = 1.0
+impact = 1.0
+metadata/_custom_type_script = "uid://dn27hekt1nwlj"

@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://bsijt0cxd1cch"]
+[gd_scene load_steps=13 format=3 uid="uid://bsijt0cxd1cch"]
 
 [ext_resource type="Material" uid="uid://d2ew72egl10co" path="res://scenes/objects/furniture/wood_psx.tres" id="1_6hyc6"]
 [ext_resource type="Script" uid="uid://bc60eq8f31x2u" path="res://scripts/objects/carriable.gd" id="1_jtktk"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://bynbdpv50o6q2" path="res://scenes/effects/gibs/wood_shards.tscn" id="4_042e2"]
 [ext_resource type="PackedScene" uid="uid://bnsepaqu7j4p4" path="res://pickups/health/health_bonus_pickup.tscn" id="4_karhn"]
 [ext_resource type="PackedScene" uid="uid://b8i1fe0bwht3k" path="res://pickups/armor/armor_bonus_pickup.tscn" id="5_76q0s"]
+[ext_resource type="Resource" uid="uid://mfmb0qb3qdqq" path="res://entities/armor_wood.tres" id="5_v4h5q"]
 [ext_resource type="PackedScene" uid="uid://bqors63m1ug05" path="res://pickups/ammo/nail_pickup.tscn" id="6_x17wv"]
 [ext_resource type="PackedScene" uid="uid://dl7fuv4wdxtjx" path="res://pickups/ammo/shotgun_shell/shell_pickup.tscn" id="7_cgj52"]
 [ext_resource type="PackedScene" uid="uid://l50jb3i7j7q7" path="res://pickups/ammo/small_cell_pickup.tscn" id="8_f2llf"]
@@ -31,6 +32,7 @@ mesh = ExtResource("2_e163t")
 script = ExtResource("3_5wb7k")
 max_health = 10.0
 gib_threshold = 0.0
+armor_class = ExtResource("5_v4h5q")
 damage_sys = ExtResource("4_042e2")
 gibs = ExtResource("4_042e2")
 loot = Array[PackedScene]([ExtResource("4_karhn"), ExtResource("5_76q0s"), ExtResource("7_cgj52"), ExtResource("6_x17wv"), ExtResource("8_f2llf")])

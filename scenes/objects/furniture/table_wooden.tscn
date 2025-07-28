@@ -1,10 +1,11 @@
-[gd_scene load_steps=13 format=3 uid="uid://dvn5p4bun8kju"]
+[gd_scene load_steps=14 format=3 uid="uid://dvn5p4bun8kju"]
 
 [ext_resource type="Material" uid="uid://d2ew72egl10co" path="res://scenes/objects/furniture/wood_psx.tres" id="1_ax4pg"]
 [ext_resource type="ArrayMesh" uid="uid://5c4plkxitc30" path="res://models/objects/table.obj" id="1_v8qk3"]
 [ext_resource type="Script" uid="uid://cly1es2vyxx12" path="res://entities/status.gd" id="3_a78ys"]
 [ext_resource type="PackedScene" uid="uid://cgot11wwdrtbh" path="res://scenes/effects/damage/wood_damage_sys.tscn" id="3_ebulx"]
 [ext_resource type="PackedScene" uid="uid://bnsepaqu7j4p4" path="res://pickups/health/health_bonus_pickup.tscn" id="4_vddkd"]
+[ext_resource type="Resource" uid="uid://mfmb0qb3qdqq" path="res://entities/armor_wood.tres" id="4_wrcqn"]
 [ext_resource type="PackedScene" uid="uid://bynbdpv50o6q2" path="res://scenes/effects/gibs/wood_shards.tscn" id="4_x8yj3"]
 [ext_resource type="PackedScene" uid="uid://b8i1fe0bwht3k" path="res://pickups/armor/armor_bonus_pickup.tscn" id="5_d2gdn"]
 [ext_resource type="PackedScene" uid="uid://dl7fuv4wdxtjx" path="res://pickups/ammo/shotgun_shell/shell_pickup.tscn" id="6_sqnlv"]
@@ -49,6 +50,7 @@ mesh = ExtResource("1_v8qk3")
 script = ExtResource("3_a78ys")
 max_health = 50.0
 gib_threshold = 0.0
+armor_class = ExtResource("4_wrcqn")
 damage_sys = ExtResource("3_ebulx")
 gibs = ExtResource("4_x8yj3")
 loot = Array[PackedScene]([ExtResource("4_vddkd"), ExtResource("5_d2gdn"), ExtResource("6_sqnlv"), ExtResource("7_lavv4"), ExtResource("8_f8oif")])

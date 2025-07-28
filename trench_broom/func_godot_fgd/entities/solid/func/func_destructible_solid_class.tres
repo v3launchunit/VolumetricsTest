@@ -28,17 +28,33 @@ description = ""
 func_godot_internal = false
 base_classes = Array[Resource]([])
 class_properties = {
+"armor_class": {
+"custom": "custom",
+"generic": "generic",
+"rockwall": "rockwall"
+},
 "base_damage_factor": 1.0,
 "burn_prone": false,
 "burn_rate": 4.0,
 "burn_sys": "",
-"damage_multipliers": "0.0 1.0 0.0 0.0 0.0",
+"damage_multipliers": "0.0 1.0 0.0 0.0 0.0 0.0",
 "damage_sys": "damage.rock",
 "gib_threshold": 0.0,
 "gibs": "gibs.rock",
 "max_health": 1.0
 }
-class_property_descriptions = {}
+class_property_descriptions = {
+"armor_class": ["armor class", "rockwall"],
+"base_damage_factor": "base damage multiplier",
+"burn_prone": "ignites with any hit",
+"burn_rate": "burn dmaage rate",
+"burn_sys": "burn particle system",
+"damage_multipliers": "damage multipliers (deprecated)",
+"damage_sys": "damage particles",
+"gib_threshold": "gib threshold",
+"gibs": "gib particles",
+"max_health": "max health"
+}
 auto_apply_to_matching_node_properties = false
 meta_properties = {
 "color": Color(0.8, 0.8, 0.8, 1),

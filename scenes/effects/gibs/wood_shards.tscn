@@ -150,6 +150,7 @@ stream_5/stream = ExtResource("8_rvu0h")
 [node name="WoodShards" type="GPUParticles3D"]
 layers = 2
 material_override = SubResource("ShaderMaterial_17mxi")
+emitting = false
 lifetime = 15.0
 one_shot = true
 explosiveness = 1.0

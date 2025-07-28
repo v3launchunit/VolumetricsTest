@@ -41,8 +41,8 @@ enum GibMode {
 @export var gib_threshold: float = 50.0
 ## Generic multiplier applied to all incoming damage.
 @export var base_damage_factor: float = 1.0
-## [enum DamageType]-specific damage multipliers.
 @export var damage_multipliers: Array[float] = [1.0, 1.0, 1.0, 1.0, 1.0, 1.0]
+@export var armor_class: ArmorClass = preload("res://entities/armor_generic.tres")
 ## If set to true, any attack will ignite this node.
 @export var burn_prone: bool = false 
 ## How much damage this node should take per second of being on fire. 
@@ -119,7 +119,7 @@ func damage(amount: float, gib_mode: GibMode = GibMode.ALLOW_GIB) -> float:
 func damage_typed(amount: float, type: DamageType, gib_mode: GibMode = GibMode.ALLOW_GIB) -> float:
 	if is_dead and (type == DamageType.TOXIC or gib_mode == GibMode.BLOCK_GIB):
 		return 0 # toxic clouds shouldn't gib
-	health -= amount * base_damage_factor * (damage_multipliers[type] if type < damage_multipliers.size() and type != DamageType.ABSOLUTE else 1.0)
+	health -= amount * base_damage_factor * (armor_class.damage_multipliers.get(type, 1.0) if type != DamageType.ABSOLUTE else 1.0)
 	if type == DamageType.FIRE or burn_prone:
 		burning = true
 #	print(health)
@@ -149,7 +149,7 @@ func rapid_damage(amount: float, delta: float, gib_mode: GibMode = GibMode.ALLOW
 func rapid_damage_typed(amount: float, type: DamageType, delta: float, gib_mode: GibMode = GibMode.ALLOW_GIB) -> void:
 	if is_dead and (type == DamageType.TOXIC or gib_mode == GibMode.BLOCK_GIB):
 		return # toxic clouds shouldn't gib
-	health -= amount * delta * base_damage_factor * (damage_multipliers[type] if type != DamageType.ABSOLUTE else 1.0)
+	health -= amount * delta * base_damage_factor * (armor_class.damage_multipliers.get(type, 1.0) if type != DamageType.ABSOLUTE else 1.0)
 #	print(health)
 	#if damage_sys != null:
 		#var instance := damage_sys.instantiate()

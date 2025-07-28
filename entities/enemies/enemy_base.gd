@@ -56,23 +56,25 @@ const STUCK_TIMER_DECAY_RATE : float = 10.0
 ## The rate at which the velocity imparted by knockback "decays" towards zero.
 @export var knockback_drag: float = 10.0
 ## the initial velocity with which the enemy leaves the ground when jumping.
-@export_range(0.0, 3.0, 0.1, "or_greater") var jump_height: float = 2.5
+@export_range(0.0, 3.0, 0.1, "or_greater") var jump_height : float = 2.5
 #@export var target_pos_offset: Vector3 = Vector3.ZERO
-@export var wanderer: bool = false
+@export var wanderer : bool = false
 
 @export_group("Detection")
 ## if disabled, this enemy will not attack the player unless the player attacks them first.
-@export var hunts_player: bool = true
-@export var hunts_species: Array[StringName] = []
+@export var hunts_player : bool = true
+@export var hunts_species : Array[StringName] = []
 ## If enabled, prevents sight-based detection.
-@export var blind: bool = false
+@export var blind : bool = false
 ## If enabled, prevents sound-based detection.
-@export var deaf: bool = false
+@export var deaf : bool = false
+## If enabled, this enemy will "forget" any targets that break line of sight.
+@export var forgetful : bool = false
 ## Will this enemy infight with other enemies?
-@export var infighter: bool = true
+@export var infighter : bool = true
 ## The delay, in seconds, between this enemy being added to the [SceneTree] and
 ## becoming active.
-@export var wake_up_time: float = 3.0
+@export var wake_up_time : float = 3.0
 ## The "field of view" of this enemy - essentially, how far away from its
 ## current orientation it can spot the player while idle.
 @export_range(0.0, 360.0, 1.0, "radians") var sight_line_sweep_angle : float = (2 * PI) / 3
@@ -384,12 +386,13 @@ func hear_target(target: Node3D) -> void:
 
 
 func detect_target(target: Node3D, via := DetectionType.INSTINCT) -> void:
+	# don't bother detecting this node if...
 	if (
 			# busy waking up
 			current_state == State.AMBUSHING
 			# busy flinching
 			or current_state == State.FLINCHING
-			# busy being dead
+			# busy being a dead rotten corpse
 			or current_state == State.DEAD
 			or (
 					via == DetectionType.RETALIATION 
@@ -409,6 +412,7 @@ func detect_target(target: Node3D, via := DetectionType.INSTINCT) -> void:
 		change_state(State.PURSUING)
 
 
+## patrolling behavior.
 func _patrol(delta) -> void:
 	if patrol_next_node == null:
 		patrol_next_node = get_tree().get_first_node_in_group("targetname:%s" % properties["target"]) as PathNode
@@ -576,7 +580,12 @@ func _pursue(delta) -> void:
 
 
 func check_target_validity() -> bool:
-	return not (current_targets.is_empty() or current_targets[-1] == null)
+	return not (
+			current_targets.is_empty() 
+			or current_targets[-1] == null 
+			or current_targets[-1].find_child("Status").health <= 0
+			or (forgetful and not can_see_target())
+	)
 
 
 func check_path_staleness() -> bool:
@@ -727,11 +736,9 @@ func do_attack() -> void:
 
 func _post_attack(_delta) -> void:
 	if state_timer >= attack_recovery_time:
-		change_state(
-				State.IDLE if current_targets.is_empty() or
-				current_targets[-1] == null or
-				current_targets[-1].find_child("Status").health <= 0 else State.PURSUING
-		)
+		while not (current_targets.is_empty() or check_target_validity()):
+			current_targets.pop_back()
+		change_state(State.IDLE if not check_target_validity() else State.PURSUING)
 	if nav_agent != null:
 		nav_agent.set_velocity(Vector3.ZERO)
 

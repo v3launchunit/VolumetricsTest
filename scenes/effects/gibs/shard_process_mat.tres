@@ -1,0 +1,21 @@
+[gd_resource type="ParticleProcessMaterial" load_steps=3 format=3 uid="uid://bsjvigsq4750k"]
+
+[sub_resource type="Gradient" id="Gradient_qqwon"]
+offsets = PackedFloat32Array(0.9, 1)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_qlv50"]
+gradient = SubResource("Gradient_qqwon")
+
+[resource]
+emission_shape = 3
+emission_box_extents = Vector3(0.5, 0.5, 0.5)
+angle_min = -720.0
+angle_max = 720.0
+direction = Vector3(0, 1, 0)
+initial_velocity_min = 5.0
+initial_velocity_max = 10.0
+color_ramp = SubResource("GradientTexture1D_qlv50")
+collision_mode = 1
+collision_friction = 0.5
+collision_bounce = 0.25

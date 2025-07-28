@@ -1,4 +1,4 @@
-[gd_scene load_steps=64 format=3 uid="uid://pr3j5d4ifvrt"]
+[gd_scene load_steps=66 format=3 uid="uid://pr3j5d4ifvrt"]
 
 [ext_resource type="Script" uid="uid://dtlsbvucy16cj" path="res://entities/enemies/enemy_attack_pattern.gd" id="1_jd6vl"]
 [ext_resource type="PackedScene" uid="uid://b12xu872st3c" path="res://entities/enemies/machines/plasma_droid/plasma_droid.glb" id="1_whe1e"]
@@ -18,6 +18,7 @@
 [ext_resource type="AnimationLibrary" uid="uid://cu6kaw3wmnu2i" path="res://entities/enemies/machines/plasma_droid/plasma_droid_anims.res" id="8_hkuiw"]
 [ext_resource type="Shader" uid="uid://cgfn3iqbl45r7" path="res://shaders/spatial/psx_ul_add.gdshader" id="11_o6law"]
 [ext_resource type="Shader" uid="uid://bycruau5ish4o" path="res://shaders/spatial/psx_ul_mix.gdshader" id="12_djo4k"]
+[ext_resource type="Script" uid="uid://dn27hekt1nwlj" path="res://entities/res_armor_class.gd" id="16_dm76u"]
 [ext_resource type="PackedScene" uid="uid://qy044barx365" path="res://entities/stair_stepper.tscn" id="18_7c8tp"]
 
 [sub_resource type="Resource" id="Resource_ba0li"]
@@ -441,6 +442,16 @@ states/moving/position = Vector2(698.667, 141.918)
 transitions = ["Start", "ambush", SubResource("AnimationNodeStateMachineTransition_13ygg"), "ambush", "idle", SubResource("AnimationNodeStateMachineTransition_nmaeh"), "idle", "moving", SubResource("AnimationNodeStateMachineTransition_tx3g5"), "moving", "attacking", SubResource("AnimationNodeStateMachineTransition_5joso"), "attacking", "idle", SubResource("AnimationNodeStateMachineTransition_lr4pj"), "idle", "attacking", SubResource("AnimationNodeStateMachineTransition_5jx2v"), "attacking", "moving", SubResource("AnimationNodeStateMachineTransition_oqab8"), "moving", "idle", SubResource("AnimationNodeStateMachineTransition_njr1r"), "idle", "bullet_attacking", SubResource("AnimationNodeStateMachineTransition_o53ac"), "bullet_attacking", "idle", SubResource("AnimationNodeStateMachineTransition_imdu4"), "bullet_attacking", "moving", SubResource("AnimationNodeStateMachineTransition_ustj1"), "moving", "bullet_attacking", SubResource("AnimationNodeStateMachineTransition_gepv6")]
 graph_offset = Vector2(50.4669, -36)
 
+[sub_resource type="Resource" id="Resource_v1xym"]
+script = ExtResource("16_dm76u")
+generic = 1.0
+explosion = 0.25
+fire = 1.0
+toxic = 0.0
+electric = 2.0
+impact = 1.0
+metadata/_custom_type_script = "uid://dn27hekt1nwlj"
+
 [node name="PlasmaDroid" type="CharacterBody3D"]
 collision_layer = 4
 collision_mask = 151
@@ -570,8 +581,8 @@ collision_mask = 2
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
-"": SubResource("AnimationLibrary_4knrq"),
-"plasma_droid_anims": ExtResource("8_hkuiw")
+&"": SubResource("AnimationLibrary_4knrq"),
+&"plasma_droid_anims": ExtResource("8_hkuiw")
 }
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
@@ -589,6 +600,7 @@ script = ExtResource("2_3ftdv")
 max_health = 500.0
 gib_threshold = 0.0
 damage_multipliers = Array[float]([1.0, 0.25, 1.0, 0.0, 2.0])
+armor_class = SubResource("Resource_v1xym")
 damage_sys = ExtResource("3_bt5p4")
 gibs = ExtResource("3_rukio")
 loot = Array[PackedScene]([ExtResource("5_4ag46")])

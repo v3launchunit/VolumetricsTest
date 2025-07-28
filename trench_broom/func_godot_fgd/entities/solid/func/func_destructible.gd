@@ -25,6 +25,9 @@ func _ready() -> void:
 		status.damage_multipliers = Array(Array(func_godot_properties[
 				"damage_multipliers"].split_floats(" ", false)), TYPE_FLOAT, "", null)
 		
+		if func_godot_properties["armor_class"] == "custom":
+			status.armor_class = ArmorClass.new()
+		
 		status.name = "Status"
 		
 		add_child(status)

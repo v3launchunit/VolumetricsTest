@@ -1,0 +1,29 @@
+[gd_resource type="Resource" script_class="FuncGodotFGDModelPointClass" load_steps=3 format=3 uid="uid://c8n1y3ir65vky"]
+
+[ext_resource type="Script" uid="uid://uk7d08g8mvr2" path="res://addons/func_godot/src/fgd/func_godot_fgd_model_point_class.gd" id="1_n1867"]
+[ext_resource type="PackedScene" uid="uid://dqc3lgav2miag" path="res://objects/deco/lab/beaker.tscn" id="1_yjce1"]
+
+[resource]
+script = ExtResource("1_n1867")
+target_map_editor = 0
+models_sub_folder = ""
+scale_expression = ""
+generate_size_property = false
+generate_gd_ignore_file = false
+scene_file = ExtResource("1_yjce1")
+apply_rotation_on_map_build = true
+classname = "deco_beaker"
+description = ""
+func_godot_internal = false
+base_classes = Array[Resource]([])
+class_properties = {}
+class_property_descriptions = {}
+auto_apply_to_matching_node_properties = false
+meta_properties = {
+"color": Color(0.8, 0.8, 0.8, 1),
+"size": AABB(-2, -2, -2, 2, 2, 2),
+"studio": "\"models/deco_beaker.glb\""
+}
+node_class = ""
+name_property = ""
+metadata/_custom_type_script = "uid://uk7d08g8mvr2"

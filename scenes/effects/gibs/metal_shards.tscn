@@ -1,5 +1,6 @@
-[gd_scene load_steps=11 format=3 uid="uid://bfctj0w1fkgwy"]
+[gd_scene load_steps=9 format=3 uid="uid://bfctj0w1fkgwy"]
 
+[ext_resource type="Material" uid="uid://dq3wjx3vc22jo" path="res://scenes/effects/gibs/shard_pshader_mat.tres" id="1_wopbr"]
 [ext_resource type="AudioStream" uid="uid://duaykpmpnx0s2" path="res://audio/streams/effects/falling_pipe.wav" id="2_8mfh6"]
 [ext_resource type="Script" uid="uid://b6bektmpvs3xa" path="res://scripts/effects/particle_lifetime.gd" id="2_r6u15"]
 
@@ -56,27 +57,6 @@ shader_parameter/uv1_offset = Vector3(0, 0, 0)
 shader_parameter/uv2_scale = Vector3(1, 1, 1)
 shader_parameter/uv2_offset = Vector3(0, 0, 0)
 
-[sub_resource type="Gradient" id="Gradient_qqwon"]
-offsets = PackedFloat32Array(0.9, 1)
-colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
-
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_qlv50"]
-gradient = SubResource("Gradient_qqwon")
-
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ss8t6"]
-particle_flag_align_y = true
-emission_shape = 3
-emission_box_extents = Vector3(0.5, 0.5, 0.5)
-angle_min = -720.0
-angle_max = 720.0
-direction = Vector3(0, 1, 0)
-initial_velocity_min = 5.0
-initial_velocity_max = 10.0
-color_ramp = SubResource("GradientTexture1D_qlv50")
-collision_mode = 1
-collision_friction = 0.5
-collision_bounce = 0.25
-
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_d7537"]
 metallic = 1.0
 roughness = 0.25
@@ -98,7 +78,7 @@ emitting = false
 lifetime = 15.0
 one_shot = true
 explosiveness = 1.0
-process_material = SubResource("ParticleProcessMaterial_ss8t6")
+process_material = ExtResource("1_wopbr")
 draw_pass_1 = SubResource("PrismMesh_gj1ie")
 script = ExtResource("2_r6u15")
 

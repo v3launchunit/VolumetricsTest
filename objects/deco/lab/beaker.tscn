@@ -1,0 +1,46 @@
+[gd_scene load_steps=10 format=3 uid="uid://dqc3lgav2miag"]
+
+[ext_resource type="Script" uid="uid://cly1es2vyxx12" path="res://entities/status.gd" id="1_adnlw"]
+[ext_resource type="Script" uid="uid://bc60eq8f31x2u" path="res://scripts/objects/carriable.gd" id="1_o3mdu"]
+[ext_resource type="PackedScene" uid="uid://cgot11wwdrtbh" path="res://scenes/effects/damage/wood_damage_sys.tscn" id="2_3g477"]
+[ext_resource type="Script" uid="uid://dn27hekt1nwlj" path="res://entities/res_armor_class.gd" id="2_hqlxq"]
+[ext_resource type="PackedScene" uid="uid://gexwce31f8vb" path="res://scenes/effects/gibs/glass_shards.tscn" id="7_o3mdu"]
+[ext_resource type="ArrayMesh" uid="uid://c0re7mfp5blsg" path="res://objects/deco/lab/beaker.obj" id="12_hqlxq"]
+[ext_resource type="Material" uid="uid://d3rr0gwiqeu10" path="res://objects/deco/lab/mat_glass_psx.tres" id="12_q3861"]
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_q3861"]
+points = PackedVector3Array(0.125, 0, 0, 0, 0, 0.125, -0.125, 0, 0, 0, 0, -0.125, 0, 0.25, 0)
+
+[sub_resource type="Resource" id="Resource_q3861"]
+script = ExtResource("2_hqlxq")
+generic = 1.0
+explosion = 1.0
+fire = 0.1
+toxic = 0.0
+electric = 1.0
+impact = 1.0
+metadata/_custom_type_script = "uid://dn27hekt1nwlj"
+
+[node name="Beaker" type="RigidBody3D"]
+mass = 0.25
+script = ExtResource("1_o3mdu")
+throw_speed = 10.0
+throw_damage = 5.0
+throw_self_damage = 1.0
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0, -0.025, 0)
+material_override = ExtResource("12_q3861")
+mesh = ExtResource("12_hqlxq")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.115, 0)
+shape = SubResource("ConvexPolygonShape3D_q3861")
+
+[node name="Status" type="Node" parent="."]
+script = ExtResource("1_adnlw")
+max_health = 1.0
+gib_threshold = 0.0
+armor_class = SubResource("Resource_q3861")
+damage_sys = ExtResource("2_3g477")
+gibs = ExtResource("7_o3mdu")

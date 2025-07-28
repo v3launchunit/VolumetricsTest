@@ -95,7 +95,7 @@ func damage_typed(amount: float, type: DamageType, _gib_mode: GibMode = GibMode.
 	if amount > 0:
 		stream_player.stream = injury_stream
 		stream_player.play()
-	var damage_factor: float = damage_multipliers[type] if type != DamageType.ABSOLUTE else 1.0
+	var damage_factor: float = armor_class.damage_multipliers.get(type, 1.0) if type != DamageType.ABSOLUTE else 1.0
 	if armor > 0:
 		health -= amount * base_damage_factor * damage_factor * _get_absorption()#(1 - armor_absorption)
 		#print(amount * base_damage_factor * damage_factor * (1 - armor_absorption))
@@ -115,7 +115,7 @@ func rapid_damage_typed(amount: float, type: DamageType, delta: float, _gib_mode
 	hud.rapid_flash(type, delta, god or invuln_timer > 0)
 	if god or invuln_timer > 0:
 		return
-	var damage_factor: float = damage_multipliers[type] if type != DamageType.ABSOLUTE else 1.0
+	var damage_factor: float = armor_class.damage_multipliers.get(type, 1.0) if type != DamageType.ABSOLUTE else 1.0
 	if armor > 0:
 		health -= amount * delta * base_damage_factor * damage_factor * _get_absorption()#(1 - armor_absorption)
 		armor -= amount * delta * base_damage_factor * damage_factor * (1.0 - _get_absorption())#armor_absorption
