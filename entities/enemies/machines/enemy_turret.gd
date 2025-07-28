@@ -35,7 +35,7 @@ func _ready() -> void:
 			8: # 22
 				blind = true
 				deaf = true
-
+	
 	if "tripwire_group" in properties and properties["tripwire_group"] != "none":
 		for member in get_tree().get_nodes_in_group(properties["tripwire_group"]):
 			if member.has_signal("interacted"):
