@@ -75,10 +75,10 @@ func _func_godot_build_complete() -> void:
 			norms.push_back((-cable_end_l.global_basis.y).lerp(-cable_end_r.global_basis.y, w).normalized())
 			norms.push_back((-cable_end_l.global_basis.x).lerp(cable_end_r.global_basis.x, w).normalized())
 			
-			colors.push_back(Color.RED.lerp(Color.RED, i / float(func_godot_properties["segments"])))
-			colors.push_back(Color.YELLOW.lerp(Color.YELLOW, i / float(func_godot_properties["segments"])))
-			colors.push_back(Color.GREEN.lerp(Color.GREEN, i / float(func_godot_properties["segments"])))
-			colors.push_back(Color.BLUE.lerp(Color.BLUE, i / float(func_godot_properties["segments"])))
+			#colors.push_back(Color.RED.lerp(Color.RED, i / float(func_godot_properties["segments"])))
+			#colors.push_back(Color.YELLOW.lerp(Color.YELLOW, i / float(func_godot_properties["segments"])))
+			#colors.push_back(Color.GREEN.lerp(Color.GREEN, i / float(func_godot_properties["segments"])))
+			#colors.push_back(Color.BLUE.lerp(Color.BLUE, i / float(func_godot_properties["segments"])))
 	
 	var arr_mesh := ArrayMesh.new()
 	var arrays := []

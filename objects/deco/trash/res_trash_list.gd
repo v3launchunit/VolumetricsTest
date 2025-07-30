@@ -19,4 +19,5 @@ func get_pool() -> Array[PackedScene]:
 		if randi() > prop.weight - floorf(prop.weight):
 			pool.append(prop.scene)
 	
+	print(pool)
 	return pool

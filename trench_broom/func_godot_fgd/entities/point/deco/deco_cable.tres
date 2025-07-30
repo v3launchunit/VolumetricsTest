@@ -9,7 +9,7 @@
 script = ExtResource("1_j3hpw")
 scene_file = ExtResource("1_k5bvs")
 apply_rotation_on_map_build = true
-classname = "deco_cable"
+classname = "deco_hangcable"
 description = ""
 func_godot_internal = false
 base_classes = Array[Resource]([ExtResource("1_u7fa0"), ExtResource("2_6r38o")])

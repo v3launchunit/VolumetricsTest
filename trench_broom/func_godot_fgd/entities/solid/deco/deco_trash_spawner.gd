@@ -76,8 +76,8 @@ func regenerate_trash_props(editor: bool = true) -> void:
 	var bounds := mesh.get_aabb().abs()
 	var volume : float = bounds.get_volume()
 	
-	#var pool := get_trash_list(func_godot_properties.get("trash_type", 0))
-	var pool := (load(Globals.parse_names("trash_lists", "%d" % func_godot_properties["trash_type"])) as TrashList).get_pool()
+	var pool := get_trash_list(func_godot_properties.get("trash_type", 0))
+	#var pool := (load(Globals.parse_names("trash_lists", "%d" % func_godot_properties["trash_type"])) as TrashList).get_pool()
 	
 	var point_query := PhysicsPointQueryParameters3D.new()
 	point_query.collide_with_bodies = true
@@ -97,7 +97,7 @@ func regenerate_trash_props(editor: bool = true) -> void:
 		if result == null or result.is_empty():
 			continue
 		
-		var node := pool.pick_random().instantiate() as Node3D
+		var node := load(pool.pick_random()).instantiate() as Node3D
 		node.name = "%s%d" % [TRASH_PREFIX, i]
 		add_child(node)
 		node.set_owner(get_tree().edited_scene_root)
@@ -113,30 +113,30 @@ func regenerate_trash_props(editor: bool = true) -> void:
 		randomize()
 
 
-#func get_trash_list(type: int) -> Array[String]:
-	#var out : Array[String] = []
-	#var section : String = "trash_%s" % type
-	#
-	#var names := ConfigFile.new()
-	#var err := names.load("res://names.cfg")
-	#if err:
-		#print(TRASH_LIST)
-		#if not Engine.is_editor_hint():
-			#Console.print_error("\"res://names.cfg\" could not be loaded! (error code %s)" % err)
-		#else:
-			#printerr("\"res://names.cfg\" could not be loaded! (error code %s)" % err)
-		#return TRASH_LIST
-	#elif not names.has_section(section):
-		#if not Engine.is_editor_hint():
-			#Console.print_error("\"res://names.cfg\" does not have section %s!" % section)
-		#else:
-			#printerr("\"res://names.cfg\" does not have section %s!" % section)
-		#return TRASH_LIST
-	#
-	#for key in names.get_section_keys(section):
-		#if key.begins_with("include_"):
-			#get_trash_list(names.get_value(section, key))
-			#continue
-		#out.append(names.get_value(section, key))
-	##print(out)
-	#return out
+func get_trash_list(type: int) -> Array[String]:
+	var out : Array[String] = []
+	var section : String = "trash_%s" % type
+	
+	var names := ConfigFile.new()
+	var err := names.load("res://names.cfg")
+	if err:
+		print(TRASH_LIST)
+		if not Engine.is_editor_hint():
+			Console.print_error("\"res://names.cfg\" could not be loaded! (error code %s)" % err)
+		else:
+			printerr("\"res://names.cfg\" could not be loaded! (error code %s)" % err)
+		return TRASH_LIST
+	elif not names.has_section(section):
+		if not Engine.is_editor_hint():
+			Console.print_error("\"res://names.cfg\" does not have section %s!" % section)
+		else:
+			printerr("\"res://names.cfg\" does not have section %s!" % section)
+		return TRASH_LIST
+	
+	for key in names.get_section_keys(section):
+		if key.begins_with("include_"):
+			get_trash_list(names.get_value(section, key))
+			continue
+		out.append(names.get_value(section, key))
+	#print(out)
+	return out

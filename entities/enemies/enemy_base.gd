@@ -416,9 +416,13 @@ func detect_target(target: Node3D, via := DetectionType.INSTINCT) -> void:
 func _patrol(delta) -> void:
 	if patrol_next_node == null:
 		patrol_next_node = get_tree().get_first_node_in_group("targetname:%s" % properties["target"]) as PathNode
+		if patrol_next_node == null:
+			return
 		nav_agent.target_position = patrol_next_node.global_position
 	if nav_agent.is_navigation_finished():
 		patrol_next_node = patrol_next_node.next
+		if patrol_next_node == null:
+			return
 		nav_agent.target_position = patrol_next_node.global_position
 	
 	var next_pos: Vector3 = nav_agent.get_next_path_position()
@@ -678,22 +682,31 @@ func should_jump(delta: float) -> bool:
 			jump_cooldown -= delta
 		return false
 	# enemies that can't jump shouldn't jump
-	if jump_height < 0.01:
+	if jump_height <= 0.0:
 		return false
 	var space_state: PhysicsDirectSpaceState3D = get_world_3d().direct_space_state
 	var query := PhysicsShapeQueryParameters3D.new()
-	query.shape = SphereShape3D.new()
+	query.shape = ($CollisionShape3D as CollisionShape3D).shape
 	query.transform = global_transform
-	query.transform.origin -= transform.basis.z * 1.25
+	query.transform.origin -= global_transform.basis.z * 1.25
 	query.transform.origin += Vector3(0, 0.25, 0)
-	query.collision_mask = 1 + 2 + 16 + 128 + 256 # default layer, player, projectiles, doors, porous
+	query.collision_mask = 1 + 16 + 128 + 256 # default layer, projectiles, doors, porous
 	query.exclude.append(get_rid())
-	var hit: Array[Dictionary] = space_state.intersect_shape(query)
+	# directly forwards - does the enemy have something to jump over?
+	var hit : Array[Dictionary] = space_state.intersect_shape(query)
 	query.transform.origin.y += 4.0
-	var hit2: Array[Dictionary] = space_state.intersect_shape(query)
+	# up and forwards - does the enemy have somewhere to go?
+	var hit2 : Array[Dictionary] = space_state.intersect_shape(query)
+	query.transform.origin.x = global_position.x
+	query.transform.origin.z = global_position.z
+	# directly up - does the enemy have clearance to jump?
+	var hit3 : Array[Dictionary] = space_state.intersect_shape(query)
 	#print(hit)
-	return (hit2.is_empty() or hit2[0].collider in current_targets) \
+	return (
+			(hit3.is_empty() or hit3[0].collider in current_targets)
+			and (hit2.is_empty() or hit2[0].collider in current_targets)
 			and not (hit.is_empty() or hit[0].collider in current_targets)
+	)
 
 
 func _begin_attack() -> void:
@@ -795,7 +808,7 @@ func _gravity(delta: float) -> Vector3:
 			if (($AnimationTree as AnimationTree).tree_root as AnimationNodeStateMachine).has_node("jumping"):
 				state_machine.travel("jumping")
 		jumping = false
-	elif is_on_floor() and grav_vel.y < 0:
+	elif (is_on_floor() and grav_vel.y < 0) or (is_on_ceiling() and grav_vel.y > 0):
 		grav_vel = Vector3.ZERO
 	else:
 		grav_vel -= Vector3.UP * gravity * delta
