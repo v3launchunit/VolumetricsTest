@@ -7193,22 +7193,22 @@
 // entity 565
 {
 "classname" "light_lamp"
-"origin" "-1472 576 304"
+"origin" "-1472 584 304"
 }
 // entity 566
 {
 "classname" "light_lamp"
-"origin" "-1600 576 304"
+"origin" "-1600 584 304"
 }
 // entity 567
 {
 "classname" "light_lamp"
-"origin" "-1600 448 304"
+"origin" "-1600 456 304"
 }
 // entity 568
 {
 "classname" "light_lamp"
-"origin" "-1472 448 304"
+"origin" "-1472 456 304"
 }
 // entity 569
 {
@@ -7701,6 +7701,46 @@
 }
 // entity 607
 {
+"classname" "light_lamp"
+"origin" "-1104 72 304"
+}
+// entity 608
+{
+"classname" "light_lamp"
+"origin" "-1360 72 304"
+}
+// entity 609
+{
+"classname" "light_lamp"
+"origin" "-1368 456 304"
+}
+// entity 610
+{
+"classname" "light_lamp"
+"origin" "-1368 584 304"
+}
+// entity 611
+{
+"classname" "deco_cable"
+"origin" "-1272 1528 432"
+"killtarget" "wire02l"
+"target" "wire02r"
+}
+// entity 612
+{
+"classname" "func_node"
+"origin" "-1400 1448 456"
+"targetname" "wire02l"
+}
+// entity 613
+{
+"classname" "func_node"
+"origin" "-1128 1608 600"
+"targetname" "wire02r"
+"angles" "0 -90 0"
+}
+// entity 614
+{
 "classname" "func_group"
 "_tb_type" "_tb_layer"
 "_tb_name" "Reflection Probes"
@@ -7708,7 +7748,7 @@
 "_tb_layer_sort_index" "0"
 "_tb_layer_hidden" "1"
 }
-// entity 608
+// entity 615
 {
 "classname" "area_ref_probe_solid"
 "_tb_layer" "20"
@@ -7722,7 +7762,7 @@
 ( -200 232 104 ) ( -200 232 105 ) ( -200 233 104 ) special/probe [ 0 1 0 0 ] [ 0 0 -1 0 ] 0 1 1
 }
 }
-// entity 609
+// entity 616
 {
 "classname" "area_ref_probe_solid"
 "angles" "0 -30 0"
@@ -7737,7 +7777,7 @@
 ( 121.2820323027554 160.91789367798953 232 ) ( 121.2820323027554 160.91789367798953 233 ) ( 121.7820323027554 161.78391908177394 232 ) special/probe [ 0 1 0 0 ] [ 0 0 -1 0 ] 0 1 1
 }
 }
-// entity 610
+// entity 617
 {
 "classname" "area_ref_probe_solid"
 "interior" "0"
@@ -7752,7 +7792,7 @@
 ( 1104 888 104 ) ( 1104 888 105 ) ( 1104 889 104 ) special/probe [ 0 1 0 0 ] [ 0 0 -1 0 ] 0 1 1
 }
 }
-// entity 611
+// entity 618
 {
 "classname" "area_ref_probe_solid"
 "_tb_layer" "20"
@@ -7766,7 +7806,7 @@
 ( 608 2616 280 ) ( 608 2616 281 ) ( 608 2617 280 ) special/probe [ 0 1 0 0 ] [ 0 0 -1 0 ] 0 1 1
 }
 }
-// entity 612
+// entity 619
 {
 "classname" "area_ref_probe_solid"
 "_tb_layer" "20"
@@ -7780,7 +7820,7 @@
 ( 528 488 352 ) ( 528 488 353 ) ( 528 489 352 ) special/probe [ 0 1 0 0 ] [ 0 0 -1 0 ] 0 1 1
 }
 }
-// entity 613
+// entity 620
 {
 "classname" "area_ref_probe_solid"
 "interior" "0"
@@ -7795,7 +7835,7 @@
 ( -1072 1080 104 ) ( -1072 1080 105 ) ( -1072 1081 104 ) special/probe [ 0 1 0 0 ] [ 0 0 -1 0 ] 0 1 1
 }
 }
-// entity 614
+// entity 621
 {
 "classname" "area_ref_probe_solid"
 "_tb_layer" "20"
@@ -7804,12 +7844,12 @@
 ( -1744 312 256 ) ( -1744 313 256 ) ( -1744 312 257 ) special/probe [ 0 -1 0 0 ] [ 0 0 -1 0 ] 0 1 1
 ( -1840 368 256 ) ( -1840 368 257 ) ( -1839 368 256 ) special/probe [ 1 0 0 0 ] [ 0 0 -1 0 ] 0 1 1
 ( -1840 312 144 ) ( -1839 312 144 ) ( -1840 313 144 ) special/probe [ -1 0 0 0 ] [ 0 -1 0 0 ] 0 1 1
-( -1392 808 272 ) ( -1392 809 272 ) ( -1391 808 272 ) special/probe [ 1 0 0 0 ] [ 0 -1 0 0 ] 0 1 1
+( -1392 808 336 ) ( -1392 809 336 ) ( -1391 808 336 ) special/probe [ 1 0 0 0 ] [ 0 -1 0 0 ] 0 1 1
 ( -1392 672 288 ) ( -1391 672 288 ) ( -1392 672 289 ) special/probe [ -1 0 0 0 ] [ 0 0 -1 0 ] 0 1 1
 ( -1312 808 288 ) ( -1312 808 289 ) ( -1312 809 288 ) special/probe [ 0 1 0 0 ] [ 0 0 -1 0 ] 0 1 1
 }
 }
-// entity 615
+// entity 622
 {
 "classname" "area_ref_probe_solid"
 "interior" "0"
@@ -7824,7 +7864,64 @@
 ( -1888 1336 104 ) ( -1888 1336 105 ) ( -1888 1337 104 ) special/probe [ 0 1 0 0 ] [ 0 0 -1 0 ] 0 1 1
 }
 }
-// entity 616
+// entity 623
+{
+"classname" "area_ref_probe_solid"
+"origin_offset" "5.0 0.0 0.0"
+"_tb_layer" "20"
+// brush 0
+{
+( -1816 24 256 ) ( -1816 25 256 ) ( -1816 24 257 ) special/probe [ 0 -1 0 0 ] [ 0 0 -1 0 ] 0 1 1
+( -1912 80 256 ) ( -1912 80 257 ) ( -1911 80 256 ) special/probe [ 1 0 0 0 ] [ 0 0 -1 0 ] 0 1 1
+( -1912 24 -192 ) ( -1911 24 -192 ) ( -1912 25 -192 ) special/probe [ -1 0 0 0 ] [ 0 -1 0 0 ] 0 1 1
+( -1464 520 680 ) ( -1464 521 680 ) ( -1463 520 680 ) special/probe [ 1 0 0 0 ] [ 0 -1 0 0 ] 0 1 1
+( -1464 432 288 ) ( -1463 432 288 ) ( -1464 432 289 ) special/probe [ -1 0 0 0 ] [ 0 0 -1 0 ] 0 1 1
+( -1464 520 288 ) ( -1464 520 289 ) ( -1464 521 288 ) special/probe [ 0 1 0 0 ] [ 0 0 -1 0 ] 0 1 1
+}
+}
+// entity 624
+{
+"classname" "area_ref_probe_solid"
+"_tb_layer" "20"
+// brush 0
+{
+( -1424 40 256 ) ( -1424 41 256 ) ( -1424 40 257 ) special/probe [ 0 -1 0 0 ] [ 0 0 -1 0 ] 0 1 1
+( -1840 -8 256 ) ( -1840 -8 257 ) ( -1839 -8 256 ) special/probe [ 1 0 0 0 ] [ 0 0 -1 0 ] 0 1 1
+( -1840 40 144 ) ( -1839 40 144 ) ( -1840 41 144 ) special/probe [ -1 0 0 0 ] [ 0 -1 0 0 ] 0 1 1
+( -1392 536 336 ) ( -1392 537 336 ) ( -1391 536 336 ) special/probe [ 1 0 0 0 ] [ 0 -1 0 0 ] 0 1 1
+( -1392 672 288 ) ( -1391 672 288 ) ( -1392 672 289 ) special/probe [ -1 0 0 0 ] [ 0 0 -1 0 ] 0 1 1
+( -1312 536 288 ) ( -1312 536 289 ) ( -1312 537 288 ) special/probe [ 0 1 0 0 ] [ 0 0 -1 0 ] 0 1 1
+}
+}
+// entity 625
+{
+"classname" "area_ref_probe_solid"
+"_tb_layer" "20"
+// brush 0
+{
+( -1168 40 256 ) ( -1168 41 256 ) ( -1168 40 257 ) special/probe [ 0 -1 0 0 ] [ 0 0 -1 0 ] 0 1 1
+( -1568 -8 256 ) ( -1568 -8 257 ) ( -1567 -8 256 ) special/probe [ 1 0 0 0 ] [ 0 0 -1 0 ] 0 1 1
+( -1568 40 224 ) ( -1567 40 224 ) ( -1568 41 224 ) special/probe [ -1 0 0 0 ] [ 0 -1 0 0 ] 0 1 1
+( -1120 536 336 ) ( -1120 537 336 ) ( -1119 536 336 ) special/probe [ 1 0 0 0 ] [ 0 -1 0 0 ] 0 1 1
+( -1120 512 288 ) ( -1119 512 288 ) ( -1120 512 289 ) special/probe [ -1 0 0 0 ] [ 0 0 -1 0 ] 0 1 1
+( -1040 536 288 ) ( -1040 536 289 ) ( -1040 537 288 ) special/probe [ 0 1 0 0 ] [ 0 0 -1 0 ] 0 1 1
+}
+}
+// entity 626
+{
+"classname" "area_ref_probe_solid"
+"_tb_layer" "20"
+// brush 0
+{
+( -1424 40 256 ) ( -1424 41 256 ) ( -1424 40 257 ) special/probe [ 0 -1 0 0 ] [ 0 0 -1 0 ] 0 1 1
+( -1824 -8 256 ) ( -1824 -8 257 ) ( -1823 -8 256 ) special/probe [ 1 0 0 0 ] [ 0 0 -1 0 ] 0 1 1
+( -1824 40 144 ) ( -1823 40 144 ) ( -1824 41 144 ) special/probe [ -1 0 0 0 ] [ 0 -1 0 0 ] 0 1 1
+( -1376 536 336 ) ( -1376 537 336 ) ( -1375 536 336 ) special/probe [ 1 0 0 0 ] [ 0 -1 0 0 ] 0 1 1
+( -1376 168 288 ) ( -1375 168 288 ) ( -1376 168 289 ) special/probe [ -1 0 0 0 ] [ 0 0 -1 0 ] 0 1 1
+( -1040 536 288 ) ( -1040 536 289 ) ( -1040 537 288 ) special/probe [ 0 1 0 0 ] [ 0 0 -1 0 ] 0 1 1
+}
+}
+// entity 627
 {
 "classname" "func_group"
 "_tb_type" "_tb_layer"
@@ -7833,7 +7930,7 @@
 "_tb_layer_sort_index" "1"
 "_tb_layer_hidden" "1"
 }
-// entity 617
+// entity 628
 {
 "classname" "area_fog"
 "_tb_layer" "97"

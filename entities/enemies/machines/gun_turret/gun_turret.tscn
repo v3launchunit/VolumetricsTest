@@ -1,4 +1,4 @@
-[gd_scene load_steps=66 format=4 uid="uid://dqugqrrqpxdih"]
+[gd_scene load_steps=67 format=4 uid="uid://dqugqrrqpxdih"]
 
 [ext_resource type="Script" uid="uid://cxefwakuqdmxl" path="res://entities/enemies/machines/gun_turret/turret.gd" id="1_1bh2h"]
 [ext_resource type="Script" uid="uid://cjtxjt7ph0iv2" path="res://entities/enemies/machines/enemy_turret.gd" id="1_q2b2k"]
@@ -68,6 +68,11 @@ animation = &"attacking"
 burst = 3
 burst_delay = 0.1
 cancelable = false
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_3rrt2"]
+random_pitch = 1.25
+streams_count = 1
+stream_0/stream = ExtResource("7_3rrt2")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2j3v3"]
 
@@ -599,7 +604,7 @@ forgetful = true
 infighter = false
 wake_up_time = 0.0
 sight_line_sweep_angle = 6.28319
-detection_stream = ExtResource("7_3rrt2")
+detection_stream = SubResource("AudioStreamRandomizer_3rrt2")
 attack_interval = 0.0
 attack_delay = 0.0
 flinch_chance = 0.0
@@ -696,6 +701,7 @@ libraries = {
 
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="gun_turret"]
 bus = &"Enemies"
+doppler_tracking = 2
 
 [node name="Base" type="MeshInstance3D" parent="."]
 material_override = ExtResource("2_qskly")

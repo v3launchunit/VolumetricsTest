@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="FuncGodotFGDFile" load_steps=16 format=3 uid="uid://cmjt0bjjtpn1o"]
+[gd_resource type="Resource" script_class="FuncGodotFGDFile" load_steps=18 format=3 uid="uid://cmjt0bjjtpn1o"]
 
 [ext_resource type="Script" uid="uid://cvytv1hjntf8j" path="res://addons/func_godot/src/fgd/func_godot_fgd_file.gd" id="1_n62s6"]
 [ext_resource type="Resource" uid="uid://beqlpnfvi2ibp" path="res://trench_broom/func_godot_fgd/entities/point/deco/deco_pipe_point_class.tres" id="1_tep8v"]
@@ -15,6 +15,8 @@
 [ext_resource type="Resource" uid="uid://cvclkot224c31" path="res://trench_broom/func_godot_fgd/entities/point/deco/deco_chain_long_point_class.tres" id="10_vv6xk"]
 [ext_resource type="Resource" uid="uid://cbkl5p4meteaf" path="res://trench_broom/func_godot_fgd/entities/point/deco/deco_shippingcontainer_model_point_class.tres" id="11_ec5t3"]
 [ext_resource type="Resource" uid="uid://c8n1y3ir65vky" path="res://trench_broom/func_godot_fgd/entities/point/deco/deco_beaker_point_class.tres" id="14_ei8kt"]
+[ext_resource type="Resource" uid="uid://dqbn6opnto47n" path="res://trench_broom/func_godot_fgd/entities/point/deco/deco_cable.tres" id="15_omqbe"]
+[ext_resource type="Resource" uid="uid://db62xxbcljw26" path="res://trench_broom/func_godot_fgd/entities/base/angles_base_class.tres" id="16_p17g7"]
 
 [resource]
 script = ExtResource("1_n62s6")
@@ -22,5 +24,5 @@ export_file = false
 target_map_editor = 1
 fgd_name = "Decorations"
 base_fgd_files = Array[Resource]([])
-entity_definitions = Array[Resource]([ExtResource("1_tep8v"), ExtResource("3_vhgyc"), ExtResource("2_ujupc"), ExtResource("2_57adi"), ExtResource("5_a1prg"), ExtResource("4_vhgyc"), ExtResource("5_sco6a"), ExtResource("6_sco6a"), ExtResource("7_ww7o6"), ExtResource("8_wh3cm"), ExtResource("9_wh3cm"), ExtResource("10_vv6xk"), ExtResource("11_ec5t3"), ExtResource("14_ei8kt")])
+entity_definitions = Array[Resource]([ExtResource("1_tep8v"), ExtResource("3_vhgyc"), ExtResource("2_ujupc"), ExtResource("2_57adi"), ExtResource("5_a1prg"), ExtResource("4_vhgyc"), ExtResource("5_sco6a"), ExtResource("6_sco6a"), ExtResource("7_ww7o6"), ExtResource("8_wh3cm"), ExtResource("9_wh3cm"), ExtResource("10_vv6xk"), ExtResource("11_ec5t3"), ExtResource("14_ei8kt"), ExtResource("15_omqbe"), ExtResource("16_p17g7")])
 metadata/_custom_type_script = "uid://cvytv1hjntf8j"

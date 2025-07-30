@@ -1,4 +1,4 @@
-// Game: VolumetricsTest
+// Game: FuncGodot
 // Format: Valve
 // entity 0
 {
@@ -2744,4 +2744,25 @@
 "origin" "832 -128 24"
 "_color" "255 255 255"
 "_tb_group" "17"
+}
+// entity 162
+{
+"classname" "func_node"
+"origin" "336 576 48"
+"targetname" "wire01r"
+"angle" "270"
+}
+// entity 163
+{
+"classname" "func_node"
+"origin" "256 496 32"
+"targetname" "wire01l"
+}
+// entity 164
+{
+"classname" "deco_cable"
+"origin" "296 536 16"
+"killtarget" "wire01l"
+"target" "wire01r"
+"angle" "315"
 }

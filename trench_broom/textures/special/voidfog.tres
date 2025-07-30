@@ -4,3 +4,4 @@
 shading_mode = 0
 albedo_color = Color(0, 0, 0, 1)
 proximity_fade_enabled = true
+proximity_fade_distance = 2.5

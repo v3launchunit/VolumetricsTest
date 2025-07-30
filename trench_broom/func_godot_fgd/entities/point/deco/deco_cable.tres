@@ -1,0 +1,28 @@
+[gd_resource type="Resource" script_class="FuncGodotFGDPointClass" load_steps=5 format=3 uid="uid://dqbn6opnto47n"]
+
+[ext_resource type="Script" uid="uid://cw2atun4e3eyv" path="res://addons/func_godot/src/fgd/func_godot_fgd_point_class.gd" id="1_j3hpw"]
+[ext_resource type="PackedScene" uid="uid://c2hhkv6kfrvg4" path="res://trench_broom/func_godot_fgd/entities/point/deco/cable.tscn" id="1_k5bvs"]
+[ext_resource type="Resource" uid="uid://c73xdr38wm4dj" path="res://trench_broom/func_godot_fgd/entities/base/linkable_base_class.tres" id="1_u7fa0"]
+[ext_resource type="Resource" uid="uid://db62xxbcljw26" path="res://trench_broom/func_godot_fgd/entities/base/angles_base_class.tres" id="2_6r38o"]
+
+[resource]
+script = ExtResource("1_j3hpw")
+scene_file = ExtResource("1_k5bvs")
+apply_rotation_on_map_build = true
+classname = "deco_cable"
+description = ""
+func_godot_internal = false
+base_classes = Array[Resource]([ExtResource("1_u7fa0"), ExtResource("2_6r38o")])
+class_properties = {
+"radius": 0.125,
+"segments": 8
+}
+class_property_descriptions = {}
+auto_apply_to_matching_node_properties = false
+meta_properties = {
+"color": Color(0.8, 0.8, 0.8, 1),
+"size": AABB(-8, -8, -8, 8, 8, 8)
+}
+node_class = ""
+name_property = ""
+metadata/_custom_type_script = "uid://cw2atun4e3eyv"

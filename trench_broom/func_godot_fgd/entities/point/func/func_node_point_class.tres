@@ -1,7 +1,8 @@
-[gd_resource type="Resource" script_class="FuncGodotFGDPointClass" load_steps=4 format=3 uid="uid://d6nof8de0xc6"]
+[gd_resource type="Resource" script_class="FuncGodotFGDPointClass" load_steps=5 format=3 uid="uid://d6nof8de0xc6"]
 
 [ext_resource type="Resource" uid="uid://c73xdr38wm4dj" path="res://trench_broom/func_godot_fgd/entities/base/linkable_base_class.tres" id="1_s3m66"]
 [ext_resource type="Script" uid="uid://cw2atun4e3eyv" path="res://addons/func_godot/src/fgd/func_godot_fgd_point_class.gd" id="2_52ge5"]
+[ext_resource type="Resource" uid="uid://db62xxbcljw26" path="res://trench_broom/func_godot_fgd/entities/base/angles_base_class.tres" id="2_73g7l"]
 [ext_resource type="Script" uid="uid://didetp0m0a0n5" path="res://trench_broom/func_godot_fgd/entities/point/func/path_node.gd" id="3_73g7l"]
 
 [resource]
@@ -11,7 +12,7 @@ apply_rotation_on_map_build = true
 classname = "func_node"
 description = "a generic targetable point."
 func_godot_internal = false
-base_classes = Array[Resource]([ExtResource("1_s3m66")])
+base_classes = Array[Resource]([ExtResource("1_s3m66"), ExtResource("2_73g7l")])
 class_properties = {}
 class_property_descriptions = {}
 auto_apply_to_matching_node_properties = false
