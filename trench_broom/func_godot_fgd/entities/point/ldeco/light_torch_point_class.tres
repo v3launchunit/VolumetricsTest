@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="FuncGodotFGDPointClass" load_steps=4 format=3 uid="uid://7g6qdl7kdrb4"]
 
 [ext_resource type="Resource" uid="uid://cixh6j5bjc608" path="res://trench_broom/func_godot_fgd/entities/base/light_base_class.tres" id="1_xmuqf"]
-[ext_resource type="PackedScene" uid="uid://jwblxog7c1kl" path="res://scenes/objects/lights/torch_tb.tscn" id="2_cuuho"]
+[ext_resource type="PackedScene" uid="uid://jwblxog7c1kl" path="res://scenes/entities/lights/torch_tb.tscn" id="2_cuuho"]
 [ext_resource type="Script" uid="uid://cw2atun4e3eyv" path="res://addons/func_godot/src/fgd/func_godot_fgd_point_class.gd" id="3_pkwgj"]
 
 [resource]

@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="FuncGodotFGDModelPointClass" load_steps=4 format=3 uid="uid://bes3v1qr5gokj"]
 
 [ext_resource type="Resource" uid="uid://db62xxbcljw26" path="res://trench_broom/func_godot_fgd/entities/base/angles_base_class.tres" id="1_ubg0i"]
-[ext_resource type="PackedScene" uid="uid://dl2s16poygxvk" path="res://scenes/objects/lights/shrooms.tscn" id="2_ur0cp"]
+[ext_resource type="PackedScene" uid="uid://dl2s16poygxvk" path="res://scenes/entities/lights/shrooms.tscn" id="2_ur0cp"]
 [ext_resource type="Script" uid="uid://uk7d08g8mvr2" path="res://addons/func_godot/src/fgd/func_godot_fgd_model_point_class.gd" id="3_gyplh"]
 
 [resource]

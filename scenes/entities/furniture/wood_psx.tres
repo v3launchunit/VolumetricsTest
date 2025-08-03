@@ -1,6 +1,6 @@
 [gd_resource type="ShaderMaterial" load_steps=8 format=3 uid="uid://d2ew72egl10co"]
 
-[ext_resource type="Shader" uid="uid://tsbrjps5h1up" path="res://scenes/objects/furniture/wood_psx.gdshader" id="1_631u3"]
+[ext_resource type="Shader" uid="uid://tsbrjps5h1up" path="res://scenes/entities/furniture/wood_psx.gdshader" id="1_631u3"]
 
 [sub_resource type="Gradient" id="Gradient_v5jf5"]
 interpolation_mode = 1

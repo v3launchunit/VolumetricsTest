@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://c2xqycr048hgh"]
 
-[ext_resource type="Material" uid="uid://d2ew72egl10co" path="res://scenes/objects/furniture/wood_psx.tres" id="1_0hys1"]
+[ext_resource type="Material" uid="uid://d2ew72egl10co" path="res://scenes/entities/furniture/wood_psx.tres" id="1_0hys1"]
 [ext_resource type="ArrayMesh" uid="uid://ogv7qwoxjkgc" path="res://models/objects/chair.obj" id="2_ilr4v"]
 
 [node name="Chair" type="MeshInstance3D"]

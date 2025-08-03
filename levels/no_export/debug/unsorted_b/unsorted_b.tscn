@@ -2,7 +2,7 @@
 
 [ext_resource type="Material" path="res://materials/terrain/trench_broom_std/bricks.tres" id="4_wvenc"]
 [ext_resource type="Texture2D" uid="uid://dobuk1wr32hlg" path="res://materials/terrain/custom_hand/bricks/bricks_albedo.png" id="5_kgm1w"]
-[ext_resource type="PackedScene" uid="uid://bowd2xtj7q4vd" path="res://scenes/objects/lights/lamp_tb.tscn" id="5_o3ow1"]
+[ext_resource type="PackedScene" uid="uid://bowd2xtj7q4vd" path="res://scenes/entities/lights/lamp_tb.tscn" id="5_o3ow1"]
 [ext_resource type="Material" uid="uid://bpiuncp6wk4t2" path="res://trench_broom/textures/key_metal_red.tres" id="5_yqsyp"]
 [ext_resource type="Material" uid="uid://qt3bjecsm0qb" path="res://trench_broom/textures/shutter_door.tres" id="6_6yhs5"]
 [ext_resource type="PackedScene" uid="uid://do61x5km3wthk" path="res://entities/player/player.tscn" id="6_v3mq0"]

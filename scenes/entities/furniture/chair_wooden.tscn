@@ -1,6 +1,6 @@
 [gd_scene load_steps=13 format=3 uid="uid://bsijt0cxd1cch"]
 
-[ext_resource type="Material" uid="uid://d2ew72egl10co" path="res://scenes/objects/furniture/wood_psx.tres" id="1_6hyc6"]
+[ext_resource type="Material" uid="uid://d2ew72egl10co" path="res://scenes/entities/furniture/wood_psx.tres" id="1_6hyc6"]
 [ext_resource type="Script" uid="uid://bc60eq8f31x2u" path="res://scripts/objects/carriable.gd" id="1_jtktk"]
 [ext_resource type="ArrayMesh" uid="uid://ogv7qwoxjkgc" path="res://models/objects/chair.obj" id="2_e163t"]
 [ext_resource type="Script" uid="uid://cly1es2vyxx12" path="res://entities/status.gd" id="3_5wb7k"]

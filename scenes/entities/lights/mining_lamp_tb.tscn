@@ -1,6 +1,6 @@
 [gd_scene load_steps=10 format=3 uid="uid://bhtbvqhf5jhvy"]
 
-[ext_resource type="PackedScene" uid="uid://bowd2xtj7q4vd" path="res://scenes/objects/lights/lamp_tb.tscn" id="1_hl3is"]
+[ext_resource type="PackedScene" uid="uid://bowd2xtj7q4vd" path="res://scenes/entities/lights/lamp_tb.tscn" id="1_hl3is"]
 [ext_resource type="Texture2D" uid="uid://c3ho4pll2ocil" path="res://effects/halos/fancier_halo.png" id="2_0t2ck"]
 [ext_resource type="Material" uid="uid://by4h3hrepyr2o" path="res://bullets/metal_psx.tres" id="3_0t2ck"]
 [ext_resource type="ArrayMesh" uid="uid://b2os77jql2tfp" path="res://objects/deco/mining_light_cage.obj" id="3_77cw0"]

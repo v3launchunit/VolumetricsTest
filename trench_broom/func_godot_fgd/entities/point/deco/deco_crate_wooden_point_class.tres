@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="FuncGodotFGDPointClass" load_steps=3 format=3 uid="uid://c7ua2ds1cc7g"]
 
-[ext_resource type="PackedScene" uid="uid://bxdu412yk2ut8" path="res://scenes/objects/crate_wooden.tscn" id="1_71jd8"]
+[ext_resource type="PackedScene" uid="uid://bxdu412yk2ut8" path="res://scenes/entities/crate_wooden.tscn" id="1_71jd8"]
 [ext_resource type="Script" uid="uid://cw2atun4e3eyv" path="res://addons/func_godot/src/fgd/func_godot_fgd_point_class.gd" id="2_hy0ek"]
 
 [resource]

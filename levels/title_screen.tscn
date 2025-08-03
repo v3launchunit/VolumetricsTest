@@ -12,7 +12,7 @@
 [ext_resource type="Material" uid="uid://c4mwxt4cc70i" path="res://trench_broom/textures/metallic/bulk_metal.tres" id="7_h2dfn"]
 [ext_resource type="PackedScene" uid="uid://cbo6wxdi4eryp" path="res://entities/enemies/military/pinkerton/pinkerton.tscn" id="7_ujxbl"]
 [ext_resource type="Material" uid="uid://b577rn2x77xgw" path="res://trench_broom/textures/machines/random_machines.tres" id="8_ov2o3"]
-[ext_resource type="PackedScene" uid="uid://bxdu412yk2ut8" path="res://scenes/objects/crate_wooden.tscn" id="8_qxia5"]
+[ext_resource type="PackedScene" uid="uid://bxdu412yk2ut8" path="res://scenes/entities/crate_wooden.tscn" id="8_qxia5"]
 [ext_resource type="Material" uid="uid://bwrbps16ndbyv" path="res://trench_broom/textures/metallic/metal.tres" id="11_iiwbq"]
 [ext_resource type="Shader" uid="uid://cqxb6k0ev762f" path="res://shaders/canvas/post_process/cross_bloom.gdshader" id="12_rey0k"]
 

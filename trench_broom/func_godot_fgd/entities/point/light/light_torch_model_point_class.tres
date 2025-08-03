@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="FuncGodotFGDModelPointClass" load_steps=3 format=3 uid="uid://c4yihn25i3u2h"]
 
-[ext_resource type="PackedScene" uid="uid://jwblxog7c1kl" path="res://scenes/objects/lights/torch_tb.tscn" id="1_jm71t"]
+[ext_resource type="PackedScene" uid="uid://jwblxog7c1kl" path="res://scenes/entities/lights/torch_tb.tscn" id="1_jm71t"]
 [ext_resource type="Script" uid="uid://uk7d08g8mvr2" path="res://addons/func_godot/src/fgd/func_godot_fgd_model_point_class.gd" id="1_kvspv"]
 
 [resource]

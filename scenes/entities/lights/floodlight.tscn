@@ -1,6 +1,6 @@
 [gd_scene load_steps=27 format=3 uid="uid://erys0skiq3pe"]
 
-[ext_resource type="Script" uid="uid://bpjahy6og62if" path="res://scenes/objects/lights/floodlight.gd" id="1_ssbnm"]
+[ext_resource type="Script" uid="uid://bpjahy6og62if" path="res://scenes/entities/lights/floodlight.gd" id="1_ssbnm"]
 [ext_resource type="PackedScene" uid="uid://uhlasvutim3e" path="res://models/objects/floodlight.glb" id="1_xylaw"]
 [ext_resource type="Texture2D" uid="uid://vnoituiw2r36" path="res://models/objects/floodlight_flood_lamp_emissions.png" id="2_lw5of"]
 [ext_resource type="Shader" uid="uid://bpwyicrqyt4nd" path="res://shaders/spatial/psx_pb_opaque_orm.gdshader" id="3_104q3"]

@@ -319,7 +319,7 @@ light_projector = ExtResource("32_tgokv")
 light_bake_mode = 0
 light_cull_mask = 4294967291
 shadow_enabled = true
-spot_range = 50.0
+spot_range = 30.0
 spot_angle = 35.0
 script = ExtResource("33_aknmp")
 

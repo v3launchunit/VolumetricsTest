@@ -17,7 +17,7 @@
 [ext_resource type="Material" uid="uid://do2cbn6keg5jn" path="res://trench_broom/textures/structural/glass.tres" id="12_3nlge"]
 [ext_resource type="Material" uid="uid://dh6h4bfv6pod2" path="res://trench_broom/textures/key_metal_blue.tres" id="17_d3fqb"]
 [ext_resource type="Material" path="res://materials/terrain/trench_broom_std/bricks_stone.tres" id="17_q0q70"]
-[ext_resource type="PackedScene" uid="uid://cbaxllkky8gfe" path="res://scenes/objects/lights/lamp.tscn" id="18_7kp2e"]
+[ext_resource type="PackedScene" uid="uid://cbaxllkky8gfe" path="res://scenes/entities/lights/lamp.tscn" id="18_7kp2e"]
 [ext_resource type="Material" uid="uid://bpiuncp6wk4t2" path="res://trench_broom/textures/key_metal_red.tres" id="18_daeev"]
 [ext_resource type="PackedScene" uid="uid://bu80vkpoj8bpq" path="res://pickups/keys/keys/key_green_pickup.tscn" id="19_1jiwh"]
 [ext_resource type="PackedScene" uid="uid://lt47oncbceb2" path="res://pickups/weapons/akm_pickup.tscn" id="19_cb84u"]
