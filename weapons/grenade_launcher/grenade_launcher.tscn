@@ -76,8 +76,8 @@ anim_player = NodePath("../AnimationPlayer")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
-"": SubResource("AnimationLibrary_d4abo"),
-"mortar_anims": ExtResource("5_rm51x")
+&"": SubResource("AnimationLibrary_d4abo"),
+&"mortar_anims": ExtResource("5_rm51x")
 }
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
