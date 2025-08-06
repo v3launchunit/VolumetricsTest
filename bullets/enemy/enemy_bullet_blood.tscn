@@ -4,8 +4,8 @@
 [ext_resource type="PackedScene" uid="uid://bth7t7bnwn01s" path="res://scenes/effects/impacts/blood_bullet_impact.tscn" id="2_c13ba"]
 [ext_resource type="ArrayMesh" uid="uid://cqf6v4gaperkn" path="res://bullets/bullet.obj" id="2_hv2vv"]
 [ext_resource type="Script" uid="uid://dqsxgbvhlqnq" path="res://bullets/bullet_trail.gd" id="3_yv8xl"]
-[ext_resource type="AudioStream" uid="uid://crtqyq64m3wm1" path="res://audio/streams/ambient/bullet_ambient.wav" id="4_efove"]
 [ext_resource type="Script" uid="uid://b5h7xnsiqnyy7" path="res://scripts/effects/lifetime.gd" id="5_anj2i"]
+[ext_resource type="AudioStream" uid="uid://cjpdpdqqekxhe" path="res://audio/streams/ambient/wind_ambient.ogg" id="5_lpa2d"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_h48e4"]
 size = Vector3(0.05, 0.05, 0.5)
@@ -152,7 +152,7 @@ draw_pass_1 = SubResource("BoxMesh_ciky2")
 script = ExtResource("3_yv8xl")
 
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
-stream = ExtResource("4_efove")
+stream = ExtResource("5_lpa2d")
 pitch_scale = 1.5
 autoplay = true
 max_distance = 50.0

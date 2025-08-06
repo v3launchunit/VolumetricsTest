@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://c2hhkv6kfrvg4"]
 
-[ext_resource type="Script" uid="uid://dw1ibcrrodmge" path="res://trench_broom/func_godot_fgd/entities/point/cable.gd" id="1_1a2hd"]
+[ext_resource type="Script" uid="uid://dw1ibcrrodmge" path="res://trench_broom/func_godot_fgd/entities/point/hang_cable.gd" id="1_1a2hd"]
 [ext_resource type="Shader" uid="uid://djpltavpkhtmk" path="res://shaders/spatial/psx_pb_opaque.gdshader" id="1_pxp2c"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_nnm12"]

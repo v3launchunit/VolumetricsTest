@@ -33,9 +33,9 @@
 [ext_resource type="AudioStream" uid="uid://dyub7yfblkj1f" path="res://audio/streams/typewriter.wav" id="31_b0m84"]
 [ext_resource type="Texture2D" uid="uid://c0bhiisq4qel1" path="res://entities/player/flashlight_projector.png" id="32_tgokv"]
 [ext_resource type="Script" uid="uid://c4rlaihf5gsp" path="res://entities/player/flashlight.gd" id="33_aknmp"]
+[ext_resource type="AudioStream" uid="uid://cjpdpdqqekxhe" path="res://audio/streams/ambient/wind_ambient.ogg" id="34_ttr27"]
 [ext_resource type="PackedScene" uid="uid://bjpo451a0eupa" path="res://weapons/axe/axe.tscn" id="35_uif20"]
 [ext_resource type="PackedScene" uid="uid://bimc4ufk5hicg" path="res://weapons/pump_shotgun/pump_shotgun.tscn" id="36_ytmbf"]
-[ext_resource type="AudioStream" uid="uid://crtqyq64m3wm1" path="res://audio/streams/ambient/bullet_ambient.wav" id="37_0ygxn"]
 [ext_resource type="PackedScene" uid="uid://dh4rwigqkk6va" path="res://ui/hud/player_hud.tscn" id="37_wd13u"]
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_ww5sc"]
@@ -351,7 +351,7 @@ process_material = SubResource("ParticleProcessMaterial_v43hw")
 draw_pass_1 = SubResource("CylinderMesh_pkwoh")
 
 [node name="WindStreamPlayer" type="AudioStreamPlayer" parent="Control/SubViewportContainer/SubViewport/PlayerSync/PlayerCam/SlamWindSys"]
-stream = ExtResource("37_0ygxn")
+stream = ExtResource("34_ttr27")
 volume_db = 6.0
 
 [node name="HoldPoint" type="Marker3D" parent="Control/SubViewportContainer/SubViewport/PlayerSync/PlayerCam"]

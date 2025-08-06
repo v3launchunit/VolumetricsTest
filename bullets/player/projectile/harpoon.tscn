@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://ew75cbfb63v5" path="res://bullets/player/special/lodged_nail.tscn" id="2_ay4r3"]
 [ext_resource type="Material" uid="uid://by4h3hrepyr2o" path="res://bullets/metal_psx.tres" id="3_dkf47"]
 [ext_resource type="ArrayMesh" uid="uid://d13ytgdp3744o" path="res://models/harpoon.obj" id="4_mt046"]
-[ext_resource type="AudioStream" uid="uid://crtqyq64m3wm1" path="res://audio/streams/ambient/bullet_ambient.wav" id="5_0mrb3"]
+[ext_resource type="AudioStream" uid="uid://cjpdpdqqekxhe" path="res://audio/streams/ambient/wind_ambient.ogg" id="5_euppa"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_h48e4"]
 size = Vector3(0.05, 0.05, 1)
@@ -37,7 +37,7 @@ cast_shadow = 0
 mesh = ExtResource("4_mt046")
 
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
-stream = ExtResource("5_0mrb3")
+stream = ExtResource("5_euppa")
 pitch_scale = 1.5
 autoplay = true
 max_distance = 50.0

@@ -6,8 +6,8 @@
 [ext_resource type="Script" uid="uid://cly1es2vyxx12" path="res://entities/status.gd" id="4_ys57n"]
 [ext_resource type="PackedScene" uid="uid://cu70msbgu2ysm" path="res://scenes/effects/damage/metal_damage_sys.tscn" id="5_fst5o"]
 [ext_resource type="PackedScene" uid="uid://bfctj0w1fkgwy" path="res://scenes/effects/gibs/metal_shards.tscn" id="6_vr42e"]
+[ext_resource type="AudioStream" uid="uid://1f58lm53scna" path="res://audio/streams/ambient/fire_ambient.ogg" id="7_05npy"]
 [ext_resource type="Shader" uid="uid://cgfn3iqbl45r7" path="res://shaders/spatial/psx_ul_add.gdshader" id="7_npgld"]
-[ext_resource type="AudioStream" uid="uid://1tg3qhvaqlgr" path="res://audio/streams/ambient/fire_crackle_ambient.mp3" id="7_yxa82"]
 [ext_resource type="Material" uid="uid://08yqplf2icxd" path="res://effects/halos/fire_halo_mat.tres" id="8_yax0c"]
 [ext_resource type="Script" uid="uid://qbss7pion7pi" path="res://scripts/effects/halo.gd" id="9_hmu4g"]
 
@@ -148,7 +148,7 @@ gibs = ExtResource("6_vr42e")
 
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.75, 0)
-stream = ExtResource("7_yxa82")
+stream = ExtResource("7_05npy")
 unit_size = 32.0
 autoplay = true
 max_distance = 64.0

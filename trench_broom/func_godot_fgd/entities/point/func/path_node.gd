@@ -4,16 +4,16 @@ extends Marker3D
 
 @export var func_godot_properties: Dictionary:
 	set(to):
-		if (
-			func_godot_properties["targetname"] != "" 
-			and is_in_group("targetname:%s" % func_godot_properties["targetname"])
-		):
-			remove_from_group("targetname:%s" % func_godot_properties["targetname"])
-		if (
-			func_godot_properties["target"] != "" 
-			and is_in_group("targets:%s" %  func_godot_properties["target"])
-		):
-			remove_from_group("targets:%s" %  func_godot_properties["target"])
+		#if (
+			#func_godot_properties["targetname"] != "" 
+			#and is_in_group("targetname:%s" % func_godot_properties["targetname"])
+		#):
+			#remove_from_group("targetname:%s" % func_godot_properties["targetname"])
+		#if (
+			#func_godot_properties["target"] != "" 
+			#and is_in_group("targets:%s" %  func_godot_properties["target"])
+		#):
+			#remove_from_group("targets:%s" %  func_godot_properties["target"])
 		func_godot_properties = to
 		#for group in get_groups():
 			#if not str(group).begins_with("_"): 
@@ -24,6 +24,13 @@ extends Marker3D
 			add_to_group("targets:%s" %  func_godot_properties["target"], true)
 
 var next: PathNode
+
+
+func _func_godot_apply_properties(properties: Dictionary) -> void:
+	if properties["targetname"] != "":
+		add_to_group("targetname:%s" % func_godot_properties["targetname"], true)
+	if properties["target"] != "":
+		add_to_group("targets:%s" %  func_godot_properties["target"], true)
 
 
 ## Called when the map is finished building.

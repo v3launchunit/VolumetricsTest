@@ -4,8 +4,8 @@
 [ext_resource type="ArrayMesh" uid="uid://cqf6v4gaperkn" path="res://bullets/bullet.obj" id="2_afg0c"]
 [ext_resource type="PackedScene" uid="uid://fn1fivb2ndvo" path="res://scenes/effects/impacts/bullet_impact_yellow.tscn" id="2_x2ip4"]
 [ext_resource type="Script" uid="uid://dqsxgbvhlqnq" path="res://bullets/bullet_trail.gd" id="3_o658m"]
-[ext_resource type="AudioStream" uid="uid://crtqyq64m3wm1" path="res://audio/streams/ambient/bullet_ambient.wav" id="4_0y1a2"]
 [ext_resource type="Script" uid="uid://b5h7xnsiqnyy7" path="res://scripts/effects/lifetime.gd" id="5_fvl37"]
+[ext_resource type="AudioStream" uid="uid://cjpdpdqqekxhe" path="res://audio/streams/ambient/wind_ambient.ogg" id="5_q7ohs"]
 [ext_resource type="Script" uid="uid://oqbx6pignrqi" path="res://bullets/enemy/minor_omni_light_3d.gd" id="7_yeekn"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_h48e4"]
@@ -137,7 +137,7 @@ draw_pass_1 = SubResource("BoxMesh_wwmxc")
 script = ExtResource("3_o658m")
 
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
-stream = ExtResource("4_0y1a2")
+stream = ExtResource("5_q7ohs")
 pitch_scale = 1.5
 autoplay = true
 max_distance = 50.0

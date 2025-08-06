@@ -1,10 +1,10 @@
 @tool
-class_name Cable
+class_name HangCable
 extends MeshInstance3D
 
 @export var rebuild : bool:
 	set(to):
-		_func_godot_build_complete()
+		build_cable()
 @export var func_godot_properties : Dictionary
 @export var cable_end_l : Node3D
 @export var cable_end_r : Node3D
@@ -12,6 +12,10 @@ extends MeshInstance3D
 #@onready var mesh := $MeshInstance3D as MeshInstance3D
 
 func _func_godot_build_complete() -> void:
+	build_cable()
+
+
+func build_cable() -> void:
 	if cable_end_l == null and func_godot_properties.get("target", "") != "":
 		cable_end_l = get_tree().get_first_node_in_group(
 				"targetname:%s" % func_godot_properties["target"]
@@ -22,8 +26,10 @@ func _func_godot_build_complete() -> void:
 		) as Node3D
 	
 	if cable_end_l == null or cable_end_r == null:
-		printerr(cable_end_l == null)
-		printerr(cable_end_r == null)
+		if cable_end_l == null:
+			printerr("%s: cable_end_l is null" % name)
+		if cable_end_r == null:
+			printerr("%s: cable_end_r is null" % name)
 		return
 	
 	var left_end_pos : Vector3 = cable_end_l.global_position - global_position

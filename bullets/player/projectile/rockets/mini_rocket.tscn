@@ -7,8 +7,8 @@
 [ext_resource type="Script" uid="uid://dqsxgbvhlqnq" path="res://bullets/bullet_trail.gd" id="3_nvmr5"]
 [ext_resource type="Material" uid="uid://08yqplf2icxd" path="res://effects/halos/fire_halo_mat.tres" id="4_ldcer"]
 [ext_resource type="Script" uid="uid://qbss7pion7pi" path="res://scripts/effects/halo.gd" id="5_qs0dx"]
-[ext_resource type="AudioStream" uid="uid://bhhnxh2cjbiuq" path="res://audio/streams/ambient/fire_ball_ambient.wav" id="6_1jtql"]
 [ext_resource type="Script" uid="uid://oqbx6pignrqi" path="res://bullets/enemy/minor_omni_light_3d.gd" id="6_jgxiv"]
+[ext_resource type="AudioStream" uid="uid://dpugkmm1lxfxb" path="res://audio/streams/ambient/fireball_ambient.ogg" id="9_8y420"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_8c4xb"]
 radius = 0.15
@@ -205,7 +205,7 @@ surface_material_override/0 = SubResource("StandardMaterial3D_qiosb")
 script = ExtResource("5_qs0dx")
 
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
-stream = ExtResource("6_1jtql")
+stream = ExtResource("9_8y420")
 autoplay = true
 bus = &"Combat"
 doppler_tracking = 2

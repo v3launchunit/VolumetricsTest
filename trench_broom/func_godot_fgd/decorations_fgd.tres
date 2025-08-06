@@ -15,7 +15,7 @@
 [ext_resource type="Resource" uid="uid://cvclkot224c31" path="res://trench_broom/func_godot_fgd/entities/point/deco/deco_chain_long_point_class.tres" id="10_vv6xk"]
 [ext_resource type="Resource" uid="uid://cbkl5p4meteaf" path="res://trench_broom/func_godot_fgd/entities/point/deco/deco_shippingcontainer_model_point_class.tres" id="11_ec5t3"]
 [ext_resource type="Resource" uid="uid://c8n1y3ir65vky" path="res://trench_broom/func_godot_fgd/entities/point/deco/deco_beaker_point_class.tres" id="14_ei8kt"]
-[ext_resource type="Resource" uid="uid://dqbn6opnto47n" path="res://trench_broom/func_godot_fgd/entities/point/deco/deco_cable.tres" id="15_omqbe"]
+[ext_resource type="Resource" uid="uid://dqbn6opnto47n" path="res://trench_broom/func_godot_fgd/entities/point/deco/deco_hangcable_point_class.tres" id="15_omqbe"]
 [ext_resource type="Resource" uid="uid://db62xxbcljw26" path="res://trench_broom/func_godot_fgd/entities/base/angles_base_class.tres" id="16_p17g7"]
 
 [resource]

@@ -7,7 +7,7 @@
 [ext_resource type="Material" uid="uid://b78l63b32udy2" path="res://effects/halos/halo_mat.tres" id="3_j7cvy"]
 [ext_resource type="Script" uid="uid://qbss7pion7pi" path="res://scripts/effects/halo.gd" id="4_10o8e"]
 [ext_resource type="Script" uid="uid://oqbx6pignrqi" path="res://bullets/enemy/minor_omni_light_3d.gd" id="5_5kiuu"]
-[ext_resource type="AudioStream" uid="uid://bsv250k61o40r" path="res://audio/streams/ambient/plasma_shot_ambient.wav" id="5_pik6u"]
+[ext_resource type="AudioStream" uid="uid://bxr52xaey78it" path="res://audio/streams/ambient/plasmashot_ambient.ogg" id="8_t5qro"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_h48e4"]
 size = Vector3(0.15, 0.15, 1)
@@ -128,7 +128,7 @@ script = ExtResource("4_10o8e")
 color = Color(1, 0, 2, 1)
 
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
-stream = ExtResource("5_pik6u")
+stream = ExtResource("8_t5qro")
 autoplay = true
 bus = &"Combat"
 doppler_tracking = 2
