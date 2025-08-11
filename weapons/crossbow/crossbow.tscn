@@ -1,5 +1,6 @@
-[gd_scene load_steps=27 format=4 uid="uid://dah6eunyfmnqh"]
+[gd_scene load_steps=28 format=4 uid="uid://dah6eunyfmnqh"]
 
+[ext_resource type="Script" uid="uid://cc2ac013damuw" path="res://weapons/weapon_sway.gd" id="1_bp03f"]
 [ext_resource type="PackedScene" uid="uid://bfpoyydd4y6gc" path="res://weapons/crossbow/crossbow.glb" id="1_cxeg4"]
 [ext_resource type="AnimationLibrary" uid="uid://doq8kttqg86x7" path="res://weapons/crossbow/crossbow_anims.res" id="2_exmv2"]
 [ext_resource type="Script" uid="uid://byvp3rqol3kj0" path="res://weapons/crossbow/weapon_crossbow.gd" id="2_vadfq"]
@@ -178,9 +179,12 @@ _data = {
 }
 
 [node name="Crossbow" type="Node3D"]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, -0.35, -0.25)
 
-[node name="Crossbow" parent="." instance=ExtResource("1_cxeg4")]
+[node name="Anchor" type="Node3D" parent="."]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, -0.35, -0.25)
+script = ExtResource("1_bp03f")
+
+[node name="Crossbow" parent="Anchor" instance=ExtResource("1_cxeg4")]
 script = ExtResource("2_vadfq")
 bullet = ExtResource("3_71ym8")
 shot_cooldown = 1.7
@@ -188,18 +192,18 @@ ammo_type = "cells"
 category = 3
 index = 2
 
-[node name="Crossbow" parent="Crossbow" index="0"]
+[node name="Crossbow" parent="Anchor/Crossbow" index="0"]
 layers = 4
 material_override = ExtResource("4_vr385")
 cast_shadow = 0
 
-[node name="LeftString" parent="Crossbow" index="1"]
+[node name="LeftString" parent="Anchor/Crossbow" index="1"]
 transform = Transform3D(-4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, 0.425, 0, 0.5)
 layers = 4
 material_override = ExtResource("5_452mq")
 cast_shadow = 0
 
-[node name="GPUParticles3D" type="GPUParticles3D" parent="Crossbow/LeftString" index="0"]
+[node name="GPUParticles3D" type="GPUParticles3D" parent="Anchor/Crossbow/LeftString" index="0"]
 visible = false
 layers = 4
 material_override = SubResource("StandardMaterial3D_die74")
@@ -210,13 +214,13 @@ fixed_fps = 60
 process_material = SubResource("ParticleProcessMaterial_yrew0")
 draw_pass_1 = SubResource("ArrayMesh_8aypm")
 
-[node name="RightString" parent="Crossbow" index="2"]
+[node name="RightString" parent="Anchor/Crossbow" index="2"]
 transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, -0.425, 0, 0.5)
 layers = 8196
 material_override = ExtResource("5_452mq")
 cast_shadow = 0
 
-[node name="GPUParticles3D" type="GPUParticles3D" parent="Crossbow/RightString" index="0"]
+[node name="GPUParticles3D" type="GPUParticles3D" parent="Anchor/Crossbow/RightString" index="0"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00143878, 0, 0)
 visible = false
 layers = 4
@@ -228,30 +232,30 @@ fixed_fps = 60
 process_material = SubResource("ParticleProcessMaterial_yrew0")
 draw_pass_1 = SubResource("ArrayMesh_avxgk")
 
-[node name="Spawner" type="Marker3D" parent="Crossbow"]
+[node name="Spawner" type="Marker3D" parent="Anchor/Crossbow"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.95)
 
-[node name="AnimationTree" type="AnimationTree" parent="Crossbow"]
+[node name="AnimationTree" type="AnimationTree" parent="Anchor/Crossbow"]
 root_node = NodePath("../..")
 tree_root = SubResource("AnimationNodeStateMachine_d86tq")
 anim_player = NodePath("../../AnimationPlayer")
 
-[node name="AlertRadius" type="Area3D" parent="Crossbow"]
+[node name="AlertRadius" type="Area3D" parent="Anchor/Crossbow"]
 collision_layer = 2
 collision_mask = 4
 monitoring = false
 script = ExtResource("3_2m668")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Crossbow/AlertRadius"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Anchor/Crossbow/AlertRadius"]
 shape = SubResource("SphereShape3D_55wpv")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Anchor"]
 libraries = {
-"": SubResource("AnimationLibrary_2b3ff"),
-"crossbow_anims": ExtResource("2_exmv2")
+&"": SubResource("AnimationLibrary_2b3ff"),
+&"crossbow_anims": ExtResource("2_exmv2")
 }
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Anchor"]
 bus = &"Weapons"
 
-[editable path="Crossbow"]
+[editable path="Anchor/Crossbow"]

@@ -164,12 +164,14 @@ func log_event(event_text: String) -> void:
 	#event_container.move_child(event, 0)
 
 
-func set_alert(alert_text: String, duration: float = alert_duration) -> void:
+func set_alert(alert_text: String, alert_sound: AudioStream = null, duration: float = alert_duration) -> void:
 	alert.text = "[center]%s[/center]" % alert_text
 	alert.modulate.a = 1.0
 	alert.show()
 	alert_timer = duration
-
+	if alert_sound != null:
+		stream_player.stream = alert_sound
+		stream_player.play()
 
 func set_tooltip(tooltip_text: String) -> void:
 	tooltip.text = "[center]%s[/center]" % tooltip_text

@@ -1,6 +1,7 @@
-[gd_scene load_steps=23 format=3 uid="uid://bsjlv88juhpn5"]
+[gd_scene load_steps=24 format=3 uid="uid://bsjlv88juhpn5"]
 
 [ext_resource type="PackedScene" uid="uid://ewr07g72fjaa" path="res://weapons/hunting_rifle/hunting_rifle.glb" id="1_2vytj"]
+[ext_resource type="Script" uid="uid://cc2ac013damuw" path="res://weapons/weapon_sway.gd" id="1_onahp"]
 [ext_resource type="ArrayMesh" uid="uid://bblg4t73miejx" path="res://weapons/muzzle_flash_alt.obj" id="2_jyn3n"]
 [ext_resource type="Script" uid="uid://bw31mjnewjui0" path="res://weapons/hunting_rifle/weapon_rifle.gd" id="2_rovkw"]
 [ext_resource type="PackedScene" uid="uid://bf80ik7ckctt6" path="res://bullets/player/hitscan/hunting_rifle_bullet.tscn" id="3_m5odq"]
@@ -115,9 +116,12 @@ _data = {
 }
 
 [node name="HuntingRifle" type="Node3D"]
-transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.125, -0.05, -0.15, -0.35)
 
-[node name="hunting_rifle" parent="." node_paths=PackedStringArray("_label") instance=ExtResource("1_2vytj")]
+[node name="Anchor" type="Node3D" parent="."]
+transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.125, -0.05, -0.15, -0.35)
+script = ExtResource("1_onahp")
+
+[node name="hunting_rifle" parent="Anchor" node_paths=PackedStringArray("_label") instance=ExtResource("1_2vytj")]
 script = ExtResource("2_rovkw")
 _charge_delay = 0.75
 _label = NodePath("Label")
@@ -127,23 +131,23 @@ ammo_type = "big_iron_bullets"
 category = 3
 index = 1
 
-[node name="Body" parent="hunting_rifle" index="0"]
+[node name="Body" parent="Anchor/hunting_rifle" index="0"]
 material_override = ExtResource("4_vhd88")
 cast_shadow = 0
 
-[node name="Barrel" parent="hunting_rifle" index="1"]
+[node name="Barrel" parent="Anchor/hunting_rifle" index="1"]
 material_override = ExtResource("7_xxpk2")
 cast_shadow = 0
 
-[node name="Bolt" parent="hunting_rifle" index="2"]
+[node name="Bolt" parent="Anchor/hunting_rifle" index="2"]
 transform = Transform3D(-0.499999, 0.866025, 0, -0.866025, -0.499999, 0, 0, 0, 2, 0, 0.1, 0.85)
 material_override = ExtResource("7_xxpk2")
 cast_shadow = 0
 
-[node name="Spawner" type="Marker3D" parent="hunting_rifle"]
+[node name="Spawner" type="Marker3D" parent="Anchor/hunting_rifle"]
 transform = Transform3D(-1, 0, -3.01992e-07, 0, 1, 0, 1.50996e-07, 0, -2, -3.54062e-07, 0.102407, -2.4)
 
-[node name="MuzzleFlash" type="MeshInstance3D" parent="hunting_rifle/Spawner"]
+[node name="MuzzleFlash" type="MeshInstance3D" parent="Anchor/hunting_rifle/Spawner"]
 transform = Transform3D(-1, 0, -1.50996e-07, 0, 1, 0, 1.50996e-07, 0, -1, 4.23193e-06, -0.000249945, 0.000486732)
 visible = false
 layers = 4
@@ -151,7 +155,7 @@ material_override = ExtResource("7_ndw68")
 cast_shadow = 0
 mesh = ExtResource("2_jyn3n")
 
-[node name="OmniLight3D" type="OmniLight3D" parent="hunting_rifle/Spawner/MuzzleFlash"]
+[node name="OmniLight3D" type="OmniLight3D" parent="Anchor/hunting_rifle/Spawner/MuzzleFlash"]
 layers = 4
 light_color = Color(1, 1, 0, 1)
 light_energy = 0.0
@@ -159,21 +163,21 @@ shadow_enabled = true
 omni_range = 10.0
 omni_shadow_mode = 0
 
-[node name="AnimationTree" type="AnimationTree" parent="hunting_rifle"]
+[node name="AnimationTree" type="AnimationTree" parent="Anchor/hunting_rifle"]
 root_node = NodePath("../..")
 tree_root = SubResource("AnimationNodeStateMachine_p1jc4")
 anim_player = NodePath("../../AnimationPlayer")
 
-[node name="AlertRadius" type="Area3D" parent="hunting_rifle"]
+[node name="AlertRadius" type="Area3D" parent="Anchor/hunting_rifle"]
 collision_layer = 2
 collision_mask = 4
 monitoring = false
 script = ExtResource("6_tkwec")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="hunting_rifle/AlertRadius"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Anchor/hunting_rifle/AlertRadius"]
 shape = SubResource("SphereShape3D_tgx3e")
 
-[node name="Label" type="Label" parent="hunting_rifle" groups=["hunting_rifle_label"]]
+[node name="Label" type="Label" parent="Anchor/hunting_rifle" groups=["hunting_rifle_label"]]
 anchors_preset = 3
 anchor_left = 1.0
 anchor_top = 1.0
@@ -188,7 +192,7 @@ grow_vertical = 0
 text = "1"
 horizontal_alignment = 2
 
-[node name="NinePatchRect" type="NinePatchRect" parent="hunting_rifle/Label"]
+[node name="NinePatchRect" type="NinePatchRect" parent="Anchor/hunting_rifle/Label"]
 z_index = -1
 layout_mode = 1
 anchors_preset = 10
@@ -204,14 +208,14 @@ patch_margin_top = 16
 patch_margin_right = 4
 patch_margin_bottom = 8
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Anchor"]
 libraries = {
-"": SubResource("AnimationLibrary_3k0yj"),
-"hunting_rifle_anims": ExtResource("7_mroe0")
+&"": SubResource("AnimationLibrary_3k0yj"),
+&"hunting_rifle_anims": ExtResource("7_mroe0")
 }
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Anchor"]
 max_polyphony = 5
 bus = &"Weapons"
 
-[editable path="hunting_rifle"]
+[editable path="Anchor/hunting_rifle"]

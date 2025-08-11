@@ -231,8 +231,8 @@ func has_ammo(type: String, amount: int = 1, virtual_charge: bool = false) -> bo
 	return false
 
 
-func add_weapon(weapon: Node, _starting_ammo: int = 0) -> bool:
-	var weap: WeaponBase = weapon if weapon is WeaponBase else weapon.get_child(0)
+func add_weapon(weapon: Node, weap: WeaponBase, _starting_ammo: int = 0) -> bool:
+	#var weap: WeaponBase = weapon if weapon is WeaponBase else weapon.get_child(0)
 	if (
 			weapons[weap.category].is_empty() or
 			weapons[weap.category].size() <= weap.index or

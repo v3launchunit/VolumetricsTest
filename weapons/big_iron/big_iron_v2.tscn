@@ -1,9 +1,10 @@
-[gd_scene load_steps=21 format=3 uid="uid://fxxwu2mibeyh"]
+[gd_scene load_steps=22 format=3 uid="uid://fxxwu2mibeyh"]
 
 [ext_resource type="Script" uid="uid://c022da054b2ky" path="res://weapons/weapon_base.gd" id="1_ht0mu"]
 [ext_resource type="PackedScene" uid="uid://cjiaga01gs475" path="res://weapons/big_iron/big_iron.glb" id="2_7qdfo"]
 [ext_resource type="PackedScene" uid="uid://cehwd234g5us7" path="res://bullets/player/hitscan/big_iron_bullet.tscn" id="2_ue8mb"]
 [ext_resource type="Material" uid="uid://hi03f7cjksp1" path="res://weapons/big_iron/big_iron_mat_1.tres" id="3_alq1o"]
+[ext_resource type="Script" uid="uid://cc2ac013damuw" path="res://weapons/weapon_sway.gd" id="3_xoaxo"]
 [ext_resource type="Material" uid="uid://nv0jkcw45ofc" path="res://weapons/weapon_metal_vm.tres" id="4_3drvs"]
 [ext_resource type="Material" uid="uid://dq3a5fxspauox" path="res://weapons/muzzle_flash_yellow_vm.tres" id="5_67vob"]
 [ext_resource type="ArrayMesh" uid="uid://bblg4t73miejx" path="res://weapons/muzzle_flash_alt.obj" id="6_w6n8t"]
@@ -48,7 +49,7 @@ resource_name = "RESET"
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("big_iron/Spawner/MuzzleFlash:visible")
+tracks/0/path = NodePath("Anchor/big_iron/Spawner/MuzzleFlash:visible")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -60,7 +61,7 @@ tracks/0/keys = {
 tracks/1/type = "rotation_3d"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("big_iron/BigIron/Lever")
+tracks/1/path = NodePath("Anchor/big_iron/BigIron/Lever")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = PackedFloat32Array(0, 1, 0, 0, 0, 1)
@@ -71,38 +72,42 @@ _data = {
 }
 
 [node name="BigIron" type="Node3D"]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, -0.5, -0.35)
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
 script = ExtResource("1_ht0mu")
 bullet = ExtResource("2_ue8mb")
 shot_cooldown = 1.25
 ammo_type = "big_iron_bullets"
 
-[node name="big_iron" parent="." instance=ExtResource("2_7qdfo")]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0.00626617, 0)
+[node name="Anchor" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, -0.35)
+script = ExtResource("3_xoaxo")
 
-[node name="BigIron" parent="big_iron" index="0"]
+[node name="big_iron" parent="Anchor" instance=ExtResource("2_7qdfo")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0.000760162, 0)
+
+[node name="BigIron" parent="Anchor/big_iron" index="0"]
 material_override = ExtResource("3_alq1o")
 
-[node name="Cylinder" parent="big_iron/BigIron" index="0"]
+[node name="Cylinder" parent="Anchor/big_iron/BigIron" index="0"]
 material_override = ExtResource("4_3drvs")
 
-[node name="Lever" parent="big_iron/BigIron" index="1"]
+[node name="Lever" parent="Anchor/big_iron/BigIron" index="1"]
 material_override = ExtResource("4_3drvs")
 
-[node name="Scope" parent="big_iron/BigIron" index="2"]
+[node name="Scope" parent="Anchor/big_iron/BigIron" index="2"]
 material_override = ExtResource("4_3drvs")
 
-[node name="Spawner" type="Marker3D" parent="big_iron"]
+[node name="Spawner" type="Marker3D" parent="Anchor/big_iron"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.154, 3.3)
 
-[node name="MuzzleFlash" type="MeshInstance3D" parent="big_iron/Spawner"]
+[node name="MuzzleFlash" type="MeshInstance3D" parent="Anchor/big_iron/Spawner"]
 visible = false
 layers = 4
 material_override = ExtResource("5_67vob")
 cast_shadow = 0
 mesh = ExtResource("6_w6n8t")
 
-[node name="OmniLight3D" type="OmniLight3D" parent="big_iron/Spawner/MuzzleFlash"]
+[node name="OmniLight3D" type="OmniLight3D" parent="Anchor/big_iron/Spawner/MuzzleFlash"]
 layers = 4
 light_color = Color(1, 1, 0, 1)
 light_energy = 0.0
@@ -110,22 +115,24 @@ shadow_enabled = true
 omni_range = 10.0
 omni_shadow_mode = 0
 
-[node name="Scope" type="Node3D" parent="big_iron"]
+[node name="Scope" type="Node3D" parent="Anchor/big_iron"]
 script = ExtResource("8_dvcyr")
 scope_strength = 5.0
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Anchor"]
 max_polyphony = 4
 bus = &"Weapons"
 
-[node name="AnimationTree" type="AnimationTree" parent="."]
+[node name="AnimationTree" type="AnimationTree" parent="Anchor"]
+root_node = NodePath("../..")
 tree_root = SubResource("AnimationNodeStateMachine_l8agk")
 anim_player = NodePath("../AnimationPlayer")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Anchor"]
+root_node = NodePath("../..")
 libraries = {
-"": SubResource("AnimationLibrary_mwri3"),
-"big_iron_anims": ExtResource("8_isp10")
+&"": SubResource("AnimationLibrary_mwri3"),
+&"big_iron_anims": ExtResource("8_isp10")
 }
 
-[editable path="big_iron"]
+[editable path="Anchor/big_iron"]

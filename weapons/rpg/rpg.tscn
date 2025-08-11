@@ -1,6 +1,7 @@
-[gd_scene load_steps=28 format=3 uid="uid://bs3eibrb48t0m"]
+[gd_scene load_steps=29 format=3 uid="uid://bs3eibrb48t0m"]
 
 [ext_resource type="PackedScene" uid="uid://babited41kti5" path="res://weapons/rpg/rpg.glb" id="1_70x0w"]
+[ext_resource type="Script" uid="uid://cc2ac013damuw" path="res://weapons/weapon_sway.gd" id="1_t8q3w"]
 [ext_resource type="Script" uid="uid://bjqbfjaykf76s" path="res://weapons/rpg/weapon_rpg.gd" id="2_535cm"]
 [ext_resource type="Script" uid="uid://cm4w83326cpew" path="res://weapons/alert_area.gd" id="2_v1et6"]
 [ext_resource type="AnimationLibrary" uid="uid://c1poci1it3ds0" path="res://weapons/rpg/rpg_anims.res" id="3_ktpeh"]
@@ -109,9 +110,12 @@ _data = {
 }
 
 [node name="RPG" type="Node3D"]
-transform = Transform3D(-1, 0, -1.50996e-07, 0, 1, 0, 1.50996e-07, 0, -1, -0.75, -0.175, 0)
 
-[node name="rpg" parent="." instance=ExtResource("1_70x0w")]
+[node name="Anchor" type="Node3D" parent="."]
+transform = Transform3D(-1, 0, -1.50996e-07, 0, 1, 0, 1.50996e-07, 0, -1, -0.75, -0.175, 0)
+script = ExtResource("1_t8q3w")
+
+[node name="rpg" parent="Anchor" instance=ExtResource("1_70x0w")]
 script = ExtResource("2_535cm")
 alt_bullet = ExtResource("3_yt74d")
 alt_volley = 5
@@ -123,49 +127,49 @@ ammo_type = "rockets"
 category = 4
 index = 1
 
-[node name="tube" parent="rpg" index="0"]
+[node name="tube" parent="Anchor/rpg" index="0"]
 layers = 4
 material_override = ExtResource("5_mmwam")
 cast_shadow = 0
 
-[node name="pod" parent="rpg/tube" index="0"]
+[node name="pod" parent="Anchor/rpg/tube" index="0"]
 layers = 4
 material_override = ExtResource("5_mmwam")
 cast_shadow = 0
 
-[node name="AltSpawner" type="Marker3D" parent="rpg/tube/pod" index="0"]
+[node name="AltSpawner" type="Marker3D" parent="Anchor/rpg/tube/pod" index="0"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.75)
 
-[node name="rocket" parent="rpg/tube" index="1"]
+[node name="rocket" parent="Anchor/rpg/tube" index="1"]
 layers = 4
 material_override = ExtResource("4_0tpv3")
 cast_shadow = 0
 
-[node name="Spawner" type="Marker3D" parent="rpg/tube/rocket" index="0"]
+[node name="Spawner" type="Marker3D" parent="Anchor/rpg/tube/rocket" index="0"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2)
 
-[node name="AnimationTree" type="AnimationTree" parent="rpg"]
+[node name="AnimationTree" type="AnimationTree" parent="Anchor/rpg"]
 root_node = NodePath("../..")
 tree_root = SubResource("AnimationNodeStateMachine_n72uv")
 anim_player = NodePath("../../AnimationPlayer")
 
-[node name="AlertRadius" type="Area3D" parent="rpg"]
+[node name="AlertRadius" type="Area3D" parent="Anchor/rpg"]
 collision_layer = 2
 collision_mask = 4
 monitoring = false
 script = ExtResource("2_v1et6")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="rpg/AlertRadius"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Anchor/rpg/AlertRadius"]
 shape = SubResource("SphereShape3D_uogw3")
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Anchor"]
 max_polyphony = 8
 bus = &"Weapons"
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Anchor"]
 libraries = {
-"": SubResource("AnimationLibrary_g633s"),
-"rpg_anims": ExtResource("3_ktpeh")
+&"": SubResource("AnimationLibrary_g633s"),
+&"rpg_anims": ExtResource("3_ktpeh")
 }
 
-[editable path="rpg"]
+[editable path="Anchor/rpg"]

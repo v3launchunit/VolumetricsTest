@@ -1,7 +1,7 @@
 [gd_scene load_steps=25 format=3 uid="uid://b2ceyvvn2j4nq"]
 
 [ext_resource type="Script" uid="uid://yrdtgm5mut51" path="res://pickups/weapon_pickup.gd" id="1_iysxo"]
-[ext_resource type="PackedScene" uid="uid://bfxuay7qxu7lj" path="res://weapons/big_iron/big_iron.tscn" id="2_4dbr2"]
+[ext_resource type="PackedScene" uid="uid://fxxwu2mibeyh" path="res://weapons/big_iron/big_iron_v2.tscn" id="2_bnfh3"]
 [ext_resource type="AudioStream" uid="uid://dxscywpf2ven0" path="res://audio/streams/pickups/pickup_weapon.wav" id="2_yykfy"]
 [ext_resource type="Material" uid="uid://b78l63b32udy2" path="res://effects/halos/halo_mat.tres" id="3_4ae8u"]
 [ext_resource type="Texture2D" uid="uid://hk0k2coukjwc" path="res://effects/halos/halo_tex.tres" id="3_6os6d"]
@@ -216,7 +216,7 @@ _data = {
 collision_layer = 8
 lock_rotation = true
 script = ExtResource("1_iysxo")
-weapon = ExtResource("2_4dbr2")
+weapon = ExtResource("2_bnfh3")
 starting_ammo = 5
 event_string = "pickup.weap.bigiron"
 flash_color = Color(1, 1, 0, 1)
@@ -253,5 +253,5 @@ surface_material_override/3 = SubResource("ShaderMaterial_10h8g")
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 root_node = NodePath("../Area3D")
 libraries = {
-"": SubResource("AnimationLibrary_4pudi")
+&"": SubResource("AnimationLibrary_4pudi")
 }

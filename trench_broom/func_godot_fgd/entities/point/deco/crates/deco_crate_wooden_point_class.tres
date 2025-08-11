@@ -1,11 +1,11 @@
 [gd_resource type="Resource" script_class="FuncGodotFGDPointClass" load_steps=3 format=3 uid="uid://c7ua2ds1cc7g"]
 
-[ext_resource type="PackedScene" uid="uid://bxdu412yk2ut8" path="res://scenes/entities/crate_wooden.tscn" id="1_71jd8"]
-[ext_resource type="Script" uid="uid://cw2atun4e3eyv" path="res://addons/func_godot/src/fgd/func_godot_fgd_point_class.gd" id="2_hy0ek"]
+[ext_resource type="PackedScene" uid="uid://bxdu412yk2ut8" path="res://scenes/entities/crate_wooden.tscn" id="1_d6xf5"]
+[ext_resource type="Script" uid="uid://cw2atun4e3eyv" path="res://addons/func_godot/src/fgd/func_godot_fgd_point_class.gd" id="2_525si"]
 
 [resource]
-script = ExtResource("2_hy0ek")
-scene_file = ExtResource("1_71jd8")
+script = ExtResource("2_525si")
+scene_file = ExtResource("1_d6xf5")
 apply_rotation_on_map_build = true
 classname = "deco_crate_wooden"
 description = ""
@@ -16,7 +16,8 @@ class_property_descriptions = {}
 auto_apply_to_matching_node_properties = false
 meta_properties = {
 "color": Color(0.462905, 0.30779, 0.216694, 1),
-"size": AABB(-8, -8, -8, 8, 8, 8)
+"size": AABB(-8, -8, -8, 8, 8, 8),
+"studio": "\"models/deco_cube.glb\""
 }
 node_class = ""
 name_property = ""

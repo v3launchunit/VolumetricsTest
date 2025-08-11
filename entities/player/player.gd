@@ -93,8 +93,9 @@ class_name Player extends CharacterBody3D
 @export_storage var noclip: bool = false
 
 #var listening_for_cheats: bool = false
-var cam_y_offset: float = 0.0
-var crouch_speed: float = 15.0
+var cam_y_offset : float = 0.0
+var crouch_speed : float = 15.0
+var look_decay : float = 0.0
 
 @onready var camera := find_child("PlayerCam") as WeaponManager
 @onready var camera_sync := find_child("PlayerSync") as Node3D
@@ -210,7 +211,7 @@ func _physics_process(delta: float) -> void:
 
 
 func _physics_process_default(delta: float) -> void:
-	
+	# clamp camera x rotation between -pi and pi
 	camera.rotation.x = fposmod(camera.rotation.x + PI, 2 * PI) - PI
 	
 	# Check if my camera rotation is valid
@@ -245,6 +246,15 @@ func _physics_process_default(delta: float) -> void:
 	# Handle joypad look
 	if Globals.mouse_captured: 
 		_handle_joypad_camera_rotation(delta)
+	
+	#look_dir.move_toward(Vector2.ZERO, delta)
+	#if look_dir.is_equal_approx(Vector2.ZERO):
+		#look_dir = Vector2.ZERO
+	#print(look_dir)
+	look_decay = move_toward(look_decay, 0.0, delta)
+	if is_equal_approx(look_decay, 0.0):
+		look_decay = 0.0
+		look_dir = Vector2.ZERO
 	
 	#cam_recoil_pos = camera_sync.rotation.x + cam_recoil_vel
 	#cam_recoil_pos = smoothstep(camera_sync.rotation.x + cam_recoil_vel * delta, 0, delta)
@@ -308,6 +318,7 @@ func _rotate_camera(sens_mod: float = 1.0) -> void:
 		camera.rotation.x = clampf(camera.rotation.x - look_dir.y * sens, -1.5, 1.5)
 	else:
 		camera.rotation.x -= look_dir.y * sens
+	look_decay = 0.1
 
 
 ## Applies joypad input to the player [Camera3D].
@@ -339,36 +350,19 @@ func _animate_camera(delta: float) -> void:
 	
 	# Handle camera & weapon sway/jump lag
 	camera.position = Vector3(
-			(
-					move_dir.length() 
-					* sway_height 
-					* cos(sway_speed * sway_timer) 
-					- move_dir.x 
-					* strafe_sway
-			),
-			(
-					0.5 
-					+ move_dir.length() 
-					* sway_height 
-					/ 3 
-					* sin(2 * sway_speed * sway_timer)
-			),
+			move_dir.length() * sway_height * cos(sway_speed * sway_timer),
+			0.5 + move_dir.length() * sway_height / 2 * sin(2 * sway_speed * sway_timer),
 			0,
-	) if is_on_floor() else Vector3(
-			0,
-			0.5 - clampf((grav_vel.y) * jump_sway, -0.1, 0.1),
-			0,
-	)
+	) if is_on_floor() else Vector3(0.0, 0.5, 0.0)
+			#0,
+			#0.5 - clampf((grav_vel.y) * jump_sway, -0.1, 0.1),
+			#0,
+	#)
+	
 	# Manipulating the offsets like this makes it look like the weapon is
 	# moving relative to the camera without having to actually move the weapon
-	camera.h_offset = move_dir.x * strafe_sway
-	camera.v_offset = (
-			move_dir.length() * -sway_height / 6 * sin(10 * sway_timer)
-	) if is_on_floor() else clampf(
-			(grav_vel.y) * jump_sway,
-			-0.1,
-			0.1
-	)
+	#camera.h_offset = move_dir.x * strafe_sway
+	#camera.v_offset = move_dir.length() * -sway_height / 6 * sin(2 * sway_speed * sway_timer) if is_on_floor() else clampf((grav_vel.y) * jump_sway, -0.1, 0.1)
 	
 	cam_y_offset = lerpf(cam_y_offset, 0.0, delta * crouch_speed)
 	

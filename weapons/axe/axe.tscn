@@ -1,7 +1,8 @@
-[gd_scene load_steps=18 format=3 uid="uid://bjpo451a0eupa"]
+[gd_scene load_steps=19 format=3 uid="uid://bjpo451a0eupa"]
 
 [ext_resource type="Material" uid="uid://deiwjwa2emqli" path="res://weapons/axe/axe_mat.tres" id="1_qblvp"]
 [ext_resource type="ArrayMesh" uid="uid://cdgo2jvrkn5bc" path="res://weapons/axe/axe.obj" id="1_sq7xt"]
+[ext_resource type="Script" uid="uid://cc2ac013damuw" path="res://weapons/weapon_sway.gd" id="1_xk0bp"]
 [ext_resource type="AnimationLibrary" uid="uid://b7bfeeqv2plqj" path="res://weapons/axe/axe_anims.res" id="3_t18wh"]
 [ext_resource type="Script" uid="uid://cg48mfyeopfar" path="res://weapons/weapon_double_barrel.gd" id="5_fkvwm"]
 [ext_resource type="PackedScene" uid="uid://chdnpriqcxbgj" path="res://bullets/player/hitscan/axe_scan.tscn" id="6_jc7bq"]
@@ -60,9 +61,10 @@ graph_offset = Vector2(-136, 58)
 
 [node name="Anchor" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.25, -0.35)
+script = ExtResource("1_xk0bp")
 
 [node name="Axe" type="MeshInstance3D" parent="Anchor"]
-transform = Transform3D(0.499978, -0.866038, 0, 0.866038, 0.499978, 0, 0, 0, 1, -0.15, 0.00449458, 0)
+transform = Transform3D(0.499978, -0.866038, 0, 0.866038, 0.499978, 0, 0, 0, 1, -0.15, 4.70478e-06, 0)
 layers = 4
 material_override = ExtResource("1_qblvp")
 cast_shadow = 0

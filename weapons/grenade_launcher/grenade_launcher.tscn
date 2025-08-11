@@ -1,9 +1,10 @@
-[gd_scene load_steps=16 format=3 uid="uid://cvoyjj4iotdgb"]
+[gd_scene load_steps=17 format=3 uid="uid://cvoyjj4iotdgb"]
 
 [ext_resource type="ArrayMesh" uid="uid://k270ien3glvb" path="res://models/grenade_launcher.obj" id="1_2gdyd"]
 [ext_resource type="Script" uid="uid://c022da054b2ky" path="res://weapons/weapon_base.gd" id="1_sgyo5"]
 [ext_resource type="PackedScene" uid="uid://cp3asxmnm2wuy" path="res://bullets/player/projectile/mortar_grenade.tscn" id="2_o3wnk"]
 [ext_resource type="Material" uid="uid://bf74i5chaorag" path="res://weapons/rpg/rpg_mat_1.tres" id="3_f3fnj"]
+[ext_resource type="Script" uid="uid://cc2ac013damuw" path="res://weapons/weapon_sway.gd" id="3_vwvd2"]
 [ext_resource type="AnimationLibrary" uid="uid://c17bia3f5foys" path="res://weapons/grenade_launcher/mortar_anims.res" id="5_rm51x"]
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_grl0n"]
@@ -43,7 +44,7 @@ length = 0.001
 tracks/0/type = "position_3d"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("MeshInstance3D")
+tracks/0/path = NodePath("Anchor/MeshInstance3D")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = PackedFloat32Array(0, 1, 0, 0, 0)
@@ -54,7 +55,6 @@ _data = {
 }
 
 [node name="GrenadeLauncher" type="Node3D"]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -0.15, -0.35, -0.75)
 script = ExtResource("1_sgyo5")
 bullet = ExtResource("2_o3wnk")
 shot_cooldown = 0.5
@@ -62,22 +62,29 @@ cam_recoil = 0.261799
 ammo_type = "grenades"
 category = 4
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+[node name="Anchor" type="Node3D" parent="."]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -0.15, -0.35, -0.75)
+script = ExtResource("3_vwvd2")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Anchor"]
 material_override = ExtResource("3_f3fnj")
 cast_shadow = 0
 mesh = ExtResource("1_2gdyd")
+skeleton = NodePath("../..")
 
-[node name="Spawner" type="Marker3D" parent="MeshInstance3D"]
+[node name="Spawner" type="Marker3D" parent="Anchor/MeshInstance3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2)
 
-[node name="AnimationTree" type="AnimationTree" parent="."]
+[node name="AnimationTree" type="AnimationTree" parent="Anchor"]
+root_node = NodePath("../..")
 tree_root = SubResource("AnimationNodeStateMachine_n8cqh")
 anim_player = NodePath("../AnimationPlayer")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Anchor"]
+root_node = NodePath("../..")
 libraries = {
 &"": SubResource("AnimationLibrary_d4abo"),
 &"mortar_anims": ExtResource("5_rm51x")
 }
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Anchor"]

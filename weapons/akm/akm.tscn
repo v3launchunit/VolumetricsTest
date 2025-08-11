@@ -1,6 +1,7 @@
-[gd_scene load_steps=26 format=3 uid="uid://xpo774l18flk"]
+[gd_scene load_steps=27 format=3 uid="uid://xpo774l18flk"]
 
 [ext_resource type="ArrayMesh" uid="uid://53jffpg6vhkj" path="res://weapons/akm/akm.obj" id="1_srb21"]
+[ext_resource type="Script" uid="uid://cc2ac013damuw" path="res://weapons/weapon_sway.gd" id="1_tvtth"]
 [ext_resource type="Script" uid="uid://c022da054b2ky" path="res://weapons/weapon_base.gd" id="2_aqwyy"]
 [ext_resource type="Material" uid="uid://b603otl4v7w70" path="res://weapons/akm/akm_mat.tres" id="2_dd7di"]
 [ext_resource type="ArrayMesh" uid="uid://bblg4t73miejx" path="res://weapons/muzzle_flash_alt.obj" id="3_s7ev5"]
@@ -137,10 +138,13 @@ graph_offset = Vector2(-83, 64)
 radius = 16.0
 
 [node name="AKM" type="Node3D"]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -0.15, -0.5, -0.25)
 
-[node name="AKM" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.00607377, 0)
+[node name="Anchor" type="Node3D" parent="."]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -0.15, -0.5, -0.25)
+script = ExtResource("1_tvtth")
+
+[node name="AKM" type="MeshInstance3D" parent="Anchor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.000270188, 0)
 layers = 4
 cast_shadow = 0
 mesh = ExtResource("1_srb21")
@@ -154,10 +158,10 @@ cam_recoil = 0.0261799
 ammo_type = "akm_bullets"
 category = 2
 
-[node name="Spawner" type="Marker3D" parent="AKM"]
+[node name="Spawner" type="Marker3D" parent="Anchor/AKM"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.23, 1.15)
 
-[node name="MuzzleFlash" type="MeshInstance3D" parent="AKM/Spawner"]
+[node name="MuzzleFlash" type="MeshInstance3D" parent="Anchor/AKM/Spawner"]
 transform = Transform3D(-1, 0, -1.50996e-07, 0, 1, 0, 1.50996e-07, 0, -1, 3.02185e-09, 0, 0.0345659)
 visible = false
 layers = 4
@@ -165,7 +169,7 @@ material_override = ExtResource("7_uc8ir")
 cast_shadow = 0
 mesh = ExtResource("3_s7ev5")
 
-[node name="OmniLight3D" type="OmniLight3D" parent="AKM/Spawner/MuzzleFlash"]
+[node name="OmniLight3D" type="OmniLight3D" parent="Anchor/AKM/Spawner/MuzzleFlash"]
 layers = 4
 light_color = Color(1, 1, 0, 1)
 light_energy = 0.0
@@ -173,7 +177,7 @@ shadow_enabled = true
 omni_range = 10.0
 omni_shadow_mode = 0
 
-[node name="ShellEject" type="GPUParticles3D" parent="AKM"]
+[node name="ShellEject" type="GPUParticles3D" parent="Anchor/AKM"]
 transform = Transform3D(0.866025, -5.85622e-09, -0.5, -0.5, -2.18557e-08, -0.866025, -5.85621e-09, 1, -2.18557e-08, 0, 0.25, 0.25)
 visible = false
 layers = 4
@@ -184,30 +188,30 @@ fixed_fps = 60
 process_material = SubResource("ParticleProcessMaterial_2wbku")
 draw_pass_1 = SubResource("CylinderMesh_vf5lo")
 
-[node name="AnimationTree" type="AnimationTree" parent="AKM"]
+[node name="AnimationTree" type="AnimationTree" parent="Anchor/AKM"]
 root_node = NodePath("../..")
 tree_root = SubResource("AnimationNodeStateMachine_hbp1m")
 anim_player = NodePath("../../AnimationPlayer")
 
-[node name="Scope" type="Node3D" parent="AKM"]
+[node name="Scope" type="Node3D" parent="Anchor/AKM"]
 script = ExtResource("4_uav1m")
 scope_strength = 2.5
 
-[node name="AlertRadius" type="Area3D" parent="AKM"]
+[node name="AlertRadius" type="Area3D" parent="Anchor/AKM"]
 collision_layer = 2
 collision_mask = 4
 monitoring = false
 script = ExtResource("8_ehvva")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="AKM/AlertRadius"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Anchor/AKM/AlertRadius"]
 shape = SubResource("SphereShape3D_j17ew")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Anchor"]
 libraries = {
-"": ExtResource("5_q7x1e"),
-"akm": ExtResource("6_w4nrh")
+&"": ExtResource("5_q7x1e"),
+&"akm": ExtResource("6_w4nrh")
 }
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Anchor"]
 volume_db = -5.0
 bus = &"Weapons"

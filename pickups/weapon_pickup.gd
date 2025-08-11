@@ -30,11 +30,11 @@ func interact(body: Node3D) -> void:
 	if body is Player:
 		var manager := body.find_child("PlayerCam") as WeaponManager
 		var instance := weapon.instantiate()
-		var weap: WeaponBase = instance if instance is WeaponBase else instance.get_child(0)
+		var weap: WeaponBase = instance if instance is WeaponBase else instance.get_child(0).get_child(0)
 
 		manager.get_node("WeaponsHolder").add_child(instance)
 
-		if manager.add_weapon(instance, starting_ammo):
+		if manager.add_weapon(instance, weap, starting_ammo):
 			manager.force_add_ammo(weap.ammo_type, starting_ammo)
 			if weap is WeaponAltFire:
 				manager.force_add_ammo(weap.alt_ammo_type, starting_alt_ammo)

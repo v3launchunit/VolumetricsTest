@@ -1,6 +1,7 @@
-[gd_scene load_steps=32 format=3 uid="uid://bimc4ufk5hicg"]
+[gd_scene load_steps=33 format=3 uid="uid://bimc4ufk5hicg"]
 
 [ext_resource type="ArrayMesh" uid="uid://cgahp1theduxt" path="res://weapons/pump_shotgun/pump_shotgun.obj" id="1_ejui6"]
+[ext_resource type="Script" uid="uid://cc2ac013damuw" path="res://weapons/weapon_sway.gd" id="1_iimrc"]
 [ext_resource type="Material" uid="uid://ctwypyshcw87y" path="res://weapons/pump_shotgun/pump_shotgun_mat_1.tres" id="1_iyx8y"]
 [ext_resource type="Script" uid="uid://0ub7uw1al088" path="res://weapons/weapon_alt_fire.gd" id="2_rkwad"]
 [ext_resource type="ArrayMesh" uid="uid://crk83yrjbvbg6" path="res://weapons/muzzle_flash.obj" id="3_8b28n"]
@@ -197,9 +198,10 @@ _data = {
 
 [node name="Anchor" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.15, -0.25, -0.35)
+script = ExtResource("1_iimrc")
 
 [node name="PumpShotgun" type="MeshInstance3D" parent="Anchor"]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0.00308958, 0)
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0.00158067, 0)
 layers = 4
 material_override = ExtResource("1_iyx8y")
 cast_shadow = 0

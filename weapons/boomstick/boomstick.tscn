@@ -1,6 +1,7 @@
-[gd_scene load_steps=44 format=3 uid="uid://crvf6qiekfqex"]
+[gd_scene load_steps=45 format=3 uid="uid://crvf6qiekfqex"]
 
 [ext_resource type="ArrayMesh" uid="uid://cjx7th4qqdgak" path="res://weapons/boomstick/boomstick.obj" id="1_7e58d"]
+[ext_resource type="Script" uid="uid://cc2ac013damuw" path="res://weapons/weapon_sway.gd" id="1_q8ab2"]
 [ext_resource type="Script" uid="uid://0ub7uw1al088" path="res://weapons/weapon_alt_fire.gd" id="2_nf3wy"]
 [ext_resource type="ArrayMesh" uid="uid://crk83yrjbvbg6" path="res://weapons/muzzle_flash.obj" id="3_ac8cs"]
 [ext_resource type="Texture2D" uid="uid://b84lximnqxpsk" path="res://weapons/boomstick/boomstick_metallic.png" id="3_d1ne8"]
@@ -387,10 +388,14 @@ height = 0.175
 radial_segments = 6
 
 [node name="Boomstick" type="Node3D"]
-transform = Transform3D(-1, 0, -1.50996e-07, 0, 1, 0, 1.50996e-07, 0, -1, 0, -0.35, 0)
 
-[node name="Boomstick" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.00677622, 0)
+[node name="Anchor" type="Node3D" parent="."]
+transform = Transform3D(-1, 0, -1.50996e-07, 0, 1, 0, 1.50996e-07, 0, -1, 0, -0.35, 0)
+script = ExtResource("1_q8ab2")
+rotate = true
+
+[node name="Boomstick" type="MeshInstance3D" parent="Anchor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.00966568, 0)
 layers = 4
 cast_shadow = 0
 mesh = ExtResource("1_7e58d")
@@ -411,10 +416,10 @@ ammo_cost = 2
 category = 1
 index = 1
 
-[node name="Spawner" type="Marker3D" parent="Boomstick"]
+[node name="Spawner" type="Marker3D" parent="Anchor/Boomstick"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.5)
 
-[node name="MuzzleFlashL" type="MeshInstance3D" parent="Boomstick/Spawner"]
+[node name="MuzzleFlashL" type="MeshInstance3D" parent="Anchor/Boomstick/Spawner"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.05, 0, 0)
 visible = false
 layers = 4
@@ -423,7 +428,7 @@ cast_shadow = 0
 mesh = ExtResource("3_ac8cs")
 skeleton = NodePath("../../..")
 
-[node name="OmniLight3D" type="OmniLight3D" parent="Boomstick/Spawner/MuzzleFlashL"]
+[node name="OmniLight3D" type="OmniLight3D" parent="Anchor/Boomstick/Spawner/MuzzleFlashL"]
 layers = 4
 light_color = Color(1, 1, 0, 1)
 light_energy = 0.0
@@ -431,7 +436,7 @@ shadow_enabled = true
 omni_range = 10.0
 omni_shadow_mode = 0
 
-[node name="MuzzleFlashR" type="MeshInstance3D" parent="Boomstick/Spawner"]
+[node name="MuzzleFlashR" type="MeshInstance3D" parent="Anchor/Boomstick/Spawner"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.05, 0, 0)
 visible = false
 layers = 4
@@ -440,7 +445,7 @@ cast_shadow = 0
 mesh = ExtResource("3_ac8cs")
 skeleton = NodePath("../../..")
 
-[node name="OmniLight3D" type="OmniLight3D" parent="Boomstick/Spawner/MuzzleFlashR"]
+[node name="OmniLight3D" type="OmniLight3D" parent="Anchor/Boomstick/Spawner/MuzzleFlashR"]
 layers = 4
 light_color = Color(1, 1, 0, 1)
 light_energy = 0.0
@@ -448,10 +453,10 @@ shadow_enabled = true
 omni_range = 10.0
 omni_shadow_mode = 0
 
-[node name="AltSpawner" type="Marker3D" parent="Boomstick"]
+[node name="AltSpawner" type="Marker3D" parent="Anchor/Boomstick"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.5)
 
-[node name="MuzzleFlashL" type="MeshInstance3D" parent="Boomstick/AltSpawner"]
+[node name="MuzzleFlashL" type="MeshInstance3D" parent="Anchor/Boomstick/AltSpawner"]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0.05, 0, 0)
 visible = false
 layers = 4
@@ -459,7 +464,7 @@ material_override = ExtResource("10_lwo5p")
 mesh = ExtResource("3_ac8cs")
 skeleton = NodePath("../../..")
 
-[node name="OmniLight3D" type="OmniLight3D" parent="Boomstick/AltSpawner/MuzzleFlashL"]
+[node name="OmniLight3D" type="OmniLight3D" parent="Anchor/Boomstick/AltSpawner/MuzzleFlashL"]
 layers = 4
 light_color = Color(1, 1, 0, 1)
 light_energy = 0.0
@@ -467,7 +472,7 @@ shadow_enabled = true
 omni_range = 10.0
 omni_shadow_mode = 0
 
-[node name="MuzzleFlashR" type="MeshInstance3D" parent="Boomstick/AltSpawner"]
+[node name="MuzzleFlashR" type="MeshInstance3D" parent="Anchor/Boomstick/AltSpawner"]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -0.05, 0, 0)
 visible = false
 layers = 4
@@ -475,7 +480,7 @@ material_override = ExtResource("10_lwo5p")
 mesh = ExtResource("3_ac8cs")
 skeleton = NodePath("../../..")
 
-[node name="OmniLight3D" type="OmniLight3D" parent="Boomstick/AltSpawner/MuzzleFlashR"]
+[node name="OmniLight3D" type="OmniLight3D" parent="Anchor/Boomstick/AltSpawner/MuzzleFlashR"]
 layers = 4
 light_color = Color(1, 1, 0, 1)
 light_energy = 0.0
@@ -483,35 +488,37 @@ shadow_enabled = true
 omni_range = 10.0
 omni_shadow_mode = 0
 
-[node name="AnimationTree" type="AnimationTree" parent="Boomstick"]
+[node name="AnimationTree" type="AnimationTree" parent="Anchor/Boomstick"]
 root_node = NodePath("../..")
 tree_root = SubResource("AnimationNodeStateMachine_b1n13")
 anim_player = NodePath("../../AnimationPlayer")
 
-[node name="AlertRadius" type="Area3D" parent="Boomstick"]
+[node name="AlertRadius" type="Area3D" parent="Anchor/Boomstick"]
 collision_layer = 2
 collision_mask = 4
 monitoring = false
 script = ExtResource("10_khxxt")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Boomstick/AlertRadius"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Anchor/Boomstick/AlertRadius"]
 shape = SubResource("SphereShape3D_iuds5")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Anchor"]
+callback_mode_discrete = 0
 libraries = {
-"": SubResource("AnimationLibrary_udr0n"),
-"boomstick_anims": ExtResource("4_a2xtk")
+&"": SubResource("AnimationLibrary_udr0n"),
+&"boomstick_anims": ExtResource("4_a2xtk")
 }
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Anchor"]
 bus = &"Weapons"
 
-[node name="ShellEject" type="GPUParticles3D" parent="."]
+[node name="ShellEject" type="GPUParticles3D" parent="Anchor"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, -0.15, 0.5)
 layers = 4
 emitting = false
 amount = 2
 lifetime = 3.0
+one_shot = true
 explosiveness = 1.0
 randomness = 1.0
 fixed_fps = 60

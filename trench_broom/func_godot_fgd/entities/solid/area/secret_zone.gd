@@ -5,6 +5,8 @@ signal interacted(with: Node3D)
 
 @export var properties: Dictionary
 
+var alert_sound := preload("res://audio/streams/effects/doom_secret.ogg") as AudioStream
+
 @onready var level := get_tree().current_scene as Level
 
 
@@ -36,7 +38,7 @@ func _on_body_entered(body: Node3D) -> void:
 				max(ceili(log(level.secrets)) / log(10), 1), 
 				level.found_secrets, 
 				level.secrets,
-		])
+		], alert_sound)
 	
 		if properties["group"] != "none":
 			interacted.emit(body)
